@@ -4,6 +4,8 @@ import 'package:is_it_safe_app/app/modules/login/login_bloc.dart';
 import 'package:is_it_safe_app/core/components/main_button.dart';
 import 'package:is_it_safe_app/core/components/theme_switch.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -16,6 +18,7 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
+  bool _showPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +64,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                       decoration: InputDecoration(
                         hintText: S.of(context).textUsername,
                       ),
-                      onChanged: (value) => controller.enableButton(),
+                      onChanged: (value) => controller.enableLoginButton(),
                       validator: (value) {
                         if (value == null
                             ? false
@@ -79,9 +82,28 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                     controller: controller.passwordController,
                     decoration: InputDecoration(
                       hintText: S.of(context).textPassword,
+                      suffixIcon: GestureDetector(
+                        onTap: () => setState(() {
+                          _showPassword = !_showPassword;
+                        }),
+                        child: IconTheme(
+                          data: Theme.of(context).iconTheme.copyWith(
+                                color: Helpers.getColorFromTheme(
+                                  context: context,
+                                  darkModeColor: whiteColor,
+                                  lightModeColor: primaryTextColorLight,
+                                ),
+                              ),
+                          child: Icon(
+                            _showPassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        ),
+                      ),
                     ),
-                    obscureText: true,
-                    onChanged: (value) => controller.enableButton(),
+                    obscureText: _showPassword,
+                    onChanged: (value) => controller.enableLoginButton(),
                     validator: (value) {
                       if (value == null
                           ? false
@@ -99,7 +121,9 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          //TODO add navigation to ForgotPassword
+                        },
                         child: Text(
                           S.of(context).textButtonForgotPassword,
                           style:
@@ -120,6 +144,8 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                         onTap: () async {
                           _formKey.currentState!.validate();
                           await controller.doLogin();
+                          //TODO save on SharedPreferences that the user is logged
+                          //TODO add navigation to Home
                         },
                         text: S.of(context).textLogin,
                         color: snapshot.data == false
@@ -140,7 +166,9 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                           style: Theme.of(context).textTheme.subtitle2,
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            //TODO add navigation to Register
+                          },
                           child: Text(
                             S.of(context).textSignUp,
                             style: TextStyle(
