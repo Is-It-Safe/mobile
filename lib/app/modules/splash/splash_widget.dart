@@ -26,6 +26,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
     controller.splashStream.listen(
       (event) async {
         if (event) {
+          developer.log(event.toString(), name: "IS USER LOGGED?");
           await Future.delayed(const Duration(seconds: 4));
           // Modular.to.pushReplacementNamed(kRouteHome);
         } else {
@@ -39,7 +40,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
     await Future.delayed(const Duration(seconds: 4));
     await CustomSharedPreferences.readUsuarioOnBoarding().then(
       (value) async {
-        developer.log(value.toString(), name: "IS USER LOGGED?");
+        developer.log(value.toString(), name: "DID USER SEE ONBOARDING?");
         if (value) {
           Modular.to.pushReplacementNamed(kRouteLogin);
         } else {
