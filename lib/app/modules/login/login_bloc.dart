@@ -32,7 +32,7 @@ class LoginBloc implements Disposable {
     }
   }
 
-  enableButton() {
+  void enableLoginButton() {
     bool isUsernameOk = (Helpers.validateName(usernameController.text));
     bool isPasswordOk = (passwordController.text.isNotEmpty &&
         Helpers.validatePassword(passwordController.text));
