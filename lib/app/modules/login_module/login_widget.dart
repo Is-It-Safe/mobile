@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/login/login_bloc.dart';
 import 'package:is_it_safe_app/core/components/main_button.dart';
 import 'package:is_it_safe_app/core/components/theme_switch.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+
+import 'login_bloc.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //ThemeSwitch(),
+                  //const ThemeSwitch(),
 
                   ///Text
                   Padding(
