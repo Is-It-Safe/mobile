@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:is_it_safe_app/app/modules/splash/splash_bloc.dart';
+import 'package:is_it_safe_app/app/modules/splash_module/splash_bloc.dart';
 import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/style/animations/fade_animation.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/dark_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
-import 'dart:developer' as developer;
+import 'dart:developer' as dev;
 
 class SplashWidget extends StatefulWidget {
   const SplashWidget({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
     controller.splashStream.listen(
       (event) async {
         if (event) {
-          developer.log(event.toString(), name: "IS USER LOGGED?");
+          dev.log(event.toString(), name: "IS USER LOGGED?");
           await Future.delayed(const Duration(seconds: 4));
           // Modular.to.pushReplacementNamed(kRouteHome);
         } else {
@@ -40,7 +40,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
     await Future.delayed(const Duration(seconds: 4));
     await CustomSharedPreferences.readUsuarioOnBoarding().then(
       (value) async {
-        developer.log(value.toString(), name: "DID USER SEE ONBOARDING?");
+        dev.log(value.toString(), name: "DID USER SEE ONBOARDING?");
         if (value) {
           Modular.to.pushReplacementNamed(kRouteLogin);
         } else {
