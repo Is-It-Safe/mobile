@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/components/main_button.dart';
 import 'package:is_it_safe_app/core/components/theme_switch.dart';
+import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
@@ -167,9 +168,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                           style: Theme.of(context).textTheme.subtitle2,
                         ),
                         TextButton(
-                          onPressed: () {
-                            //TODO add navigation to Register
-                          },
+                          onPressed: () => Modular.to.pushNamed(kRouteRegister),
                           child: Text(
                             S.of(context).textSignUp,
                             style: TextStyle(
