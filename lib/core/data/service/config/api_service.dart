@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/core/data/service/config/api_constants.dart';
 
 import 'app_exeptions.dart';
 import 'custom_interceptions.dart';
+import 'dart:developer' as dev;
 
 enum HttpMethod { get, post, patch, delete }
 
@@ -120,8 +121,8 @@ class APIService {
           try {
             return (response.data as List?);
           } catch (e) {
-            print(e.toString());
-            return Map<String, dynamic>();
+            dev.log(e.toString(), name: "RESPONSE ERROR");
+            return <String, dynamic>{};
           }
         }
       }

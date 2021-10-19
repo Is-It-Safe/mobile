@@ -1,13 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+import 'dart:developer' as dev;
+
 class CustomInterceptors extends InterceptorsWrapper {
-  Dio _dio;
+  // ignore: unused_field
+  final Dio _dio;
 
   CustomInterceptors(this._dio);
 
   @override
-  Future onRequest(RequestOptions options,
+  Future onRequest(
+      RequestOptions options,
+      // ignore: avoid_renaming_method_parameters
       RequestInterceptorHandler interceptorHandler) async {
     if (kDebugMode) {
       _printRequest(options);
@@ -16,7 +21,9 @@ class CustomInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  Future onResponse(Response response,
+  Future onResponse(
+      Response response,
+      // ignore: avoid_renaming_method_parameters
       ResponseInterceptorHandler responseInterceptorHandler) async {
     if (kDebugMode) {
       _printResponse(response);
@@ -25,6 +32,7 @@ class CustomInterceptors extends InterceptorsWrapper {
   }
 
   @override
+  // ignore: avoid_renaming_method_parameters
   onError(DioError err, ErrorInterceptorHandler errorInterceptorHandler) {
     if (kDebugMode) {
       _printError(err);
@@ -33,32 +41,32 @@ class CustomInterceptors extends InterceptorsWrapper {
   }
 
   void _printError(DioError err) {
-    print("----------> INIT ERROR RESPONSE <----------");
-    print(
+    dev.log("----------> INIT ERROR RESPONSE <----------",
+        name: "RESPONSE ERROR");
+    dev.log(
         "ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}");
-    print("BODY => ${err.response?.data}");
-    print("-----> END ERROR RESPONSE <----------");
+    dev.log("BODY => ${err.response?.data}");
+    dev.log("-----> END ERROR RESPONSE <----------");
   }
 
   void _printRequest(RequestOptions options, {String? method, String? url}) {
-    print("----------> INIT APP REQUEST <----------");
-    print(
-        "${method != null ? method : options.method} => ${url != null ? url : options.path}");
-    print("HEADERS =>");
+    dev.log("----------> INIT APP REQUEST <----------");
+    dev.log("${method ?? options.method} => ${url ?? options.path}");
+    dev.log("HEADERS =>");
     options.headers.forEach((key, value) {
-      print("$key => $value");
+      dev.log("$key => $value");
     });
-    print("BODY => ${options.data}");
-    print("----------> END APP REQUEST <----------");
+    dev.log("BODY => ${options.data}");
+    dev.log("----------> END APP REQUEST <----------");
   }
 
   void _printResponse(Response response) {
-    print("----------> INIT API RESPONSE <----------");
-    print("${response.requestOptions.path}");
-    print("STATUS CODE => ${response.statusCode}");
-    print("HEADERS =>");
-    response.headers.forEach((k, v) => print('$k: $v'));
-    print("BODY => ${response.data}");
-    print("----------> END API RESPONSE <----------");
+    dev.log("----------> INIT API RESPONSE <----------");
+    dev.log(response.requestOptions.path);
+    dev.log("STATUS CODE => ${response.statusCode}");
+    dev.log("HEADERS =>");
+    response.headers.forEach((k, v) => dev.log('$k: $v'));
+    dev.log("BODY => ${response.data}");
+    dev.log("----------> END API RESPONSE <----------");
   }
 }
