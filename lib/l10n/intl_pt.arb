@@ -3,6 +3,7 @@
     
     "textAppBarProfileRegisterPage":"Perfil",
     "textAppBarChooseProfilePhotoPage": "Escolha seu avatar!",
+    "textAppBarSignUp": "Cadastro",
 
     "textPageTitleLogin":"Vamos entrar.",
     "textPageSubtitleLogin":"Sentimos sua falta!",
@@ -38,7 +39,7 @@
     "textRegister":"Cadastrar",
     "textPronouns":"Pronomes",
     "textName":"Nome",
-    "textEmailAddress":"Endereço de email",
+    "textEmailAddress":"Endereço de E-mail",
     "textReady": "Pronto",
     "textCancel": "Cancelar",
 
@@ -49,8 +50,10 @@
     "textLettersAndNumbers":"letras e números, por favor!",
     "textIReadAndAcceptThe":"Eu li e aceito os ",
     "textTermsAndConditions":"termos e condições",
+    "textWelcome": "Bem-vinde",
+    "textMeetingYouWillBeAPleasure":"Será um prazer te conhecer!",
     
-    "textExamplePronouns":"Exemplo: Ela/Delas, Elu/Delu, Ela/Elu",
+    "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
 
 
     "textOnBoarding1_0":"Foco em",

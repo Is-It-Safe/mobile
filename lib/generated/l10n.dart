@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `Cadastro`
+  String get textAppBarSignUp {
+    return Intl.message(
+      'Cadastro',
+      name: 'textAppBarSignUp',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Vamos entrar.`
   String get textPageTitleLogin {
     return Intl.message(
@@ -390,10 +400,10 @@ class S {
     );
   }
 
-  /// `Endereço de email`
+  /// `Endereço de E-mail`
   String get textEmailAddress {
     return Intl.message(
-      'Endereço de email',
+      'Endereço de E-mail',
       name: 'textEmailAddress',
       desc: '',
       args: [],
@@ -490,10 +500,30 @@ class S {
     );
   }
 
-  /// `Exemplo: Ela/Delas, Elu/Delu, Ela/Elu`
+  /// `Bem-vinde`
+  String get textWelcome {
+    return Intl.message(
+      'Bem-vinde',
+      name: 'textWelcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Será um prazer te conhecer!`
+  String get textMeetingYouWillBeAPleasure {
+    return Intl.message(
+      'Será um prazer te conhecer!',
+      name: 'textMeetingYouWillBeAPleasure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(
-      'Exemplo: Ela/Delas, Elu/Delu, Ela/Elu',
+      'Exemplo: Ela/Dela, Elu/Delu, Ela/Elu',
       name: 'textExamplePronouns',
       desc: '',
       args: [],

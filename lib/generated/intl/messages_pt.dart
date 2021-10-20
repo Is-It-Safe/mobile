@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
         "textAppBarProfileRegisterPage":
             MessageLookupByLibrary.simpleMessage("Perfil"),
+        "textAppBarSignUp": MessageLookupByLibrary.simpleMessage("Cadastro"),
         "textAtLeast8Characteres":
             MessageLookupByLibrary.simpleMessage("mínimo de 8 caracteres"),
         "textButtonDontHaveAccount":
@@ -37,7 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
             "Não tenha medo de ser criativo"),
         "textEmailAddress":
-            MessageLookupByLibrary.simpleMessage("Endereço de email"),
+            MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
             "Os campos de senha devem ser iguais"),
         "textErrorEmail": MessageLookupByLibrary.simpleMessage(
@@ -57,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(
             "Campos errados! Tente novamente."),
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
-            "Exemplo: Ela/Delas, Elu/Delu, Ela/Elu"),
+            "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
         "textForgotGender":
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
@@ -69,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textLettersAndNumbers": MessageLookupByLibrary.simpleMessage(
             "letras e números, por favor!"),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
+        "textMeetingYouWillBeAPleasure":
+            MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer!"),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
         "textOnBoarding1_0": MessageLookupByLibrary.simpleMessage("Foco em"),
         "textOnBoarding1_1": MessageLookupByLibrary.simpleMessage("segurança"),
@@ -110,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
             "Nos importamos com a sua segurança, então..."),
+        "textWelcome": MessageLookupByLibrary.simpleMessage("Bem-vinde"),
         "textforgotGenderSubtext":
             MessageLookupByLibrary.simpleMessage("me avise!")
       };
