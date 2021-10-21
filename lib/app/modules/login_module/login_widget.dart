@@ -9,6 +9,7 @@ import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'login_bloc.dart';
+import 'dart:developer' as dev;
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -21,6 +22,12 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   bool _showPassword = true;
+  @override
+  void initState() {
+    super.initState();
+    dev.log(Modular.to.path, name: "PATH");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

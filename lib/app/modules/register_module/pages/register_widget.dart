@@ -2,14 +2,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
+import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/components/main_button.dart';
 import 'package:is_it_safe_app/core/components/main_text_field.dart';
 import 'package:is_it_safe_app/core/components/show_field_button.dart';
+import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/dark_theme_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+
+import 'dart:developer' as dev;
 
 class RegisterWidget extends StatefulWidget {
   const RegisterWidget({Key? key}) : super(key: key);
@@ -22,33 +26,21 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
+
+  @override
+  void initState() {
+    super.initState();
+    dev.log(Modular.to.path, name: "PATH");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        title: Text(
-          S.of(context).textAppBarSignUp,
-          style: Theme.of(context)
-              .textTheme
-              .headline6!
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            color: Helpers.getColorFromTheme(
-              context: context,
-              darkModeColor: whiteColor,
-              lightModeColor: primaryTextColorLight,
-            ),
-          ),
-        ),
+      appBar: appBar(
+        context: context,
+        hasLeading: true,
+        title: S.of(context).textAppBarSignUp,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -90,7 +82,10 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                     hintText: "${S.of(context).textName}*",
                     changeLabelColor: false,
                     validator: (value) {
-                      if (!Helpers.validateName(value!)) {
+                      if (value == null) {
+                        return S.of(context).textErrorEmptyField;
+                      }
+                      if (!Helpers.validateName(value)) {
                         return S.of(context).textErrorEmptyField;
                       } else {
                         return null;
@@ -108,7 +103,10 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                     changeLabelColor: false,
                     hintText: "${S.of(context).textUsername}*",
                     validator: (value) {
-                      if (!Helpers.validateName(value!)) {
+                      if (value == null) {
+                        return S.of(context).textErrorEmptyField;
+                      }
+                      if (!Helpers.validateName(value)) {
                         return S.of(context).textErrorEmptyField;
                       } else {
                         return null;
@@ -147,7 +145,6 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                     validator: (value) {},
                     onChanged: (value) {
                       controller.enableRegisterButton();
-                      // controller.setUserPronouns(value);
                     },
                     labelText: S.of(context).textExamplePronouns,
                     changeLabelColor: true,
@@ -178,9 +175,13 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                   MainTextField(
                     padding: const EdgeInsets.only(top: 20),
                     controller: controller.emailController,
+                    changeLabelColor: false,
                     hintText: "${S.of(context).textEmailAddress}*",
                     validator: (value) {
-                      if (!Helpers.validateEmail(value!)) {
+                      if (value == null) {
+                        return S.of(context).textErrorEmail;
+                      }
+                      if (!Helpers.validateEmail(value)) {
                         return S.of(context).textErrorEmail;
                       } else {
                         return null;
@@ -189,7 +190,6 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                     onChanged: (value) {
                       controller.enableRegisterButton();
                     },
-                    changeLabelColor: false,
                   ),
 
                   ///Password field
@@ -198,7 +198,10 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                     controller: controller.passwordController,
                     hintText: "${S.of(context).textPassword}*",
                     validator: (value) {
-                      if (!Helpers.validatePassword(value!)) {
+                      if (value == null) {
+                        return S.of(context).textErrorLoginPassword;
+                      }
+                      if (!Helpers.validatePassword(value)) {
                         return S.of(context).textErrorLoginPassword;
                       } else {
                         return null;
@@ -283,10 +286,13 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                     controller: controller.confirmPasswordController,
                     hintText: "${S.of(context).textPasswordConfirmation}*",
                     validator: (value) {
-                      if (!Helpers.validatePassword(value!) ||
+                      if (value == null) {
+                        return S.of(context).textErrorDifferentPasswords;
+                      }
+                      if (!Helpers.validatePassword(value) ||
                           controller.passwordController.text !=
                               controller.confirmPasswordController.text) {
-                        return S.of(context).textErrorLoginPassword;
+                        return S.of(context).textErrorDifferentPasswords;
                       } else {
                         return null;
                       }
@@ -347,7 +353,9 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                                 ),
                                 TextSpan(
                                   recognizer: TapGestureRecognizer()
-                                    ..onTap = () {},
+                                    ..onTap = () {
+                                      //TODO Navegação para termos de uso e condições
+                                    },
                                   text: S.of(context).textTermsAndConditions +
                                       "*",
                                   style: Theme.of(context)
@@ -385,9 +393,9 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                                   ? Theme.of(context).disabledColor
                                   : null,
                               onTap: () {
-                                _formKey.currentState!.validate();
-                                if (snapshot.data != false) {
-                                  //TODO set navigation
+                                _formKey.currentState?.validate();
+                                if (snapshot.data == true) {
+                                  Modular.to.pushNamed(kRouteRegisterProfile);
                                 }
                               });
                         }),

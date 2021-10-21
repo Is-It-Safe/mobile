@@ -22,6 +22,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
   @override
   void initState() {
     super.initState();
+    dev.log(Modular.to.path, name: "PATH");
     controller.getUsuarioLogin();
     controller.splashStream.listen(
       (event) async {

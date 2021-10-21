@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'on_boarding_bloc.dart';
+import 'dart:developer' as dev;
 
 class OnBoardingWidget extends StatefulWidget {
   const OnBoardingWidget({Key? key}) : super(key: key);
@@ -16,6 +17,13 @@ class OnBoardingWidget extends StatefulWidget {
 class _OnBoardingWidgetState
     extends ModularState<OnBoardingWidget, OnBoardingBloc> {
   final PageController _pageController = PageController(initialPage: 0);
+
+  @override
+  void initState() {
+    super.initState();
+    dev.log(Modular.to.path, name: "PATH");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
