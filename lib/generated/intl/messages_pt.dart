@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textButtonForgotPassword":
             MessageLookupByLibrary.simpleMessage("Esqueceu sua senha?"),
         "textCancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "textConfirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
@@ -104,7 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textRegister": MessageLookupByLibrary.simpleMessage("Cadastrar"),
         "textSexualOrientation":
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
-        "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se."),
+        "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
         "textSkipForNow": MessageLookupByLibrary.simpleMessage("Pular"),
         "textSubtitleRegistrationPage":
             MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer!"),

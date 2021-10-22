@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -23,6 +24,8 @@ class RegisterBloc implements Disposable {
   late TextEditingController birthdayController;
 
   bool termsAndConditionsCheckbox = false;
+  List<String> profileAvatarPaths = [];
+  String selectedProfileAvatarPhoto = '';
 
   RegisterBloc() {
     registerButtonController = StreamController.broadcast();
@@ -49,6 +52,19 @@ class RegisterBloc implements Disposable {
 
   setProfileAvatar({required String path}) {
     profileAvatarController.sink.add(path);
+  }
+
+  readProfileAvatarFiles(BuildContext context) async {
+    profileAvatarPaths.clear();
+    final manifestJson =
+        await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
+
+    final List<String> _paths = json
+        .decode(manifestJson)
+        .keys
+        .where((String key) => key.startsWith('images/app/profile_pictures'))
+        .toList();
+    profileAvatarPaths.addAll(_paths);
   }
 
   @override

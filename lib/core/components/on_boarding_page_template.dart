@@ -62,7 +62,8 @@ class OnBoardingPageTemplate extends StatelessWidget {
                     ),
                     onPressed: () async {
                       await CustomSharedPreferences.saveUsuarioOnBoarding(true);
-                      Modular.to.pushReplacementNamed(kRouteLogin);
+                      Modular.to.pushNamedAndRemoveUntil(
+                          kRouteLogin, ModalRoute.withName('/'));
                     },
                   ),
                 ),

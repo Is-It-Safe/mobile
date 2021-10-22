@@ -300,10 +300,10 @@ class S {
     );
   }
 
-  /// `Cadastre-se.`
+  /// `Cadastre-se`
   String get textSignUp {
     return Intl.message(
-      'Cadastre-se.',
+      'Cadastre-se',
       name: 'textSignUp',
       desc: '',
       args: [],
@@ -425,6 +425,16 @@ class S {
     return Intl.message(
       'Cancelar',
       name: 'textCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmar`
+  String get textConfirm {
+    return Intl.message(
+      'Confirmar',
+      name: 'textConfirm',
       desc: '',
       args: [],
     );

@@ -29,7 +29,7 @@
     "textPassword":"Senha",
     "textPasswordConfirmation":"Confirmar senha",
     "textLogin":"Login",
-    "textSignUp":"Cadastre-se.",
+    "textSignUp":"Cadastre-se",
     "textDateOfBirth":"Data de nascimento",
     "textGender":"Gênero",
     "textSexualOrientation":"Orientação Sexual",
@@ -42,6 +42,7 @@
     "textEmailAddress":"Endereço de E-mail",
     "textReady": "Pronto",
     "textCancel": "Cancelar",
+    "textConfirm": "Confirmar",
 
     "textDontBeAfraidToBeCreative":"Não tenha medo de ser criativo",
     "textHowDoYouPreferWeReferToYou":"Como prefere que se refiram a você?",

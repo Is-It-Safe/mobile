@@ -73,22 +73,22 @@ IconThemeData _iconTheme = const IconThemeData(
 
 InputDecorationTheme _inputDecoration = InputDecorationTheme(
   hintStyle: GoogleFonts.poppins(
-    color: greyTextColorLight,
+    color: primaryTextColorLight,
     fontWeight: FontWeight.w500,
   ),
   disabledBorder: const OutlineInputBorder(
     borderSide: BorderSide(
-      color: greyColor,
+      color: primaryTextColorLight,
     ),
   ),
   border: const OutlineInputBorder(
     borderSide: BorderSide(
-      color: greyColor,
+      color: primaryTextColorLight,
     ),
   ),
   enabledBorder: const OutlineInputBorder(
     borderSide: BorderSide(
-      color: greyColor,
+      color: primaryTextColorLight,
     ),
   ),
   errorBorder: const OutlineInputBorder(
