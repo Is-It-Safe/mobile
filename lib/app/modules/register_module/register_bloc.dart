@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import 'dart:developer' as dev;
+
 class RegisterBloc implements Disposable {
   ///Finals
   final MaskTextInputFormatter birthdayInputMask =
@@ -51,6 +53,8 @@ class RegisterBloc implements Disposable {
   }
 
   setProfileAvatar({required String path}) {
+    selectedProfileAvatarPhoto = path;
+    dev.log(path, name: "AVATAR PATH");
     profileAvatarController.sink.add(path);
   }
 
@@ -62,7 +66,8 @@ class RegisterBloc implements Disposable {
     final List<String> _paths = json
         .decode(manifestJson)
         .keys
-        .where((String key) => key.startsWith('images/app/profile_pictures'))
+        .where((String key) =>
+            key.startsWith('images/app/profile_pictures/profile_pic_'))
         .toList();
     profileAvatarPaths.addAll(_paths);
   }

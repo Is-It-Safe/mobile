@@ -141,13 +141,13 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                   MainTextField(
                     padding: const EdgeInsets.only(top: 20),
                     controller: controller.pronoumsController,
-                    hintText: S.of(context).textPronouns,
+                    hintText: S.of(context).textExamplePronouns,
+                    labelText: S.of(context).textPronouns,
+                    changeLabelColor: true,
                     validator: (value) {},
                     onChanged: (value) {
                       controller.enableRegisterButton();
                     },
-                    labelText: S.of(context).textExamplePronouns,
-                    changeLabelColor: true,
                   ),
 
                   ///How do you prefer people refer to you?

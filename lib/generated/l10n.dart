@@ -110,10 +110,10 @@ class S {
     );
   }
 
-  /// `Escolha uma foto de perfil!`
+  /// `Escolha seu avatar!`
   String get textPageTitleProfileRegisterPage {
     return Intl.message(
-      'Escolha uma foto de perfil!',
+      'Escolha seu avatar!',
       name: 'textPageTitleProfileRegisterPage',
       desc: '',
       args: [],

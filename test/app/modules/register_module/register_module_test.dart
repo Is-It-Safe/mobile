@@ -5,6 +5,6 @@ import 'package:is_it_safe_app/app/modules/register_module/register_module.dart'
 
 void main() {
   setUpAll(() {
-    initModule(RegisterModuleModule());
+    initModule(RegisterModule());
   });
 }

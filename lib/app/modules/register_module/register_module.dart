@@ -6,7 +6,7 @@ import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/data/service/register_service.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 
-class RegisterModuleModule extends Module {
+class RegisterModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => RegisterBloc()),

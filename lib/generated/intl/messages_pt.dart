@@ -94,7 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPageTitleLogin":
             MessageLookupByLibrary.simpleMessage("Vamos entrar."),
         "textPageTitleProfileRegisterPage":
-            MessageLookupByLibrary.simpleMessage("Escolha uma foto de perfil!"),
+            MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
         "textPageTitleRegistrationPage":
             MessageLookupByLibrary.simpleMessage("Bem vinde!"),
         "textPassword": MessageLookupByLibrary.simpleMessage("Senha"),

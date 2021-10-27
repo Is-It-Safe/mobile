@@ -28,7 +28,14 @@ class _RegisterProfileWidgetState
   @override
   void initState() {
     super.initState();
+    profileStreamListening();
     dev.log(Modular.to.path, name: "PATH");
+  }
+
+  void profileStreamListening() {
+    controller.profileAvatarController.stream.listen(
+      (event) => setState(() {}),
+    );
   }
 
   @override
@@ -51,17 +58,25 @@ class _RegisterProfileWidgetState
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   const ThemeSwitch(),
-                  RegisterAvatarPlaceholder(
-                    //TODO Rota para selecionar avatar
-                    onTap: () =>
-                        Modular.to.pushNamed(kRouteRegisterProfilePicture),
+
+                  ///Choose Avatar
+                  StreamBuilder<String>(
+                    stream: controller.profileAvatarController.stream,
+                    builder: (context, snapshot) {
+                      return snapshot.hasData
+                          ? RegisterAvatar(
+                              path: snapshot.data!,
+                              onTap: () => Modular.to.pushNamed(
+                                kRouteRegisterProfilePicture,
+                              ),
+                            )
+                          : RegisterAvatarPlaceholder(
+                              onTap: () => Modular.to.pushNamed(
+                                kRouteRegisterProfilePicture,
+                              ),
+                            );
+                    },
                   ),
-                  // RegisterAvatar(
-                  //   path: 'images/app/profile_pictures/profile_pic_1.png',
-                  //   onTap: () {
-                  //     //TODO Rota para selecionar avatar
-                  //   },
-                  // ),
 
                   ///Choose picture text
                   Padding(

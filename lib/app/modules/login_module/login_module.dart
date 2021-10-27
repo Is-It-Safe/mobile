@@ -18,6 +18,6 @@ class LoginModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute,
         child: (context, args) => const LoginWidget()),
-    ModuleRoute(kRouteRegister, module: RegisterModuleModule()),
+    ModuleRoute(kRouteRegister, module: RegisterModule()),
   ];
 }

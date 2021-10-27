@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
@@ -55,78 +53,71 @@ class _RegisterChooseProfileAvatarWidgetState
         hasLeading: true,
         title: S.of(context).textAppBarChooseProfilePhotoPage,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: Stack(
-              children: [
-                /// Selection of avatars here.
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 30,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemCount: controller.profileAvatarPaths.length,
-                    itemBuilder: (context, index) {
-                      var avatarPaths = controller.profileAvatarPaths;
-                      var userAvatarPath =
-                          controller.selectedProfileAvatarPhoto;
-                      return ProfileAvatarItem(
-                        onTap: () async => setState(() {
-                          controller.setProfileAvatar(
-                            path: avatarPaths[index],
-                          );
-                        }),
-                        path: avatarPaths[index],
-                        isSelected: userAvatarPath == avatarPaths[index],
-                      );
-                    },
-                  ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+        child: Stack(
+          children: [
+            /// Selection of avatars here.
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0, bottom: 70),
+              child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 30,
+                  mainAxisSpacing: 10,
                 ),
-
-                /// Confirmation of avatar.
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    height: 60,
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            S.of(context).textCancel.toUpperCase(),
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            if (controller.selectedProfileAvatarPhoto.isEmpty) {
-                              onError();
-                            } else {
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: Text(
-                            S.of(context).textConfirm.toUpperCase(),
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
+                itemCount: controller.profileAvatarPaths.length,
+                itemBuilder: (context, index) {
+                  var avatarPaths = controller.profileAvatarPaths;
+                  var userAvatarPath = controller.selectedProfileAvatarPhoto;
+                  return ProfileAvatarItem(
+                    path: avatarPaths[index],
+                    isSelected: userAvatarPath == avatarPaths[index],
+                    onTap: () async => setState(() {
+                      controller.setProfileAvatar(
+                        path: avatarPaths[index],
+                      );
+                    }),
+                  );
+                },
+              ),
             ),
-          ),
+
+            /// Confirmation of avatar.
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 60,
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () => Modular.to.pop(),
+                      child: Text(
+                        S.of(context).textCancel.toUpperCase(),
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        if (controller.selectedProfileAvatarPhoto.isEmpty) {
+                          onError();
+                        } else {
+                          Modular.to.pop();
+                        }
+                      },
+                      child: Text(
+                        S.of(context).textConfirm.toUpperCase(),
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
