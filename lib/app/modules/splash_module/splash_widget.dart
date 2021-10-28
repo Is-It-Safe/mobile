@@ -43,11 +43,9 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
       (value) async {
         dev.log(value.toString(), name: "DID USER SEE ONBOARDING?");
         if (value) {
-          Modular.to
-              .pushNamedAndRemoveUntil(kRouteLogin, ModalRoute.withName('/'));
+          Modular.to.pushReplacementNamed(kRouteLogin);
         } else {
-          Modular.to.pushNamedAndRemoveUntil(
-              kRouteOnBoarding, ModalRoute.withName('/'));
+          Modular.to.pushReplacementNamed(kRouteOnBoarding);
         }
       },
     );

@@ -15,8 +15,7 @@ class RegisterModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute,
-        child: (context, args) => const RegisterWidget()),
+    ChildRoute('/', child: (context, args) => const RegisterWidget()),
     ChildRoute(kRouteRegisterProfile,
         child: (context, args) => const RegisterProfileWidget()),
     ChildRoute(kRouteRegisterProfilePicture,
