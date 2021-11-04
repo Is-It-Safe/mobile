@@ -5,6 +5,8 @@ import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/components/profile_avatar_item.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
+import 'dart:developer' as dev;
+
 class RegisterChooseProfileAvatarWidget extends StatefulWidget {
   const RegisterChooseProfileAvatarWidget({Key? key}) : super(key: key);
 
@@ -21,6 +23,7 @@ class _RegisterChooseProfileAvatarWidgetState
   void initState() {
     loadImages();
     super.initState();
+    dev.log(Modular.to.path, name: "PATH");
   }
 
   void loadImages() async {
@@ -74,7 +77,7 @@ class _RegisterChooseProfileAvatarWidgetState
                   return ProfileAvatarItem(
                     path: avatarPaths[index],
                     isSelected: userAvatarPath == avatarPaths[index],
-                    onTap: () async => setState(() {
+                    onTap: () => setState(() {
                       controller.setProfileAvatar(
                         path: avatarPaths[index],
                       );

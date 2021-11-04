@@ -28,14 +28,7 @@ class _RegisterProfileWidgetState
   @override
   void initState() {
     super.initState();
-    profileStreamListening();
     dev.log(Modular.to.path, name: "PATH");
-  }
-
-  void profileStreamListening() {
-    controller.profileAvatarController.stream.listen(
-      (event) => setState(() {}),
-    );
   }
 
   @override
@@ -62,16 +55,16 @@ class _RegisterProfileWidgetState
                   StreamBuilder<String>(
                     stream: controller.profileAvatarController.stream,
                     builder: (context, snapshot) {
-                      return snapshot.hasData
-                          ? RegisterAvatar(
-                              path: snapshot.data!,
+                      return snapshot.hasData == false
+                          ? RegisterAvatarPlaceholder(
                               onTap: () => Modular.to.pushNamed(
-                                kRouteRegisterProfilePicture,
+                                '.$kRouteRegisterProfilePicture',
                               ),
                             )
-                          : RegisterAvatarPlaceholder(
+                          : RegisterAvatar(
+                              path: controller.selectedProfileAvatarPhoto,
                               onTap: () => Modular.to.pushNamed(
-                                kRouteRegisterProfilePicture,
+                                '.$kRouteRegisterProfilePicture',
                               ),
                             );
                     },

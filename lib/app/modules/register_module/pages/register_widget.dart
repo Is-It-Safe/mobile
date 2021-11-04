@@ -395,7 +395,8 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                               onTap: () {
                                 _formKey.currentState?.validate();
                                 if (snapshot.data == true) {
-                                  Modular.to.pushNamed(kRouteRegisterProfile);
+                                  Modular.to
+                                      .pushNamed('.$kRouteRegisterProfile');
                                 }
                               });
                         }),
