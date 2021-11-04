@@ -29,7 +29,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
         dev.log(event.toString(), name: "IS USER LOGGED?");
         if (event) {
           await Future.delayed(const Duration(seconds: 4));
-          // Modular.to.pushReplacementNamed(kRouteHome);
+          // Modular.to.navigate(kRouteHome);
         } else {
           _loadData();
         }
@@ -43,9 +43,9 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
       (value) async {
         dev.log(value.toString(), name: "DID USER SEE ONBOARDING?");
         if (value) {
-          Modular.to.pushReplacementNamed(kRouteLogin);
+          Modular.to.navigate(kRouteLogin);
         } else {
-          Modular.to.pushReplacementNamed(kRouteOnBoarding);
+          Modular.to.navigate(kRouteOnBoarding);
         }
       },
     );

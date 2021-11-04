@@ -88,7 +88,7 @@ class OnBoardingPageTemplate extends StatelessWidget {
                           await CustomSharedPreferences.saveUsuarioOnBoarding(
                             true,
                           );
-                          Modular.to.pushReplacementNamed(kRouteLogin);
+                          Modular.to.navigate(kRouteLogin);
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 64, right: 64),
