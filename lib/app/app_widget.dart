@@ -15,9 +15,11 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Is It Safe?',
-      theme: Provider.of<ThemeState>(context).theme == ThemeType.DARK
-          ? darkTheme
-          : lightTheme,
+      theme:
+          // Provider.of<ThemeState>(context).theme == ThemeType.DARK
+          //     ? darkTheme
+          //     :
+          lightTheme,
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
