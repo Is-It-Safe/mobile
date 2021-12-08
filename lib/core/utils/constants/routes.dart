@@ -11,3 +11,6 @@ const kRouteLogin = "login/";
 const kRouteRegister = "register/";
 const kRouteRegisterProfile = "register-profile/";
 const kRouteRegisterProfilePicture = "profile-picture/";
+
+///Home
+const kRouteHome = "home/";

@@ -26,8 +26,10 @@ class LoginBloc implements Disposable {
   }
 
   Future doLogin() async {
+    var _response;
     try {
-      var _response = await _service.doLogin(
+      loginController.sink.add(BaseResponse.loading());
+      _response = await _service.doLogin(
         username: usernameController.text,
         password: passwordController.text,
       );

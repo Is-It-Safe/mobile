@@ -29,6 +29,7 @@ dependencies:
   mockito: ^5.0.16
   simple_animations: ^4.0.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

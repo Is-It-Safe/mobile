@@ -10,6 +10,7 @@ ThemeData lightTheme = ThemeData(
   errorColor: errorColor,
   splashColor: splashColorLight,
   disabledColor: disabledColor,
+  backgroundColor: splashColorLight2,
 
   /// Sub themes
   textTheme: _textTheme,

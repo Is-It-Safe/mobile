@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/core/data/service/config/api_service.dart';
@@ -9,14 +10,16 @@ class LoginService {
     var auth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
     final _response = await _service.doRequest(
       RequestConfig(
-        '/oauth/token',
+        'oauth/token',
         HttpMethod.post,
-        body: {
-          "username": username,
-          "password": password,
-          "grant_type": "password",
-        },
-        options: Options(headers: <String, String>{'authorization': auth}),
+        body: jsonEncode(<String, String>{
+          'username': username,
+          'password': password,
+          'grant_type': 'password'
+        }),
+        options: Options(
+          headers: <String, String>{'authorization': auth},
+        ),
       ),
     );
     return _response;

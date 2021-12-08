@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/components/main_button.dart';
 import 'package:is_it_safe_app/core/components/theme_switch.dart';
+import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
+import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
+import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
+import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/dark_theme_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -20,6 +25,32 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   bool _showPassword = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loginStream();
+  }
+
+  _loginStream() async {
+    controller.loginController.stream.listen((event) async {
+      switch (event.status) {
+        case Status.COMPLETED:
+          Modular.to.pushNamedAndRemoveUntil(kRouteHome, (p0) => false);
+          break;
+        case Status.LOADING:
+          ManagerDialogs.showLoadingDialog(context);
+          break;
+        case Status.ERROR:
+          Modular.to.pop();
+          ManagerDialogs.showErrorDialog(context, event.message!);
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +64,6 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //const ThemeSwitch(),
-
                   ///Text
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20.0),
@@ -88,13 +117,9 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                           _showPassword = !_showPassword;
                         }),
                         child: IconTheme(
-                          data: Theme.of(context).iconTheme.copyWith(
-                                color: Helpers.getColorFromTheme(
-                                  context: context,
-                                  darkModeColor: whiteColor,
-                                  lightModeColor: primaryTextColorLight,
-                                ),
-                              ),
+                          data: Theme.of(context)
+                              .iconTheme
+                              .copyWith(color: scaffoldBackgroundColorDark),
                           child: Icon(
                             _showPassword
                                 ? Icons.visibility
@@ -143,10 +168,9 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                     builder: (context, snapshot) {
                       return MainButton(
                         onTap: () async {
-                          _formKey.currentState!.validate();
-                          await controller.doLogin();
-                          //TODO save on SharedPreferences that the user is logged
-                          //TODO add navigation to Home
+                          if (_formKey.currentState!.validate()) {
+                            await controller.doLogin();
+                          }
                         },
                         text: S.of(context).textLogin,
                         color: snapshot.data == false
