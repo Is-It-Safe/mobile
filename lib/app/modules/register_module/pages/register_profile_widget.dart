@@ -55,6 +55,9 @@ class _RegisterProfileWidgetState
                   StreamBuilder<String>(
                     stream: controller.profileAvatarController.stream,
                     builder: (context, snapshot) {
+                      dev.log("$snapshot", name: "Current AVATAR");
+                      dev.log(controller.selectedProfileAvatarPhoto,
+                          name: "Current AVATAR confirm");
                       return snapshot.hasData == false
                           ? RegisterAvatarPlaceholder(
                               onTap: () => Modular.to.pushNamed(
@@ -63,9 +66,14 @@ class _RegisterProfileWidgetState
                             )
                           : RegisterAvatar(
                               path: controller.selectedProfileAvatarPhoto,
-                              onTap: () => Modular.to.pushNamed(
-                                '.$kRouteRegisterProfilePicture',
-                              ),
+                              onTap: () {
+                                  Modular.to.pushNamed(
+                                    '.$kRouteRegisterProfile',
+                                  );
+                                   Modular.to.pushNamed(
+                                    '.$kRouteRegisterProfilePicture',
+                                  );
+                              },
                             );
                     },
                   ),
