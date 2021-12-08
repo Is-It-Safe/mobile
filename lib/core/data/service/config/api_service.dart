@@ -15,10 +15,12 @@ class RequestConfig {
   final HttpMethod method;
   final dynamic body;
   final dynamic parameters;
+  final dynamic options;
 
   RequestConfig(
     this.path,
     this.method, {
+    this.options,
     this.body,
     this.parameters,
   });
@@ -35,7 +37,7 @@ class APIService {
 
   Future doRequest(RequestConfig config) async {
     String url = ApiConstants.kBaseUrl;
-    Options options = ApiConstants.kOptions;
+    Options options = config.options ?? ApiConstants.kOptions;
     Map<String, dynamic> queryParameters = ApiConstants.kqueryParameters;
 
     if (!config.path.contains("http")) {
@@ -44,6 +46,7 @@ class APIService {
       url = config.path;
     }
 
+    // ignore: prefer_typing_uninitialized_variables
     var responseJson;
 
     try {
