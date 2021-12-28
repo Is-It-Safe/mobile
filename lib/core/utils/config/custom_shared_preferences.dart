@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 const String kUsuarioOnBoarding = "onBoarding";
 const String kUsuarioLogin = "userLogin";
 const String kUsuarioToken = "userToken";
+const String kUsuarioRefreshToken = "userRefreshToken";
 
 class CustomSharedPreferences {
   //Salva se o usuário já viu o onBoarding
@@ -41,6 +42,19 @@ class CustomSharedPreferences {
   static readUsuarioToken() async {
     final prefs = await SharedPreferences.getInstance();
     var result = prefs.getString(kUsuarioToken);
+    return result;
+  }
+
+  //Salva o refresh token do usuário
+  static saveUsuarioRefreshToken(value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(kUsuarioRefreshToken, value);
+  }
+
+  //Recupera o refresh token do usuário
+  static readUsuarioRefreshToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    var result = prefs.getString(kUsuarioRefreshToken);
     return result;
   }
 }

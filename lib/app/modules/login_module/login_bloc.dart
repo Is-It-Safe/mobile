@@ -36,6 +36,7 @@ class LoginBloc implements Disposable {
       Auth auth = Auth.fromJson(_response);
       await CustomSharedPreferences.saveUsuario(true);
       await CustomSharedPreferences.saveUsuarioToken(auth.accessToken);
+      await CustomSharedPreferences.saveUsuarioRefreshToken(auth.refreshToken);
       loginController.sink.add(BaseResponse.completed(data: auth));
     } catch (e) {
       loginController.sink.add(BaseResponse.error(e.toString()));

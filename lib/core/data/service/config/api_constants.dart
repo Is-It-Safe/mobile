@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 
 class ApiConstants {
-  static String kBaseUrl =
+  static const String kBaseUrl =
       "https://is-it-safe-api-homolog.herokuapp.com/is-it-safe/";
 
-  static String kApiKey = "";
+  static const String kClientId = 'isitsafe';
+  static const String kClientSecret = 'isitsafe123';
 
   static Options kOptions = Options(headers: {});
 
-  static Map<String, dynamic> kqueryParameters = {};
+  static const Map<String, dynamic> kqueryParameters = {};
 }

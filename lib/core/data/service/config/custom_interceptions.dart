@@ -44,29 +44,31 @@ class CustomInterceptors extends InterceptorsWrapper {
     dev.log("----------> INIT ERROR RESPONSE <----------",
         name: "RESPONSE ERROR");
     dev.log(
-        "ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}");
-    dev.log("BODY => ${err.response?.data}");
-    dev.log("-----> END ERROR RESPONSE <----------");
+        "ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}",
+        name: "RESPONSE ERROR");
+    dev.log("BODY => ${err.response?.data}", name: "RESPONSE ERROR");
+    dev.log("-----> END ERROR RESPONSE <----------", name: "RESPONSE ERROR");
   }
 
   void _printRequest(RequestOptions options, {String? method, String? url}) {
-    dev.log("----------> INIT APP REQUEST <----------");
-    dev.log("${method ?? options.method} => ${url ?? options.path}");
-    dev.log("HEADERS =>");
+    dev.log("----------> INIT APP REQUEST <----------", name: "APP REQUEST");
+    dev.log("${method ?? options.method} => ${url ?? options.path}",
+        name: "APP REQUEST");
+    dev.log("HEADERS =>", name: "APP REQUEST");
     options.headers.forEach((key, value) {
-      dev.log("$key => $value");
+      dev.log("$key => $value", name: "APP REQUEST");
     });
-    dev.log("BODY => ${options.data}");
-    dev.log("----------> END APP REQUEST <----------");
+    dev.log("BODY => ${options.data}", name: "APP REQUEST");
+    dev.log("----------> END APP REQUEST <----------", name: "APP REQUEST");
   }
 
   void _printResponse(Response response) {
-    dev.log("----------> INIT API RESPONSE <----------");
-    dev.log(response.requestOptions.path);
-    dev.log("STATUS CODE => ${response.statusCode}");
-    dev.log("HEADERS =>");
+    dev.log("----------> INIT API RESPONSE <----------", name: "API RESPONSE");
+    dev.log(response.requestOptions.path, name: "API RESPONSE");
+    dev.log("STATUS CODE => ${response.statusCode}", name: "API RESPONSE");
+    dev.log("HEADERS =>", name: "API RESPONSE");
     response.headers.forEach((k, v) => dev.log('$k: $v'));
-    dev.log("BODY => ${response.data}");
-    dev.log("----------> END API RESPONSE <----------");
+    dev.log("BODY => ${response.data}", name: "API RESPONSE");
+    dev.log("----------> END API RESPONSE <----------", name: "API RESPONSE");
   }
 }
