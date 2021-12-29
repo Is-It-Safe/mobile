@@ -26,14 +26,17 @@ class LoginBloc implements Disposable {
   }
 
   Future doLogin() async {
+    var _response;
     try {
-      var _response = await _service.doLogin(
+      loginController.sink.add(BaseResponse.loading());
+      _response = await _service.doLogin(
         username: usernameController.text,
         password: passwordController.text,
       );
       Auth auth = Auth.fromJson(_response);
       await CustomSharedPreferences.saveUsuario(true);
       await CustomSharedPreferences.saveUsuarioToken(auth.accessToken);
+      await CustomSharedPreferences.saveUsuarioRefreshToken(auth.refreshToken);
       loginController.sink.add(BaseResponse.completed(data: auth));
     } catch (e) {
       loginController.sink.add(BaseResponse.error(e.toString()));

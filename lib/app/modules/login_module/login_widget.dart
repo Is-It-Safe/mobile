@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/components/primary_button.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
+import 'package:is_it_safe_app/core/components/theme_switch.dart';
+import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
+import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
+import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
+import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/dark_theme_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -20,6 +26,32 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   bool _showPassword = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loginStream();
+  }
+
+  _loginStream() async {
+    controller.loginController.stream.listen((event) async {
+      switch (event.status) {
+        case Status.COMPLETED:
+          Modular.to.pushNamedAndRemoveUntil(kRouteHome, (p0) => false);
+          break;
+        case Status.LOADING:
+          ManagerDialogs.showLoadingDialog(context);
+          break;
+        case Status.ERROR:
+          Modular.to.pop();
+          ManagerDialogs.showErrorDialog(context, event.message!);
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +65,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   Padding(
                     padding: const EdgeInsets.only(bottom: 30.0),
                     child: RichText(
@@ -69,6 +102,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                   ),
                   MyTextFormField(
                     controller: controller.passwordController,
+
                     labelText: S.of(context).textPassword,
                     suffixIcon: GestureDetector(
                       onTap: () => setState(() {
@@ -77,6 +111,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                       child: Icon(
                         _showPassword ? Icons.visibility : Icons.visibility_off,
                         color: kColorTextLight,
+
                       ),
                     ),
                     obscureText: _showPassword,
@@ -113,7 +148,9 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                     stream: controller.loginButtonController.stream,
                     initialData: false,
                     builder: (context, snapshot) {
+
                       return PrimaryButton(
+
                         text: S.of(context).textLogin,
                         textColor: snapshot.data == true
                             ? kColorPrimaryLight

@@ -41,6 +41,7 @@ class CustomInterceptors extends InterceptorsWrapper {
   }
 
   void _printError(DioError err) {
+
     Log.error("----------> INIT ERROR RESPONSE <----------");
     Log.error(
         "ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}");
@@ -67,5 +68,6 @@ class CustomInterceptors extends InterceptorsWrapper {
     response.headers.forEach((k, v) => Log.response('$k: $v'));
     Log.response("BODY => ${response.data}");
     Log.response("----------> END API RESPONSE <----------");
+
   }
 }
