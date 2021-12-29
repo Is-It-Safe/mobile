@@ -50,6 +50,7 @@ flutter:
     - images/app/profile_pictures/
     - images/app/on_boarding/
     - images/app/profile_pictures/
+    - images/app/profile_pictures/placeholder/
 
 
 flutter_intl:

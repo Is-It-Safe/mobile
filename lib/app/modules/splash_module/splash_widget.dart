@@ -22,13 +22,15 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
   @override
   void initState() {
     super.initState();
+    dev.log(Modular.to.path, name: "PATH");
     controller.getUsuarioLogin();
     controller.splashStream.listen(
       (event) async {
         if (event) {
           Log.log(event.toString(), name: "IS USER LOGGED?");
+
           await Future.delayed(const Duration(seconds: 4));
-          // Modular.to.pushReplacementNamed(kRouteHome);
+          // Modular.to.navigate(kRouteHome);
         } else {
           _loadData();
         }
@@ -42,9 +44,9 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
       (value) async {
         Log.log(value.toString(), name: "DID USER SEE ONBOARDING?");
         if (value) {
-          Modular.to.pushReplacementNamed(kRouteLogin);
+          Modular.to.navigate(kRouteLogin);
         } else {
-          Modular.to.pushReplacementNamed(kRouteOnBoarding);
+          Modular.to.navigate(kRouteOnBoarding);
         }
       },
     );

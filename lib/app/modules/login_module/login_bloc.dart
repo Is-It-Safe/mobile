@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/data/service/login_service.dart';
+
 import 'package:is_it_safe_app/core/model/Auth.dart';
 import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
-import 'dart:developer' as dev;
 
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
 

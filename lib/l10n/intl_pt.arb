@@ -3,10 +3,11 @@
     
     "textAppBarProfileRegisterPage":"Perfil",
     "textAppBarChooseProfilePhotoPage": "Escolha seu avatar!",
+    "textAppBarSignUp": "Cadastro",
 
     "textPageTitleLogin":"Vamos entrar.",
     "textPageSubtitleLogin":"Sentimos sua falta!",
-    "textPageTitleProfileRegisterPage":"Escolha uma foto de perfil!",
+    "textPageTitleProfileRegisterPage":"Escolha seu avatar!",
     "textPageSubtitleProfileRegisterPage":"Não se esqueça de sorrir!",
     "textPageTitleRegistrationPage":"Bem vinde!",
     "textSubtitleRegistrationPage":"Será um prazer te conhecer!",
@@ -28,7 +29,7 @@
     "textPassword":"Senha",
     "textPasswordConfirmation":"Confirmar senha",
     "textLogin":"Login",
-    "textSignUp":"Cadastre-se.",
+    "textSignUp":"Cadastre-se",
     "textDateOfBirth":"Data de nascimento",
     "textGender":"Gênero",
     "textSexualOrientation":"Orientação Sexual",
@@ -38,9 +39,10 @@
     "textRegister":"Cadastrar",
     "textPronouns":"Pronomes",
     "textName":"Nome",
-    "textEmailAddress":"Endereço de email",
+    "textEmailAddress":"Endereço de E-mail",
     "textReady": "Pronto",
     "textCancel": "Cancelar",
+    "textConfirm": "Confirmar",
 
     "textDontBeAfraidToBeCreative":"Não tenha medo de ser criativo",
     "textHowDoYouPreferWeReferToYou":"Como prefere que se refiram a você?",
@@ -49,8 +51,10 @@
     "textLettersAndNumbers":"letras e números, por favor!",
     "textIReadAndAcceptThe":"Eu li e aceito os ",
     "textTermsAndConditions":"termos e condições",
+    "textWelcome": "Bem-vinde",
+    "textMeetingYouWillBeAPleasure":"Será um prazer te conhecer!",
     
-    "textExamplePronouns":"Exemplo: Ela/Delas, Elu/Delu, Ela/Elu",
+    "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
 
 
     "textOnBoarding1_0":"Foco em",

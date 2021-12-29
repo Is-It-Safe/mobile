@@ -5,11 +5,11 @@ import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-
 import 'login_bloc.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -27,6 +27,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
   @override
   void initState() {
     super.initState();
+    Log.route(Modular.to.path);
     _loginStream();
   }
 
@@ -170,9 +171,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                           style: TextStyles.button(fontSize: 12),
                         ),
                         TextButton(
-                          onPressed: () {
-                            //TODO add navigation to Register
-                          },
+                          onPressed: () => Modular.to.pushNamed(kRouteRegister),
                           child: Text(
                             S.of(context).textSignUp,
                             style: TextStyles.button(

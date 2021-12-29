@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/general_material_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 ThemeData lightTheme = ThemeData(
-
   scaffoldBackgroundColor: kColorBackgroundLight,
   errorColor: kColorStatusError,
   primarySwatch: kMaterialColorButtonPrimary,
   primaryColor: kColorStatusActive,
-
   inputDecorationTheme: _inputDecoration,
 );
 
