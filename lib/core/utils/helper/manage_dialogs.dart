@@ -73,7 +73,9 @@ class ManagerDialogs {
     return Align(
       alignment: Alignment.center,
       child: CircularProgressIndicator(
-          backgroundColor: Theme.of(context).primaryColor),
+        backgroundColor: Theme.of(context).primaryColor,
+        color: Colors.white,
+      ),
     );
   }
 }
