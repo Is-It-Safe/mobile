@@ -6,10 +6,10 @@ import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/data/service/login_service.dart';
 import 'package:is_it_safe_app/core/model/Auth.dart';
 import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
-
+import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'dart:developer' as dev;
 
-import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 
 class LoginBloc implements Disposable {
   final LoginService _service = LoginService();
@@ -37,7 +37,7 @@ class LoginBloc implements Disposable {
       loginController.sink.add(BaseResponse.completed(data: auth));
     } catch (e) {
       loginController.sink.add(BaseResponse.error(e.toString()));
-      dev.log(e.toString(), name: "LOGIN ERROR");
+      Log.log(e.toString(), name: "LOGIN ERROR");
     }
   }
 

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/core/data/service/config/api_constants.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 
 import 'app_exeptions.dart';
 import 'custom_interceptions.dart';
@@ -124,7 +125,7 @@ class APIService {
           try {
             return (response.data as List?);
           } catch (e) {
-            dev.log(e.toString(), name: "RESPONSE ERROR");
+            Log.responseError(e.toString());
             return <String, dynamic>{};
           }
         }

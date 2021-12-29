@@ -1,10 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
+///Widget responsável por montar as telas de OnBoarding.
+///
+///Pode ser implementado da seguinte forma:
+///
+/// ```dart
+///OnBoardingPageTemplate(
+///   imagePath: "images/app/on_boarding/onBoarding1.png",
+///   text: RichText(text: TextSpan(text: 'Hello ')),
+///   haveButton: false,
+/// ),
+/// ```
 class OnBoardingPageTemplate extends StatelessWidget {
   final String? imagePath;
   final RichText? text;
