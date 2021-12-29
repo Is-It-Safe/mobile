@@ -440,50 +440,50 @@ class S {
     );
   }
 
-  /// `Não tenha medo de ser criativo`
+  /// `Agora escolha um nome para todos verem, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(
-      'Não tenha medo de ser criativo',
+      'Agora escolha um nome para todos verem, seja criativo!',
       name: 'textDontBeAfraidToBeCreative',
       desc: '',
       args: [],
     );
   }
 
-  /// `Como prefere que se refiram a você?`
+  /// `Como prefere que as pessoas se refiram a você?`
   String get textHowDoYouPreferWeReferToYou {
     return Intl.message(
-      'Como prefere que se refiram a você?',
+      'Como prefere que as pessoas se refiram a você?',
       name: 'textHowDoYouPreferWeReferToYou',
       desc: '',
       args: [],
     );
   }
 
-  /// `Nos importamos com a sua segurança, então...`
+  /// `Sua segurança é muito importante para nós.`
   String get textWeCareAboutYourSafety {
     return Intl.message(
-      'Nos importamos com a sua segurança, então...',
+      'Sua segurança é muito importante para nós.',
       name: 'textWeCareAboutYourSafety',
       desc: '',
       args: [],
     );
   }
 
-  /// `mínimo de 8 caracteres`
+  /// `- Sua senha deve ter mais de 8 caracteres`
   String get textAtLeast8Characteres {
     return Intl.message(
-      'mínimo de 8 caracteres',
+      '- Sua senha deve ter mais de 8 caracteres',
       name: 'textAtLeast8Characteres',
       desc: '',
       args: [],
     );
   }
 
-  /// `letras e números, por favor!`
+  /// `- letras e números`
   String get textLettersAndNumbers {
     return Intl.message(
-      'letras e números, por favor!',
+      '- letras e números',
       name: 'textLettersAndNumbers',
       desc: '',
       args: [],
@@ -525,6 +525,26 @@ class S {
     return Intl.message(
       'Será um prazer te conhecer!',
       name: 'textMeetingYouWillBeAPleasure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nos diga seu nome!\nEssa informação aparecerá apenas para você.`
+  String get textSayYourNameThisInfoIsPrivate {
+    return Intl.message(
+      'Nos diga seu nome!\nEssa informação aparecerá apenas para você.',
+      name: 'textSayYourNameThisInfoIsPrivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nos diga seu e-mail, ele será associado a sua conta`
+  String get textTellUsTheEmailAssociatedWithYourAccount {
+    return Intl.message(
+      'Nos diga seu e-mail, ele será associado a sua conta',
+      name: 'textTellUsTheEmailAssociatedWithYourAccount',
       desc: '',
       args: [],
     );

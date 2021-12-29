@@ -79,11 +79,11 @@ class TextStyles {
     );
   }
 
-  static TextStyle helper({Color? color}) {
+  static TextStyle helper({Color? color, double? fontSize}) {
     return GoogleFonts.poppins(
       color: color ?? kColorTextLight,
       fontWeight: FontWeight.w500,
-      fontSize: 16,
+      fontSize: fontSize ?? 16,
     );
   }
 

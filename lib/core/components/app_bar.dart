@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 
 AppBar appBar({
   required BuildContext context,
@@ -26,11 +24,7 @@ AppBar appBar({
             icon: Icon(
               Icons.arrow_back_ios_new,
               size: Theme.of(context).iconTheme.size,
-              color: Helpers.getColorFromTheme(
-                context: context,
-                darkModeColor: whiteColor,
-                lightModeColor: primaryTextColorLight,
-              ),
+              color: kColorTextLight,
             ),
           )
         : null,

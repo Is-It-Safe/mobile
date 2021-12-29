@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
-import 'package:is_it_safe_app/core/components/main_button.dart';
-import 'package:is_it_safe_app/core/components/main_text_field.dart';
+import 'package:is_it_safe_app/core/components/primary_button.dart';
 import 'package:is_it_safe_app/core/components/theme_switch.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/dark_theme_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'dart:developer' as dev;
@@ -113,7 +110,7 @@ class _RegisterProfileWidgetState
                   /// Register button
                   Padding(
                     padding: const EdgeInsets.only(top: 32.0),
-                    child: MainButton(
+                    child: PrimaryButton(
                       color: Theme.of(context).primaryColor,
                       text: S.of(context).textSignUp,
                       onTap: () async {},
@@ -146,11 +143,7 @@ class RegisterAvatar extends StatelessWidget {
         height: 120,
         width: 120,
         decoration: BoxDecoration(
-          color: Helpers.getColorFromTheme(
-            context: context,
-            darkModeColor: avatarBackgroundColorDark,
-            lightModeColor: avatarBackgroundColorLight,
-          ),
+          color: kColorPrimaryLight,
           shape: BoxShape.circle,
           image: DecorationImage(
             fit: BoxFit.cover,

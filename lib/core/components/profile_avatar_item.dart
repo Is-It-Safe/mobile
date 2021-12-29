@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 
 class ProfileAvatarItem extends StatelessWidget {
   final Function() onTap;
@@ -23,17 +22,7 @@ class ProfileAvatarItem extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isSelected
-              ? Helpers.getColorFromTheme(
-                  context: context,
-                  darkModeColor: primaryColor,
-                  lightModeColor: primaryColor,
-                )
-              : Helpers.getColorFromTheme(
-                  context: context,
-                  darkModeColor: primaryColor.withOpacity(0.3),
-                  lightModeColor: accentColorLight.withOpacity(0.3),
-                ),
+          color: isSelected ? kColorPrimaryLight : kColorButtonSecondary,
           image: DecorationImage(
             image: AssetImage(path),
             alignment: Alignment.topCenter,

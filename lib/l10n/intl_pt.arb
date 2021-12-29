@@ -44,15 +44,17 @@
     "textCancel": "Cancelar",
     "textConfirm": "Confirmar",
 
-    "textDontBeAfraidToBeCreative":"Não tenha medo de ser criativo",
-    "textHowDoYouPreferWeReferToYou":"Como prefere que se refiram a você?",
-    "textWeCareAboutYourSafety":"Nos importamos com a sua segurança, então...",
-    "textAtLeast8Characteres":"mínimo de 8 caracteres",
-    "textLettersAndNumbers":"letras e números, por favor!",
+    "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, seja criativo!",
+    "textHowDoYouPreferWeReferToYou":"Como prefere que as pessoas se refiram a você?",
+    "textWeCareAboutYourSafety":"Sua segurança é muito importante para nós.",
+    "textAtLeast8Characteres":"- Sua senha deve ter mais de 8 caracteres",
+    "textLettersAndNumbers":"- letras e números",
     "textIReadAndAcceptThe":"Eu li e aceito os ",
     "textTermsAndConditions":"termos e condições",
     "textWelcome": "Bem-vinde",
     "textMeetingYouWillBeAPleasure":"Será um prazer te conhecer!",
+    "textSayYourNameThisInfoIsPrivate":"Nos diga seu nome!\nEssa informação aparecerá apenas para você.",
+    "textTellUsTheEmailAssociatedWithYourAccount":"Nos diga seu e-mail, ele será associado a sua conta",
     
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
 
