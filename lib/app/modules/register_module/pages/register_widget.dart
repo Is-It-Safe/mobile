@@ -49,23 +49,21 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 24),
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '${S.of(context).textWelcome}\n',
-                            style: TextStyles.headline1(),
-                          ),
-                          TextSpan(
-                            text: S.of(context).textMeetingYouWillBeAPleasure,
-                            style: TextStyles.headline2(),
-                          ),
-                        ],
-                      ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '${S.of(context).textWelcome}\n',
+                          style: TextStyles.headline1(),
+                        ),
+                        TextSpan(
+                          text: S.of(context).textMeetingYouWillBeAPleasure,
+                          style: TextStyles.headline2(),
+                        ),
+                      ],
                     ),
                   ),
+                  const SizedBox(height: 30),
                   MyTextFormField(
                     controller: controller.nameController,
                     labelText: "${S.of(context).textName}*",
@@ -212,7 +210,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       children: [
                         Checkbox(
                           value: controller.termsAndConditionsCheckbox,
-                          activeColor: Theme.of(context).primaryColor,
+                          activeColor: kColorButtonPrimary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6),
                           ),

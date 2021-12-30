@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 
 class ProfileAvatarItem extends StatelessWidget {
@@ -22,7 +21,7 @@ class ProfileAvatarItem extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isSelected ? kColorPrimaryLight : kColorButtonSecondary,
+          color: isSelected ? kColorButtonSecondary : kColorPrimaryLight,
           image: DecorationImage(
             image: AssetImage(path),
             alignment: Alignment.topCenter,

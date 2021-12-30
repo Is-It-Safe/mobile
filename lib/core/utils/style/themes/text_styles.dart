@@ -47,11 +47,12 @@ class TextStyles {
     );
   }
 
-  static TextStyle subtitle2({Color? color}) {
+  static TextStyle subtitle2(
+      {Color? color, double? fontSize, FontWeight? fontWeight}) {
     return GoogleFonts.poppins(
       color: color ?? kColorTextLight,
-      fontWeight: FontWeight.normal,
-      fontSize: 24,
+      fontWeight: fontWeight ?? FontWeight.normal,
+      fontSize: fontSize ?? 24,
     );
   }
 

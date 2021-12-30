@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
         "textAppBarChooseProfilePhotoPage":
             MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
         "textAppBarProfileRegisterPage":
@@ -46,7 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textErrorEmail": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite um e-mail válido"),
         "textErrorEmptyAvatar": MessageLookupByLibrary.simpleMessage(
-            "Por favor selecione seu avatar!"),
+            "Por favor, selecione seu avatar!"),
         "textErrorEmptyField": MessageLookupByLibrary.simpleMessage(
             "Esse campo não pode ficar vazio"),
         "textErrorInvalidDate": MessageLookupByLibrary.simpleMessage(
@@ -73,7 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("- letras e números"),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textMeetingYouWillBeAPleasure":
-            MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer!"),
+            MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer."),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
         "textOnBoarding1_0": MessageLookupByLibrary.simpleMessage("Foco em"),
         "textOnBoarding1_1": MessageLookupByLibrary.simpleMessage("segurança"),
@@ -95,9 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPageTitleLogin":
             MessageLookupByLibrary.simpleMessage("Vamos entrar."),
         "textPageTitleProfileRegisterPage":
-            MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
-        "textPageTitleRegistrationPage":
-            MessageLookupByLibrary.simpleMessage("Bem vinde!"),
+            MessageLookupByLibrary.simpleMessage("Escolha seu avatar"),
         "textPassword": MessageLookupByLibrary.simpleMessage("Senha"),
         "textPasswordConfirmation":
             MessageLookupByLibrary.simpleMessage("Confirmar senha"),
@@ -110,8 +109,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
         "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
         "textSkipForNow": MessageLookupByLibrary.simpleMessage("Pular"),
-        "textSubtitleRegistrationPage":
-            MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer!"),
         "textTellUsTheEmailAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Nos diga seu e-mail, ele será associado a sua conta"),
@@ -120,7 +117,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós."),
-        "textWelcome": MessageLookupByLibrary.simpleMessage("Bem-vinde"),
+        "textWelcome": MessageLookupByLibrary.simpleMessage("Olá!,"),
+        "textYourRepresentationHereInside":
+            MessageLookupByLibrary.simpleMessage(
+                "Uma representação sua aqui dentro!"),
         "textforgotGenderSubtext":
             MessageLookupByLibrary.simpleMessage("me avise!")
       };

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/components/primary_button.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
+import 'package:is_it_safe_app/core/components/show_field_button.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
@@ -100,14 +101,11 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                   MyTextFormField(
                     controller: controller.passwordController,
                     labelText: S.of(context).textPassword,
-                    suffixIcon: GestureDetector(
+                    suffixIcon: ShowFieldButton(
+                      isDisplayed: _showPassword,
                       onTap: () => setState(() {
                         _showPassword = !_showPassword;
                       }),
-                      child: Icon(
-                        _showPassword ? Icons.visibility : Icons.visibility_off,
-                        color: kColorTextLight,
-                      ),
                     ),
                     obscureText: _showPassword,
                     onChanged: (value) => controller.enableLoginButton(),

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class ManagerDialogs {
   static void showErrorDialog(BuildContext context, String message) {
@@ -10,17 +12,17 @@ class ManagerDialogs {
         barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: kColorBackgroundLight,
           title: Text(
             "Atenção!",
-            style: Theme.of(context).textTheme.headline6,
+            style: TextStyles.button(fontSize: 14),
           ),
           content: Text(message),
           actions: <Widget>[
             TextButton(
               child: Text(
                 "Ok",
-                style: Theme.of(context).textTheme.subtitle1,
+                style: TextStyles.button(fontSize: 14),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -70,11 +72,11 @@ class ManagerDialogs {
   }
 
   static _androidLoading(BuildContext context) {
-    return Align(
+    return const Align(
       alignment: Alignment.center,
       child: CircularProgressIndicator(
-        backgroundColor: Theme.of(context).primaryColor,
-        color: Colors.white,
+        backgroundColor: kColorButtonPrimary,
+        color: kColorPrimaryLight,
       ),
     );
   }

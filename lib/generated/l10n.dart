@@ -110,10 +110,10 @@ class S {
     );
   }
 
-  /// `Escolha seu avatar!`
+  /// `Escolha seu avatar`
   String get textPageTitleProfileRegisterPage {
     return Intl.message(
-      'Escolha seu avatar!',
+      'Escolha seu avatar',
       name: 'textPageTitleProfileRegisterPage',
       desc: '',
       args: [],
@@ -125,26 +125,6 @@ class S {
     return Intl.message(
       'Não se esqueça de sorrir!',
       name: 'textPageSubtitleProfileRegisterPage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Bem vinde!`
-  String get textPageTitleRegistrationPage {
-    return Intl.message(
-      'Bem vinde!',
-      name: 'textPageTitleRegistrationPage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Será um prazer te conhecer!`
-  String get textSubtitleRegistrationPage {
-    return Intl.message(
-      'Será um prazer te conhecer!',
-      name: 'textSubtitleRegistrationPage',
       desc: '',
       args: [],
     );
@@ -250,10 +230,10 @@ class S {
     );
   }
 
-  /// `Por favor selecione seu avatar!`
+  /// `Por favor, selecione seu avatar!`
   String get textErrorEmptyAvatar {
     return Intl.message(
-      'Por favor selecione seu avatar!',
+      'Por favor, selecione seu avatar!',
       name: 'textErrorEmptyAvatar',
       desc: '',
       args: [],
@@ -440,6 +420,16 @@ class S {
     );
   }
 
+  /// `Avançar`
+  String get textAdvance {
+    return Intl.message(
+      'Avançar',
+      name: 'textAdvance',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Agora escolha um nome para todos verem, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(
@@ -510,20 +500,20 @@ class S {
     );
   }
 
-  /// `Bem-vinde`
+  /// `Olá!,`
   String get textWelcome {
     return Intl.message(
-      'Bem-vinde',
+      'Olá!,',
       name: 'textWelcome',
       desc: '',
       args: [],
     );
   }
 
-  /// `Será um prazer te conhecer!`
+  /// `Será um prazer te conhecer.`
   String get textMeetingYouWillBeAPleasure {
     return Intl.message(
-      'Será um prazer te conhecer!',
+      'Será um prazer te conhecer.',
       name: 'textMeetingYouWillBeAPleasure',
       desc: '',
       args: [],
@@ -545,6 +535,16 @@ class S {
     return Intl.message(
       'Nos diga seu e-mail, ele será associado a sua conta',
       name: 'textTellUsTheEmailAssociatedWithYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Uma representação sua aqui dentro!`
+  String get textYourRepresentationHereInside {
+    return Intl.message(
+      'Uma representação sua aqui dentro!',
+      name: 'textYourRepresentationHereInside',
       desc: '',
       args: [],
     );
