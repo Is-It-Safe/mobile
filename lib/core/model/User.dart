@@ -2,7 +2,7 @@ class User {
   String? photoUrl;
   String? name;
   String? birthDate;
-  String? username;
+  String? nickname;
   String? email;
   String? password;
   String? pronoun;
@@ -13,7 +13,7 @@ class User {
       {this.photoUrl,
       this.name,
       this.birthDate,
-      this.username,
+      this.nickname,
       this.email,
       this.password,
       this.pronoun,
@@ -24,7 +24,7 @@ class User {
     photoUrl = json['photoUrl'];
     name = json['name'];
     birthDate = json['birthDate'];
-    username = json['username'];
+    nickname = json['nickname'];
     email = json['email'];
     password = json['password'];
     pronoun = json['pronoun'];
@@ -37,7 +37,7 @@ class User {
     data['photoUrl'] = this.photoUrl;
     data['name'] = this.name;
     data['birthDate'] = this.birthDate;
-    data['username'] = this.username;
+    data['nickname'] = this.nickname;
     data['email'] = this.email;
     data['password'] = this.password;
     data['pronoun'] = this.pronoun;

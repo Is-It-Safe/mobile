@@ -6,7 +6,9 @@ class ApiConstants {
 
   static String kApiKey = "";
 
-  static Options kOptions = Options(headers: {});
+  static Options kOptions = Options(headers: {
+    'Content-Type': 'application/json',
+  });
 
   static Map<String, dynamic> kqueryParameters = {};
 }

@@ -22,7 +22,7 @@ class AppWidget extends StatelessWidget {
           lightTheme,
       localizationsDelegates: const [
         S.delegate,
-        GlobalMaterialLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,  
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],

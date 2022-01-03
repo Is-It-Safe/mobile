@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Data de nascimento`
+  String get genderText {
+    return Intl.message(
+      'Gênero',
+      name: 'genderText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Gênero`
   String get textGender {
     return Intl.message(
@@ -629,6 +639,27 @@ class S {
       args: [],
     );
   }
+
+  /// `Estou esquecendo de algo?`
+  String get textForgetAny {
+    return Intl.message(
+      'Estou esquecendo de algo? ',
+      name: 'textForgetAny',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Por favor me informe!`
+  String get textLetMeKnow {
+    return Intl.message(
+      'Por favor me informe!',
+      name: 'textLetMeKnow',
+      desc: '',
+      args: [],
+    );
+  }
+
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

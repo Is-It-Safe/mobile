@@ -3,11 +3,18 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/core/data/service/register_service.dart';
+import 'package:is_it_safe_app/core/model/Gender.dart';
+import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
+import 'package:is_it_safe_app/core/model/User.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import 'dart:developer' as dev;
 
 class RegisterBloc implements Disposable {
+
+  final RegisterService _service = RegisterService();
+
   ///Finals
   final MaskTextInputFormatter birthdayInputMask =
       MaskTextInputFormatter(mask: "##/##/####");
@@ -15,6 +22,9 @@ class RegisterBloc implements Disposable {
   ///StreamControllers
   late StreamController<bool> registerButtonController;
   late StreamController<String> profileAvatarController;
+  late StreamController<List<Gender>> dropGendersController;
+  late StreamController<List<SexualOrientation>> dropOrientationController;
+  //TODO: Criar controllers de orientation e genders
 
   ///TextEditingControllers
   late TextEditingController nameController;
@@ -32,6 +42,8 @@ class RegisterBloc implements Disposable {
   RegisterBloc() {
     registerButtonController = StreamController.broadcast();
     profileAvatarController = StreamController.broadcast();
+    dropGendersController = StreamController.broadcast();
+    dropOrientationController = StreamController.broadcast();
 
     nameController = TextEditingController();
     userNameController = TextEditingController();
@@ -72,9 +84,37 @@ class RegisterBloc implements Disposable {
     profileAvatarPaths.addAll(_paths);
   }
 
+  Future getGenders() async {
+    final genders =  await _service.getGenders();
+    dropGendersController.sink.add(genders);
+  }
+
+  Future getSexualOrientations() async {
+    final orientations = await _service.getSexualOrientations();
+    dropOrientationController.sink.add(orientations);
+  }
+
+
+  Future registerUser({required int genderId,required orientationId }) async {
+    final user = User(
+      birthDate: birthdayController.text,
+      email: emailController.text,
+      name: nameController.text,
+      genderId: genderId,
+      orientationId: orientationId,
+      nickname: userNameController.text,
+      password: passwordController.text,
+      photoUrl: selectedProfileAvatarPhoto,
+      pronoun: pronoumsController.text,
+    );
+    await _service.registerUser(user: user);
+  }
+
   @override
   void dispose() {
     registerButtonController.close();
     profileAvatarController.close();
+    dropGendersController.close();
+    dropOrientationController.close();
   }
 }
