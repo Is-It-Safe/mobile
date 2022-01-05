@@ -3,17 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
-import 'package:is_it_safe_app/core/components/main_button.dart';
-import 'package:is_it_safe_app/core/components/main_text_field.dart';
+import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
+import 'package:is_it_safe_app/core/components/primary_button.dart';
 import 'package:is_it_safe_app/core/components/show_field_button.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/dark_theme_colors.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-
-import 'dart:developer' as dev;
 
 class RegisterWidget extends StatefulWidget {
   const RegisterWidget({Key? key}) : super(key: key);
@@ -30,7 +28,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
   @override
   void initState() {
     super.initState();
-    dev.log(Modular.to.path, name: "PATH");
+    Log.route(Modular.to.path);
   }
 
   @override
@@ -51,36 +49,26 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ThemeSwitch(),
-
-                  /// Title and Subtitle
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 24),
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '${S.of(context).textWelcome}\n',
-                            style:
-                                Theme.of(context).textTheme.headline4!.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                          TextSpan(
-                            text: S.of(context).textMeetingYouWillBeAPleasure,
-                            style: Theme.of(context).textTheme.headline5!,
-                          ),
-                        ],
-                      ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '${S.of(context).textWelcome}\n',
+                          style: TextStyles.headline1(),
+                        ),
+                        TextSpan(
+                          text: S.of(context).textMeetingYouWillBeAPleasure,
+                          style: TextStyles.headline2(),
+                        ),
+                      ],
                     ),
                   ),
-
-                  ///Name Field
-                  MainTextField(
-                    padding: const EdgeInsets.only(bottom: 18),
+                  const SizedBox(height: 30),
+                  MyTextFormField(
                     controller: controller.nameController,
-                    hintText: "${S.of(context).textName}*",
-                    changeLabelColor: false,
+                    labelText: "${S.of(context).textName}*",
+                    bottomText: S.of(context).textSayYourNameThisInfoIsPrivate,
+                    onChanged: (value) => controller.enableRegisterButton(),
                     validator: (value) {
                       if (value == null) {
                         return S.of(context).textErrorEmptyField;
@@ -91,17 +79,12 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                         return null;
                       }
                     },
-                    onChanged: (value) {
-                      controller.enableRegisterButton();
-                    },
                   ),
-
-                  ///Username Field
-                  MainTextField(
-                    padding: const EdgeInsets.only(bottom: 8),
+                  const SizedBox(height: 30),
+                  MyTextFormField(
                     controller: controller.userNameController,
-                    changeLabelColor: false,
-                    hintText: "${S.of(context).textUsername}*",
+                    labelText: "${S.of(context).textUsername}*",
+                    bottomText: S.of(context).textDontBeAfraidToBeCreative,
                     validator: (value) {
                       if (value == null) {
                         return S.of(context).textErrorEmptyField;
@@ -116,67 +99,25 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       controller.enableRegisterButton();
                     },
                   ),
-
-                  ///Dont be afraid to be creative
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        S.of(context).textDontBeAfraidToBeCreative,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Helpers.getColorFromTheme(
-                                context: context,
-                                darkModeColor: primaryTextColorDark,
-                                lightModeColor: greyTextColorLight,
-                              ),
-                            ),
-                      ),
-                    ),
-                  ),
-
-                  ///Pronouns Field
-                  MainTextField(
-                    padding: const EdgeInsets.only(top: 20),
+                  const SizedBox(height: 30),
+                  MyTextFormField(
                     controller: controller.pronoumsController,
-                    hintText: S.of(context).textExamplePronouns,
                     labelText: S.of(context).textPronouns,
-                    changeLabelColor: true,
+                    hintText: S.of(context).textExamplePronouns,
+                    bottomText: S.of(context).textHowDoYouPreferWeReferToYou,
+                    onChanged: (value) => controller.enableRegisterButton(),
                     validator: (value) {},
+                  ),
+                  const SizedBox(height: 30),
+                  MyTextFormField(
+                    controller: controller.emailController,
+                    labelText: "${S.of(context).textEmailAddress}*",
+                    bottomText: S
+                        .of(context)
+                        .textTellUsTheEmailAssociatedWithYourAccount,
                     onChanged: (value) {
                       controller.enableRegisterButton();
                     },
-                  ),
-
-                  ///How do you prefer people refer to you?
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: Text(
-                        S.of(context).textHowDoYouPreferWeReferToYou,
-                        textAlign: TextAlign.end,
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Helpers.getColorFromTheme(
-                                context: context,
-                                darkModeColor: primaryTextColorDark,
-                                lightModeColor: greyTextColorLight,
-                              ),
-                            ),
-                      ),
-                    ),
-                  ),
-
-                  ///Email field
-                  MainTextField(
-                    padding: const EdgeInsets.only(top: 20),
-                    controller: controller.emailController,
-                    changeLabelColor: false,
-                    hintText: "${S.of(context).textEmailAddress}*",
                     validator: (value) {
                       if (value == null) {
                         return S.of(context).textErrorEmail;
@@ -187,16 +128,19 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                         return null;
                       }
                     },
-                    onChanged: (value) {
-                      controller.enableRegisterButton();
-                    },
                   ),
-
-                  ///Password field
-                  MainTextField(
-                    padding: const EdgeInsets.only(top: 20),
+                  const SizedBox(height: 30),
+                  MyTextFormField(
                     controller: controller.passwordController,
-                    hintText: "${S.of(context).textPassword}*",
+                    labelText: "${S.of(context).textPassword}*",
+                    obscureText: _obscurePassword,
+                    suffixIcon: ShowFieldButton(
+                      isDisplayed: _obscurePassword,
+                      onTap: () => setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      }),
+                    ),
+                    onChanged: (value) => controller.enableRegisterButton(),
                     validator: (value) {
                       if (value == null) {
                         return S.of(context).textErrorLoginPassword;
@@ -207,84 +151,36 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                         return null;
                       }
                     },
-                    onChanged: (value) => controller.enableRegisterButton(),
-                    changeLabelColor: false,
-                    isObscure: _obscurePassword,
-                    suffixIcon: ShowFieldButton(
-                      isDisplayed: _obscurePassword,
-                      onTap: () => setState(() {
-                        _obscurePassword = !_obscurePassword;
-                      }),
-                    ),
                   ),
-
-                  ///We care about your safety, so...
                   Align(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 16),
+                      padding: const EdgeInsets.only(top: 8),
                       child: RichText(
-                        textAlign: TextAlign.end,
                         text: TextSpan(
                           children: [
                             TextSpan(
                               text: S.of(context).textWeCareAboutYourSafety,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: Helpers.getColorFromTheme(
-                                      context: context,
-                                      darkModeColor: primaryTextColorDark,
-                                      lightModeColor: greyTextColorLight,
-                                    ),
-                                  ),
+                              style: TextStyles.helper(fontSize: 12),
                             ),
                             TextSpan(
                               text:
-                                  '\n- ${S.of(context).textAtLeast8Characteres}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: Helpers.getColorFromTheme(
-                                      context: context,
-                                      darkModeColor: primaryTextColorDark,
-                                      lightModeColor: greyTextColorLight,
-                                    ),
-                                  ),
+                                  '\n${S.of(context).textAtLeast8Characteres}',
+                              style: TextStyles.helper(fontSize: 12),
                             ),
                             TextSpan(
-                              text:
-                                  '\n- ${S.of(context).textLettersAndNumbers}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: Helpers.getColorFromTheme(
-                                      context: context,
-                                      darkModeColor: primaryTextColorDark,
-                                      lightModeColor: greyTextColorLight,
-                                    ),
-                                  ),
+                              text: '\n${S.of(context).textLettersAndNumbers}',
+                              style: TextStyles.helper(fontSize: 12),
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
-
-                  ///Confirm password Field
-                  MainTextField(
-                    padding: const EdgeInsets.only(top: 24),
+                  const SizedBox(height: 30),
+                  MyTextFormField(
                     controller: controller.confirmPasswordController,
-                    hintText: "${S.of(context).textPasswordConfirmation}*",
+                    labelText: "${S.of(context).textPasswordConfirmation}*",
                     validator: (value) {
                       if (value == null) {
                         return S.of(context).textErrorDifferentPasswords;
@@ -300,8 +196,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                     onChanged: (value) {
                       controller.enableRegisterButton();
                     },
-                    changeLabelColor: false,
-                    isObscure: _obscurePassword,
+                    obscureText: _obscurePassword,
                     suffixIcon: ShowFieldButton(
                       isDisplayed: _obscurePassword,
                       onTap: () => setState(() {
@@ -309,21 +204,19 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       }),
                     ),
                   ),
-
-                  ///I've read and accept the terms
                   Padding(
                     padding: const EdgeInsets.only(top: 30),
                     child: Row(
                       children: [
                         Checkbox(
                           value: controller.termsAndConditionsCheckbox,
-                          activeColor: Theme.of(context).primaryColor,
-                          side: BorderSide(
-                            color: Helpers.getColorFromTheme(
-                                context: context,
-                                darkModeColor: primaryTextColorDark,
-                                lightModeColor: greyTextColorLight),
-                            width: 2,
+                          activeColor: kColorButtonPrimary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          side: const BorderSide(
+                            color: kColorButtonPrimary,
+                            width: 1,
                           ),
                           onChanged: (value) => setState(() {
                             controller.termsAndConditionsCheckbox =
@@ -338,18 +231,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                               children: [
                                 TextSpan(
                                   text: S.of(context).textIReadAndAcceptThe,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12,
-                                        color: Helpers.getColorFromTheme(
-                                          context: context,
-                                          darkModeColor: primaryTextColorDark,
-                                          lightModeColor: greyTextColorLight,
-                                        ),
-                                      ),
+                                  style: TextStyles.helper(fontSize: 12),
                                 ),
                                 TextSpan(
                                   recognizer: TapGestureRecognizer()
@@ -358,19 +240,10 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                                     },
                                   text: S.of(context).textTermsAndConditions +
                                       "*",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12,
-                                        decoration: TextDecoration.underline,
-                                        color: Helpers.getColorFromTheme(
-                                          context: context,
-                                          darkModeColor: inputFocusedColor,
-                                          lightModeColor: inputFocusedColor,
-                                        ),
-                                      ),
+                                  style: TextStyles.helper(
+                                    fontSize: 12,
+                                    color: kColorStatusActive,
+                                  ),
                                 ),
                               ],
                             ),
@@ -379,18 +252,19 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       ],
                     ),
                   ),
-
-                  ///Register Buttom
                   Padding(
                     padding: const EdgeInsets.only(top: 24, bottom: 16),
                     child: StreamBuilder<bool>(
                         stream: controller.registerButtonController.stream,
                         initialData: false,
                         builder: (context, snapshot) {
-                          return MainButton(
+                          return PrimaryButton(
                               text: S.of(context).textRegister,
+                              textColor: snapshot.data == true
+                                  ? kColorPrimaryLight
+                                  : kColorTextLabel,
                               color: snapshot.data == false
-                                  ? Theme.of(context).disabledColor
+                                  ? kColorStatusDisabled
                                   : null,
                               onTap: () {
                                 _formKey.currentState?.validate();

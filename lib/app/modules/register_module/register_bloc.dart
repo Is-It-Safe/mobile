@@ -110,6 +110,55 @@ class RegisterBloc implements Disposable {
     await _service.registerUser(user: user);
   }
 
+
+  //TODO: Verificar com o back os numeros corretos dos id's de cada um
+  int convertOrientationID(String orientationName){
+    switch (orientationName) {
+      case 'Gay':
+          return 1;
+      case 'Lésbica':
+          return 2;
+      case 'Bissexual':
+          return 3;
+      case 'Pansexual':
+          return 4;
+      case 'Assexual':
+          return 5;
+      case 'Queer':
+          return 6;
+      case 'Heterosexual':
+          return 7;
+      case 'Prefiro Não Respodner':
+          return 0;
+      default:
+          return 0;
+    }
+  }
+
+  //TODO: Verificar com o back os numeros corretos dos id's de cada um
+  int convertGenderID(String genderName){
+    switch (genderName) {
+      case 'Mulher Cis':
+          return 1;
+      case 'Mulher Trans':
+          return 2;
+      case 'Homem Cis':
+          return 3;
+      case 'Homen Trans':
+          return 4;
+      case 'Pessoa Não-Binárie':
+          return 5;
+      case 'Queer':
+          return 6;
+      case 'Prefiro Não Respodner':
+          return 0;
+      default:
+          return 0;
+    }
+  }
+
+
+
   @override
   void dispose() {
     registerButtonController.close();
