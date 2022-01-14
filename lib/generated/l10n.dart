@@ -589,6 +589,25 @@ class S {
       args: [],
     );
   }
+
+  /// `Lugares próximos`
+  String get textHomeTab1 {
+    return Intl.message(
+      'Lugares próximos',
+      name: 'textHomeTab1',
+      desc: '',
+      args: [],
+    );
+  }
+  /// `Melhores Avaliados`
+  String get textHomeTab2 {
+    return Intl.message(
+      'Melhores Avaliados',
+      name: 'textHomeTab2',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
