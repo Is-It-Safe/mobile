@@ -8,7 +8,8 @@ class ApiConstants {
   static const String kClientSecret = 'isitsafe123';
 
   static Options kOptions = Options(headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json;charset=UTF-8',
+    'Charset': 'utf-8'
   });
 
   static const Map<String, dynamic> kqueryParameters = {};

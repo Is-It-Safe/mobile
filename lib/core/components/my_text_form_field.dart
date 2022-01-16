@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class MyTextFormField extends StatefulWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? bottomText;
   final String labelText;
   final String? hintText;
   final Widget? suffixIcon;
   final bool? obscureText;
+  final bool? readOnly;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
@@ -18,7 +20,7 @@ class MyTextFormField extends StatefulWidget {
 
   const MyTextFormField({
     Key? key,
-    required this.controller,
+    this.controller,
     required this.labelText,
     this.hintText,
     this.suffixIcon,
@@ -29,6 +31,7 @@ class MyTextFormField extends StatefulWidget {
     this.onEditingComplete,
     this.bottomText,
     this.inputFormatters,
+    this.readOnly,
   }) : super(key: key);
 
   @override
@@ -58,6 +61,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
         TextFormField(
           controller: widget.controller,
           cursorColor: kColorStatusActive,
+          readOnly: widget.readOnly ?? false,
           keyboardType: widget.keyboardType ?? TextInputType.text,
           inputFormatters: widget.inputFormatters,
           decoration: InputDecoration(

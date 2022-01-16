@@ -3,16 +3,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/data/service/register_service.dart';
 import 'package:is_it_safe_app/core/model/Gender.dart';
 import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
 import 'package:is_it_safe_app/core/model/User.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import 'dart:developer' as dev;
-
 class RegisterBloc implements Disposable {
-
   final RegisterService _service = RegisterService();
 
   ///Finals
@@ -22,9 +21,10 @@ class RegisterBloc implements Disposable {
   ///StreamControllers
   late StreamController<bool> registerButtonController;
   late StreamController<String> profileAvatarController;
-  late StreamController<List<Gender>> dropGendersController;
-  late StreamController<List<SexualOrientation>> dropOrientationController;
-  //TODO: Criar controllers de orientation e genders
+  late StreamController<BaseResponse<List<Gender>>> dropGendersController;
+  late StreamController<BaseResponse<List<SexualOrientation>>>
+      dropOrientationController;
+  late StreamController<BaseResponse> registrationController;
 
   ///TextEditingControllers
   late TextEditingController nameController;
@@ -34,6 +34,8 @@ class RegisterBloc implements Disposable {
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
   late TextEditingController birthdayController;
+  late TextEditingController genderController;
+  late TextEditingController sexualOrientationController;
 
   bool termsAndConditionsCheckbox = false;
   List<String> profileAvatarPaths = [];
@@ -44,6 +46,7 @@ class RegisterBloc implements Disposable {
     profileAvatarController = StreamController.broadcast();
     dropGendersController = StreamController.broadcast();
     dropOrientationController = StreamController.broadcast();
+    registrationController = StreamController.broadcast();
 
     nameController = TextEditingController();
     userNameController = TextEditingController();
@@ -52,6 +55,8 @@ class RegisterBloc implements Disposable {
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
     birthdayController = TextEditingController();
+    genderController = TextEditingController();
+    sexualOrientationController = TextEditingController();
   }
 
   enableRegisterButton() {
@@ -66,7 +71,7 @@ class RegisterBloc implements Disposable {
 
   setProfileAvatar({required String path}) {
     selectedProfileAvatarPhoto = path;
-    dev.log(path, name: "AVATAR PATH");
+    Log.log(path, name: "AVATAR PATH");
     profileAvatarController.sink.add(path);
   }
 
@@ -85,79 +90,53 @@ class RegisterBloc implements Disposable {
   }
 
   Future getGenders() async {
-    final genders =  await _service.getGenders();
-    dropGendersController.sink.add(genders);
+    try {
+      dropGendersController.sink.add(BaseResponse.loading());
+      final genders = await _service.getGenders();
+      dropGendersController.sink.add(BaseResponse.completed(data: genders));
+    } catch (e) {
+      dropGendersController.sink.add(BaseResponse.error(e.toString()));
+    }
   }
 
   Future getSexualOrientations() async {
-    final orientations = await _service.getSexualOrientations();
-    dropOrientationController.sink.add(orientations);
+    try {
+      dropOrientationController.sink.add(BaseResponse.loading());
+      final orientations = await _service.getSexualOrientations();
+      dropOrientationController.sink
+          .add(BaseResponse.completed(data: orientations));
+    } catch (e) {
+      dropOrientationController.sink.add(BaseResponse.error(e.toString()));
+    }
   }
 
-
-  Future registerUser({required int genderId,required orientationId }) async {
+  Future registerUser() async {
+    if (genderController.text.isEmpty) {
+      genderController.text = 11.toString();
+    }
+    if (sexualOrientationController.text.isEmpty) {
+      sexualOrientationController.text = 8.toString();
+    }
     final user = User(
       birthDate: birthdayController.text,
-      email: emailController.text,
-      name: nameController.text,
-      genderId: genderId,
-      orientationId: orientationId,
-      nickname: userNameController.text,
-      password: passwordController.text,
+      email: emailController.text.trim(),
+      name: nameController.text.trim(),
+      genderId: int.parse(genderController.text),
+      orientationId: int.parse(sexualOrientationController.text),
+      nickname: userNameController.text.trim(),
+      password: passwordController.text.trim(),
       photoUrl: selectedProfileAvatarPhoto,
-      pronoun: pronoumsController.text,
+      pronoun: pronoumsController.text.trim(),
     );
-    await _service.registerUser(user: user);
-  }
-
-
-  //TODO: Verificar com o back os numeros corretos dos id's de cada um
-  int convertOrientationID(String orientationName){
-    switch (orientationName) {
-      case 'Gay':
-          return 1;
-      case 'Lésbica':
-          return 2;
-      case 'Bissexual':
-          return 3;
-      case 'Pansexual':
-          return 4;
-      case 'Assexual':
-          return 5;
-      case 'Queer':
-          return 6;
-      case 'Heterosexual':
-          return 7;
-      case 'Prefiro Não Respodner':
-          return 0;
-      default:
-          return 0;
+    try {
+      registrationController.sink.add(BaseResponse.loading());
+      var response = await _service.registerUser(user: user);
+      registrationController.sink
+          .add(BaseResponse.completed(data: jsonDecode(response)));
+    } catch (e) {
+      registrationController.sink.add(BaseResponse.error(e.toString()));
     }
   }
-
-  //TODO: Verificar com o back os numeros corretos dos id's de cada um
-  int convertGenderID(String genderName){
-    switch (genderName) {
-      case 'Mulher Cis':
-          return 1;
-      case 'Mulher Trans':
-          return 2;
-      case 'Homem Cis':
-          return 3;
-      case 'Homen Trans':
-          return 4;
-      case 'Pessoa Não-Binárie':
-          return 5;
-      case 'Queer':
-          return 6;
-      case 'Prefiro Não Respodner':
-          return 0;
-      default:
-          return 0;
-    }
-  }
-
-
 
   @override
   void dispose() {

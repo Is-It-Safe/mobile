@@ -240,6 +240,16 @@ class S {
     );
   }
 
+  /// `Algo deu errado!`
+  String get textErrorDropdown {
+    return Intl.message(
+      'Algo deu errado!',
+      name: 'textErrorDropdown',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário`
   String get textUsername {
     return Intl.message(
@@ -290,31 +300,11 @@ class S {
     );
   }
 
-  /// `Cadastre-se`
-  String get textFinish {
-    return Intl.message(
-      'Finalizar',
-      name: 'textFinish',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Data de nascimento`
   String get textDateOfBirth {
     return Intl.message(
       'Data de nascimento',
       name: 'textDateOfBirth',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Data de nascimento`
-  String get genderText {
-    return Intl.message(
-      'Gênero',
-      name: 'genderText',
       desc: '',
       args: [],
     );
@@ -445,6 +435,26 @@ class S {
     return Intl.message(
       'Avançar',
       name: 'textAdvance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Carregando...`
+  String get textLoading {
+    return Intl.message(
+      'Carregando...',
+      name: 'textLoading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finalizar`
+  String get textFinish {
+    return Intl.message(
+      'Finalizar',
+      name: 'textFinish',
       desc: '',
       args: [],
     );
@@ -669,27 +679,6 @@ class S {
       args: [],
     );
   }
-
-  /// `Estou esquecendo de algo?`
-  String get textForgetAny {
-    return Intl.message(
-      'Estou esquecendo de algo? ',
-      name: 'textForgetAny',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Por favor me informe!`
-  String get textLetMeKnow {
-    return Intl.message(
-      'Por favor me informe!',
-      name: 'textLetMeKnow',
-      desc: '',
-      args: [],
-    );
-  }
-
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

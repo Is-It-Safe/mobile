@@ -20,7 +20,7 @@ class LoginBloc implements Disposable {
 
   LoginBloc() {
     loginButtonController = StreamController.broadcast();
-    loginController = StreamController();
+    loginController = StreamController.broadcast();
     usernameController = TextEditingController();
     passwordController = TextEditingController();
   }

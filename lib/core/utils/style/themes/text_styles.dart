@@ -56,10 +56,10 @@ class TextStyles {
     );
   }
 
-  static TextStyle bodyText1({Color? color}) {
+  static TextStyle bodyText1({Color? color, FontWeight? fontWeight}) {
     return GoogleFonts.poppins(
       color: color ?? kColorTextLight,
-      fontWeight: FontWeight.bold,
+      fontWeight: fontWeight ?? FontWeight.bold,
       fontSize: 16,
     );
   }

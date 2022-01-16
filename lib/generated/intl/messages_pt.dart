@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
             "Os campos de senha devem ser iguais"),
+        "textErrorDropdown":
+            MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
         "textErrorEmail": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite um e-mail válido"),
         "textErrorEmptyAvatar": MessageLookupByLibrary.simpleMessage(
@@ -62,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Campos errados! Tente novamente."),
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
+        "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar"),
         "textForgotGender":
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
@@ -72,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textIsItSafe": MessageLookupByLibrary.simpleMessage("Is It Safe?"),
         "textLettersAndNumbers":
             MessageLookupByLibrary.simpleMessage("- letras e números"),
+        "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textMeetingYouWillBeAPleasure":
             MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer."),
