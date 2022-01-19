@@ -608,6 +608,33 @@ class S {
       args: [],
     );
   }
+  /// `Início`
+  String get textBottomBar1 {
+    return Intl.message(
+      'Início',
+      name: 'textBottomBar1',
+      desc: '',
+      args: [],
+    );
+  }
+  /// `Buscar`
+  String get textBottomBar2 {
+    return Intl.message(
+      'Buscar',
+      name: 'textBottomBar2',
+      desc: '',
+      args: [],
+    );
+  }
+  /// `Avaliações`
+  String get textBottomBar3 {
+    return Intl.message(
+      'Avaliações',
+      name: 'textBottomBar3',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

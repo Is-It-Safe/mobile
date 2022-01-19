@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/home_module/components/local_card.dart';
 import 'package:is_it_safe_app/app/modules/home_module/components/local_card_image.dart';
 import 'package:is_it_safe_app/app/modules/home_module/home_bloc.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+
+import 'components/bottom_app_bar.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -24,7 +27,11 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
           backgroundColor: whiteBackgroundColor,
           title: Row(
             children: [
-              Image.asset('images/app_icon.png',width: 35,height: 35,),
+              Image.asset(
+                'images/app_icon.png',
+                width: 35,
+                height: 35,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: Text(
@@ -40,7 +47,6 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
           bottom: TabBar(
             indicatorColor: darkSecondary,
             indicatorSize: TabBarIndicatorSize.tab,
-            
             tabs: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
@@ -72,7 +78,9 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
               child: Column(
                 children: [
                   LocalCardImage(),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   LocalCard(),
                 ],
               ),
@@ -84,6 +92,7 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
             )
           ],
         ),
+        bottomNavigationBar: const BottomBar(),
       ),
     );
   }

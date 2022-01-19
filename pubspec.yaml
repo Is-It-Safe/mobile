@@ -50,6 +50,7 @@ flutter:
     - images/app/on_boarding/
     - images/app/profile_pictures/
     - images/app/home/
+    - images/app/home/icons_bottombar/
 
 
 flutter_intl:
