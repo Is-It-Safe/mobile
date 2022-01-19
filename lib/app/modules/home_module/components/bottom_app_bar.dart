@@ -21,12 +21,12 @@ class BottomBar extends StatelessWidget {
               },
               child: SizedBox(
                 height: 75,
-                width: 75,
+                width: MediaQuery.of(context).size.width * 0.3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 28,
+                      height: 35,
                       child: SvgPicture.asset(
                         "images/app/home/icons_bottombar/picked_home.svg",
                         height: 24,
@@ -37,8 +37,8 @@ class BottomBar extends StatelessWidget {
                       S.of(context).textBottomBar1,
                       style: Theme.of(context)
                           .textTheme
-                          .subtitle1!
-                          .copyWith(fontSize: 14, fontWeight: FontWeight.w600),
+                          .button!
+                          .copyWith(fontSize: 12, color: const Color(0xFF5C45ED)),
                     ),
                   ],
                 ),
@@ -50,19 +50,25 @@ class BottomBar extends StatelessWidget {
               },
               child: SizedBox(
                 height: 75,
-                width: 75,
+                width: MediaQuery.of(context).size.width * 0.3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 28,
+                      height: 35,
                       child: SvgPicture.asset(
                         "images/app/home/icons_bottombar/standard_search.svg",
                         height: 24,
                         width: 25.27,
                       ),
                     ),
-                    Text("data")
+                    Text(
+                      S.of(context).textBottomBar2,
+                      style: Theme.of(context)
+                          .textTheme
+                          .button!
+                          .copyWith(fontSize: 12, color: const Color(0xFF5C45ED)),
+                    ),
                   ],
                 ),
               ),
@@ -73,19 +79,25 @@ class BottomBar extends StatelessWidget {
               },
               child: SizedBox(
                 height: 75,
-                width: 75,
+                width: MediaQuery.of(context).size.width * 0.3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 28,
+                      height: 35,
                       child: SvgPicture.asset(
                         "images/app/home/icons_bottombar/standard_reviews.svg",
                         height: 24,
                         width: 25.27,
                       ),
                     ),
-                    Text("data")
+                    Text(
+                      S.of(context).textBottomBar3,
+                      style: Theme.of(context)
+                          .textTheme
+                          .button!
+                          .copyWith(fontSize: 12, color: const Color(0xFF5C45ED)),
+                    ),
                   ],
                 ),
               ),
