@@ -14,7 +14,7 @@ class RegisterBloc implements Disposable {
 
   ///StreamControllers
   late StreamController<bool> registerButtonController;
-  late StreamController<String> profileAvatarController;
+  ValueNotifier<String?> photoNotifier = ValueNotifier(null);
 
   ///TextEditingControllers
   late TextEditingController nameController;
@@ -31,7 +31,6 @@ class RegisterBloc implements Disposable {
 
   RegisterBloc() {
     registerButtonController = StreamController.broadcast();
-    profileAvatarController = StreamController.broadcast();
 
     nameController = TextEditingController();
     userNameController = TextEditingController();
@@ -53,9 +52,7 @@ class RegisterBloc implements Disposable {
   }
 
   setProfileAvatar({required String path}) {
-    selectedProfileAvatarPhoto = path;
-    dev.log(path, name: "AVATAR PATH");
-    profileAvatarController.sink.add(path);
+    photoNotifier.value = path;
   }
 
   readProfileAvatarFiles(BuildContext context) async {
@@ -75,6 +72,5 @@ class RegisterBloc implements Disposable {
   @override
   void dispose() {
     registerButtonController.close();
-    profileAvatarController.close();
   }
 }

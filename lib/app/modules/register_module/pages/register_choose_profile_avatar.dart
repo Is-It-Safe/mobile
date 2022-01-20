@@ -73,16 +73,12 @@ class _RegisterChooseProfileAvatarWidgetState
                 itemCount: controller.profileAvatarPaths.length,
                 itemBuilder: (context, index) {
                   var avatarPaths = controller.profileAvatarPaths;
-                  var userAvatarPath = controller.selectedProfileAvatarPhoto;
                   return ProfileAvatarItem(
-                    path: avatarPaths[index],
-                    isSelected: userAvatarPath == avatarPaths[index],
-                    onTap: () => setState(() {
-                      controller.setProfileAvatar(
-                        path: avatarPaths[index],
-                      );
-                    }),
-                  );
+                      path: avatarPaths[index],
+                      isSelected:
+                          controller.photoNotifier.value == avatarPaths[index],
+                      onTap: () => setState(() =>
+                          controller.photoNotifier.value = avatarPaths[index]));
                 },
               ),
             ),
@@ -105,7 +101,7 @@ class _RegisterChooseProfileAvatarWidgetState
                     ),
                     TextButton(
                       onPressed: () {
-                        if (controller.selectedProfileAvatarPhoto.isEmpty) {
+                        if (controller.photoNotifier.value == null) {
                           onError();
                         } else {
                           Modular.to.pop();

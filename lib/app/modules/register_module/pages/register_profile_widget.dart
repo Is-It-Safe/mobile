@@ -3,12 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/components/main_button.dart';
-import 'package:is_it_safe_app/core/components/main_text_field.dart';
 import 'package:is_it_safe_app/core/components/theme_switch.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/dark_theme_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
@@ -49,30 +47,25 @@ class _RegisterProfileWidgetState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const ThemeSwitch(),
-
                   ///Choose Avatar
-                  StreamBuilder<String>(
-                    stream: controller.profileAvatarController.stream,
-                    builder: (context, snapshot) {
-                      dev.log("$snapshot", name: "Current AVATAR");
-                      dev.log(controller.selectedProfileAvatarPhoto,
-                          name: "Current AVATAR confirm");
-                      return snapshot.hasData == false
+                  ValueListenableBuilder<String?>(
+                    valueListenable: controller.photoNotifier,
+                    builder: (context, value, child) {
+                      return value == null
                           ? RegisterAvatarPlaceholder(
                               onTap: () => Modular.to.pushNamed(
                                 '.$kRouteRegisterProfilePicture',
                               ),
                             )
                           : RegisterAvatar(
-                              path: controller.selectedProfileAvatarPhoto,
+                              path: value,
                               onTap: () {
-                                  Modular.to.pushNamed(
-                                    '.$kRouteRegisterProfile',
-                                  );
-                                   Modular.to.pushNamed(
-                                    '.$kRouteRegisterProfilePicture',
-                                  );
+                                Modular.to.pushNamed(
+                                  '.$kRouteRegisterProfile',
+                                );
+                                Modular.to.pushNamed(
+                                  '.$kRouteRegisterProfilePicture',
+                                );
                               },
                             );
                     },
