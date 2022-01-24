@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/home_module/components/local_card.dart';
-import 'package:is_it_safe_app/app/modules/home_module/components/local_card_image.dart';
+import 'package:is_it_safe_app/app/modules/home_module/components/cards/local_card.dart';
+import 'package:is_it_safe_app/app/modules/home_module/components/cards/local_card_image.dart';
+import 'package:is_it_safe_app/app/modules/home_module/components/drawer/custom_drawer.dart';
 import 'package:is_it_safe_app/app/modules/home_module/home_bloc.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -20,7 +21,9 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        endDrawer: CustomDrawer(),
         appBar: AppBar(
+          iconTheme: IconThemeData(color: primaryTextColorLight),
           backgroundColor: whiteBackgroundColor,
           title: Row(
             children: [
