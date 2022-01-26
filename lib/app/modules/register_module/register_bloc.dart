@@ -6,7 +6,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/data/service/register_service.dart';
 import 'package:is_it_safe_app/core/model/Gender.dart';
-import 'package:is_it_safe_app/core/model/ResponseMessage.dart';
 import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
 import 'package:is_it_safe_app/core/model/User.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -129,8 +128,9 @@ class RegisterBloc implements Disposable {
     );
     try {
       registrationController.sink.add(BaseResponse.loading());
-      ResponseMessage response = await _service.registerUser(user: user);
-      registrationController.sink.add(BaseResponse.completed(data: response));
+      var response = await _service.registerUser(user: user);
+      registrationController.sink
+          .add(BaseResponse.completed(data: jsonDecode(response)));
     } catch (e) {
       registrationController.sink.add(BaseResponse.error(e.toString()));
     }
