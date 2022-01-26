@@ -50,6 +50,53 @@ class ManagerDialogs {
     }
   }
 
+  static void showSuccessDialog(BuildContext context,
+      {required String title, required String message, Function()? onPressed}) {
+    if (Platform.isAndroid) {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: kColorBackgroundLight,
+          title: Text(
+            title,
+            style: TextStyles.button(fontSize: 14),
+          ),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                "Ok",
+                style: TextStyles.button(fontSize: 14),
+              ),
+              onPressed: onPressed ??
+                  () {
+                    Navigator.pop(context);
+                  },
+            )
+          ],
+        ),
+      );
+    } else {
+      showCupertinoDialog(
+        context: context,
+        builder: (context) => CupertinoAlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Ok"),
+              onPressed: onPressed ??
+                  () {
+                    Navigator.pop(context);
+                  },
+            )
+          ],
+        ),
+      );
+    }
+  }
+
   static void showLoadingDialog(BuildContext context) {
     showDialog(
       context: context,

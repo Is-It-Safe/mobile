@@ -250,6 +250,16 @@ class S {
     );
   }
 
+  /// `Usuário Registrado`
+  String get textSuccessRegistration {
+    return Intl.message(
+      'Usuário Registrado',
+      name: 'textSuccessRegistration',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário`
   String get textUsername {
     return Intl.message(

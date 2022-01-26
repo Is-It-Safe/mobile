@@ -116,16 +116,10 @@ class APIService {
   _returnResponse(Response response) {
     if (response.statusCode! >= 200 && response.statusCode! <= 299) {
       try {
-        var result = json.decode(response.data.toString());
-        return result;
+        return json.decode(response.data.toString());
       } catch (e) {
         try {
-          if (response.data.toString().contains('{') &&
-              response.data.toString().contains('}')) {
-            return response.data;
-          } else {
-            return '{}';
-          }
+          return response.data;
         } catch (e) {
           try {
             return (response.data as List?);

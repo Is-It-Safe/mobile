@@ -26,12 +26,19 @@ class _RegisterChooseProfileAvatarWidgetState
     _loadImages();
     super.initState();
     Log.route(Modular.to.path);
+    photoListen();
   }
 
   void _loadImages() async {
     await controller
         .readProfileAvatarFiles(context)
         .whenComplete(() => setState(() {}));
+  }
+
+  photoListen() {
+    controller.profileAvatarController.stream.listen((event) async {
+      setState(() {});
+    });
   }
 
   void _onError() {
@@ -103,6 +110,7 @@ class _RegisterChooseProfileAvatarWidgetState
                         if (controller.selectedProfileAvatarPhoto.isEmpty) {
                           _onError();
                         } else {
+                          photoListen();
                           Modular.to.pop();
                         }
                       },

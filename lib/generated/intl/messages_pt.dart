@@ -113,6 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
         "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
         "textSkipForNow": MessageLookupByLibrary.simpleMessage("Pular"),
+        "textSuccessRegistration":
+            MessageLookupByLibrary.simpleMessage("Usuário Registrado"),
         "textTellUsTheEmailAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Nos diga seu e-mail, ele será associado a sua conta"),

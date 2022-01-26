@@ -24,6 +24,8 @@
     "textErrorEmptyAvatar": "Por favor, selecione seu avatar!",
     "textErrorDropdown": "Algo deu errado!",
 
+    "textSuccessRegistration":"Usuário Registrado",
+
     "textUsername":"Usuário",
     "textPassword":"Senha",
     "textPasswordConfirmation":"Confirmar senha",

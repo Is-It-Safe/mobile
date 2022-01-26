@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
@@ -70,8 +71,8 @@ class RegisterBloc implements Disposable {
   }
 
   setProfileAvatar({required String path}) {
-    selectedProfileAvatarPhoto = path;
     Log.log(path, name: "AVATAR PATH");
+    selectedProfileAvatarPhoto = path;
     profileAvatarController.sink.add(path);
   }
 
@@ -111,6 +112,7 @@ class RegisterBloc implements Disposable {
   }
 
   Future registerUser() async {
+    late var response;
     if (genderController.text.isEmpty) {
       genderController.text = 11.toString();
     }
@@ -130,9 +132,8 @@ class RegisterBloc implements Disposable {
     );
     try {
       registrationController.sink.add(BaseResponse.loading());
-      var response = await _service.registerUser(user: user);
-      registrationController.sink
-          .add(BaseResponse.completed(data: jsonDecode(response)));
+      response = await _service.registerUser(user: user);
+      registrationController.sink.add(BaseResponse.completed(data: response));
     } catch (e) {
       registrationController.sink.add(BaseResponse.error(e.toString()));
     }
@@ -141,7 +142,6 @@ class RegisterBloc implements Disposable {
   @override
   void dispose() {
     registerButtonController.close();
-    profileAvatarController.close();
     dropGendersController.close();
     dropOrientationController.close();
   }
