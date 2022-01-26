@@ -5,10 +5,9 @@ class AppException extends DioError {
   final _prefix;
 
   AppException([this._message, this._prefix])
-      : super(
-          requestOptions: RequestOptions(path: ""),
-        );
+      : super(requestOptions: RequestOptions(path: ""));
 
+  @override
   String toString() {
     return "$_prefix $_message";
   }

@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/core/data/service/config/api_constants.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 
 import 'app_exeptions.dart';
 import 'custom_interceptions.dart';
-import 'dart:developer' as dev;
 
 enum HttpMethod { get, post, patch, delete }
 
@@ -15,10 +15,12 @@ class RequestConfig {
   final HttpMethod method;
   final dynamic body;
   final dynamic parameters;
+  final dynamic options;
 
   RequestConfig(
     this.path,
     this.method, {
+    this.options,
     this.body,
     this.parameters,
   });
@@ -37,6 +39,7 @@ class APIService {
     String url = ApiConstants.kBaseUrl;
     Options options = ApiConstants.kOptions;
     Map<String, dynamic> queryParameters = ApiConstants.kqueryParameters;
+    dio.options.responseType = ResponseType.plain;
 
     if (!config.path.contains("http")) {
       url += config.path;
@@ -44,6 +47,7 @@ class APIService {
       url = config.path;
     }
 
+    // ignore: prefer_typing_uninitialized_variables
     var responseJson;
 
     try {
@@ -116,12 +120,17 @@ class APIService {
         return result;
       } catch (e) {
         try {
-          return response.data;
+          if (response.data.toString().contains('{') &&
+              response.data.toString().contains('}')) {
+            return response.data;
+          } else {
+            return '{}';
+          }
         } catch (e) {
           try {
             return (response.data as List?);
           } catch (e) {
-            dev.log(e.toString(), name: "RESPONSE ERROR");
+            Log.responseError(e.toString());
             return <String, dynamic>{};
           }
         }

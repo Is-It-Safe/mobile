@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/core/components/on_boarding_page_template.dart';
+import 'package:is_it_safe_app/app/modules/on_boarding_module/components/on_boarding_page_template.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -74,29 +75,33 @@ class _OnBoardingWidgetState
         children: [
           TextSpan(
             text: "${S.of(context).textOnBoarding1_0} ",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.white,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontSize: 34,
+            ),
           ),
           TextSpan(
             text: "${S.of(context).textOnBoarding1_1} ",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 34,
+            ),
           ),
           TextSpan(
             text: "${S.of(context).textOnBoarding1_2} ",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.white,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontSize: 34,
+            ),
           ),
           TextSpan(
             text: "${S.of(context).textOnBoarding1_3}.",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 34,
+            ),
           ),
         ],
       ),
@@ -109,16 +114,18 @@ class _OnBoardingWidgetState
         children: [
           TextSpan(
             text: "${S.of(context).textOnBoarding2_0} ",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.white,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontSize: 34,
+            ),
           ),
           TextSpan(
             text: "${S.of(context).textOnBoarding2_1}.",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 34,
+            ),
           ),
         ],
       ),
@@ -131,22 +138,25 @@ class _OnBoardingWidgetState
         children: [
           TextSpan(
             text: "${S.of(context).textOnBoarding3_0} ",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.white,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontSize: 34,
+            ),
           ),
           TextSpan(
             text: "${S.of(context).textOnBoarding3_1} ",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 34,
+            ),
           ),
           TextSpan(
             text: "${S.of(context).textOnBoarding3_2}.",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.white,
-                ),
+            style: TextStyles.custom(
+              color: Colors.white,
+              fontSize: 34,
+            ),
           ),
         ],
       ),

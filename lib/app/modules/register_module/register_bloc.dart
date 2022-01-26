@@ -3,11 +3,17 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
+import 'package:is_it_safe_app/core/data/service/register_service.dart';
+import 'package:is_it_safe_app/core/model/Gender.dart';
+import 'package:is_it_safe_app/core/model/ResponseMessage.dart';
+import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
+import 'package:is_it_safe_app/core/model/User.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import 'dart:developer' as dev;
-
 class RegisterBloc implements Disposable {
+  final RegisterService _service = RegisterService();
+
   ///Finals
   final MaskTextInputFormatter birthdayInputMask =
       MaskTextInputFormatter(mask: "##/##/####");
@@ -15,6 +21,11 @@ class RegisterBloc implements Disposable {
   ///StreamControllers
   late StreamController<bool> registerButtonController;
   ValueNotifier<String?> photoNotifier = ValueNotifier(null);
+  late StreamController<String> profileAvatarController;
+  late StreamController<BaseResponse<List<Gender>>> dropGendersController;
+  late StreamController<BaseResponse<List<SexualOrientation>>>
+      dropOrientationController;
+  late StreamController<BaseResponse> registrationController;
 
   ///TextEditingControllers
   late TextEditingController nameController;
@@ -24,6 +35,8 @@ class RegisterBloc implements Disposable {
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
   late TextEditingController birthdayController;
+  late TextEditingController genderController;
+  late TextEditingController sexualOrientationController;
 
   bool termsAndConditionsCheckbox = false;
   List<String> profileAvatarPaths = [];
@@ -31,6 +44,10 @@ class RegisterBloc implements Disposable {
 
   RegisterBloc() {
     registerButtonController = StreamController.broadcast();
+    profileAvatarController = StreamController.broadcast();
+    dropGendersController = StreamController.broadcast();
+    dropOrientationController = StreamController.broadcast();
+    registrationController = StreamController.broadcast();
 
     nameController = TextEditingController();
     userNameController = TextEditingController();
@@ -39,6 +56,8 @@ class RegisterBloc implements Disposable {
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
     birthdayController = TextEditingController();
+    genderController = TextEditingController();
+    sexualOrientationController = TextEditingController();
   }
 
   enableRegisterButton() {
@@ -69,8 +88,59 @@ class RegisterBloc implements Disposable {
     profileAvatarPaths.addAll(_paths);
   }
 
+  Future getGenders() async {
+    try {
+      dropGendersController.sink.add(BaseResponse.loading());
+      final genders = await _service.getGenders();
+      dropGendersController.sink.add(BaseResponse.completed(data: genders));
+    } catch (e) {
+      dropGendersController.sink.add(BaseResponse.error(e.toString()));
+    }
+  }
+
+  Future getSexualOrientations() async {
+    try {
+      dropOrientationController.sink.add(BaseResponse.loading());
+      final orientations = await _service.getSexualOrientations();
+      dropOrientationController.sink
+          .add(BaseResponse.completed(data: orientations));
+    } catch (e) {
+      dropOrientationController.sink.add(BaseResponse.error(e.toString()));
+    }
+  }
+
+  Future registerUser() async {
+    if (genderController.text.isEmpty) {
+      genderController.text = 11.toString();
+    }
+    if (sexualOrientationController.text.isEmpty) {
+      sexualOrientationController.text = 8.toString();
+    }
+    final user = User(
+      birthDate: birthdayController.text,
+      email: emailController.text.trim(),
+      name: nameController.text.trim(),
+      genderId: int.parse(genderController.text),
+      orientationId: int.parse(sexualOrientationController.text),
+      nickname: userNameController.text.trim(),
+      password: passwordController.text.trim(),
+      photoUrl: selectedProfileAvatarPhoto,
+      pronoun: pronoumsController.text.trim(),
+    );
+    try {
+      registrationController.sink.add(BaseResponse.loading());
+      ResponseMessage response = await _service.registerUser(user: user);
+      registrationController.sink.add(BaseResponse.completed(data: response));
+    } catch (e) {
+      registrationController.sink.add(BaseResponse.error(e.toString()));
+    }
+  }
+
   @override
   void dispose() {
     registerButtonController.close();
+    profileAvatarController.close();
+    dropGendersController.close();
+    dropOrientationController.close();
   }
 }

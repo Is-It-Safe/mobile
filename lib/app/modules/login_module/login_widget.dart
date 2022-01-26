@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/core/components/main_button.dart';
-import 'package:is_it_safe_app/core/components/theme_switch.dart';
+import 'package:is_it_safe_app/core/components/primary_button.dart';
+import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
+import 'package:is_it_safe_app/core/components/show_field_button.dart';
+import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-
 import 'login_bloc.dart';
-import 'dart:developer' as dev;
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -22,10 +24,31 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   bool _showPassword = true;
+
   @override
   void initState() {
     super.initState();
-    dev.log(Modular.to.path, name: "PATH");
+    Log.route(Modular.to.path);
+    _loginStream();
+  }
+
+  _loginStream() async {
+    controller.loginController.stream.listen((event) async {
+      switch (event.status) {
+        case Status.COMPLETED:
+          Modular.to.pushNamedAndRemoveUntil(kRouteHome, (p0) => false);
+          break;
+        case Status.LOADING:
+          ManagerDialogs.showLoadingDialog(context);
+          break;
+        case Status.ERROR:
+          Modular.to.pop();
+          ManagerDialogs.showErrorDialog(context, event.message!);
+          break;
+        default:
+          break;
+      }
+    });
   }
 
   @override
@@ -41,38 +64,28 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //const ThemeSwitch(),
-
-                  ///Text
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20.0),
+                    padding: const EdgeInsets.only(bottom: 30.0),
                     child: RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
                             text: "${S.of(context).textPageTitleLogin}\n",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline4!
-                                .copyWith(fontWeight: FontWeight.bold),
+                            style: TextStyles.headline1(),
                           ),
                           TextSpan(
                             text: S.of(context).textPageSubtitleLogin,
-                            style: Theme.of(context).textTheme.headline5,
+                            style: TextStyles.headline2(),
                           ),
                         ],
                       ),
                     ),
                   ),
-
-                  ///Username Field
                   Padding(
                     padding: const EdgeInsets.only(bottom: 18.0),
-                    child: TextFormField(
+                    child: MyTextFormField(
                       controller: controller.usernameController,
-                      decoration: InputDecoration(
-                        hintText: S.of(context).textUsername,
-                      ),
+                      labelText: S.of(context).textUsername,
                       onChanged: (value) => controller.enableLoginButton(),
                       validator: (value) {
                         if (value == null
@@ -85,31 +98,14 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                       },
                     ),
                   ),
-
-                  ///Password Field
-                  TextFormField(
+                  MyTextFormField(
                     controller: controller.passwordController,
-                    decoration: InputDecoration(
-                      hintText: S.of(context).textPassword,
-                      suffixIcon: GestureDetector(
-                        onTap: () => setState(() {
-                          _showPassword = !_showPassword;
-                        }),
-                        child: IconTheme(
-                          data: Theme.of(context).iconTheme.copyWith(
-                                color: Helpers.getColorFromTheme(
-                                  context: context,
-                                  darkModeColor: whiteColor,
-                                  lightModeColor: primaryTextColorLight,
-                                ),
-                              ),
-                          child: Icon(
-                            _showPassword
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                        ),
-                      ),
+                    labelText: S.of(context).textPassword,
+                    suffixIcon: ShowFieldButton(
+                      isDisplayed: _showPassword,
+                      onTap: () => setState(() {
+                        _showPassword = !_showPassword;
+                      }),
                     ),
                     obscureText: _showPassword,
                     onChanged: (value) => controller.enableLoginButton(),
@@ -123,8 +119,6 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                       }
                     },
                   ),
-
-                  ///Forgot the password button
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
                     child: Align(
@@ -135,36 +129,36 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                         },
                         child: Text(
                           S.of(context).textButtonForgotPassword,
-                          style:
-                              Theme.of(context).textTheme.subtitle2!.copyWith(
-                                    decoration: TextDecoration.underline,
-                                  ),
+                          style: TextStyles.button(
+                            fontSize: 12,
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
                       ),
                     ),
                   ),
-
-                  ///Login button
                   StreamBuilder<bool>(
                     stream: controller.loginButtonController.stream,
                     initialData: false,
                     builder: (context, snapshot) {
-                      return MainButton(
+                      return PrimaryButton(
+                        text: S.of(context).textLogin,
+                        textColor: snapshot.data == true
+                            ? kColorPrimaryLight
+                            : kColorTextLabel,
+                        color: snapshot.data == false
+                            ? kColorStatusDisabled
+                            : null,
                         onTap: () async {
                           _formKey.currentState!.validate();
-                          await controller.doLogin();
-                          //TODO save on SharedPreferences that the user is logged
-                          //TODO add navigation to Home
+                          await controller.doLogin().then((value) {
+                            //TODO save on SharedPreferences that the user is logged
+                            //TODO add navigation to Home
+                          });
                         },
-                        text: S.of(context).textLogin,
-                        color: snapshot.data == false
-                            ? Theme.of(context).disabledColor
-                            : null,
                       );
                     },
                   ),
-
-                  ///Don't have an account button
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0),
                     child: Row(
@@ -172,19 +166,15 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                       children: [
                         Text(
                           S.of(context).textButtonDontHaveAccount,
-                          style: Theme.of(context).textTheme.subtitle2,
+                          style: TextStyles.button(fontSize: 12),
                         ),
                         TextButton(
                           onPressed: () => Modular.to.pushNamed(kRouteRegister),
                           child: Text(
                             S.of(context).textSignUp,
-                            style: TextStyle(
-                              color: Helpers.getColorFromTheme(
-                                context: context,
-                                darkModeColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                lightModeColor: Theme.of(context).primaryColor,
-                              ),
+                            style: TextStyles.button(
+                              color: kColorButtonPrimary,
+                              fontSize: 12,
                               decoration: TextDecoration.underline,
                             ),
                           ),
