@@ -6,33 +6,33 @@ const String kUsuarioToken = "userToken";
 const String kUsuarioRefreshToken = "userRefreshToken";
 
 class CustomSharedPreferences {
-  //Salva se o usuário já viu o onBoarding
+  ///Salva se o usuário já viu o onBoarding
   static saveUsuarioOnBoarding(value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(kUsuarioOnBoarding, value);
   }
 
-  //Verifica se o usuário já viu o onBoarding
+  ///Verifica se o usuário já viu o onBoarding
   static readUsuarioOnBoarding() async {
     final prefs = await SharedPreferences.getInstance();
     var result = (prefs.getBool(kUsuarioOnBoarding) ?? false);
     return result;
   }
 
-  //Salva se o usuário está logado
+  ///Salva se o usuário está logado
   static saveUsuario(value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(kUsuarioLogin, value);
   }
 
-  //Verifica se o usuário está logado
+  ///Verifica se o usuário está logado
   static readUsuario() async {
     final prefs = await SharedPreferences.getInstance();
     var result = (prefs.getBool(kUsuarioLogin) ?? false);
     return result;
   }
 
-  //Salva o token do usuário
+  ///Salva o token do usuário
   static saveUsuarioToken(value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(kUsuarioToken, value);
@@ -45,13 +45,13 @@ class CustomSharedPreferences {
     return result;
   }
 
-  //Salva o refresh token do usuário
+  ///Salva o refresh token do usuário
   static saveUsuarioRefreshToken(value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(kUsuarioRefreshToken, value);
   }
 
-  //Recupera o refresh token do usuário
+  ///Recupera o refresh token do usuário
   static readUsuarioRefreshToken() async {
     final prefs = await SharedPreferences.getInstance();
     var result = prefs.getString(kUsuarioRefreshToken);

@@ -56,7 +56,7 @@ class _RegisterProfileWidgetState
           ManagerDialogs.showLoadingDialog(context);
           break;
         case Status.ERROR:
-          Navigator.pop(context);
+          Modular.to.pop();
           ManagerDialogs.showErrorDialog(context, event.message!);
           break;
         default:
