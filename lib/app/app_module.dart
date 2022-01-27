@@ -9,12 +9,19 @@ import 'modules/splash_module/splash_module.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [];
+  
+  //TODO: Reverter para Splash após os testes da SearchModule
 
+  /*
   @override
   final List<ModularRoute> routes = [
     ModuleRoute(Modular.initialRoute, module: SplashModule()),
     ModuleRoute(kRouteOnBoarding, module: OnBoardingModule()),
     ModuleRoute(kRouteLogin, module: LoginModule()),
-    ModuleRoute(kRouteSearch, module: SearchModule()),
+  ];*/
+
+  @override
+  final List<ModularRoute> routes = [
+    ModuleRoute(Modular.initialRoute, module: SearchModule()),
   ];
 }
