@@ -7,7 +7,6 @@ import 'package:is_it_safe_app/core/utils/helper/log.dart';
 
 import 'app_exeptions.dart';
 import 'custom_interceptions.dart';
-import 'dart:developer' as dev;
 
 enum HttpMethod { get, post, patch, delete }
 
@@ -38,8 +37,9 @@ class APIService {
 
   Future doRequest(RequestConfig config) async {
     String url = ApiConstants.kBaseUrl;
-    Options options = config.options ?? ApiConstants.kOptions;
+    Options options = ApiConstants.kOptions;
     Map<String, dynamic> queryParameters = ApiConstants.kqueryParameters;
+    dio.options.responseType = ResponseType.plain;
 
     if (!config.path.contains("http")) {
       url += config.path;
@@ -116,8 +116,7 @@ class APIService {
   _returnResponse(Response response) {
     if (response.statusCode! >= 200 && response.statusCode! <= 299) {
       try {
-        var result = json.decode(response.data.toString());
-        return result;
+        return json.decode(response.data.toString());
       } catch (e) {
         try {
           return response.data;

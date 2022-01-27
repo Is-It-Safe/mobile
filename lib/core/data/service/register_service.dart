@@ -9,7 +9,7 @@ class RegisterService {
   Future registerUser({required User user}) async {
     final _response = await _service.doRequest(
       RequestConfig(
-        '/user/save',
+        'user/save',
         HttpMethod.post,
         body: user.toJson(),
       ),

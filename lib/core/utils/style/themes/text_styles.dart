@@ -47,18 +47,19 @@ class TextStyles {
     );
   }
 
-  static TextStyle subtitle2({Color? color}) {
+  static TextStyle subtitle2(
+      {Color? color, double? fontSize, FontWeight? fontWeight}) {
     return GoogleFonts.poppins(
       color: color ?? kColorTextLight,
-      fontWeight: FontWeight.normal,
-      fontSize: 24,
+      fontWeight: fontWeight ?? FontWeight.normal,
+      fontSize: fontSize ?? 24,
     );
   }
 
-  static TextStyle bodyText1({Color? color}) {
+  static TextStyle bodyText1({Color? color, FontWeight? fontWeight}) {
     return GoogleFonts.poppins(
       color: color ?? kColorTextLight,
-      fontWeight: FontWeight.bold,
+      fontWeight: fontWeight ?? FontWeight.bold,
       fontSize: 16,
     );
   }
@@ -79,11 +80,11 @@ class TextStyles {
     );
   }
 
-  static TextStyle helper({Color? color}) {
+  static TextStyle helper({Color? color, double? fontSize}) {
     return GoogleFonts.poppins(
       color: color ?? kColorTextLight,
       fontWeight: FontWeight.w500,
-      fontSize: 16,
+      fontSize: fontSize ?? 16,
     );
   }
 

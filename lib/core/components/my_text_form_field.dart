@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class MyTextFormField extends StatefulWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
+  final String? bottomText;
   final String labelText;
   final String? hintText;
   final Widget? suffixIcon;
   final bool? obscureText;
+  final bool? readOnly;
+  final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
-  final String? Function(String?)? validator;
+  final Function()? onEditingComplete;
+  final FormFieldValidator<String>? validator;
 
   const MyTextFormField({
     Key? key,
-    required this.controller,
+    this.controller,
     required this.labelText,
     this.hintText,
     this.suffixIcon,
@@ -22,6 +28,10 @@ class MyTextFormField extends StatefulWidget {
     this.onChanged,
     this.validator,
     this.keyboardType,
+    this.onEditingComplete,
+    this.bottomText,
+    this.inputFormatters,
+    this.readOnly,
   }) : super(key: key);
 
   @override
@@ -29,22 +39,59 @@ class MyTextFormField extends StatefulWidget {
 }
 
 class _MyTextFormFieldState extends State<MyTextFormField> {
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _focusNode.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      cursorColor: kColorStatusActive,
-      keyboardType: widget.keyboardType ?? TextInputType.text,
-      decoration: InputDecoration(
-        labelText: widget.labelText,
-        labelStyle: TextStyles.label(),
-        hintText: widget.hintText,
-        hintStyle: TextStyles.label(),
-        suffixIcon: widget.suffixIcon,
-      ),
-      obscureText: widget.obscureText ?? false,
-      onChanged: widget.onChanged,
-      validator: widget.validator,
+    return Column(
+      children: [
+        TextFormField(
+          controller: widget.controller,
+          cursorColor: kColorStatusActive,
+          readOnly: widget.readOnly ?? false,
+          keyboardType: widget.keyboardType ?? TextInputType.text,
+          inputFormatters: widget.inputFormatters,
+          decoration: InputDecoration(
+            labelText: widget.labelText,
+            labelStyle: TextStyles.label(
+              color: _focusNode.hasFocus ? kColorStatusActive : kColorTextLight,
+            ),
+            hintText: widget.hintText,
+            hintStyle: TextStyles.label(),
+            suffixIcon: widget.suffixIcon,
+          ),
+          obscureText: widget.obscureText ?? false,
+          onChanged: widget.onChanged,
+          onEditingComplete: widget.onEditingComplete,
+          validator: widget.validator,
+        ),
+        Visibility(
+          visible: widget.bottomText != null,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                widget.bottomText ?? '',
+                style: TextStyles.helper(fontSize: 12),
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

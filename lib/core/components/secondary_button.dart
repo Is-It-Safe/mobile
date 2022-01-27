@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
-class PrimaryButton extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final Color? textColor;
+class SecondaryButton extends StatelessWidget {
+  final Function()? onTap;
   final double? height;
   final double? width;
-  final Function()? onTap;
-  const PrimaryButton({
+  final Color? borderColor;
+  final Color? textColor;
+  final String text;
+
+  const SecondaryButton({
     Key? key,
-    required this.text,
     this.onTap,
-    this.color,
-    this.textColor,
     this.height,
     this.width,
+    this.borderColor,
+    this.textColor,
+    required this.text,
   }) : super(key: key);
 
   @override
@@ -24,10 +25,13 @@ class PrimaryButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: height ?? 56,
-        width: width ?? MediaQuery.of(context).size.width,
+        height: height ?? 40,
+        width: width ?? 120,
         decoration: BoxDecoration(
-          color: color ?? kColorButtonPrimary,
+          border: Border.all(
+            color: borderColor ?? kColorButtonPrimary,
+            width: 2,
+          ),
           borderRadius: BorderRadius.circular(6),
         ),
         child: Center(

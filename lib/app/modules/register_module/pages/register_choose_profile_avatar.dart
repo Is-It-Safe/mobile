@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
-import 'package:is_it_safe_app/core/components/profile_avatar_item.dart';
+import 'package:is_it_safe_app/app/modules/register_module/components/profile_avatar_item.dart';
+import 'package:is_it_safe_app/core/components/secondary_button.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-
-import 'dart:developer' as dev;
 
 class RegisterChooseProfileAvatarWidget extends StatefulWidget {
   const RegisterChooseProfileAvatarWidget({Key? key}) : super(key: key);
@@ -21,28 +23,32 @@ class _RegisterChooseProfileAvatarWidgetState
 
   @override
   void initState() {
-    loadImages();
+    _loadImages();
     super.initState();
-    dev.log(Modular.to.path, name: "PATH");
+    Log.route(Modular.to.path);
+    photoListen();
   }
 
-  void loadImages() async {
+  void _loadImages() async {
     await controller
         .readProfileAvatarFiles(context)
         .whenComplete(() => setState(() {}));
   }
 
-  void onError() {
+  photoListen() {
+    controller.profileAvatarController.stream.listen((event) async {
+      setState(() {});
+    });
+  }
+
+  void _onError() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
           S.of(context).textErrorEmptyAvatar,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1!
-              .copyWith(fontWeight: FontWeight.w600),
+          style: TextStyles.helper(color: kColorPrimaryLight),
         ),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: kColorStatusError,
       ),
     );
   }
@@ -57,10 +63,9 @@ class _RegisterChooseProfileAvatarWidgetState
         title: S.of(context).textAppBarChooseProfilePhotoPage,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Stack(
           children: [
-            /// Selection of avatars here.
             Padding(
               padding: const EdgeInsets.only(top: 4.0, bottom: 70),
               child: GridView.builder(
@@ -86,35 +91,29 @@ class _RegisterChooseProfileAvatarWidgetState
                 },
               ),
             ),
-
-            /// Confirmation of avatar.
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
                 height: 60,
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: kColorBackgroundLight,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                      onPressed: () => Modular.to.pop(),
-                      child: Text(
-                        S.of(context).textCancel.toUpperCase(),
-                        style: Theme.of(context).textTheme.subtitle2,
-                      ),
+                    SecondaryButton(
+                      text: S.of(context).textCancel,
+                      onTap: () => Modular.to.pop(),
+                      borderColor: Colors.transparent,
                     ),
-                    TextButton(
-                      onPressed: () {
+                    SecondaryButton(
+                      text: S.of(context).textConfirm,
+                      onTap: () {
                         if (controller.selectedProfileAvatarPhoto.isEmpty) {
-                          onError();
+                          _onError();
                         } else {
+                          photoListen();
                           Modular.to.pop();
                         }
                       },
-                      child: Text(
-                        S.of(context).textConfirm.toUpperCase(),
-                        style: Theme.of(context).textTheme.subtitle2,
-                      ),
                     ),
                   ],
                 ),
