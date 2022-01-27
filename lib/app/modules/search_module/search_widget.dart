@@ -12,6 +12,10 @@ class SearchWidget extends StatefulWidget {
 class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Text('SearchPage'),
+      ),
+    );
   }
 }

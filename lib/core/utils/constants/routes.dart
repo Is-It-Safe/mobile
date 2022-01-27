@@ -9,3 +9,5 @@ const kRouteRegisterProfile = "/register-profile";
 const kRouteRegisterProfilePicture = "/profile-picture";
 
 const kRouteHome = "home/";
+
+const kRouteSearch = "search/";
