@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class ManagerDialogs {
   static void showErrorDialog(BuildContext context, String message) {
@@ -10,17 +12,17 @@ class ManagerDialogs {
         barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: kColorBackgroundLight,
           title: Text(
             "Atenção!",
-            style: Theme.of(context).textTheme.headline6,
+            style: TextStyles.button(fontSize: 14),
           ),
           content: Text(message),
           actions: <Widget>[
             TextButton(
               child: Text(
                 "Ok",
-                style: Theme.of(context).textTheme.subtitle1,
+                style: TextStyles.button(fontSize: 14),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -41,6 +43,53 @@ class ManagerDialogs {
               onPressed: () {
                 Navigator.pop(context);
               },
+            )
+          ],
+        ),
+      );
+    }
+  }
+
+  static void showSuccessDialog(BuildContext context,
+      {required String title, required String message, Function()? onPressed}) {
+    if (Platform.isAndroid) {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: kColorBackgroundLight,
+          title: Text(
+            title,
+            style: TextStyles.button(fontSize: 14),
+          ),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                "Ok",
+                style: TextStyles.button(fontSize: 14),
+              ),
+              onPressed: onPressed ??
+                  () {
+                    Navigator.pop(context);
+                  },
+            )
+          ],
+        ),
+      );
+    } else {
+      showCupertinoDialog(
+        context: context,
+        builder: (context) => CupertinoAlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Ok"),
+              onPressed: onPressed ??
+                  () {
+                    Navigator.pop(context);
+                  },
             )
           ],
         ),
@@ -70,10 +119,12 @@ class ManagerDialogs {
   }
 
   static _androidLoading(BuildContext context) {
-    return Align(
+    return const Align(
       alignment: Alignment.center,
       child: CircularProgressIndicator(
-          backgroundColor: Theme.of(context).primaryColor),
+        backgroundColor: kColorButtonPrimary,
+        color: kColorPrimaryLight,
+      ),
     );
   }
 }

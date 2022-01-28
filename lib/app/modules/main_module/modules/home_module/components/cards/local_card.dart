@@ -1,35 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 
-class LocalCardImage extends StatelessWidget {
-  const LocalCardImage({Key? key}) : super(key: key);
+class LocalCard extends StatelessWidget {
+  const LocalCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(25.0),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Stack(
+        overflow: Overflow.visible,
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 270,
+            height: 130,
             decoration: BoxDecoration(
-                color: lightColorCard,
+                color: kColorPrimaryLight,
                 borderRadius: BorderRadius.circular(8.0)),
           ),
-          Container(
-            margin: const EdgeInsets.all(16.0),
-            width: MediaQuery.of(context).size.width,
-            height: 140,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
-            child: Image.asset(
-              "images/app/home/demo_local.png",
-              fit: BoxFit.fill,
-            ),
-          ),
           Positioned(
-            top: 135,
+            top: -15,
             left: 20,
             child: SvgPicture.asset(
               "images/app/home/Star.svg",
@@ -38,7 +29,7 @@ class LocalCardImage extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 175,
+            top: 25,
             left: 20,
             child: SizedBox(
               height: 35,
@@ -57,8 +48,8 @@ class LocalCardImage extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 165,
             left: 80,
+            top: 20,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +74,9 @@ class LocalCardImage extends StatelessWidget {
                 Row(
                   children: [
                     SvgPicture.asset("images/app/home/comment_tile.svg"),
-                    const SizedBox(width: 9,),
+                    const SizedBox(
+                      width: 9,
+                    ),
                     Text('36 reviews')
                   ],
                 )

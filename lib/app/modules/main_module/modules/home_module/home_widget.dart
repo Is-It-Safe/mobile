@@ -1,33 +1,42 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/home_module/components/cards/local_card.dart';
-import 'package:is_it_safe_app/app/modules/home_module/components/cards/local_card_image.dart';
-import 'package:is_it_safe_app/app/modules/home_module/components/drawer/custom_drawer.dart';
-import 'package:is_it_safe_app/app/modules/home_module/home_bloc.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/light_theme_colors.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+
+import 'components/cards/local_card.dart';
+import 'components/cards/local_card_image.dart';
+import 'components/drawer/custom_drawer.dart';
+import 'home_bloc.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
-
   @override
-  _HomeWidgetState createState() => _HomeWidgetState();
+  HomeWidgetState createState() => HomeWidgetState();
 }
 
-class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
+class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
+  @override
+  void initState() {
+    super.initState();
+    Log.route(Modular.to.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        endDrawer: CustomDrawer(),
+        endDrawer: const CustomDrawer(),
         appBar: AppBar(
-          iconTheme: IconThemeData(color: primaryTextColorLight),
-          backgroundColor: whiteBackgroundColor,
+          backgroundColor: kColorBackgroundLight,
           title: Row(
             children: [
-              Image.asset('images/app_icon.png',width: 35,height: 35,),
+              Image.asset(
+                'images/app_icon.png',
+                width: 35,
+                height: 35,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: Text(
@@ -41,14 +50,13 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
             ],
           ),
           bottom: TabBar(
-            indicatorColor: darkSecondary,
+            indicatorColor: kColorTextLight,
             indicatorSize: TabBarIndicatorSize.tab,
-            
             tabs: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  S.of(context).textHomeTab1,
+                  S.of(context).textClosePlaces,
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1!
@@ -58,7 +66,7 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  S.of(context).textHomeTab2,
+                  S.of(context).textBestRates,
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1!
@@ -70,15 +78,12 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
         ),
         body: TabBarView(
           children: [
-            Container(
-              color: whiteBackgroundColor,
-              child: Column(
-                children: [
-                  LocalCardImage(),
-                  SizedBox(height: 10,),
-                  LocalCard(),
-                ],
-              ),
+            Column(
+              children: const [
+                LocalCardImage(),
+                SizedBox(height: 10),
+                LocalCard(),
+              ],
             ),
             Container(
               color: Colors.green,

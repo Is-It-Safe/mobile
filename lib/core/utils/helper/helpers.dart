@@ -73,4 +73,15 @@ class Helpers {
     }
     return lightModeColor;
   }
+
+  static String getImageFromTheme({
+    required BuildContext context,
+    required String darkModeImagePath,
+    required String lightModeImagePath,
+  }) {
+    if (Provider.of<ThemeState>(context).theme == ThemeType.DARK) {
+      return darkModeImagePath;
+    }
+    return lightModeImagePath;
+  }
 }

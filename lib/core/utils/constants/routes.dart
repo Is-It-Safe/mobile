@@ -1,15 +1,15 @@
-///Splash
 const kRouteSplash = "/";
 
-///OnBoarding
-const kRouteOnBoarding = "onBoarding/";
+const kRouteOnBoarding = "/onBoarding";
 
-///Auth
-//Login
-const kRouteLogin = "login/";
-//Register
-const kRouteRegister = "register/";
-const kRouteRegisterProfile = "register-profile/";
-const kRouteRegisterProfilePicture = "profile-picture/";
-//Home
-const kRouteHome = "home/";
+const kRouteLogin = "/login/";
+
+const kRouteRegister = "./register";
+const kRouteRegisterProfile = "/register-profile";
+const kRouteRegisterProfilePicture = "/profile-picture";
+
+const kRouteMain = '/main';
+
+const kRouteHome = "/home/";
+const kRouteProfile = "/profile/";
+const kRouteSearch = "/search/";
