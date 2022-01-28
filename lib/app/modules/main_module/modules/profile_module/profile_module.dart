@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/profile_module/profile_bloc.dart';
-import 'package:is_it_safe_app/app/modules/profile_module/profile_widget.dart';
+import 'package:is_it_safe_app/app/modules/main_module/modules/profile_module/profile_bloc.dart';
+import 'package:is_it_safe_app/app/modules/main_module/modules/profile_module/profile_widget.dart';
 
 class ProfileModule extends Module {
   @override

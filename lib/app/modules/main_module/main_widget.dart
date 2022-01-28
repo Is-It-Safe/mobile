@@ -16,12 +16,6 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends ModularState<BottomNavBar, MainBloc> {
-  @override
-  void initState() {
-    super.initState();
-    Log.route(Modular.to.path);
-  }
-
   int _selectedPage = 0;
 
   final itens = [
@@ -42,19 +36,26 @@ class _BottomNavBarState extends ModularState<BottomNavBar, MainBloc> {
     ),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    Log.route(Modular.to.path);
+  }
+
   void navigateToPage(int index) {
-    Log.log('$index', name: 'INDEX');
     if (index != _selectedPage) {
       if (index == 0) {
-        Modular.to.navigate('/main/home/');
+        Modular.to.navigate(kRouteMain + kRouteHome);
+        //Modular.to.navigate('/main/home/');
       }
       if (index == 1) {
-        Modular.to.navigate('/main/search/');
+        Modular.to.navigate(kRouteMain + kRouteSearch);
+        //Modular.to.navigate('/main/search/');
       }
       if (index == 2) {
-        Modular.to.navigate('/main/profile/');
+        Modular.to.navigate(kRouteMain + kRouteProfile);
+        //Modular.to.navigate('/main/profile/');
       }
-
       _selectedPage = index;
       setState(() {});
     }
