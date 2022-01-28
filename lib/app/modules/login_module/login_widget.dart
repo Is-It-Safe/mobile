@@ -64,6 +64,11 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  TextButton(
+                    onPressed: () => Modular.to
+                        .pushReplacementNamed(kRouteMain + kRouteHome),
+                    child: const Text("Home"),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 30.0),
                     child: RichText(

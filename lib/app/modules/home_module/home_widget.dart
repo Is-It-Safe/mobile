@@ -12,6 +12,10 @@ class HomeWidget extends StatefulWidget {
 class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Text('HOME'),
+      ),
+    );
   }
 }
