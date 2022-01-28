@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/search_module/search_bloc.dart';
-
-import 'dart:developer' as dev;
-
+import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/search_bloc.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
-import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 
 class SearchWidget extends StatefulWidget {
-  final String title;
-  const SearchWidget({Key? key, this.title = 'SearchPagePage'})
-      : super(key: key);
+  const SearchWidget({Key? key}) : super(key: key);
   @override
   SearchWidgetState createState() => SearchWidgetState();
 }
@@ -19,7 +14,7 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
   @override
   void initState() {
     super.initState();
-    dev.log(Modular.to.path, name: "PATH");
+    Log.route(Modular.to.path);
   }
 
   @override
@@ -28,7 +23,7 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding:const EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               vertical: 63,
             ),
             child: Column(
@@ -36,12 +31,12 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 35),
                   child: MyTextFormField(
-                                      readOnly: false,
-                                      labelText: "Search",
-                                      prefixIcon: Icon(Icons.search),
-                                    ),
-                    
-                    /*TextField(
+                    readOnly: false,
+                    labelText: "Search",
+                    prefixIcon: Icon(Icons.search),
+                  ),
+
+                  /*TextField(
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
                       hintText: 'Search',

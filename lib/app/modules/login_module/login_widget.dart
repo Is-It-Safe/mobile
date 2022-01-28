@@ -64,6 +64,12 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //TODO Remove widget down below
+                  TextButton(
+                    onPressed: () => Modular.to
+                        .pushReplacementNamed(kRouteMain + kRouteHome),
+                    child: const Text("Home"),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 30.0),
                     child: RichText(
@@ -152,8 +158,8 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                         onTap: () async {
                           _formKey.currentState!.validate();
                           await controller.doLogin().then((value) {
-                            //TODO save on SharedPreferences that the user is logged
-                            //TODO add navigation to Home
+                            //TODO uncomment navigation to Home
+                            //() => Modular.to.pushReplacementNamed(kRouteMain + kRouteHome);
                           });
                         },
                       );
