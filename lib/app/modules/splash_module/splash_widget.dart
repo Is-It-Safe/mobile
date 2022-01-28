@@ -29,7 +29,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
         Log.log(event.toString(), name: "IS USER LOGGED?");
         if (event) {
           await Future.delayed(const Duration(seconds: 4));
-          //Modular.to.navigate(kRouteHome);
+          //Modular.to.pushReplacementNamed(kRouteMain + kRouteHome);
         } else {
           _loadData();
         }
