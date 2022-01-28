@@ -8,4 +8,8 @@ const kRouteRegister = "./register";
 const kRouteRegisterProfile = "/register-profile";
 const kRouteRegisterProfilePicture = "/profile-picture";
 
-const kRouteHome = "home/";
+const kRouteMain = '/main';
+
+const kRouteHome = "/home/";
+const kRouteProfile = "/profile/";
+const kRouteSearch = "/search/";
