@@ -5,6 +5,8 @@ const String kUsuarioLogin = "userLogin";
 const String kUsuarioToken = "userToken";
 const String kUsuarioRefreshToken = "userRefreshToken";
 
+///O [CustomSharedPreferences] é uma classe responsável por gerenciar e armazenar variádos
+///tipos de shared_preferences.
 class CustomSharedPreferences {
   ///Salva se o usuário já viu o onBoarding
   static saveUsuarioOnBoarding(value) async {

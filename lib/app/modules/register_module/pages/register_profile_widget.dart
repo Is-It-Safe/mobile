@@ -7,7 +7,7 @@ import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
 import 'package:is_it_safe_app/core/components/primary_button.dart';
-import 'package:is_it_safe_app/core/components/text_button.dart';
+import 'package:is_it_safe_app/core/components/secondary_button.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/Gender.dart';
 import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
@@ -220,8 +220,9 @@ class _RegisterProfileWidgetState
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TextButtonCustom(
+                              SecondaryButton(
                                 text: S.of(context).textAdvance,
+                                borderColor: Colors.transparent,
                                 onTap: () async {
                                   controller.registerUser();
                                 },
