@@ -67,8 +67,8 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                   //TODO Remove widget down below
                   TextButton(
                     onPressed: () => Modular.to
-                        .pushReplacementNamed(kRouteMain + kRouteHome),
-                    child: const Text("Home"),
+                        .pushReplacementNamed(kRouteMain + kRouteSearch),
+                    child: const Text("Search"),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 30.0),
