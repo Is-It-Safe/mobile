@@ -23,7 +23,7 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
       child: Scaffold(
         endDrawer: CustomDrawer(),
         appBar: AppBar(
-          iconTheme: IconThemeData(color: primaryTextColorLight),
+          iconTheme: const IconThemeData(color: primaryTextColorLight),
           backgroundColor: whiteBackgroundColor,
           title: Row(
             children: [
@@ -81,10 +81,15 @@ class _HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
               ),
             ),
             Container(
-              color: Colors.green,
-              height: 50,
-              width: 50,
-            )
+              color: whiteBackgroundColor,
+              child: Column(
+                children: [
+                  LocalCardImage(),
+                  SizedBox(height: 10,),
+                  LocalCard(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
