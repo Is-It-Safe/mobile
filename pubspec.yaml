@@ -52,6 +52,7 @@ flutter:
     - images/app/profile_pictures/
     - images/app/profile_pictures/placeholder/
     - images/icons/
+    - images/app/search_pictures/placeholder/
 
 
 flutter_intl:

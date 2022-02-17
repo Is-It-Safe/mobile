@@ -14,6 +14,18 @@ ListTile searchListTile({
                           children: [
                             Stack(
                               children: [
+                                Container(
+                                  width: 102,
+                                  height: 90,
+                                  margin: const EdgeInsets.only(top: 30),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    image: DecorationImage(
+                                      image: Image.asset(('images/app/search_pictures/placeholder/placeholder_image.png')).image,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
                                 
                                 Container(
                                   width: 102,
