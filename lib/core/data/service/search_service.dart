@@ -12,19 +12,18 @@ class Search {
   final dio = DioMock();
   final url = '';
 
+  
+
   Future<List<SearchModel>> featchPlace() async {
-    when(dio.get(url)).thenAnswer((realInvocation) async =>
-        Response(data: jsonDecode(searchResultsData), requestOptions: RequestOptions(method: 'GET', path: 'url')));
+
+    when(dio.get(url)).thenAnswer((realInvocation) async => Response(
+        data: jsonDecode(searchResultsData),
+        requestOptions: RequestOptions(method: 'GET', path: 'url')));
 
     final response = await dio.get(url);
     final list = response.data as List;
-
-    List<SearchModel> searchs = [];
-    for (var json in list) {
-      final searchData = SearchModel.fromJson(json);
-      searchs.add(searchData);
-    }
-
-    return searchs;
+    return list.map((json) => SearchModel.fromJson(json)).toList();
   }
 }
+
+
