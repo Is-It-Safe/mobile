@@ -1,17 +1,17 @@
-class SearchClass {
+class SearchModel {
   late int id;
   late String name;
   late String endereco;
   String? imgUrl;
 
-  SearchClass({
+  SearchModel({
     required this.id,
     required this.name,
     required this.endereco,
     this.imgUrl,
   });
 
-  SearchClass.fromJson(Map<String, dynamic> json) {
+  SearchModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     endereco = json['endereco'];

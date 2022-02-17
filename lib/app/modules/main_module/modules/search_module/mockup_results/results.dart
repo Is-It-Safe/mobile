@@ -1,3 +1,4 @@
+String searchResultsData = '''
 [{
     "id": 1,
     "name": "Restaurante do Guga",
@@ -14,3 +15,4 @@
     "averageGrade": 0.0,
     "reviewsQnt": 0
 }]
+''';
