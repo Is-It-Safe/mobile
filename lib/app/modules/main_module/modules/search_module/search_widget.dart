@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/components/list_tile.dart';
+import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/components/search_list_tile.dart';
 import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/search_bloc.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
@@ -46,11 +46,11 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
                     itemCount: 2,
                     itemBuilder: (context, index) {
                       return searchListTile(
-                          context: context,
-                          
-                          name: 'name $index',
-                          endereco: 'endereco $index',
-                          );
+                        context: context,
+                        name: 'results.name[$index]',
+                        endereco: 'results.endereco [$index]',
+                        imgUrl: 'results.imgUrl [$index]',
+                      );
                     },
                   ),
                 ),

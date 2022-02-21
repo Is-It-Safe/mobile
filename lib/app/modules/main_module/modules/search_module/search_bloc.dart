@@ -13,6 +13,6 @@ class SearchController{
     final repository = Search();
 
     Future start() async{
-      searchs = repository.featchPlace() as List<SearchModel>;
+      searchs = await repository.featchPlace();
     }
 }

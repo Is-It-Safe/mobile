@@ -6,7 +6,7 @@ ListTile searchListTile({
   required BuildContext context,
   required String name,
   required String endereco,
-  String imgUrl = 'https://i.imgur.com/5I5FEyz.png',
+  required String imgUrl,
   
 }) {
   return ListTile(
@@ -75,7 +75,7 @@ ListTile searchListTile({
                                         ),
                                       ),
                                     ],
-                                  )),
+                                  ),),
                             ),
                           ],
                         ),

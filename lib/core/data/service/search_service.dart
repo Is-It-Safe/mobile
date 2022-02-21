@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:dio/dio.dart';
-import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/mockup_results/results.dart';
+import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/mockup_results/results_mockup.dart';
 import 'package:is_it_safe_app/core/model/Search.dart';
 import 'package:mockito/mockito.dart';
 
