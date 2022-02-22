@@ -19,11 +19,11 @@ class SearchModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['endereco'] = this.endereco;
-    data['imgUrl'] = this.imgUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['endereco'] = endereco;
+    data['imgUrl'] = imgUrl;
     return data;
   }
 }

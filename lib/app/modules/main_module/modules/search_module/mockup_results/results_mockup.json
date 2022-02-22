@@ -1,4 +1,4 @@
-String searchResultsMockup = '''
+
 [
     {
     "id": 1,
@@ -17,4 +17,4 @@ String searchResultsMockup = '''
     "reviewsQnt": 0
 }
 ]
-''';
+
