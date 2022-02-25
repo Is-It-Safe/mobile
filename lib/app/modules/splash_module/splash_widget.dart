@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:is_it_safe_app/app/modules/splash_module/splash_bloc.dart';
 import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/animations/fade_animation.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/dark_theme_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'dart:developer' as dev;
@@ -22,13 +22,14 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
   @override
   void initState() {
     super.initState();
+    dev.log(Modular.to.path, name: "PATH");
     controller.getUsuarioLogin();
     controller.splashStream.listen(
       (event) async {
+        Log.log(event.toString(), name: "IS USER LOGGED?");
         if (event) {
-          dev.log(event.toString(), name: "IS USER LOGGED?");
           await Future.delayed(const Duration(seconds: 4));
-          // Modular.to.pushReplacementNamed(kRouteHome);
+          //Modular.to.pushReplacementNamed(kRouteMain + kRouteHome);
         } else {
           _loadData();
         }
@@ -40,11 +41,11 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
     await Future.delayed(const Duration(seconds: 4));
     await CustomSharedPreferences.readUsuarioOnBoarding().then(
       (value) async {
-        dev.log(value.toString(), name: "DID USER SEE ONBOARDING?");
+        Log.log(value.toString(), name: "DID USER SEE ONBOARDING?");
         if (value) {
-          Modular.to.pushReplacementNamed(kRouteLogin);
+          Modular.to.navigate(kRouteLogin);
         } else {
-          Modular.to.pushReplacementNamed(kRouteOnBoarding);
+          Modular.to.navigate(kRouteOnBoarding);
         }
       },
     );
@@ -53,7 +54,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: scaffoldBackgroundColorDark,
+      backgroundColor: const Color(0xFF190A33),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +75,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
                 S.of(context).textIsItSafe,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
-                  color: primaryTextColorDark,
+                  color: kColorPrimaryLight,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
