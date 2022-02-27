@@ -54,9 +54,9 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
                           itemBuilder: (context, index) {
                             return searchListTile(
                               context: context,
-                              name: 'results.name[$index]',
-                              endereco: 'results.endereco [$index]',
-                              imgUrl: 'results.imgUrl [$index]',
+                              name: snapshot.data![index].name,
+                              endereco: snapshot.data![index].endereco,
+                              imgUrl:snapshot.data?[index].imgUrl,
                             );
                           },
                         );
