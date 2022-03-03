@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -18,7 +18,7 @@ dependencies:
   rxdart: ^0.27.2
   dio: ^4.0.0
   intl_utils: ^2.4.1
-  google_fonts: ^2.1.0
+  google_fonts: ^2.3.1
   flutter_launcher_icons: ^0.9.2
   shared_preferences: ^2.0.8
   smooth_page_indicator: ^1.0.0+2
@@ -29,6 +29,7 @@ dependencies:
   mockito: ^5.0.16
   simple_animations: ^4.0.1
   platform: ^3.1.0
+
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,8 @@ flutter:
     - images/app/profile_pictures/
     - images/app/home/
     - images/app/home/drawer/
+    - images/app/profile_pictures/placeholder/
+    - images/icons/
 
 
 flutter_intl:

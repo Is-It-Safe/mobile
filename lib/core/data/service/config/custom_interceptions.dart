@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import 'dart:developer' as dev;
+import 'package:is_it_safe_app/core/utils/helper/log.dart';
 
 class CustomInterceptors extends InterceptorsWrapper {
   // ignore: unused_field
@@ -41,32 +41,33 @@ class CustomInterceptors extends InterceptorsWrapper {
   }
 
   void _printError(DioError err) {
-    dev.log("----------> INIT ERROR RESPONSE <----------",
-        name: "RESPONSE ERROR");
-    dev.log(
+
+    Log.error("----------> INIT ERROR RESPONSE <----------");
+    Log.error(
         "ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}");
-    dev.log("BODY => ${err.response?.data}");
-    dev.log("-----> END ERROR RESPONSE <----------");
+    Log.error("BODY => ${err.response?.data}");
+    Log.error("-----> END ERROR RESPONSE <----------");
   }
 
   void _printRequest(RequestOptions options, {String? method, String? url}) {
-    dev.log("----------> INIT APP REQUEST <----------");
-    dev.log("${method ?? options.method} => ${url ?? options.path}");
-    dev.log("HEADERS =>");
+    Log.request("----------> INIT APP REQUEST <----------");
+    Log.request("${method ?? options.method} => ${url ?? options.path}");
+    Log.request("HEADERS =>");
     options.headers.forEach((key, value) {
-      dev.log("$key => $value");
+      Log.request("$key => $value");
     });
-    dev.log("BODY => ${options.data}");
-    dev.log("----------> END APP REQUEST <----------");
+    Log.request("BODY => ${options.data}");
+    Log.request("----------> END APP REQUEST <----------");
   }
 
   void _printResponse(Response response) {
-    dev.log("----------> INIT API RESPONSE <----------");
-    dev.log(response.requestOptions.path);
-    dev.log("STATUS CODE => ${response.statusCode}");
-    dev.log("HEADERS =>");
-    response.headers.forEach((k, v) => dev.log('$k: $v'));
-    dev.log("BODY => ${response.data}");
-    dev.log("----------> END API RESPONSE <----------");
+    Log.response("----------> INIT API RESPONSE <----------");
+    Log.response(response.requestOptions.path);
+    Log.response("STATUS CODE => ${response.statusCode}");
+    Log.response("HEADERS =>");
+    response.headers.forEach((k, v) => Log.response('$k: $v'));
+    Log.response("BODY => ${response.data}");
+    Log.response("----------> END API RESPONSE <----------");
+
   }
 }
