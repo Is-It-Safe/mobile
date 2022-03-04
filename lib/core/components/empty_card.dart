@@ -14,15 +14,13 @@ class EmptyCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(50.0),
         child: Column(
-          //mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(imagePath),
-            const SizedBox(
-              height: 24,
-            ),
+            const SizedBox(height: 24),
             Text(
               text,
               textAlign: TextAlign.center,
+              //TODO AJUSTAR THEME
               style: Theme.of(context).textTheme.bodyText1!.copyWith(
                     color: kColorTextLabel,
                     fontSize: 16,

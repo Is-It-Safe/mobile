@@ -8,7 +8,6 @@ import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
-import 'components/cards/local_card.dart';
 import 'components/cards/local_card_image.dart';
 import 'components/drawer/custom_drawer.dart';
 import 'home_bloc.dart';
@@ -41,7 +40,11 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        endDrawer: const CustomDrawer(),
+        endDrawer: const CustomDrawer(
+          //TODO VALORES MOCKADOS
+          name: 'Usuário Com Um Longo Nome',
+          profileImagePath: 'images/app/profile_pictures/profile_pic_1.png',
+        ),
         appBar: AppBar(
           iconTheme: const IconThemeData(color: kColorTextLight),
           backgroundColor: kColorWhiteBackground,
@@ -99,54 +102,38 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                 if (snapshot.hasData) {
                   switch (snapshot.data?.status) {
                     case Status.LOADING:
-                      return const Center(
-                        child: SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: CircularProgressIndicator()),
-                      );
+                      ManagerDialogs.showLoadingDialog(context);
+                      break;
                     case Status.ERROR:
                       _onError(snapshot);
-                      return const CircularProgressIndicator();
+                      break;
                     default:
-                      if (snapshot.data!.data!.isEmpty) {
-                        return const EmptyCard(
-                          imagePath: 'images/icons/empty_places.svg',
-                          text:
-                              'Nenhum lugar próximo encontrado, comece a avaliar seu bairro',
-                        );
-                      }
                       return Container(
                         color: kColorWhiteBackground,
                         child: ListView.builder(
                           itemCount: snapshot.data!.data!.length,
                           itemBuilder: ((context, index) {
                             final locationInfo = snapshot.data!.data![index];
-                            return locationInfo.imgUrl!.isEmpty
-                                ? LocalCard(
-                                    locationInfo: locationInfo,
-                                  )
-                                : LocalCardImage(
-                                    locationInfo: locationInfo,
-                                  );
+                            return LocalCardImage(locationInfo: locationInfo);
                           }),
                         ),
                       );
                   }
                 }
-                return const Center(
-                  child: SizedBox(
-                      height: 50,
-                      width: 50,
-                      child: CircularProgressIndicator()),
+                return const EmptyCard(
+                  imagePath: 'images/icons/empty_places.svg',
+                  //TODO COLOCAR TEXTO NO INTL
+                  text:
+                      'Nenhum lugar próximo encontrado, comece a avaliar seu bairro',
                 );
               },
             ),
             //Melhores Avaliados
             Column(
-              children: [
+              children: const [
                 EmptyCard(
                   imagePath: 'images/icons/empty_places.svg',
+                  //TODO COLOCAR TEXTO NO INTL
                   text:
                       'Nenhum lugar próximo encontrado, comece a avaliar seu bairro',
                 )

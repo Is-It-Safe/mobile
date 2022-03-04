@@ -1,18 +1,19 @@
 class LocationInfo {
-  int? id;
-  String? name;
-  String? endereco;
+  late int id;
+  late String name;
+  late String endereco;
+  late double averageGrade;
+  late int reviewsQnt;
   String? imgUrl;
-  double? averageGrade;
-  int? reviewsQnt;
 
-  LocationInfo(
-      {this.id,
-      this.name,
-      this.endereco,
-      this.imgUrl,
-      this.averageGrade,
-      this.reviewsQnt});
+  LocationInfo({
+    required this.id,
+    required this.name,
+    required this.endereco,
+    required this.averageGrade,
+    required this.reviewsQnt,
+    this.imgUrl,
+  });
 
   LocationInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -24,13 +25,13 @@ class LocationInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['endereco'] = this.endereco;
-    data['imgUrl'] = this.imgUrl;
-    data['averageGrade'] = this.averageGrade;
-    data['reviewsQnt'] = this.reviewsQnt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['endereco'] = endereco;
+    data['imgUrl'] = imgUrl;
+    data['averageGrade'] = averageGrade;
+    data['reviewsQnt'] = reviewsQnt;
     return data;
   }
 }

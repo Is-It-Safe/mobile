@@ -260,6 +260,16 @@ class S {
     );
   }
 
+  /// `Adicionar Local`
+  String get textDrawerAddLocation {
+    return Intl.message(
+      'Adicionar Local',
+      name: 'textDrawerAddLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário`
   String get textUsername {
     return Intl.message(

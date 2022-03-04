@@ -5,56 +5,67 @@ import 'custom_header.dart';
 import 'custom_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({Key? key}) : super(key: key);
+  final String name;
+  final String? profileImagePath;
+  const CustomDrawer({Key? key, required this.name, this.profileImagePath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Drawer(
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                const CustomHeaderDrawer(),
-                //TODO: Ajustar as rotas para os locais corretos após criacoes das paginas
-                CustomTileDrawer(
-                  iconPath: 'adicionar_local.svg',
-                  title: 'Adicionar Local',
-                  route: kRouteProfile,
-                ),
-                CustomTileDrawer(
-                  iconPath: 'minha_conta.svg',
-                  title: 'Minha Conta',
-                  route: kRouteProfile,
-                ),
-                CustomTileDrawer(
-                  iconPath: 'configuracoes.svg',
-                  title: 'Configurações',
-                  route: kRouteProfile,
-                ),
-                CustomTileDrawer(
-                  iconPath: 'privacidade.svg',
-                  title: 'Privacidade',
-                  route: kRouteProfile,
-                ),
-                CustomTileDrawer(
-                  iconPath: 'termos_uso.svg',
-                  title: 'Termos De Uso',
-                  route: kRouteProfile,
-                ),
-                CustomTileDrawer(
-                  iconPath: 'sobre.svg',
-                  title: 'Sobre',
-                  route: kRouteProfile,
-                ),
-                CustomTileDrawer(
-                  iconPath: 'contato.svg',
-                  title: 'Contato',
-                  route: kRouteProfile,
-                ),
-              ],
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomHeaderDrawer(
+                name: name,
+                profileImagePath: profileImagePath,
+              ),
+              //TODO: Ajustar as rotas para os locais corretos após criacoes das paginas
+              const CustomTileDrawer(
+                iconPath: 'adicionar_local.svg',
+                //TODO Colocar texto no INTL
+                title: 'Adicionar Local',
+                route: kRouteProfile,
+              ),
+              const CustomTileDrawer(
+                iconPath: 'minha_conta.svg',
+                //TODO Colocar texto no INTL
+                title: 'Minha Conta',
+                route: kRouteProfile,
+              ),
+              const CustomTileDrawer(
+                iconPath: 'configuracoes.svg',
+                //TODO Colocar texto no INTL
+                title: 'Configurações',
+                route: kRouteProfile,
+              ),
+              const CustomTileDrawer(
+                iconPath: 'privacidade.svg',
+                //TODO Colocar texto no INTL
+                title: 'Privacidade',
+                route: kRouteProfile,
+              ),
+              const CustomTileDrawer(
+                iconPath: 'termos_uso.svg',
+                //TODO Colocar texto no INTL
+                title: 'Termos De Uso',
+                route: kRouteProfile,
+              ),
+              const CustomTileDrawer(
+                iconPath: 'sobre.svg',
+                //TODO Colocar texto no INTL
+                title: 'Sobre',
+                route: kRouteProfile,
+              ),
+              const CustomTileDrawer(
+                iconPath: 'contato.svg',
+                //TODO Colocar texto no INTL
+                title: 'Contato',
+                route: kRouteProfile,
+              ),
+            ],
+          ),
         ),
       ),
     );

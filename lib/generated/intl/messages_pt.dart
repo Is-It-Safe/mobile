@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
             "Agora escolha um nome para todos verem, seja criativo!"),
+        "textDrawerAddLocation":
+            MessageLookupByLibrary.simpleMessage("Adicionar Local"),
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(

@@ -1,5 +1,4 @@
-import 'package:is_it_safe_app/core/model/location/content.dart';
-import 'package:is_it_safe_app/core/model/location/location_info.dart';
+import 'package:is_it_safe_app/core/model/location/location.dart';
 
 import 'config/api_service.dart';
 
@@ -15,6 +14,6 @@ class HomeService {
       ),
     );
     final _locations = Location.fromJson(_response as Map<String, dynamic>);
-    return _locations.content!.isEmpty ? [] : _locations.content;
+    return _locations;
   }
 }

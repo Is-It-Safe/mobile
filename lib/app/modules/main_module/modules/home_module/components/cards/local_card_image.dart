@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/core/model/location/location_info.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class LocalCardImage extends StatelessWidget {
   const LocalCardImage({Key? key, required this.locationInfo})
@@ -12,15 +13,18 @@ class LocalCardImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(25.0),
+      //TODO Ajustar componente
       child: Stack(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 270,
-            decoration: BoxDecoration(
-                color: kColorPrimaryLight,
-                borderRadius: BorderRadius.circular(8.0)),
-          ),
+          locationInfo.imgUrl != null
+              ? Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 270,
+                  decoration: BoxDecoration(
+                      color: kColorPrimaryLight,
+                      borderRadius: BorderRadius.circular(8.0)),
+                )
+              : const SizedBox.shrink(),
           Container(
             margin: const EdgeInsets.all(16.0),
             width: MediaQuery.of(context).size.width,
@@ -29,8 +33,11 @@ class LocalCardImage extends StatelessWidget {
             child: Image.network(
               locationInfo.imgUrl!,
               fit: BoxFit.fill,
-              errorBuilder: (context,o,s){
-                return Image.asset('images/app/home/demo_local.png',fit: BoxFit.fill,);
+              errorBuilder: (context, o, s) {
+                return Image.asset(
+                  'images/app/home/demo_local.png',
+                  fit: BoxFit.fill,
+                );
               },
             ),
           ),
@@ -53,11 +60,7 @@ class LocalCardImage extends StatelessWidget {
                 fit: BoxFit.contain,
                 child: Text(
                   locationInfo.averageGrade.toString(),
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                      color: kColorTextLight),
-                  //textAlign: TextAlign.center,
+                  style: TextStyles.headline3(),
                 ),
               ),
             ),
@@ -70,7 +73,8 @@ class LocalCardImage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  locationInfo.name ?? 'Sem nome',
+                  locationInfo.name,
+                  //TODO Ajustar TextStyle
                   style: Theme.of(context).textTheme.subtitle1!.copyWith(
                         fontWeight: FontWeight.w400,
                         fontSize: 18,
@@ -79,11 +83,12 @@ class LocalCardImage extends StatelessWidget {
                 const SizedBox(
                   height: 4,
                 ),
-                Container(
+                SizedBox(
                   width: 250,
                   child: Text(
-                    locationInfo.endereco ?? 'Sem endereço',
+                    locationInfo.endereco,
                     maxLines: 2,
+                    //TODO Ajustar TextStyle
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
@@ -102,6 +107,7 @@ class LocalCardImage extends StatelessWidget {
                     ),
                     Text(
                       locationInfo.reviewsQnt.toString() + ' reviews',
+                      //TODO Ajustar TextStyle
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: 12,
