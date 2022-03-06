@@ -55,6 +55,7 @@ class _RegisterChooseProfileAvatarWidgetState
 
   @override
   Widget build(BuildContext context) {
+    var userAvatarPath = controller.selectedProfileAvatarPhoto;
     return Scaffold(
       key: _scaffoldKey,
       appBar: appBar(
@@ -78,7 +79,6 @@ class _RegisterChooseProfileAvatarWidgetState
                 itemCount: controller.profileAvatarPaths.length,
                 itemBuilder: (context, index) {
                   var avatarPaths = controller.profileAvatarPaths;
-                  var userAvatarPath = controller.selectedProfileAvatarPhoto;
                   return ProfileAvatarItem(
                     path: avatarPaths[index],
                     isSelected: userAvatarPath == avatarPaths[index],
@@ -111,7 +111,7 @@ class _RegisterChooseProfileAvatarWidgetState
                           _onError();
                         } else {
                           photoListen();
-                          Modular.to.pop();
+                          Modular.to.pop(userAvatarPath);
                         }
                       },
                     ),

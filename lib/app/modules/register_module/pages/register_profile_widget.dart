@@ -99,14 +99,38 @@ class _RegisterProfileWidgetState
                           builder: (context, snapshot) {
                             return snapshot.hasData == false
                                 ? RegisterAvatarPlaceholder(
-                                    onTap: () => Modular.to.pushNamed(
+                                    onTap: () async => Modular.to.pushNamed(
                                       '.$kRouteRegisterProfilePicture',
+                                    ).then(
+                                      (value) {
+                                        String newValue = value.toString();
+                                        setState(
+                                          () {
+                                            controller.setProfileAvatar(
+                                              path: newValue,
+                                            );
+                                          },
+                                        );
+                                      },
                                     ),
                                   )
                                 : RegisterAvatar(
                                     path: controller.selectedProfileAvatarPhoto,
-                                    onTap: () => Modular.to.pushNamed(
+                                    onTap: () async => Modular.to
+                                        .pushNamed(
                                       '.$kRouteRegisterProfilePicture',
+                                    )
+                                        .then(
+                                      (value) {
+                                        String newValue = value.toString();
+                                        setState(
+                                          () {
+                                            controller.setProfileAvatar(
+                                              path: newValue,
+                                            );
+                                          },
+                                        );
+                                      },
                                     ),
                                   );
                           },
