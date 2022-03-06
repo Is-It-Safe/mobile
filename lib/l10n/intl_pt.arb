@@ -63,7 +63,8 @@
     
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
 
-
+    "textSearchForm":"Search",
+    
     "textOnBoarding1_0":"Foco em",
     "textOnBoarding1_1":"segurança",
     "textOnBoarding1_2":"e",
@@ -72,5 +73,7 @@
     "textOnBoarding2_1":"segurança",
     "textOnBoarding3_0":"Descreva suas",
     "textOnBoarding3_1":"experiências",
-    "textOnBoarding3_2":"e avalie locais"
+    "textOnBoarding3_2":"e avalie locais",
+
+    
 }

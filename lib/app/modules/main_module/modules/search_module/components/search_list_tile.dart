@@ -34,8 +34,10 @@ ListTile searchListTile({
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
-                  image: NetworkImage(
-                    imgUrl ?? '',
+                  image:(imgUrl == null) ? Image.asset(
+                          ('images/app/search_pictures/placeholder/no_image.jpg'))
+                      .image : NetworkImage(
+                    imgUrl,
                   ),
                   fit: BoxFit.cover,
                 ),

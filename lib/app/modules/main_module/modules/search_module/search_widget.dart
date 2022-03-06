@@ -3,8 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/components/search_list_tile.dart';
 import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/search_bloc.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
+import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/Search.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 
 class SearchWidget extends StatefulWidget {
   const SearchWidget({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
   void initState() {
     super.initState();
     Log.route(Modular.to.path);
-    futurePlaces = SearchBloc().getAllPlaces();
+    
   }
 
   @override
@@ -33,38 +35,42 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
             ),
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 35),
+                 Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 35),
                   child: MyTextFormField(
+                    controller: controller.nameSearchController,
                     readOnly: false,
-                    labelText: "Search",
-                    prefixIcon: Icon(Icons.search),
+                    labelText: S.of(context).textSearchForm,
+                    prefixIcon: const Icon(Icons.search),
+                    onEditingComplete: () {
+                      controller.getAllPlaces();
+                    },
                   ),
                 ),
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   height: MediaQuery.of(context).size.height - 215,
-                  child: FutureBuilder<List<SearchModel>>(
-                    future: futurePlaces,
+                  child:  StreamBuilder<BaseResponse<List<SearchModel>>>(
+                    stream: controller.searchController.stream,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
-                          itemCount: snapshot.data!.length,
+                          itemCount: snapshot.data!.data!.length,
                           itemBuilder: (context, index) {
                             return searchListTile(
                               context: context,
-                              name: snapshot.data![index].name,
-                              endereco: snapshot.data![index].endereco,
-                              imgUrl:snapshot.data?[index].imgUrl,
+                              name: snapshot.data!.data![index].name,
+                              endereco: snapshot.data!.data![index].endereco,
+                              imgUrl:snapshot.data?.data?[index].imgUrl,
                             );
                           },
                         );
                       } else if (snapshot.hasError) {
                         return Text('${snapshot.error}');
                       } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
+                        return Center(
+                          child:  Container(),
                         );
                       }
                     },
