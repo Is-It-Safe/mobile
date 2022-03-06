@@ -99,36 +99,32 @@ class _RegisterProfileWidgetState
                           builder: (context, snapshot) {
                             return snapshot.hasData == false
                                 ? RegisterAvatarPlaceholder(
-                                    onTap: () async => Modular.to.pushNamed(
-                                      '.$kRouteRegisterProfilePicture',
-                                    ).then(
-                                      (value) {
-                                        String newValue = value.toString();
-                                        setState(
-                                          () {
-                                            controller.setProfileAvatar(
-                                              path: newValue,
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  )
-                                : RegisterAvatar(
-                                    path: controller.selectedProfileAvatarPhoto,
-                                    onTap: () async => Modular.to
+                                    onTap: () => Modular.to
                                         .pushNamed(
                                       '.$kRouteRegisterProfilePicture',
                                     )
                                         .then(
                                       (value) {
                                         String newValue = value.toString();
-                                        setState(
-                                          () {
-                                            controller.setProfileAvatar(
-                                              path: newValue,
-                                            );
-                                          },
+
+                                        controller.setProfileAvatar(
+                                          path: newValue,
+                                        );
+                                      },
+                                    ),
+                                  )
+                                : RegisterAvatar(
+                                    path: controller.selectedProfileAvatarPhoto,
+                                    onTap: ()  => Modular.to
+                                        .pushNamed(
+                                      '.$kRouteRegisterProfilePicture',
+                                    )
+                                        .then(
+                                      (value) {
+                                        String newValue = value.toString();
+
+                                        controller.setProfileAvatar(
+                                          path: newValue,
                                         );
                                       },
                                     ),
