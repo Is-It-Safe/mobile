@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class EmptyCard extends StatelessWidget {
   const EmptyCard({Key? key, required this.imagePath, required this.text})
@@ -20,12 +21,9 @@ class EmptyCard extends StatelessWidget {
             Text(
               text,
               textAlign: TextAlign.center,
-              //TODO AJUSTAR THEME
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    color: kColorTextLabel,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
+              style: TextStyles.bodyText1(
+                color: kColorTextLabel,
+              ),
             ),
           ],
         ),

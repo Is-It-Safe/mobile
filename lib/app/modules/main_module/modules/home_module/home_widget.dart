@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/app/modules/main_module/modules/home_module/components/cards/local_card_final.dart';
 import 'package:is_it_safe_app/core/components/empty_card.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/location/location_info.dart';
@@ -8,7 +9,6 @@ import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
-import 'components/cards/local_card_image.dart';
 import 'components/drawer/custom_drawer.dart';
 import 'home_bloc.dart';
 
@@ -41,7 +41,6 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
       length: 2,
       child: Scaffold(
         endDrawer: const CustomDrawer(
-          //TODO VALORES MOCKADOS
           name: 'Usuário Com Um Longo Nome',
           profileImagePath: 'images/app/profile_pictures/profile_pic_1.png',
         ),
@@ -102,8 +101,16 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                 if (snapshot.hasData) {
                   switch (snapshot.data?.status) {
                     case Status.LOADING:
-                      ManagerDialogs.showLoadingDialog(context);
-                      break;
+                      //TODO: Retornando para o widget pois o loading não estava sendo exibido através
+                      //do ManagerDialogs
+                      //ManagerDialogs.showLoadingDialog(context);
+                      //break;
+                      return const Center(
+                        child: SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: CircularProgressIndicator()),
+                      );
                     case Status.ERROR:
                       _onError(snapshot);
                       break;
@@ -114,28 +121,24 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                           itemCount: snapshot.data!.data!.length,
                           itemBuilder: ((context, index) {
                             final locationInfo = snapshot.data!.data![index];
-                            return LocalCardImage(locationInfo: locationInfo);
+                            return LocalCard(locationInfo: locationInfo);
                           }),
                         ),
                       );
                   }
                 }
-                return const EmptyCard(
+                return EmptyCard(
                   imagePath: 'images/icons/empty_places.svg',
-                  //TODO COLOCAR TEXTO NO INTL
-                  text:
-                      'Nenhum lugar próximo encontrado, comece a avaliar seu bairro',
+                  text: S.of(context).textEmptyCard,
                 );
               },
             ),
             //Melhores Avaliados
             Column(
-              children: const [
+              children: [
                 EmptyCard(
                   imagePath: 'images/icons/empty_places.svg',
-                  //TODO COLOCAR TEXTO NO INTL
-                  text:
-                      'Nenhum lugar próximo encontrado, comece a avaliar seu bairro',
+                  text: S.of(context).textEmptyCard,
                 )
               ],
             ),

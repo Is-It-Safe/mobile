@@ -12,10 +12,10 @@ class Sort {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['sorted'] = this.sorted;
-    data['unsorted'] = this.unsorted;
-    data['empty'] = this.empty;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['sorted'] = sorted;
+    data['unsorted'] = unsorted;
+    data['empty'] = empty;
     return data;
   }
 }

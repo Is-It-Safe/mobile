@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 
+import '../../../../../../../generated/l10n.dart';
 import 'custom_header.dart';
 import 'custom_tile.dart';
 
@@ -22,46 +23,39 @@ class CustomDrawer extends StatelessWidget {
                 profileImagePath: profileImagePath,
               ),
               //TODO: Ajustar as rotas para os locais corretos após criacoes das paginas
-              const CustomTileDrawer(
+              CustomTileDrawer(
                 iconPath: 'adicionar_local.svg',
-                //TODO Colocar texto no INTL
-                title: 'Adicionar Local',
+                title: S.of(context).textDrawerAddLocation,
                 route: kRouteProfile,
               ),
-              const CustomTileDrawer(
+              CustomTileDrawer(
                 iconPath: 'minha_conta.svg',
-                //TODO Colocar texto no INTL
-                title: 'Minha Conta',
+                title: S.of(context).textDrawerMyAccount,
                 route: kRouteProfile,
               ),
-              const CustomTileDrawer(
+              CustomTileDrawer(
                 iconPath: 'configuracoes.svg',
-                //TODO Colocar texto no INTL
-                title: 'Configurações',
+                title: S.of(context).textDrawerConfiguration,
                 route: kRouteProfile,
               ),
-              const CustomTileDrawer(
+              CustomTileDrawer(
                 iconPath: 'privacidade.svg',
-                //TODO Colocar texto no INTL
-                title: 'Privacidade',
+                title: S.of(context).textDrawerPrivacy,
                 route: kRouteProfile,
               ),
-              const CustomTileDrawer(
+              CustomTileDrawer(
                 iconPath: 'termos_uso.svg',
-                //TODO Colocar texto no INTL
-                title: 'Termos De Uso',
+                title: S.of(context).textDrawerTerms,
                 route: kRouteProfile,
               ),
-              const CustomTileDrawer(
+              CustomTileDrawer(
                 iconPath: 'sobre.svg',
-                //TODO Colocar texto no INTL
-                title: 'Sobre',
+                title: S.of(context).textDrawerAbout,
                 route: kRouteProfile,
               ),
-              const CustomTileDrawer(
+              CustomTileDrawer(
                 iconPath: 'contato.svg',
-                //TODO Colocar texto no INTL
-                title: 'Contato',
+                title: S.of(context).textDrawerContact,
                 route: kRouteProfile,
               ),
             ],
