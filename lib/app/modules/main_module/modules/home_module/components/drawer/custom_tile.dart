@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../../../core/utils/style/themes/text_styles.dart';
+
 //Tile do Drawer personalizado
 class CustomTileDrawer extends StatelessWidget {
   final String iconPath;
@@ -27,10 +29,7 @@ class CustomTileDrawer extends StatelessWidget {
           ),
           Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle1!
-                .copyWith(fontSize: 18, fontWeight: FontWeight.w400),
+            style: TextStyles.subtitle1(),
           ),
         ],
       ),

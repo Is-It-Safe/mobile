@@ -22,6 +22,7 @@ class TextButtonCustom extends StatelessWidget {
         child: Center(
           child: Text(
             text.toUpperCase(),
+            //TODO: Ajustar TextTheme
             style: Theme.of(context).textTheme.button!.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 14,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/main_module/modules/home_module/components/cards/local_card_final.dart';
+import 'package:is_it_safe_app/app/modules/main_module/modules/home_module/components/cards/local_card.dart';
 import 'package:is_it_safe_app/core/components/empty_card.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/location/location_info.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'components/drawer/custom_drawer.dart';
@@ -57,6 +58,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
               Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: Text(
+                  //TODO: Texto com letras separadas no Figma
                   S.of(context).textIsItSafe,
                   style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontWeight: FontWeight.bold,
@@ -74,10 +76,10 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
                   S.of(context).textClosePlaces,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1!
-                      .copyWith(fontSize: 14, fontWeight: FontWeight.w600),
+                  style: TextStyles.custom(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               Padding(
@@ -105,6 +107,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                       //do ManagerDialogs
                       //ManagerDialogs.showLoadingDialog(context);
                       //break;
+                      //TODO: Loading não esta sendo chamado
                       return const Center(
                         child: SizedBox(
                             height: 50,

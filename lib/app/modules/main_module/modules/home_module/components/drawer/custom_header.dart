@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../core/utils/style/themes/text_styles.dart';
+
 class CustomHeaderDrawer extends StatelessWidget {
   final String name;
   final String? profileImagePath;
@@ -30,10 +32,7 @@ class CustomHeaderDrawer extends StatelessWidget {
               child: Text(
                 name,
                 maxLines: 3,
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18,
-                    ),
+                style: TextStyles.subtitle1(),
               ),
             ),
           )
