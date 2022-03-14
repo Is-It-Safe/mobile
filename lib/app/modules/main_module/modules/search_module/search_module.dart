@@ -7,6 +7,7 @@ class SearchModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SearchBloc()),
+    //TODO Inicializar o Service aqui
   ];
 
   @override

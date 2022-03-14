@@ -9,32 +9,25 @@ import 'package:is_it_safe_app/core/model/Search.dart';
 class SearchBloc implements Disposable {
   final searchService = SearchService();
 
-  ///StreamControllers
   late StreamController<BaseResponse<List<SearchModel>>> searchController;
 
-  ///TextEditingControllers
   late TextEditingController nameSearchController;
 
   List<SearchModel> places = [];
 
-  SearchBloc(){
+  SearchBloc() {
     searchController = StreamController.broadcast();
-
     nameSearchController = TextEditingController();
-
   }
-  
 
-  Future  getAllPlaces() async {
+  Future getAllPlaces() async {
     try {
-    searchController.sink.add(BaseResponse.loading());
-    final places = await searchService.getPlace();
-    searchController.sink.add(BaseResponse.completed(data: places));
+      searchController.sink.add(BaseResponse.loading());
+      final places = await searchService.getPlace();
+      searchController.sink.add(BaseResponse.completed(data: places));
     } catch (e) {
-    searchController.sink.add(BaseResponse.error(e.toString()));
+      searchController.sink.add(BaseResponse.error(e.toString()));
     }
-   
-    
   }
 
   @override

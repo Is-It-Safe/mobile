@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
