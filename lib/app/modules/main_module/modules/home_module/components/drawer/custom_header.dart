@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../../../core/utils/style/themes/text_styles.dart';
+import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class CustomHeaderDrawer extends StatelessWidget {
   final String name;
@@ -16,16 +16,22 @@ class CustomHeaderDrawer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          /*
-          1. Criar 2 componente para foto
-              foto != null -> Exibe componente de foto
-              foto == null -> exibe componente de placeholder
-          */
-          //TODO Modificar para componentes
-          const CircleAvatar(
-              radius: 30,
-              //TODO: Verificar ajuste para imagem
-              backgroundImage: AssetImage('images/app/home/drawer/user.png')),
+          profileImagePath != null
+              ? Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: kColorButtonSecondary,
+                    image: DecorationImage(
+                      image: AssetImage(profileImagePath!),
+                      alignment: Alignment.topCenter,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              : const SizedBox.shrink(),
+          const SizedBox(width: 5),
           Expanded(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -35,7 +41,7 @@ class CustomHeaderDrawer extends StatelessWidget {
                 style: TextStyles.subtitle1(),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

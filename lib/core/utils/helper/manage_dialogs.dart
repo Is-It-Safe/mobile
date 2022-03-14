@@ -96,35 +96,4 @@ class ManagerDialogs {
       );
     }
   }
-
-  static void showLoadingDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => Material(
-        type: MaterialType.transparency,
-        child: Center(
-          child: Center(
-            child: Platform.isIOS ? _iosLoading() : _androidLoading(context),
-          ),
-        ),
-      ),
-    );
-  }
-
-  static _iosLoading() {
-    return const CupertinoActivityIndicator(
-      animating: true,
-    );
-  }
-
-  static _androidLoading(BuildContext context) {
-    return const Align(
-      alignment: Alignment.center,
-      child: CircularProgressIndicator(
-        backgroundColor: kColorButtonPrimary,
-        color: kColorPrimaryLight,
-      ),
-    );
-  }
 }

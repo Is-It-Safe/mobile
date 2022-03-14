@@ -5,15 +5,20 @@ import 'config/api_service.dart';
 class HomeService {
   final APIService _service = APIService();
 
-  ///Receber os lugares próximos e suas avaliações
-  Future getLocations() async {
+  ///Receber os lugares melhores avaliados
+  Future getBestRatedLocations() async {
     final _response = await _service.doRequest(
       RequestConfig(
         'location/find-all',
         HttpMethod.get,
       ),
     );
-    final _locations = Location.fromJson(_response as Map<String, dynamic>);
+    final _locations = Locations.fromJson(_response as Map<String, dynamic>);
     return _locations;
+  }
+
+  ///Receber os lugares próximos e suas avaliações
+  Future getClosePlacesLocations() async {
+    return Locations(content: []);
   }
 }

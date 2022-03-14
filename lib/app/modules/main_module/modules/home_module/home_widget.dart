@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/location/location_info.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
+import 'package:is_it_safe_app/core/utils/helper/native_loading.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -24,7 +25,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
   void initState() {
     super.initState();
     Log.route(Modular.to.path);
-    controller.getLocations();
+    controller.getClosePlacesLocations();
   }
 
   _onError(AsyncSnapshot snapshot) {
@@ -58,12 +59,8 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
               Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: Text(
-                  //TODO: Texto com letras separadas no Figma
                   S.of(context).textIsItSafe,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                      color: kColorTextLight),
+                  style: TextStyles.headline3(),
                 ),
               ),
             ],
@@ -71,6 +68,10 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
           bottom: TabBar(
             indicatorColor: kColorTextLight,
             indicatorSize: TabBarIndicatorSize.tab,
+            onTap: (tab) {
+              if (tab == 0) controller.getClosePlacesLocations();
+              if (tab == 1) controller.getBestRatedLocations();
+            },
             tabs: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
@@ -86,10 +87,10 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
                   S.of(context).textBestRates,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1!
-                      .copyWith(fontSize: 14, fontWeight: FontWeight.w600),
+                  style: TextStyles.custom(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
@@ -97,53 +98,97 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
         ),
         body: TabBarView(
           children: [
-            StreamBuilder<BaseResponse<List<LocationInfo>>>(
-              stream: controller.locationInfoController.stream,
+            //Lugares Próximos
+            //TODO AJUSTAR APARECER EMPTY STATE QUANDO A REQUISICÃO VIER NULL
+            StreamBuilder<BaseResponse<List<Location>>>(
+              stream: controller.closePlacesController.stream,
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
+                if (snapshot.data != null) {
                   switch (snapshot.data?.status) {
                     case Status.LOADING:
-                      //TODO: Retornando para o widget pois o loading não estava sendo exibido através
-                      //do ManagerDialogs
-                      //ManagerDialogs.showLoadingDialog(context);
-                      //break;
-                      //TODO: Loading não esta sendo chamado
-                      return const Center(
-                        child: SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: CircularProgressIndicator()),
-                      );
+                      const NativeLoading(animating: true);
+                      break;
                     case Status.ERROR:
                       _onError(snapshot);
-                      break;
+                      return EmptyCard(
+                        imagePath: 'images/icons/empty_places.svg',
+                        text: S.of(context).textEmptyCard,
+                      );
                     default:
-                      return Container(
-                        color: kColorWhiteBackground,
-                        child: ListView.builder(
-                          itemCount: snapshot.data!.data!.length,
-                          itemBuilder: ((context, index) {
-                            final locationInfo = snapshot.data!.data![index];
-                            return LocalCard(locationInfo: locationInfo);
-                          }),
-                        ),
+                      if (snapshot.data!.data != null) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 20, top: 20),
+                          child: Container(
+                            color: kColorWhiteBackground,
+                            child: ListView.separated(
+                              itemCount: snapshot.data!.data!.length,
+                              separatorBuilder: ((context, index) =>
+                                  const SizedBox(height: 15)),
+                              itemBuilder: ((context, index) {
+                                return LocalCard(
+                                  onTap: () {},
+                                  locationInfo: snapshot.data!.data![index],
+                                );
+                              }),
+                            ),
+                          ),
+                        );
+                      }
+                      return EmptyCard(
+                        imagePath: 'images/icons/empty_places.svg',
+                        text: S.of(context).textEmptyCard,
                       );
                   }
                 }
-                return EmptyCard(
-                  imagePath: 'images/icons/empty_places.svg',
-                  text: S.of(context).textEmptyCard,
-                );
+                return const NativeLoading(animating: true);
               },
             ),
             //Melhores Avaliados
-            Column(
-              children: [
-                EmptyCard(
-                  imagePath: 'images/icons/empty_places.svg',
-                  text: S.of(context).textEmptyCard,
-                )
-              ],
+            StreamBuilder<BaseResponse<List<Location>>>(
+              stream: controller.bestRatedPlacesController.stream,
+              builder: (context, snapshot) {
+                if (snapshot.data != null) {
+                  switch (snapshot.data?.status) {
+                    case Status.LOADING:
+                      const NativeLoading(animating: true);
+                      break;
+                    case Status.ERROR:
+                      _onError(snapshot);
+                      return EmptyCard(
+                        imagePath: 'images/icons/empty_places.svg',
+                        text: S.of(context).textEmptyCard,
+                      );
+
+                    default:
+                      if (snapshot.data!.data != null) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 20, top: 20),
+                          child: Container(
+                            color: kColorWhiteBackground,
+                            child: ListView.separated(
+                              itemCount: snapshot.data!.data!.length,
+                              separatorBuilder: ((context, index) =>
+                                  const SizedBox(height: 15)),
+                              itemBuilder: ((context, index) {
+                                return LocalCard(
+                                  onTap: () {},
+                                  locationInfo: snapshot.data!.data![index],
+                                );
+                              }),
+                            ),
+                          ),
+                        );
+                      }
+                      return EmptyCard(
+                        imagePath: 'images/icons/empty_places.svg',
+                        text: S.of(context).textEmptyCard,
+                      );
+                  }
+                }
+                return const NativeLoading(animating: true);
+              },
             ),
           ],
         ),

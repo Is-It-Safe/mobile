@@ -3,8 +3,8 @@ import 'package:is_it_safe_app/core/model/location/sort.dart';
 
 import 'pageable.dart';
 
-class Location {
-  List<LocationInfo>? content;
+class Locations {
+  List<Location>? content;
   Pageable? pageable;
   bool? last;
   int? totalPages;
@@ -16,7 +16,7 @@ class Location {
   int? size;
   bool? empty;
 
-  Location(
+  Locations(
       {this.content,
       this.pageable,
       this.last,
@@ -29,11 +29,11 @@ class Location {
       this.size,
       this.empty});
 
-  Location.fromJson(Map<String, dynamic> json) {
+  Locations.fromJson(Map<String, dynamic> json) {
     if (json['content'] != null) {
-      content = <LocationInfo>[];
+      content = <Location>[];
       json['content'].forEach((v) {
-        content!.add(LocationInfo.fromJson(v));
+        content!.add(Location.fromJson(v));
       });
     }
     pageable =
@@ -50,7 +50,7 @@ class Location {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (content != null) {
       data['content'] = content!.map((v) => v.toJson()).toList();
     }

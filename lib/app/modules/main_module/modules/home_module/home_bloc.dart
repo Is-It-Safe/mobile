@@ -8,22 +8,37 @@ import 'package:is_it_safe_app/core/model/location/location_info.dart';
 
 class HomeBloc implements Disposable {
   final HomeService _service = HomeService();
-  late StreamController<BaseResponse<List<LocationInfo>>>
-      locationInfoController;
+  late StreamController<BaseResponse<List<Location>>> bestRatedPlacesController;
+  late StreamController<BaseResponse<List<Location>>> closePlacesController;
 
   HomeBloc() {
-    locationInfoController = StreamController.broadcast();
+    bestRatedPlacesController = StreamController.broadcast();
+    closePlacesController = StreamController.broadcast();
   }
 
-  Future getLocations() async {
+  Future getBestRatedLocations() async {
     try {
-      locationInfoController.sink.add(BaseResponse.loading());
-      final Location locations = await _service.getLocations();
-      locationInfoController.sink.add(
+      bestRatedPlacesController.sink.add(BaseResponse.loading());
+      final Locations locations = await _service.getBestRatedLocations();
+      bestRatedPlacesController.sink.add(
+        BaseResponse.completed(
+          data: locations.content,
+        ),
+      );
+    } catch (e) {
+      bestRatedPlacesController.sink.add(BaseResponse.error(e.toString()));
+    }
+  }
+
+  Future getClosePlacesLocations() async {
+    try {
+      closePlacesController.sink.add(BaseResponse.loading());
+      final Locations locations = await _service.getClosePlacesLocations();
+      closePlacesController.sink.add(
         BaseResponse.completed(data: locations.content),
       );
     } catch (e) {
-      locationInfoController.sink.add(BaseResponse.error(e.toString()));
+      closePlacesController.sink.add(BaseResponse.error(e.toString()));
     }
   }
 

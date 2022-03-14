@@ -15,6 +15,7 @@ import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
+import 'package:is_it_safe_app/core/utils/helper/native_loading.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -52,7 +53,7 @@ class _RegisterProfileWidgetState
           Modular.to.pushNamedAndRemoveUntil(kRouteLogin, (r) => false);
           break;
         case Status.LOADING:
-          ManagerDialogs.showLoadingDialog(context);
+          const NativeLoading(animating: true);
           break;
         case Status.ERROR:
           Modular.to.pop();
