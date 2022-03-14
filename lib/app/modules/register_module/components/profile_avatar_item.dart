@@ -5,11 +5,13 @@ class ProfileAvatarItem extends StatelessWidget {
   final Function() onTap;
   final String path;
   final bool isSelected;
+  final double? height;
   const ProfileAvatarItem({
     Key? key,
     required this.onTap,
     required this.path,
     required this.isSelected,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -17,7 +19,7 @@ class ProfileAvatarItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
-        height: 50,
+        height: height ?? 50,
         duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
