@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 //TODO Todos os componentes são estruturados com um Stateless ou Stateful Widget
+//TODO Deixar um nome mais genérico. EX: SearchResult
 ListTile searchListTile({
   int? id,
   required BuildContext context,
