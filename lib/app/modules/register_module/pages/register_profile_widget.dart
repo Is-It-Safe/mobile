@@ -106,11 +106,16 @@ class _RegisterProfileWidgetState
                                     )
                                         .then(
                                       (value) {
+
+                                        if (value != null) {
                                         String newValue = value.toString();
+                                        
 
                                         controller.setProfileAvatar(
                                           path: newValue,
                                         );
+                                        }
+                                        
                                       },
                                     ),
                                   )
@@ -122,11 +127,14 @@ class _RegisterProfileWidgetState
                                     )
                                         .then(
                                       (value) {
+                                        if (value != null) {
                                         String newValue = value.toString();
+                                        
 
                                         controller.setProfileAvatar(
                                           path: newValue,
                                         );
+                                        }
                                       },
                                     ),
                                   );
