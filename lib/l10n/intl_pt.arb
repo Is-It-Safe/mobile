@@ -23,6 +23,7 @@
     "textErrorDifferentPasswords":"Os campos de senha devem ser iguais",
     "textErrorEmptyAvatar": "Por favor, selecione seu avatar!",
     "textErrorDropdown": "Algo deu errado!",
+    "textErrorSearch" : "Algo deu errado na Pesquisa!",
 
     "textSuccessRegistration":"Usuário Registrado",
 

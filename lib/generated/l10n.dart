@@ -250,6 +250,15 @@ class S {
     );
   }
 
+    String get textErrorSearch {
+    return Intl.message(
+      'Algo deu errado na Pesquisa!',
+      name: 'textErrorSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário Registrado`
   String get textSuccessRegistration {
     return Intl.message(

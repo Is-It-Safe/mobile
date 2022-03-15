@@ -4,8 +4,9 @@ import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/com
 import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/search_bloc.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/model/Search.dart';
+import 'package:is_it_safe_app/core/model/Location.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 class SearchWidget extends StatefulWidget {
@@ -15,14 +16,19 @@ class SearchWidget extends StatefulWidget {
 }
 
 class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
-  //TODO Não seria melhor mudar essa lista para o BloC?
-  //TODO Não vi essa lista sendo utilizada, remover caso não esteja utilizando
-  late Future<List<SearchModel>> futurePlaces;
-
   @override
   void initState() {
     super.initState();
     Log.route(Modular.to.path);
+  }
+
+  _onError(AsyncSnapshot snapshot) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      ManagerDialogs.showErrorDialog(
+        context,
+        snapshot.data.message,
+      );
+    });
   }
 
   @override
@@ -42,43 +48,49 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
                     labelText: S.of(context).textSearchForm,
                     prefixIcon: const Icon(Icons.search),
                     onEditingComplete: () {
-                      controller.getAllPlaces();
+                      controller.getAllLocation();
                     },
                   ),
                 ),
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  //TODO Utilizar multiplicação ao invés de + ou - quando usar o MediaQuery
-                  //TODO Exemplo: MediaQuery.of(context).size.height * 0.3 (0.3 representa a porcentagem da tela que o MediaQuery vai utilizar)
-                  height: MediaQuery.of(context).size.height - 215,
-                  child: StreamBuilder<BaseResponse<List<SearchModel>>>(
+                  height: MediaQuery.of(context).size.height,
+                  child: StreamBuilder<BaseResponse<List<Location>>>(
                     stream: controller.searchController.stream,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        //TODO Não está utilizando os status do BaseResponse para melhor definir o que será exibido na tela
-                        //TODO Verificar exemplos em outras telas ou solicitar ajuda para montar esse pedaço
-                        return ListView.builder(
-                          itemCount: snapshot.data!.data!.length,
-                          itemBuilder: (context, index) {
-                            return searchListTile(
-                              context: context,
-                              name: snapshot.data!.data![index].name,
-                              endereco: snapshot.data!.data![index].endereco,
-                              imgUrl: snapshot.data?.data?[index].imgUrl,
+                        switch (snapshot.data?.status) {
+                          case Status.LOADING:
+                            return Center(
+                              child: Text(
+                                S.of(context).textLoading,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
                             );
-                          },
-                        );
-                      } else if (snapshot.hasError) {
-                        //TODO Quando há erro, nós não exibimos um Text, temos uma classe de Dialogs que são exibidos de acordo com o Status do Base Response
-                        //TODO Não utilizamos o snapshot.hasError, pois o Base Response já se encarrega de fazer esse gerenciamento de erros
-                        return Text('${snapshot.error}');
-                      } else {
-                        //TODO No caso, esse 'else' é caso a busca não retorne elementos, deve ser retornado a illustração/widget de empty state
-                        return Center(
-                          child: Container(),
-                        );
+                          case Status.ERROR:
+                            _onError(snapshot);
+                            return Center(
+                              child: Text(
+                                S.of(context).textErrorSearch,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            );
+                          default:
+                            return ListView.builder(
+                              itemCount: snapshot.data!.data!.length,
+                              itemBuilder: (context, index) {
+                                return SearchResults(
+                                  name: snapshot.data!.data![index].name,
+                                  endereco:
+                                      snapshot.data!.data![index].endereco,
+                                  imgUrl: snapshot.data?.data?[index].imgUrl,
+                                );
+                              },
+                            );
+                        }
                       }
+                      return Container();
                     },
                   ),
                 ),
