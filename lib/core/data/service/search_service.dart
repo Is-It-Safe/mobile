@@ -5,16 +5,16 @@ import 'package:is_it_safe_app/core/model/Location.dart';
 class SearchService {
   final APIService _service = APIService();
 
-  Future getLocation() async {
+  Future getLocation(search) async {
     final _response = await _service.doRequest(
       RequestConfig(
-        'location/find-all',
+        'location/find-all?name=$search',
         HttpMethod.get,
       ),
     );
 
-    List<Location> _locations =
-        (_response as List).map((e) => Location.fromJson(e)).toList();
+    List<Content> _locations =
+        (_response["content"] as List).map((e) => Content.fromJson(e)).toList();
     return _locations;
   }
 }

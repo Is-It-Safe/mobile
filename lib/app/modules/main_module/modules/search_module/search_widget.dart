@@ -48,7 +48,8 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
                     labelText: S.of(context).textSearchForm,
                     prefixIcon: const Icon(Icons.search),
                     onEditingComplete: () {
-                      controller.getAllLocation();
+                      controller
+                          .getAllLocation(controller.nameSearchController.text);
                     },
                   ),
                 ),
@@ -56,7 +57,7 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   height: MediaQuery.of(context).size.height,
-                  child: StreamBuilder<BaseResponse<List<Location>>>(
+                  child: StreamBuilder<BaseResponse<List<Content>>>(
                     stream: controller.searchController.stream,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {

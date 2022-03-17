@@ -9,21 +9,21 @@ import 'package:is_it_safe_app/core/model/Location.dart';
 class SearchBloc implements Disposable {
   final searchService = SearchService();
 
-  late StreamController<BaseResponse<List<Location>>> searchController;
+  late StreamController<BaseResponse<List<Content>>> searchController;
 
   late TextEditingController nameSearchController;
 
-  List<Location> places = [];
+  List<Content> places = [];
 
   SearchBloc() {
     searchController = StreamController.broadcast();
     nameSearchController = TextEditingController();
   }
 
-  Future getAllLocation() async {
+  Future getAllLocation(search) async {
     try {
       searchController.sink.add(BaseResponse.loading());
-      final places = await searchService.getLocation();
+      final places = await searchService.getLocation(search);
       searchController.sink.add(BaseResponse.completed(data: places));
     } catch (e) {
       searchController.sink.add(BaseResponse.error(e.toString()));
