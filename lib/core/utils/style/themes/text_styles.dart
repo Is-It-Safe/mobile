@@ -60,11 +60,10 @@ class TextStyles {
     );
   }
 
-  ///Método que retorna estilização de texto correspondente ao **Subtitle 1**.
-  static TextStyle subtitle1({Color? color}) {
+  static TextStyle subtitle1({Color? color, FontWeight? fontWeight}) {
     return GoogleFonts.poppins(
       color: color ?? kColorTextLight,
-      fontWeight: FontWeight.normal,
+      fontWeight: fontWeight ?? FontWeight.normal,
       fontSize: 18,
     );
   }
