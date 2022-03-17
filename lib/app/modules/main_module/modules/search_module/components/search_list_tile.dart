@@ -3,15 +3,15 @@ import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class SearchResults extends StatelessWidget {
   final int? id;
-  final String name;
-  final String endereco;
+  final String? name;
+  final String? endereco;
   final String? imgUrl;
 
   const SearchResults(
       {Key? key,
       this.id,
-      required this.name,
-      required this.endereco,
+      this.name,
+      this.endereco,
       this.imgUrl})
       : super(key: key);
 
@@ -66,17 +66,21 @@ class SearchResults extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: sizeReference * 0.500,
-                    child: Text(
-                      name,
-                      textAlign: TextAlign.left,
-                      softWrap: true,
-                      style: TextStyles.bodyText1(),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        name ?? '',
+                        textAlign: TextAlign.left,
+                        softWrap: true,
+                        style: TextStyles.bodyText1(),
+                      ),
                     ),
                   ),
                   SizedBox(
                     width: sizeReference * 0.75,
                     child: Text(
-                      endereco,
+                      endereco ?? '',
                       textAlign: TextAlign.left,
                       softWrap: true,
                       style: TextStyles.label(),
