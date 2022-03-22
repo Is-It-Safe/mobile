@@ -20,7 +20,7 @@ class CustomTileDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Modular.to.navigate(route),
+      onTap: () => Modular.to.pushReplacementNamed(route),
       child: Row(
         children: <Widget>[
           Padding(

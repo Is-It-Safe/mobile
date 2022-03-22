@@ -41,12 +41,12 @@ class CustomDrawer extends StatelessWidget {
               CustomTileDrawer(
                 iconPath: 'privacidade.svg',
                 title: S.of(context).textDrawerPrivacy,
-                route: kRouteProfile,
+                route: kRouteTermsOfUse,
               ),
               CustomTileDrawer(
                 iconPath: 'termos_uso.svg',
                 title: S.of(context).textDrawerTerms,
-                route: kRouteProfile,
+                route: kRouteTermsOfUse,
               ),
               CustomTileDrawer(
                 iconPath: 'sobre.svg',
