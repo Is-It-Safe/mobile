@@ -13,4 +13,4 @@ const kRouteMain = '/main';
 const kRouteHome = "/home/";
 const kRouteProfile = "/profile/";
 const kRouteSearch = "/search/";
-const kRouteContact = "/contact/";
+const kRouteContact = "/contact";

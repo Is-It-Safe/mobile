@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:is_it_safe_app/core/utils/style/all.dart';
 
 ///O [ManagerDialogs] é uma classe responsável por gerenciar e armazenar variádos
 ///tipos de dialogs.
@@ -95,6 +95,63 @@ class ManagerDialogs {
                     Navigator.pop(context);
                   },
             )
+          ],
+        ),
+      );
+    }
+  }
+
+  static void showSuccessFeedbackDialog(
+    BuildContext context, {required String title, String? message, required Function() onPressed}) {
+
+    if (Platform.isAndroid) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          backgroundColor: kColorBackgroundLight,
+          actions: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 46, vertical: 15),
+                  child: SvgPicture.asset('images/illustrations/success_feedback.svg')
+                ),
+                Text(title, style: TextStyles.headline3(color: kColorReviewSuccess)),
+                message == null ? Container() : Text(message, style: TextStyles.helper()),
+                const SizedBox(height: 30),
+                TextButton(
+                  onPressed: onPressed,
+                  child: Text("Continuar", style: TextStyles.button(fontSize: 18))
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    } else {
+      showCupertinoDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => CupertinoAlertDialog(
+          actions: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 46, vertical: 15),
+                  child: SvgPicture.asset('images/illustrations/success_feedback.svg')
+                ),
+                Text(title, style: TextStyles.headline3(color: kColorReviewSuccess)),
+                message == null ? Container() : Text(message, style: TextStyles.helper()),
+                const SizedBox(height: 30),
+                TextButton(
+                  onPressed: onPressed,
+                  child: Text("Continuar", style: TextStyles.button(fontSize: 18))
+                ),
+              ],
+            ),
           ],
         ),
       );

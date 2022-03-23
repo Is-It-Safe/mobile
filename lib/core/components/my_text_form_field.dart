@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
@@ -17,6 +16,8 @@ class MyTextFormField extends StatefulWidget {
   final Function(String)? onChanged;
   final Function()? onEditingComplete;
   final FormFieldValidator<String>? validator;
+  final int? minLines;
+  final int? maxLines;
 
   const MyTextFormField({
     Key? key,
@@ -32,6 +33,8 @@ class MyTextFormField extends StatefulWidget {
     this.bottomText,
     this.inputFormatters,
     this.readOnly,
+    this.minLines,
+    this.maxLines
   }) : super(key: key);
 
   @override
@@ -59,6 +62,8 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
     return Column(
       children: [
         TextFormField(
+          minLines: widget.minLines,
+          maxLines: widget.maxLines,
           controller: widget.controller,
           cursorColor: kColorStatusActive,
           readOnly: widget.readOnly ?? false,
