@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'package:is_it_safe_app/app/modules/contact_module/contact_bloc.dart';
 import 'package:is_it_safe_app/core/components/all.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/style/all.dart';
-import 'package:is_it_safe_app/app/modules/main_module/modules/contact_module/contact_bloc.dart';
 
 class ContactWidget extends StatefulWidget {
   const ContactWidget({ Key? key }) : super(key: key);
