@@ -55,6 +55,10 @@ flutter:
     - images/app/home/drawer/
     - images/app/profile_pictures/placeholder/
     - images/icons/
+    - images/app/search_pictures/placeholder/
+    - lib/app/modules/main_module/modules/search_module/mockup_results/
+
+
 
 
 flutter_intl:

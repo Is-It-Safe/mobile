@@ -700,6 +700,16 @@ class S {
     );
   }
 
+  /// `Search`
+  String get textSearchForm {
+    return Intl.message(
+      'Search',
+      name: 'textSearchForm',
+      desc: '',
+      args: [],
+    );
+  }  
+
   /// `Foco em`
   String get textOnBoarding1_0 {
     return Intl.message(

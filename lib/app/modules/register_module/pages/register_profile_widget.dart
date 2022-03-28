@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/components/my_dropdown.dart';
 import 'package:is_it_safe_app/app/modules/register_module/components/register_avatar.dart';
 import 'package:is_it_safe_app/app/modules/register_module/components/register_avatar_placeholder.dart';
+import 'package:is_it_safe_app/app/modules/register_module/constants/register_constants.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
@@ -31,8 +32,8 @@ class _RegisterProfileWidgetState
     extends ModularState<RegisterProfileWidget, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  var genderText = 'Gênero';
-  var orientationText = 'Orientação Sexual';
+  var genderText = RegisterConstants.kGenderText;
+  var orientationText = RegisterConstants.kOrientationText;
 
   var expandedOrientation = false;
   var expandedGender = false;
@@ -100,14 +101,38 @@ class _RegisterProfileWidgetState
                           builder: (context, snapshot) {
                             return snapshot.hasData == false
                                 ? RegisterAvatarPlaceholder(
-                                    onTap: () => Modular.to.pushNamed(
+                                    onTap: () => Modular.to
+                                        .pushNamed(
                                       '.$kRouteRegisterProfilePicture',
+                                    )
+                                        .then(
+                                      (value) {
+                                        if (value != null) {
+                                          String newValue = value.toString();
+
+                                          controller.setProfileAvatar(
+                                            path: newValue,
+                                          );
+                                        }
+                                      },
                                     ),
                                   )
                                 : RegisterAvatar(
                                     path: controller.selectedProfileAvatarPhoto,
-                                    onTap: () => Modular.to.pushNamed(
+                                    onTap: () => Modular.to
+                                        .pushNamed(
                                       '.$kRouteRegisterProfilePicture',
+                                    )
+                                        .then(
+                                      (value) {
+                                        if (value != null) {
+                                          String newValue = value.toString();
+
+                                          controller.setProfileAvatar(
+                                            path: newValue,
+                                          );
+                                        }
+                                      },
                                     ),
                                   );
                           },
@@ -172,6 +197,7 @@ class _RegisterProfileWidgetState
                                     );
                                 }
                               }
+
                               return MyTextFormField(
                                 readOnly: true,
                                 labelText: S.of(context).textLoading,
@@ -209,6 +235,7 @@ class _RegisterProfileWidgetState
                                     );
                                 }
                               }
+
                               return MyTextFormField(
                                 readOnly: true,
                                 labelText: S.of(context).textLoading,
