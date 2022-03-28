@@ -4,37 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/data/service/search_service.dart';
-import 'package:is_it_safe_app/core/model/Search.dart';
+import 'package:is_it_safe_app/core/model/Location.dart';
 
 class SearchBloc implements Disposable {
   final searchService = SearchService();
 
-  ///StreamControllers
-  late StreamController<BaseResponse<List<SearchModel>>> searchController;
+  late StreamController<BaseResponse<List<Content>>> searchController;
 
-  ///TextEditingControllers
   late TextEditingController nameSearchController;
 
-  List<SearchModel> places = [];
+  List<Content> places = [];
 
-  SearchBloc(){
+  SearchBloc() {
     searchController = StreamController.broadcast();
-
     nameSearchController = TextEditingController();
-
   }
-  
 
-  Future  getAllPlaces() async {
+  Future getAllLocation(search) async {
     try {
-    searchController.sink.add(BaseResponse.loading());
-    final places = await searchService.getPlace();
-    searchController.sink.add(BaseResponse.completed(data: places));
+      searchController.sink.add(BaseResponse.loading());
+      final places = await searchService.getLocation(search);
+      searchController.sink.add(BaseResponse.completed(data: places));
     } catch (e) {
-    searchController.sink.add(BaseResponse.error(e.toString()));
+      searchController.sink.add(BaseResponse.error(e.toString()));
     }
-   
-    
   }
 
   @override

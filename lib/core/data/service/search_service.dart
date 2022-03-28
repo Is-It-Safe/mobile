@@ -1,24 +1,20 @@
-import 'dart:convert';
 import 'dart:core';
-import 'package:is_it_safe_app/app/modules/main_module/modules/search_module/mockup_results/search_results_mockup.dart';
-import 'package:is_it_safe_app/core/model/Search.dart';
-
+import 'package:is_it_safe_app/core/data/service/config/api_service.dart';
+import 'package:is_it_safe_app/core/model/Location.dart';
 
 class SearchService {
-  
-  Future getPlace() async {
-    final response = jsonDecode(searchResultsMockup);       
-    final list = response as List;
-    
-    final places = list
-        .map((e) => SearchModel(
-              id: e['id'],
-              name: e['name'],
-              endereco: e['endereco'],
-              imgUrl: e['imgUrl'],
-            ))
-        .toList();
-    
-    return places;
+  final APIService _service = APIService();
+
+  Future getLocation(search) async {
+    final _response = await _service.doRequest(
+      RequestConfig(
+        'location/find-all?name=$search',
+        HttpMethod.get,
+      ),
+    );
+
+    List<Content> _locations =
+        (_response["content"] as List).map((e) => Content.fromJson(e)).toList();
+    return _locations;
   }
 }
