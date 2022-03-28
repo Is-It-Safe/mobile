@@ -8,7 +8,6 @@ import 'package:is_it_safe_app/core/data/service/register_service.dart';
 import 'package:is_it_safe_app/core/model/Gender.dart';
 import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
 import 'package:is_it_safe_app/core/model/User.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class RegisterBloc implements Disposable {
@@ -70,7 +69,6 @@ class RegisterBloc implements Disposable {
   }
 
   setProfileAvatar({required String path}) {
-    Log.log(path, name: "AVATAR PATH");
     selectedProfileAvatarPhoto = path;
     profileAvatarController.sink.add(path);
   }

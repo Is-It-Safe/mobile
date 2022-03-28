@@ -3,11 +3,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/components/my_dropdown.dart';
 import 'package:is_it_safe_app/app/modules/register_module/components/register_avatar.dart';
 import 'package:is_it_safe_app/app/modules/register_module/components/register_avatar_placeholder.dart';
+import 'package:is_it_safe_app/app/modules/register_module/constants/register_constants.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
 import 'package:is_it_safe_app/core/components/primary_button.dart';
-import 'package:is_it_safe_app/core/components/text_button.dart';
+import 'package:is_it_safe_app/core/components/secondary_button.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/Gender.dart';
 import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
@@ -15,6 +16,7 @@ import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
+import 'package:is_it_safe_app/core/utils/helper/native_loading.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -30,8 +32,8 @@ class _RegisterProfileWidgetState
     extends ModularState<RegisterProfileWidget, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  var genderText = 'Gênero';
-  var orientationText = 'Orientação Sexual';
+  var genderText = RegisterConstants.kGenderText;
+  var orientationText = RegisterConstants.kOrientationText;
 
   var expandedOrientation = false;
   var expandedGender = false;
@@ -52,7 +54,7 @@ class _RegisterProfileWidgetState
           Modular.to.pushNamedAndRemoveUntil(kRouteLogin, (r) => false);
           break;
         case Status.LOADING:
-          ManagerDialogs.showLoadingDialog(context);
+          const NativeLoading(animating: true);
           break;
         case Status.ERROR:
           Modular.to.pop();
@@ -99,14 +101,38 @@ class _RegisterProfileWidgetState
                           builder: (context, snapshot) {
                             return snapshot.hasData == false
                                 ? RegisterAvatarPlaceholder(
-                                    onTap: () => Modular.to.pushNamed(
+                                    onTap: () => Modular.to
+                                        .pushNamed(
                                       '.$kRouteRegisterProfilePicture',
+                                    )
+                                        .then(
+                                      (value) {
+                                        if (value != null) {
+                                          String newValue = value.toString();
+
+                                          controller.setProfileAvatar(
+                                            path: newValue,
+                                          );
+                                        }
+                                      },
                                     ),
                                   )
                                 : RegisterAvatar(
                                     path: controller.selectedProfileAvatarPhoto,
-                                    onTap: () => Modular.to.pushNamed(
+                                    onTap: () => Modular.to
+                                        .pushNamed(
                                       '.$kRouteRegisterProfilePicture',
+                                    )
+                                        .then(
+                                      (value) {
+                                        if (value != null) {
+                                          String newValue = value.toString();
+
+                                          controller.setProfileAvatar(
+                                            path: newValue,
+                                          );
+                                        }
+                                      },
                                     ),
                                   );
                           },
@@ -171,6 +197,7 @@ class _RegisterProfileWidgetState
                                     );
                                 }
                               }
+
                               return MyTextFormField(
                                 readOnly: true,
                                 labelText: S.of(context).textLoading,
@@ -208,6 +235,7 @@ class _RegisterProfileWidgetState
                                     );
                                 }
                               }
+
                               return MyTextFormField(
                                 readOnly: true,
                                 labelText: S.of(context).textLoading,
@@ -220,8 +248,9 @@ class _RegisterProfileWidgetState
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TextButtonCustom(
+                              SecondaryButton(
                                 text: S.of(context).textAdvance,
+                                borderColor: Colors.transparent,
                                 onTap: () async {
                                   controller.registerUser();
                                 },

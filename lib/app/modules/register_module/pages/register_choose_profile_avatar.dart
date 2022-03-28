@@ -26,7 +26,7 @@ class _RegisterChooseProfileAvatarWidgetState
     _loadImages();
     super.initState();
     Log.route(Modular.to.path);
-    photoListen();
+    //photoListen();
   }
 
   void _loadImages() async {
@@ -55,6 +55,7 @@ class _RegisterChooseProfileAvatarWidgetState
 
   @override
   Widget build(BuildContext context) {
+    var userAvatarPath = controller.selectedProfileAvatarPhoto;
     return Scaffold(
       key: _scaffoldKey,
       appBar: appBar(
@@ -78,13 +79,13 @@ class _RegisterChooseProfileAvatarWidgetState
                 itemCount: controller.profileAvatarPaths.length,
                 itemBuilder: (context, index) {
                   var avatarPaths = controller.profileAvatarPaths;
-                  var userAvatarPath = controller.selectedProfileAvatarPhoto;
                   return ProfileAvatarItem(
                     path: avatarPaths[index],
                     isSelected: userAvatarPath == avatarPaths[index],
                     onTap: () => setState(() {
+                      userAvatarPath = avatarPaths[index];
                       controller.setProfileAvatar(
-                        path: avatarPaths[index],
+                        path: userAvatarPath,
                       );
                     }),
                   );
@@ -110,8 +111,9 @@ class _RegisterChooseProfileAvatarWidgetState
                         if (controller.selectedProfileAvatarPhoto.isEmpty) {
                           _onError();
                         } else {
-                          photoListen();
-                          Modular.to.pop();
+                          //photoListen();
+
+                          Modular.to.pop(userAvatarPath);
                         }
                       },
                     ),
