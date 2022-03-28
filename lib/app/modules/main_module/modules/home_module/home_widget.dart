@@ -112,7 +112,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                       _onError(snapshot);
                       return EmptyCard(
                         imagePath: 'images/icons/empty_places.svg',
-                        text: S.of(context).textEmptyCard,
+                        text: S.of(context).textErrorHome,
                       );
                     default:
                       if (snapshot.data!.data != null) {
@@ -137,7 +137,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                       }
                       return EmptyCard(
                         imagePath: 'images/icons/empty_places.svg',
-                        text: S.of(context).textEmptyCard,
+                        text: S.of(context).textErrorHome,
                       );
                   }
                 }
@@ -157,7 +157,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                       _onError(snapshot);
                       return EmptyCard(
                         imagePath: 'images/icons/empty_places.svg',
-                        text: S.of(context).textEmptyCard,
+                        text: S.of(context).textErrorHome,
                       );
 
                     default:
@@ -183,7 +183,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                       }
                       return EmptyCard(
                         imagePath: 'images/icons/empty_places.svg',
-                        text: S.of(context).textEmptyCard,
+                        text: S.of(context).textErrorHome,
                       );
                   }
                 }

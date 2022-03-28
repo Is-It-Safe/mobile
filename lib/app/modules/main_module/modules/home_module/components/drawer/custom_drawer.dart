@@ -33,23 +33,23 @@ class CustomDrawer extends StatelessWidget {
               ),
               CustomTileDrawer(
                 iconPath: 'configuracoes.svg',
-                title: S.of(context).textDrawerConfiguration,
+                title: S.of(context).textConfiguration,
               ),
               CustomTileDrawer(
                 iconPath: 'privacidade.svg',
-                title: S.of(context).textDrawerPrivacy,
+                title: S.of(context).textPrivacy,
               ),
               CustomTileDrawer(
                 iconPath: 'termos_uso.svg',
-                title: S.of(context).textDrawerTerms,
+                title: S.of(context).textTermsOfUse,
               ),
               CustomTileDrawer(
                 iconPath: 'sobre.svg',
-                title: S.of(context).textDrawerAbout,
+                title: S.of(context).textAbout,
               ),
               CustomTileDrawer(
                 iconPath: 'contato.svg',
-                title: S.of(context).textDrawerContact,
+                title: S.of(context).textContact,
               ),
             ],
           ),

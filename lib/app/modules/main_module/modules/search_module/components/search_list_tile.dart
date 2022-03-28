@@ -7,13 +7,13 @@ class SearchResults extends StatelessWidget {
   final String? endereco;
   final String? imgUrl;
 
-  const SearchResults(
-      {Key? key,
-      this.id,
-      this.name,
-      this.endereco,
-      this.imgUrl})
-      : super(key: key);
+  const SearchResults({
+    Key? key,
+    this.id,
+    this.name,
+    this.endereco,
+    this.imgUrl,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,39 +21,23 @@ class SearchResults extends StatelessWidget {
     return ListTile(
       title: Row(
         children: [
-          Stack(
-            children: [
-              Container(
-                width: sizeReference * 0.25,
-                height: sizeReference * 0.22,
-                margin: const EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                    image: Image.asset(
-                            'images/app/search_pictures/placeholder/search_placeholder.png')
-                        .image,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Container(
-                width: sizeReference * 0.25,
-                height: sizeReference * 0.22,
-                margin: const EdgeInsets.only(top: 30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                    image: (imgUrl == null)
-                        ? Image.asset(
-                                ('images/app/search_pictures/placeholder/search_placeholder.png'))
-                            .image
-                        : NetworkImage(imgUrl!),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ],
+          Container(
+            margin: const EdgeInsets.only(top: 30),
+            width: sizeReference * 0.25,
+            height: sizeReference * 0.22,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Image.network(
+              imgUrl!,
+              fit: BoxFit.fill,
+              errorBuilder: (context, object, stackTrace) {
+                return Image.asset(
+                  'images/app/search_pictures/placeholder/search_placeholder.png',
+                  fit: BoxFit.fill,
+                );
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10),
