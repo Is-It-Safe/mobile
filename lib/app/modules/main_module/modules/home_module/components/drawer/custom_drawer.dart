@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
@@ -25,7 +26,7 @@ class CustomDrawer extends StatelessWidget {
               CustomTileDrawer(
                 iconPath: 'adicionar_local.svg',
                 title: S.of(context).textDrawerAddLocation,
-                route: kRouteProfile,
+                onTap: () => Modular.to.navigate(kRouteProfile),
               ),
               CustomTileDrawer(
                 iconPath: 'minha_conta.svg',
@@ -33,23 +34,24 @@ class CustomDrawer extends StatelessWidget {
               ),
               CustomTileDrawer(
                 iconPath: 'configuracoes.svg',
-                title: S.of(context).textDrawerConfiguration,
+                title: S.of(context).textConfiguration,
               ),
               CustomTileDrawer(
                 iconPath: 'privacidade.svg',
-                title: S.of(context).textDrawerPrivacy,
+                title: S.of(context).textPrivacy,
               ),
               CustomTileDrawer(
                 iconPath: 'termos_uso.svg',
-                title: S.of(context).textDrawerTerms,
+                title: S.of(context).textTermsOfUse,
               ),
               CustomTileDrawer(
                 iconPath: 'sobre.svg',
-                title: S.of(context).textDrawerAbout,
+                title: S.of(context).textAbout,
               ),
               CustomTileDrawer(
                 iconPath: 'contato.svg',
-                title: S.of(context).textDrawerContact,
+                title: S.of(context).textContact,
+                onTap: () => Modular.to.navigate(kRouteContact),
               ),
             ],
           ),

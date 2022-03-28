@@ -34,7 +34,7 @@ class MyTextFormField extends StatefulWidget {
     this.inputFormatters,
     this.readOnly,
     this.minLines,
-    this.maxLines
+    this.maxLines = 1,
   }) : super(key: key);
 
   @override

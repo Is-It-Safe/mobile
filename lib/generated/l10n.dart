@@ -90,6 +90,16 @@ class S {
     );
   }
 
+  /// `Contato`
+  String get textAppBarContato {
+    return Intl.message(
+      'Contato',
+      name: 'textAppBarContato',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Vamos entrar.`
   String get textPageTitleLogin {
     return Intl.message(
@@ -250,6 +260,16 @@ class S {
     );
   }
 
+  /// `Nenhum lugar próximo encontrado, comece a avaliar seu bairro!`
+  String get textErrorHome {
+    return Intl.message(
+      'Nenhum lugar próximo encontrado, comece a avaliar seu bairro!',
+      name: 'textErrorHome',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário Registrado`
   String get textSuccessRegistration {
     return Intl.message(
@@ -275,66 +295,6 @@ class S {
     return Intl.message(
       'Minha Conta',
       name: 'textDrawerMyAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Configuracoes`
-  String get textDrawerConfiguration {
-    return Intl.message(
-      'Configurações',
-      name: 'textDrawerConfiguration',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Privacidade`
-  String get textDrawerPrivacy {
-    return Intl.message(
-      'Privacidade',
-      name: 'textDrawerPrivacy',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Termos de Uso`
-  String get textDrawerTerms {
-    return Intl.message(
-      'Termos de Uso',
-      name: 'textDrawerTerms',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sobre`
-  String get textDrawerAbout {
-    return Intl.message(
-      'Sobre',
-      name: 'textDrawerAbout',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Contato`
-  String get textDrawerContact {
-    return Intl.message(
-      'Contato',
-      name: 'textDrawerContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Nenhum lugar próximo encontrado`
-  String get textEmptyCard {
-    return Intl.message(
-      'Nenhum lugar próximo encontrado',
-      name: 'textDrawerContact',
       desc: '',
       args: [],
     );
@@ -565,6 +525,106 @@ class S {
     return Intl.message(
       'Melhores Avaliados',
       name: 'textBestRates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Configurações`
+  String get textConfiguration {
+    return Intl.message(
+      'Configurações',
+      name: 'textConfiguration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacidade`
+  String get textPrivacy {
+    return Intl.message(
+      'Privacidade',
+      name: 'textPrivacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Termos de Uso`
+  String get textTermsOfUse {
+    return Intl.message(
+      'Termos de Uso',
+      name: 'textTermsOfUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sobre`
+  String get textAbout {
+    return Intl.message(
+      'Sobre',
+      name: 'textAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contato`
+  String get textContact {
+    return Intl.message(
+      'Contato',
+      name: 'textContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enviar`
+  String get textEnviar {
+    return Intl.message(
+      'Enviar',
+      name: 'textEnviar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continuar`
+  String get textContinue {
+    return Intl.message(
+      'Continuar',
+      name: 'textContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mensagem Enviada!`
+  String get textMessageSended {
+    return Intl.message(
+      'Mensagem Enviada!',
+      name: 'textMessageSended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Obrigada por nos dar sua opinião`
+  String get textThanksForTheFeedback {
+    return Intl.message(
+      'Obrigada por nos dar sua opinião',
+      name: 'textThanksForTheFeedback',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nos conte como podemos te ajudar`
+  String get textTellUsHowWeCanHelp {
+    return Intl.message(
+      'Nos conte como podemos te ajudar',
+      name: 'textTellUsHowWeCanHelp',
       desc: '',
       args: [],
     );

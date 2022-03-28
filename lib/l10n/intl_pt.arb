@@ -4,6 +4,7 @@
     "textAppBarProfileRegisterPage":"Perfil",
     "textAppBarChooseProfilePhotoPage": "Escolha seu avatar!",
     "textAppBarSignUp": "Cadastro",
+    "textAppBarContato": "Contato",
 
     "textPageTitleLogin":"Vamos entrar.",
     "textPageSubtitleLogin":"Sentimos sua falta!",
@@ -23,6 +24,7 @@
     "textErrorDifferentPasswords":"Os campos de senha devem ser iguais",
     "textErrorEmptyAvatar": "Por favor, selecione seu avatar!",
     "textErrorDropdown": "Algo deu errado!",
+    "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
 
     "textSuccessRegistration":"Usuário Registrado",
 
@@ -52,7 +54,17 @@
     "textFinish":"Finalizar",
     "textClosePlaces":"Lugares Próximos",
     "textBestRates":"Melhores Avaliados",
+    "textConfiguration":"Configurações",
+    "textPrivacy":"Privacidade",
+    "textTermsOfUse":"Termos de Uso",
+    "textAbout":"Sobre",
+    "textContact":"Contato",
+    "textEnviar":"Enviar",
+    "textContinue":"Continuar",
 
+    "textMessageSended":"Mensagem Enviada!",
+    "textThanksForTheFeedback":"Obrigada por nos dar sua opinião",
+    "textTellUsHowWeCanHelp":"Nos conte como podemos te ajudar",
     "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, seja criativo!",
     "textHowDoYouPreferWeReferToYou":"Como prefere que as pessoas se refiram a você?",
     "textWeCareAboutYourSafety":"Sua segurança é muito importante para nós.",

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
@@ -7,11 +6,11 @@ import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 class CustomTileDrawer extends StatelessWidget {
   final String iconPath;
   final String title;
-  final String? route;
+  final Function()? onTap;
 
   const CustomTileDrawer({
     Key? key,
-    this.route,
+    this.onTap,
     required this.iconPath,
     required this.title,
   }) : super(key: key);
@@ -19,7 +18,7 @@ class CustomTileDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: route != null ? () => Modular.to.navigate(route!) : () {},
+      onTap: onTap ?? () {},
       child: Row(
         children: <Widget>[
           Padding(

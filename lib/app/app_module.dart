@@ -1,11 +1,11 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/contact_module/contact_module.dart';
 import 'package:is_it_safe_app/app/modules/login_module/login_module.dart';
 import 'package:is_it_safe_app/app/modules/on_boarding_module/on_boarding_module.dart';
 import 'package:is_it_safe_app/app/modules/splash_module/splash_module.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 
 import 'modules/main_module/main_module.dart';
+import 'modules/main_module/modules/home_module/modules/contact_module/contact_module.dart';
 
 class AppModule extends Module {
   @override
