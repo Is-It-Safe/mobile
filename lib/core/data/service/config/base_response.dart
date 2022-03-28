@@ -5,7 +5,7 @@ class BaseResponse<T> {
 
   BaseResponse.loading() : status = Status.LOADING;
 
-  BaseResponse.completed({this.data}) : status = Status.COMPLETED;
+  BaseResponse.completed({required this.data}) : status = Status.COMPLETED;
 
   BaseResponse.error(this.message) : status = Status.ERROR;
 

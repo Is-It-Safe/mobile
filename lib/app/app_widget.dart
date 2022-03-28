@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
       theme: lightTheme,
       localizationsDelegates: const [
         S.delegate,
-        GlobalMaterialLocalizations.delegate,  
+        GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],

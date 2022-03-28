@@ -30,16 +30,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAppBarSignUp": MessageLookupByLibrary.simpleMessage("Cadastro"),
         "textAtLeast8Characteres": MessageLookupByLibrary.simpleMessage(
             "- Sua senha deve ter mais de 8 caracteres"),
+        "textBestRates":
+            MessageLookupByLibrary.simpleMessage("Melhores Avaliados"),
         "textButtonDontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Não possui uma conta?"),
         "textButtonForgotPassword":
             MessageLookupByLibrary.simpleMessage("Esqueceu sua senha?"),
         "textCancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "textClosePlaces":
+            MessageLookupByLibrary.simpleMessage("Lugares Próximos"),
         "textConfirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
             "Agora escolha um nome para todos verem, seja criativo!"),
+        "textDrawerAddLocation":
+            MessageLookupByLibrary.simpleMessage("Adicionar Local"),
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(

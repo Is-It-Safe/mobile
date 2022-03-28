@@ -8,7 +8,7 @@ import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
 import 'package:is_it_safe_app/core/components/primary_button.dart';
-import 'package:is_it_safe_app/core/components/text_button.dart';
+import 'package:is_it_safe_app/core/components/secondary_button.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/Gender.dart';
 import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
@@ -16,6 +16,7 @@ import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
+import 'package:is_it_safe_app/core/utils/helper/native_loading.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -53,7 +54,7 @@ class _RegisterProfileWidgetState
           Modular.to.pushNamedAndRemoveUntil(kRouteLogin, (r) => false);
           break;
         case Status.LOADING:
-          ManagerDialogs.showLoadingDialog(context);
+          const NativeLoading(animating: true);
           break;
         case Status.ERROR:
           Modular.to.pop();
@@ -72,10 +73,6 @@ class _RegisterProfileWidgetState
         snapshot.data.message,
       );
     });
-  }
-
-  _onLoading() {
-    return ManagerDialogs.showLoadingDialog(context);
   }
 
   @override
@@ -251,8 +248,9 @@ class _RegisterProfileWidgetState
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TextButtonCustom(
+                              SecondaryButton(
                                 text: S.of(context).textAdvance,
+                                borderColor: Colors.transparent,
                                 onTap: () async {
                                   controller.registerUser();
                                 },

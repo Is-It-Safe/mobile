@@ -9,6 +9,7 @@ const Color kColorNavBarIcon = Color(0xFF7C68F0);
 const Color kColorHighlight = Color(0xFF6200EE);
 const Color kColorReview = Color(0xFF322580);
 const Color kColorReviewSuccess = Color(0xFF2ECC71);
+const Color kColorWhiteBackground = Color(0xFFFAF9FF);
 
 const Color kColorStatusActive = Color(0xFF6200EE);
 const Color kColorStatusError = Color(0xFFEB3D3D);
@@ -18,7 +19,7 @@ const Color kColorStatusDisabled = Color(0xFFDADADA);
 const Color kColorTextLight = Color(0xFF190A33);
 const Color kColorTextLabel = Color(0xFF535353);
 
-const Color kColorButtonPrimary = Color(0xFF5C45ED);
+const Color kColorButtonPrimary = Color.fromARGB(255, 19, 13, 63);
 const Color kColorButtonSecondary = Color(0xFF7B61FF);
 const Color kColorButtonHover = Color(0xFF4534B2);
 const Color kColorButtonInactive = Color(0xFFDADADA);

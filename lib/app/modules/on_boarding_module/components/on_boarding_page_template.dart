@@ -113,6 +113,7 @@ class OnBoardingPageTemplate extends StatelessWidget {
                               ),
                             ),
                             child: Text(
+                              //TODO: Ajuste Theme para TextStyles
                               S.of(context).textLogin,
                               style: Theme.of(context)
                                   .textTheme

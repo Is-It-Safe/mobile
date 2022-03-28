@@ -260,6 +260,86 @@ class S {
     );
   }
 
+  /// `Adicionar Local`
+  String get textDrawerAddLocation {
+    return Intl.message(
+      'Adicionar Local',
+      name: 'textDrawerAddLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minha Conta`
+  String get textDrawerMyAccount {
+    return Intl.message(
+      'Minha Conta',
+      name: 'textDrawerMyAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Configuracoes`
+  String get textDrawerConfiguration {
+    return Intl.message(
+      'Configurações',
+      name: 'textDrawerConfiguration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacidade`
+  String get textDrawerPrivacy {
+    return Intl.message(
+      'Privacidade',
+      name: 'textDrawerPrivacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Termos de Uso`
+  String get textDrawerTerms {
+    return Intl.message(
+      'Termos de Uso',
+      name: 'textDrawerTerms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sobre`
+  String get textDrawerAbout {
+    return Intl.message(
+      'Sobre',
+      name: 'textDrawerAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contato`
+  String get textDrawerContact {
+    return Intl.message(
+      'Contato',
+      name: 'textDrawerContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nenhum lugar próximo encontrado`
+  String get textEmptyCard {
+    return Intl.message(
+      'Nenhum lugar próximo encontrado',
+      name: 'textDrawerContact',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário`
   String get textUsername {
     return Intl.message(
@@ -465,6 +545,26 @@ class S {
     return Intl.message(
       'Finalizar',
       name: 'textFinish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lugares Próximos`
+  String get textClosePlaces {
+    return Intl.message(
+      'Lugares Próximos',
+      name: 'textClosePlaces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Melhores Avaliados`
+  String get textBestRates {
+    return Intl.message(
+      'Melhores Avaliados',
+      name: 'textBestRates',
       desc: '',
       args: [],
     );
