@@ -74,6 +74,10 @@ class _RegisterProfileWidgetState
     });
   }
 
+  _onLoading() {
+    return ManagerDialogs.showLoadingDialog(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,16 +110,13 @@ class _RegisterProfileWidgetState
                                     )
                                         .then(
                                       (value) {
-
                                         if (value != null) {
-                                        String newValue = value.toString();
-                                        
+                                          String newValue = value.toString();
 
-                                        controller.setProfileAvatar(
-                                          path: newValue,
-                                        );
+                                          controller.setProfileAvatar(
+                                            path: newValue,
+                                          );
                                         }
-                                        
                                       },
                                     ),
                                   )
@@ -128,12 +129,11 @@ class _RegisterProfileWidgetState
                                         .then(
                                       (value) {
                                         if (value != null) {
-                                        String newValue = value.toString();
-                                        
+                                          String newValue = value.toString();
 
-                                        controller.setProfileAvatar(
-                                          path: newValue,
-                                        );
+                                          controller.setProfileAvatar(
+                                            path: newValue,
+                                          );
                                         }
                                       },
                                     ),
@@ -200,6 +200,7 @@ class _RegisterProfileWidgetState
                                     );
                                 }
                               }
+
                               return MyTextFormField(
                                 readOnly: true,
                                 labelText: S.of(context).textLoading,
@@ -237,6 +238,7 @@ class _RegisterProfileWidgetState
                                     );
                                 }
                               }
+
                               return MyTextFormField(
                                 readOnly: true,
                                 labelText: S.of(context).textLoading,

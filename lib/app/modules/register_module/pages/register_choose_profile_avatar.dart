@@ -26,7 +26,7 @@ class _RegisterChooseProfileAvatarWidgetState
     _loadImages();
     super.initState();
     Log.route(Modular.to.path);
-    photoListen();
+    //photoListen();
   }
 
   void _loadImages() async {
@@ -83,8 +83,9 @@ class _RegisterChooseProfileAvatarWidgetState
                     path: avatarPaths[index],
                     isSelected: userAvatarPath == avatarPaths[index],
                     onTap: () => setState(() {
+                      userAvatarPath = avatarPaths[index];
                       controller.setProfileAvatar(
-                        path: avatarPaths[index],
+                        path: userAvatarPath,
                       );
                     }),
                   );
@@ -110,7 +111,8 @@ class _RegisterChooseProfileAvatarWidgetState
                         if (controller.selectedProfileAvatarPhoto.isEmpty) {
                           _onError();
                         } else {
-                          photoListen();
+                          //photoListen();
+
                           Modular.to.pop(userAvatarPath);
                         }
                       },
