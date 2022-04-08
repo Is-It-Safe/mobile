@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/login_module/login_module.dart';
+import 'package:is_it_safe_app/app/modules/my_account_module/my_account_module.dart';
 import 'package:is_it_safe_app/app/modules/on_boarding_module/on_boarding_module.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 
@@ -18,5 +19,6 @@ class AppModule extends Module {
     ModuleRoute(kRouteLogin, module: LoginModule()),
     ModuleRoute(kRouteMain, module: MainModule()),
     ModuleRoute(kRouteTermsOfUse, module: TermsOfUseModule()),
+    ModuleRoute(kRouteMyAccount, module: MyAccountModule()),
   ];
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class TermsOfUseWidget extends StatelessWidget {
@@ -10,24 +8,7 @@ class TermsOfUseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 100,
-        leading: InkWell(
-          onTap: () {
-            Modular.to.pop();
-          },
-          child: SvgPicture.asset(
-            'images/app/home/drawer/back_button.svg',
-            fit: BoxFit.none,
-          ),
-        ),
-        title: Text(
-          'Privacidade',
-          style: TextStyles.subtitle1(),
-        ),
-        backgroundColor: kColorBackgroundLight,
-      ),
+      appBar: appBar(context: context, title: 'Privacidade', hasLeading: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 34),
         child: Column(

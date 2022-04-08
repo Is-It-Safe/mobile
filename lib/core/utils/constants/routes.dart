@@ -14,3 +14,4 @@ const kRouteHome = "/home/";
 const kRouteProfile = "/profile/";
 const kRouteSearch = "/search/";
 const kRouteTermsOfUse = "/terms/";
+const kRouteMyAccount = "/my-account/";

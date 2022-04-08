@@ -789,6 +789,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Minha conta`
+  String get textMyAccount {
+    return Intl.message(
+      'Minha conta',
+      name: 'textMyAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Desativar sua conta`
+  String get textDisableMyAccount {
+    return Intl.message(
+      'Desativar sua conta',
+      name: 'disableMyAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informações Pessoais`
+  String get textPersonalInformation {
+    return Intl.message(
+      'Informações Pessoais',
+      name: 'textPersonalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sair`
+  String get textExit {
+    return Intl.message(
+      'Sair',
+      name: 'textExit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apelido`
+  String get textNickname {
+    return Intl.message(
+      'Apelido',
+      name: 'textNickname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pronome`
+  String get textPronoun {
+    return Intl.message(
+      'Pronome',
+      name: 'textPronoun',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
