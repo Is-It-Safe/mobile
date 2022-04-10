@@ -21,7 +21,7 @@ class BannerText extends StatelessWidget {
         child: Text(
           title,
           style: TextStyles.custom(
-            color: Colors.white,
+            color: kColorPrimaryLight,
             fontWeight: FontWeight.w600,
             fontSize: 20,
           ),

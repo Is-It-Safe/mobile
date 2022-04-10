@@ -7,6 +7,11 @@ import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import '../../../generated/l10n.dart';
 import './my_account_controller.dart';
+/*
+TODO: Transformar em um StatefulWidget
+TODO: Não passar o controller por parametro, utilizar o ModularState
+TODO: Os textos mockados devem ser alterados por variáveis
+*/
 
 class MyAccountPage extends StatelessWidget {
   final MyAccountBloc _controller;

@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
+/*
+TODO
+- A linha não é selecionável, somente o ícone
+*/
+
 class ActionTextComponent extends StatelessWidget {
   const ActionTextComponent(
       {Key? key,

@@ -10,7 +10,7 @@ class MyAccountModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/',
+    ChildRoute(Modular.initialRoute,
         child: (_, args) => MyAccountPage(controller: Modular.get())),
   ];
 }

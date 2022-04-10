@@ -13,7 +13,6 @@ class AppModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    //TODO: Retornar para Splash o modulo inicial
     ModuleRoute(Modular.initialRoute, module: MainModule()),
     ModuleRoute(kRouteOnBoarding, module: OnBoardingModule()),
     ModuleRoute(kRouteLogin, module: LoginModule()),
