@@ -2,16 +2,17 @@ import 'dart:async';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/data/service/home_service.dart';
+import 'package:is_it_safe_app/core/data/service/home/home.dart';
+import 'package:is_it_safe_app/core/data/service/home/home_contract.dart';
 import 'package:is_it_safe_app/core/model/location/location.dart';
 import 'package:is_it_safe_app/core/model/location/location_info.dart';
 
 class HomeBloc implements Disposable {
-  final HomeService _service = HomeService();
+  final HomeContract service;
   late StreamController<BaseResponse<List<Location>>> bestRatedPlacesController;
   late StreamController<BaseResponse<List<Location>>> closePlacesController;
 
-  HomeBloc() {
+  HomeBloc({required this.service}) {
     bestRatedPlacesController = StreamController.broadcast();
     closePlacesController = StreamController.broadcast();
   }
@@ -19,7 +20,7 @@ class HomeBloc implements Disposable {
   Future getBestRatedLocations() async {
     try {
       bestRatedPlacesController.sink.add(BaseResponse.loading());
-      final Locations locations = await _service.getBestRatedLocations();
+      final Locations locations = await service.getBestRatedLocations();
       bestRatedPlacesController.sink.add(
         BaseResponse.completed(
           data: locations.content,
@@ -33,7 +34,7 @@ class HomeBloc implements Disposable {
   Future getClosePlacesLocations() async {
     try {
       closePlacesController.sink.add(BaseResponse.loading());
-      final Locations locations = await _service.getClosePlacesLocations();
+      final Locations locations = await service.getClosePlacesLocations();
       closePlacesController.sink.add(
         BaseResponse.completed(data: locations.content),
       );

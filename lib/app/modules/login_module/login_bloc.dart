@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/data/service/login_service.dart';
+import 'package:is_it_safe_app/core/data/service/login/login.dart';
+import 'package:is_it_safe_app/core/data/service/login/login_contract.dart';
 
 import 'package:is_it_safe_app/core/model/Auth.dart';
 import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
@@ -12,13 +13,13 @@ import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
 
 class LoginBloc implements Disposable {
-  final LoginService _service = LoginService();
+  final LoginContract service;
   late StreamController<bool> loginButtonController;
   late StreamController<BaseResponse<Auth>> loginController;
   late TextEditingController usernameController;
   late TextEditingController passwordController;
 
-  LoginBloc() {
+  LoginBloc({required this.service}) {
     loginButtonController = StreamController.broadcast();
     loginController = StreamController.broadcast();
     usernameController = TextEditingController();
@@ -29,7 +30,7 @@ class LoginBloc implements Disposable {
     var _response;
     try {
       loginController.sink.add(BaseResponse.loading());
-      _response = await _service.doLogin(
+      _response = await service.doLogin(
         username: usernameController.text,
         password: passwordController.text,
       );
