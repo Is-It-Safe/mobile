@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/data/service/search_service.dart';
+import 'package:is_it_safe_app/core/data/service/search/search_contract.dart';
+import 'package:is_it_safe_app/core/data/service/search/search_service.dart';
 import 'package:is_it_safe_app/core/model/Location.dart';
 
 class SearchBloc implements Disposable {
-  final searchService = SearchService();
+  final SearchContract searchService;
 
   late StreamController<BaseResponse<List<Content>>> searchController;
 
@@ -15,7 +16,7 @@ class SearchBloc implements Disposable {
 
   List<Content> places = [];
 
-  SearchBloc() {
+  SearchBloc({required this.searchService}) {
     searchController = StreamController.broadcast();
     nameSearchController = TextEditingController();
   }

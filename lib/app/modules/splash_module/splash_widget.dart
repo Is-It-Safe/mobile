@@ -39,7 +39,7 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
 
   _loadData() async {
     await Future.delayed(const Duration(seconds: 4));
-    await CustomSharedPreferences.readUsuarioOnBoarding().then(
+    await CustomSharedPreferences().readUsuarioOnBoarding().then(
       (value) async {
         Log.log(value.toString(), name: "DID USER SEE ONBOARDING?");
         if (value) {

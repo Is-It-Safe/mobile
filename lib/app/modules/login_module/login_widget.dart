@@ -37,13 +37,12 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
     controller.loginController.stream.listen((event) async {
       switch (event.status) {
         case Status.COMPLETED:
-          //Modular.to.pushNamedAndRemoveUntil(kRouteHome, (p0) => false);
+          Modular.to.pushNamedAndRemoveUntil(kRouteHome, (p0) => false);
           break;
         case Status.LOADING:
           const NativeLoading(animating: true);
           break;
         case Status.ERROR:
-          Modular.to.pop();
           ManagerDialogs.showErrorDialog(context, event.message!);
           break;
         default:
@@ -157,11 +156,9 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                             ? kColorStatusDisabled
                             : null,
                         onTap: () async {
-                          _formKey.currentState!.validate();
-                          await controller.doLogin().then((value) {
-                            //TODO uncomment navigation to Home
-                            //() => Modular.to.pushReplacementNamed(kRouteMain + kRouteHome);
-                          });
+                          if (snapshot.data == true) {
+                            await controller.doLogin();
+                          }
                         },
                       );
                     },

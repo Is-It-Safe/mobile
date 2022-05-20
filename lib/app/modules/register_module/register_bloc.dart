@@ -4,14 +4,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/data/service/register_service.dart';
+import 'package:is_it_safe_app/core/data/service/register/register.dart';
+import 'package:is_it_safe_app/core/data/service/register/register_contract.dart';
 import 'package:is_it_safe_app/core/model/Gender.dart';
 import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
 import 'package:is_it_safe_app/core/model/User.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class RegisterBloc implements Disposable {
-  final RegisterService _service = RegisterService();
+  final RegisterContract service;
 
   ///Finals
   final MaskTextInputFormatter birthdayInputMask =
@@ -40,7 +41,7 @@ class RegisterBloc implements Disposable {
   List<String> profileAvatarPaths = [];
   String selectedProfileAvatarPhoto = '';
 
-  RegisterBloc() {
+  RegisterBloc({required this.service}) {
     registerButtonController = StreamController.broadcast();
     profileAvatarController = StreamController.broadcast();
     dropGendersController = StreamController.broadcast();
@@ -90,7 +91,7 @@ class RegisterBloc implements Disposable {
   Future getGenders() async {
     try {
       dropGendersController.sink.add(BaseResponse.loading());
-      final genders = await _service.getGenders();
+      final genders = await service.getGenders();
       dropGendersController.sink.add(BaseResponse.completed(data: genders));
     } catch (e) {
       dropGendersController.sink.add(BaseResponse.error(e.toString()));
@@ -100,7 +101,7 @@ class RegisterBloc implements Disposable {
   Future getSexualOrientations() async {
     try {
       dropOrientationController.sink.add(BaseResponse.loading());
-      final orientations = await _service.getSexualOrientations();
+      final orientations = await service.getSexualOrientations();
       dropOrientationController.sink
           .add(BaseResponse.completed(data: orientations));
     } catch (e) {
@@ -129,7 +130,7 @@ class RegisterBloc implements Disposable {
     );
     try {
       registrationController.sink.add(BaseResponse.loading());
-      response = await _service.registerUser(user: user);
+      response = await service.registerUser(user: user);
       registrationController.sink.add(BaseResponse.completed(data: response));
     } catch (e) {
       registrationController.sink.add(BaseResponse.error(e.toString()));
