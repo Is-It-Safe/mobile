@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:is_it_safe_app/core/data/service/register/register_contract.dart';
 import 'package:is_it_safe_app/core/data/service/search/search_contract.dart';
 import 'package:is_it_safe_app/core/data/service/search/search_service.dart';
-import 'package:is_it_safe_app/core/model/Location.dart';
 import 'package:mockito/annotations.dart';
 
 import 'search_service_test.mocks.dart';
@@ -24,14 +23,6 @@ void main() {
       final service = SearchService();
       final result = await service.getLocation("Restaurante");
       expect(result, isNotEmpty);
-    });
-
-    test('testando o mock da interface de search', () async {
-      expect(searchContract, isNotNull);
-      //when(searchContract.getLocation(fakeSearchTarget)).thenAnswer((_) => Future.value(_));
-      List<Content>? result =
-          await searchContract.getLocation(fakeSearchTarget);
-      expect(result, isTrue);
     });
   });
 }
