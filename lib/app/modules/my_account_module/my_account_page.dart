@@ -3,7 +3,6 @@ import 'package:is_it_safe_app/app/modules/my_account_module/components/action_t
 import 'package:is_it_safe_app/app/modules/my_account_module/components/banner_text_component.dart';
 import 'package:is_it_safe_app/app/modules/my_account_module/components/info_text_component.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import '../../../generated/l10n.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -63,7 +62,7 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
                       controller.gender ?? "",
                       style: TextStyles.custom(
                         fontWeight: FontWeight.w400,
-                        color: kColorSubtext,
+                        //  color: kColorSubtext,
                       ),
                     ),
                     const SizedBox(
