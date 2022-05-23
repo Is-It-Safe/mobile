@@ -75,8 +75,9 @@ class APIService implements ApiContract {
           final response = await dio
               .post(
                 url,
-                data: config.body,
+                data: body,
                 options: options,
+                queryParameters: queryParameters,
               )
               .timeout(_timeout);
           responseJson = returnResponse(response);

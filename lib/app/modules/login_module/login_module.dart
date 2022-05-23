@@ -10,7 +10,9 @@ import 'login_widget.dart';
 class LoginModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => LoginBloc(service: LoginService(), customSharedPreferences: CustomSharedPreferences())),
+    Bind.lazySingleton((i) => LoginBloc(
+        service: LoginService(),
+        customSharedPreferences: CustomSharedPreferences())),
   ];
 
   @override

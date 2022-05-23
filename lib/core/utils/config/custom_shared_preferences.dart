@@ -18,6 +18,7 @@ class CustomSharedPreferences implements CustomSharedPreferencesContract {
   }
 
   ///Verifica se o usuário já viu o onBoarding
+  @override
   Future<bool> readUsuarioOnBoarding() async {
     final prefs = await SharedPreferences.getInstance();
     var result = (prefs.getBool(kUsuarioOnBoarding) ?? false);
@@ -25,12 +26,14 @@ class CustomSharedPreferences implements CustomSharedPreferencesContract {
   }
 
   ///Salva se o usuário está logado
+  @override
   void saveUsuario(value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(kUsuarioLogin, value);
   }
 
   ///Verifica se o usuário está logado
+  @override
   Future<bool> readUsuario() async {
     final prefs = await SharedPreferences.getInstance();
     var result = (prefs.getBool(kUsuarioLogin) ?? false);
@@ -38,12 +41,14 @@ class CustomSharedPreferences implements CustomSharedPreferencesContract {
   }
 
   ///Salva o token do usuário
+  @override
   void saveUsuarioToken(value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(kUsuarioToken, value);
   }
 
   //Recupera o token do usuário
+  @override
   Future<String?> readUsuarioToken() async {
     final prefs = await SharedPreferences.getInstance();
     var result = prefs.getString(kUsuarioToken);
@@ -51,12 +56,14 @@ class CustomSharedPreferences implements CustomSharedPreferencesContract {
   }
 
   ///Salva o refresh token do usuário
+  @override
   void saveUsuarioRefreshToken(value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(kUsuarioRefreshToken, value);
   }
 
   ///Recupera o refresh token do usuário
+  @override
   Future<String?> readUsuarioRefreshToken() async {
     final prefs = await SharedPreferences.getInstance();
     var result = prefs.getString(kUsuarioRefreshToken);
