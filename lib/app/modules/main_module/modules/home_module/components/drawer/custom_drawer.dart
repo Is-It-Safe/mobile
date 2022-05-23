@@ -30,6 +30,9 @@ class CustomDrawer extends StatelessWidget {
               CustomTileDrawer(
                 iconPath: 'minha_conta.svg',
                 title: S.of(context).textDrawerMyAccount,
+
+                route: kRouteMyAccount,
+
               ),
               CustomTileDrawer(
                 iconPath: 'configuracoes.svg',

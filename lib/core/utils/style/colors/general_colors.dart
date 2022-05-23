@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'general_material_colors.dart';
@@ -26,3 +27,4 @@ const Color kColorButtonInactive = Color(0xFFDADADA);
 
 const MaterialColor kMaterialColorButtonPrimary =
     MaterialColor(0xFF5C45ED, kMaterialColorButtonPrimaryMap);
+
