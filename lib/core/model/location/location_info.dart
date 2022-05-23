@@ -1,4 +1,4 @@
-class LocationInfo {
+class Location {
   late int id;
   late String name;
   late String endereco;
@@ -6,7 +6,7 @@ class LocationInfo {
   late int reviewsQnt;
   String? imgUrl;
 
-  LocationInfo({
+  Location({
     required this.id,
     required this.name,
     required this.endereco,
@@ -15,7 +15,7 @@ class LocationInfo {
     this.imgUrl,
   });
 
-  LocationInfo.fromJson(Map<String, dynamic> json) {
+  Location.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     endereco = json['endereco'];

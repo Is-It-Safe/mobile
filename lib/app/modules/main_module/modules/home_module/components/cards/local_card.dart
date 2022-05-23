@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/core/model/location/location_info.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-
-import '../../../../../../../core/utils/style/themes/text_styles.dart';
+import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
 class LocalCard extends StatelessWidget {
-  const LocalCard({Key? key, required this.locationInfo}) : super(key: key);
-  final LocationInfo locationInfo;
+  final Location locationInfo;
+  final Function() onTap;
+  const LocalCard({
+    Key? key,
+    required this.locationInfo,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
@@ -28,12 +32,13 @@ class LocalCard extends StatelessWidget {
                     margin: const EdgeInsets.all(16.0),
                     width: MediaQuery.of(context).size.width,
                     height: 140,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                     child: Image.network(
                       locationInfo.imgUrl!,
                       fit: BoxFit.fill,
-                      errorBuilder: (context, o, s) {
+                      errorBuilder: (context, object, stackTrace) {
                         return Image.asset(
                           'images/app/home/demo_local.png',
                           fit: BoxFit.fill,
@@ -44,8 +49,9 @@ class LocalCard extends StatelessWidget {
                 : const SizedBox.shrink(),
             Padding(
               padding: EdgeInsets.only(
-                  left: 16.0,
-                  top: locationInfo.imgUrl!.isNotEmpty ? 0.0 : 16.0),
+                left: 16.0,
+                top: locationInfo.imgUrl!.isNotEmpty ? 0.0 : 16.0,
+              ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,9 +70,7 @@ class LocalCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    width: 16,
-                  ),
+                  const SizedBox(width: 16),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -78,15 +82,14 @@ class LocalCard extends StatelessWidget {
                           locationInfo.name,
                           textAlign: TextAlign.start,
                           style: TextStyles.subtitle1(
-                            color: kColorTextLabel,
+                            color: kColorTextLight,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
+                      const SizedBox(height: 8),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.60,
+                        width: MediaQuery.of(context).size.width * 0.65,
                         child: Text(
                           locationInfo.endereco,
                           maxLines: 2,
@@ -98,17 +101,13 @@ class LocalCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           SvgPicture.asset("images/app/home/comment_tile.svg"),
-                          const SizedBox(
-                            width: 9,
-                          ),
+                          const SizedBox(width: 9),
                           Text(
-                            locationInfo.reviewsQnt.toString() + '  reviews',
+                            locationInfo.reviewsQnt.toString() + ' reviews',
                             style: TextStyles.helper(
                               color: kColorTextLight,
                               fontSize: 12,
@@ -116,9 +115,7 @@ class LocalCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
+                      const SizedBox(height: 8),
                     ],
                   )
                 ],

@@ -250,6 +250,26 @@ class S {
     );
   }
 
+  /// `Algo deu errado na Pesquisa!`
+  String get textErrorSearch {
+    return Intl.message(
+      'Algo deu errado na Pesquisa!',
+      name: 'textErrorSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nenhum lugar próximo encontrado, comece a avaliar seu bairro!`
+  String get textErrorHome {
+    return Intl.message(
+      'Nenhum lugar próximo encontrado, comece a avaliar seu bairro!',
+      name: 'textErrorHome',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário Registrado`
   String get textSuccessRegistration {
     return Intl.message(
@@ -275,66 +295,6 @@ class S {
     return Intl.message(
       'Minha Conta',
       name: 'textDrawerMyAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Configuracoes`
-  String get textDrawerConfiguration {
-    return Intl.message(
-      'Configurações',
-      name: 'textDrawerConfiguration',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Privacidade`
-  String get textDrawerPrivacy {
-    return Intl.message(
-      'Privacidade',
-      name: 'textDrawerPrivacy',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Termos de Uso`
-  String get textDrawerTerms {
-    return Intl.message(
-      'Termos de Uso',
-      name: 'textDrawerTerms',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sobre`
-  String get textDrawerAbout {
-    return Intl.message(
-      'Sobre',
-      name: 'textDrawerAbout',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Contato`
-  String get textDrawerContact {
-    return Intl.message(
-      'Contato',
-      name: 'textDrawerContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Nenhum lugar próximo encontrado`
-  String get textEmptyCard {
-    return Intl.message(
-      'Nenhum lugar próximo encontrado',
-      name: 'textDrawerContact',
       desc: '',
       args: [],
     );
@@ -570,6 +530,66 @@ class S {
     );
   }
 
+  /// `Search`
+  String get textSearch {
+    return Intl.message(
+      'Search',
+      name: 'textSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Configurações`
+  String get textConfiguration {
+    return Intl.message(
+      'Configurações',
+      name: 'textConfiguration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacidade`
+  String get textPrivacy {
+    return Intl.message(
+      'Privacidade',
+      name: 'textPrivacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Termos de Uso`
+  String get textTermsOfUse {
+    return Intl.message(
+      'Termos de Uso',
+      name: 'textTermsOfUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sobre`
+  String get textAbout {
+    return Intl.message(
+      'Sobre',
+      name: 'textAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contato`
+  String get textContact {
+    return Intl.message(
+      'Contato',
+      name: 'textContact',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Agora escolha um nome para todos verem, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(
@@ -685,6 +705,16 @@ class S {
     return Intl.message(
       'Uma representação sua aqui dentro!',
       name: 'textYourRepresentationHereInside',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digite o nome de um local para buscar.`
+  String get textTypeTheNameOfAPlaceToSearch {
+    return Intl.message(
+      'Digite o nome de um local para buscar.',
+      name: 'textTypeTheNameOfAPlaceToSearch',
       desc: '',
       args: [],
     );

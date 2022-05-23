@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
@@ -10,6 +9,7 @@ class MyTextFormField extends StatefulWidget {
   final String labelText;
   final String? hintText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final bool? obscureText;
   final bool? readOnly;
   final List<TextInputFormatter>? inputFormatters;
@@ -24,6 +24,7 @@ class MyTextFormField extends StatefulWidget {
     required this.labelText,
     this.hintText,
     this.suffixIcon,
+    this.prefixIcon,
     this.obscureText,
     this.onChanged,
     this.validator,
@@ -72,6 +73,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             hintText: widget.hintText,
             hintStyle: TextStyles.label(),
             suffixIcon: widget.suffixIcon,
+            prefixIcon: widget.prefixIcon,
           ),
           obscureText: widget.obscureText ?? false,
           onChanged: widget.onChanged,

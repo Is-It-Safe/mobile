@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 
-import '../../../../../../../generated/l10n.dart';
 import 'custom_header.dart';
 import 'custom_tile.dart';
 
@@ -22,7 +22,6 @@ class CustomDrawer extends StatelessWidget {
                 name: name,
                 profileImagePath: profileImagePath,
               ),
-              //TODO: Ajustar as rotas para os locais corretos após criacoes das paginas
               CustomTileDrawer(
                 iconPath: 'adicionar_local.svg',
                 title: S.of(context).textDrawerAddLocation,
@@ -31,32 +30,29 @@ class CustomDrawer extends StatelessWidget {
               CustomTileDrawer(
                 iconPath: 'minha_conta.svg',
                 title: S.of(context).textDrawerMyAccount,
+
                 route: kRouteMyAccount,
+
               ),
               CustomTileDrawer(
                 iconPath: 'configuracoes.svg',
-                title: S.of(context).textDrawerConfiguration,
-                route: kRouteProfile,
+                title: S.of(context).textConfiguration,
               ),
               CustomTileDrawer(
                 iconPath: 'privacidade.svg',
-                title: S.of(context).textDrawerPrivacy,
-                route: kRouteTermsOfUse,
+                title: S.of(context).textPrivacy,
               ),
               CustomTileDrawer(
                 iconPath: 'termos_uso.svg',
-                title: S.of(context).textDrawerTerms,
-                route: kRouteTermsOfUse,
+                title: S.of(context).textTermsOfUse,
               ),
               CustomTileDrawer(
                 iconPath: 'sobre.svg',
-                title: S.of(context).textDrawerAbout,
-                route: kRouteProfile,
+                title: S.of(context).textAbout,
               ),
               CustomTileDrawer(
                 iconPath: 'contato.svg',
-                title: S.of(context).textDrawerContact,
-                route: kRouteProfile,
+                title: S.of(context).textContact,
               ),
             ],
           ),
@@ -65,3 +61,4 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 }
+

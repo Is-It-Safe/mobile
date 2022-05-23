@@ -29,6 +29,7 @@ dependencies:
   mockito: ^5.0.16
   simple_animations: ^4.0.1
   platform: ^3.1.0
+  build_runner: ^2.1.10
 
 
 dev_dependencies:
@@ -55,6 +56,9 @@ flutter:
     - images/app/home/drawer/
     - images/app/profile_pictures/placeholder/
     - images/icons/
+    - images/app/search_pictures/placeholder/
+
+
 
 
 flutter_intl:

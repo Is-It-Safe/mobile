@@ -71,7 +71,7 @@ class OnBoardingPageTemplate extends StatelessWidget {
                       ),
                     ),
                     onPressed: () async {
-                      await CustomSharedPreferences.saveUsuarioOnBoarding(true);
+                      CustomSharedPreferences().saveUsuarioOnBoarding(true);
                       Modular.to.pushNamedAndRemoveUntil(
                           kRouteLogin, ModalRoute.withName('/'));
                     },
@@ -95,7 +95,7 @@ class OnBoardingPageTemplate extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 64),
                       child: GestureDetector(
                         onTap: () async {
-                          await CustomSharedPreferences.saveUsuarioOnBoarding(
+                          CustomSharedPreferences().saveUsuarioOnBoarding(
                             true,
                           );
                           Modular.to.navigate(kRouteLogin);

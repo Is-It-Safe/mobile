@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "textAbout": MessageLookupByLibrary.simpleMessage("Sobre"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
         "textAppBarChooseProfilePhotoPage":
             MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
@@ -39,13 +40,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "textCancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "textClosePlaces":
             MessageLookupByLibrary.simpleMessage("Lugares Próximos"),
+        "textConfiguration":
+            MessageLookupByLibrary.simpleMessage("Configurações"),
         "textConfirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
+        "textContact": MessageLookupByLibrary.simpleMessage("Contato"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
             "Agora escolha um nome para todos verem, seja criativo!"),
         "textDrawerAddLocation":
             MessageLookupByLibrary.simpleMessage("Adicionar Local"),
+        "textDrawerMyAccount":
+            MessageLookupByLibrary.simpleMessage("Minha Conta"),
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
@@ -58,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, selecione seu avatar!"),
         "textErrorEmptyField": MessageLookupByLibrary.simpleMessage(
             "Esse campo não pode ficar vazio"),
+        "textErrorHome": MessageLookupByLibrary.simpleMessage(
+            "Nenhum lugar próximo encontrado, comece a avaliar seu bairro!"),
         "textErrorInvalidDate": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite uma data válida"),
         "textErrorLoginPassword": MessageLookupByLibrary.simpleMessage(
@@ -66,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, digite um nome de usuário válido"),
         "textErrorPronouns": MessageLookupByLibrary.simpleMessage(
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
+        "textErrorSearch": MessageLookupByLibrary.simpleMessage(
+            "Algo deu errado na Pesquisa!"),
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(
             "Campos errados! Tente novamente."),
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
@@ -110,11 +120,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPassword": MessageLookupByLibrary.simpleMessage("Senha"),
         "textPasswordConfirmation":
             MessageLookupByLibrary.simpleMessage("Confirmar senha"),
+        "textPrivacy": MessageLookupByLibrary.simpleMessage("Privacidade"),
         "textPronouns": MessageLookupByLibrary.simpleMessage("Pronomes"),
         "textReady": MessageLookupByLibrary.simpleMessage("Pronto"),
         "textRegister": MessageLookupByLibrary.simpleMessage("Cadastrar"),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
+        "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
         "textSexualOrientation":
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
         "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
@@ -126,6 +138,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Nos diga seu e-mail, ele será associado a sua conta"),
         "textTermsAndConditions":
             MessageLookupByLibrary.simpleMessage("termos e condições"),
+        "textTermsOfUse": MessageLookupByLibrary.simpleMessage("Termos de Uso"),
+        "textTypeTheNameOfAPlaceToSearch": MessageLookupByLibrary.simpleMessage(
+            "Digite o nome de um local para buscar."),
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós."),

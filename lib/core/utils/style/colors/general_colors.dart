@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'general_material_colors.dart';
@@ -18,7 +19,6 @@ const Color kColorStatusDisabled = Color(0xFFDADADA);
 
 const Color kColorTextLight = Color(0xFF190A33);
 const Color kColorTextLabel = Color(0xFF535353);
-const Color kColorSubtext = Color(0xFF484848);
 
 const Color kColorButtonPrimary = Color.fromARGB(255, 19, 13, 63);
 const Color kColorButtonSecondary = Color(0xFF7B61FF);
@@ -27,3 +27,4 @@ const Color kColorButtonInactive = Color(0xFFDADADA);
 
 const MaterialColor kMaterialColorButtonPrimary =
     MaterialColor(0xFF5C45ED, kMaterialColorButtonPrimaryMap);
+
