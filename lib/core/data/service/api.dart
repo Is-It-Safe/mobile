@@ -39,8 +39,9 @@ class APIService implements ApiContract {
   @override
   Future doRequest(RequestConfig config) async {
     String url = ApiConstants.kBaseUrl;
-    Options options = ApiConstants.kOptions;
-    Map<String, dynamic> queryParameters = ApiConstants.kqueryParameters;
+    Options options = config.options ?? ApiConstants.kOptions;
+    Map<String, dynamic> queryParameters =
+        config.parameters ?? ApiConstants.kqueryParameters;
     dio.options.responseType = ResponseType.plain;
 
     if (!config.path.contains("http")) {

@@ -10,7 +10,6 @@ import 'search_service_test.mocks.dart';
     customMocks: [MockSpec<SearchContract>(returnNullOnMissingStub: true)])
 void main() {
   group('search', () {
-    const String fakeSearchTarget = 'Vila laura';
     late MockSearchContract searchContract;
 
     setUp(() {

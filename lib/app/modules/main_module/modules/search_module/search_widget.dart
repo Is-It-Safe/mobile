@@ -25,7 +25,7 @@ class SearchWidgetState extends ModularState<SearchWidget, SearchBloc> {
   }
 
   _onError(AsyncSnapshot snapshot) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       ManagerDialogs.showErrorDialog(
         context,
         snapshot.data.message,
