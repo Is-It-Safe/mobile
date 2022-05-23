@@ -11,6 +11,6 @@ class MyAccountModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute,
-        child: (_, args) => MyAccountPage(controller: Modular.get())),
+        child: (_, args) => const MyAccountPage()),
   ];
 }

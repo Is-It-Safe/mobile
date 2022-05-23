@@ -849,6 +849,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Editar Perfil`
+  String get textEditProfile {
+    return Intl.message(
+      'Editar Perfil',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Editar Perfil`
+  String get textWhoCanSeeMyProfile {
+    return Intl.message(
+      'Quem pode ver meu perfil',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lorem`
+  String get textLoremIpsum {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
+      name: 'loremIpsum',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

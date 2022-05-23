@@ -6,21 +6,22 @@ import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import '../../../generated/l10n.dart';
-import './my_account_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'my_account_bloc.dart';
 /*
-TODO: Transformar em um StatefulWidget
-TODO: Não passar o controller por parametro, utilizar o ModularState
 TODO: Os textos mockados devem ser alterados por variáveis
 */
 
-class MyAccountPage extends StatelessWidget {
-  final MyAccountBloc _controller;
-
+class MyAccountPage extends StatefulWidget {
   const MyAccountPage({
     Key? key,
-    required MyAccountBloc controller,
-  }) : _controller = controller;
+  });
 
+  @override
+  State<MyAccountPage> createState() => _MyAccountPageState();
+}
+
+class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,17 +52,15 @@ class MyAccountPage extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    //TODO: Texto mockado
                     Text(
-                      "Leonardo Salazar (Ele/Dele)",
+                      controller.sexualOrientation ?? "",
                       style: TextStyles.bodyText1(fontWeight: FontWeight.w400),
                     ),
                     const SizedBox(
                       height: 5,
                     ),
-                    //TODO: Texto mockado
                     Text(
-                      "Homem Cis Heterosexual",
+                      controller.gender ?? "",
                       style: TextStyles.custom(
                         fontWeight: FontWeight.w400,
                         color: kColorSubtext,
@@ -84,30 +83,30 @@ class MyAccountPage extends StatelessWidget {
                             //TODO: Valores mockados
                             InfoTextComponent(
                               title: S.of(context).textName,
-                              value: "Leonardo Salazar",
+                              value: controller.name ?? "",
                             ),
                             InfoTextComponent(
                               title: S.of(context).textNickname,
-                              value: "Salazar",
+                              value: controller.nickname ?? "",
                             ),
                             InfoTextComponent(
                               title: S.of(context).textPronoun,
-                              value: "Ele/Dele",
+                              value: controller.pronoun ?? "",
                             ),
                             InfoTextComponent(
                               title: S.of(context).textDateOfBirth,
-                              value: "21/07/2000",
+                              value: controller.dateOfBirth ?? "",
                             ),
                             InfoTextComponent(
                               title: S.of(context).textSexualOrientation,
-                              value: "Heterosexual",
+                              value: controller.sexualOrientation ?? "",
                             ),
                             InfoTextComponent(
                               title: S.of(context).textGender,
-                              value: "Homem Cis",
+                              value: controller.gender ?? "",
                             ),
                             ActionTextComponent(
-                              title: "Editar Perfil",
+                              title: S.of(context).textEditProfile,
                               onPressed: () {},
                               isLastItem: true,
                             ),
