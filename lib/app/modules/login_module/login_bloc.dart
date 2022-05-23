@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/data/service/login/login.dart';
+import 'package:is_it_safe_app/core/data/service/login/login_contract.dart';
 
 import 'package:is_it_safe_app/core/model/Auth.dart';
 import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences_contract.dart';
@@ -12,7 +12,7 @@ import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
 import 'package:is_it_safe_app/core/utils/helper/log.dart';
 
 class LoginBloc implements Disposable {
-  final LoginService service;
+  final LoginContract service;
   final CustomSharedPreferencesContract customSharedPreferences;
 
   late StreamController<bool> loginButtonController;
