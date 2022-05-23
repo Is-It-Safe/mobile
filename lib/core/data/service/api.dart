@@ -39,8 +39,9 @@ class APIService implements ApiContract {
   @override
   Future doRequest(RequestConfig config) async {
     String url = ApiConstants.kBaseUrl;
-    Options options = ApiConstants.kOptions;
-    Map<String, dynamic> queryParameters = ApiConstants.kqueryParameters;
+    Options options = config.options ?? ApiConstants.kOptions;
+    Map<String, dynamic> queryParameters =
+        config.parameters ?? ApiConstants.kqueryParameters;
     dio.options.responseType = ResponseType.plain;
 
     if (!config.path.contains("http")) {
@@ -72,11 +73,12 @@ class APIService implements ApiContract {
             body = jsonEncode(config.body);
           }
           final response = await dio
-              .postUri(
-                Uri.parse(url),
-                data: body,
-                options: config.options ?? options
-              ).timeout(_timeout);
+              .post(
+                url,
+                data: config.body,
+                options: options,
+              )
+              .timeout(_timeout);
           responseJson = returnResponse(response);
           break;
         case HttpMethod.patch:

@@ -37,7 +37,8 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
     controller.loginController.stream.listen((event) async {
       switch (event.status) {
         case Status.COMPLETED:
-          Modular.to.pushNamedAndRemoveUntil(kRouteHome, (p0) => false);
+          Modular.to
+              .pushNamedAndRemoveUntil(kRouteMain + kRouteHome, (p0) => false);
           break;
         case Status.LOADING:
           const NativeLoading(animating: true);
