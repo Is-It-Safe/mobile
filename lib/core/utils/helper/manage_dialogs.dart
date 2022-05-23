@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 
+///O [ManagerDialogs] é uma classe responsável por gerenciar e armazenar variádos
+///tipos de dialogs.
 class ManagerDialogs {
+  ///Método responsável por emitir um dialog de erro.
   static void showErrorDialog(BuildContext context, String message) {
     if (Platform.isAndroid) {
       showDialog(
@@ -50,6 +53,7 @@ class ManagerDialogs {
     }
   }
 
+  ///Método responsável por emitir um dialog de sucesso.
   static void showSuccessDialog(BuildContext context,
       {required String title, required String message, Function()? onPressed}) {
     if (Platform.isAndroid) {
@@ -95,36 +99,5 @@ class ManagerDialogs {
         ),
       );
     }
-  }
-
-  static void showLoadingDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => Material(
-        type: MaterialType.transparency,
-        child: Center(
-          child: Center(
-            child: Platform.isIOS ? _iosLoading() : _androidLoading(context),
-          ),
-        ),
-      ),
-    );
-  }
-
-  static _iosLoading() {
-    return const CupertinoActivityIndicator(
-      animating: true,
-    );
-  }
-
-  static _androidLoading(BuildContext context) {
-    return const Align(
-      alignment: Alignment.center,
-      child: CircularProgressIndicator(
-        backgroundColor: kColorButtonPrimary,
-        color: kColorPrimaryLight,
-      ),
-    );
   }
 }

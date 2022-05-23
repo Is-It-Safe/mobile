@@ -2,28 +2,44 @@ import 'dart:async';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/data/service/home_service.dart';
+import 'package:is_it_safe_app/core/data/service/home/home.dart';
+import 'package:is_it_safe_app/core/data/service/home/home_contract.dart';
 import 'package:is_it_safe_app/core/model/location/location.dart';
 import 'package:is_it_safe_app/core/model/location/location_info.dart';
 
 class HomeBloc implements Disposable {
-  final HomeService _service = HomeService();
-  late StreamController<BaseResponse<List<LocationInfo>>>
-      locationInfoController;
+  final HomeContract service;
+  late StreamController<BaseResponse<List<Location>>> bestRatedPlacesController;
+  late StreamController<BaseResponse<List<Location>>> closePlacesController;
 
-  HomeBloc() {
-    locationInfoController = StreamController.broadcast();
+  HomeBloc({required this.service}) {
+    bestRatedPlacesController = StreamController.broadcast();
+    closePlacesController = StreamController.broadcast();
   }
 
-  Future getLocations() async {
+  Future getBestRatedLocations() async {
     try {
-      locationInfoController.sink.add(BaseResponse.loading());
-      final Location locations = await _service.getLocations();
-      locationInfoController.sink.add(
+      bestRatedPlacesController.sink.add(BaseResponse.loading());
+      final Locations locations = await service.getBestRatedLocations();
+      bestRatedPlacesController.sink.add(
+        BaseResponse.completed(
+          data: locations.content,
+        ),
+      );
+    } catch (e) {
+      bestRatedPlacesController.sink.add(BaseResponse.error(e.toString()));
+    }
+  }
+
+  Future getClosePlacesLocations() async {
+    try {
+      closePlacesController.sink.add(BaseResponse.loading());
+      final Locations locations = await service.getClosePlacesLocations();
+      closePlacesController.sink.add(
         BaseResponse.completed(data: locations.content),
       );
     } catch (e) {
-      locationInfoController.sink.add(BaseResponse.error(e.toString()));
+      closePlacesController.sink.add(BaseResponse.error(e.toString()));
     }
   }
 
