@@ -9,6 +9,9 @@ import 'core/utils/style/themes/theme_state.dart';
 void main() => runApp(
       ChangeNotifierProvider<ThemeState>(
         create: (context) => ThemeState(),
-        child: ModularApp(module: AppModule(), child: const AppWidget()),
+        child: ModularApp(
+          module: AppModule(),
+          child: const AppWidget(),
+        ),
       ),
     );

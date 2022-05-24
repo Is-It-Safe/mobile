@@ -4,10 +4,10 @@ import 'package:is_it_safe_app/app/modules/register_module/register_bloc.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/app/modules/register_module/components/profile_avatar_item.dart';
 import 'package:is_it_safe_app/core/components/secondary_button.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/util/log_util.dart';
 
 class RegisterChooseProfileAvatarWidget extends StatefulWidget {
   const RegisterChooseProfileAvatarWidget({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _RegisterChooseProfileAvatarWidgetState
   void initState() {
     _loadImages();
     super.initState();
-    Log.route(Modular.to.path);
+    LogUtil().route(Modular.to.path);
     //photoListen();
   }
 

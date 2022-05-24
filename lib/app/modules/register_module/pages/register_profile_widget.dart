@@ -13,13 +13,13 @@ import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/Gender.dart';
 import 'package:is_it_safe_app/core/model/SexualOrientation.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
-import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/helper/native_loading.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/util/validation_util.dart';
 
 class RegisterProfileWidget extends StatefulWidget {
   const RegisterProfileWidget({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class _RegisterProfileWidgetState
   @override
   void initState() {
     super.initState();
-    Log.route(Modular.to.path);
+    LogUtil().route(Modular.to.path);
     registrationListen();
     controller.getGenders();
     controller.getSexualOrientations();
@@ -162,7 +162,7 @@ class _RegisterProfileWidgetState
                             inputFormatters: [controller.birthdayInputMask],
                             keyboardType: TextInputType.number,
                             validator: (value) {
-                              if (!Helpers.validateDate(value)) {
+                              if (!ValidationUtil.date(value)) {
                                 return S.of(context).textErrorInvalidDate;
                               }
                               return null;

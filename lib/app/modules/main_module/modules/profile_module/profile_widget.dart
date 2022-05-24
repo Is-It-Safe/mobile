@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/main_module/modules/profile_module/profile_bloc.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/src/util/log_util.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class ProfileWidgetState extends ModularState<ProfileWidget, ProfileBloc> {
   @override
   void initState() {
     super.initState();
-    Log.route(Modular.to.path);
+    LogUtil().route(Modular.to.path);
   }
 
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/register_module/register_module.dart';
 import 'package:is_it_safe_app/core/data/service/login/login.dart';
-import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_custom.dart';
 
 import 'login_bloc.dart';
 import 'login_widget.dart';
@@ -10,9 +10,12 @@ import 'login_widget.dart';
 class LoginModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => LoginBloc(
+    Bind.lazySingleton(
+      (i) => LoginBloc(
         service: LoginService(),
-        customSharedPreferences: CustomSharedPreferences())),
+        sharedPreferences: SharedPreferencesCustom(),
+      ),
+    ),
   ];
 
   @override

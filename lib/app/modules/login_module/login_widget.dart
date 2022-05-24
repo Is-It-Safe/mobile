@@ -5,13 +5,13 @@ import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
 import 'package:is_it_safe_app/core/components/show_field_button.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
-import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/helper/native_loading.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/util/validation_util.dart';
 import 'login_bloc.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -29,7 +29,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
   @override
   void initState() {
     super.initState();
-    Log.route(Modular.to.path);
+    LogUtil().route(Modular.to.path);
     _loginStream();
   }
 
@@ -97,7 +97,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                       validator: (value) {
                         if (value == null
                             ? false
-                            : !Helpers.validateName(value)) {
+                            : !ValidationUtil.name(value)) {
                           return S.of(context).textErrorLoginUsername;
                         } else {
                           return null;
@@ -119,7 +119,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                     validator: (value) {
                       if (value == null
                           ? false
-                          : !Helpers.validatePassword(value)) {
+                          : !ValidationUtil.passowrd(value)) {
                         return S.of(context).textErrorLoginPassword;
                       } else {
                         return null;

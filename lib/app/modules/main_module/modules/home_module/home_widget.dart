@@ -4,12 +4,12 @@ import 'package:is_it_safe_app/app/modules/main_module/modules/home_module/compo
 import 'package:is_it_safe_app/core/components/empty_card.dart';
 import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/model/location/location_info.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/helper/native_loading.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/util/log_util.dart';
 
 import 'components/drawer/custom_drawer.dart';
 import 'home_bloc.dart';
@@ -24,7 +24,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
   @override
   void initState() {
     super.initState();
-    Log.route(Modular.to.path);
+    LogUtil().route(Modular.to.path);
     controller.getClosePlacesLocations();
   }
 

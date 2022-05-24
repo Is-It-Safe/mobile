@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/src/util/log_util.dart';
 
 class CustomInterceptors extends InterceptorsWrapper {
   // ignore: unused_field
@@ -41,31 +40,40 @@ class CustomInterceptors extends InterceptorsWrapper {
   }
 
   void _printError(DioError err) {
-    Log.responseError("----------> INIT ERROR RESPONSE <----------");
-    Log.responseError(
-        "ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}");
-    Log.responseError("BODY => ${err.response?.data}");
-    Log.responseError("-----> END ERROR RESPONSE <----------");
+    LogUtil().response(
+      "----------> INIT ERROR RESPONSE <----------",
+      isError: true,
+    );
+    LogUtil().response(
+      "ERROR[${err.response?.statusCode}]: PATH: ${err.requestOptions.path}",
+      isError: true,
+    );
+    LogUtil().response(
+      "BODY: ${err.response?.data}",
+      isError: true,
+    );
+    LogUtil().response(
+      "-----> END ERROR RESPONSE <----------",
+      isError: true,
+    );
   }
 
   void _printRequest(RequestOptions options, {String? method, String? url}) {
-    Log.request("----------> INIT APP REQUEST <----------");
-    Log.request("${method ?? options.method} => ${url ?? options.path}");
-    Log.request("HEADERS =>");
+    LogUtil().request("----------> INIT APP REQUEST <----------");
+    LogUtil().request("${method ?? options.method}: ${url ?? options.path}");
     options.headers.forEach((key, value) {
-      Log.request("$key => $value");
+      LogUtil().request("HEADERS: $key => $value");
     });
-    Log.request("BODY => ${options.data}");
-    Log.request("----------> END APP REQUEST <----------");
+    LogUtil().request("BODY: ${options.data}");
+    LogUtil().request("----------> END APP REQUEST <----------");
   }
 
   void _printResponse(Response response) {
-    Log.response("----------> INIT API RESPONSE <----------");
-    Log.response(response.requestOptions.path);
-    Log.response("STATUS CODE => ${response.statusCode}");
-    Log.response("HEADERS =>");
-    response.headers.forEach((k, v) => Log.response('$k: $v'));
-    Log.response("BODY => ${response.data}");
-    Log.response("----------> END API RESPONSE <----------");
+    LogUtil().response("----------> INIT API RESPONSE <----------");
+    LogUtil().response(response.requestOptions.path);
+    LogUtil().response("STATUS CODE: ${response.statusCode}");
+    response.headers.forEach((k, v) => LogUtil().response('HEADERS: $k: $v'));
+    LogUtil().response("BODY: ${response.data}");
+    LogUtil().response("----------> END API RESPONSE <----------");
   }
 }

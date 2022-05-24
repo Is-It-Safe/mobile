@@ -7,11 +7,11 @@ import 'package:is_it_safe_app/core/components/my_text_form_field.dart';
 import 'package:is_it_safe_app/core/components/primary_button.dart';
 import 'package:is_it_safe_app/core/components/show_field_button.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
-import 'package:is_it_safe_app/core/utils/helper/helpers.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/util/validation_util.dart';
 
 class RegisterWidget extends StatefulWidget {
   const RegisterWidget({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
   @override
   void initState() {
     super.initState();
-    Log.route(Modular.to.path);
+    LogUtil().route(Modular.to.path);
   }
 
   @override
@@ -73,7 +73,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       if (value == null) {
                         return S.of(context).textErrorEmptyField;
                       }
-                      if (!Helpers.validateName(value)) {
+                      if (!ValidationUtil.name(value)) {
                         return S.of(context).textErrorEmptyField;
                       } else {
                         return null;
@@ -89,7 +89,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       if (value == null) {
                         return S.of(context).textErrorEmptyField;
                       }
-                      if (!Helpers.validateName(value)) {
+                      if (!ValidationUtil.name(value)) {
                         return S.of(context).textErrorEmptyField;
                       } else {
                         return null;
@@ -106,7 +106,9 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                     hintText: S.of(context).textExamplePronouns,
                     bottomText: S.of(context).textHowDoYouPreferWeReferToYou,
                     onChanged: (value) => controller.enableRegisterButton(),
-                    validator: (value) {},
+                    validator: (value) {
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 30),
                   MyTextFormField(
@@ -122,7 +124,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       if (value == null) {
                         return S.of(context).textErrorEmail;
                       }
-                      if (!Helpers.validateEmail(value)) {
+                      if (!ValidationUtil.email(value)) {
                         return S.of(context).textErrorEmail;
                       } else {
                         return null;
@@ -145,7 +147,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       if (value == null) {
                         return S.of(context).textErrorLoginPassword;
                       }
-                      if (!Helpers.validatePassword(value)) {
+                      if (!ValidationUtil.passowrd(value)) {
                         return S.of(context).textErrorLoginPassword;
                       } else {
                         return null;
@@ -185,7 +187,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       if (value == null) {
                         return S.of(context).textErrorDifferentPasswords;
                       }
-                      if (!Helpers.validatePassword(value) ||
+                      if (!ValidationUtil.passowrd(value) ||
                           controller.passwordController.text !=
                               controller.confirmPasswordController.text) {
                         return S.of(context).textErrorDifferentPasswords;

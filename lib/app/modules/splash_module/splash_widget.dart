@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:is_it_safe_app/app/modules/splash_module/splash_bloc.dart';
-import 'package:is_it_safe_app/core/utils/config/custom_shared_preferences.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
 import 'package:is_it_safe_app/core/utils/style/animations/fade_animation.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_custom.dart';
 
 import 'dart:developer' as dev;
+
+import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:logger/logger.dart';
 
 class SplashWidget extends StatefulWidget {
   const SplashWidget({Key? key}) : super(key: key);
@@ -26,7 +28,11 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
     controller.getUsuarioLogin();
     controller.splashStream.listen(
       (event) async {
-        Log.log(event.toString(), name: "IS USER LOGGED?");
+        LogUtil().log(
+          title: "IS USER LOGGED?",
+          message: event.toString(),
+          level: Level.warning,
+        );
         if (event) {
           await Future.delayed(const Duration(seconds: 4));
           //Modular.to.pushReplacementNamed(kRouteMain + kRouteHome);
@@ -39,9 +45,13 @@ class _SplashWidgetState extends ModularState<SplashWidget, SplashBloc> {
 
   _loadData() async {
     await Future.delayed(const Duration(seconds: 4));
-    await CustomSharedPreferences().readUsuarioOnBoarding().then(
+    await SharedPreferencesCustom().readOnBoarding().then(
       (value) async {
-        Log.log(value.toString(), name: "DID USER SEE ONBOARDING?");
+        LogUtil().log(
+          title: "DID USER SEE ONBOARDING?",
+          message: value.toString(),
+          level: Level.warning,
+        );
         if (value) {
           Modular.to.navigate(kRouteLogin);
         } else {

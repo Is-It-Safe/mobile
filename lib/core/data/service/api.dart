@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/core/data/service/api_contract.dart';
 import 'package:is_it_safe_app/core/data/service/config/api_constants.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/src/util/log_util.dart';
 
 import 'config/app_exeptions.dart';
 import 'config/custom_interceptions.dart';
@@ -128,7 +128,7 @@ class APIService implements ApiContract {
           try {
             return (response.data as List?);
           } catch (e) {
-            Log.responseError(e.toString());
+            LogUtil().response(e.toString(), isError: true);
             return <String, dynamic>{};
           }
         }
