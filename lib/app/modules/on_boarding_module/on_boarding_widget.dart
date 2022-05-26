@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/on_boarding_module/components/on_boarding_page_template.dart';
-import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
+import 'package:is_it_safe_app/src/app/components/style/text_styles.dart';
 import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

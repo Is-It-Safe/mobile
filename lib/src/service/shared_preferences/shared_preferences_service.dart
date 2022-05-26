@@ -73,4 +73,16 @@ class SharedPreferencesService implements ISharedPreferencesService {
       ),
     );
   }
+
+  @override
+  void saveTheme(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(KeyConstants.keyTheme, value);
+  }
+
+  @override
+  Future<bool> readTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(KeyConstants.keyTheme) ?? false;
+  }
 }

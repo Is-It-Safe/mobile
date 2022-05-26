@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/style/colors/general_colors.dart';
-import '../../../../core/utils/style/themes/text_styles.dart';
+import '../../../../src/app/components/style/text_styles.dart';
 
 class BannerText extends StatelessWidget {
   const BannerText({Key? key, required this.title}) : super(key: key);

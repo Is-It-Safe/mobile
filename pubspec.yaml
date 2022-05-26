@@ -64,6 +64,8 @@ flutter:
 
   assets:
     - images/
+    - images/modules/
+    - images/modules/auth/
     - images/app/profile_pictures/
     - images/app/on_boarding/
     - images/app/profile_pictures/
@@ -73,9 +75,7 @@ flutter:
     - images/icons/
     - images/app/search_pictures/placeholder/
     - test/src/service/api/modules/auth/mocks/
-
-
-
+    
 
 flutter_intl:
   enabled: true

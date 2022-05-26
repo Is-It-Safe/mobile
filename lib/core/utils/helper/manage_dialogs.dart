@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
+import 'package:is_it_safe_app/src/app/components/style/text_styles.dart';
 
 ///O [ManagerDialogs] é uma classe responsável por gerenciar e armazenar variádos
 ///tipos de dialogs.

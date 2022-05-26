@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
-import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
-import 'package:is_it_safe_app/src/l10n/l10n.dart';
 
 class TermsOfUseWidget extends StatelessWidget {
   const TermsOfUseWidget({Key? key}) : super(key: key);

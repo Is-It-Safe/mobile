@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
+import 'package:is_it_safe_app/src/app/components/style/text_styles.dart';
 
 class MyTextFormField extends StatefulWidget {
   final TextEditingController? controller;

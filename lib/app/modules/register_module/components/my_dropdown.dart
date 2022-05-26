@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
+import 'package:is_it_safe_app/src/app/components/style/text_styles.dart';
 
 // ignore: must_be_immutable
 class MyDropDown extends StatefulWidget {

@@ -11,4 +11,6 @@ abstract class ISharedPreferencesService {
   Future<String> readRefreshToken();
   void saveUserAuth(FormData value);
   Future<FormData> readUserAuth();
+  void saveTheme(bool value);
+  Future<bool> readTheme();
 }

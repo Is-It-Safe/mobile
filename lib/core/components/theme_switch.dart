@@ -11,12 +11,12 @@ class ThemeSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Switch(
-      value: Provider.of<ThemeState>(context).theme == ThemeType.DARK,
+      value: Provider.of<ThemeState>(context).theme == ThemeType.dark,
       activeColor: kColorButtonPrimary,
       inactiveTrackColor: kColorButtonInactive,
       onChanged: (value) {
         Provider.of<ThemeState>(context, listen: false).theme =
-            value ? ThemeType.DARK : ThemeType.LIGHT;
+            value ? ThemeType.dark : ThemeType.light;
       },
     );
   }
