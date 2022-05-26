@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
+import 'package:is_it_safe_app/src/app/components/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/src/app/components/style/text_styles.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 
