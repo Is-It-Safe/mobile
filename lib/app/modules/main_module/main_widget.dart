@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
-import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/log_util.dart';
 
 import 'main_bloc.dart';
 

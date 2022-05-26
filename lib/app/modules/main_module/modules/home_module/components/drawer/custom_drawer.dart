@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
-import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/l10n/l10n.dart';
 
 import 'custom_header.dart';
 import 'custom_tile.dart';
@@ -30,9 +30,7 @@ class CustomDrawer extends StatelessWidget {
               CustomTileDrawer(
                 iconPath: 'minha_conta.svg',
                 title: S.of(context).textDrawerMyAccount,
-
                 route: kRouteMyAccount,
-
               ),
               CustomTileDrawer(
                 iconPath: 'configuracoes.svg',
@@ -61,4 +59,3 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 }
-

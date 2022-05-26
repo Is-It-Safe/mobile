@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
-import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_custom.dart';
+import 'package:is_it_safe_app/src/l10n/l10n.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
 ///Widget responsável por montar as telas de OnBoarding.
 ///
@@ -71,7 +71,7 @@ class OnBoardingPageTemplate extends StatelessWidget {
                       ),
                     ),
                     onPressed: () async {
-                      SharedPreferencesCustom().saveOnBoarding(true);
+                      SharedPreferencesService().saveOnBoarding(true);
                       Modular.to.pushNamedAndRemoveUntil(
                           kRouteLogin, ModalRoute.withName('/'));
                     },
@@ -95,7 +95,7 @@ class OnBoardingPageTemplate extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 64),
                       child: GestureDetector(
                         onTap: () async {
-                          SharedPreferencesCustom().saveOnBoarding(true);
+                          SharedPreferencesService().saveOnBoarding(true);
                           Modular.to.navigate(kRouteLogin);
                         },
                         child: Padding(

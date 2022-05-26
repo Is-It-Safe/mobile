@@ -6,15 +6,14 @@ import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
 import 'package:is_it_safe_app/core/data/service/login/login_contract.dart';
 
 import 'package:is_it_safe_app/core/model/Auth.dart';
-import 'package:is_it_safe_app/src/service/shared_preferences/ishared_preferences_custom.dart';
-import 'package:is_it_safe_app/src/util/constants/string_constants.dart';
-
-import 'package:is_it_safe_app/src/util/log_util.dart';
-import 'package:is_it_safe_app/src/util/validation_util.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/util/validation_util.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
+import 'package:is_it_safe_app/src/core/util/log_util.dart';
 
 class LoginBloc implements Disposable {
   final LoginContract service;
-  final ISharedPreferencesCustom sharedPreferences;
+  final ISharedPreferencesService sharedPreferences;
 
   late StreamController<bool> loginButtonController;
   late StreamController<BaseResponse<Auth>> loginController;

@@ -12,7 +12,3 @@ class AppException extends DioError {
     return "$_prefix $_message";
   }
 }
-
-class FetchDataException extends AppException {
-  FetchDataException([String? json]) : super(json, "");
-}

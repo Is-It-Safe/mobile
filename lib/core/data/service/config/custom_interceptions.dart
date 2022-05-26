@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/log_util.dart';
 
 class CustomInterceptors extends InterceptorsWrapper {
   // ignore: unused_field

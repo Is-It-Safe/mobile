@@ -8,8 +8,8 @@ import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
 import 'package:is_it_safe_app/core/utils/helper/native_loading.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
-import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/l10n/l10n.dart';
 
 import 'components/drawer/custom_drawer.dart';
 import 'home_bloc.dart';

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/service/shared_preferences/ishared_preferences_custom.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class SplashBloc implements Disposable {
-  final ISharedPreferencesCustom sharedPreferences;
+  final ISharedPreferencesService sharedPreferences;
 
   SplashBloc({required this.sharedPreferences});
 

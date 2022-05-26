@@ -1,0 +1,93 @@
+{
+    "textIsItSafe":"Is It Safe?",
+    
+    "textAppBarProfileRegisterPage":"Perfil",
+    "textAppBarChooseProfilePhotoPage": "Escolha seu avatar!",
+    "textAppBarSignUp": "Cadastro",
+
+    "textPageTitleLogin":"Vamos entrar.",
+    "textPageSubtitleLogin":"Sentimos sua falta!",
+    "textPageTitleProfileRegisterPage":"Escolha seu avatar",
+    "textPageSubtitleProfileRegisterPage":"Não se esqueça de sorrir!",
+
+    "textButtonForgotPassword":"Esqueceu sua senha?",
+    "textButtonDontHaveAccount":"Não possui uma conta?",
+
+    "textErrorLoginUsername":"Por favor, digite um nome de usuário válido",
+    "textErrorLoginPassword":"Por favor, digite uma senha válida",
+    "textErrorWrongFields":"Campos errados! Tente novamente.",
+    "textErrorInvalidDate":"Por favor, digite uma data válida",
+    "textErrorEmptyField":"Esse campo não pode ficar vazio",
+    "textErrorEmail":"Por favor, digite um e-mail válido",
+    "textErrorPronouns":"ex: Ela/Dela, Ele/Dele, Ela/Elu",
+    "textErrorDifferentPasswords":"Os campos de senha devem ser iguais",
+    "textErrorEmptyAvatar": "Por favor, selecione seu avatar!",
+    "textErrorDropdown": "Algo deu errado!",
+    "textErrorSearch" : "Algo deu errado na Pesquisa!",
+    "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
+    
+
+    "textSuccessRegistration":"Usuário Registrado",
+
+    "textDrawerAddLocation":"Adicionar Local",
+    "textDrawerMyAccount":"Minha Conta",
+
+    "textUsername":"Usuário",
+    "textPassword":"Senha",
+    "textPasswordConfirmation":"Confirmar senha",
+    "textLogin":"Login",
+    "textSignUp":"Cadastre-se",
+    "textDateOfBirth":"Data de nascimento",
+    "textGender":"Gênero",
+    "textSexualOrientation":"Orientação Sexual",
+    "textForgotGender":"Esqueci algum? Por favor",
+    "textforgotGenderSubtext":"me avise!",
+    "textSkipForNow":"Pular",
+    "textRegister":"Cadastrar",
+    "textPronouns":"Pronomes",
+    "textName":"Nome",
+    "textEmailAddress":"Endereço de E-mail",
+    "textReady": "Pronto",
+    "textCancel": "Cancelar",
+    "textConfirm": "Confirmar",
+    "textAdvance": "Avançar",
+    "textLoading":"Carregando...",
+    "textFinish":"Finalizar",
+    "textClosePlaces":"Lugares Próximos",
+    "textBestRates":"Melhores Avaliados",
+    "textSearch":"Search",
+    "textConfiguration":"Configurações",
+    "textPrivacy":"Privacidade",
+    "textTermsOfUse":"Termos de Uso",
+    "textAbout":"Sobre",
+    "textContact":"Contato",
+
+    "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, seja criativo!",
+    "textHowDoYouPreferWeReferToYou":"Como prefere que as pessoas se refiram a você?",
+    "textWeCareAboutYourSafety":"Sua segurança é muito importante para nós.",
+    "textAtLeast8Characteres":"- Sua senha deve ter mais de 8 caracteres",
+    "textLettersAndNumbers":"- letras e números",
+    "textIReadAndAcceptThe":"Eu li e aceito os ",
+    "textTermsAndConditions":"termos e condições",
+    "textWelcome": "Olá!,",
+    "textMeetingYouWillBeAPleasure":"Será um prazer te conhecer.",
+    "textSayYourNameThisInfoIsPrivate":"Nos diga seu nome!\nEssa informação aparecerá apenas para você.",
+    "textTellUsTheEmailAssociatedWithYourAccount":"Nos diga seu e-mail, ele será associado a sua conta",
+    "textYourRepresentationHereInside":"Uma representação sua aqui dentro!",
+    "textTypeTheNameOfAPlaceToSearch":"Digite o nome de um local para buscar.",
+    
+    "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
+
+    
+    "textOnBoarding1_0":"Foco em",
+    "textOnBoarding1_1":"segurança",
+    "textOnBoarding1_2":"e",
+    "textOnBoarding1_3":"comunidade",
+    "textOnBoarding2_0":"Saiba onde frequentar com",
+    "textOnBoarding2_1":"segurança",
+    "textOnBoarding3_0":"Descreva suas",
+    "textOnBoarding3_1":"experiências",
+    "textOnBoarding3_2":"e avalie locais"
+
+    
+}

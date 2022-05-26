@@ -4,13 +4,13 @@ import 'package:is_it_safe_app/app/modules/on_boarding_module/on_boarding_module
 import 'package:is_it_safe_app/app/modules/splash_module/splash_bloc.dart';
 import 'package:is_it_safe_app/app/modules/splash_module/splash_widget.dart';
 import 'package:is_it_safe_app/core/utils/constants/routes.dart';
-import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_custom.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
 class SplashModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton(
-        (i) => SplashBloc(sharedPreferences: SharedPreferencesCustom())),
+        (i) => SplashBloc(sharedPreferences: SharedPreferencesService())),
   ];
 
   @override

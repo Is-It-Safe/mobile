@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/app/modules/main_module/modules/profile_module/profile_bloc.dart';
-import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/log_util.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({Key? key}) : super(key: key);

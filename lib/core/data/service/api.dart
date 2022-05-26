@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/core/data/service/api_contract.dart';
 import 'package:is_it_safe_app/core/data/service/config/api_constants.dart';
-import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/service/api/error/error_fetch_data_exception.dart';
 
-import 'config/app_exeptions.dart';
 import 'config/custom_interceptions.dart';
 
 enum HttpMethod { get, post, patch, delete }

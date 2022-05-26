@@ -6,8 +6,8 @@ import 'package:is_it_safe_app/app/modules/register_module/components/profile_av
 import 'package:is_it_safe_app/core/components/secondary_button.dart';
 import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
-import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/l10n/l10n.dart';
 
 class RegisterChooseProfileAvatarWidget extends StatefulWidget {
   const RegisterChooseProfileAvatarWidget({Key? key}) : super(key: key);

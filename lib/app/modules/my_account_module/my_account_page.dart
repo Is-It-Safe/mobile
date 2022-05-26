@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/app/modules/my_account_module/components/action_text_component.dart';
-import 'package:is_it_safe_app/app/modules/my_account_module/components/banner_text_component.dart';
 import 'package:is_it_safe_app/app/modules/my_account_module/components/info_text_component.dart';
 import 'package:is_it_safe_app/core/components/app_bar.dart';
 import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
-import 'package:is_it_safe_app/src/util/log_util.dart';
-import '../../../generated/l10n.dart';
+import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'my_account_bloc.dart';
-/*
-TODO: Os textos mockados devem ser alterados por variáveis
-*/
 
 class MyAccountPage extends StatefulWidget {
   const MyAccountPage({
@@ -33,7 +29,7 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
     return Scaffold(
       appBar: appBar(
           context: context,
-          title: S.of(context).textMyAccount,
+          title: '', //S.of(context).textMyAccount,
           hasLeading: true),
       body: LayoutBuilder(
         builder: ((context, constraints) {
@@ -50,7 +46,6 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
                     const SizedBox(
                       height: 35,
                     ),
-                    //TODO: Colocar o componente de selecionar o avatar
                     const CircleAvatar(
                       foregroundColor: Colors.red,
                       radius: 50,
@@ -75,9 +70,9 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
                     const SizedBox(
                       height: 52,
                     ),
-                    BannerText(
-                      title: S.of(context).textPersonalInformation,
-                    ),
+                    // BannerText(
+                    //   title: S.of(context).textPersonalInformation,
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 32, vertical: 40),
@@ -91,14 +86,14 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
                               title: S.of(context).textName,
                               value: controller.name ?? "",
                             ),
-                            InfoTextComponent(
-                              title: S.of(context).textNickname,
-                              value: controller.nickname ?? "",
-                            ),
-                            InfoTextComponent(
-                              title: S.of(context).textPronoun,
-                              value: controller.pronoun ?? "",
-                            ),
+                            // InfoTextComponent(
+                            //   title: S.of(context).textNickname,
+                            //   value: controller.nickname ?? "",
+                            // ),
+                            // InfoTextComponent(
+                            //   title: S.of(context).textPronoun,
+                            //   value: controller.pronoun ?? "",
+                            // ),
                             InfoTextComponent(
                               title: S.of(context).textDateOfBirth,
                               value: controller.dateOfBirth ?? "",
@@ -111,18 +106,18 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
                               title: S.of(context).textGender,
                               value: controller.gender ?? "",
                             ),
-                            ActionTextComponent(
-                              title: S.of(context).textEditProfile,
-                              onPressed: () {},
-                              isLastItem: true,
-                            ),
+                            // ActionTextComponent(
+                            //   title: S.of(context).textEditProfile,
+                            //   onPressed: () {},
+                            //   isLastItem: true,
+                            // ),
                           ],
                         ),
                       ),
                     ),
-                    BannerText(
-                      title: S.of(context).textPersonalInformation,
-                    ),
+                    // BannerText(
+                    //   title: S.of(context).textPersonalInformation,
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 40, horizontal: 32),
@@ -136,14 +131,14 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
                             title: S.of(context).textPassword,
                             onPressed: () {},
                           ),
-                          ActionTextComponent(
-                            title: S.of(context).textDisableMyAccount,
-                            onPressed: () {},
-                          ),
-                          ActionTextComponent(
-                            title: S.of(context).textExit,
-                            onPressed: () {},
-                          ),
+                          // ActionTextComponent(
+                          //   title: S.of(context).textDisableMyAccount,
+                          //   onPressed: () {},
+                          // ),
+                          // ActionTextComponent(
+                          //   title: S.of(context).textExit,
+                          //   onPressed: () {},
+                          // ),
                         ],
                       ),
                     )
