@@ -75,6 +75,7 @@ flutter:
     - images/icons/
     - images/app/search_pictures/placeholder/
     - test/src/service/api/modules/auth/mocks/
+    - images/logo/logo.png
     
 
 flutter_intl:

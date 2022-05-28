@@ -23,7 +23,9 @@ class ProfileAvatarItem extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isSelected ? kColorButtonSecondary : kColorPrimaryLight,
+          color: isSelected
+              ? SafeColors.buttonColors.secondary
+              : SafeColors.generalColors.primary,
           image: DecorationImage(
             image: AssetImage(path),
             alignment: Alignment.topCenter,

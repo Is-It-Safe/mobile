@@ -12,8 +12,8 @@ class ThemeSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Switch(
       value: Provider.of<ThemeState>(context).theme == ThemeType.dark,
-      activeColor: kColorButtonPrimary,
-      inactiveTrackColor: kColorButtonInactive,
+      activeColor: SafeColors.buttonColors.primary,
+      inactiveTrackColor: Use SafeColors.buttonColors.disabled,
       onChanged: (value) {
         Provider.of<ThemeState>(context, listen: false).theme =
             value ? ThemeType.dark : ThemeType.light;

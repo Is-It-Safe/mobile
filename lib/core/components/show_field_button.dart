@@ -14,7 +14,7 @@ class ShowFieldButton extends StatelessWidget {
       onTap: onTap,
       child: Icon(
         isDisplayed ? Icons.visibility : Icons.visibility_off,
-        color: kColorTextLight,
+        color: SafeColors.textColors.dark,
       ),
     );
   }

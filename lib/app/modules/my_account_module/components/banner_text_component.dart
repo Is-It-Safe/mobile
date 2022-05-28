@@ -11,7 +11,7 @@ class BannerText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      color: kColorSecondaryLight,
+      color: SafeColors.generalColors.secondary,
       child: Padding(
         padding: const EdgeInsets.only(
           left: 32,
@@ -21,7 +21,7 @@ class BannerText extends StatelessWidget {
         child: Text(
           title,
           style: TextStyles.custom(
-            color: kColorPrimaryLight,
+            color: SafeColors.generalColors.primary,
             fontWeight: FontWeight.w600,
             fontSize: 20,
           ),

@@ -46,9 +46,9 @@ class _RegisterChooseProfileAvatarWidgetState
       SnackBar(
         content: Text(
           S.of(context).textErrorEmptyAvatar,
-          style: TextStyles.helper(color: kColorPrimaryLight),
+          style: TextStyles.helper(color: SafeColors.generalColors.primary),
         ),
-        backgroundColor: kColorStatusError,
+        backgroundColor: SafeColors.statusColors.error,
       ),
     );
   }
@@ -96,7 +96,7 @@ class _RegisterChooseProfileAvatarWidgetState
               alignment: Alignment.bottomCenter,
               child: Container(
                 height: 60,
-                color: kColorBackgroundLight,
+                color: SafeColors.generalColors.background,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

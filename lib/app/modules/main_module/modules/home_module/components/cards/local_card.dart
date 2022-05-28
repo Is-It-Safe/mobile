@@ -20,7 +20,7 @@ class LocalCard extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: kColorPrimaryLight,
+          color: SafeColors.generalColors.primary,
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Column(
@@ -82,7 +82,7 @@ class LocalCard extends StatelessWidget {
                           locationInfo.name,
                           textAlign: TextAlign.start,
                           style: TextStyles.subtitle1(
-                            color: kColorTextLight,
+                            color: SafeColors.textColors.dark,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -96,7 +96,7 @@ class LocalCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyles.custom(
                             fontSize: 12,
-                            color: kColorTextLabel,
+                            color: SafeColors.textColors.label,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -109,7 +109,7 @@ class LocalCard extends StatelessWidget {
                           Text(
                             locationInfo.reviewsQnt.toString() + ' reviews',
                             style: TextStyles.helper(
-                              color: kColorTextLight,
+                              color: SafeColors.textColors.dark,
                               fontSize: 12,
                             ),
                           ),

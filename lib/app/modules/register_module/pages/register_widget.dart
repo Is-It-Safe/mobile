@@ -212,12 +212,12 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       children: [
                         Checkbox(
                           value: controller.termsAndConditionsCheckbox,
-                          activeColor: kColorButtonPrimary,
+                          activeColor: SafeColors.buttonColors.primary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6),
                           ),
                           side: const BorderSide(
-                            color: kColorButtonPrimary,
+                            color: SafeColors.buttonColors.primary,
                             width: 1,
                           ),
                           onChanged: (value) => setState(() {
@@ -244,7 +244,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                                       "*",
                                   style: TextStyles.helper(
                                     fontSize: 12,
-                                    color: kColorStatusActive,
+                                    color: SafeColors.statusColors.active,
                                   ),
                                 ),
                               ],
@@ -263,10 +263,10 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                           return PrimaryButton(
                               text: S.of(context).textRegister,
                               textColor: snapshot.data == true
-                                  ? kColorPrimaryLight
-                                  : kColorTextLabel,
+                                  ? SafeColors.generalColors.primary
+                                  : SafeColors.textColors.label,
                               color: snapshot.data == false
-                                  ? kColorStatusDisabled
+                                  ? SafeColors.statusColors.disabled
                                   : null,
                               onTap: () {
                                 _formKey.currentState?.validate();

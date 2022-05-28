@@ -24,7 +24,7 @@ class InfoTextComponent extends StatelessWidget {
         ),
         Text(
           value,
-          style: TextStyles.subtitle1(color: kColorTextLabel),
+          style: TextStyles.subtitle1(color: SafeColors.textColors.label),
         ),
         const SizedBox(
           height: 32,

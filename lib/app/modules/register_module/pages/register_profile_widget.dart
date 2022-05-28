@@ -257,9 +257,10 @@ class _RegisterProfileWidgetState
                               ),
                               Expanded(
                                 child: PrimaryButton(
-                                  color: kColorStatusActive,
+                                  color: SafeColors.statusColors.active,
                                   text: S.of(context).textFinish,
-                                  textColor: kColorBackgroundLight,
+                                  textColor:
+                                      SafeColors.generalColors.background,
                                   onTap: () async {
                                     controller.registerUser();
                                   },

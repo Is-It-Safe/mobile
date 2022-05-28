@@ -29,7 +29,7 @@ class SecondaryButton extends StatelessWidget {
         width: width ?? 120,
         decoration: BoxDecoration(
           border: Border.all(
-            color: borderColor ?? kColorButtonPrimary,
+            color: borderColor ?? SafeColors.buttonColors.primary,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(6),

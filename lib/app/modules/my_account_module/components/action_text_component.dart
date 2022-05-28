@@ -20,7 +20,7 @@ class ActionTextComponent extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isLastItem;
 
-  get kColorTextLight => null;
+  get SafeColors.textColors.dark => null;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,8 @@ class ActionTextComponent extends StatelessWidget {
           Expanded(
             child: Text(
               title,
-              style: TextStyles.subtitle1(color: kColorSecondaryLight),
+              style: TextStyles.subtitle1(
+                  color: SafeColors.generalColors.secondary),
             ),
           ),
           IconButton(
@@ -39,7 +40,7 @@ class ActionTextComponent extends StatelessWidget {
             icon: const Icon(
               Icons.arrow_forward_ios,
               size: 17,
-              color: kColorSecondaryLight,
+              color: SafeColors.generalColors.secondary,
             ),
           )
         ],

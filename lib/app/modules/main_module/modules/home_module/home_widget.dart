@@ -47,8 +47,8 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
           profileImagePath: 'images/app/profile_pictures/profile_pic_1.png',
         ),
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: kColorTextLight),
-          backgroundColor: kColorWhiteBackground,
+          iconTheme: const IconThemeData(color: SafeColors.textColors.dark),
+          backgroundColor: SafeColors.generalColors.white,
           title: Row(
             children: [
               Image.asset(
@@ -66,7 +66,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
             ],
           ),
           bottom: TabBar(
-            indicatorColor: kColorTextLight,
+            indicatorColor: SafeColors.textColors.dark,
             indicatorSize: TabBarIndicatorSize.tab,
             onTap: (tab) {
               if (tab == 0) controller.getClosePlacesLocations();
@@ -120,7 +120,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                           padding: const EdgeInsets.only(
                               left: 20, right: 20, top: 20),
                           child: Container(
-                            color: kColorWhiteBackground,
+                            color: SafeColors.generalColors.white,
                             child: ListView.separated(
                               itemCount: snapshot.data!.data!.length,
                               separatorBuilder: ((context, index) =>
@@ -166,7 +166,7 @@ class HomeWidgetState extends ModularState<HomeWidget, HomeBloc> {
                           padding: const EdgeInsets.only(
                               left: 20, right: 20, top: 20),
                           child: Container(
-                            color: kColorWhiteBackground,
+                            color: SafeColors.generalColors.white,
                             child: ListView.separated(
                               itemCount: snapshot.data!.data!.length,
                               separatorBuilder: ((context, index) =>

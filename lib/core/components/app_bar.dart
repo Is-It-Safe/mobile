@@ -25,7 +25,7 @@ AppBar appBar({
             icon: const Icon(
               Icons.arrow_back_ios_new,
               size: 17,
-              color: kColorTextLight,
+              color: SafeColors.textColors.dark,
             ),
           )
         : null,

@@ -27,7 +27,9 @@ class _MyDropDownState extends State<MyDropDown> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: widget.isExapanded ? kColorStatusActive : kColorTextLight,
+          color: widget.isExapanded
+              ? SafeColors.statusColors.active
+              : SafeColors.textColors.dark,
         ),
         borderRadius: const BorderRadius.all(Radius.circular(4.0)),
       ),
@@ -43,7 +45,7 @@ class _MyDropDownState extends State<MyDropDown> {
           ExpansionPanel(
             canTapOnHeader: true,
             isExpanded: widget.isExapanded,
-            backgroundColor: kColorBackgroundLight,
+            backgroundColor: SafeColors.generalColors.background,
             headerBuilder: (BuildContext context, bool isExpanded) {
               return ListTile(
                 title: Text(
@@ -51,7 +53,7 @@ class _MyDropDownState extends State<MyDropDown> {
                   style: widget.isExapanded
                       ? TextStyles.custom(
                           fontSize: 13,
-                          color: kColorStatusActive,
+                          color: SafeColors.statusColors.active,
                         )
                       : TextStyles.custom(fontSize: 13),
                 ),

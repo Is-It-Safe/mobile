@@ -22,7 +22,7 @@ class EmptyCard extends StatelessWidget {
               text,
               textAlign: TextAlign.center,
               style: TextStyles.bodyText1(
-                color: kColorTextLabel,
+                color: SafeColors.textColors.label,
               ),
             ),
           ],

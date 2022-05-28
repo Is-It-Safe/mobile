@@ -22,7 +22,7 @@ class CustomHeaderDrawer extends StatelessWidget {
                   width: 60,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: kColorButtonSecondary,
+                    color: SafeColors.buttonColors.secondary,
                     image: DecorationImage(
                       image: AssetImage(profileImagePath!),
                       alignment: Alignment.topCenter,

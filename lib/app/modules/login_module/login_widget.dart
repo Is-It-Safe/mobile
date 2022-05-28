@@ -151,10 +151,10 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                       return PrimaryButton(
                         text: S.of(context).textLogin,
                         textColor: snapshot.data == true
-                            ? kColorPrimaryLight
-                            : kColorTextLabel,
+                            ? SafeColors.generalColors.primary
+                            : SafeColors.textColors.label,
                         color: snapshot.data == false
-                            ? kColorStatusDisabled
+                            ? SafeColors.statusColors.disabled
                             : null,
                         onTap: () async {
                           if (snapshot.data == true) {
@@ -178,7 +178,7 @@ class _LoginWidgetState extends ModularState<LoginWidget, LoginBloc> {
                           child: Text(
                             S.of(context).textSignUp,
                             style: TextStyles.button(
-                              color: kColorButtonPrimary,
+                              color: SafeColors.buttonColors.primary,
                               fontSize: 12,
                               decoration: TextDecoration.underline,
                             ),

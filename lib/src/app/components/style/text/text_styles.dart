@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:is_it_safe_app/src/app/components/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/src/app/components/style/font_size.dart';
+import 'package:is_it_safe_app/src/app/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/app/components/style/text/font_size.dart';
 
 ///O [TextStyles] é uma classe responsável por gerenciar e armazenar variádos
 ///tipos de estilização de textos.
@@ -20,7 +20,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: fontWeight ?? FontWeight.bold,
       decoration: textDecoration,
       fontSize: FontSize.xxxxLarge,
@@ -34,7 +34,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: fontWeight ?? FontWeight.normal,
       decoration: textDecoration,
       fontSize: FontSize.xxxLarge,
@@ -48,7 +48,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: fontWeight ?? FontWeight.bold,
       decoration: textDecoration,
       fontSize: FontSize.xLarge,
@@ -60,7 +60,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: FontWeight.normal,
       decoration: textDecoration,
       fontSize: FontSize.large,
@@ -73,7 +73,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: FontWeight.bold,
       decoration: textDecoration,
       fontSize: FontSize.medium,
@@ -86,7 +86,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: FontWeight.normal,
       decoration: textDecoration,
       fontSize: FontSize.medium,
@@ -99,7 +99,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: FontWeight.normal,
       decoration: textDecoration,
       fontSize: FontSize.small,
@@ -112,7 +112,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: FontWeight.w300,
       decoration: textDecoration,
       fontSize: FontSize.xSmall,
@@ -125,7 +125,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: FontWeight.w500,
       decoration: textDecoration,
       fontSize: FontSize.xxSmall,
@@ -138,7 +138,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: FontWeight.w500,
       fontSize: FontSize.small,
       decoration: textDecoration,
@@ -152,7 +152,7 @@ class TextStyles {
     TextDecoration? textDecoration,
   }) {
     return GoogleFonts.poppins(
-      color: color ?? kColorTextLight,
+      color: color ?? SafeColors.textColors.dark,
       fontWeight: fontWeight ?? FontWeight.normal,
       decoration: textDecoration,
       fontSize: FontSize.xSmall,

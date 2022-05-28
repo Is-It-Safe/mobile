@@ -30,8 +30,8 @@ class NativeLoading extends StatelessWidget {
     return const Align(
       alignment: Alignment.center,
       child: CircularProgressIndicator(
-        backgroundColor: kColorButtonPrimary,
-        color: kColorPrimaryLight,
+        backgroundColor: SafeColors.buttonColors.primary,
+        color: SafeColors.generalColors.primary,
       ),
     );
   }

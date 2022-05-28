@@ -61,14 +61,16 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
       children: [
         TextFormField(
           controller: widget.controller,
-          cursorColor: kColorStatusActive,
+          cursorColor: SafeColors.statusColors.active,
           readOnly: widget.readOnly ?? false,
           keyboardType: widget.keyboardType ?? TextInputType.text,
           inputFormatters: widget.inputFormatters,
           decoration: InputDecoration(
             labelText: widget.labelText,
             labelStyle: TextStyles.label(
-              color: _focusNode.hasFocus ? kColorStatusActive : kColorTextLight,
+              color: _focusNode.hasFocus
+                  ? SafeColors.statusColors.active
+                  : SafeColors.textColors.dark,
             ),
             hintText: widget.hintText,
             hintStyle: TextStyles.label(),

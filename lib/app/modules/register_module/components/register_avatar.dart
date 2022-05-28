@@ -18,7 +18,7 @@ class RegisterAvatar extends StatelessWidget {
         height: 120,
         width: 120,
         decoration: BoxDecoration(
-          color: kColorButtonSecondary,
+          color: SafeColors.buttonColors.secondary,
           shape: BoxShape.circle,
           image: DecorationImage(
             fit: BoxFit.cover,

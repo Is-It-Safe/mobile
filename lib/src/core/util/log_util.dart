@@ -10,11 +10,13 @@ class LogUtil {
   final logger = Logger(
     printer: PrettyPrinter(
       methodCount: 0,
-      errorMethodCount: 3,
-      lineLength: 50,
+      errorMethodCount: 0,
+      lineLength: 120,
       colors: true,
       printEmojis: true,
       printTime: false,
+      noBoxingByDefault: false,
+      stackTraceBeginIndex: 0,
     ),
   );
 
@@ -23,8 +25,30 @@ class LogUtil {
     required String title,
     required String message,
     required Level level,
-  }) =>
-      logger.log(level, '$title: $message');
+  }) {
+    switch (level) {
+      case Level.warning:
+        logger.w('${title.toUpperCase()}: $message');
+        break;
+      case Level.debug:
+        logger.d('${title.toUpperCase()}: $message');
+        break;
+      case Level.error:
+        logger.e('${title.toUpperCase()}: $message');
+        break;
+      case Level.info:
+        logger.i('${title.toUpperCase()}: $message');
+        break;
+      case Level.wtf:
+        logger.wtf('${title.toUpperCase()}: $message');
+        break;
+      case Level.verbose:
+        logger.v('${title.toUpperCase()}: $message');
+        break;
+      default:
+        logger.log(level, '${title.toUpperCase()}: $message');
+    }
+  }
 
   ///Método de log de rota
   void route(String route) => logger.i('ROUTE: $route');

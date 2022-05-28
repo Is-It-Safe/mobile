@@ -15,7 +15,7 @@ class ManagerDialogs {
         barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: kColorBackgroundLight,
+          backgroundColor: SafeColors.generalColors.background,
           title: Text(
             "Atenção!",
             style: TextStyles.button(fontSize: 14),
@@ -61,7 +61,7 @@ class ManagerDialogs {
         barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: kColorBackgroundLight,
+          backgroundColor: SafeColors.generalColors.background,
           title: Text(
             title,
             style: TextStyles.button(fontSize: 14),
