@@ -1,3 +1,1 @@
-abstract class SafeUseCase {
-  Future<dynamic> call();
-}
+abstract class SafeUseCase {}

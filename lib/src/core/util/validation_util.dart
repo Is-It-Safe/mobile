@@ -39,7 +39,7 @@ class ValidationUtil {
   }
 
   /// Método responsável por validar uma senha.
-  static bool passowrd(String value) {
+  static bool passoword(String value) {
     RegExp regex = RegExp(RegexConstants.passwordRegex as String);
     return regex.hasMatch(value.trim());
   }

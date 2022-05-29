@@ -67,8 +67,6 @@ flutter:
     - images/modules/
     - images/modules/auth/
     - images/app/profile_pictures/
-    - images/app/on_boarding/
-    - images/app/profile_pictures/
     - images/app/home/
     - images/app/home/drawer/
     - images/app/profile_pictures/placeholder/
@@ -76,6 +74,7 @@ flutter:
     - images/app/search_pictures/placeholder/
     - test/src/service/api/modules/auth/mocks/
     - images/logo/logo.png
+    - images/modules/auth/
     
 
 flutter_intl:

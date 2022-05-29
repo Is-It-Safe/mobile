@@ -147,7 +147,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       if (value == null) {
                         return S.of(context).textErrorLoginPassword;
                       }
-                      if (!ValidationUtil.passowrd(value)) {
+                      if (!ValidationUtil.passoword(value)) {
                         return S.of(context).textErrorLoginPassword;
                       } else {
                         return null;
@@ -187,7 +187,7 @@ class _RegisterWidgetState extends ModularState<RegisterWidget, RegisterBloc> {
                       if (value == null) {
                         return S.of(context).textErrorDifferentPasswords;
                       }
-                      if (!ValidationUtil.passowrd(value) ||
+                      if (!ValidationUtil.passoword(value) ||
                           controller.passwordController.text !=
                               controller.confirmPasswordController.text) {
                         return S.of(context).textErrorDifferentPasswords;

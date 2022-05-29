@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 enum Status { loading, completed, error }
 
-class StreamResponse<T> {
+class SafeResponse<T> {
   Status status;
   T? data;
   String? message;
 
-  StreamResponse.loading() : status = Status.loading;
+  SafeResponse.loading() : status = Status.loading;
 
-  StreamResponse.completed({required this.data}) : status = Status.completed;
+  SafeResponse.completed({required this.data}) : status = Status.completed;
 
-  StreamResponse.error(this.message) : status = Status.error;
+  SafeResponse.error(this.message) : status = Status.error;
 
   @override
   String toString() {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SafeColors {
   static _GeneralColors generalColors = _GeneralColors();
-  static _NavBarColors navBarColors = _NavBarColors();
+  static _ComponentsColors componentsColors = _ComponentsColors();
   static _StatusColors statusColors = _StatusColors();
   static _TextColors textColors = _TextColors();
   static _ButtonColors buttonColors = _ButtonColors();
@@ -19,8 +19,14 @@ class _GeneralColors {
   Color white = const Color(0xFFFAF9FF);
 }
 
-class _NavBarColors {
-  Color icon = const Color(0xFF7C68F0);
+class _ComponentsColors {
+  Color smoothPageIndicatorColor = const Color(0xFFE9E9E9);
+  _IconColors iconColors = _IconColors();
+}
+
+class _IconColors {
+  Color main = const Color(0xFF190A33);
+  Color navBar = const Color(0xFF7C68F0);
 }
 
 class _StatusColors {
@@ -31,14 +37,18 @@ class _StatusColors {
 
 class _TextColors {
   Color dark = const Color(0xFF190A33);
+  Color white = const Color(0xFFFAF9FF);
   Color label = const Color(0xFF535353);
+  Color focused = const Color(0xFFBB86FC);
+  Color disabled = const Color(0xFFB6B2C2);
 }
 
 class _ButtonColors {
   Color primary = const Color(0xFF5C45ED);
   Color secondary = const Color(0xFF7B61FF);
-  Color hover = const Color(0xFF4534B2);
+  Color focused = const Color(0xFFBB86FC);
   Color disabled = const Color(0xFFDADADA);
+  Color danger = const Color(0xFFEB3D3D);
 }
 
 class _MaterialButtonColors {
