@@ -159,6 +159,12 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
         context,
         value: value,
       ),
+      suffixIcon: SafeShowFieldButton(
+        value: _showPassword,
+        onTap: () => setState(() {
+          _showPassword = !_showPassword;
+        }),
+      ),
     );
   }
 
