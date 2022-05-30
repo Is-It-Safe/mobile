@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:is_it_safe_app/src/app/components/style/colors/safe_colors.dart';
-import 'package:is_it_safe_app/src/app/components/style/text/text_styles.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class SafeTextFormField extends StatefulWidget {
@@ -84,7 +84,7 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
           validator: widget.validator,
         ),
         Visibility(
-          visible: widget.bottomText?.isEmpty ?? false,
+          visible: widget.bottomText?.isNotEmpty ?? false,
           child: Align(
             alignment: Alignment.centerLeft,
             child: Padding(

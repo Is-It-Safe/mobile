@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/components/style/colors/safe_colors.dart';
-import 'package:is_it_safe_app/src/app/components/style/text/text_styles.dart';
-import 'package:is_it_safe_app/src/app/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/app/components/widgets/safe_show_field_button.dart';
-import 'package:is_it_safe_app/src/app/components/widgets/safe_text_form_field.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/bloc/login_bloc.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
@@ -44,7 +45,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
                 children: [
                   _mountTitle(context),
                   const SizedBox(height: 30),
-                  _mountLoginField(context),
+                  _mountUsernameField(context),
                   const SizedBox(height: 18),
                   _mountPasswordField(context),
                   //TODO comentar até funcionalidade for implementada
@@ -72,7 +73,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
         ),
         TextButton(
           onPressed: () {
-            //TODO Add navegação para Registro
+            Modular.to.pushNamed(RegisterPage.route);
           },
           child: Text(
             S.of(context).textSignUp,
@@ -96,6 +97,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
           state:
               snapshot.data == true ? ButtonState.rest : ButtonState.disabled,
           onTap: () async {
+            _formKey.currentState?.validate();
             if (snapshot.data == true) {
               await controller.doLogin();
             }
@@ -139,7 +141,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     );
   }
 
-  Widget _mountLoginField(BuildContext context) {
+  Widget _mountUsernameField(BuildContext context) {
     return SafeTextFormField(
       controller: controller.usernameController,
       labelText: S.of(context).textUsername,

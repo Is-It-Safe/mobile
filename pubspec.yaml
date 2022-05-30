@@ -66,15 +66,15 @@ flutter:
     - images/
     - images/modules/
     - images/modules/auth/
-    - images/app/profile_pictures/
     - images/app/home/
     - images/app/home/drawer/
-    - images/app/profile_pictures/placeholder/
     - images/icons/
     - images/app/search_pictures/placeholder/
     - test/src/service/api/modules/auth/mocks/
     - images/logo/logo.png
     - images/modules/auth/
+    - images/modules/auth/profile_pictures/
+    - images/modules/auth/profile_pictures/placeholder/
     
 
 flutter_intl:

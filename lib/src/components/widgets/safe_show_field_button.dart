@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:is_it_safe_app/src/app/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 
 class SafeShowFieldButton extends StatefulWidget {
   final bool value;

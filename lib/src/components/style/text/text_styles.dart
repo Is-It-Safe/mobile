@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:is_it_safe_app/src/app/components/style/colors/safe_colors.dart';
-import 'package:is_it_safe_app/src/app/components/style/text/font_size.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/font_size.dart';
 
 ///O [TextStyles] é uma classe responsável por gerenciar e armazenar variádos
 ///tipos de estilização de textos.
@@ -77,6 +77,17 @@ class TextStyles {
       fontWeight: FontWeight.bold,
       decoration: textDecoration,
       fontSize: FontSize.medium,
+    );
+  }
+
+  static TextStyle appBarHome({
+    TextDecoration? textDecoration,
+  }) {
+    return GoogleFonts.poppins(
+      color: SafeColors.textColors.dark,
+      fontWeight: FontWeight.bold,
+      decoration: textDecoration,
+      fontSize: FontSize.large,
     );
   }
 

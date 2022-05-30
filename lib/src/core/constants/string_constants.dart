@@ -6,4 +6,16 @@ class StringConstants {
   static const String space = ' ';
   static const String dot = '.';
   static const String breakLine = '\n';
+  static const String comma = ',';
+  static const String colon = ':';
+  static const String semicolon = ';';
+  static const String questionMark = '?';
+  static const String ampersand = '&';
+  static const String at = '@';
+  static const String hash = '#';
+  static const String dollar = '\$';
+  static const String percent = '%';
+  static const String asterisk = '*';
+  static const String dateMask = '##/##/####';
+  static const String phoneMask = '(##) #####-####';
 }

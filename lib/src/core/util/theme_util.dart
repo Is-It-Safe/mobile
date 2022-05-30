@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:is_it_safe_app/src/app/components/theme/theme_state.dart';
+import 'package:is_it_safe_app/src/components/theme/theme_state.dart';
 import 'package:provider/provider.dart';
 
 class ThemeUtil {

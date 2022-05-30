@@ -720,6 +720,16 @@ class S {
     );
   }
 
+  /// `Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números`
+  String get textPasswordSpecifications {
+    return Intl.message(
+      'Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números',
+      name: 'textPasswordSpecifications',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(

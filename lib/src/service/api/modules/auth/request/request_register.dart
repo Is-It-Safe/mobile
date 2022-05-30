@@ -9,7 +9,7 @@ class RequestRegister {
   String? password;
   String? pronoun;
   int? genderId;
-  int? orientationId;
+  int? sexualOrientationId;
 
   RequestRegister(
       {this.photoUrl,
@@ -20,7 +20,7 @@ class RequestRegister {
       this.password,
       this.pronoun,
       this.genderId,
-      this.orientationId});
+      this.sexualOrientationId});
 
   FormData toJson(RequestRegister request) {
     return FormData.fromMap({
@@ -32,7 +32,7 @@ class RequestRegister {
       'password': request.password,
       'pronoun': request.pronoun,
       'gender_id': request.genderId,
-      'orientation_id': request.orientationId,
+      'orientation_id': request.sexualOrientationId,
     });
   }
 }

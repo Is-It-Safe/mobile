@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/components/style/colors/safe_colors.dart';
-import 'package:is_it_safe_app/src/app/components/style/text/text_styles.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 class OnBoardingWidget extends StatelessWidget {
   final String backgroundImage;
