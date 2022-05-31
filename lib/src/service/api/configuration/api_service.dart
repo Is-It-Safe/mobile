@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
@@ -110,11 +109,9 @@ class ApiService implements IApiService {
       try {
         return json.decode(response.data.toString());
       } catch (e) {
-        LogUtil().response(e.toString(), isError: true);
         throw FetchDataException(response.data.toString());
       }
     } else {
-      LogUtil().response(response.data.toString(), isError: true);
       throw FetchDataException(response.data.toString());
     }
   }

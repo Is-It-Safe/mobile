@@ -33,43 +33,31 @@ class ApiInterceptors extends InterceptorsWrapper {
 
   void _logError(DioError err) {
     LogUtil().response(
-      "----------> INIT ERROR RESPONSE <----------",
-      isError: true,
-    );
-    LogUtil().response(
-      "ERROR[${err.response?.statusCode}]: PATH: ${err.requestOptions.path}",
-      isError: true,
-    );
-    LogUtil().response(
-      "BODY: ${err.response?.data}",
-      isError: true,
-    );
-    LogUtil().response(
-      "-----> END ERROR RESPONSE <----------",
+      path: err.requestOptions.path,
+      statusCode: err.response?.statusCode,
+      header: err.requestOptions.headers.toString(),
+      params: err.requestOptions.data,
+      body: err.response?.data,
       isError: true,
     );
   }
 
-  void _logRequest(
-    RequestOptions options, {
-    String? method,
-    String? url,
-  }) {
-    LogUtil().request("----------> INIT APP REQUEST <----------");
-    LogUtil().request("${method ?? options.method}: ${url ?? options.path}");
-    options.headers.forEach((key, value) {
-      LogUtil().request("HEADERS: $key => $value");
-    });
-    LogUtil().request("BODY: ${options.data}");
-    LogUtil().request("----------> END APP REQUEST <----------");
+  void _logRequest(RequestOptions options) {
+    LogUtil().request(
+      path: options.path,
+      header: options.headers.toString(),
+      body: options.data,
+      http: options.method,
+    );
   }
 
   void _logResponse(Response response) {
-    LogUtil().response("----------> INIT API RESPONSE <----------");
-    LogUtil().response(response.requestOptions.path);
-    LogUtil().response("STATUS CODE: ${response.statusCode}");
-    response.headers.forEach((k, v) => LogUtil().response('HEADERS: $k: $v'));
-    LogUtil().response("BODY: ${response.data}");
-    LogUtil().response("----------> END API RESPONSE <----------");
+    LogUtil().response(
+      path: response.requestOptions.path,
+      statusCode: response.statusCode,
+      header: response.headers.toString(),
+      params: response.requestOptions.data,
+      body: response.data,
+    );
   }
 }

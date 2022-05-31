@@ -44,7 +44,9 @@ class RegisterBloc extends SafeBloC {
   late TextEditingController sexualOrientationController;
 
   bool isTermsAndConditionsChecked = false;
-  List<String> profilePicturePaths = [];
+  List<String> listProfilePicturePaths = [];
+  List<GenderEntity> listGenders = [];
+  List<SexualOrientationEntity> listSexualOrientations = [];
   String selectedProfilePhoto = StringConstants.empty;
 
   RegisterBloc() {
@@ -87,16 +89,16 @@ class RegisterBloc extends SafeBloC {
     registerButtonController.sink.add(isRegisterButtonEnabled);
   }
 
-  void getProfilePicturePathsList(BuildContext context) async {
-    profilePicturePaths.clear();
+  Future<void> getProfilePicturePathsList(BuildContext context) async {
+    listProfilePicturePaths.clear();
     final assetManifestJson =
         await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
     final List<String> _profilePicturePaths = json
         .decode(assetManifestJson)
         .keys
-        .where((key) => key.startsWith(AssetConstants.profilePictures))
+        .where((String key) => key.startsWith(AssetConstants.profilePictures))
         .toList();
-    profilePicturePaths.addAll(_profilePicturePaths);
+    listProfilePicturePaths.addAll(_profilePicturePaths);
   }
 
   void setProfitePicture(String path) {
@@ -106,9 +108,11 @@ class RegisterBloc extends SafeBloC {
 
   Future<void> getGenders() async {
     try {
-      gendersController.sink.add(SafeResponse.loading());
-      final List<GenderEntity> genders = await _getGendersUseCase.call();
-      gendersController.sink.add(SafeResponse.completed(data: genders));
+      if (listGenders.isEmpty) {
+        gendersController.sink.add(SafeResponse.loading());
+        listGenders = await _getGendersUseCase.call();
+        gendersController.sink.add(SafeResponse.completed(data: listGenders));
+      }
     } catch (e) {
       LogUtil().error(e.toString());
       gendersController.sink.add(SafeResponse.error(e.toString()));
@@ -117,30 +121,42 @@ class RegisterBloc extends SafeBloC {
 
   Future<void> getSexualOrientations() async {
     try {
-      sexualOrientationsController.sink.add(SafeResponse.loading());
-      final List<SexualOrientationEntity> sexualOrientations =
-          await _getSexualOrientationsUseCase.call();
-      sexualOrientationsController.sink
-          .add(SafeResponse.completed(data: sexualOrientations));
+      if (listSexualOrientations.isEmpty) {
+        sexualOrientationsController.sink.add(SafeResponse.loading());
+        listSexualOrientations = await _getSexualOrientationsUseCase.call();
+        sexualOrientationsController.sink.add(
+          SafeResponse.completed(data: listSexualOrientations),
+        );
+      }
     } catch (e) {
       LogUtil().error(e.toString());
       sexualOrientationsController.sink.add(SafeResponse.error(e.toString()));
     }
   }
 
-  Future<void> doRegister() async {
+  Future<void> doRegister({
+    bool? isAdvanceButton,
+  }) async {
     try {
       doRegisterController.sink.add(SafeResponse.loading());
       final _response = await _doRegisterUseCase.call(
         name: nameController.text,
         username: usernameController.text,
-        birthDate: birthdateController.text,
+        birthDate: isAdvanceButton == true
+            ? birthdateController.text
+            : StringConstants.empty,
         pronoun: pronounController.text,
         email: emailController.text,
         password: passwordController.text,
-        profilePhoto: selectedProfilePhoto,
-        gender: genderController.text,
-        sexualOrientation: sexualOrientationController.text,
+        profilePhoto: isAdvanceButton == true
+            ? selectedProfilePhoto
+            : StringConstants.empty,
+        gender: isAdvanceButton == true
+            ? genderController.text
+            : StringConstants.empty,
+        sexualOrientation: isAdvanceButton == true
+            ? sexualOrientationController.text
+            : StringConstants.empty,
       );
       doRegisterController.sink.add(SafeResponse.completed(data: _response));
     } catch (e) {
@@ -149,35 +165,35 @@ class RegisterBloc extends SafeBloC {
     }
   }
 
-  String validateTextField(
-    BuildContext context, {
-    required String? value,
-  }) {
+  String validateTextField(String? value) {
     if (!ValidationUtil.name(value ?? StringConstants.empty) || value == null) {
-      return S.of(context).textErrorEmptyField;
+      return S.current.textErrorEmptyField;
     }
     return StringConstants.empty;
   }
 
-  String validateEmail(
-    BuildContext context, {
-    required String? value,
-  }) {
+  String validateEmail(String? value) {
     if (!ValidationUtil.email(value ?? StringConstants.empty) ||
         value == null) {
-      return S.of(context).textErrorEmail;
+      return S.current.textErrorEmail;
     }
     return StringConstants.empty;
   }
 
   String validatePassword(
-    BuildContext context, {
-    required String? value,
+    String? value, {
     String? errorText,
   }) {
     if (!ValidationUtil.passoword(value ?? StringConstants.empty) ||
         value == null) {
-      return errorText ?? S.of(context).textErrorLoginPassword;
+      return errorText ?? S.current.textErrorLoginPassword;
+    }
+    return StringConstants.empty;
+  }
+
+  String validateBirthdate(String? value) {
+    if (!ValidationUtil.date(value ?? StringConstants.empty) || value == null) {
+      return S.current.textErrorInvalidDate;
     }
     return StringConstants.empty;
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_page.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
@@ -14,7 +15,7 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 
 class RegisterPage extends StatefulWidget {
-  static const route = '/register/';
+  static const route = '/register';
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
@@ -37,7 +38,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: SafeAppBar(
-        title: S.of(context).textAppBarSignUp,
+        title: S.current.textAppBarSignUp,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,21 +47,21 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
             key: _formKey,
             child: Column(
               children: [
-                _mountWelcomeText(context),
+                _mountWelcomeText(),
                 const SizedBox(height: 30),
-                _mountNameField(context),
+                _mountNameField(),
                 const SizedBox(height: 20),
-                _mountUsernameField(context),
+                _mountUsernameField(),
                 const SizedBox(height: 20),
-                _mountPronounField(context),
+                _mountPronounField(),
                 const SizedBox(height: 20),
-                _mountEmailField(context),
+                _mountEmailField(),
                 const SizedBox(height: 20),
-                _mountPasswordField(context),
+                _mountPasswordField(),
                 const SizedBox(height: 20),
-                _mountConfirmPasswordField(context),
+                _mountConfirmPasswordField(),
                 const SizedBox(height: 20),
-                _mountTermsAndConditions(context),
+                _mountTermsAndConditions(),
                 const SizedBox(height: 20),
                 _mountRegisterButton(),
                 const SizedBox(height: 20),
@@ -78,20 +79,22 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
         initialData: false,
         builder: (context, snapshot) {
           return SafeButton(
-              title: S.of(context).textRegister,
+              title: S.current.textRegister,
               state: snapshot.data == true
                   ? ButtonState.rest
                   : ButtonState.disabled,
               onTap: () {
                 _formKey.currentState?.validate();
                 if (snapshot.data == true) {
-                  //TODO Add navigation to second register page
+                  Modular.to.pushNamed(
+                    StringConstants.dot + RegisterProfilePage.route,
+                  );
                 }
               });
         });
   }
 
-  Row _mountTermsAndConditions(BuildContext context) {
+  Row _mountTermsAndConditions() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -107,11 +110,11 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
           text: TextSpan(
             children: [
               TextSpan(
-                text: S.of(context).textIReadAndAcceptThe,
+                text: S.current.textIReadAndAcceptThe,
                 style: TextStyles.helper(),
               ),
               TextSpan(
-                  text: S.of(context).textTermsAndConditions +
+                  text: S.current.textTermsAndConditions +
                       StringConstants.asterisk,
                   style: TextStyles.helper(
                     color: SafeColors.statusColors.active,
@@ -127,17 +130,15 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
     );
   }
 
-  SafeTextFormField _mountConfirmPasswordField(BuildContext context) {
+  SafeTextFormField _mountConfirmPasswordField() {
     return SafeTextFormField(
       controller: controller.confirmPasswordController,
       obscureText: _showPassword,
-      labelText:
-          S.of(context).textPasswordConfirmation + StringConstants.asterisk,
+      labelText: S.current.textPasswordConfirmation + StringConstants.asterisk,
       onChanged: (value) => controller.toogleRegisterButton(),
       validator: (value) => controller.validatePassword(
-        context,
-        value: value,
-        errorText: S.of(context).textErrorDifferentPasswords,
+        value,
+        errorText: S.current.textErrorDifferentPasswords,
       ),
       suffixIcon: SafeShowFieldButton(
         value: _showPassword,
@@ -148,17 +149,14 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
     );
   }
 
-  SafeTextFormField _mountPasswordField(BuildContext context) {
+  SafeTextFormField _mountPasswordField() {
     return SafeTextFormField(
       controller: controller.passwordController,
       obscureText: _showPassword,
-      labelText: S.of(context).textPassword + StringConstants.asterisk,
-      bottomText: S.of(context).textTellUsTheEmailAssociatedWithYourAccount,
+      labelText: S.current.textPassword + StringConstants.asterisk,
+      bottomText: S.current.textTellUsTheEmailAssociatedWithYourAccount,
       onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validatePassword(
-        context,
-        value: value,
-      ),
+      validator: (value) => controller.validatePassword(value),
       suffixIcon: SafeShowFieldButton(
         value: _showPassword,
         onTap: () => setState(() {
@@ -168,64 +166,55 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
     );
   }
 
-  SafeTextFormField _mountEmailField(BuildContext context) {
+  SafeTextFormField _mountEmailField() {
     return SafeTextFormField(
       controller: controller.emailController,
-      labelText: S.of(context).textEmailAddress + StringConstants.asterisk,
-      bottomText: S.of(context).textTellUsTheEmailAssociatedWithYourAccount,
+      labelText: S.current.textEmailAddress + StringConstants.asterisk,
+      bottomText: S.current.textTellUsTheEmailAssociatedWithYourAccount,
       onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validateEmail(
-        context,
-        value: value,
-      ),
+      validator: (value) => controller.validateEmail(value),
     );
   }
 
-  SafeTextFormField _mountPronounField(BuildContext context) {
+  SafeTextFormField _mountPronounField() {
     return SafeTextFormField(
       controller: controller.pronounController,
-      labelText: S.of(context).textPronouns,
-      bottomText: S.of(context).textHowDoYouPreferWeReferToYou,
+      labelText: S.current.textPronouns,
+      bottomText: S.current.textHowDoYouPreferWeReferToYou,
       onChanged: (value) => controller.toogleRegisterButton(),
     );
   }
 
-  SafeTextFormField _mountUsernameField(BuildContext context) {
+  SafeTextFormField _mountUsernameField() {
     return SafeTextFormField(
       controller: controller.usernameController,
-      labelText: S.of(context).textUsername + StringConstants.asterisk,
-      bottomText: S.of(context).textDontBeAfraidToBeCreative,
+      labelText: S.current.textUsername + StringConstants.asterisk,
+      bottomText: S.current.textDontBeAfraidToBeCreative,
       onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validateTextField(
-        context,
-        value: value,
-      ),
+      validator: (value) => controller.validateTextField(value),
     );
   }
 
-  SafeTextFormField _mountNameField(BuildContext context) {
+  SafeTextFormField _mountNameField() {
     return SafeTextFormField(
       controller: controller.nameController,
-      labelText: S.of(context).textName + StringConstants.asterisk,
-      bottomText: S.of(context).textSayYourNameThisInfoIsPrivate,
+      labelText: S.current.textName + StringConstants.asterisk,
+      bottomText: S.current.textSayYourNameThisInfoIsPrivate,
       onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validateTextField(
-        context,
-        value: value,
-      ),
+      validator: (value) => controller.validateTextField(value),
     );
   }
 
-  RichText _mountWelcomeText(BuildContext context) {
+  RichText _mountWelcomeText() {
     return RichText(
       text: TextSpan(
         children: [
           TextSpan(
-            text: S.of(context).textWelcome + StringConstants.breakLine,
+            text: S.current.textWelcome + StringConstants.breakLine,
             style: TextStyles.headline1(),
           ),
           TextSpan(
-            text: S.of(context).textMeetingYouWillBeAPleasure,
+            text: S.current.textMeetingYouWillBeAPleasure,
             style: TextStyles.headline2(),
           ),
         ],

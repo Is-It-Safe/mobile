@@ -87,27 +87,27 @@ class _OnBoardingPageState
       text: TextSpan(
         children: [
           TextSpan(
-            text: S.of(context).textOnBoarding1_0 + StringConstants.space,
+            text: S.current.textOnBoarding1_0 + StringConstants.space,
             style: TextStyles.headline2(
               fontWeight: FontWeight.normal,
               color: SafeColors.textColors.white,
             ),
           ),
           TextSpan(
-            text: S.of(context).textOnBoarding1_1 + StringConstants.space,
+            text: S.current.textOnBoarding1_1 + StringConstants.space,
             style: TextStyles.headline2(
               color: SafeColors.textColors.white,
             ),
           ),
           TextSpan(
-            text: S.of(context).textOnBoarding1_2 + StringConstants.space,
+            text: S.current.textOnBoarding1_2 + StringConstants.space,
             style: TextStyles.headline2(
               fontWeight: FontWeight.normal,
               color: SafeColors.textColors.white,
             ),
           ),
           TextSpan(
-            text: S.of(context).textOnBoarding1_3 + StringConstants.dot,
+            text: S.current.textOnBoarding1_3 + StringConstants.dot,
             style: TextStyles.headline2(
               color: SafeColors.textColors.white,
             ),
@@ -122,14 +122,14 @@ class _OnBoardingPageState
       text: TextSpan(
         children: [
           TextSpan(
-            text: S.of(context).textOnBoarding2_0 + StringConstants.space,
+            text: S.current.textOnBoarding2_0 + StringConstants.space,
             style: TextStyles.headline2(
               fontWeight: FontWeight.normal,
               color: SafeColors.textColors.white,
             ),
           ),
           TextSpan(
-            text: S.of(context).textOnBoarding2_1 + StringConstants.dot,
+            text: S.current.textOnBoarding2_1 + StringConstants.dot,
             style: TextStyles.headline2(
               color: SafeColors.textColors.white,
             ),
@@ -144,19 +144,19 @@ class _OnBoardingPageState
       text: TextSpan(
         children: [
           TextSpan(
-            text: S.of(context).textOnBoarding3_0 + StringConstants.space,
+            text: S.current.textOnBoarding3_0 + StringConstants.space,
             style: TextStyles.headline2(
               color: SafeColors.textColors.white,
             ),
           ),
           TextSpan(
-            text: S.of(context).textOnBoarding3_1 + StringConstants.space,
+            text: S.current.textOnBoarding3_1 + StringConstants.space,
             style: TextStyles.headline2(
               color: SafeColors.textColors.white,
             ),
           ),
           TextSpan(
-            text: S.of(context).textOnBoarding3_2 + StringConstants.dot,
+            text: S.current.textOnBoarding3_2 + StringConstants.dot,
             style: TextStyles.headline2(
               color: SafeColors.textColors.white,
             ),

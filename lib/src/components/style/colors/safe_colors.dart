@@ -39,14 +39,12 @@ class _TextColors {
   Color dark = const Color(0xFF190A33);
   Color white = const Color(0xFFFAF9FF);
   Color label = const Color(0xFF535353);
-  Color focused = const Color(0xFFBB86FC);
   Color disabled = const Color(0xFFB6B2C2);
 }
 
 class _ButtonColors {
   Color primary = const Color(0xFF5C45ED);
   Color secondary = const Color(0xFF7B61FF);
-  Color focused = const Color(0xFFBB86FC);
   Color disabled = const Color(0xFFDADADA);
   Color danger = const Color(0xFFEB3D3D);
 }

@@ -3,7 +3,7 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 enum ButtonSize { small, large }
-enum ButtonState { rest, focused, disabled, danger }
+enum ButtonState { rest, disabled, danger }
 
 class SafeButton extends StatelessWidget {
   final String title;
@@ -19,7 +19,7 @@ class SafeButton extends StatelessWidget {
     this.hasBackground = true,
     this.hasBorder = false,
     this.size = ButtonSize.large,
-    this.state = ButtonState.focused,
+    this.state = ButtonState.rest,
   }) : super(key: key);
 
   final double _height = 56;
@@ -34,7 +34,9 @@ class SafeButton extends StatelessWidget {
 
   Widget _mountButton(BuildContext context) {
     final _largeWidth = MediaQuery.of(context).size.width;
-    final _smallWidth = MediaQuery.of(context).size.width * 0.45;
+    final _smallWidth = hasBackground == true
+        ? MediaQuery.of(context).size.width * 0.45
+        : MediaQuery.of(context).size.width * 0.35;
 
     return Container(
       height: _height,
@@ -64,9 +66,6 @@ class SafeButton extends StatelessWidget {
       case ButtonState.disabled:
         color = SafeColors.buttonColors.disabled;
         break;
-      case ButtonState.focused:
-        color = SafeColors.buttonColors.focused;
-        break;
       case ButtonState.rest:
         color = SafeColors.buttonColors.primary;
         break;
@@ -91,9 +90,7 @@ class SafeButton extends StatelessWidget {
             : SafeColors.textColors.disabled;
 
         break;
-      case ButtonState.focused:
-        color = SafeColors.textColors.focused;
-        break;
+
       case ButtonState.rest:
         color = hasBackground == true
             ? SafeColors.textColors.white

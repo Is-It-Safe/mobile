@@ -43,17 +43,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _mountTitle(context),
+                  _mountTitle(),
                   const SizedBox(height: 30),
-                  _mountUsernameField(context),
+                  _mountUsernameField(),
                   const SizedBox(height: 18),
-                  _mountPasswordField(context),
+                  _mountPasswordField(),
                   //TODO comentar até funcionalidade for implementada
                   //_mountForgotPasswordButton(context),
                   const SizedBox(height: 30),
                   _mountLoginButton(),
                   const SizedBox(height: 12),
-                  _mountRegisterButton(context),
+                  _mountRegisterButton(),
                 ],
               ),
             ),
@@ -63,12 +63,12 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     );
   }
 
-  Widget _mountRegisterButton(BuildContext context) {
+  Widget _mountRegisterButton() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          S.of(context).textButtonDontHaveAccount,
+          S.current.textButtonDontHaveAccount,
           style: TextStyles.button(),
         ),
         TextButton(
@@ -76,7 +76,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
             Modular.to.pushNamed(RegisterPage.route);
           },
           child: Text(
-            S.of(context).textSignUp,
+            S.current.textSignUp,
             style: TextStyles.button(
               color: SafeColors.buttonColors.primary,
               textDecoration: TextDecoration.underline,
@@ -93,7 +93,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
       initialData: false,
       builder: (context, snapshot) {
         return SafeButton(
-          title: S.of(context).textLogin,
+          title: S.current.textLogin,
           state:
               snapshot.data == true ? ButtonState.rest : ButtonState.disabled,
           onTap: () async {
@@ -107,13 +107,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     );
   }
 
-  Widget _mountForgotPasswordButton(BuildContext context) {
+  Widget _mountForgotPasswordButton() {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {},
         child: Text(
-          S.of(context).textButtonForgotPassword,
+          S.current.textButtonForgotPassword,
           style: TextStyles.button(
             textDecoration: TextDecoration.underline,
           ),
@@ -122,10 +122,10 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     );
   }
 
-  Widget _mountPasswordField(BuildContext context) {
+  Widget _mountPasswordField() {
     return SafeTextFormField(
       controller: controller.passwordController,
-      labelText: S.of(context).textPassword,
+      labelText: S.current.textPassword,
       obscureText: _showPassword,
       onChanged: (value) => controller.toogleLoginButton(),
       validator: (value) => controller.validatePassword(
@@ -141,10 +141,10 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     );
   }
 
-  Widget _mountUsernameField(BuildContext context) {
+  Widget _mountUsernameField() {
     return SafeTextFormField(
       controller: controller.usernameController,
-      labelText: S.of(context).textUsername,
+      labelText: S.current.textUsername,
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) => controller.toogleLoginButton(),
       validator: (value) => controller.validateUsername(
@@ -154,16 +154,16 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     );
   }
 
-  Widget _mountTitle(BuildContext context) {
+  Widget _mountTitle() {
     return RichText(
       text: TextSpan(
         children: [
           TextSpan(
-            text: S.of(context).textPageTitleLogin + StringConstants.breakLine,
+            text: S.current.textPageTitleLogin + StringConstants.breakLine,
             style: TextStyles.headline1(),
           ),
           TextSpan(
-            text: S.of(context).textPageSubtitleLogin,
+            text: S.current.textPageSubtitleLogin,
             style: TextStyles.headline2(),
           ),
         ],

@@ -13,14 +13,12 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Is It Safe?',
       theme: lightTheme,
+      supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('pt', 'BR'),
       ],
     ).modular();
   }

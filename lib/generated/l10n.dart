@@ -250,6 +250,26 @@ class S {
     );
   }
 
+  /// `Algo deu errado!`
+  String get textError {
+    return Intl.message(
+      'Algo deu errado!',
+      name: 'textError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tente novamente em alguns instantes.`
+  String get textErrorTryAgain {
+    return Intl.message(
+      'Tente novamente em alguns instantes.',
+      name: 'textErrorTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Algo deu errado na Pesquisa!`
   String get textErrorSearch {
     return Intl.message(
@@ -585,6 +605,16 @@ class S {
     return Intl.message(
       'Contato',
       name: 'textContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get textOk {
+    return Intl.message(
+      'Ok',
+      name: 'textOk',
       desc: '',
       args: [],
     );

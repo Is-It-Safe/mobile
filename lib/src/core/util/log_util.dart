@@ -7,18 +7,17 @@ import 'package:logger/logger.dart';
 /// LogUtil().route(Modular.to.path);
 /// ```
 class LogUtil {
-  final logger = Logger(
-    printer: PrettyPrinter(
-      methodCount: 0,
-      errorMethodCount: 0,
-      lineLength: 120,
-      colors: true,
-      printEmojis: true,
-      printTime: false,
-      noBoxingByDefault: false,
-      stackTraceBeginIndex: 0,
-    ),
-  );
+  late final Logger logger;
+
+  LogUtil() {
+    logger = Logger(
+      printer: PrettyPrinter(
+        methodCount: 0,
+        errorMethodCount: 20,
+      ),
+    );
+    PrettyPrinter.levelColors[Level.debug] = AnsiColor.fg(10);
+  }
 
   ///Método de log default
   void log({
@@ -60,17 +59,46 @@ class LogUtil {
   }
 
   ///Método de log de request
-  void request(String request) => logger.d('REQUEST: $request');
+  void request({
+    String? http,
+    String? path,
+    String? body,
+    String? header,
+  }) {
+    String log = '''
+    -----------------------> REQUEST <------------------------\n
+    HTTP: $http\n
+    PATH: $path\n
+    HEADER: $header\n
+    BODY: $body\n
+    ----------------------------------------------------------
+    ''';
+
+    logger.d(log);
+  }
 
   ///Método de log de response
-  void response(
-    String response, {
+  void response({
+    int? statusCode,
+    String? path,
+    String? params,
+    String? body,
+    String? header,
     bool? isError,
   }) {
+    String log = '''
+    -----------------------> RESPONSE <-----------------------\n
+    Status Code: $statusCode\n
+    Header: $header\n
+    Path: $path\n
+    Request: $params\n
+    Body: $body\n
+    ----------------------------------------------------------
+    ''';
     if (isError == true) {
-      logger.e('RESPONSE ERROR: $response');
+      logger.e(log);
     } else {
-      logger.d('RESPONSE: $response');
+      logger.d(log);
     }
   }
 }

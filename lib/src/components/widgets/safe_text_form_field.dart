@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
+enum DropdownType { none, loading, error }
+
 class SafeTextFormField extends StatefulWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? bottomText;
-  final String labelText;
+  final String? labelText;
   final String? hintText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
@@ -18,11 +21,12 @@ class SafeTextFormField extends StatefulWidget {
   final Function(String)? onChanged;
   final Function()? onEditingComplete;
   final FormFieldValidator<String>? validator;
+  final DropdownType dropdownType;
 
   const SafeTextFormField({
     Key? key,
-    required this.controller,
-    required this.labelText,
+    this.labelText,
+    this.controller,
     this.hintText,
     this.suffixIcon,
     this.prefixIcon,
@@ -34,6 +38,7 @@ class SafeTextFormField extends StatefulWidget {
     this.bottomText,
     this.inputFormatters,
     this.readOnly,
+    this.dropdownType = DropdownType.none,
   }) : super(key: key);
 
   @override
@@ -42,12 +47,16 @@ class SafeTextFormField extends StatefulWidget {
 
 class _SafeTextFormFieldState extends State<SafeTextFormField> {
   late FocusNode _focusNode;
+  late bool isReadOnly;
+  late String labelText;
 
   @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
     _focusNode.addListener(() => setState(() {}));
+    isReadOnly = _getIsReadOnly();
+    labelText = _getLabelText();
   }
 
   @override
@@ -63,11 +72,11 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
         TextFormField(
           controller: widget.controller,
           cursorColor: SafeColors.statusColors.active,
-          readOnly: widget.readOnly ?? false,
+          readOnly: isReadOnly,
           keyboardType: widget.keyboardType ?? TextInputType.text,
           inputFormatters: widget.inputFormatters,
           decoration: InputDecoration(
-            labelText: widget.labelText,
+            labelText: labelText,
             labelStyle: TextStyles.label(
               color: _focusNode.hasFocus
                   ? SafeColors.statusColors.active
@@ -98,5 +107,27 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
         )
       ],
     );
+  }
+
+  bool _getIsReadOnly() {
+    switch (widget.dropdownType) {
+      case DropdownType.loading:
+        return true;
+      case DropdownType.error:
+        return true;
+      default:
+        return widget.readOnly ?? false;
+    }
+  }
+
+  String _getLabelText() {
+    switch (widget.dropdownType) {
+      case DropdownType.loading:
+        return S.current.textLoading;
+      case DropdownType.error:
+        return S.current.textErrorDropdown;
+      default:
+        return widget.labelText ?? StringConstants.empty;
+    }
   }
 }

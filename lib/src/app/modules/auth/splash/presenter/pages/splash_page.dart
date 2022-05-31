@@ -58,7 +58,7 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _mountLogo(context),
-            _mountTitle(context),
+            _mountTitle(),
           ],
         ),
       ),
@@ -78,11 +78,11 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
     );
   }
 
-  FadeAnimation _mountTitle(BuildContext context) {
+  FadeAnimation _mountTitle() {
     return FadeAnimation(
       delay: 2,
       child: Text(
-        S.of(context).textIsItSafe,
+        S.current.textIsItSafe,
         textAlign: TextAlign.center,
         style: TextStyles.headline1(
           color: SafeColors.generalColors.primary,

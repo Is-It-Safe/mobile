@@ -43,6 +43,7 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
         title,
         style: TextStyles.subtitle1(),
       ),
+      automaticallyImplyLeading: hasLeading,
       leading: _mountLeading(),
     );
   }

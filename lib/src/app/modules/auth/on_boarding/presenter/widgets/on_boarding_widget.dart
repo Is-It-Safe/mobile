@@ -86,7 +86,7 @@ class OnBoardingWidget extends StatelessWidget {
             ),
           ),
           child: Text(
-            S.of(context).textLogin,
+            S.current.textLogin,
             textAlign: TextAlign.center,
             style: TextStyles.subtitle1(
               color: SafeColors.textColors.white,
