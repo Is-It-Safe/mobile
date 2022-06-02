@@ -36,7 +36,7 @@ class ApiConstants {
   /*--------------------------------------------------------------------*/
 
   //Auth
-  static const String doAuth = '${kAuthUrl}auth/token';
+  static const String doAuth = '${kAuthUrl}oauth/token';
   static const String doRegister = '${kUrl}user/save';
   static const String getGenders = '${kUrl}gender/find-all';
   static const String getSexualOrientations = '${kUrl}orientation/find-all';

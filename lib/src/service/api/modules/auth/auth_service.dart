@@ -19,6 +19,7 @@ class AuthService implements IAuthService {
   final ApiService _service = ApiService();
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
+    //TODO Request mockada
     request = RequestLogin(
       email: 'cvpinhofsa@gmail.com',
       password: '123456',
@@ -28,6 +29,7 @@ class AuthService implements IAuthService {
       method: HttpMethod.post,
       body: request.toJson(request),
       options: Options(
+        contentType: Headers.formUrlEncodedContentType,
         headers: {
           ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
           ApiConstants.kContentType: 'application/x-www-form-urlencoded',
