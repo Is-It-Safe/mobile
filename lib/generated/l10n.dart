@@ -760,6 +760,36 @@ class S {
     );
   }
 
+  /// `Selecione uma foto antes de salvar.`
+  String get textSelectAPicture {
+    return Intl.message(
+      'Selecione uma foto antes de salvar.',
+      name: 'textSelectAPicture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cadastro realizado com sucesso!`
+  String get textRegisterSuccess {
+    return Intl.message(
+      'Cadastro realizado com sucesso!',
+      name: 'textRegisterSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Você será redirecionado para a página de login.`
+  String get textRegisterSuccessMessage {
+    return Intl.message(
+      'Você será redirecionado para a página de login.',
+      name: 'textRegisterSuccessMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(

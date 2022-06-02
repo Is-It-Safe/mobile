@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-
 class RequestRegister {
   String? photoUrl;
   String? name;
@@ -22,8 +20,8 @@ class RequestRegister {
       this.genderId,
       this.sexualOrientationId});
 
-  FormData toJson(RequestRegister request) {
-    return FormData.fromMap({
+  Map<String, dynamic> toJson(RequestRegister request) {
+    return {
       'photo_url': request.photoUrl,
       'name': request.name,
       'birth_date': request.birthDate,
@@ -33,6 +31,6 @@ class RequestRegister {
       'pronoun': request.pronoun,
       'gender_id': request.genderId,
       'orientation_id': request.sexualOrientationId,
-    });
+    };
   }
 }

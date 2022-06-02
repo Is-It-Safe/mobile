@@ -16,11 +16,11 @@ class DoLoginUseCase extends SafeUseCase {
   }
 
   Future<LoginEntity> call({
-    required String username,
+    required String email,
     required String password,
   }) async {
     final request = RequestLogin(
-      username: username,
+      email: email,
       password: password,
     );
 

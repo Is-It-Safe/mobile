@@ -22,7 +22,7 @@ class LoginBloc extends SafeBloC {
 
   late StreamController<bool> loginButtonController;
   late StreamController<SafeResponse<LoginEntity>> doLoginController;
-  late TextEditingController usernameController;
+  late TextEditingController emailController;
   late TextEditingController passwordController;
 
   LoginBloc() {
@@ -37,7 +37,7 @@ class LoginBloc extends SafeBloC {
     _saveUserRefreshTokenUseCase = Modular.get<SaveUserRefreshTokenUseCase>();
     loginButtonController = StreamController.broadcast();
     doLoginController = StreamController.broadcast();
-    usernameController = TextEditingController();
+    emailController = TextEditingController();
     passwordController = TextEditingController();
   }
 
@@ -45,7 +45,7 @@ class LoginBloc extends SafeBloC {
     try {
       doLoginController.sink.add(SafeResponse.loading());
       LoginEntity loginEntity = await _doLoginUseCase.call(
-        username: usernameController.text,
+        email: emailController.text,
         password: passwordController.text,
       );
       saveUserToken(loginEntity.accessToken);
@@ -59,7 +59,7 @@ class LoginBloc extends SafeBloC {
   }
 
   void toogleLoginButton() {
-    bool isUsernameOk = ValidationUtil.name(usernameController.text);
+    bool isUsernameOk = ValidationUtil.name(emailController.text);
     bool isPasswordOk = ValidationUtil.passoword(passwordController.text);
     bool isButtonEnabled = (isUsernameOk && isPasswordOk);
     loginButtonController.sink.add(isButtonEnabled);
@@ -89,12 +89,12 @@ class LoginBloc extends SafeBloC {
     }
   }
 
-  String validateUsername(
+  String validateEmail(
     BuildContext context, {
     required String? value,
   }) {
-    if (!ValidationUtil.name(value ?? StringConstants.empty)) {
-      S.of(context).textErrorLoginUsername;
+    if (!ValidationUtil.email(value ?? StringConstants.empty)) {
+      S.of(context).textErrorEmail;
     }
     return StringConstants.empty;
   }

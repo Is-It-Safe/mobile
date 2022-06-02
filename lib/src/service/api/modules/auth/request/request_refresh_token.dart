@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 
 class RequestRefreshToken {
@@ -9,12 +8,10 @@ class RequestRefreshToken {
     this.grantType = ApiConstants.kGrantTypeRefreshToken,
   });
 
-  FormData toJson(RequestRefreshToken request) {
-    return FormData.fromMap(
-      {
-        'refresh_token': request.refreshToken,
-        'grant_type': request.grantType,
-      },
-    );
+  Map<String, dynamic> toJson(RequestRefreshToken request) {
+    return {
+      'refresh_token': request.refreshToken,
+      'grant_type': request.grantType,
+    };
   }
 }

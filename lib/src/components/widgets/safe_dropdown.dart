@@ -50,10 +50,10 @@ class _SafeDropDownState extends State<SafeDropDown> {
                 title: Text(
                   widget.title,
                   style: widget.isExapanded
-                      ? TextStyles.bodyText1(
+                      ? TextStyles.label(
                           color: SafeColors.statusColors.active,
                         )
-                      : TextStyles.bodyText1(),
+                      : TextStyles.label(),
                 ),
               );
             },
@@ -74,7 +74,7 @@ class _SafeDropDownState extends State<SafeDropDown> {
                     child: Text(
                       object.title,
                       textAlign: TextAlign.start,
-                      style: TextStyles.bodyText2(),
+                      style: TextStyles.label(),
                     ),
                   ),
                 );

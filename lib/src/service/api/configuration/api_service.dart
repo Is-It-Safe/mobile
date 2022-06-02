@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
@@ -107,7 +106,7 @@ class ApiService implements IApiService {
 
     if (isSuccess) {
       try {
-        return json.decode(response.data.toString());
+        return response;
       } catch (e) {
         throw FetchDataException(response.data.toString());
       }

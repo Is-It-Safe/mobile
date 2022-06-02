@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/widgets/register_profile_picture_item.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 
 class RegisterProfilePicturePage extends StatefulWidget {
@@ -56,28 +57,27 @@ class _RegisterProfilePicturePageState
   }
 
   Widget _mountPhotosGridView() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 4.0, bottom: 70),
-      child: GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 30,
-          mainAxisSpacing: 10,
-        ),
-        itemCount: controller.listProfilePicturePaths.length,
-        itemBuilder: (context, index) {
-          var avatarPaths = controller.listProfilePicturePaths;
-          return RegisterProfilePictureItem(
-            path: avatarPaths[index],
-            isSelected: userAvatarPath == avatarPaths[index],
-            onTap: () => setState(() {
-              userAvatarPath = avatarPaths[index];
-              controller.setProfitePicture(userAvatarPath);
-            }),
-          );
-        },
+    return GridView.builder(
+      shrinkWrap: true,
+      padding: const EdgeInsets.only(bottom: 100),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 30,
+        mainAxisSpacing: 10,
       ),
+      itemCount: controller.listProfilePicturePaths.length,
+      itemBuilder: (context, index) {
+        var avatarPaths = controller.listProfilePicturePaths;
+        return SafeProfileAvatar(
+          image: avatarPaths[index],
+          isSelected: userAvatarPath == avatarPaths[index],
+          type: ProfileAvatarType.animated,
+          onTap: () => setState(() {
+            userAvatarPath = avatarPaths[index];
+            controller.setProfitePicture(userAvatarPath);
+          }),
+        );
+      },
     );
   }
 
@@ -105,7 +105,10 @@ class _RegisterProfilePicturePageState
       size: ButtonSize.small,
       onTap: () {
         if (controller.selectedProfilePhoto.isEmpty) {
-          //TODO Error snackbar
+          SafeSnackBar(
+            message: S.current.textSelectAPicture,
+            type: SnackBarType.error,
+          ).show(context);
         } else {
           Modular.to.pop(userAvatarPath);
         }

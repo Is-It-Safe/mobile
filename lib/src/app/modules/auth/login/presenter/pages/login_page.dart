@@ -45,7 +45,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
                 children: [
                   _mountTitle(),
                   const SizedBox(height: 30),
-                  _mountUsernameField(),
+                  _mountEmailField(),
                   const SizedBox(height: 18),
                   _mountPasswordField(),
                   //TODO comentar até funcionalidade for implementada
@@ -141,13 +141,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     );
   }
 
-  Widget _mountUsernameField() {
+  Widget _mountEmailField() {
     return SafeTextFormField(
-      controller: controller.usernameController,
-      labelText: S.current.textUsername,
+      controller: controller.emailController,
+      labelText: S.current.textEmailAddress,
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) => controller.toogleLoginButton(),
-      validator: (value) => controller.validateUsername(
+      validator: (value) => controller.validateEmail(
         context,
         value: value,
       ),

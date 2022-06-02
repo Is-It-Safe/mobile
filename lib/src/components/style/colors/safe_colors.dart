@@ -33,6 +33,8 @@ class _StatusColors {
   Color active = const Color(0xFF6200EE);
   Color error = const Color(0xFFEB3D3D);
   Color success = const Color(0xFF2ECC71);
+  Color info = const Color(0xFFB6B2C2);
+  Color alert = const Color(0xFFffcc00);
 }
 
 class _TextColors {

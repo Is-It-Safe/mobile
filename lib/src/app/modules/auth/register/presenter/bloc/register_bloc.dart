@@ -68,12 +68,12 @@ class RegisterBloc extends SafeBloC {
     sexualOrientationsController = StreamController.broadcast();
     doRegisterController = StreamController.broadcast();
 
-    nameController = TextEditingController();
-    usernameController = TextEditingController();
+    nameController = TextEditingController(text: 'ester');
+    usernameController = TextEditingController(text: 'ester1');
     pronounController = TextEditingController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    confirmPasswordController = TextEditingController();
+    emailController = TextEditingController(text: 'ester1@gmail.com');
+    passwordController = TextEditingController(text: '1234567q');
+    confirmPasswordController = TextEditingController(text: '1234567q');
     birthdateController = TextEditingController();
     genderController = TextEditingController();
     sexualOrientationController = TextEditingController();
@@ -151,12 +151,10 @@ class RegisterBloc extends SafeBloC {
         profilePhoto: isAdvanceButton == true
             ? selectedProfilePhoto
             : StringConstants.empty,
-        gender: isAdvanceButton == true
-            ? genderController.text
-            : StringConstants.empty,
+        gender: isAdvanceButton == true ? genderController.text : 11.toString(),
         sexualOrientation: isAdvanceButton == true
             ? sexualOrientationController.text
-            : StringConstants.empty,
+            : 8.toString(),
       );
       doRegisterController.sink.add(SafeResponse.completed(data: _response));
     } catch (e) {

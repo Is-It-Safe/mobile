@@ -84,8 +84,18 @@ class _RegisterProfilePageState
     controller.doRegisterController.stream.listen((event) async {
       switch (event.status) {
         case Status.completed:
-          Modular.to.pop();
-          Modular.to.pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
+          showDialog(
+            context: context,
+            builder: (context) => SafeDialogs.dialog(
+              title: S.current.textRegisterSuccess,
+              message: S.current.textRegisterSuccessMessage,
+              onTap: () {
+                Modular.to.pop();
+                Modular.to
+                    .pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
+              },
+            ),
+          );
           break;
         case Status.loading:
           const SafeLoading();

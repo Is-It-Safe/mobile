@@ -36,7 +36,7 @@ class ApiInterceptors extends InterceptorsWrapper {
       path: err.requestOptions.path,
       statusCode: err.response?.statusCode,
       header: err.requestOptions.headers.toString(),
-      params: err.requestOptions.data,
+      params: err.requestOptions.data.toString(),
       body: err.response?.data,
       isError: true,
     );
@@ -46,7 +46,7 @@ class ApiInterceptors extends InterceptorsWrapper {
     LogUtil().request(
       path: options.path,
       header: options.headers.toString(),
-      body: options.data,
+      body: options.data.toString(),
       http: options.method,
     );
   }
@@ -56,7 +56,7 @@ class ApiInterceptors extends InterceptorsWrapper {
       path: response.requestOptions.path,
       statusCode: response.statusCode,
       header: response.headers.toString(),
-      params: response.requestOptions.data,
+      params: response.requestOptions.data.toString(),
       body: response.data,
     );
   }

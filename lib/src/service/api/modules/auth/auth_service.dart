@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
@@ -17,6 +19,10 @@ class AuthService implements IAuthService {
   final ApiService _service = ApiService();
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
+    request = RequestLogin(
+      email: 'cvpinhofsa@gmail.com',
+      password: '123456',
+    );
     final requestConfig = RequestConfig(
       path: ApiConstants.doAuth,
       method: HttpMethod.post,
@@ -31,7 +37,7 @@ class AuthService implements IAuthService {
 
     final response = await _service.doRequest(requestConfig);
 
-    return ResponseLogin.fromJson(response);
+    return ResponseLogin.fromJson(jsonDecode(response.data));
   }
 
   @override
@@ -52,20 +58,20 @@ class AuthService implements IAuthService {
 
     final response = await _service.doRequest(requestConfig);
 
-    return ResponseRefreshToken.fromJson(response);
+    return ResponseRefreshToken.fromJson(jsonDecode(response.data));
   }
 
   @override
   Future<ResponseRegister> doRegister(RequestRegister request) async {
     final requestConfig = RequestConfig(
-      path: ApiConstants.doAuth,
+      path: ApiConstants.doRegister,
       method: HttpMethod.post,
       body: request.toJson(request),
     );
 
     final response = await _service.doRequest(requestConfig);
 
-    return ResponseRegister.fromJson(response);
+    return ResponseRegister.fromJson(jsonDecode(response.data));
   }
 
   @override
@@ -76,7 +82,9 @@ class AuthService implements IAuthService {
     );
 
     final response = await _service.doRequest(requestConfig);
-    return (response as List).map((e) => ResponseGender.fromJson(e)).toList();
+    return (json.decode(response.data) as List)
+        .map((e) => ResponseGender.fromJson(e))
+        .toList();
   }
 
   @override
@@ -87,7 +95,7 @@ class AuthService implements IAuthService {
     );
 
     final response = await _service.doRequest(requestConfig);
-    return (response as List)
+    return (json.decode(response.data) as List)
         .map((e) => ResponseSexualOrientation.fromJson(e))
         .toList();
   }

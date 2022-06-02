@@ -130,9 +130,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPronouns": MessageLookupByLibrary.simpleMessage("Pronomes"),
         "textReady": MessageLookupByLibrary.simpleMessage("Pronto"),
         "textRegister": MessageLookupByLibrary.simpleMessage("Cadastrar"),
+        "textRegisterSuccess": MessageLookupByLibrary.simpleMessage(
+            "Cadastro realizado com sucesso!"),
+        "textRegisterSuccessMessage": MessageLookupByLibrary.simpleMessage(
+            "Você será redirecionado para a página de login."),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
         "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
+        "textSelectAPicture": MessageLookupByLibrary.simpleMessage(
+            "Selecione uma foto antes de salvar."),
         "textSexualOrientation":
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
         "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
