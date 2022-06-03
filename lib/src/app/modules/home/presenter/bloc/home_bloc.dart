@@ -16,7 +16,7 @@ class HomeBloc extends SafeBloC {
 
   HomeBloc() {
     init();
-    //getBestRatedLocations();
+    getBestRatedLocations();
   }
 
   @override

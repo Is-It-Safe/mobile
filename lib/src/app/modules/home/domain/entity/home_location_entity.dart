@@ -3,7 +3,7 @@ class HomeLocationEntity {
   String? name;
   String? address;
   String? imagePath;
-  int? averageGrade;
+  double? averageGrade;
   int? reviewsQnt;
 
   HomeLocationEntity({

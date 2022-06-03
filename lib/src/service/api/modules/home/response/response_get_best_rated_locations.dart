@@ -56,7 +56,7 @@ class ResponseGetBestRatedLocationsLocation {
   String? name;
   String? endereco;
   String? imgUrl;
-  int? averageGrade;
+  double? averageGrade;
   int? reviewsQnt;
 
   ResponseGetBestRatedLocationsLocation({

@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/home/domain/entity/home_location_entity.dart';
+import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
@@ -30,7 +31,7 @@ class GetBestRatedLocationsUseCase extends SafeUseCase {
         id: location.id ?? IntConstants.empty,
         name: location.name ?? StringConstants.empty,
         address: location.endereco ?? StringConstants.empty,
-        averageGrade: location.averageGrade ?? IntConstants.empty,
+        averageGrade: location.averageGrade ?? DoubleConstants.empty,
         reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
         imagePath: location.imgUrl ?? StringConstants.empty,
       );

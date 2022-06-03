@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
@@ -23,6 +25,7 @@ class HomeService implements IHomeService {
 
     final response = await _service.doRequest(requestConfig);
 
-    return ResponseGetBestRatedLocations.fromJson(response).locations;
+    return ResponseGetBestRatedLocations.fromJson(json.decode(response.data))
+        .locations;
   }
 }

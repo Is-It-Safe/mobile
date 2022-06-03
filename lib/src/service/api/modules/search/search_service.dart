@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
@@ -24,6 +26,7 @@ class SearchService implements ISearchService {
     );
 
     final response = await _service.doRequest(requestConfig);
-    return ResponseGetLocationsByName.fromJson(response).locations;
+    return ResponseGetLocationsByName.fromJson(json.decode(response.data))
+        .locations;
   }
 }
