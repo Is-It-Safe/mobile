@@ -26,12 +26,10 @@ class ResponseGetBestRatedLocations {
   });
 
   factory ResponseGetBestRatedLocations.fromJson(dynamic json) {
-    final locations = json['content'] != null
-        ? (json['content'] as List)
-            .map((e) => ResponseGetBestRatedLocationsLocation.fromJson(
-                e as Map<String, dynamic>))
-            .toList()
-        : null;
+    final locations = (json['content'] as List)
+        .map((e) => ResponseGetBestRatedLocationsLocation.fromJson(
+            e as Map<String, dynamic>))
+        .toList();
 
     return ResponseGetBestRatedLocations(
       locations: locations,

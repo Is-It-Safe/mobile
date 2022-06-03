@@ -12,7 +12,7 @@ import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingPage extends StatefulWidget {
-  static const route = '/onBoarding';
+  static const route = '/onBoarding/';
   const OnBoardingPage({Key? key}) : super(key: key);
 
   @override

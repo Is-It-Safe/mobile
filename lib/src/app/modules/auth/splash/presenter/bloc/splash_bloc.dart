@@ -9,17 +9,17 @@ import 'package:logger/logger.dart';
 class SplashBloc extends SafeBloC {
   late GetUserLoginUseCase _getUserLoginUseCase;
   late GetUserOnBoaringUseCase _getUserOnBoaringUseCase;
-  bool isUserLogged = false;
-  bool isUserOnBoarding = false;
+  late bool isUserLogged;
+  late bool isUserOnBoarding;
 
   SplashBloc() {
-    _getUserLoginUseCase = Modular.get<GetUserLoginUseCase>();
-    _getUserOnBoaringUseCase = Modular.get<GetUserOnBoaringUseCase>();
     init();
   }
 
   @override
   Future<void> init() async {
+    _getUserLoginUseCase = Modular.get<GetUserLoginUseCase>();
+    _getUserOnBoaringUseCase = Modular.get<GetUserOnBoaringUseCase>();
     isUserLogged = await getUserLogin();
     isUserOnBoarding = await getUserOnBoarding();
   }

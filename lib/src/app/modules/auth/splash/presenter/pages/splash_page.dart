@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
 import 'package:is_it_safe_app/src/components/animations/fade_animation.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
@@ -24,20 +25,27 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
   void initState() {
     super.initState();
     LogUtil().route(Modular.to.path);
-    if (controller.isUserLogged) {
-      goToHome();
-    } else {
-      goToOnBoarding();
-    }
+    defineRoute();
+  }
+
+  void defineRoute() async {
+    await Future.delayed(const Duration(seconds: 4)).then((_) {
+      if (controller.isUserLogged) {
+        goToHome();
+      } else {
+        goToOnBoarding();
+      }
+    });
   }
 
   void goToHome() async {
-    await Future.delayed(const Duration(seconds: 4));
-    //TODO Navigate to Home
+    Modular.to.pushNamedAndRemoveUntil(
+      HomePage.route,
+      (r) => false,
+    );
   }
 
   void goToOnBoarding() async {
-    await Future.delayed(const Duration(seconds: 4));
     if (controller.isUserOnBoarding) {
       goToLogin();
     } else {
