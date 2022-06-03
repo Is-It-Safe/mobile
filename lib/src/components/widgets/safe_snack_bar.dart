@@ -8,6 +8,7 @@ class SafeSnackBar extends StatelessWidget {
   final String message;
   final SnackBarType type;
   final Icon? icon;
+
   const SafeSnackBar({
     Key? key,
     required this.message,

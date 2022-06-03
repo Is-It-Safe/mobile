@@ -107,8 +107,8 @@ class ApiService implements IApiService {
     if (isSuccess) {
       try {
         return response;
-      } catch (e) {
-        throw FetchDataException(response.data.toString());
+      } on DioError catch (e) {
+        throw FetchDataException(e.response?.data);
       }
     } else {
       throw FetchDataException(response.data.toString());
