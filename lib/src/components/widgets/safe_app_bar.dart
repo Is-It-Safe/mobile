@@ -99,7 +99,7 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
       return IconButton(
         onPressed: onTap ?? () => Modular.to.pop(),
         icon: SvgPicture.asset(
-          AssetConstants.backButtonIcon,
+          AssetConstants.icons.arrowBack,
         ),
       );
     }
@@ -127,7 +127,7 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
                   IconButton(
                     onPressed: onTap,
                     icon: SvgPicture.asset(
-                      AssetConstants.drawerIcon,
+                      AssetConstants.icons.drawer,
                     ),
                   ),
                 ],
@@ -149,7 +149,7 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
     return Row(
       children: [
         Image.asset(
-          AssetConstants.logo,
+          AssetConstants.general.logo,
           height: 30,
         ),
         const SizedBox(width: 10),

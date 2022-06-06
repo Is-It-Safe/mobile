@@ -96,7 +96,8 @@ class RegisterBloc extends SafeBloC {
     final List<String> _profilePicturePaths = json
         .decode(assetManifestJson)
         .keys
-        .where((String key) => key.startsWith(AssetConstants.profilePictures))
+        .where((String key) =>
+            key.startsWith(AssetConstants.general.profilePictures))
         .toList();
     listProfilePicturePaths.addAll(_profilePicturePaths);
   }

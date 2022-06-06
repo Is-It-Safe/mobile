@@ -79,7 +79,7 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Image.asset(
-          AssetConstants.logo,
+          AssetConstants.general.logo,
           height: MediaQuery.of(context).size.height * 0.2,
         ),
       ),

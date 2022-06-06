@@ -620,6 +620,16 @@ class S {
     );
   }
 
+  /// `Avaliações`
+  String get textReviews {
+    return Intl.message(
+      'Avaliações',
+      name: 'textReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Agora escolha um nome para todos verem, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(

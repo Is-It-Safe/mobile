@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/entity/home_location_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_location_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
@@ -32,17 +38,55 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
         ),
         body: TabBarView(
           children: [
-            Container(
-              child: const Text('Tab 1'),
-              color: Colors.blue,
-            ),
-            Container(
-              child: const Text('Tab 2'),
-              color: Colors.red,
+            SafeEmptyCard.home(),
+            _mountTab(
+              stream: controller.bestRatedPlacesController.stream,
+              list: controller.listBestRatedLocations,
             ),
           ],
         ),
       ),
+    );
+  }
+
+  StreamBuilder<SafeResponse<List<HomeLocationEntity>>> _mountTab({
+    required Stream<SafeResponse<List<HomeLocationEntity>>> stream,
+    required List<HomeLocationEntity> list,
+  }) {
+    return StreamBuilder<SafeResponse<List<HomeLocationEntity>>>(
+      stream: stream,
+      builder: (context, snapshot) {
+        if (snapshot.data != null || list.isNotEmpty) {
+          switch (snapshot.data?.status) {
+            case Status.loading:
+              return const SafeLoading();
+            case Status.error:
+              showDialog(
+                context: context,
+                builder: (context) => SafeDialogs.error(
+                  message: snapshot.data?.message,
+                ),
+              );
+              break;
+            default:
+              if (snapshot.data?.data == null) {
+                return const SafeLoading();
+              }
+              return ListView.separated(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 20.0,
+                ),
+                itemCount: list.length,
+                separatorBuilder: (_, i) => const SizedBox(height: 15),
+                itemBuilder: (context, index) => HomeLocationCard(
+                  location: list[index],
+                ),
+              );
+          }
+        }
+        return SafeEmptyCard.home();
+      },
     );
   }
 }

@@ -44,15 +44,15 @@ class _OnBoardingPageState
       controller: controller.onBoardingPageController,
       children: [
         OnBoardingWidget(
-          backgroundImage: AssetConstants.onBoarding1,
+          backgroundImage: AssetConstants.general.onBoarding1,
           text: _mountTextOnBoarding1(),
         ),
         OnBoardingWidget(
-          backgroundImage: AssetConstants.onBoarding2,
+          backgroundImage: AssetConstants.general.onBoarding2,
           text: _mountTextOnBoarding2(),
         ),
         OnBoardingWidget(
-          backgroundImage: AssetConstants.onBoarding3,
+          backgroundImage: AssetConstants.general.onBoarding3,
           text: _mountTextOnBoarding3(),
           isButtonVisible: true,
           onButtonPressed: () {

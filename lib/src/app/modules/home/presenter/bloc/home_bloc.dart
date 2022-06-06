@@ -16,7 +16,6 @@ class HomeBloc extends SafeBloC {
 
   HomeBloc() {
     init();
-    getBestRatedLocations();
   }
 
   @override
@@ -25,19 +24,14 @@ class HomeBloc extends SafeBloC {
     bestRatedPlacesController = StreamController.broadcast();
   }
 
-  Future<void> getBestRatedLocations({
-    bool isRefresh = false,
-  }) async {
+  Future<void> getBestRatedLocations() async {
     try {
-      if (listBestRatedLocations.isEmpty || isRefresh) {
-        bestRatedPlacesController.sink.add(SafeResponse.loading());
-        listBestRatedLocations = await _getBestRatedLocationsUseCase.call();
-        bestRatedPlacesController.sink.add(
-          SafeResponse.completed(
-            data: listBestRatedLocations,
-          ),
-        );
-      }
+      //TODO Somente chamar a api mediante um isRefresh == true ou caso listBestRatedLocations esteja vazia
+      bestRatedPlacesController.sink.add(SafeResponse.loading());
+      listBestRatedLocations = await _getBestRatedLocationsUseCase.call();
+      bestRatedPlacesController.sink.add(
+        SafeResponse.completed(data: listBestRatedLocations),
+      );
     } on DioError catch (e) {
       bestRatedPlacesController.sink.add(
         SafeResponse.error(e.response?.data),
@@ -46,7 +40,5 @@ class HomeBloc extends SafeBloC {
   }
 
   @override
-  Future<void> dispose() async {
-    bestRatedPlacesController.close();
-  }
+  Future<void> dispose() async {}
 }

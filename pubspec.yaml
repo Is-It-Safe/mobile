@@ -63,18 +63,18 @@ flutter:
   uses-material-design: true
 
   assets:
+    - test/src/service/api/modules/auth/mocks/
+    - images/logo/logo.png
     - images/
     - images/modules/
     - images/modules/auth/
-    - images/app/home/
-    - images/app/home/drawer/
-    - images/icons/
-    - images/app/search_pictures/placeholder/
-    - test/src/service/api/modules/auth/mocks/
-    - images/logo/logo.png
     - images/modules/auth/
     - images/modules/auth/profile_pictures/
     - images/modules/auth/profile_pictures/placeholder/
+    - images/modules/home/
+    - images/modules/core/empty/
+    - images/modules/core/icons/
+    - images/modules/core/placeholder/
     
 
 flutter_intl:

@@ -134,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cadastro realizado com sucesso!"),
         "textRegisterSuccessMessage": MessageLookupByLibrary.simpleMessage(
             "Você será redirecionado para a página de login."),
+        "textReviews": MessageLookupByLibrary.simpleMessage("Avaliações"),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
         "textSearch": MessageLookupByLibrary.simpleMessage("Search"),

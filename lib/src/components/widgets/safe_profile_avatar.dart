@@ -17,7 +17,7 @@ class SafeProfileAvatar extends StatelessWidget {
   const SafeProfileAvatar({
     Key? key,
     this.onTap,
-    this.image = AssetConstants.profilePicturePlaceholder,
+    this.image = PlaceHolderAssets.profileAvatar,
     this.isEditable = false,
     this.isSelected = false,
     this.type = ProfileAvatarType.main,
