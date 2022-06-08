@@ -33,6 +33,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "- Sua senha deve ter mais de 8 caracteres"),
         "textBestRates":
             MessageLookupByLibrary.simpleMessage("Melhores Avaliados"),
+        "textBottomNavBarHome": MessageLookupByLibrary.simpleMessage("Início"),
+        "textBottomNavBarReviews":
+            MessageLookupByLibrary.simpleMessage("Avaliações"),
+        "textBottomNavBarSearch":
+            MessageLookupByLibrary.simpleMessage("Buscar"),
         "textButtonDontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Não possui uma conta?"),
         "textButtonForgotPassword":

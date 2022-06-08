@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/login/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
+import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/bloc/login_bloc.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
 class LoginPage extends StatefulWidget {
   static const route = '/login/';
@@ -29,6 +34,33 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
   void initState() {
     super.initState();
     LogUtil().route(Modular.to.path);
+    _doLoginListen();
+  }
+
+  _doLoginListen() {
+    controller.doLoginController.stream.listen((event) async {
+      switch (event.status) {
+        case Status.completed:
+          navigateToHome();
+          break;
+        case Status.loading:
+          const SafeLoading();
+          break;
+        case Status.error:
+          Modular.to.pop();
+          SafeDialogs.error(message: event.message);
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  void navigateToHome() {
+    Modular.to.pushNamedAndRemoveUntil(
+      NavigationPage.route + HomePage.route,
+      (r) => false,
+    );
   }
 
   @override
@@ -39,25 +71,36 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(30),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _mountTitle(),
-                  const SizedBox(height: 30),
-                  _mountEmailField(),
-                  const SizedBox(height: 18),
-                  _mountPasswordField(),
-                  //TODO comentar até funcionalidade for implementada
-                  //_mountForgotPasswordButton(context),
-                  const SizedBox(height: 30),
-                  _mountLoginButton(),
-                  const SizedBox(height: 12),
-                  _mountRegisterButton(),
-                ],
-              ),
-            ),
+            child: StreamBuilder<SafeResponse<LoginEntity>>(
+                stream: controller.doLoginController.stream,
+                builder: (context, snapshot) {
+                  if (snapshot.data?.status == Status.loading) {
+                    return const SafeLoading();
+                  } else if (snapshot.data?.status == Status.error) {
+                    Modular.to.pop();
+                    return SafeDialogs.error(message: snapshot.data?.message);
+                  }
+
+                  return Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _mountTitle(),
+                        const SizedBox(height: 30),
+                        _mountEmailField(),
+                        const SizedBox(height: 18),
+                        _mountPasswordField(),
+                        //TODO comentar até funcionalidade for implementada
+                        //_mountForgotPasswordButton(context),
+                        const SizedBox(height: 30),
+                        _mountLoginButton(),
+                        const SizedBox(height: 12),
+                        _mountRegisterButton(),
+                      ],
+                    ),
+                  );
+                }),
           ),
         ),
       ),
@@ -100,12 +143,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
           onTap: () async {
             _formKey.currentState?.validate();
             if (snapshot.data == true) {
-              await controller.doLogin().then(
-                    (_) => Modular.to.pushNamedAndRemoveUntil(
-                      HomePage.route,
-                      (r) => false,
-                    ),
-                  );
+              await controller.doLogin();
             }
           },
         );

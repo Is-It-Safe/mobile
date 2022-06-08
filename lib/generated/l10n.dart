@@ -90,6 +90,36 @@ class S {
     );
   }
 
+  /// `Início`
+  String get textBottomNavBarHome {
+    return Intl.message(
+      'Início',
+      name: 'textBottomNavBarHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buscar`
+  String get textBottomNavBarSearch {
+    return Intl.message(
+      'Buscar',
+      name: 'textBottomNavBarSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avaliações`
+  String get textBottomNavBarReviews {
+    return Intl.message(
+      'Avaliações',
+      name: 'textBottomNavBarReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Vamos entrar.`
   String get textPageTitleLogin {
     return Intl.message(

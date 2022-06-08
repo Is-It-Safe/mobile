@@ -48,9 +48,11 @@ class LoginBloc extends SafeBloC {
         email: emailController.text,
         password: passwordController.text,
       );
-      saveUserToken(loginEntity.accessToken);
-      saveUserRefreshToken(loginEntity.refreshToken);
-      saveUserLogin(true);
+      if (loginEntity.accessToken.isNotEmpty) {
+        saveUserToken(loginEntity.accessToken);
+        saveUserRefreshToken(loginEntity.refreshToken);
+        saveUserLogin(true);
+      }
       doLoginController.sink.add(SafeResponse.completed(data: loginEntity));
     } catch (e) {
       doLoginController.sink.add(SafeResponse.error(e.toString()));

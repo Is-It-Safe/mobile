@@ -39,6 +39,11 @@ class _OnBoardingPageState
     );
   }
 
+  void onButtonPressed() {
+    controller.saveUserOnBoardingUseCase(true);
+    Modular.to.navigate(LoginPage.route);
+  }
+
   PageView _mountOnBoardingPages() {
     return PageView(
       controller: controller.onBoardingPageController,
@@ -46,19 +51,18 @@ class _OnBoardingPageState
         OnBoardingWidget(
           backgroundImage: AssetConstants.general.onBoarding1,
           text: _mountTextOnBoarding1(),
+          onButtonPressed: onButtonPressed,
         ),
         OnBoardingWidget(
           backgroundImage: AssetConstants.general.onBoarding2,
           text: _mountTextOnBoarding2(),
+          onButtonPressed: onButtonPressed,
         ),
         OnBoardingWidget(
           backgroundImage: AssetConstants.general.onBoarding3,
           text: _mountTextOnBoarding3(),
           isButtonVisible: true,
-          onButtonPressed: () {
-            controller.saveUserOnBoardingUseCase(true);
-            Modular.to.navigate(LoginPage.route);
-          },
+          onButtonPressed: onButtonPressed,
         ),
       ],
     );

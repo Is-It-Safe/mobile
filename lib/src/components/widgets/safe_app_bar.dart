@@ -25,13 +25,14 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
     this.bottom,
   }) : super(key: key);
 
-  SafeAppBar home({Function(int)? onBottomTap}) {
+  SafeAppBar home({
+    Function(int)? onBottomTap,
+    Function()? onOpenDrawer,
+  }) {
     return SafeAppBar(
       title: S.current.textIsItSafe,
       appBarType: AppBarType.home,
-      onTap: () {
-        //TODO Open DrawerPage
-      },
+      onTap: onOpenDrawer,
       bottom: TabBar(
         indicatorColor: SafeColors.textColors.dark,
         indicatorSize: TabBarIndicatorSize.tab,

@@ -27,7 +27,5 @@ class OnBoardingBloc extends SafeBloC {
   }
 
   @override
-  Future<void> dispose() async {
-    onBoardingPageController.dispose();
-  }
+  Future<void> dispose() async {}
 }

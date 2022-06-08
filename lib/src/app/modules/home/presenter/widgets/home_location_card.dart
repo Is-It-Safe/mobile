@@ -136,7 +136,7 @@ class HomeLocationCard extends StatelessWidget {
   Widget _mountReviews() {
     return Row(
       children: [
-        SvgPicture.asset(AssetConstants.icons.review),
+        SvgPicture.asset(AssetConstants.icons.comment),
         const SizedBox(width: 10),
         Text(
           location.reviewsQnt.toString() +

@@ -15,7 +15,13 @@ class _IconsAssets {
   String drawer = 'images/modules/core/icons/drawer_icon.svg';
   String edit = 'images/modules/core/icons/edit_icon.svg';
   String star = 'images/modules/core/icons/star_icon.svg';
-  String review = 'images/modules/core/icons/review_icon.svg';
+  String comment = 'images/modules/core/icons/review_icon.svg';
+  String homeOutlined = 'images/modules/core/icons/home_active_icon.svg';
+  String home = 'images/modules/core/icons/home_icon.svg';
+  String reviewOutlined = 'images/modules/core/icons/review_active_icon.svg';
+  String review = 'images/modules/core/icons/review_clean_icon.svg';
+  String searchOutlined = 'images/modules/core/icons/search_active_icon.svg';
+  String search = 'images/modules/core/icons/search_icon.svg';
 }
 
 class _MockAssets {

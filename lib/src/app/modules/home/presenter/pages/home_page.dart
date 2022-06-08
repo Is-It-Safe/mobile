@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/home/domain/entity/home_location_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_location_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
@@ -19,6 +20,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeBloc> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -30,8 +33,12 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        key: _scaffoldKey,
+        endDrawer: const HomeDrawer(),
         appBar: const SafeAppBar().home(
+          onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
           onBottomTap: (tab) {
+            //TODO manter comentado mediante implementação da feature
             // if (tab == 0) controller.getClosePlacesLocations();
             if (tab == 1) controller.getBestRatedLocations();
           },
@@ -54,9 +61,10 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
     required List<HomeLocationEntity> list,
   }) {
     return StreamBuilder<SafeResponse<List<HomeLocationEntity>>>(
-      stream: stream,
+      stream: controller.bestRatedPlacesController.stream,
       builder: (context, snapshot) {
-        if (snapshot.data != null || list.isNotEmpty) {
+        if (snapshot.data != null ||
+            controller.listBestRatedLocations.isNotEmpty) {
           switch (snapshot.data?.status) {
             case Status.loading:
               return const SafeLoading();
@@ -77,10 +85,10 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
                   horizontal: 20.0,
                   vertical: 20.0,
                 ),
-                itemCount: list.length,
+                itemCount: controller.listBestRatedLocations.length,
                 separatorBuilder: (_, i) => const SizedBox(height: 15),
                 itemBuilder: (context, index) => HomeLocationCard(
-                  location: list[index],
+                  location: controller.listBestRatedLocations[index],
                 ),
               );
           }

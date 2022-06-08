@@ -5,6 +5,10 @@
     "textAppBarChooseProfilePhotoPage": "Escolha seu avatar!",
     "textAppBarSignUp": "Cadastro",
 
+    "textBottomNavBarHome":"Início",
+    "textBottomNavBarSearch":"Buscar",
+    "textBottomNavBarReviews":"Avaliações",
+
     "textPageTitleLogin":"Vamos entrar.",
     "textPageSubtitleLogin":"Sentimos sua falta!",
     "textPageTitleProfileRegisterPage":"Escolha seu avatar",
