@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
-import 'package:is_it_safe_app/src/app/modules/home/domain/entity/home_location_entity.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 
 class HomeLocationCard extends StatelessWidget {
-  final HomeLocationEntity location;
+  final LocationEntity location;
   final Function()? onTap;
 
   const HomeLocationCard({
@@ -111,7 +111,7 @@ class HomeLocationCard extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.60,
       child: Text(
-        location.name ?? StringConstants.empty,
+        location.name,
         textAlign: TextAlign.start,
         overflow: TextOverflow.ellipsis,
         style: TextStyles.subtitle2(
@@ -125,7 +125,7 @@ class HomeLocationCard extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.65,
       child: Text(
-        location.address ?? StringConstants.empty,
+        location.address,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: TextStyles.label(),

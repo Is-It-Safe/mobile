@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/home/domain/entity/home_location_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/home/domain/use_case/get_best_rated_locations_use-case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
 class HomeBloc extends SafeBloC {
   late final GetBestRatedLocationsUseCase _getBestRatedLocationsUseCase;
 
-  late StreamController<SafeResponse<List<HomeLocationEntity>>>
+  late StreamController<SafeResponse<List<LocationEntity>>>
       bestRatedPlacesController;
-  List<HomeLocationEntity> listBestRatedLocations = [];
+  List<LocationEntity> listBestRatedLocations = [];
 
   HomeBloc() {
     init();
@@ -40,5 +40,7 @@ class HomeBloc extends SafeBloC {
   }
 
   @override
-  Future<void> dispose() async {}
+  Future<void> dispose() async {
+    bestRatedPlacesController.close();
+  }
 }

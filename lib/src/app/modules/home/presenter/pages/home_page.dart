@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/home/domain/entity/home_location_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_location_card.dart';
@@ -9,6 +8,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
 class HomePage extends StatefulWidget {
@@ -56,11 +56,11 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
     );
   }
 
-  StreamBuilder<SafeResponse<List<HomeLocationEntity>>> _mountTab({
-    required Stream<SafeResponse<List<HomeLocationEntity>>> stream,
-    required List<HomeLocationEntity> list,
+  StreamBuilder<SafeResponse<List<LocationEntity>>> _mountTab({
+    required Stream<SafeResponse<List<LocationEntity>>> stream,
+    required List<LocationEntity> list,
   }) {
-    return StreamBuilder<SafeResponse<List<HomeLocationEntity>>>(
+    return StreamBuilder<SafeResponse<List<LocationEntity>>>(
       stream: controller.bestRatedPlacesController.stream,
       builder: (context, snapshot) {
         if (snapshot.data != null ||
