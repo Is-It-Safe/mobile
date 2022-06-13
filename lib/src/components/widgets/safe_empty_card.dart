@@ -22,6 +22,13 @@ class SafeEmptyCard extends StatelessWidget {
     );
   }
 
+  static Widget search() {
+    return SafeEmptyCard(
+      image: AssetConstants.empty.search,
+      text: S.current.textErrorSearch,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(

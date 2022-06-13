@@ -300,10 +300,10 @@ class S {
     );
   }
 
-  /// `Algo deu errado na Pesquisa!`
+  /// `Não achamos nenhum local com esse nome.\nQue tal adicionar ele?`
   String get textErrorSearch {
     return Intl.message(
-      'Algo deu errado na Pesquisa!',
+      'Não achamos nenhum local com esse nome.\nQue tal adicionar ele?',
       name: 'textErrorSearch',
       desc: '',
       args: [],

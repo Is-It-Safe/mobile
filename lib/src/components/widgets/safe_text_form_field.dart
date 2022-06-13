@@ -30,14 +30,14 @@ class SafeTextFormField extends StatefulWidget {
     this.hintText,
     this.suffixIcon,
     this.prefixIcon,
-    this.obscureText,
+    this.obscureText = false,
     this.onChanged,
     this.validator,
     this.keyboardType,
     this.onEditingComplete,
     this.bottomText,
     this.inputFormatters,
-    this.readOnly,
+    this.readOnly = false,
     this.dropdownType = DropdownType.none,
   }) : super(key: key);
 

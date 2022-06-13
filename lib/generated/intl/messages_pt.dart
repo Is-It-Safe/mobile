@@ -81,7 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textErrorPronouns": MessageLookupByLibrary.simpleMessage(
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
         "textErrorSearch": MessageLookupByLibrary.simpleMessage(
-            "Algo deu errado na Pesquisa!"),
+            "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?"),
         "textErrorTryAgain": MessageLookupByLibrary.simpleMessage(
             "Tente novamente em alguns instantes."),
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(

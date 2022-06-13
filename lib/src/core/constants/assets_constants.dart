@@ -8,6 +8,7 @@ class AssetConstants {
 
 class _EmptyAssets {
   String home = 'images/modules/core/empty/empty_home.svg';
+  String search = 'images/modules/core/empty/empty_search.svg';
 }
 
 class _IconsAssets {
