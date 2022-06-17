@@ -8,8 +8,10 @@ class SearchModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SearchService()),
-    Bind.lazySingleton((i) => SearchBloc()),
     Bind.lazySingleton((i) => GetLocationsByNameUseCase()),
+    Bind.lazySingleton((i) => SearchBloc(
+          getLocationsByNameUseCase: i.get<GetLocationsByNameUseCase>(),
+        )),
   ];
 
   @override

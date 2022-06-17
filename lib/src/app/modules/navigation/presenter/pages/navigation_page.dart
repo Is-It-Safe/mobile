@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/bloc/navigation_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/presenter/pages/profile_page.dart';
 import 'package:is_it_safe_app/src/app/modules/search/presenter/pages/search_page.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
@@ -52,12 +53,10 @@ class _NavigationPageState
         Modular.to.pushNamed(NavigationPage.route + HomePage.route);
       }
       if (index == 1) {
-        //TODO Trocar rota quando busca for implementada
         Modular.to.pushNamed(NavigationPage.route + SearchPage.route);
       }
       if (index == 2) {
-        //TODO Trocar rota quando avaliações for implementada
-        Modular.to.pushNamed(NavigationPage.route + HomePage.route);
+        Modular.to.pushNamed(NavigationPage.route + ProfilePage.route);
       }
       _selectedPage = index;
       setState(() {});

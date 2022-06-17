@@ -1,26 +1,26 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/search/domain/use_case/get_locations_by_name_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
 class SearchBloc extends SafeBloC {
-  late final GetLocationsByNameUseCase _getLocationsByNameUseCase;
+  final GetLocationsByNameUseCase getLocationsByNameUseCase;
   late StreamController<SafeResponse<List<LocationEntity>>> searchController;
   late TextEditingController placeSearchController;
 
   List<LocationEntity> searchResultLocations = [];
 
-  SearchBloc() {
+  SearchBloc({
+    required this.getLocationsByNameUseCase,
+  }) {
     init();
   }
 
   @override
   Future<void> init() async {
-    _getLocationsByNameUseCase = Modular.get<GetLocationsByNameUseCase>();
     searchController = StreamController.broadcast();
     placeSearchController = TextEditingController();
   }
@@ -29,7 +29,7 @@ class SearchBloc extends SafeBloC {
     try {
       searchResultLocations.clear();
       searchController.sink.add(SafeResponse.loading());
-      searchResultLocations = await _getLocationsByNameUseCase.call(
+      searchResultLocations = await getLocationsByNameUseCase.call(
         placeSearchController.text,
       );
       searchController.sink

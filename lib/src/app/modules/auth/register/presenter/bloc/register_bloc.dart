@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/domain/entity/register_entity.dart';
@@ -19,9 +18,9 @@ import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dar
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class RegisterBloc extends SafeBloC {
-  late final DoRegisterUseCase _doRegisterUseCase;
-  late final GetSexualOrientationsUseCase _getSexualOrientationsUseCase;
-  late final GetGendersUseCase _getGendersUseCase;
+  final DoRegisterUseCase doRegisterUseCase;
+  final GetSexualOrientationsUseCase getSexualOrientationsUseCase;
+  final GetGendersUseCase getGendersUseCase;
 
   late final MaskTextInputFormatter birthdayInputMask;
   late final MaskTextInputFormatter phoneInputMask;
@@ -49,16 +48,16 @@ class RegisterBloc extends SafeBloC {
   List<SexualOrientationEntity> listSexualOrientations = [];
   String selectedProfilePhoto = StringConstants.empty;
 
-  RegisterBloc() {
+  RegisterBloc({
+    required this.doRegisterUseCase,
+    required this.getGendersUseCase,
+    required this.getSexualOrientationsUseCase,
+  }) {
     init();
   }
 
   @override
   Future<void> init() async {
-    _doRegisterUseCase = Modular.get<DoRegisterUseCase>();
-    _getSexualOrientationsUseCase = Modular.get<GetSexualOrientationsUseCase>();
-    _getGendersUseCase = Modular.get<GetGendersUseCase>();
-
     birthdayInputMask = MaskTextInputFormatter(mask: StringConstants.dateMask);
     phoneInputMask = MaskTextInputFormatter(mask: StringConstants.phoneMask);
 
@@ -111,7 +110,7 @@ class RegisterBloc extends SafeBloC {
     try {
       if (listGenders.isEmpty) {
         gendersController.sink.add(SafeResponse.loading());
-        listGenders = await _getGendersUseCase.call();
+        listGenders = await getGendersUseCase.call();
         gendersController.sink.add(SafeResponse.completed(data: listGenders));
       }
     } catch (e) {
@@ -124,7 +123,7 @@ class RegisterBloc extends SafeBloC {
     try {
       if (listSexualOrientations.isEmpty) {
         sexualOrientationsController.sink.add(SafeResponse.loading());
-        listSexualOrientations = await _getSexualOrientationsUseCase.call();
+        listSexualOrientations = await getSexualOrientationsUseCase.call();
         sexualOrientationsController.sink.add(
           SafeResponse.completed(data: listSexualOrientations),
         );
@@ -140,7 +139,7 @@ class RegisterBloc extends SafeBloC {
   }) async {
     try {
       doRegisterController.sink.add(SafeResponse.loading());
-      final _response = await _doRegisterUseCase.call(
+      final _response = await doRegisterUseCase.call(
         name: nameController.text,
         username: usernameController.text,
         birthDate: isAdvanceButton == true

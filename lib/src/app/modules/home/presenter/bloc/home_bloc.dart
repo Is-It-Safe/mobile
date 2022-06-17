@@ -1,26 +1,26 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/home/domain/use_case/get_best_rated_locations_use-case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
 class HomeBloc extends SafeBloC {
-  late final GetBestRatedLocationsUseCase _getBestRatedLocationsUseCase;
+  final GetBestRatedLocationsUseCase getBestRatedLocationsUseCase;
 
   late StreamController<SafeResponse<List<LocationEntity>>>
       bestRatedPlacesController;
   List<LocationEntity> listBestRatedLocations = [];
 
-  HomeBloc() {
+  HomeBloc({
+    required this.getBestRatedLocationsUseCase,
+  }) {
     init();
   }
 
   @override
   Future<void> init() async {
-    _getBestRatedLocationsUseCase = Modular.get<GetBestRatedLocationsUseCase>();
     bestRatedPlacesController = StreamController.broadcast();
   }
 
@@ -28,7 +28,7 @@ class HomeBloc extends SafeBloC {
     try {
       //TODO Somente chamar a api mediante um isRefresh == true ou caso listBestRatedLocations esteja vazia
       bestRatedPlacesController.sink.add(SafeResponse.loading());
-      listBestRatedLocations = await _getBestRatedLocationsUseCase.call();
+      listBestRatedLocations = await getBestRatedLocationsUseCase.call();
       bestRatedPlacesController.sink.add(
         SafeResponse.completed(data: listBestRatedLocations),
       );

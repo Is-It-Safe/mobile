@@ -21,7 +21,12 @@ class LoginModule extends Module {
     Bind.lazySingleton((i) => SaveUserTokenUseCase()),
     Bind.lazySingleton((i) => SaveUserRefreshTokenUseCase()),
     Bind.lazySingleton((i) => DoLoginUseCase()),
-    Bind.lazySingleton((i) => LoginBloc()),
+    Bind.lazySingleton((i) => LoginBloc(
+          doLoginUseCase: i.get<DoLoginUseCase>(),
+          saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
+          saveUserTokenUseCase: i.get<SaveUserTokenUseCase>(),
+          saveUserRefreshTokenUseCase: i.get<SaveUserRefreshTokenUseCase>(),
+        )),
   ];
 
   @override

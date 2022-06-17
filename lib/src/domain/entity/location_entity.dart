@@ -3,9 +3,9 @@ import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class LocationEntity {
-  late int id;
-  late String name;
-  late String address;
+  final int id;
+  final String name;
+  final String address;
   String? imagePath;
   double? averageGrade;
   int? reviewsQnt;

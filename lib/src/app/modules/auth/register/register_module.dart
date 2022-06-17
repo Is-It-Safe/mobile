@@ -17,7 +17,11 @@ class RegisterModule extends Module {
     Bind.lazySingleton((i) => GetSexualOrientationsUseCase()),
     Bind.lazySingleton((i) => GetGendersUseCase()),
     Bind.lazySingleton((i) => DoRegisterUseCase()),
-    Bind.lazySingleton((i) => RegisterBloc()),
+    Bind.lazySingleton((i) => RegisterBloc(
+          doRegisterUseCase: i.get<DoRegisterUseCase>(),
+          getGendersUseCase: i.get<GetGendersUseCase>(),
+          getSexualOrientationsUseCase: i.get<GetSexualOrientationsUseCase>(),
+        )),
   ];
 
   @override

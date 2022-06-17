@@ -44,4 +44,7 @@ class ApiConstants {
   //Location
   static const String getBestRatedLocations = '${kUrl}location/find-all';
   static const String getLocationsByName = '${kUrl}location/find-all?name=';
+
+  //User
+  static const String getUser = '${kUrl}user/profile';
 }

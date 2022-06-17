@@ -8,8 +8,10 @@ class HomeModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => HomeService()),
-    Bind.lazySingleton((i) => HomeBloc()),
-    Bind.lazySingleton((i) => GetBestRatedLocationsUseCase())
+    Bind.lazySingleton((i) => GetBestRatedLocationsUseCase()),
+    Bind.lazySingleton((i) => HomeBloc(
+          getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
+        )),
   ];
 
   @override

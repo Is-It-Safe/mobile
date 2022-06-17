@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/domain/use_case/do_login_use_case.dart';
@@ -15,26 +14,27 @@ import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
 class LoginBloc extends SafeBloC {
-  late final DoLoginUseCase _doLoginUseCase;
-  late final SaveUserLoginUseCase _saveUserLoginUseCase;
-  late final SaveUserTokenUseCase _saveUserTokenUseCase;
-  late final SaveUserRefreshTokenUseCase _saveUserRefreshTokenUseCase;
+  final DoLoginUseCase doLoginUseCase;
+  final SaveUserLoginUseCase saveUserLoginUseCase;
+  final SaveUserTokenUseCase saveUserTokenUseCase;
+  final SaveUserRefreshTokenUseCase saveUserRefreshTokenUseCase;
 
   late StreamController<bool> loginButtonController;
   late StreamController<SafeResponse<LoginEntity>> doLoginController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
-  LoginBloc() {
+  LoginBloc({
+    required this.doLoginUseCase,
+    required this.saveUserLoginUseCase,
+    required this.saveUserTokenUseCase,
+    required this.saveUserRefreshTokenUseCase,
+  }) {
     init();
   }
 
   @override
   Future<void> init() async {
-    _doLoginUseCase = Modular.get<DoLoginUseCase>();
-    _saveUserLoginUseCase = Modular.get<SaveUserLoginUseCase>();
-    _saveUserTokenUseCase = Modular.get<SaveUserTokenUseCase>();
-    _saveUserRefreshTokenUseCase = Modular.get<SaveUserRefreshTokenUseCase>();
     loginButtonController = StreamController.broadcast();
     doLoginController = StreamController.broadcast();
     emailController = TextEditingController();
@@ -44,7 +44,7 @@ class LoginBloc extends SafeBloC {
   Future<void> doLogin() async {
     try {
       doLoginController.sink.add(SafeResponse.loading());
-      LoginEntity loginEntity = await _doLoginUseCase.call(
+      LoginEntity loginEntity = await doLoginUseCase.call(
         email: emailController.text,
         password: passwordController.text,
       );
@@ -69,7 +69,7 @@ class LoginBloc extends SafeBloC {
 
   Future<void> saveUserLogin(bool value) async {
     try {
-      await _saveUserLoginUseCase.call(value);
+      await saveUserLoginUseCase.call(value);
     } catch (e) {
       LogUtil().error(e.toString());
     }
@@ -77,7 +77,7 @@ class LoginBloc extends SafeBloC {
 
   Future<void> saveUserToken(String value) async {
     try {
-      await _saveUserTokenUseCase.call(value);
+      await saveUserTokenUseCase.call(value);
     } catch (e) {
       LogUtil().error(e.toString());
     }
@@ -85,7 +85,7 @@ class LoginBloc extends SafeBloC {
 
   Future<void> saveUserRefreshToken(String value) async {
     try {
-      await _saveUserRefreshTokenUseCase.call(value);
+      await saveUserRefreshTokenUseCase.call(value);
     } catch (e) {
       LogUtil().error(e.toString());
     }
