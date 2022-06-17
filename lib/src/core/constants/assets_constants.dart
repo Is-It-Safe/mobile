@@ -23,6 +23,7 @@ class _IconsAssets {
   String review = 'images/modules/core/icons/review_clean_icon.svg';
   String searchOutlined = 'images/modules/core/icons/search_active_icon.svg';
   String search = 'images/modules/core/icons/search_icon.svg';
+  String account = 'images/modules/core/icons/account_icon.svg';
 }
 
 class _MockAssets {
