@@ -23,7 +23,10 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "textAbout": MessageLookupByLibrary.simpleMessage("Sobre"),
+        "textAccountInformation":
+            MessageLookupByLibrary.simpleMessage("Informações da Conta"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
+        "textAngry": MessageLookupByLibrary.simpleMessage("Irritado"),
         "textAppBarChooseProfilePhotoPage":
             MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
         "textAppBarProfileRegisterPage":
@@ -33,11 +36,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "- Sua senha deve ter mais de 8 caracteres"),
         "textBestRates":
             MessageLookupByLibrary.simpleMessage("Melhores Avaliados"),
+        "textBottomNavBarHome": MessageLookupByLibrary.simpleMessage("Início"),
+        "textBottomNavBarReviews":
+            MessageLookupByLibrary.simpleMessage("Avaliações"),
+        "textBottomNavBarSearch":
+            MessageLookupByLibrary.simpleMessage("Buscar"),
         "textButtonDontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Não possui uma conta?"),
         "textButtonForgotPassword":
             MessageLookupByLibrary.simpleMessage("Esqueceu sua senha?"),
         "textCancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "textChangeEmail":
+            MessageLookupByLibrary.simpleMessage("Alterar E-mail"),
+        "textChangePassword":
+            MessageLookupByLibrary.simpleMessage("Alterar Senha"),
         "textClosePlaces":
             MessageLookupByLibrary.simpleMessage("Lugares Próximos"),
         "textConfiguration":
@@ -46,14 +58,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "textContact": MessageLookupByLibrary.simpleMessage("Contato"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
+        "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
+        "textDeleteAccount":
+            MessageLookupByLibrary.simpleMessage("Excluir Conta"),
+        "textDisableAccount":
+            MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
             "Agora escolha um nome para todos verem, seja criativo!"),
         "textDrawerAddLocation":
             MessageLookupByLibrary.simpleMessage("Adicionar Local"),
         "textDrawerMyAccount":
             MessageLookupByLibrary.simpleMessage("Minha Conta"),
+        "textEditProfile":
+            MessageLookupByLibrary.simpleMessage("Editar Perfil"),
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
+        "textError": MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
             "Os campos de senha devem ser iguais"),
         "textErrorDropdown":
@@ -72,18 +92,26 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, digite uma senha válida"),
         "textErrorLoginUsername": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite um nome de usuário válido"),
+        "textErrorProfile": MessageLookupByLibrary.simpleMessage(
+            "Você não fez nenhum review ainda, começe assim que puder!"),
         "textErrorPronouns": MessageLookupByLibrary.simpleMessage(
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
         "textErrorSearch": MessageLookupByLibrary.simpleMessage(
-            "Algo deu errado na Pesquisa!"),
+            "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?"),
+        "textErrorTryAgain": MessageLookupByLibrary.simpleMessage(
+            "Tente novamente em alguns instantes."),
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(
             "Campos errados! Tente novamente."),
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
+        "textExcited": MessageLookupByLibrary.simpleMessage("Alegre"),
+        "textFeatureAvailableSoon": MessageLookupByLibrary.simpleMessage(
+            "Funcionalidade disponível em breve"),
         "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar"),
         "textForgotGender":
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
+        "textHappy": MessageLookupByLibrary.simpleMessage("Contente"),
         "textHowDoYouPreferWeReferToYou": MessageLookupByLibrary.simpleMessage(
             "Como prefere que as pessoas se refiram a você?"),
         "textIReadAndAcceptThe":
@@ -93,9 +121,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("- letras e números"),
         "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
+        "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textMeetingYouWillBeAPleasure":
             MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer."),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
+        "textNeutral": MessageLookupByLibrary.simpleMessage("Neutro"),
+        "textOk": MessageLookupByLibrary.simpleMessage("Ok"),
         "textOnBoarding1_0": MessageLookupByLibrary.simpleMessage("Foco em"),
         "textOnBoarding1_1": MessageLookupByLibrary.simpleMessage("segurança"),
         "textOnBoarding1_2": MessageLookupByLibrary.simpleMessage("e"),
@@ -120,15 +151,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPassword": MessageLookupByLibrary.simpleMessage("Senha"),
         "textPasswordConfirmation":
             MessageLookupByLibrary.simpleMessage("Confirmar senha"),
+        "textPasswordSpecifications": MessageLookupByLibrary.simpleMessage(
+            "Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números"),
+        "textPersonalInformation":
+            MessageLookupByLibrary.simpleMessage("Informações Pessoais"),
         "textPrivacy": MessageLookupByLibrary.simpleMessage("Privacidade"),
         "textPronouns": MessageLookupByLibrary.simpleMessage("Pronomes"),
         "textReady": MessageLookupByLibrary.simpleMessage("Pronto"),
         "textRegister": MessageLookupByLibrary.simpleMessage("Cadastrar"),
+        "textRegisterSuccess": MessageLookupByLibrary.simpleMessage(
+            "Cadastro realizado com sucesso!"),
+        "textRegisterSuccessMessage": MessageLookupByLibrary.simpleMessage(
+            "Você será redirecionado para a página de login."),
+        "textReviews": MessageLookupByLibrary.simpleMessage("Avaliações"),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
         "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
+        "textSeeLess": MessageLookupByLibrary.simpleMessage("Ver menos"),
+        "textSeeMore": MessageLookupByLibrary.simpleMessage("Ver mais"),
+        "textSelectAPicture": MessageLookupByLibrary.simpleMessage(
+            "Selecione uma foto antes de salvar."),
         "textSexualOrientation":
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
+        "textShare": MessageLookupByLibrary.simpleMessage("Compartilhar"),
         "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
         "textSkipForNow": MessageLookupByLibrary.simpleMessage("Pular"),
         "textSuccessRegistration":
@@ -141,6 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textTermsOfUse": MessageLookupByLibrary.simpleMessage("Termos de Uso"),
         "textTypeTheNameOfAPlaceToSearch": MessageLookupByLibrary.simpleMessage(
             "Digite o nome de um local para buscar."),
+        "textUpset": MessageLookupByLibrary.simpleMessage("Chateado"),
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós."),
@@ -148,6 +194,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textYourRepresentationHereInside":
             MessageLookupByLibrary.simpleMessage(
                 "Uma representação sua aqui dentro!"),
+        "textYourReviews":
+            MessageLookupByLibrary.simpleMessage("Suas Avaliações"),
         "textforgotGenderSubtext":
             MessageLookupByLibrary.simpleMessage("me avise!")
       };

@@ -90,6 +90,36 @@ class S {
     );
   }
 
+  /// `Início`
+  String get textBottomNavBarHome {
+    return Intl.message(
+      'Início',
+      name: 'textBottomNavBarHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buscar`
+  String get textBottomNavBarSearch {
+    return Intl.message(
+      'Buscar',
+      name: 'textBottomNavBarSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avaliações`
+  String get textBottomNavBarReviews {
+    return Intl.message(
+      'Avaliações',
+      name: 'textBottomNavBarReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Vamos entrar.`
   String get textPageTitleLogin {
     return Intl.message(
@@ -250,10 +280,30 @@ class S {
     );
   }
 
-  /// `Algo deu errado na Pesquisa!`
+  /// `Algo deu errado!`
+  String get textError {
+    return Intl.message(
+      'Algo deu errado!',
+      name: 'textError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tente novamente em alguns instantes.`
+  String get textErrorTryAgain {
+    return Intl.message(
+      'Tente novamente em alguns instantes.',
+      name: 'textErrorTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não achamos nenhum local com esse nome.\nQue tal adicionar ele?`
   String get textErrorSearch {
     return Intl.message(
-      'Algo deu errado na Pesquisa!',
+      'Não achamos nenhum local com esse nome.\nQue tal adicionar ele?',
       name: 'textErrorSearch',
       desc: '',
       args: [],
@@ -265,6 +315,16 @@ class S {
     return Intl.message(
       'Nenhum lugar próximo encontrado, comece a avaliar seu bairro!',
       name: 'textErrorHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Você não fez nenhum review ainda, começe assim que puder!`
+  String get textErrorProfile {
+    return Intl.message(
+      'Você não fez nenhum review ainda, começe assim que puder!',
+      name: 'textErrorProfile',
       desc: '',
       args: [],
     );
@@ -590,6 +650,216 @@ class S {
     );
   }
 
+  /// `Ok`
+  String get textOk {
+    return Intl.message(
+      'Ok',
+      name: 'textOk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avaliações`
+  String get textReviews {
+    return Intl.message(
+      'Avaliações',
+      name: 'textReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suas Avaliações`
+  String get textYourReviews {
+    return Intl.message(
+      'Suas Avaliações',
+      name: 'textYourReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Irritado`
+  String get textAngry {
+    return Intl.message(
+      'Irritado',
+      name: 'textAngry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chateado`
+  String get textUpset {
+    return Intl.message(
+      'Chateado',
+      name: 'textUpset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Neutro`
+  String get textNeutral {
+    return Intl.message(
+      'Neutro',
+      name: 'textNeutral',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contente`
+  String get textHappy {
+    return Intl.message(
+      'Contente',
+      name: 'textHappy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alegre`
+  String get textExcited {
+    return Intl.message(
+      'Alegre',
+      name: 'textExcited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ver mais`
+  String get textSeeMore {
+    return Intl.message(
+      'Ver mais',
+      name: 'textSeeMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ver menos`
+  String get textSeeLess {
+    return Intl.message(
+      'Ver menos',
+      name: 'textSeeLess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remover`
+  String get textDelete {
+    return Intl.message(
+      'Remover',
+      name: 'textDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Compartilhar`
+  String get textShare {
+    return Intl.message(
+      'Compartilhar',
+      name: 'textShare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informações Pessoais`
+  String get textPersonalInformation {
+    return Intl.message(
+      'Informações Pessoais',
+      name: 'textPersonalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Editar Perfil`
+  String get textEditProfile {
+    return Intl.message(
+      'Editar Perfil',
+      name: 'textEditProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sair`
+  String get textLogout {
+    return Intl.message(
+      'Sair',
+      name: 'textLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Desativar Conta`
+  String get textDisableAccount {
+    return Intl.message(
+      'Desativar Conta',
+      name: 'textDisableAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Excluir Conta`
+  String get textDeleteAccount {
+    return Intl.message(
+      'Excluir Conta',
+      name: 'textDeleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alterar E-mail`
+  String get textChangeEmail {
+    return Intl.message(
+      'Alterar E-mail',
+      name: 'textChangeEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alterar Senha`
+  String get textChangePassword {
+    return Intl.message(
+      'Alterar Senha',
+      name: 'textChangePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informações da Conta`
+  String get textAccountInformation {
+    return Intl.message(
+      'Informações da Conta',
+      name: 'textAccountInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Funcionalidade disponível em breve`
+  String get textFeatureAvailableSoon {
+    return Intl.message(
+      'Funcionalidade disponível em breve',
+      name: 'textFeatureAvailableSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Agora escolha um nome para todos verem, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(
@@ -720,6 +990,46 @@ class S {
     );
   }
 
+  /// `Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números`
+  String get textPasswordSpecifications {
+    return Intl.message(
+      'Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números',
+      name: 'textPasswordSpecifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selecione uma foto antes de salvar.`
+  String get textSelectAPicture {
+    return Intl.message(
+      'Selecione uma foto antes de salvar.',
+      name: 'textSelectAPicture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cadastro realizado com sucesso!`
+  String get textRegisterSuccess {
+    return Intl.message(
+      'Cadastro realizado com sucesso!',
+      name: 'textRegisterSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Você será redirecionado para a página de login.`
+  String get textRegisterSuccessMessage {
+    return Intl.message(
+      'Você será redirecionado para a página de login.',
+      name: 'textRegisterSuccessMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(
@@ -815,96 +1125,6 @@ class S {
     return Intl.message(
       'e avalie locais',
       name: 'textOnBoarding3_2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Minha conta`
-  String get textMyAccount {
-    return Intl.message(
-      'Minha conta',
-      name: 'textMyAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Desativar sua conta`
-  String get textDisableMyAccount {
-    return Intl.message(
-      'Desativar sua conta',
-      name: 'disableMyAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Informações Pessoais`
-  String get textPersonalInformation {
-    return Intl.message(
-      'Informações Pessoais',
-      name: 'textPersonalInformation',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sair`
-  String get textExit {
-    return Intl.message(
-      'Sair',
-      name: 'textExit',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Apelido`
-  String get textNickname {
-    return Intl.message(
-      'Apelido',
-      name: 'textNickname',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Pronome`
-  String get textPronoun {
-    return Intl.message(
-      'Pronome',
-      name: 'textPronoun',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Editar Perfil`
-  String get textEditProfile {
-    return Intl.message(
-      'Editar Perfil',
-      name: 'editProfile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Editar Perfil`
-  String get textWhoCanSeeMyProfile {
-    return Intl.message(
-      'Quem pode ver meu perfil',
-      name: 'editProfile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Lorem`
-  String get textLoremIpsum {
-    return Intl.message(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
-      name: 'loremIpsum',
       desc: '',
       args: [],
     );
