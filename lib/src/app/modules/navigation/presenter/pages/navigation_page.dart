@@ -67,7 +67,7 @@ class _NavigationPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const RouterOutlet(),
+      body: RouterOutlet(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPage,
         onTap: (index) => navigateToPage(index),

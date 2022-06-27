@@ -17,7 +17,7 @@ import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/register_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
 
 class RegisterProfilePage extends StatefulWidget {
   static const route = '/register-profile';

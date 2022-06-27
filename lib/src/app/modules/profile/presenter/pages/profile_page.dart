@@ -10,7 +10,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
 
 class ProfilePage extends StatefulWidget {
   static const route = '/profile/';

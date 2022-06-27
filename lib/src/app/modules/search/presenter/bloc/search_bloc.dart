@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_name_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
 
 class SearchBloc extends SafeBloC {
   final GetLocationsByNameUseCase getLocationsByNameUseCase;

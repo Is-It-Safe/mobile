@@ -11,7 +11,7 @@ import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
 
 class LoginBloc extends SafeBloC {
   final DoLoginUseCase doLoginUseCase;

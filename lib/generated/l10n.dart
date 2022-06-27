@@ -330,6 +330,16 @@ class S {
     );
   }
 
+  /// `Algo de errado aconteceu, tente novamente em alguns instantes.`
+  String get textErrorUnknown {
+    return Intl.message(
+      'Algo de errado aconteceu, tente novamente em alguns instantes.',
+      name: 'textErrorUnknown',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário Registrado`
   String get textSuccessRegistration {
     return Intl.message(

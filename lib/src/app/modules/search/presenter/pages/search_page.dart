@@ -9,7 +9,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
 
 class SearchPage extends StatefulWidget {
   static const route = '/search/';

@@ -32,6 +32,7 @@
     "textErrorSearch" : "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?",
     "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
     "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
+    "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
 
     "textSuccessRegistration":"Usuário Registrado",
 

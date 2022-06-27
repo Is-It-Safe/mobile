@@ -14,7 +14,7 @@ import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart'
 import 'package:is_it_safe_app/src/domain/use_case/do_register_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class RegisterBloc extends SafeBloC {

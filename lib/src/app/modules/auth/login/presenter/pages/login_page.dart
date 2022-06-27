@@ -15,7 +15,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart'
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/bloc/login_bloc.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
 
 class LoginPage extends StatefulWidget {
   static const route = '/login/';

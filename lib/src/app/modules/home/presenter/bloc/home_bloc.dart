@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use-case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
 
 class HomeBloc extends SafeBloC {
   final GetBestRatedLocationsUseCase getBestRatedLocationsUseCase;
