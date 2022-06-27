@@ -4,11 +4,21 @@ class AssetConstants {
   static _IconsAssets icons = _IconsAssets();
   static _EmptyAssets empty = _EmptyAssets();
   static _GeneralAssets general = _GeneralAssets();
+  static _EmoticonAssets emoticon = _EmoticonAssets();
 }
 
 class _EmptyAssets {
   String home = 'images/modules/core/empty/empty_home.svg';
   String search = 'images/modules/core/empty/empty_search.svg';
+  String profile = 'images/modules/core/empty/empty_review.svg';
+}
+
+class _EmoticonAssets {
+  String angry = 'images/modules/core/review/review_0.svg';
+  String sad = 'images/modules/core/review/review_1.svg';
+  String neutral = 'images/modules/core/review/review_2.svg';
+  String happy = 'images/modules/core/review/review_3.svg';
+  String excited = 'images/modules/core/review/review_4.svg';
 }
 
 class _IconsAssets {

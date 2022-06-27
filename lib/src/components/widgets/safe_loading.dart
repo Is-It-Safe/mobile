@@ -22,6 +22,7 @@ class SafeLoading extends StatelessWidget {
     );
   }
 
+  // ignore: unused_element
   Widget _iosLoading() {
     return const Align(
       alignment: Alignment.center,

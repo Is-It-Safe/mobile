@@ -1,4 +1,4 @@
-import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 
@@ -6,7 +6,7 @@ class ReviewEntity {
   int id;
   String? review;
   String? impressionStatus;
-  int? myGrade;
+  double? myGrade;
 
   ReviewEntity({
     required this.id,
@@ -20,7 +20,7 @@ class ReviewEntity {
       id: review.id!,
       review: review.review ?? StringConstants.empty,
       impressionStatus: review.impressionStatus ?? StringConstants.empty,
-      myGrade: review.myGrade ?? IntConstants.empty,
+      myGrade: review.myGrade ?? DoubleConstants.empty,
     );
   }
 }

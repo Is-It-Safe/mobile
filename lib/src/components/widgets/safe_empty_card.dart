@@ -29,6 +29,13 @@ class SafeEmptyCard extends StatelessWidget {
     );
   }
 
+  static Widget profile() {
+    return SafeEmptyCard(
+      image: AssetConstants.empty.profile,
+      text: S.current.textErrorProfile,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(

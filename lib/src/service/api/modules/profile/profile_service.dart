@@ -13,12 +13,14 @@ class ProfileService implements IProfileService {
 
   @override
   Future<ResponseGetUser> getUser() async {
+    final auth = await ApiConstants.kBarearAuth();
+
     final requestConfig = RequestConfig(
       path: ApiConstants.getUser,
       method: HttpMethod.get,
       options: Options(
         headers: {
-          ApiConstants.kAuthorization: ApiConstants.kBarearAuth(),
+          ApiConstants.kAuthorization: auth,
         },
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:is_it_safe_app/core/utils/style/colors/general_colors.dart';
-import 'package:is_it_safe_app/src/app/components/style/text_styles.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 /*
 TODO
@@ -20,7 +19,7 @@ class ActionTextComponent extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isLastItem;
 
-  get SafeColors.textColors.dark => null;
+//  get SafeColors.textColors.dark => null;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +30,7 @@ class ActionTextComponent extends StatelessWidget {
           Expanded(
             child: Text(
               title,
-              style: TextStyles.subtitle1(
-                  color: SafeColors.generalColors.secondary),
+              style: TextStyles.subtitle1(),
             ),
           ),
           IconButton(
@@ -40,7 +38,7 @@ class ActionTextComponent extends StatelessWidget {
             icon: const Icon(
               Icons.arrow_forward_ios,
               size: 17,
-              color: SafeColors.generalColors.secondary,
+              //color: SafeColors.generalColors.secondary,
             ),
           )
         ],

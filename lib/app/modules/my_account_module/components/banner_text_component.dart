@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/utils/style/colors/general_colors.dart';
-import '../../../../src/app/components/style/text_styles.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 class BannerText extends StatelessWidget {
   const BannerText({Key? key, required this.title}) : super(key: key);
@@ -20,11 +19,7 @@ class BannerText extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: TextStyles.custom(
-            color: SafeColors.generalColors.primary,
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-          ),
+          style: TextStyles.bodyText1(),
         ),
       ),
     );

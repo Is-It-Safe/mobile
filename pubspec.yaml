@@ -75,6 +75,7 @@ flutter:
     - images/modules/core/empty/
     - images/modules/core/icons/
     - images/modules/core/placeholder/
+    - images/modules/core/review/
     
 
 flutter_intl:

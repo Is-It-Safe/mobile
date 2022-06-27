@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/app/modules/my_account_module/components/action_text_component.dart';
 import 'package:is_it_safe_app/app/modules/my_account_module/components/info_text_component.dart';
-import 'package:is_it_safe_app/core/components/app_bar.dart';
-import 'package:is_it_safe_app/src/app/components/style/text_styles.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
-import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'my_account_bloc.dart';
 
@@ -27,10 +26,10 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(
-          context: context,
-          title: '', //S.of(context).textMyAccount,
-          hasLeading: true),
+      // appBar: appBar(
+      //     context: context,
+      //     title: '', //S.of(context).textMyAccount,
+      //     hasLeading: true),
       body: LayoutBuilder(
         builder: ((context, constraints) {
           return ConstrainedBox(
@@ -55,17 +54,14 @@ class _MyAccountPageState extends ModularState<MyAccountPage, MyAccountBloc> {
                     ),
                     Text(
                       controller.sexualOrientation ?? "",
-                      style: TextStyles.bodyText1(fontWeight: FontWeight.w400),
+                      style: TextStyles.bodyText1(),
                     ),
                     const SizedBox(
                       height: 5,
                     ),
                     Text(
                       controller.gender ?? "",
-                      style: TextStyles.custom(
-                        fontWeight: FontWeight.w400,
-                        //  color: kColorSubtext,
-                      ),
+                      style: TextStyles.bodyText1(),
                     ),
                     const SizedBox(
                       height: 52,

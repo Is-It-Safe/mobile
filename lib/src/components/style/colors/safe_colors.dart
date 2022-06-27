@@ -34,6 +34,7 @@ class _StatusColors {
   Color error = const Color(0xFFEB3D3D);
   Color success = const Color(0xFF2ECC71);
   Color info = const Color(0xFFB6B2C2);
+  Color info2 = const Color(0xFF535353);
   Color alert = const Color(0xFFffcc00);
 }
 

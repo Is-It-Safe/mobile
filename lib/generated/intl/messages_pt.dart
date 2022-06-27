@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "textAbout": MessageLookupByLibrary.simpleMessage("Sobre"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
+        "textAngry": MessageLookupByLibrary.simpleMessage("Irritado"),
         "textAppBarChooseProfilePhotoPage":
             MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
         "textAppBarProfileRegisterPage":
@@ -51,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textContact": MessageLookupByLibrary.simpleMessage("Contato"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
+        "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
             "Agora escolha um nome para todos verem, seja criativo!"),
         "textDrawerAddLocation":
@@ -78,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, digite uma senha válida"),
         "textErrorLoginUsername": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite um nome de usuário válido"),
+        "textErrorProfile": MessageLookupByLibrary.simpleMessage(
+            "Você não fez nenhum review ainda, começe assim que puder!"),
         "textErrorPronouns": MessageLookupByLibrary.simpleMessage(
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
         "textErrorSearch": MessageLookupByLibrary.simpleMessage(
@@ -88,10 +92,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Campos errados! Tente novamente."),
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
+        "textExcited": MessageLookupByLibrary.simpleMessage("Alegre"),
+        "textFeatureAvailableSoon": MessageLookupByLibrary.simpleMessage(
+            "Funcionalidade disponível em breve"),
         "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar"),
         "textForgotGender":
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
+        "textHappy": MessageLookupByLibrary.simpleMessage("Contente"),
         "textHowDoYouPreferWeReferToYou": MessageLookupByLibrary.simpleMessage(
             "Como prefere que as pessoas se refiram a você?"),
         "textIReadAndAcceptThe":
@@ -104,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textMeetingYouWillBeAPleasure":
             MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer."),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
+        "textNeutral": MessageLookupByLibrary.simpleMessage("Neutro"),
         "textOk": MessageLookupByLibrary.simpleMessage("Ok"),
         "textOnBoarding1_0": MessageLookupByLibrary.simpleMessage("Foco em"),
         "textOnBoarding1_1": MessageLookupByLibrary.simpleMessage("segurança"),
@@ -143,10 +152,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
         "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
+        "textSeeLess": MessageLookupByLibrary.simpleMessage("Ver menos"),
+        "textSeeMore": MessageLookupByLibrary.simpleMessage("Ver mais"),
         "textSelectAPicture": MessageLookupByLibrary.simpleMessage(
             "Selecione uma foto antes de salvar."),
         "textSexualOrientation":
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
+        "textShare": MessageLookupByLibrary.simpleMessage("Compartilhar"),
         "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
         "textSkipForNow": MessageLookupByLibrary.simpleMessage("Pular"),
         "textSuccessRegistration":
@@ -159,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textTermsOfUse": MessageLookupByLibrary.simpleMessage("Termos de Uso"),
         "textTypeTheNameOfAPlaceToSearch": MessageLookupByLibrary.simpleMessage(
             "Digite o nome de um local para buscar."),
+        "textUpset": MessageLookupByLibrary.simpleMessage("Chateado"),
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós."),
@@ -166,6 +179,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textYourRepresentationHereInside":
             MessageLookupByLibrary.simpleMessage(
                 "Uma representação sua aqui dentro!"),
+        "textYourReviews":
+            MessageLookupByLibrary.simpleMessage("Suas Avaliações"),
         "textforgotGenderSubtext":
             MessageLookupByLibrary.simpleMessage("me avise!")
       };

@@ -25,6 +25,9 @@ class ApiConstants {
   static Future<String> kBarearAuth() async =>
       'Bearer ${await SharedPreferencesService().readToken()}';
 
+  static Future<String> kBarearRefreshAuth() async =>
+      'Bearer ${await SharedPreferencesService().readRefreshToken()}';
+
   ///URL para requisições de autenticação
   static const String kAuthUrl =
       'https://is-it-safe-api-homolog.herokuapp.com/';

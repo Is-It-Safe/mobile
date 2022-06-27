@@ -31,7 +31,7 @@
     "textErrorTryAgain": "Tente novamente em alguns instantes.",
     "textErrorSearch" : "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?",
     "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
-    
+    "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
 
     "textSuccessRegistration":"Usuário Registrado",
 
@@ -69,7 +69,18 @@
     "textContact":"Contato",
     "textOk":"Ok",
     "textReviews":"Avaliações",
+    "textYourReviews":"Suas Avaliações",
+    "textAngry":"Irritado",
+    "textUpset":"Chateado",
+    "textNeutral":"Neutro",
+    "textHappy":"Contente",
+    "textExcited":"Alegre",
+    "textSeeMore":"Ver mais",
+    "textSeeLess":"Ver menos",
+    "textDelete":"Remover",
+    "textShare":"Compartilhar",
 
+    "textFeatureAvailableSoon":"Funcionalidade disponível em breve",
     "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, seja criativo!",
     "textHowDoYouPreferWeReferToYou":"Como prefere que as pessoas se refiram a você?",
     "textWeCareAboutYourSafety":"Sua segurança é muito importante para nós.",

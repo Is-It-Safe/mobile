@@ -18,6 +18,10 @@ class ResponseGetUser {
   });
 
   factory ResponseGetUser.fromJson(dynamic json) {
+    final reviews = (json['reviews'] as List)
+        .map((e) => ResponseGetUserReview.fromJson(e as Map<String, dynamic>))
+        .toList();
+
     return ResponseGetUser(
       id: json['id'],
       profilePhoto: json['profilePhoto'],
@@ -25,11 +29,7 @@ class ResponseGetUser {
       pronoun: json['pronoun'],
       gender: json['gender'],
       orientation: json['orientation'],
-      reviews: json['reviews'] != null
-          ? json['reviews']
-              .map((e) => ResponseGetUserReview.fromJson(e))
-              .toList()
-          : [],
+      reviews: reviews,
     );
   }
 }
@@ -38,7 +38,7 @@ class ResponseGetUserReview {
   int? id;
   String? review;
   String? impressionStatus;
-  int? myGrade;
+  double? myGrade;
 
   ResponseGetUserReview({
     this.id,

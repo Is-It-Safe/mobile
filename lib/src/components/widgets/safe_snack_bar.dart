@@ -47,13 +47,28 @@ class SafeSnackBar extends StatelessWidget {
             child: Text(
               message,
               style: TextStyles.bodyText2(
-                color: SafeColors.generalColors.white,
+                color: _getTextIconColor(),
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Color _getTextIconColor() {
+    switch (type) {
+      case SnackBarType.alert:
+        return SafeColors.generalColors.white;
+      case SnackBarType.error:
+        return SafeColors.generalColors.white;
+      case SnackBarType.success:
+        return SafeColors.generalColors.white;
+      case SnackBarType.active:
+        return SafeColors.generalColors.white;
+      case SnackBarType.info:
+        return SafeColors.generalColors.white;
+    }
   }
 
   Color _getBackgroundColor() {
@@ -67,12 +82,12 @@ class SafeSnackBar extends StatelessWidget {
       case SnackBarType.active:
         return SafeColors.statusColors.active;
       case SnackBarType.info:
-        return SafeColors.statusColors.info;
+        return SafeColors.statusColors.info2;
     }
   }
 
   Icon _getIcon() {
-    final iconColor = SafeColors.generalColors.white;
+    final iconColor = _getTextIconColor();
     switch (type) {
       case SnackBarType.alert:
         return Icon(

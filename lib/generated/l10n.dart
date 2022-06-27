@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Você não fez nenhum review ainda, começe assim que puder!`
+  String get textErrorProfile {
+    return Intl.message(
+      'Você não fez nenhum review ainda, começe assim que puder!',
+      name: 'textErrorProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário Registrado`
   String get textSuccessRegistration {
     return Intl.message(
@@ -655,6 +665,116 @@ class S {
     return Intl.message(
       'Avaliações',
       name: 'textReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suas Avaliações`
+  String get textYourReviews {
+    return Intl.message(
+      'Suas Avaliações',
+      name: 'textYourReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Irritado`
+  String get textAngry {
+    return Intl.message(
+      'Irritado',
+      name: 'textAngry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chateado`
+  String get textUpset {
+    return Intl.message(
+      'Chateado',
+      name: 'textUpset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Neutro`
+  String get textNeutral {
+    return Intl.message(
+      'Neutro',
+      name: 'textNeutral',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contente`
+  String get textHappy {
+    return Intl.message(
+      'Contente',
+      name: 'textHappy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alegre`
+  String get textExcited {
+    return Intl.message(
+      'Alegre',
+      name: 'textExcited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ver mais`
+  String get textSeeMore {
+    return Intl.message(
+      'Ver mais',
+      name: 'textSeeMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ver menos`
+  String get textSeeLess {
+    return Intl.message(
+      'Ver menos',
+      name: 'textSeeLess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remover`
+  String get textDelete {
+    return Intl.message(
+      'Remover',
+      name: 'textDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Compartilhar`
+  String get textShare {
+    return Intl.message(
+      'Compartilhar',
+      name: 'textShare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Funcionalidade disponível em breve`
+  String get textFeatureAvailableSoon {
+    return Intl.message(
+      'Funcionalidade disponível em breve',
+      name: 'textFeatureAvailableSoon',
       desc: '',
       args: [],
     );

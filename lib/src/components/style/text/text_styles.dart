@@ -117,6 +117,19 @@ class TextStyles {
     );
   }
 
+  ///Método que retorna estilização de texto correspondente ao **BodyText 3**.
+  static TextStyle bodyText3({
+    Color? color,
+    TextDecoration? textDecoration,
+  }) {
+    return GoogleFonts.poppins(
+      color: color ?? SafeColors.textColors.dark,
+      fontWeight: FontWeight.bold,
+      decoration: textDecoration,
+      fontSize: FontSize.small,
+    );
+  }
+
   ///Método que retorna estilização de texto correspondente ao **Caption**.
   static TextStyle caption({
     Color? color,
