@@ -80,9 +80,9 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                 sexualOrientation: user?.orientation,
               );
             default:
-              return const SafeLoading();
+              return const SafeProfileHeader();
           }
-          return const SafeLoading();
+          return const SafeProfileHeader();
         });
   }
 

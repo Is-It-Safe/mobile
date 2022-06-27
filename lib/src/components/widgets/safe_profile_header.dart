@@ -30,19 +30,50 @@ class SafeProfileHeader extends StatelessWidget {
             image: photo!,
           ),
           const SizedBox(height: 10),
-          Text(
-            '@$nickname ($pronoun)',
-            style: TextStyles.bodyText1(),
+          Offstage(
+            offstage: nickname == StringConstants.empty &&
+                pronoun == StringConstants.empty,
+            child: Text(
+              _getNicknameAndPronounText(),
+              style: TextStyles.bodyText1(),
+            ),
           ),
           const SizedBox(height: 10),
-          Text(
-            '$gender - $sexualOrientation',
-            style: TextStyles.caption(
-              color: SafeColors.textColors.dark,
+          Offstage(
+            offstage: gender == StringConstants.empty &&
+                sexualOrientation == StringConstants.empty,
+            child: Text(
+              _getGenderAndOrientationText(),
+              style: TextStyles.caption(
+                color: SafeColors.textColors.dark,
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  String _getNicknameAndPronounText() {
+    if (nickname == StringConstants.empty && pronoun == StringConstants.empty) {
+      return StringConstants.empty;
+    }
+
+    if (nickname == StringConstants.empty) return '($pronoun)';
+
+    if (pronoun == StringConstants.empty) return '@$nickname';
+    return '@$nickname ($pronoun)';
+  }
+
+  String _getGenderAndOrientationText() {
+    if (gender == StringConstants.empty &&
+        sexualOrientation == StringConstants.empty) {
+      return StringConstants.empty;
+    }
+
+    if (sexualOrientation == StringConstants.empty) return '$sexualOrientation';
+
+    if (gender == StringConstants.empty) return '$gender';
+    return '$gender - $sexualOrientation';
   }
 }
