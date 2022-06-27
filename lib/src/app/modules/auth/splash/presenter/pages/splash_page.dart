@@ -50,12 +50,18 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
     if (controller.isUserOnBoarding) {
       goToLogin();
     } else {
-      Modular.to.navigate(OnBoardingPage.route);
+      Modular.to.pushNamedAndRemoveUntil(
+        OnBoardingPage.route,
+        (r) => false,
+      );
     }
   }
 
   void goToLogin() async {
-    Modular.to.navigate(LoginPage.route);
+    Modular.to.pushNamedAndRemoveUntil(
+      LoginPage.route,
+      (r) => false,
+    );
   }
 
   @override

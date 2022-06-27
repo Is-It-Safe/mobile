@@ -48,6 +48,7 @@ class _NavigationPageState
   }
 
   void navigateToPage(int index) {
+    //TODO Encontrar maneira de dar dispose ao sair da tela
     if (index != _selectedPage) {
       if (index == 0) {
         Modular.to.pushNamed(NavigationPage.route + HomePage.route);

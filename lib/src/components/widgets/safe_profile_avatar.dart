@@ -88,14 +88,15 @@ class SafeProfileAvatar extends StatelessWidget {
         bottom: 0,
         right: 0,
         child: Container(
-          height: 40,
-          width: 40,
+          height: size / 3,
+          width: size / 3,
           decoration: BoxDecoration(
             color: SafeColors.componentsColors.iconColors.main,
             shape: BoxShape.circle,
           ),
           child: Icon(
             Icons.edit,
+            size: size / 4.5,
             color: SafeColors.generalColors.white,
           ),
         ),

@@ -770,6 +770,86 @@ class S {
     );
   }
 
+  /// `Informações Pessoais`
+  String get textPersonalInformation {
+    return Intl.message(
+      'Informações Pessoais',
+      name: 'textPersonalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Editar Perfil`
+  String get textEditProfile {
+    return Intl.message(
+      'Editar Perfil',
+      name: 'textEditProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sair`
+  String get textLogout {
+    return Intl.message(
+      'Sair',
+      name: 'textLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Desativar Conta`
+  String get textDisableAccount {
+    return Intl.message(
+      'Desativar Conta',
+      name: 'textDisableAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Excluir Conta`
+  String get textDeleteAccount {
+    return Intl.message(
+      'Excluir Conta',
+      name: 'textDeleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alterar E-mail`
+  String get textChangeEmail {
+    return Intl.message(
+      'Alterar E-mail',
+      name: 'textChangeEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alterar Senha`
+  String get textChangePassword {
+    return Intl.message(
+      'Alterar Senha',
+      name: 'textChangePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informações da Conta`
+  String get textAccountInformation {
+    return Intl.message(
+      'Informações da Conta',
+      name: 'textAccountInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Funcionalidade disponível em breve`
   String get textFeatureAvailableSoon {
     return Intl.message(

@@ -2,15 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/domain/entity/login_entity.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/domain/use_case/do_login_use_case.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/domain/use_case/save_user_login_use_case.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/domain/use_case/save_user_refresh_token_use_case.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/domain/use_case/save_user_token_use_case.dart';
+import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
+import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
 class LoginBloc extends SafeBloC {

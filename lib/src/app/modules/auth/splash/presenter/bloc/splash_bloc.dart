@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/splash/domain/use_case/get_user_login_use_case.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/splash/domain/use_case/get_user_on_boarding_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_login_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_on_boarding_use_case.dart';
 import 'package:logger/logger.dart';
 
 class SplashBloc extends SafeBloC {

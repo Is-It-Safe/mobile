@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
-class InfoTextComponent extends StatelessWidget {
-  const InfoTextComponent({Key? key, required this.title, required this.value})
-      : super(key: key);
+class AccountInfoTile extends StatelessWidget {
   final String title;
-  final String value;
+  final String? value;
+  const AccountInfoTile({
+    Key? key,
+    required this.title,
+    this.value = StringConstants.hyphen,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
           style: TextStyles.subtitle1(),
-          textAlign: TextAlign.left,
         ),
-        const SizedBox(
-          height: 4,
-        ),
+        const SizedBox(height: 2),
         Text(
-          value,
-          style: TextStyles.subtitle1(color: SafeColors.textColors.label),
-        ),
-        const SizedBox(
-          height: 32,
+          value!,
+          style: TextStyles.subtitle1(
+            color: SafeColors.textColors.label,
+          ),
         ),
       ],
     );

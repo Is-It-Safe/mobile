@@ -9,13 +9,13 @@ import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
 
-class ProfileBloc extends SafeBloC {
+class AccountBloc extends SafeBloC {
   final GetUserUseCase getUserUseCase;
   final SaveUserLoginUseCase saveUserLoginUseCase;
 
   late StreamController<SafeResponse<UserEntity>> userController;
 
-  ProfileBloc({
+  AccountBloc({
     required this.getUserUseCase,
     required this.saveUserLoginUseCase,
   }) {
@@ -35,10 +35,10 @@ class ProfileBloc extends SafeBloC {
       userController.sink.add(SafeResponse.completed(data: response));
     } on DioError catch (e) {
       //TODO colocar tratamento de erro de autenticação em todas as requisições
+      userController.sink.add(SafeResponse.error(e.toString()));
       if (e.response?.statusCode == 401) {
         await doLogout();
       }
-      userController.sink.add(SafeResponse.error(e.toString()));
     }
   }
 

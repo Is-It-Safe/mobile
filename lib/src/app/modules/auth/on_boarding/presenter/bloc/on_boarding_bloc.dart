@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/on_boarding/domain/use_case/save_user_on_boarding_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_on_boarding_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 

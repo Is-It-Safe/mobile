@@ -23,6 +23,7 @@ class _EmoticonAssets {
 
 class _IconsAssets {
   String arrowBack = 'images/modules/core/icons/arrow_back_icon.svg';
+  String arrowFoward = 'images/modules/core/icons/arrow_foward_icon.svg';
   String drawer = 'images/modules/core/icons/drawer_icon.svg';
   String edit = 'images/modules/core/icons/edit_icon.svg';
   String star = 'images/modules/core/icons/star_icon.svg';

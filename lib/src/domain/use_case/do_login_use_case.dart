@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/domain/entity/login_entity.dart';
+import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
@@ -29,6 +29,7 @@ class DoLoginUseCase extends SafeUseCase {
     return _parseResponseToEntity(_response);
   }
 
+//TODO implementar LoginEntity.toEntity
   LoginEntity _parseResponseToEntity(ResponseLogin response) {
     return LoginEntity(
       accessToken: response.accessToken ?? StringConstants.empty,
