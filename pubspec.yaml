@@ -6,28 +6,46 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations: 
     sdk: flutter
-  cupertino_icons: ^1.0.2
+
+  #Funcionalidades do Sistema
   flutter_modular: ^4.1.2
-  rxdart: ^0.27.2
+  provider: ^6.0.1
+  plugin_platform_interface: ^2.0.2
+  platform: ^3.1.0
+  build_runner: ^2.1.10
+  logger: 
+  meta: ^1.7.0
+
+  #Requisições HTTP
   dio: ^4.0.0
+
+  #Internacionalização
   intl_utils: ^2.4.1
-  google_fonts: ^2.1.0
+
+  #Estilização
+  google_fonts: ^2.3.1
+  cupertino_icons: ^1.0.2
   flutter_launcher_icons: ^0.9.2
-  shared_preferences: ^2.0.8
+  mask_text_input_formatter: ^2.0.0
+
+  #Componentes
   smooth_page_indicator: ^1.0.0+2
   flutter_svg: ^0.22.0
-  plugin_platform_interface: ^2.0.2
-  provider: ^6.0.1
-  mask_text_input_formatter: ^2.0.0
-  mockito: ^5.0.16
   simple_animations: ^4.0.1
+
+  #Armazenamento
+  shared_preferences: ^2.0.8
+
+  #Testes
+  mocktail: ^0.3.0
+
 
 dev_dependencies:
   flutter_test:
@@ -45,11 +63,20 @@ flutter:
   uses-material-design: true
 
   assets:
+    - test/src/service/api/modules/auth/mocks/
+    - images/logo/logo.png
     - images/
-    - images/app/profile_pictures/
-    - images/app/on_boarding/
-    - images/app/profile_pictures/
-
+    - images/modules/
+    - images/modules/auth/
+    - images/modules/auth/
+    - images/modules/auth/profile_pictures/
+    - images/modules/auth/profile_pictures/placeholder/
+    - images/modules/home/
+    - images/modules/core/empty/
+    - images/modules/core/icons/
+    - images/modules/core/placeholder/
+    - images/modules/core/review/
+    
 
 flutter_intl:
   enabled: true
