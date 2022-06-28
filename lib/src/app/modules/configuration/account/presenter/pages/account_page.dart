@@ -82,8 +82,11 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                 gender: user?.gender,
                 sexualOrientation: user?.orientation,
                 isEditabled: true,
-                //TODO Add rota para editar profile picture
-                onPhotoTap: () {},
+                //TODO substituir por: navegação para tela de editar profile picture
+                onPhotoTap: () => SafeSnackBar(
+                  message: S.current.textFeatureAvailableSoon,
+                  type: SnackBarType.info,
+                ).show(context),
               );
             default:
               return const SafeProfileHeader();
@@ -117,8 +120,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textName,
-                      //TODO descomentar o nome (mediante conclusão da API)
-                      //value: user.name,
+                      value: user?.name,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
@@ -133,8 +135,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textDateOfBirth,
-                      //TODO descomentar o birthdate (mediante conclusão da API)
-                      //value: user?.birthDate,
+                      value: user?.birthDate,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
