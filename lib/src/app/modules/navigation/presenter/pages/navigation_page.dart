@@ -47,6 +47,12 @@ class _NavigationPageState
     LogUtil().route(Modular.to.path);
   }
 
+  @override
+  void dispose() {
+    _selectedPage = 0;
+    super.dispose();
+  }
+
   void navigateToPage(int index) {
     //TODO Encontrar maneira de dar dispose ao sair da tela
     if (index != _selectedPage) {
