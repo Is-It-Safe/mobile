@@ -10,7 +10,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class ProfilePage extends StatefulWidget {
   static const route = '/profile/';
@@ -54,7 +54,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
   }
 
   Widget _mountHeader() {
-    return StreamBuilder<SafeResponse<UserEntity>>(
+    return StreamBuilder<SafeEvent<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           final user = snapshot.data?.data;
@@ -69,7 +69,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                 ),
               );
               break;
-            case Status.completed:
+            case Status.done:
               //TODO salvar o usuário no shared preferences
               return SafeProfileHeader(
                 nickname: user?.nickname,
@@ -87,7 +87,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
   }
 
   Widget _mountReviews() {
-    return StreamBuilder<SafeResponse<UserEntity>>(
+    return StreamBuilder<SafeEvent<UserEntity>>(
       stream: controller.userController.stream,
       builder: (context, snapshot) {
         final reviews = snapshot.data?.data?.reviews;
@@ -103,7 +103,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                 ),
               );
               break;
-            case Status.completed:
+            case Status.done:
               if (reviews!.isEmpty) return SafeEmptyCard.profile();
               return Column(
                 children: List.generate(
@@ -112,6 +112,10 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                     padding: const EdgeInsets.only(top: 24.0),
                     child: ProfileReview(
                       review: reviews[index],
+                      //TODO substituir por: controller.deleteReview
+                      // onDelete: () {},
+                      //TODO substituir por: controller.shareReview
+                      // onShare: () {},
                     ),
                   ),
                 ),

@@ -9,7 +9,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class SearchPage extends StatefulWidget {
   static const route = '/search/';
@@ -56,7 +56,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
   }
 
   Widget _mountSearchResult() {
-    return StreamBuilder<SafeResponse<List<LocationEntity>>>(
+    return StreamBuilder<SafeEvent<List<LocationEntity>>>(
       stream: controller.searchController.stream,
       builder: (context, snapshot) {
         if (snapshot.data != null ||

@@ -3,13 +3,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_location_card.dart';
+import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
@@ -56,44 +55,28 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
     );
   }
 
-  StreamBuilder<SafeResponse<List<LocationEntity>>> _mountTab({
-    required Stream<SafeResponse<List<LocationEntity>>> stream,
+  Widget _mountTab({
+    required Stream<SafeEvent<List<LocationEntity>>> stream,
     required List<LocationEntity> list,
   }) {
-    return StreamBuilder<SafeResponse<List<LocationEntity>>>(
+    return StreamBuilder<SafeEvent<List<LocationEntity>>>(
       stream: controller.bestRatedPlacesController.stream,
       builder: (context, snapshot) {
-        if (snapshot.data != null ||
-            controller.listBestRatedLocations.isNotEmpty) {
-          switch (snapshot.data?.status) {
-            case Status.loading:
-              return const SafeLoading();
-            case Status.error:
-              showDialog(
-                context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
-                ),
-              );
-              break;
-            default:
-              if (snapshot.data?.data == null) {
-                return const SafeLoading();
-              }
-              return ListView.separated(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 20.0,
-                ),
-                itemCount: controller.listBestRatedLocations.length,
-                separatorBuilder: (_, i) => const SizedBox(height: 15),
-                itemBuilder: (context, index) => HomeLocationCard(
-                  location: controller.listBestRatedLocations[index],
-                ),
-              );
-          }
-        }
-        return SafeEmptyCard.home();
+        return SafeLayout(
+          snapshot: snapshot,
+          onEmpty: SafeEmptyCard.home(),
+          onCompleted: ListView.separated(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 20.0,
+            ),
+            itemCount: controller.listBestRatedLocations.length,
+            separatorBuilder: (_, i) => const SizedBox(height: 15),
+            itemBuilder: (context, index) => HomeLocationCard(
+              location: controller.listBestRatedLocations[index],
+            ),
+          ),
+        ).build;
       },
     );
   }

@@ -11,8 +11,8 @@ import 'package:flutter_svg/svg.dart';
 
 class ProfileReview extends StatefulWidget {
   final ReviewEntity review;
-  final Function? onDelete;
-  final Function? onShare;
+  final Function()? onDelete;
+  final Function()? onShare;
 
   const ProfileReview({
     Key? key,
@@ -103,8 +103,7 @@ class _ProfileReviewState extends State<ProfileReview> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //TODO Descomentar quando tiver o nome do Local
-        //_mountReviewTitle(),
+        _mountReviewTitle(),
         _mountReviewBody(),
       ],
     );
@@ -144,12 +143,14 @@ class _ProfileReviewState extends State<ProfileReview> {
   }
 
   Widget _mountReviewTitle() {
-    return Text(
-      //TODO Substituir pelo nome do local vindo da API
-      "MOCK REVIEW TITLE",
-      style: TextStyles.subtitle1(),
-      overflow: TextOverflow.ellipsis,
-      maxLines: 1,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: Text(
+        widget.review.location?.name ?? StringConstants.empty,
+        style: TextStyles.subtitle2(),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+      ),
     );
   }
 
@@ -174,14 +175,14 @@ class _ProfileReviewState extends State<ProfileReview> {
     return ModalTile(
       text: S.current.textDelete,
       icon: Icons.delete_outline_rounded,
-      onTap: () {
-        Navigator.pop(context);
-        //TODO substituir por: widget.onDelete
-        return SafeSnackBar(
-          message: S.current.textFeatureAvailableSoon,
-          type: SnackBarType.info,
-        ).show(context);
-      },
+      onTap: widget.onDelete ??
+          () {
+            Navigator.pop(context);
+            return SafeSnackBar(
+              message: S.current.textFeatureAvailableSoon,
+              type: SnackBarType.info,
+            ).show(context);
+          },
     );
   }
 
@@ -189,14 +190,14 @@ class _ProfileReviewState extends State<ProfileReview> {
     return ModalTile(
       text: S.current.textShare,
       icon: Icons.share,
-      onTap: () {
-        Navigator.pop(context);
-        //TODO substituir por: widget.onShare
-        return SafeSnackBar(
-          message: S.current.textFeatureAvailableSoon,
-          type: SnackBarType.info,
-        ).show(context);
-      },
+      onTap: widget.onShare ??
+          () {
+            Navigator.pop(context);
+            return SafeSnackBar(
+              message: S.current.textFeatureAvailableSoon,
+              type: SnackBarType.info,
+            ).show(context);
+          },
     );
   }
 }

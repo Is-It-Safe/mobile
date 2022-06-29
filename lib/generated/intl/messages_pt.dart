@@ -100,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?"),
         "textErrorTryAgain": MessageLookupByLibrary.simpleMessage(
             "Tente novamente em alguns instantes."),
+        "textErrorUnknown": MessageLookupByLibrary.simpleMessage(
+            "Algo de errado aconteceu, tente novamente em alguns instantes."),
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(
             "Campos errados! Tente novamente."),
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(

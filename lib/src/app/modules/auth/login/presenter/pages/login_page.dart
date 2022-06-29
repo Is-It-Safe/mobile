@@ -15,7 +15,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart'
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/bloc/login_bloc.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class LoginPage extends StatefulWidget {
   static const route = '/login/';
@@ -40,7 +40,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
   _doLoginListen() {
     controller.doLoginController.stream.listen((event) async {
       switch (event.status) {
-        case Status.completed:
+        case Status.done:
           navigateToHome();
           break;
         case Status.loading:
@@ -71,7 +71,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(30),
-            child: StreamBuilder<SafeResponse<LoginEntity>>(
+            child: StreamBuilder<SafeEvent<LoginEntity>>(
                 stream: controller.doLoginController.stream,
                 builder: (context, snapshot) {
                   if (snapshot.data?.status == Status.loading) {

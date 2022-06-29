@@ -11,7 +11,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/stream_response.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class AccountPage extends StatefulWidget {
   static const route = '/account/';
@@ -57,7 +57,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
   }
 
   Widget _mountHeader() {
-    return StreamBuilder<SafeResponse<UserEntity>>(
+    return StreamBuilder<SafeEvent<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           final user = snapshot.data?.data;
@@ -72,7 +72,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                 ),
               );
               break;
-            case Status.completed:
+            case Status.done:
               //TODO salvar o usuário no shared preferences
               return SafeProfileHeader(
                 nickname: user?.nickname,
@@ -82,8 +82,11 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                 gender: user?.gender,
                 sexualOrientation: user?.orientation,
                 isEditabled: true,
-                //TODO Add rota para editar profile picture
-                onPhotoTap: () {},
+                //TODO substituir por: navegação para tela de editar profile picture
+                onPhotoTap: () => SafeSnackBar(
+                  message: S.current.textFeatureAvailableSoon,
+                  type: SnackBarType.info,
+                ).show(context),
               );
             default:
               return const SafeProfileHeader();
@@ -93,7 +96,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
   }
 
   Widget _mountPersonalInfo() {
-    return StreamBuilder<SafeResponse<UserEntity>>(
+    return StreamBuilder<SafeEvent<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           final user = snapshot.data?.data;
@@ -108,7 +111,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                 ),
               );
               break;
-            case Status.completed:
+            case Status.done:
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 33),
                 child: Column(
@@ -117,8 +120,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textName,
-                      //TODO descomentar o nome (mediante conclusão da API)
-                      //value: user.name,
+                      value: user?.name,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
@@ -133,8 +135,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textDateOfBirth,
-                      //TODO descomentar o birthdate (mediante conclusão da API)
-                      //value: user?.birthDate,
+                      value: user?.birthDate,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(

@@ -47,6 +47,12 @@ class _NavigationPageState
     LogUtil().route(Modular.to.path);
   }
 
+  @override
+  void dispose() {
+    _selectedPage = 0;
+    super.dispose();
+  }
+
   void navigateToPage(int index) {
     //TODO Encontrar maneira de dar dispose ao sair da tela
     if (index != _selectedPage) {
@@ -67,7 +73,7 @@ class _NavigationPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const RouterOutlet(),
+      body: RouterOutlet(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPage,
         onTap: (index) => navigateToPage(index),
