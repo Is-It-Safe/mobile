@@ -25,7 +25,7 @@ class SafeLayout {
       case ConnectionState.none:
         return onInitial;
       case ConnectionState.waiting:
-        return onLoading;
+        return _onWaiting();
       case ConnectionState.active:
         return _onDone();
       case ConnectionState.done:
@@ -35,23 +35,43 @@ class SafeLayout {
     }
   }
 
+  Widget _onWaiting() {
+    print(snapshot.data?.toString());
+    if (snapshot.data?.status == Status.initial) {
+      return onInitial;
+    } else {
+      return onLoading;
+    }
+  }
+
   Widget _onDone() {
     if (snapshot.hasError) {
       return onError ?? SafeDialog(message: snapshot.error.toString()).error();
     }
 
     switch (snapshot.data?.status) {
+      case Status.initial:
+        return onInitial;
       case Status.loading:
         return onLoading;
       case Status.done:
-        if (snapshot.data?.data is List) {
-          if (snapshot.data?.data.isNotEmpty) return onCompleted;
-        } else if (snapshot.data?.data != null) {
+        if (_checkIfListIsNotEmpty() || _checkIfDataIsNotEmpty()) {
           return onCompleted;
         }
         return onEmpty;
       default:
         return onInitial;
     }
+  }
+
+  bool _checkIfListIsNotEmpty() {
+    if (snapshot.data?.data is List) {
+      if (snapshot.data?.data.isNotEmpty) return false;
+    }
+    return true;
+  }
+
+  bool _checkIfDataIsNotEmpty() {
+    return snapshot.data?.data != null;
   }
 }

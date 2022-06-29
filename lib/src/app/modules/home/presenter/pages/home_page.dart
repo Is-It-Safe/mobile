@@ -65,19 +65,29 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
         return SafeLayout(
           snapshot: snapshot,
           onEmpty: SafeEmptyCard.home(),
-          onCompleted: ListView.separated(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 20.0,
-            ),
-            itemCount: controller.listBestRatedLocations.length,
-            separatorBuilder: (_, i) => const SizedBox(height: 15),
-            itemBuilder: (context, index) => HomeLocationCard(
-              location: controller.listBestRatedLocations[index],
-            ),
+          onCompleted: _mountSeparatedList(
+            length: controller.listBestRatedLocations.length,
+            list: controller.listBestRatedLocations,
           ),
         ).build;
       },
+    );
+  }
+
+  Widget _mountSeparatedList({
+    required int length,
+    required List<LocationEntity> list,
+  }) {
+    return ListView.separated(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20.0,
+        vertical: 20.0,
+      ),
+      itemCount: length,
+      separatorBuilder: (_, i) => const SizedBox(height: 15),
+      itemBuilder: (context, index) => HomeLocationCard(
+        location: list[index],
+      ),
     );
   }
 }
