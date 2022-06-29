@@ -6,10 +6,79 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
-///O [SafeDialogs] é uma classe responsável por gerenciar e armazenar variádos
+///O [SafeDialog] é um widget responsável por gerenciar e armazenar variádos
 ///tipos de dialogs.
+class SafeDialog extends StatelessWidget {
+  final String? title;
+  final String? message;
+  final Function()? onTap;
+  const SafeDialog({
+    Key? key,
+    this.title,
+    this.message,
+    this.onTap,
+  }) : super(key: key);
+
+  Widget error() {
+    return this;
+  }
+
+  Widget show() {
+    return this;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (Platform.isAndroid) {
+      return _mountAndroidDialog();
+    } else {
+      return _mountIOSDialog();
+    }
+  }
+
+  Widget _mountAndroidDialog() {
+    return AlertDialog(
+      backgroundColor: SafeColors.generalColors.background,
+      title: Text(
+        title ?? S.current.textError,
+        style: TextStyles.subtitle1(),
+      ),
+      content: Text(message ?? S.current.textErrorTryAgain),
+      actions: <Widget>[
+        TextButton(
+          child: Text(
+            S.current.textOk,
+            style: TextStyles.button(),
+          ),
+          //TODO Fix Button: pop não funciona de forma apropriada
+          onPressed: onTap ?? () => Modular.to.canPop(),
+        )
+      ],
+    );
+  }
+
+  Widget _mountIOSDialog() {
+    return CupertinoAlertDialog(
+      title: Text(
+        title ?? S.current.textError,
+        style: TextStyles.subtitle1(),
+      ),
+      content: Text(message ?? S.current.textErrorTryAgain),
+      actions: <Widget>[
+        TextButton(
+          child: Text(S.current.textOk),
+          //TODO Fix Button: pop não funciona de forma apropriada
+          onPressed: onTap ?? () => Modular.to.canPop(),
+        )
+      ],
+    );
+  }
+}
+
+@Deprecated('Use SafeDialog.show()')
 class SafeDialogs {
   ///O [dialog] é um método responsável por exibir um dialog de alerta.
+  @Deprecated('Use SafeDialog.show()')
   static Widget dialog({
     required String title,
     required String message,
@@ -65,13 +134,14 @@ class SafeDialogs {
       actions: <Widget>[
         TextButton(
           child: Text(S.current.textOk),
-          onPressed: onTap ?? () => Modular.to.pop(),
+          onPressed: onTap ?? () => Modular.to.canPop(),
         )
       ],
     );
   }
 
   ///Método responsável por emitir um dialog de erro.
+  @Deprecated('Use SafeDialog.error()')
   static Widget error({String? message}) {
     if (Platform.isAndroid) {
       return _androidErrorDialog(message);
@@ -107,7 +177,7 @@ class SafeDialogs {
       actions: <Widget>[
         TextButton(
           child: Text(S.current.textOk),
-          onPressed: () => Modular.to.pop(),
+          onPressed: () => Modular.to.canPop(),
         )
       ],
     );

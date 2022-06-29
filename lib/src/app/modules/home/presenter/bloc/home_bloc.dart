@@ -28,7 +28,7 @@ class HomeBloc extends SafeBloC {
     try {
       //TODO Somente chamar a api mediante um isRefresh == true ou caso listBestRatedLocations esteja vazia
       bestRatedPlacesController.add(SafeEvent.load());
-      listBestRatedLocations = await getBestRatedLocationsUseCase();
+      listBestRatedLocations = await getBestRatedLocationsUseCase.call();
       bestRatedPlacesController.add(SafeEvent.done(listBestRatedLocations));
     } on DioError catch (e) {
       bestRatedPlacesController.addError(e.response?.data);

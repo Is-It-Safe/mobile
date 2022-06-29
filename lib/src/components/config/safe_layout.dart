@@ -37,14 +37,21 @@ class SafeLayout {
 
   Widget _onDone() {
     if (snapshot.hasError) {
-      return onError ??
-          SafeDialogs.error(
-            message: snapshot.error.toString(),
-          );
+      return onError ?? SafeDialog(message: snapshot.error.toString()).error();
     }
-    if (!snapshot.hasData) {
-      return onEmpty;
+
+    switch (snapshot.data?.status) {
+      case Status.loading:
+        return onLoading;
+      case Status.done:
+        if (snapshot.data?.data is List) {
+          if (snapshot.data?.data.isNotEmpty) return onCompleted;
+        } else if (snapshot.data?.data != null) {
+          return onCompleted;
+        }
+        return onEmpty;
+      default:
+        return onInitial;
     }
-    return onCompleted;
   }
 }
