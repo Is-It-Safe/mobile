@@ -11,7 +11,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class AccountPage extends StatefulWidget {
   static const route = '/account/';
@@ -57,7 +57,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
   }
 
   Widget _mountHeader() {
-    return StreamBuilder<SafeResponse<UserEntity>>(
+    return StreamBuilder<SafeEvent<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           final user = snapshot.data?.data;
@@ -72,7 +72,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                 ),
               );
               break;
-            case Status.completed:
+            case Status.done:
               //TODO salvar o usuário no shared preferences
               return SafeProfileHeader(
                 nickname: user?.nickname,
@@ -96,7 +96,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
   }
 
   Widget _mountPersonalInfo() {
-    return StreamBuilder<SafeResponse<UserEntity>>(
+    return StreamBuilder<SafeEvent<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           final user = snapshot.data?.data;
@@ -111,7 +111,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                 ),
               );
               break;
-            case Status.completed:
+            case Status.done:
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 33),
                 child: Column(

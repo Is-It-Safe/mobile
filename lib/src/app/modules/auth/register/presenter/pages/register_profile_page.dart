@@ -17,7 +17,7 @@ import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/register_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class RegisterProfilePage extends StatefulWidget {
   static const route = '/register-profile';
@@ -55,7 +55,7 @@ class _RegisterProfilePageState
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: StreamBuilder<SafeResponse<RegisterEntity>>(
+          child: StreamBuilder<SafeEvent<RegisterEntity>>(
               stream: controller.doRegisterController.stream,
               builder: (context, snapshot) {
                 return Form(
@@ -83,7 +83,7 @@ class _RegisterProfilePageState
   void onRegistrationInit() {
     controller.doRegisterController.stream.listen((event) async {
       switch (event.status) {
-        case Status.completed:
+        case Status.done:
           showDialog(
             context: context,
             builder: (context) => SafeDialogs.dialog(
@@ -137,12 +137,12 @@ class _RegisterProfilePageState
   }
 
   Widget _mountSexualOrientationsDropdown() {
-    return StreamBuilder<SafeResponse<List<SexualOrientationEntity>>>(
+    return StreamBuilder<SafeEvent<List<SexualOrientationEntity>>>(
       stream: controller.sexualOrientationsController.stream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           switch (snapshot.data?.status ?? Status.loading) {
-            case Status.completed:
+            case Status.done:
               return SafeDropDown(
                 title: S.current.textSexualOrientation,
                 controller: controller.genderController,
@@ -168,12 +168,12 @@ class _RegisterProfilePageState
   }
 
   Widget _mountGenderDropdown() {
-    return StreamBuilder<SafeResponse<List<GenderEntity>>>(
+    return StreamBuilder<SafeEvent<List<GenderEntity>>>(
       stream: controller.gendersController.stream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           switch (snapshot.data?.status ?? Status.loading) {
-            case Status.completed:
+            case Status.done:
               return SafeDropDown(
                 title: S.current.textGender,
                 controller: controller.genderController,

@@ -146,7 +146,7 @@ class _ProfileReviewState extends State<ProfileReview> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.5,
       child: Text(
-        'aasdakalnfsenfm,sdnfma,ejf a,ej fm,qef qmsq dm', //widget.review.location?.name ?? StringConstants.empty,
+        widget.review.location?.name ?? StringConstants.empty,
         style: TextStyles.subtitle2(),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
