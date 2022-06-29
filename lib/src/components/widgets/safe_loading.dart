@@ -13,11 +13,14 @@ class SafeLoading extends StatelessWidget {
   }
 
   Widget _androidLoading() {
-    return Align(
-      alignment: Alignment.center,
-      child: CircularProgressIndicator(
-        backgroundColor: SafeColors.buttonColors.primary,
-        color: SafeColors.generalColors.primary,
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Align(
+        alignment: Alignment.center,
+        child: CircularProgressIndicator(
+          backgroundColor: SafeColors.buttonColors.primary,
+          color: SafeColors.generalColors.primary,
+        ),
       ),
     );
   }

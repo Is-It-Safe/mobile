@@ -11,7 +11,7 @@ import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/configuration/safe_response.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class LoginBloc extends SafeBloC {
   final DoLoginUseCase doLoginUseCase;
@@ -20,7 +20,7 @@ class LoginBloc extends SafeBloC {
   final SaveUserRefreshTokenUseCase saveUserRefreshTokenUseCase;
 
   late StreamController<bool> loginButtonController;
-  late StreamController<SafeResponse<LoginEntity>> doLoginController;
+  late StreamController<SafeEvent<LoginEntity>> doLoginController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
@@ -43,7 +43,7 @@ class LoginBloc extends SafeBloC {
 
   Future<void> doLogin() async {
     try {
-      doLoginController.sink.add(SafeResponse.loading());
+      doLoginController.sink.add(SafeEvent.load());
       LoginEntity loginEntity = await doLoginUseCase.call(
         email: emailController.text,
         password: passwordController.text,
@@ -53,9 +53,9 @@ class LoginBloc extends SafeBloC {
         saveUserRefreshToken(loginEntity.refreshToken);
         saveUserLogin(true);
       }
-      doLoginController.sink.add(SafeResponse.completed(data: loginEntity));
+      doLoginController.sink.add(SafeEvent.done(loginEntity));
     } catch (e) {
-      doLoginController.sink.add(SafeResponse.error(e.toString()));
+      doLoginController.sink.add(SafeEvent.error(e.toString()));
       LogUtil().error(e.toString(), title: 'LOGIN ERROR');
     }
   }
