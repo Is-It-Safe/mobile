@@ -36,7 +36,6 @@ class SafeLayout {
   }
 
   Widget _onWaiting() {
-    print(snapshot.data?.toString());
     if (snapshot.data?.status == Status.initial) {
       return onInitial;
     } else {
