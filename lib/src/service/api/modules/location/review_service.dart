@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import '../../configuration/api_service.dart';
 import '../../configuration/request_config.dart';
 import '../../constants/api_constants.dart';
+import 'response/response_get_location_by_id.dart';
 
 class ReviewService {
   final ApiService _service = ApiService();
