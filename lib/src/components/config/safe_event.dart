@@ -1,9 +1,11 @@
-enum Status { loading, done, error }
+enum Status { loading, done, error, initial }
 
 class SafeEvent<T> {
   Status status;
   T? data;
   String? message;
+
+  SafeEvent.initial() : status = Status.initial;
 
   SafeEvent.load() : status = Status.loading;
 

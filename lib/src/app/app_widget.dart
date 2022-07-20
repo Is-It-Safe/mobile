@@ -9,7 +9,9 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerDelegate: Modular.routerDelegate,
+      routeInformationParser: Modular.routeInformationParser,
       debugShowCheckedModeBanner: false,
       title: 'Is It Safe?',
       theme: lightTheme,
@@ -20,6 +22,6 @@ class AppWidget extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-    ).modular();
+    );
   }
 }

@@ -3,9 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/search/presenter/bloc/search_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/search/presenter/widgets/search_location_card.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
+import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
@@ -58,44 +57,30 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
   Widget _mountSearchResult() {
     return StreamBuilder<SafeEvent<List<LocationEntity>>>(
       stream: controller.searchController.stream,
+      initialData: SafeEvent.initial(),
       builder: (context, snapshot) {
-        if (snapshot.data != null ||
-            controller.searchResultLocations.isNotEmpty) {
-          switch (snapshot.data?.status) {
-            case Status.loading:
-              return const Padding(
-                padding: EdgeInsets.only(top: 50),
-                child: SafeLoading(),
-              );
-            case Status.error:
-              showDialog(
-                context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
-                ),
-              );
-              break;
-            default:
-              if (snapshot.data?.data == null) {
-                return _mountEmptyCardAndNavigateToRegisterNewPlace();
-              }
-              return ListView.separated(
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                itemCount: controller.searchResultLocations.length,
-                separatorBuilder: (_, i) => const SizedBox(height: 15),
-                itemBuilder: (context, index) => SearchLocationCard(
-                  location: controller.searchResultLocations[index],
-                ),
-              );
-          }
-        }
-        return _mountEmptyCardAndNavigateToRegisterNewPlace();
+        return SafeLayout(
+          snapshot: snapshot,
+          onCompleted: _mountResultList(),
+          onEmpty: _mountEmptyCard(),
+        ).build;
       },
     );
   }
 
-  Widget _mountEmptyCardAndNavigateToRegisterNewPlace() {
+  ListView _mountResultList() {
+    return ListView.separated(
+      shrinkWrap: true,
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      itemCount: controller.searchResultLocations.length,
+      separatorBuilder: (_, i) => const SizedBox(height: 15),
+      itemBuilder: (context, index) => SearchLocationCard(
+        location: controller.searchResultLocations[index],
+      ),
+    );
+  }
+
+  Widget _mountEmptyCard() {
     return Column(
       children: [
         SafeEmptyCard.search(),

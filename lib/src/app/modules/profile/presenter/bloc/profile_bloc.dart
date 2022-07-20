@@ -43,6 +43,7 @@ class ProfileBloc extends SafeBloC {
   }
 
   Future<void> doLogout() async {
+    //TODO Ao fazer logout, e login novamente, bottom nav bar ta vindo com as áginas bugadas
     await saveUserLoginUseCase.call(false).then(
           (_) => Modular.to.pushNamedAndRemoveUntil(
             LoginPage.route,

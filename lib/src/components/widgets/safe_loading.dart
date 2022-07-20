@@ -14,9 +14,8 @@ class SafeLoading extends StatelessWidget {
 
   Widget _androidLoading() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
-      child: Align(
-        alignment: Alignment.center,
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Center(
         child: CircularProgressIndicator(
           backgroundColor: SafeColors.buttonColors.primary,
           color: SafeColors.generalColors.primary,
