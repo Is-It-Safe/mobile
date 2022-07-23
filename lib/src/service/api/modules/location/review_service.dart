@@ -11,18 +11,21 @@ import 'response/response_get_location_by_id.dart';
 class ReviewService {
   final ApiService _service = ApiService();
 
-  Future getLocationById(id) async {
-    final _response = await _service.doRequest(
-      RequestConfig(
-        method: HttpMethod.get,
-        path: '${ApiConstants.getLocationById}/$id',
-      ),
+  Future<List<ResponseGetLocationsById>> getLocationById({required int locationId}) async {
+    final requestConfig = RequestConfig(
+      path: '${ApiConstants.getLocationById}/$locationId',
+      method: HttpMethod.get,
     );
 
-    List<LocationByID> _onlyLocation =
-        ([_response]).map((e) => LocationByID.fromJson(e)).toList();
-    return _onlyLocation;
+    final response = await _service.doRequest(requestConfig);
+    return (json.decode(response.data) as List)
+        .map((e) => ResponseGetLocationsById.fromJson(e))
+        .toList();
   }
+
+
+
+
 
   Future postReview(id, review, grade, impressionStatus) async {
     var auth = 'Basic ' +
