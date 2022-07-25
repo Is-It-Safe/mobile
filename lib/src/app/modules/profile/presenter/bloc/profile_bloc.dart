@@ -35,15 +35,13 @@ class ProfileBloc extends SafeBloC {
       userController.sink.add(SafeEvent.done(response));
     } on DioError catch (e) {
       //TODO colocar tratamento de erro de autenticação em todas as requisições
-      if (e.response?.statusCode == 401) {
-        await doLogout();
-      }
-      userController.sink.add(SafeEvent.error(e.toString()));
+      if (e.response?.statusCode == 401) await doLogout();
+
+      userController.addError(e.error);
     }
   }
 
   Future<void> doLogout() async {
-    //TODO Ao fazer logout, e login novamente, bottom nav bar ta vindo com as áginas bugadas
     await saveUserLoginUseCase.call(false).then(
           (_) => Modular.to.pushNamedAndRemoveUntil(
             LoginPage.route,
