@@ -25,25 +25,23 @@ class SplashBloc extends SafeBloC {
   }
 
   Future<bool> getUserLogin() async {
-    final _response = await _getUserLoginUseCase.call();
+    final response = await _getUserLoginUseCase.call();
     LogUtil().log(
-      //TODO Add String to intl
       title: 'Is User Logged?',
-      message: _response.toString(),
+      message: response.toString(),
       level: Level.warning,
     );
-    return _response;
+    return response;
   }
 
   Future<bool> getUserOnBoarding() async {
-    final _response = await _getUserOnBoaringUseCase.call();
+    final response = await _getUserOnBoaringUseCase.call();
     LogUtil().log(
-      //TODO Add String to intl
       title: 'Did User See OnBoarding?',
-      message: _response.toString(),
+      message: response.toString(),
       level: Level.warning,
     );
-    return _response;
+    return response;
   }
 
   @override
