@@ -4,6 +4,7 @@ import 'package:is_it_safe_app/src/core/constants/regex_constants.dart';
 /// **OBS:** Todos os métodos devem retornar um **bool**.
 class ValidationUtil {
   /// Método responsável por validar um nome.
+  @Deprecated('Use .isName() instead')
   static bool name(String name) {
     if (name.isEmpty) {
       return false;
@@ -12,6 +13,7 @@ class ValidationUtil {
   }
 
   /// Método responsável por validar uma data.
+  @Deprecated('Use .isDate() instead')
   static bool date(value) {
     if (value.length == 10) {
       int day = int.parse(
@@ -33,12 +35,14 @@ class ValidationUtil {
   }
 
   /// Método responsável por validar um E-mail.
+  @Deprecated('Use .isEmail() instead')
   static bool email(String value) {
     RegExp regex = RegExp(RegexConstants.emailRegex as String);
     return regex.hasMatch(value.trim());
   }
 
   /// Método responsável por validar uma senha.
+  @Deprecated('Use .isPassword() instead')
   static bool passoword(String value) {
     RegExp regex = RegExp(RegexConstants.passwordRegex as String);
     return regex.hasMatch(value.trim());
