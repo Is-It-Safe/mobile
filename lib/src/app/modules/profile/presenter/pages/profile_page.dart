@@ -60,6 +60,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
           return SafeLayout(
             snapshot: snapshot,
             context: context,
+            showErrorDialog: false,
             onEmpty: const SafeProfileHeader(),
             onError: const SafeProfileHeader(),
             //TODO salvar o usuário no shared preferences

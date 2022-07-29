@@ -6,8 +6,9 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 class SafeLayout {
   final AsyncSnapshot<SafeEvent<dynamic>> snapshot;
   final BuildContext context;
+  final bool showErrorDialog;
   final Widget onLoading;
-  final Widget? onError;
+  final Widget onError;
   final Widget onCompleted;
   final Widget onEmpty;
   final Widget onInitial;
@@ -16,10 +17,11 @@ class SafeLayout {
     required this.snapshot,
     required this.context,
     required this.onCompleted,
+    this.showErrorDialog = true,
     this.onLoading = const SafeLoading(),
     this.onEmpty = const SizedBox.shrink(),
     this.onInitial = const SizedBox.shrink(),
-    this.onError,
+    this.onError = const SizedBox.shrink(),
   });
 
   Widget get build {
@@ -47,21 +49,32 @@ class SafeLayout {
 
   Widget _onDone() {
     if (snapshot.hasError) {
-      return onError ?? SafeDialog(message: snapshot.error.toString()).error();
-    }
-
-    switch (snapshot.data?.status) {
-      case Status.initial:
-        return onInitial;
-      case Status.loading:
-        return onLoading;
-      case Status.done:
-        if (_checkIfListIsNotEmpty() || _checkIfDataIsNotEmpty()) {
-          return onCompleted;
-        }
-        return onEmpty;
-      default:
-        return onInitial;
+      if (showErrorDialog) {
+        Future.delayed(Duration.zero, () async {
+          showDialog(
+            context: context,
+            builder: (context) => SafeDialog(
+              message: snapshot.error.toString(),
+              onTap: () => Navigator.pop(context),
+            ).error(),
+          );
+        });
+      }
+      return onError;
+    } else {
+      switch (snapshot.data?.status) {
+        case Status.initial:
+          return onInitial;
+        case Status.loading:
+          return onLoading;
+        case Status.done:
+          if (_checkIfListIsNotEmpty() || _checkIfDataIsNotEmpty()) {
+            return onCompleted;
+          }
+          return onEmpty;
+        default:
+          return onInitial;
+      }
     }
   }
 
