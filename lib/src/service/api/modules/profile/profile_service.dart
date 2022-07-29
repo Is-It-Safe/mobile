@@ -5,22 +5,26 @@ import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
+import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 
 class ProfileService implements IProfileService {
   final ApiService _service = ApiService();
+  final AuthService _authService;
+
+  ProfileService(this._authService);
 
   @override
   Future<ResponseGetUser> getUser() async {
-    final auth = await ApiConstants.kBarearAuth();
+    final token = await _authService.getAccessToken();
 
     final requestConfig = RequestConfig(
       path: ApiConstants.getUser,
       method: HttpMethod.get,
       options: Options(
         headers: {
-          ApiConstants.kAuthorization: auth,
+          ApiConstants.kAuthorization: token,
         },
       ),
     );

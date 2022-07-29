@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 
 class SafeLayout {
   final AsyncSnapshot<SafeEvent<dynamic>> snapshot;
+  final BuildContext context;
   final Widget onLoading;
   final Widget? onError;
   final Widget onCompleted;
@@ -13,6 +14,7 @@ class SafeLayout {
 
   SafeLayout({
     required this.snapshot,
+    required this.context,
     required this.onCompleted,
     this.onLoading = const SafeLoading(),
     this.onEmpty = const SizedBox.shrink(),

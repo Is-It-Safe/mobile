@@ -7,7 +7,7 @@ import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
@@ -23,7 +23,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
   @override
@@ -59,7 +59,9 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
           final user = snapshot.data?.data;
           return SafeLayout(
             snapshot: snapshot,
+            context: context,
             onEmpty: const SafeProfileHeader(),
+            onError: const SafeProfileHeader(),
             //TODO salvar o usuário no shared preferences
             onCompleted: SafeProfileHeader(
               nickname: user?.nickname,
@@ -80,6 +82,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
         final reviews = snapshot.data?.data?.reviews;
         return SafeLayout(
           snapshot: snapshot,
+          context: context,
           onEmpty: SafeEmptyCard.profile(),
           onCompleted: Column(
             children: List.generate(

@@ -12,7 +12,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_check_box.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class RegisterPage extends StatefulWidget {
   static const route = '/register';
@@ -30,7 +30,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
   @override
