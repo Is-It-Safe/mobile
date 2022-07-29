@@ -46,12 +46,11 @@ class SafeDialog extends StatelessWidget {
       content: Text(message ?? S.current.textErrorTryAgain),
       actions: <Widget>[
         TextButton(
+          onPressed: onTap ?? () => Modular.to.canPop(),
           child: Text(
             S.current.textOk,
             style: TextStyles.button(),
           ),
-          //TODO Fix Button: pop não funciona de forma apropriada
-          onPressed: onTap ?? () => Modular.to.canPop(),
         )
       ],
     );
@@ -66,9 +65,8 @@ class SafeDialog extends StatelessWidget {
       content: Text(message ?? S.current.textErrorTryAgain),
       actions: <Widget>[
         TextButton(
-          child: Text(S.current.textOk),
-          //TODO Fix Button: pop não funciona de forma apropriada
           onPressed: onTap ?? () => Modular.to.canPop(),
+          child: Text(S.current.textOk),
         )
       ],
     );
@@ -113,11 +111,11 @@ class SafeDialogs {
       content: Text(message),
       actions: <Widget>[
         TextButton(
+          onPressed: onTap ?? () => Modular.to.pop(),
           child: Text(
             S.current.textOk,
             style: TextStyles.button(),
           ),
-          onPressed: onTap ?? () => Modular.to.pop(),
         )
       ],
     );
@@ -133,8 +131,8 @@ class SafeDialogs {
       content: Text(message),
       actions: <Widget>[
         TextButton(
-          child: Text(S.current.textOk),
           onPressed: onTap ?? () => Modular.to.canPop(),
+          child: Text(S.current.textOk),
         )
       ],
     );

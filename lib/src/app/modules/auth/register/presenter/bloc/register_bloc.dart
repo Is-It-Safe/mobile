@@ -6,7 +6,7 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/register_entity.dart';
@@ -92,13 +92,13 @@ class RegisterBloc extends SafeBloC {
     listProfilePicturePaths.clear();
     final assetManifestJson =
         await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
-    final List<String> _profilePicturePaths = json
+    final List<String> profilePicturePaths = json
         .decode(assetManifestJson)
         .keys
         .where((String key) =>
             key.startsWith(AssetConstants.general.profilePictures))
         .toList();
-    listProfilePicturePaths.addAll(_profilePicturePaths);
+    listProfilePicturePaths.addAll(profilePicturePaths);
   }
 
   void setProfitePicture(String path) {
@@ -114,7 +114,7 @@ class RegisterBloc extends SafeBloC {
         gendersController.sink.add(SafeEvent.done(listGenders));
       }
     } catch (e) {
-      LogUtil().error(e.toString());
+      SafeLogUtil.instance.logError(e);
       gendersController.sink.add(SafeEvent.error(e.toString()));
     }
   }
@@ -129,7 +129,7 @@ class RegisterBloc extends SafeBloC {
         );
       }
     } catch (e) {
-      LogUtil().error(e.toString());
+      SafeLogUtil.instance.logError(e);
       sexualOrientationsController.sink.add(SafeEvent.error(e.toString()));
     }
   }
@@ -139,7 +139,7 @@ class RegisterBloc extends SafeBloC {
   }) async {
     try {
       doRegisterController.sink.add(SafeEvent.load());
-      final _response = await doRegisterUseCase.call(
+      final response = await doRegisterUseCase.call(
         name: nameController.text,
         username: usernameController.text,
         birthDate: isAdvanceButton == true
@@ -156,9 +156,9 @@ class RegisterBloc extends SafeBloC {
             ? sexualOrientationController.text
             : 8.toString(),
       );
-      doRegisterController.sink.add(SafeEvent.done(_response));
+      doRegisterController.sink.add(SafeEvent.done(response));
     } catch (e) {
-      LogUtil().error(e.toString());
+      SafeLogUtil.instance.logError(e);
       doRegisterController.sink.add(SafeEvent.error(e.toString()));
     }
   }

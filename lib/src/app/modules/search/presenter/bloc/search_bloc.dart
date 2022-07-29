@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_name_use_case.dart';
@@ -43,8 +42,8 @@ class SearchBloc extends SafeBloC {
       );
       searchController.sink.add(SafeEvent.done(searchResultLocations));
       lastSearch = placeSearchController.text;
-    } on DioError catch (e) {
-      searchController.addError(e.response?.data);
+    } on Exception catch (e) {
+      searchController.addError(e.toString());
     }
   }
 

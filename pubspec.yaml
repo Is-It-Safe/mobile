@@ -24,6 +24,7 @@ dependencies:
 
   #Requisições HTTP
   dio: ^4.0.6
+  jwt_decode: ^0.3.1
 
   #Internacionalização
   intl_utils: ^2.4.1

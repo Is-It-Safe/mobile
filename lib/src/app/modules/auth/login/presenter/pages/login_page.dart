@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
@@ -14,7 +15,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dar
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/bloc/login_bloc.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class LoginPage extends StatefulWidget {
@@ -33,7 +33,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
     _doLoginListen();
   }
 
@@ -77,7 +77,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
                   if (snapshot.data?.status == Status.loading) {
                     return const SafeLoading();
                   } else if (snapshot.data?.status == Status.error) {
-                    Modular.to.pop();
+                    // Modular.to.pop();
+                    //TODO Algum erro rola aqui quando o serviço ta indisponível
                     return SafeDialogs.error(message: snapshot.data?.message);
                   }
 
