@@ -1,17 +1,17 @@
-class RequestReview {
+class RequestSaveReview {
   String? review;
   int? grade;
   String? impressionStatus;
   int? locationId;
 
-  RequestReview({
+  RequestSaveReview({
     this.review,
     this.grade,
     this.impressionStatus,
     this.locationId,
   });
 
-  Map<String, dynamic> toJson(RequestReview request) {
+  Map<String, dynamic> toJson(RequestSaveReview request) {
     return {
       'review': request.review,
       'grade': request.grade,

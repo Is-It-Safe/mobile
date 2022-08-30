@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service_interface.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/request/request_post_review.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/request/request_save_review.dart';
 
 import '../../configuration/api_service.dart';
 import '../../configuration/request_config.dart';
@@ -12,7 +12,7 @@ import 'response/response_get_location_by_id.dart';
 
 class LocationService implements ILocationService {
   final ApiService _service = ApiService();
-  
+
   @override
   Future<List<ResponseGetLocationsById>> getLocationById(
       {required int locationId}) async {
@@ -28,9 +28,9 @@ class LocationService implements ILocationService {
   }
 
   @override
-  Future doReview(RequestReview request) async {
+  Future doReview(RequestSaveReview request) async {
     RequestConfig(
-      path: ApiConstants.doAuth,
+      path: ApiConstants.doReview,
       method: HttpMethod.post,
       body: request.toJson(request),
       options: Options(

@@ -51,4 +51,7 @@ class ApiConstants {
 
   //User
   static const String getUser = '${kUrl}user/profile';
+
+  //Review
+  static const String doReview = '${kUrl}review/save';
 }
