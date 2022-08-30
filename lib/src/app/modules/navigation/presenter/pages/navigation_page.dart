@@ -9,7 +9,7 @@ import 'package:is_it_safe_app/src/app/modules/search/presenter/pages/search_pag
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class NavigationPage extends StatefulWidget {
   static const route = '/app';
@@ -44,7 +44,7 @@ class _NavigationPageState
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
   @override
@@ -73,7 +73,7 @@ class _NavigationPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RouterOutlet(),
+      body: const RouterOutlet(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPage,
         onTap: (index) => navigateToPage(index),

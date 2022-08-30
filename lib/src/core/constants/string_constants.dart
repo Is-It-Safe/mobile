@@ -18,4 +18,8 @@ class StringConstants {
   static const String asterisk = '*';
   static const String dateMask = '##/##/####';
   static const String phoneMask = '(##) #####-####';
+  static const String cpfMask = '###.###.###-##';
+  static const String cnpjMask = '##.###.###/####-##';
+  static const String cepMask = '#####-###';
+  static const String more = '...';
 }

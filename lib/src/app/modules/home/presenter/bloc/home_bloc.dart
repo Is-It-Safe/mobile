@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use-case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
@@ -30,8 +29,8 @@ class HomeBloc extends SafeBloC {
       bestRatedPlacesController.add(SafeEvent.load());
       listBestRatedLocations = await getBestRatedLocationsUseCase.call();
       bestRatedPlacesController.add(SafeEvent.done(listBestRatedLocations));
-    } on DioError catch (e) {
-      bestRatedPlacesController.addError(e.response?.data);
+    } on Exception catch (e) {
+      bestRatedPlacesController.addError(e.toString());
     }
   }
 

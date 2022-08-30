@@ -8,7 +8,7 @@ import 'package:is_it_safe_app/src/app/modules/auth/on_boarding/presenter/bloc/o
 import 'package:is_it_safe_app/src/app/modules/auth/on_boarding/presenter/widgets/on_boarding_widget.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _OnBoardingPageState
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
   @override
