@@ -266,13 +266,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
-<<<<<<< HEAD
-  json_annotation:
-    dependency: transitive
-=======
   jwt_decode:
     dependency: "direct main"
->>>>>>> cc63ca597cedd94cefba5ac511019f2a156c4222
     description:
       name: jwt_decode
       url: "https://pub.dartlang.org"
@@ -675,23 +670,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.11"
-<<<<<<< HEAD
-  timing:
-    dependency: transitive
-    description:
-      name: timing
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
-  triple:
-    dependency: transitive
-    description:
-      name: triple
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0"
-=======
->>>>>>> cc63ca597cedd94cefba5ac511019f2a156c4222
   typed_data:
     dependency: transitive
     description:
@@ -763,10 +741,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-<<<<<<< HEAD
-  dart: ">=2.17.0-0 <3.0.0"
-  flutter: ">=2.10.0-0"
-=======
   dart: ">=2.17.0 <3.0.0"
   flutter: ">=2.11.0-0.1.pre"
->>>>>>> cc63ca597cedd94cefba5ac511019f2a156c4222
