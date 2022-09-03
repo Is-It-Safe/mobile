@@ -3,6 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_location_card.dart';
+import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
+import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/review_page.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
@@ -88,6 +90,10 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       separatorBuilder: (_, i) => const SizedBox(height: 15),
       itemBuilder: (context, index) => HomeLocationCard(
         location: list[index],
+        onTap: () => Modular.to.pushNamed(
+          LocationModule.route + ReviewPage.route,
+          arguments: list[index],
+        ),
       ),
     );
   }

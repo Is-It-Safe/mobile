@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
+import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 
 class ProfileBloc extends SafeBloC {
   final GetUserUseCase getUserUseCase;
@@ -33,21 +33,9 @@ class ProfileBloc extends SafeBloC {
       final response = await getUserUseCase.call();
       userController.sink.add(SafeEvent.done(response));
     } on Exception catch (e) {
-      //TODO colocar tratamento de erro de autenticação em todas as requisições
-      //VENDO SE FUNCIONA NO INTERCEPTORS
-      //if (e is UnauthorizedException) await doLogout();
-
+      if (e is UnauthorizedException) await ApiInterceptors.doLogout();
       userController.addError(e.toString());
     }
-  }
-
-  Future<void> doLogout() async {
-    await saveUserLoginUseCase.call(false).then(
-          (_) => Modular.to.pushNamedAndRemoveUntil(
-            LoginPage.route,
-            (r) => false,
-          ),
-        );
   }
 
   @override

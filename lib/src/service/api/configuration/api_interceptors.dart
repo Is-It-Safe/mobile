@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 
 ///A classe [ApiInterceptors] é responsável por gerenciar as intercepções da API
 class ApiInterceptors extends QueuedInterceptorsWrapper {
@@ -52,11 +51,10 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
       body: err.response?.data.toString(),
       isError: true,
     );
-    if (err is UnauthorizedException) await doLogout();
     return super.onError(err, handler);
   }
 
-  Future<void> doLogout() async {
+  static Future<void> doLogout() async {
     await SaveUserLoginUseCase().call(false).then(
           (_) => Modular.to.pushNamedAndRemoveUntil(
             LoginPage.route,

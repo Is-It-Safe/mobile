@@ -1,394 +1,351 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/app/modules/review_module/review_bloc.dart';
-import 'package:is_it_safe_app/core/components/app_bar.dart';
-import 'package:is_it_safe_app/core/components/primary_button.dart';
-import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/model/LocationByID.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
-import 'package:is_it_safe_app/core/utils/helper/manage_dialogs.dart';
-import 'package:is_it_safe_app/core/utils/style/themes/text_styles.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'components/slider_emoji.dart';
-import 'components/slider_text.dart';
 
-class ReviewWidget extends StatefulWidget {
-  final int args;
-  const ReviewWidget({
+import 'package:is_it_safe_app/src/app/modules/location/review/presenter/bloc/review_bloc.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_impression_carroussel.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_slider_emoji.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
+import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
+
+class ReviewPage extends StatefulWidget {
+  static const route = '/review/';
+  final LocationEntity location;
+
+  const ReviewPage({
     Key? key,
-    required this.args,
+    required this.location,
   }) : super(key: key);
   @override
-  ReviewWidgetState createState() => ReviewWidgetState();
+  ReviewPageState createState() => ReviewPageState();
 }
 
-class ReviewWidgetState extends ModularState<ReviewWidget, ReviewBloc> {
+class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _formKey = GlobalKey<FormState>();
   late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
-    controller.getOnlyLocation(widget.args);
     _pageController = PageController(viewportFraction: 1);
-    Log.route(Modular.to.path);
   }
-
-  _onError(AsyncSnapshot snapshot) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      ManagerDialogs.showErrorDialog(
-        context,
-        snapshot.data.message,
-      );
-    });
-  }
-
-  double _valueGrade = 2.5;
-  int activePage = 0;
-  static const _kDuration = Duration(milliseconds: 200);
-  static const _kCurve = Curves.ease;
-  List<String> impressionStatusImages = [
-    'images/app/review_module/review_impression_safe.png',
-    'images/app/review_module/review_impression_caution.png',
-    'images/app/review_module/review_impression_insecure.png',
-  ];
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size.width;
-
-    return StreamBuilder<BaseResponse<List<LocationByID>>>(
-      stream: controller.reviewController.stream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          switch (snapshot.data?.status) {
-            case Status.LOADING:
-              return const Scaffold(
-                body: Center(child: CircularProgressIndicator()),
-              );
-            case Status.ERROR:
-              _onError(snapshot);
-              return Text(
-                S.of(context).textErrorDropdown,
-              );
-            default:
-              return Scaffold(
-                key: _scaffoldKey,
-                appBar: appBar(
-                  context: context,
-                  hasLeading: true,
-                  title: '${snapshot.data!.data![0].name}',
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: SafeAppBar(
+        title: widget.location.name,
+      ),
+      body: StreamBuilder<SafeEvent<ReviewEntity>>(
+          stream: controller.reviewController.stream,
+          initialData: SafeEvent.initial(),
+          builder: (context, snapshot) {
+            // if (snapshot.data?.status == Status.done) {
+            //   showDialog(
+            //     context: context,
+            //     builder: (context) => SafeDialog(
+            //       title: S.current.textPublishedReview,
+            //       message: snapshot.data?.data?.message,
+            //       onTap: () => Modular.to.pop(),
+            //     ).show(),
+            //   );
+            // }
+            return SafeLayout(
+              snapshot: snapshot,
+              context: context,
+              onCompleted: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 40,
                 ),
-                body: SingleChildScrollView(
+                child: SingleChildScrollView(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: size * 0.08),
-                        child: Stack(
-                          children: [
-                            Container(
-                              height: size * 0.25,
-                              width: size,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(size * 0.02),
-                                image: DecorationImage(
-                                  image: Image.asset(
-                                          ('images/app/review_module/placeholder/review_placeholder.png'))
-                                      .image,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height: size * 0.25,
-                              width: size,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(size * 0.02),
-                                image: DecorationImage(
-                                  image: (snapshot.data?.data?[0].imgUrl ==
-                                          null)
-                                      ? Image.asset(
-                                              ('images/app/review_module/placeholder/review_placeholder.png'))
-                                          .image
-                                      : NetworkImage(
-                                          '${snapshot.data!.data![0].imgUrl}',
-                                        ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ],
+                      Text(
+                        S.current.textReviewCompleted.toUpperCase(),
+                        style: TextStyles.headline1(
+                          color: SafeColors.statusColors.success,
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      const SizedBox(height: 30),
+                      SvgPicture.asset(AssetConstants.general.reviewCompleted),
+                      const SizedBox(height: 30),
+                      Text(
+                        snapshot.data?.data?.message ?? StringConstants.empty,
+                        style: TextStyles.bodyText1(),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: size * 0.1),
-                        child: Text(
-                          S.of(context).textHowDidYouFeelThere,
-                          style: TextStyles.bodyText2(
-                            color: const Color(0xFF190A33),
-                          ),
+                      const SizedBox(height: 120),
+                      SafeButton(
+                        title: S.current.textContinue,
+                        onTap: () => Modular.to.pop(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              onInitial: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ReviewImageWidget(
+                        image: widget.location.imagePath ??
+                            AssetConstants.mock.locationImage,
+                      ),
+                      const SizedBox(height: 20),
+                      ReviewEmotionsWidget(
+                        grade: controller.gradeController.stream,
+                        onGradeChanged: (value) =>
+                            controller.onGradeChanged(value),
+                      ),
+                      const SizedBox(height: 30),
+                      ReviewImpressionStatusWidget(
+                        carrousselStream:
+                            controller.impressionStatusController.stream,
+                        pageController: _pageController,
+                        images: controller.impressionStatusImages,
+                        texts: controller.impressionStatusTexts,
+                        getImpressions: (index) =>
+                            controller.getImpressions(index),
+                        onImpressionChanged: (cardId) =>
+                            controller.onImpressionChanged(
+                          cardId,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: size * 0.03),
-                        child: SliderEmoji(
-                          actualValue: _valueGrade,
-                          startValue: 0,
-                          endValue: 5,
-                          lineWidth: size,
-                          image01: 'review_emoji_angry.png',
-                          image02: 'review_emoji_upset.png',
-                          image03: 'review_emoji_regular.png',
-                          image04: 'review_emoji_satisfied.png',
-                          image05: 'review_emoji_amazing.png',
-                        ),
+                      const SizedBox(height: 30),
+                      ReviewTextFieldWidget(
+                        textController: controller.textReviewController,
+                        formKey: _formKey,
+                        onChanged: (value) => controller.onReviewChanged(value),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: size * 0.03, right: size * 0.03),
-                        child: SliderTheme(
-                          data: SliderTheme.of(context).copyWith(
-                            activeTrackColor: const Color(0xFF7C68F0),
-                            inactiveTrackColor: const Color(0xFF7C68F0),
-                            trackShape: const RectangularSliderTrackShape(),
-                            trackHeight: 2.0,
-                            thumbColor: const Color(0xFF7B61FF),
-                            thumbShape: const RoundSliderThumbShape(
-                                enabledThumbRadius: 12.0),
-                            overlayColor: const Color(0xFF7B61FF).withAlpha(32),
-                            overlayShape: const RoundSliderOverlayShape(
-                                overlayRadius: 28.0),
-                            valueIndicatorShape:
-                                const PaddleSliderValueIndicatorShape(),
-                          ),
-                          child: Slider(
-                            min: 0,
-                            max: 5,
-                            value: _valueGrade,
-                            onChanged: (value) {
-                              setState(() {
-                                _valueGrade = value;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: size * 0.03),
-                        child: SliderText(
-                          actualValue: _valueGrade,
-                          startValue: 0,
-                          endValue: 5,
-                          lineWidth: size,
-                          text01: 'Irritado',
-                          text02: 'Chateado',
-                          text03: 'Regular',
-                          text04: 'Satisfeito',
-                          text05: 'Incrível',
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: size * 0.1, bottom: size * 0.05),
-                        child: Text(
-                          S.of(context).textChooseRatingForTheLocation,
-                          style: TextStyles.bodyText2(
-                            color: const Color(0xFF190A33),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size,
-                        height: size * 0.55,
-                        child: Stack(
-                          children: [
-                            PageView.builder(
-                              itemCount: impressionStatusImages.length,
-                              pageSnapping: true,
-                              controller: _pageController,
-                              onPageChanged: (page) {
-                                setState(
-                                  () {
-                                    controller.setImpressionStatusResult(page);
-                                    activePage = page;
-                                  },
-                                );
-                              },
-                              itemBuilder: (context, pagePosition) {
-                                return Container(
-                                  margin: const EdgeInsets.all(10),
-                                  child: Image.asset(
-                                      impressionStatusImages[pagePosition]),
-                                );
-                              },
-                            ),
-                            SizedBox(
-                              height: size * 0.55,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  if (activePage > 0)
-                                    Material(
-                                      child: InkWell(
-                                        child: SizedBox(
-                                          width: size * 0.15,
-                                          height: size * 0.2,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 8.0),
-                                            child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: Image.asset(
-                                                  ('images/app/review_module/review_arrow_left.png')),
-                                            ),
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          setState(() {
-                                            _pageController.previousPage(
-                                                duration: _kDuration,
-                                                curve: _kCurve);
-                                          });
-                                        },
-                                      ),
-                                    )
-                                  else
-                                    SizedBox(
-                                      width: size * 0.15,
-                                      height: size * 0.2,
-                                    ),
-                                  if (activePage < 2)
-                                    Material(
-                                      child: InkWell(
-                                        child: SizedBox(
-                                          width: size * 0.15,
-                                          height: size * 0.2,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 8.0),
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Image.asset(
-                                                  ('images/app/review_module/review_arrow_right.png')),
-                                            ),
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          setState(() {
-                                            _pageController.nextPage(
-                                                duration: _kDuration,
-                                                curve: _kCurve);
-                                          });
-                                        },
-                                      ),
-                                    )
-                                  else
-                                    SizedBox(
-                                      width: size * 0.15,
-                                      height: size * 0.2,
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: size * 0.03,
-                            bottom: size * 0.05,
-                            left: size * 0.1,
-                            right: size * 0.1),
-                        child: Text(
-                          S
-                              .of(context)
-                              .textChooseRatingAccordingListedQualities,
-                          textAlign: TextAlign.center,
-                          style: TextStyles.caption(
-                            color: const Color(0xFF190A33),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: size * 0.1, bottom: size * 0.05),
-                        child: Text(
-                          S.of(context).textCanYouGiveUsMoreDetails,
-                          style: TextStyles.bodyText2(
-                            color: const Color(0xFF190A33),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: size * 0.1),
-                        child: SizedBox(
-                          height: size * 0.4,
-                          child: TextField(
-                            controller: controller.textReviewController,
-                            textAlignVertical: TextAlignVertical.top,
-                            decoration: InputDecoration(
-                              alignLabelWithHint: true,
-                              labelText: S.of(context).textWriteHere,
-                              labelStyle: TextStyles.bodyText2(
-                                color: const Color(0xFF535353),
-                              ),
-                            ),
-                            maxLines: null,
-                            expands: true,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(size * 0.05),
-                        child: StreamBuilder<String>(
-                          stream: controller.impressionStatusController.stream,
-                          builder: (context, snapshot) {
-                            return snapshot.hasData == false
-                                ? PrimaryButton(
-                                    text: S.of(context).textSubmit,
-                                    textColor: Colors.white,
-                                    onTap: () {
-                                      controller.postOnlyReview(
-                                          id: widget.args,
-                                          grade: _valueGrade,
-                                          impressionStatus: 'SAFE',
-                                          review: controller
-                                              .textReviewController.text);
-                                    },
-                                  )
-                                : PrimaryButton(
-                                    text: S.of(context).textSubmit,
-                                    textColor: Colors.white,
-                                    onTap: () {
-                                      controller.postOnlyReview(
-                                          id: widget.args,
-                                          grade: _valueGrade,
-                                          impressionStatus:
-                                              controller.impressionStatusResult,
-                                          review: controller
-                                              .textReviewController.text);
-                                    },
-                                  );
-                          },
+                      const SizedBox(height: 30),
+                      StreamBuilder<bool>(
+                        stream: controller.isButtonEnabledController.stream,
+                        builder: (context, snapshot) => SafeButton(
+                          title: S.current.textSend,
+                          state: (snapshot.data ?? false)
+                              ? ButtonState.rest
+                              : ButtonState.disabled,
+                          onTap: snapshot.data == true
+                              ? () async {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    await controller.sendReview(
+                                        id: widget.location.id);
+                                  }
+                                }
+                              : () => _formKey.currentState?.validate(),
                         ),
                       ),
                     ],
                   ),
                 ),
-              );
-          }
-        }
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
-      },
+              ),
+            ).build;
+          }),
+    );
+  }
+}
+
+class ReviewTextFieldWidget extends StatelessWidget {
+  final TextEditingController textController;
+  final void Function(String value)? onChanged;
+  final GlobalKey<FormState> formKey;
+
+  const ReviewTextFieldWidget({
+    Key? key,
+    required this.textController,
+    required this.formKey,
+    this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          S.current.textCanYouGiveMoreDetails,
+          style: TextStyles.bodyText1(
+            color: SafeColors.generalColors.secondary,
+          ),
+        ),
+        const SizedBox(height: 20),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.35,
+          child: Form(
+            key: formKey,
+            child: TextFormField(
+              controller: textController,
+              expands: true,
+              maxLines: null,
+              textAlignVertical: TextAlignVertical.top,
+              onChanged: onChanged,
+              decoration: InputDecoration(
+                hintText: S.current.textWriteHere,
+                hintStyle: TextStyles.label(),
+              ),
+              validator: (value) {
+                if (value?.trim().isEmpty ?? false) {
+                  return S.current.textErrorEmptyField;
+                }
+                return null;
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ReviewImpressionStatusWidget extends StatefulWidget {
+  final Stream<int> carrousselStream;
+  final PageController pageController;
+  final List<String> images;
+  final List<String> texts;
+
+  final void Function(int value) onImpressionChanged;
+  final List<String> Function(int index) getImpressions;
+  const ReviewImpressionStatusWidget({
+    Key? key,
+    required this.carrousselStream,
+    required this.onImpressionChanged,
+    required this.images,
+    required this.pageController,
+    required this.texts,
+    required this.getImpressions,
+  }) : super(key: key);
+
+  @override
+  State<ReviewImpressionStatusWidget> createState() =>
+      _ReviewImpressionStatusWidgetState();
+}
+
+class _ReviewImpressionStatusWidgetState
+    extends State<ReviewImpressionStatusWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          S.current.textChooseAClassification,
+          textAlign: TextAlign.center,
+          style: TextStyles.bodyText1(
+            color: SafeColors.generalColors.secondary,
+          ),
+        ),
+        const SizedBox(height: 20),
+        StreamBuilder<int>(
+          stream: widget.carrousselStream,
+          builder: (context, snapshot) => SafeImpressionCarroussel(
+            pageController: widget.pageController,
+            currentPage: snapshot.data ?? 0,
+            onImpressionChanged: (value) => widget.onImpressionChanged(value),
+            data: List.generate(
+              widget.images.length,
+              (index) => ImpressionItem(
+                id: index,
+                title: widget.texts[index],
+                image: widget.images[index],
+                impressions: widget.getImpressions(snapshot.data ?? 0),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: Text(
+            S.current.textChooseAClassificationForThisPlace,
+            style: TextStyles.helper(),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ReviewEmotionsWidget extends StatefulWidget {
+  final Stream<double> grade;
+  final void Function(double value) onGradeChanged;
+  const ReviewEmotionsWidget({
+    Key? key,
+    required this.grade,
+    required this.onGradeChanged,
+  }) : super(key: key);
+
+  @override
+  State<ReviewEmotionsWidget> createState() => _ReviewEmotionsWidgetState();
+}
+
+class _ReviewEmotionsWidgetState extends State<ReviewEmotionsWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          S.current.textHowDoYouFeelAboutThisPlace,
+          style: TextStyles.bodyText1(
+            color: SafeColors.generalColors.secondary,
+          ),
+        ),
+        const SizedBox(height: 20),
+        StreamBuilder<double>(
+          stream: widget.grade,
+          builder: (context, snapshot) => SafeEmotionSlider(
+            value: snapshot.data ?? 0,
+            onChanged: (value) => widget.onGradeChanged(value),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class ReviewImageWidget extends StatelessWidget {
+  final String image;
+  const ReviewImageWidget({
+    Key? key,
+    required this.image,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: size.height * 0.16,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              image: DecorationImage(
+                image: (image.contains('http'))
+                    ? Image.network(image).image
+                    : Image.asset(image).image,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -12,8 +12,8 @@ class GetLocationsByIdUseCase extends SafeUseCase {
   }
 
   Future<List<LocationEntity>> call(int id) async {
-    final _response = await _service.getLocationById( locationId: id);
+    final response = await _service.getLocationById(id);
 
-    return _response?.map((e) => LocationEntity.toEntity(e)).toList() ?? [];
+    return response.map((e) => LocationEntity.toEntity(e)).toList();
   }
 }

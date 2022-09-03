@@ -1,72 +1,102 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/core/data/service/config/base_response.dart';
-import 'package:is_it_safe_app/core/data/service/review_service.dart';
-import 'package:is_it_safe_app/core/model/LocationByID.dart';
-import 'package:is_it_safe_app/core/utils/helper/log.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
+import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_review_use_case.dart';
 
-class ReviewBloc implements Disposable {
-  final reviewService = ReviewService();
+class ReviewBloc extends SafeBloC {
+  final SaveReviewUseCase saveReviewUseCase;
 
-  late StreamController<BaseResponse<List<LocationByID>>> reviewController;
-  late StreamController<String> impressionStatusController;
+  late StreamController<SafeEvent<ReviewEntity>> reviewController;
+  late StreamController<double> gradeController;
+  late StreamController<int> impressionStatusController;
+  late StreamController<bool> isButtonEnabledController;
 
   late TextEditingController textReviewController;
 
-  List<LocationByID> place = [];
-  String impressionStatusResult = 'SAFE';
+  final double defaultEmotionGrade = 3;
+  List<String> impressionStatusImages = [
+    AssetConstants.impression.safe,
+    AssetConstants.impression.warning,
+    AssetConstants.impression.danger,
+  ];
+  List<String> impressionStatusTexts = [
+    S.current.textSafeForLGBT,
+    S.current.textSomeProblemsHappend,
+    S.current.textDontRecomendThisPlace
+  ];
 
-  ReviewBloc() {
+  String impressionStatus = StringConstants.safe;
+  double grade = 3;
+
+  ReviewBloc({
+    required this.saveReviewUseCase,
+  }) {
+    init();
+  }
+  @override
+  Future<void> init() async {
     reviewController = StreamController.broadcast();
+    gradeController = StreamController.broadcast();
     impressionStatusController = StreamController.broadcast();
     textReviewController = TextEditingController();
+    isButtonEnabledController = StreamController.broadcast();
+
+    isButtonEnabledController.add(false);
+    gradeController.add(defaultEmotionGrade);
+    impressionStatusController.add(0);
   }
 
-  setImpressionStatusResult(int activePage) {
-    switch (activePage) {
-      case 0:
-        impressionStatusResult = 'SAFE';
-        Log.log(impressionStatusResult, name: "IMPRESSION STATUS");
-        impressionStatusController.sink.add(impressionStatusResult);
-        break;
-      case 1:
-        impressionStatusResult = 'WARNING';
-        Log.log(impressionStatusResult, name: "IMPRESSION STATUS");
-        impressionStatusController.sink.add(impressionStatusResult);
-        break;
-      case 2:
-        impressionStatusResult = 'DANGER';
-        Log.log(impressionStatusResult, name: "IMPRESSION STATUS");
-        impressionStatusController.sink.add(impressionStatusResult);
-        break;
+  void onImpressionChanged(int index) {
+    String status = StringConstants.safe;
+    if (index == 0) status = StringConstants.safe;
+    if (index == 1) status = StringConstants.warning;
+    if (index == 2) status = StringConstants.danger;
+    impressionStatus = status;
+    impressionStatusController.add(index);
+  }
+
+  List<String> getImpressions(int index) {
+    final impressions = <String>[];
+    impressions.add(S.current.textStructure);
+    impressions.add(S.current.textSecurity);
+    if (index == 0 || index == 1) {
+      impressions.add(S.current.textService);
+    } else if (index == 2) {
+      impressions.add(S.current.textLGBTFobia);
     }
+    return impressions;
   }
 
-  Future getOnlyLocation(id) async {
+  void onReviewChanged(String value) {
+    isButtonEnabledController.add(value.trim().isNotEmpty);
+  }
+
+  Future sendReview({required int id}) async {
     try {
-      reviewController.sink.add(BaseResponse.loading());
-      final place = await reviewService.getLocationById(id);
-      reviewController.sink.add(BaseResponse.completed(data: place));
+      reviewController.add(SafeEvent.load());
+      final place = await saveReviewUseCase.call(
+        review: textReviewController.text,
+        grade: grade.toInt(),
+        impressionStatus: impressionStatus,
+        locationId: id,
+      );
+      reviewController.add(SafeEvent.done(place));
     } catch (e) {
-      reviewController.sink.add(BaseResponse.error(e.toString()));
+      reviewController.addError(e.toString());
     }
   }
 
-  Future postOnlyReview({required int id, required String? review, required double grade, required String impressionStatus}) async {
-    try {
-      reviewController.sink.add(BaseResponse.loading());
-      final place =
-          await reviewService.postReview(id, review, grade, impressionStatus);
-      reviewController.sink.add(BaseResponse.completed(data: place));
-    } catch (e) {
-      reviewController.sink.add(BaseResponse.error(e.toString()));
-    }
+  void onGradeChanged(double value) {
+    grade = value;
+    gradeController.add(value);
   }
 
   @override
-  void dispose() {
-    reviewController.close();
-  }
+  Future<void> dispose() async {}
 }

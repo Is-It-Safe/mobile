@@ -7,6 +7,7 @@ class SafeLayout {
   final AsyncSnapshot<SafeEvent<dynamic>> snapshot;
   final BuildContext context;
   final bool showErrorDialog;
+  final Future<dynamic> Function()? doOnCompleted;
   final Widget onLoading;
   final Widget onError;
   final Widget onCompleted;
@@ -17,6 +18,7 @@ class SafeLayout {
     required this.snapshot,
     required this.context,
     required this.onCompleted,
+    this.doOnCompleted,
     this.showErrorDialog = true,
     this.onLoading = const SafeLoading(),
     this.onEmpty = const SizedBox.shrink(),
@@ -69,6 +71,7 @@ class SafeLayout {
           return onLoading;
         case Status.done:
           if (_checkIfListIsNotEmpty() || _checkIfDataIsNotEmpty()) {
+            //if (doOnCompleted != null) doOnCompleted!();
             return onCompleted;
           }
           return onEmpty;
