@@ -1,15 +1,25 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 
 ///A classe [ApiInterceptors] é responsável por gerenciar as intercepções da API
-class ApiInterceptors extends InterceptorsWrapper {
+class ApiInterceptors extends QueuedInterceptorsWrapper {
+  final Dio _dio;
+  ApiInterceptors(this._dio);
+
   @override
   Future onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    if (kDebugMode) _logRequest(options);
+    SafeLogUtil.instance.onRequestLog(
+      path: options.path,
+      header: options.headers.toString(),
+      body: options.data.toString(),
+      http: options.method,
+    );
     return super.onRequest(options, handler);
   }
 
@@ -18,7 +28,13 @@ class ApiInterceptors extends InterceptorsWrapper {
     Response response,
     ResponseInterceptorHandler handler,
   ) async {
-    if (kDebugMode) _logResponse(response);
+    SafeLogUtil.instance.onResponseLog(
+      path: response.requestOptions.path,
+      statusCode: response.statusCode,
+      header: response.headers.toString(),
+      params: response.requestOptions.data.toString(),
+      body: response.data,
+    );
     return super.onResponse(response, handler);
   }
 
@@ -26,38 +42,24 @@ class ApiInterceptors extends InterceptorsWrapper {
   onError(
     DioError err,
     ErrorInterceptorHandler handler,
-  ) {
-    if (kDebugMode) _logError(err);
-    return super.onError(err, handler);
-  }
-
-  void _logError(DioError err) {
-    LogUtil().response(
+  ) async {
+    SafeLogUtil.instance.onResponseLog(
       path: err.requestOptions.path,
       statusCode: err.response?.statusCode,
       header: err.requestOptions.headers.toString(),
       params: err.requestOptions.data.toString(),
-      body: err.response?.data,
+      body: err.response?.data.toString(),
       isError: true,
     );
+    return super.onError(err, handler);
   }
 
-  void _logRequest(RequestOptions options) {
-    LogUtil().request(
-      path: options.path,
-      header: options.headers.toString(),
-      body: options.data.toString(),
-      http: options.method,
-    );
-  }
-
-  void _logResponse(Response response) {
-    LogUtil().response(
-      path: response.requestOptions.path,
-      statusCode: response.statusCode,
-      header: response.headers.toString(),
-      params: response.requestOptions.data.toString(),
-      body: response.data,
-    );
+  static Future<void> doLogout() async {
+    await SaveUserLoginUseCase().call(false).then(
+          (_) => Modular.to.pushNamedAndRemoveUntil(
+            LoginPage.route,
+            (r) => false,
+          ),
+        );
   }
 }

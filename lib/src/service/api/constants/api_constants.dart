@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
-
 /// [ApiConstants] é uma classe que contém todas as constantes usadas nas requisições da API
 class ApiConstants {
   ///Credenciais de autenticação
@@ -20,13 +18,6 @@ class ApiConstants {
 
   ///Basic Auth para autenticação do Login
   static String kBasicAuth = 'Basic $kEncodedClientCredentials';
-
-  ///Barear Auth para autenticação
-  static Future<String> kBarearAuth() async =>
-      'Bearer ${await SharedPreferencesService().readToken()}';
-
-  static Future<String> kBarearRefreshAuth() async =>
-      'Bearer ${await SharedPreferencesService().readRefreshToken()}';
 
   ///URL para requisições de autenticação
   static const String kAuthUrl =
@@ -47,7 +38,11 @@ class ApiConstants {
   //Location
   static const String getBestRatedLocations = '${kUrl}location/find-all';
   static const String getLocationsByName = '${kUrl}location/find-all?name=';
+  static const String getLocationById = '${kUrl}location';
 
   //User
   static const String getUser = '${kUrl}user/profile';
+
+  //Review
+  static const String doReview = '${kUrl}review/save';
 }

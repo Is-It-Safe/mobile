@@ -13,7 +13,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/register_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
@@ -38,7 +38,7 @@ class _RegisterProfilePageState
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
     onRegistrationInit();
     controller.getGenders();
     controller.getSexualOrientations();
@@ -102,6 +102,7 @@ class _RegisterProfilePageState
           break;
         case Status.error:
           Modular.to.pop();
+
           showDialog(
             context: context,
             builder: (_) => SafeDialogs.error(message: event.message),

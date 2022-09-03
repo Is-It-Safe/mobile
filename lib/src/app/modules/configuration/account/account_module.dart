@@ -11,8 +11,7 @@ class AccountModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton((i) => AuthService()),
-    Bind.lazySingleton((i) => ProfileService()),
+    Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
     Bind.lazySingleton((i) => GetUserUseCase()),
     Bind.lazySingleton((i) => AccountBloc(

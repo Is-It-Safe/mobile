@@ -7,7 +7,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class RegisterProfilePicturePage extends StatefulWidget {
   static const route = '/profile-picture';
@@ -26,7 +26,7 @@ class _RegisterProfilePicturePageState
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
     _getProfilePictures();
   }
 

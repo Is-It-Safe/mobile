@@ -3,10 +3,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_location_card.dart';
+import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
+import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/review_page.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
@@ -24,7 +26,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
   @override
@@ -64,6 +66,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       builder: (context, snapshot) {
         return SafeLayout(
           snapshot: snapshot,
+          context: context,
           onEmpty: SafeEmptyCard.home(),
           onCompleted: _mountSeparatedList(
             length: controller.listBestRatedLocations.length,
@@ -87,6 +90,10 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       separatorBuilder: (_, i) => const SizedBox(height: 15),
       itemBuilder: (context, index) => HomeLocationCard(
         location: list[index],
+        onTap: () => Modular.to.pushNamed(
+          LocationModule.route + ReviewPage.route,
+          arguments: list[index],
+        ),
       ),
     );
   }
