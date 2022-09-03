@@ -45,7 +45,7 @@ class ResponseGetUserReview {
   String? review;
   String? impressionStatus;
   double? myGrade;
-
+  String? message;
   int? locationId;
   String? locationName;
   String? locationAddress;
@@ -58,6 +58,7 @@ class ResponseGetUserReview {
     this.locationId,
     this.locationName,
     this.locationAddress,
+    this.message,
   });
 
   factory ResponseGetUserReview.fromJson(dynamic json) {
@@ -69,6 +70,7 @@ class ResponseGetUserReview {
       locationId: json['locationId'],
       locationName: json['locationName'],
       locationAddress: json['locationAddress'],
+      message: json['message'],
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/auth_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
+import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/navigation_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
@@ -18,5 +19,6 @@ class AppModule extends Module {
     ModuleRoute(Modular.initialRoute, module: AuthModule()),
     ModuleRoute(NavigationPage.route, module: NavigationModule()),
     ModuleRoute(ConfigurationModule.route, module: ConfigurationModule()),
+    ModuleRoute(LocationModule.route, module: LocationModule()),
   ];
 }

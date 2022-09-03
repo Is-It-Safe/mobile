@@ -9,6 +9,7 @@ class ReviewEntity {
   String? impressionStatus;
   double? myGrade;
   LocationEntity? location;
+  String? message;
 
   ReviewEntity({
     required this.id,
@@ -16,16 +17,18 @@ class ReviewEntity {
     this.impressionStatus,
     this.myGrade,
     this.location,
+    this.message,
   });
 
   factory ReviewEntity.toEntity(ResponseGetUserReview review) {
     return ReviewEntity(
-      id: review.id!,
+      id: review.id ?? 0,
+      message: review.message ?? StringConstants.empty,
       review: review.review ?? StringConstants.empty,
       impressionStatus: review.impressionStatus ?? StringConstants.empty,
       myGrade: review.myGrade ?? DoubleConstants.empty,
       location: LocationEntity(
-        id: review.locationId!,
+        id: review.locationId ?? 0,
         name: review.locationName ?? StringConstants.empty,
         address: review.locationAddress ?? StringConstants.empty,
       ),

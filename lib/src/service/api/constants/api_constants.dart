@@ -38,7 +38,11 @@ class ApiConstants {
   //Location
   static const String getBestRatedLocations = '${kUrl}location/find-all';
   static const String getLocationsByName = '${kUrl}location/find-all?name=';
+  static const String getLocationById = '${kUrl}location';
 
   //User
   static const String getUser = '${kUrl}user/profile';
+
+  //Review
+  static const String doReview = '${kUrl}review/save';
 }
