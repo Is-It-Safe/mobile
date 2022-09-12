@@ -22,6 +22,7 @@ dependencies:
   build_runner: ^2.1.10
   logger: 
   meta: ^1.7.0
+  image_picker: ^0.8.5+3
 
   #Requisições HTTP
   dio: ^4.0.0
@@ -39,6 +40,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   flutter_svg: ^0.22.0
   simple_animations: ^4.0.1
+  dotted_border: ^2.0.0
 
   #Armazenamento
   shared_preferences: ^2.0.8

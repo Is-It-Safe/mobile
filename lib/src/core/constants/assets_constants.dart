@@ -35,6 +35,7 @@ class _IconsAssets {
   String searchOutlined = 'images/modules/core/icons/search_active_icon.svg';
   String search = 'images/modules/core/icons/search_icon.svg';
   String account = 'images/modules/core/icons/account_icon.svg';
+  String addLocale = 'images/modules/core/icons/add_locale_icon.svg';
 }
 
 class _MockAssets {

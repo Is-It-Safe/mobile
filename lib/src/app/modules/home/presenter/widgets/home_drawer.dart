@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/add_locale/presenter/pages/add_locale_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
@@ -31,6 +32,14 @@ class HomeDrawer extends StatelessWidget {
             children: [
               _mountHeader(),
               const SizedBox(height: 90),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 32.0),
+                child: _mountItem(
+                  icon: AssetConstants.icons.addLocale,
+                  text: S.current.textDrawerAddLocation,
+                  route: ConfigurationModule.route + AddLocalePage.route,
+                ),
+              ),
               //Minha Conta
               _mountItem(
                 icon: AssetConstants.icons.account,

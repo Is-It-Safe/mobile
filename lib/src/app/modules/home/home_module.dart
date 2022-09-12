@@ -9,9 +9,11 @@ class HomeModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => HomeService()),
     Bind.lazySingleton((i) => GetBestRatedLocationsUseCase()),
-    Bind.lazySingleton((i) => HomeBloc(
-          getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
-        )),
+    Bind.lazySingleton(
+      (i) => HomeBloc(
+        getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
+      ),
+    ),
   ];
 
   @override

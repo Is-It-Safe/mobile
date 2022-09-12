@@ -1139,6 +1139,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Configurações`
+  String get textAddLocaleTitle {
+    return Intl.message(
+      'Configurações',
+      name: 'textAddLocaleTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adicionar Local`
+  String get textAddLocaleSubTitle {
+    return Intl.message(
+      'Adicionar Local',
+      name: 'textAddLocaleSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nome do local`
+  String get textAddLocaleNameTextFieldTitle {
+    return Intl.message(
+      'Nome do local',
+      name: 'textAddLocaleNameTextFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CEP`
+  String get textAddLocaleCepFieldTitle {
+    return Intl.message(
+      'CEP',
+      name: 'textAddLocaleCepFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Endereço`
+  String get textAddLocaleAddressFieldTitle {
+    return Intl.message(
+      'Endereço',
+      name: 'textAddLocaleAddressFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tipo de local`
+  String get textAddTypeLocaleFieldTitle {
+    return Intl.message(
+      'Tipo de local',
+      name: 'textAddTypeLocaleFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adicionar Foto (opcional)`
+  String get textAddLocalePhotoFieldTitle {
+    return Intl.message(
+      'Adicionar Foto (opcional)',
+      name: 'textAddLocalePhotoFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADICIONAR LOCAL`
+  String get textAddLocaleConfirm {
+    return Intl.message(
+      'ADICIONAR LOCAL',
+      name: 'textAddLocaleConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bar`
+  String get textAddLocaleTypePub {
+    return Intl.message(
+      'Bar',
+      name: 'textAddLocaleTypePub',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Restaurante`
+  String get textAddLocaleTypeRestaurant {
+    return Intl.message(
+      'Restaurante',
+      name: 'textAddLocaleTypeRestaurant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local público`
+  String get textAddLocaleTypePublicLocation {
+    return Intl.message(
+      'Local público',
+      name: 'textAddLocaleTypePublicLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Casa noturna`
+  String get textAddLocaleTypeNightClub {
+    return Intl.message(
+      'Casa noturna',
+      name: 'textAddLocaleTypeNightClub',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

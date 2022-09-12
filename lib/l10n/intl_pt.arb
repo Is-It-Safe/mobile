@@ -119,7 +119,19 @@
     "textOnBoarding2_1":"segurança",
     "textOnBoarding3_0":"Descreva suas",
     "textOnBoarding3_1":"experiências",
-    "textOnBoarding3_2":"e avalie locais"
+    "textOnBoarding3_2":"e avalie locais",
 
-    
+    "textAddLocaleTitle": "Configurações",
+    "textAddLocaleSubTitle": "Adicionar Local",
+    "textAddLocaleNameTextFieldTitle": "Nome do local",
+    "textAddLocaleCepFieldTitle": "CEP",
+    "textAddLocaleAddressFieldTitle": "Endereço",
+    "textAddTypeLocaleFieldTitle": "Tipo de local",
+    "textAddLocalePhotoFieldTitle": "Adicionar Foto (opcional)",
+    "textAddLocaleConfirm": "ADICIONAR LOCAL",
+
+    "textAddLocaleTypePub": "Bar",
+    "textAddLocaleTypeRestaurant": "Restaurante",
+    "textAddLocaleTypePublicLocation": "Local público",
+    "textAddLocaleTypeNightClub": "Casa noturna"
 }
