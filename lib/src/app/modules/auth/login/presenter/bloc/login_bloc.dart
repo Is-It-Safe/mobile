@@ -58,12 +58,12 @@ class LoginBloc extends SafeBloC {
         saveUserToken(loginEntity.accessToken);
         saveUserRefreshToken(loginEntity.refreshToken);
         saveUserName(loginEntity.userFirstName);
-        // saveUserImage(loginEntity.image);
+        saveUserImage(loginEntity.userImage);
         saveUserLogin(true);
       }
       doLoginController.sink.add(SafeEvent.done(loginEntity));
     } catch (e) {
-      doLoginController.addError(SafeEvent.error(e.toString()));
+      doLoginController.addError(e.toString());
       SafeLogUtil.instance.logError(e);
     }
   }
