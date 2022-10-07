@@ -91,7 +91,9 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
               (index) => Padding(
                 padding: const EdgeInsets.only(top: 24.0),
                 child: ProfileReview(
+                  name: snapshot.data!.data!.name!,
                   review: reviews?[index],
+
                   //TODO substituir por: controller.deleteReview
                   // onDelete: () {},
                   //TODO substituir por: controller.shareReview
