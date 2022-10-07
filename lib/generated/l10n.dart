@@ -1309,6 +1309,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Texto copiado!`
+  String get textShareUserReview {
+    return Intl.message(
+      'Texto copiado!',
+      name: 'textShareUserReview',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

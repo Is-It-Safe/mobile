@@ -228,6 +228,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textYourReviews":
             MessageLookupByLibrary.simpleMessage("Suas Avaliações"),
         "textforgotGenderSubtext":
-            MessageLookupByLibrary.simpleMessage("me avise!")
+            MessageLookupByLibrary.simpleMessage("me avise!"),
+        "textShareUserReview":
+            MessageLookupByLibrary.simpleMessage("Texto copiado!")
       };
 }
