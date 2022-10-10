@@ -1,17 +1,17 @@
-class ResponseAddLocation {
+class RequestAddLocation {
   String? name;
   String? cep;
   int? locationTypeId;
   String? imgUrl;
 
-  ResponseAddLocation({
+  RequestAddLocation({
     this.name,
     this.cep,
     this.locationTypeId,
     this.imgUrl,
   });
 
-  ResponseAddLocation.fromJson(Map<String, dynamic> json) {
+  RequestAddLocation.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     cep = json['cep'];
     locationTypeId = json['locationTypeId'];

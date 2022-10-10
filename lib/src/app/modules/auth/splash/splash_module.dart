@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/app/modules/home/home_module.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_on_boarding_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
 class SplashModule extends Module {
@@ -14,6 +15,7 @@ class SplashModule extends Module {
     Bind.lazySingleton((i) => GetUserLoginUseCase()),
     Bind.lazySingleton((i) => GetUserOnBoaringUseCase()),
     Bind.lazySingleton((i) => SplashBloc()),
+    Bind.lazySingleton((i) => SaveLocationUseCase())
   ];
 
   @override
