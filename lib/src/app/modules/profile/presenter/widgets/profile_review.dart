@@ -195,7 +195,7 @@ class _ProfileReviewState extends State<ProfileReview> {
       icon: Icons.share,
       onTap: widget.onShare ??
           () {
-            ClipboardUtils.copy(widget.name);
+            ClipboardUtils.copy('${widget.name}: ${widget.review?.review}');
 
             ClipboardUtils.paste().toString();
             Navigator.pop(context);
@@ -208,7 +208,7 @@ class _ProfileReviewState extends State<ProfileReview> {
   }
 }
 
-//Classe para compartilhamento da review
+///Classe para compartilhamento da review
 class ClipboardUtils {
   ClipboardUtils._();
 
@@ -218,6 +218,6 @@ class ClipboardUtils {
 
   static Future<dynamic> paste() async {
     final result = await Clipboard.getData(Clipboard.kTextPlain);
-    return result?.text ?? '';
+    return result?.text ?? StringConstants.empty;
   }
 }
