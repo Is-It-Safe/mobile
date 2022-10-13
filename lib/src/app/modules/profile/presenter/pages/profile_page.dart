@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
@@ -91,7 +92,9 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
               (index) => Padding(
                 padding: const EdgeInsets.only(top: 24.0),
                 child: ProfileReview(
+                  name: snapshot.data?.data?.name ?? StringConstants.empty,
                   review: reviews?[index],
+
                   //TODO substituir por: controller.deleteReview
                   // onDelete: () {},
                   //TODO substituir por: controller.shareReview
