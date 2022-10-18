@@ -1,8 +1,6 @@
-
 import '../../core/constants/int_constants.dart';
 import '../../core/constants/string_constants.dart';
 import '../../service/api/modules/auth/response/response_login.dart';
-
 
 class LoginEntity {
   String accessToken;
@@ -34,7 +32,7 @@ class LoginEntity {
       scope: response.scope ?? StringConstants.empty,
       userFirstName: response.userFirstName ?? StringConstants.empty,
       userId: response.userId ?? IntConstants.empty,
-
+      userImage: response.userImage ?? StringConstants.empty,
     );
   }
 }

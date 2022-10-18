@@ -39,10 +39,4 @@ class DoRegisterUseCase extends SafeUseCase {
 
     return RegisterEntity.toEntity(response);
   }
-
-  // RegisterEntity _parseResponseToEntity(ResponseRegister response) {
-  //   return RegisterEntity(
-  //     message: response.message ?? StringConstants.empty,
-  //   );
-  // }
 }
