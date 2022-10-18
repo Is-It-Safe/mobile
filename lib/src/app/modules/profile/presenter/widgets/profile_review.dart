@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
@@ -13,12 +14,14 @@ class ProfileReview extends StatefulWidget {
   final ReviewEntity? review;
   final Function()? onDelete;
   final Function()? onShare;
+  final String name;
 
   const ProfileReview({
     Key? key,
     required this.review,
     this.onDelete,
     this.onShare,
+    required this.name,
   }) : super(key: key);
 
   @override
@@ -192,12 +195,29 @@ class _ProfileReviewState extends State<ProfileReview> {
       icon: Icons.share,
       onTap: widget.onShare ??
           () {
+            ClipboardUtils.copy('${widget.name}: ${widget.review?.review}');
+
+            ClipboardUtils.paste().toString();
             Navigator.pop(context);
             return SafeSnackBar(
-              message: S.current.textFeatureAvailableSoon,
+              message: S.current.textShareUserReview,
               type: SnackBarType.info,
             ).show(context);
           },
     );
+  }
+}
+
+///Classe para compartilhamento da review
+class ClipboardUtils {
+  ClipboardUtils._();
+
+  static Future<void> copy<String>(value) async {
+    await Clipboard.setData(ClipboardData(text: value.toString()));
+  }
+
+  static Future<dynamic> paste() async {
+    final result = await Clipboard.getData(Clipboard.kTextPlain);
+    return result?.text ?? StringConstants.empty;
   }
 }

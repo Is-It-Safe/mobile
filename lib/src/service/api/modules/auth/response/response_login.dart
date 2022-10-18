@@ -6,6 +6,7 @@ class ResponseLogin {
   String? scope;
   String? userFirstName;
   int? userId;
+  String? userImage;
 
   ResponseLogin({
     this.accessToken,
@@ -15,6 +16,7 @@ class ResponseLogin {
     this.scope,
     this.userFirstName,
     this.userId,
+    this.userImage,
   });
 
   factory ResponseLogin.fromJson(dynamic json) {
@@ -26,6 +28,7 @@ class ResponseLogin {
       scope: json["scope"],
       userFirstName: json["user_first_name"],
       userId: json["user_id"],
+      userImage: json["profilePhoto"],
     );
   }
 }

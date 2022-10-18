@@ -4,6 +4,8 @@ class KeyConstants {
   static const String keyUserLogged = 'userLogged';
   static const String keyUserToken = 'userToken';
   static const String keyUserRefreshToken = 'userRefreshToken';
+  static const String keyUserImage = 'userImage';
+  static const String keyUserName = 'userName';
   static const String keyUserAuth = 'userAuth';
   static const String keyTheme = 'theme';
 }

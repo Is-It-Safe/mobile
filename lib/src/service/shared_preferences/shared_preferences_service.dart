@@ -85,4 +85,28 @@ class SharedPreferencesService implements ISharedPreferencesService {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(KeyConstants.keyTheme) ?? false;
   }
+
+  @override
+  void saveUserName(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(KeyConstants.keyUserName, value);
+  }
+
+  @override
+  Future<String> readUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(KeyConstants.keyUserName) ?? StringConstants.empty;
+  }
+
+  @override
+  void saveUserImage(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(KeyConstants.keyUserImage, value);
+  }
+
+  @override
+  Future<String> readUserImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(KeyConstants.keyUserImage) ?? StringConstants.empty;
+  }
 }
