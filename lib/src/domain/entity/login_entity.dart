@@ -1,6 +1,6 @@
-import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_login.dart';
+import '../../core/constants/int_constants.dart';
+import '../../core/constants/string_constants.dart';
+import '../../service/api/modules/auth/response/response_login.dart';
 
 class LoginEntity {
   String accessToken;
@@ -26,11 +26,11 @@ class LoginEntity {
   factory LoginEntity.toEntity(ResponseLogin response) {
     return LoginEntity(
       accessToken: response.accessToken ?? StringConstants.empty,
-      refreshToken: response.refreshToken ?? StringConstants.empty,
-      scope: response.scope ?? StringConstants.empty,
       tokenType: response.tokenType ?? StringConstants.empty,
-      userFirstName: response.userFirstName ?? StringConstants.empty,
+      refreshToken: response.refreshToken ?? StringConstants.empty,
       expiresIn: response.expiresIn ?? IntConstants.empty,
+      scope: response.scope ?? StringConstants.empty,
+      userFirstName: response.userFirstName ?? StringConstants.empty,
       userId: response.userId ?? IntConstants.empty,
       userImage: response.userImage ?? StringConstants.empty,
     );
