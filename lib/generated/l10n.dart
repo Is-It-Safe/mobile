@@ -340,6 +340,16 @@ class S {
     );
   }
 
+  /// `Review deletada com sucesso!`
+  String get textDefaultDeleteReviewMessage {
+    return Intl.message(
+      'Review deletada com sucesso!',
+      name: 'textDefaultDeleteReviewMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário Registrado`
   String get textSuccessRegistration {
     return Intl.message(

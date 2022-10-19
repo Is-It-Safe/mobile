@@ -34,6 +34,8 @@
     "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
 
+    "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
+
     "textSuccessRegistration":"Usuário Registrado",
 
     "textDrawerAddLocation":"Adicionar Local",

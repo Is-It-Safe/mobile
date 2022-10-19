@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/request/request_save_review.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_delete_review.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 import 'response/response_get_location_by_id.dart';
 
@@ -45,5 +46,21 @@ class LocationService implements ILocationService {
 
     final response = await _service.doRequest(requestConfig);
     return ResponseGetUserReview.fromJson(json.decode(response.data));
+  }
+
+  @override
+  Future<ResponseDeleteReview> deleteReview(int idReview) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.deleteReview + idReview.toString(),
+      method: HttpMethod.delete,
+      options: Options(
+        headers: {ApiConstants.kAuthorization: token},
+      ),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+    return ResponseDeleteReview(message: response.data);
   }
 }
