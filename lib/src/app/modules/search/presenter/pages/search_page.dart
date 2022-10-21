@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/app/modules/search/presenter/bloc/search_bloc
 import 'package:is_it_safe_app/src/app/modules/search/presenter/widgets/search_location_card.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_place_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
@@ -12,7 +13,11 @@ import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class SearchPage extends StatefulWidget {
   static const route = '/search/';
-  const SearchPage({Key? key}) : super(key: key);
+  final Function()? addButton;
+  const SearchPage({
+    Key? key,
+    this.addButton,
+  }) : super(key: key);
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -62,7 +67,10 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
         return SafeLayout(
           snapshot: snapshot,
           context: context,
-          onCompleted: _mountResultList(),
+          onCompleted: _mountEmptyCard(),
+          //_mountResultList(),
+
+          //TODO: não retorna
           onEmpty: _mountEmptyCard(),
         ).build;
       },
@@ -86,6 +94,8 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
       children: [
         SafeEmptyCard.search(),
         //TODO add button to add place
+        //Funcionalidade disponível em breve
+        const SafePlaceButton(),
       ],
     );
   }
