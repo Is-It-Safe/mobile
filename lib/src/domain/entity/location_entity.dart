@@ -8,6 +8,7 @@ class LocationEntity {
   final String address;
   String? imagePath;
   double? averageGrade;
+  String? averageImpressionStatus;
   int? reviewsQnt;
 
   LocationEntity({
@@ -16,6 +17,7 @@ class LocationEntity {
     required this.address,
     this.imagePath,
     this.averageGrade,
+    this.averageImpressionStatus,
     this.reviewsQnt,
   });
 
@@ -27,6 +29,8 @@ class LocationEntity {
       averageGrade: location.averageGrade ?? DoubleConstants.empty,
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,
+      averageImpressionStatus:
+          location.averageImpressionStatus ?? StringConstants.empty,
     );
   }
 }

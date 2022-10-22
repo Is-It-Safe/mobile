@@ -109,4 +109,12 @@ class SharedPreferencesService implements ISharedPreferencesService {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(KeyConstants.keyUserImage) ?? StringConstants.empty;
   }
+
+  @override
+  Future<String> readPlaces() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool _result = prefs.containsKey(StringConstants.places);
+    if (!_result) prefs.setString(StringConstants.places, "Salvador");
+    return prefs.getString(StringConstants.places) ?? StringConstants.empty;
+  }
 }

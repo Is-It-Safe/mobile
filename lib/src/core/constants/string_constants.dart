@@ -27,4 +27,7 @@ class StringConstants {
   static const String warning = 'WARNING';
   static const String danger = 'DANGER';
   static const String safe = 'SAFE';
+
+  //place
+  static const String places = 'PLACES';
 }
