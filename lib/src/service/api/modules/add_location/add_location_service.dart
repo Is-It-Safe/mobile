@@ -16,18 +16,17 @@ class AddLocationService implements AddLocationServiceContract {
   Future<bool> addLocationService({
     required RequestAddLocation request,
   }) async {
-    final auth = await ApiConstants.kBarearAuth();
     final requestConfig = RequestConfig(
       path: ApiConstants.addLocation,
       method: HttpMethod.post,
       body: request.toJson(),
       options: Options(
         headers: {
-          ApiConstants.kAuthorization: auth,
+          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
+          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
         },
       ),
     );
-
     final response = await _service.doRequest(requestConfig);
 
     if (response.statusCode == 200) {

@@ -15,7 +15,7 @@ class RequestAddLocation {
     name = json['name'];
     cep = json['cep'];
     locationTypeId = json['locationTypeId'];
-    imgUrl = json['imgUrl'];
+    imgUrl = json['file'];
   }
 
   Map<String, dynamic> toJson() {
@@ -23,7 +23,7 @@ class RequestAddLocation {
     data['name'] = name;
     data['cep'] = cep;
     data['locationTypeId'] = locationTypeId;
-    data['imgUrl'] = imgUrl;
+    data['file'] = imgUrl;
     return data;
   }
 }
