@@ -20,7 +20,7 @@ class ApiConstants {
   static String kBasicAuth = 'Basic $kEncodedClientCredentials';
 
   ///URL para requisições de autenticação
-  static const String kAuthUrl = 'https://is-it-safe-api-v2.herokuapp.com';
+  static const String kAuthUrl = 'https://is-it-safe-api-v2.herokuapp.com/';
 
   ///Url default para requisições da API
   static const String kUrl =

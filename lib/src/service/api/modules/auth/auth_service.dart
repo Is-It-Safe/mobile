@@ -26,7 +26,7 @@ class AuthService implements IAuthService {
   Future<ResponseLogin> doLogin(RequestLogin request) async {
     //TODO Request mockada
     request = RequestLogin(
-      email: 'cvpinhofsa@gmail.com',
+      email: 'basic@gmail.com',
       password: '123456',
     );
     final requestConfig = RequestConfig(
