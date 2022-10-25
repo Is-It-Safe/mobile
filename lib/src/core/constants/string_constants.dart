@@ -29,5 +29,5 @@ class StringConstants {
   static const String safe = 'SAFE';
 
   //place
-  static const String places = 'PLACES';
+  static const String place = 'PLACE';
 }
