@@ -46,4 +46,5 @@ class ApiConstants {
 
   //Review
   static const String doReview = '${kUrl}review/save';
+  static const String deleteReview = '${kUrl}review/delete/';
 }

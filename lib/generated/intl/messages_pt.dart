@@ -68,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
+        "textDefaultDeleteReviewMessage": MessageLookupByLibrary.simpleMessage(
+            "Review deletada com sucesso!"),
         "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
         "textDeleteAccount":
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
