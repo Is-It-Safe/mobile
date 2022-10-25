@@ -113,14 +113,14 @@ class SharedPreferencesService implements ISharedPreferencesService {
   @override
   void savePlace(String value) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString(StringConstants.place, value);
+    prefs.setString(KeyConstants.keyPlace, value);
   }
 
   @override
   Future<String> readPlace() async {
     final prefs = await SharedPreferences.getInstance();
-    bool _result = prefs.containsKey(StringConstants.place);
-    if (!_result) prefs.setString(StringConstants.place, "Salvador");
-    return prefs.getString(StringConstants.place) ?? StringConstants.empty;
+    bool _result = prefs.containsKey(KeyConstants.keyPlace);
+    if (!_result) prefs.setString(KeyConstants.keyPlace, "Salvador");
+    return prefs.getString(KeyConstants.keyPlace) ?? StringConstants.empty;
   }
 }

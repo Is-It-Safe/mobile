@@ -63,7 +63,9 @@ class LocationService implements ILocationService {
     return (json.decode(response.data) as List)
         .map((e) => ResponseGetRatedPlaces.fromJson(e))
         .toList();
-    
+  }
+
+  @override
   Future<ResponseDeleteReview> deleteReview(int idReview) async {
     final token = await _authService.getAccessToken();
 
@@ -77,6 +79,5 @@ class LocationService implements ILocationService {
 
     final response = await _service.doRequest(requestConfig);
     return ResponseDeleteReview(message: response.data);
-
   }
 }
