@@ -52,6 +52,9 @@ class ApiService implements IApiService {
         case HttpMethod.delete:
           response = await delete(config);
           break;
+        case HttpMethod.put:
+          response = await put(config);
+          break;
       }
       return response;
     } catch (e) {
@@ -88,6 +91,19 @@ class ApiService implements IApiService {
   Future<Response> patch(RequestConfig config) async {
     final response = await dio
         .patch(
+          config.path,
+          data: config.body,
+          options: config.options,
+          queryParameters: config.parameters,
+        )
+        .timeout(_timeout);
+    return getResponse(response);
+  }
+
+  @override
+  Future<Response> put(RequestConfig config) async {
+    final response = await dio
+        .put(
           config.path,
           data: config.body,
           options: config.options,
