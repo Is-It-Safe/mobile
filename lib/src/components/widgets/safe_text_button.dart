@@ -23,11 +23,17 @@ class SafeTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _firstText(context),
-        _secondText(context),
-        _thirdText(context),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _thirdText(context),
+            _secondText(context),
+          ],
+        ),
       ],
     );
   }
@@ -61,10 +67,8 @@ class SafeTextButton extends StatelessWidget {
     return Text(
       posText ?? StringConstants.empty,
       //TODO: corrigir o style
-      style: textStyle != null
-          ? null
-          : TextStyles.bodyText1(
-              color: allTextColor, textDecoration: TextDecoration.underline),
+      style:
+          textStyle != null ? null : TextStyles.bodyText1(color: allTextColor),
       //style: TextStyles.bodyText1(color: allTextColor),
     );
   }

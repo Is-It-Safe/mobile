@@ -6,6 +6,8 @@ import 'package:is_it_safe_app/src/app/modules/search/presenter/widgets/search_l
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_place_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_text_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
@@ -67,10 +69,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
         return SafeLayout(
           snapshot: snapshot,
           context: context,
-          onCompleted: _mountEmptyCard(),
-          //_mountResultList(),
-
-          //TODO: não retorna
+          onCompleted: _mountResultList(),
           onEmpty: _mountEmptyCard(),
         ).build;
       },
@@ -93,9 +92,17 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
     return Column(
       children: [
         SafeEmptyCard.search(),
-        //TODO add button to add place
-        //Funcionalidade disponível em breve
-        const SafePlaceButton(),
+        SafeTextButton(
+          preText: 'Não encontrou o local que estava ',
+          posText: 'procurando?',
+          text: ' Crie ele aqui.',
+          onTap: () {
+            return SafeSnackBar(
+              message: S.current.textFeatureAvailableSoon,
+              type: SnackBarType.info,
+            ).show(context);
+          },
+        ),
       ],
     );
   }
