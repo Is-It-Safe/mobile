@@ -1319,6 +1319,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Não encontrou o local que estava procurando?`
+  String get textSafePlaceButton1 {
+    return Intl.message(
+      'Não encontrou o local que estava procurando?',
+      name: 'textSafePlaceButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crie ele aqui.`
+  String get textSafePlaceButton1_1 {
+    return Intl.message(
+      'Crie ele aqui.',
+      name: 'textSafePlaceButton1_1',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
