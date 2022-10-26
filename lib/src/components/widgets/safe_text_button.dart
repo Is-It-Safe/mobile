@@ -23,17 +23,12 @@ class SafeTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _firstText(context),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _thirdText(context),
-            _secondText(context),
-          ],
-        ),
+        _secondText(context),
+        _thirdText(context),
       ],
     );
   }
