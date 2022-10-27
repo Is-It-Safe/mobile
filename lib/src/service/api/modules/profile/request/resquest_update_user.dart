@@ -23,9 +23,9 @@ class RequestUpdateUser {
       'name': request.name,
       'nickname': request.nickname,
       'pronoun': request.pronoun,
-      'gender': request.genderId,
-      'orientation': request.sexualOrientationId,
-      'profilePhoto': request.profilePhoto,
+      'gender_id': request.genderId,
+      'orientation_id': request.sexualOrientationId,
+      'photoUrl': request.profilePhoto,
     };
   }
 }

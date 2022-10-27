@@ -11,8 +11,8 @@ class UpdateUserUseCase extends SafeUseCase {
     _service = Modular.get<ProfileService>();
   }
 
-  Future<UserEntity> call() async {
-    final _response = await _service.updateUser();
+  Future<UserEntity> call(int id) async {
+    final _response = await _service.updateUser(id);
 
     return UserEntity.toEntityUpdate(_response);
   }

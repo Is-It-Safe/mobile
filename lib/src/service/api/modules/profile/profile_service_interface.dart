@@ -3,5 +3,5 @@ import 'package:is_it_safe_app/src/service/api/modules/profile/response/response
 
 abstract class IProfileService {
   Future<ResponseGetUser> getUser();
-  Future<ResponseUpdateUser> updateUser();
+  Future<ResponseUpdateUser> updateUser(int id);
 }

@@ -35,11 +35,11 @@ class ProfileService implements IProfileService {
   }
 
   @override
-  Future<ResponseUpdateUser> updateUser() async {
+  Future<ResponseUpdateUser> updateUser(int id) async {
     final token = await _authService.getAccessToken();
 
     final requestConfig = RequestConfig(
-      path: ApiConstants.updateUser,
+      path: '${ApiConstants.updateUser}/$id',
       method: HttpMethod.put,
       options: Options(
         headers: {

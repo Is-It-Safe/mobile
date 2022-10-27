@@ -42,7 +42,7 @@ class ApiConstants {
 
   //User
   static const String getUser = '${kUrl}user/profile';
-  static const String updateUser = '${kUrl}user/update/';
+  static const String updateUser = '${kUrl}user/update';
 
   //Review
   static const String doReview = '${kUrl}review/save';

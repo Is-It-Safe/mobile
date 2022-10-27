@@ -23,9 +23,9 @@ class ResponseUpdateUser {
       name: json['name'],
       nickname: json['nickname'],
       pronoun: json['pronoun'],
-      genderId: json['genderId'],
-      sexualOrientationId: json['sexualOrientationId'],
-      profilePhoto: json['profilePhoto'],
+      genderId: json['gender_id'],
+      sexualOrientationId: json['orientation_id'],
+      profilePhoto: json['photoUrl'],
     );
   }
 }
