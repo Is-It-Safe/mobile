@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
@@ -23,48 +24,34 @@ class SafeTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _firstText(context),
-        _secondText(context),
-        _thirdText(context),
-      ],
-    );
-  }
-
-  Widget _firstText(BuildContext context) {
-    return Text(
-      preText ?? StringConstants.empty,
-      //TODO: corrigir o style
-      style:
-          textStyle != null ? null : TextStyles.bodyText1(color: allTextColor),
-      //style: TextStyles.bodyText1(color: allTextColor),
-    );
-  }
-
-  Widget _secondText(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Text(
-        text,
-        //TODO: corrigir o style
-        style: textStyle != null
-            ? null
-            : TextStyles.bodyText1(
-                color: textColor, textDecoration: TextDecoration.underline),
-        //style: TextStyles.bodyText1(color: textColor, textDecoration: TextDecoration.underline),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.8,
+      child: Text.rich(
+        TextSpan(
+          text: preText,
+          style: textStyle != null
+              ? null
+              : TextStyles.bodyText1(color: allTextColor),
+          children: [
+            TextSpan(
+              text: ' $text',
+              style: textStyle != null
+                  ? null
+                  : TextStyles.bodyText1(
+                      color: textColor,
+                      textDecoration: TextDecoration.underline),
+              recognizer: TapGestureRecognizer()..onTap = onTap,
+            ),
+            TextSpan(
+              text: posText,
+              style: textStyle != null
+                  ? null
+                  : TextStyles.bodyText1(color: allTextColor),
+            ),
+          ],
+        ),
+        textAlign: TextAlign.center,
       ),
-    );
-  }
-
-  Widget _thirdText(BuildContext context) {
-    return Text(
-      posText ?? StringConstants.empty,
-      //TODO: corrigir o style
-      style:
-          textStyle != null ? null : TextStyles.bodyText1(color: allTextColor),
-      //style: TextStyles.bodyText1(color: allTextColor),
     );
   }
 }
