@@ -1210,6 +1210,36 @@ class S {
     );
   }
 
+  /// `Texto copiado!`
+  String get textShareUserReview {
+    return Intl.message(
+      'Texto copiado!',
+      name: 'textShareUserReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não encontrou o local que estava procurando?`
+  String get textDontFoundThePlace {
+    return Intl.message(
+      'Não encontrou o local que estava procurando?',
+      name: 'textDontFoundThePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crie ele aqui.`
+  String get textCreateHere {
+    return Intl.message(
+      'Crie ele aqui.',
+      name: 'textCreateHere',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(
@@ -1305,36 +1335,6 @@ class S {
     return Intl.message(
       'e avalie locais',
       name: 'textOnBoarding3_2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Texto copiado!`
-  String get textShareUserReview {
-    return Intl.message(
-      'Texto copiado!',
-      name: 'textShareUserReview',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Não encontrou o local que estava procurando?`
-  String get textSafePlaceButton1 {
-    return Intl.message(
-      'Não encontrou o local que estava procurando?',
-      name: 'textSafePlaceButton',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Crie ele aqui.`
-  String get textSafePlaceButton1_1 {
-    return Intl.message(
-      'Crie ele aqui.',
-      name: 'textSafePlaceButton1_1',
       desc: '',
       args: [],
     );
