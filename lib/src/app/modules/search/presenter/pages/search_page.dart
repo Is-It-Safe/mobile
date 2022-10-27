@@ -92,8 +92,8 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
       children: [
         SafeEmptyCard.search(),
         SafeTextButton(
-          preText: S.current.textSafePlaceButton1,
-          text: S.current.textSafePlaceButton1_1,
+          preText: S.current.textDontFoundThePlace,
+          text: S.current.textCreateHere,
           onTap: () {
             return SafeSnackBar(
               message: S.current.textFeatureAvailableSoon,
