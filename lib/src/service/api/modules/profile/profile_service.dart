@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service_interface.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_update_user.dart';
 
@@ -35,11 +36,11 @@ class ProfileService implements IProfileService {
   }
 
   @override
-  Future<ResponseUpdateUser> updateUser(int id) async {
+  Future<ResponseUpdateUser> updateUser(RequestUpdateUser request) async {
     final token = await _authService.getAccessToken();
 
     final requestConfig = RequestConfig(
-      path: '${ApiConstants.updateUser}/$id',
+      path: '${ApiConstants.updateUser}/${request.id}',
       method: HttpMethod.put,
       options: Options(
         headers: {

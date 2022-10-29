@@ -19,7 +19,6 @@ class RequestUpdateUser {
 
   Map<String, dynamic> toJson(RequestUpdateUser request) {
     return {
-      'id': request.id,
       'name': request.name,
       'nickname': request.nickname,
       'pronoun': request.pronoun,
