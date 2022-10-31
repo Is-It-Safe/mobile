@@ -13,6 +13,7 @@ import 'package:is_it_safe_app/src/service/api/modules/location/response/respons
 
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_delete_review.dart';
 
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_by_cep.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 import 'response/response_get_location_by_id.dart';
 
@@ -79,5 +80,16 @@ class LocationService implements ILocationService {
 
     final response = await _service.doRequest(requestConfig);
     return ResponseDeleteReview(message: response.data);
+  }
+
+  @override
+  Future<ResponseLocationByCep> getLocationByCep(int cep) async {
+    final requestConfig = RequestConfig(
+      path: ApiConstants.kUrlCep.replaceAll('cep', cep.toString()),
+      method: HttpMethod.get,
+    );
+
+    final response = await _service.doRequest(requestConfig);
+    return ResponseLocationByCep.fromJson(json.decode(response.data));
   }
 }

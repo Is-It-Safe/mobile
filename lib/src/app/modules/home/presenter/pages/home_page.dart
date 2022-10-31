@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
 import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/review_page.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
@@ -14,6 +15,7 @@ import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -37,13 +39,21 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
         key: _scaffoldKey,
         endDrawer: const HomeDrawer(),
         appBar: const SafeAppBar().home(
-          onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
-          onBottomTap: (tab) {
-            //TODO manter comentado mediante implementação da feature
-            // if (tab == 0) controller.getClosePlacesLocations();
-            if (tab == 1) controller.getBestRatedLocations();
-          },
-        ),
+            onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
+            onBottomTap: (tab) {
+              //TODO manter comentado mediante implementação da feature
+              // if (tab == 0) controller.getClosePlacesLocations();
+              if (tab == 1) controller.getBestRatedLocations();
+            },
+            onLogoIconTap: () {
+              controller.getCurrentLocation();
+              SafeDialogs.dialog(
+                title: 'Teste de localização',
+                message: controller.currentLocation.value?.subLocality ?? '',
+                onTap: () => Navigator.pop(context),
+              );
+              print(controller.currentLocation.value?.street ?? '');
+            }),
         body: TabBarView(
           children: [
             SafeEmptyCard.home(),
