@@ -5,10 +5,10 @@ import '../../service/api/modules/auth/auth_service.dart';
 import '../../service/api/modules/auth/auth_service_interface.dart';
 import '../../service/api/modules/auth/request/request_confirm_password.dart';
 
-class GetBestRatedPlacesUseCase extends SafeUseCase {
+class ConfirmPasswordUseCase extends SafeUseCase {
   late final IAuthService _service;
 
-  GetBestRatedPlacesUseCase() {
+  ConfirmPasswordUseCase() {
     _service = Modular.get<AuthService>();
   }
 
