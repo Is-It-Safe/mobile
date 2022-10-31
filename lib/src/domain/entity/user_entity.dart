@@ -1,3 +1,4 @@
+import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
@@ -52,8 +53,8 @@ class UserEntity {
       nickname: user.nickname ?? StringConstants.empty,
       profilePhoto: user.profilePhoto ?? StringConstants.empty,
       pronoun: user.pronoun ?? StringConstants.empty,
-      genreId: user.genderId!,
-      sexualOrientationId: user.sexualOrientationId!,
+      genreId: user.genderId ?? IntConstants.empty,
+      sexualOrientationId: user.sexualOrientationId ?? IntConstants.empty,
     );
   }
 }
