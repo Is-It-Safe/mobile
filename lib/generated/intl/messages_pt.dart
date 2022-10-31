@@ -66,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textConfirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
         "textContact": MessageLookupByLibrary.simpleMessage("Contato"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
+        "textCreateHere":
+            MessageLookupByLibrary.simpleMessage("Crie ele aqui."),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
         "textDefaultDeleteReviewMessage": MessageLookupByLibrary.simpleMessage(
@@ -77,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
             "Agora escolha um nome para todos verem, seja criativo!"),
+        "textDontFoundThePlace": MessageLookupByLibrary.simpleMessage(
+            "Não encontrou o local que estava procurando?"),
         "textDontRecomendThisPlace":
             MessageLookupByLibrary.simpleMessage("Não recomendo este lugar"),
         "textDrawerAddLocation":
@@ -202,6 +206,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSexualOrientation":
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
         "textShare": MessageLookupByLibrary.simpleMessage("Compartilhar"),
+        "textShareUserReview":
+            MessageLookupByLibrary.simpleMessage("Texto copiado!"),
         "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
         "textSkipForNow": MessageLookupByLibrary.simpleMessage("Pular"),
         "textSomeProblemsHappend": MessageLookupByLibrary.simpleMessage(
@@ -230,8 +236,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "textYourReviews":
             MessageLookupByLibrary.simpleMessage("Suas Avaliações"),
         "textforgotGenderSubtext":
-            MessageLookupByLibrary.simpleMessage("me avise!"),
-        "textShareUserReview":
-            MessageLookupByLibrary.simpleMessage("Texto copiado!")
+            MessageLookupByLibrary.simpleMessage("me avise!")
       };
 }

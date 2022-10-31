@@ -127,6 +127,9 @@
     "textSomeProblemsHappend":"Alguns problemas aconteceram",
     "textChooseAClassificationForThisPlace":"Escolha uma classificação para esse lugar levando em conta as qualidades listadas!",
     "textCanYouGiveMoreDetails":"Você pode nos dar mais detalhes?",
+    "textShareUserReview":"Texto copiado!",
+    "textDontFoundThePlace":"Não encontrou o local que estava procurando?",
+    "textCreateHere":"Crie ele aqui.",
 
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
 
@@ -139,6 +142,5 @@
     "textOnBoarding3_0":"Descreva suas",
     "textOnBoarding3_1":"experiências",
     "textOnBoarding3_2":"e avalie locais"
-    "textShareUserReview":"Texto copiado!"
-    
+   
 }
