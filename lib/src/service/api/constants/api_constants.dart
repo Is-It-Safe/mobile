@@ -33,6 +33,7 @@ class ApiConstants {
   static const String doRegister = '${kUrl}user/save';
   static const String getGenders = '${kUrl}gender/find-all';
   static const String getSexualOrientations = '${kUrl}orientation/find-all';
+  static const String confirmPassword = '${kUrl}user/is-password-correct';
 
   //Location
   static const String getBestRatedLocations = '${kUrl}location/find-all';
