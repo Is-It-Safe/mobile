@@ -1349,6 +1349,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Ocorreu um erro ao obter sua localização!`
+  String get textLocationError {
+    return Intl.message(
+      'Ocorreu um erro ao obter sua localização!',
+      name: 'textLocationError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -18,12 +18,12 @@ class HomeModule extends Module {
       (i) => GetBestRatedLocationsUseCase(),
     ),
     Bind.lazySingleton(
-      (i) => SafeLocatorImpl(),
+      (i) => SafeLocator(),
     ),
     Bind.lazySingleton(
       (i) => HomeBloc(
         getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
-        safeLocatorContract: i.get<SafeLocatorImpl>(),
+        safeLocatorContract: i.get<SafeLocator>(),
       ),
     ),
   ];

@@ -15,7 +15,6 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
   final bool hasLeading;
   final PreferredSizeWidget? bottom;
   final Function()? onTap;
-  final Function()? onLogoIconTap;
 
   const SafeAppBar({
     Key? key,
@@ -24,19 +23,16 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
     this.appBarType = AppBarType.regular,
     this.hasLeading = true,
     this.bottom,
-    this.onLogoIconTap,
   }) : super(key: key);
 
   SafeAppBar home({
     Function(int)? onBottomTap,
     Function()? onOpenDrawer,
-    Function()? onLogoIconTap,
   }) {
     return SafeAppBar(
       title: S.current.textIsItSafe,
       appBarType: AppBarType.home,
       onTap: onOpenDrawer,
-      onLogoIconTap: () => onLogoIconTap != null ? onLogoIconTap() : Future(() => null),
       bottom: TabBar(
         indicatorColor: SafeColors.textColors.dark,
         indicatorSize: TabBarIndicatorSize.tab,
@@ -153,16 +149,9 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget _moundAppBarHomeTitle() {
     return Row(
       children: [
-        GestureDetector(
-          onTap: () => onLogoIconTap != null
-              ? onLogoIconTap!()
-              : Future(
-                  () => null,
-                ),
-          child: Image.asset(
-            AssetConstants.general.logo,
-            height: 30,
-          ),
+        Image.asset(
+          AssetConstants.general.logo,
+          height: 30,
         ),
         const SizedBox(width: 10),
         Text(

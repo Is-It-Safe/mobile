@@ -2,7 +2,7 @@ import 'package:is_it_safe_app/src/core/interfaces/safe_locator.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
-class SafeLocatorImpl implements SafeLocatorContract {
+class SafeLocator implements ISafeLocator {
   @override
   Future<Placemark?> getLocation({Function? onLocationDenied}) async {
     final Position? userPosition = await getLastKnownPosition(

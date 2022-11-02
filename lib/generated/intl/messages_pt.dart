@@ -143,6 +143,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textLettersAndNumbers":
             MessageLookupByLibrary.simpleMessage("- letras e números"),
         "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
+        "textLocationError": MessageLookupByLibrary.simpleMessage(
+            "Ocorreu um erro ao obter sua localização!"),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textMeetingYouWillBeAPleasure":
