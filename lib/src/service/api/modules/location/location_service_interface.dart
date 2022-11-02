@@ -9,4 +9,5 @@ abstract class ILocationService {
   Future<ResponseGetUserReview> doReview(RequestSaveReview request);
   Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String place);
   Future<ResponseDeleteReview> deleteReview(int idReview);
+  Future<void> getLocationByCep(int cep);
 }
