@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:is_it_safe_app/src/domain/use_case/delete_review_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
@@ -11,12 +12,15 @@ import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 class ProfileBloc extends SafeBloC {
   final GetUserUseCase getUserUseCase;
   final SaveUserLoginUseCase saveUserLoginUseCase;
+  final DeleteReviewUseCase deleteReviewUseCase;
 
   late StreamController<SafeEvent<UserEntity>> userController;
+  late StreamController<SafeEvent<String>> deleteReviewController;
 
   ProfileBloc({
     required this.getUserUseCase,
     required this.saveUserLoginUseCase,
+    required this.deleteReviewUseCase,
   }) {
     init();
   }
@@ -25,6 +29,7 @@ class ProfileBloc extends SafeBloC {
   Future<void> init() async {
     userController = StreamController.broadcast();
     getUser();
+    deleteReviewController = StreamController.broadcast();
   }
 
   Future<void> getUser() async {
@@ -38,6 +43,19 @@ class ProfileBloc extends SafeBloC {
     }
   }
 
+  Future<void> deleteReview({required int id}) async {
+    try {
+      deleteReviewController.add(SafeEvent.load());
+      final review = await deleteReviewUseCase.call(id);
+      deleteReviewController.add(SafeEvent.done(review));
+    } catch (e) {
+      deleteReviewController.addError(e.toString());
+    }
+  }
+
   @override
-  Future<void> dispose() async {}
+  Future<void> dispose() async {
+    userController.close();
+    deleteReviewController.close();
+  }
 }

@@ -93,7 +93,9 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                 child: ProfileReview(
                   review: reviews?[index],
                   //TODO substituir por: controller.deleteReview
-                  // onDelete: () {},
+                  onDelete: () =>
+                      controller.deleteReview(id: reviews![index].id),
+
                   //TODO substituir por: controller.shareReview
                   // onShare: () {},
                 ),
