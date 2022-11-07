@@ -88,6 +88,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textError": MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
+        "textErrorDeleteReview": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível deletar a review!"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
             "Os campos de senha devem ser iguais"),
         "textErrorDropdown":

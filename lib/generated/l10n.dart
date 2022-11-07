@@ -340,6 +340,16 @@ class S {
     );
   }
 
+  /// `Não foi possível deletar a review!`
+  String get textErrorDeleteReview {
+    return Intl.message(
+      'Não foi possível deletar a review!',
+      name: 'textErrorDeleteReview',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Review deletada com sucesso!`
   String get textDefaultDeleteReviewMessage {
     return Intl.message(
