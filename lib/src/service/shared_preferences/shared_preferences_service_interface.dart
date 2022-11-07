@@ -17,4 +17,6 @@ abstract class ISharedPreferencesService {
   Future<String> readUserName();
   void saveUserImage(String value);
   Future<String> readUserImage();
+  void savePlace(String value);
+  Future<String> readPlace();
 }

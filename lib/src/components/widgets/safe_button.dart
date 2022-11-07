@@ -3,6 +3,7 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 enum ButtonSize { small, large }
+
 enum ButtonState { rest, disabled, danger }
 
 class SafeButton extends StatelessWidget {

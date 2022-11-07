@@ -8,4 +8,5 @@ class KeyConstants {
   static const String keyUserName = 'userName';
   static const String keyUserAuth = 'userAuth';
   static const String keyTheme = 'theme';
+  static const String keyPlace = 'place';
 }

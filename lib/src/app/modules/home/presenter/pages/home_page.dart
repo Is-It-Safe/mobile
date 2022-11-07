@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_location_card.dart';
@@ -8,12 +9,14 @@ import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/r
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -40,7 +43,19 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
           onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
           onBottomTap: (tab) {
             //TODO manter comentado mediante implementação da feature
-            // if (tab == 0) controller.getClosePlacesLocations();
+            if (tab == 0) {
+              // controller.getClosePlacesLocations();
+              controller.getCurrentLocation().whenComplete(
+                () {
+                  controller.userLocationController.stream.handleError(
+                    (x) => SafeSnackBar(
+                      message: S.current.textLocationError,
+                      type: SnackBarType.error,
+                    ),
+                  );
+                },
+              );
+            }
             if (tab == 1) controller.getBestRatedLocations();
           },
         ),
