@@ -19,7 +19,7 @@ class HomeService implements IHomeService {
       getBestRatedLocations() async {
     final token = await _authService.getAccessToken();
     final requestConfig = RequestConfig(
-      path: ApiConstants.getBestRatedLocations,
+      path: ApiConstants.getBestRatedPlaces,
       method: HttpMethod.get,
       options: Options(
         headers: {
