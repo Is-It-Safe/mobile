@@ -91,13 +91,14 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
               (index) => Padding(
                 padding: const EdgeInsets.only(top: 24.0),
                 child: ProfileReview(
-                  review: reviews?[index],
-                  onDelete: () =>
-                      controller.deleteReview(id: reviews![index].id),
+                    review: reviews?[index],
+                    onDelete: () {
+                      controller.deleteReview(id: reviews![index].id);
+                    }
 
-                  //TODO substituir por: controller.shareReview
-                  // onShare: () {},
-                ),
+                    //TODO substituir por: controller.shareReview
+                    // onShare: () {},
+                    ),
               ),
             ),
           ),
