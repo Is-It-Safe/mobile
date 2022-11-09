@@ -19,12 +19,6 @@ class LoginModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => AuthService()),
-    Bind.lazySingleton((i) => SaveUserLoginUseCase()),
-    Bind.lazySingleton((i) => SaveUserImageUseCase()),
-    Bind.lazySingleton((i) => SaveUserLoginUseCase()),
-    Bind.lazySingleton((i) => SaveUserNameUseCase()),
-    Bind.lazySingleton((i) => SaveUserRefreshTokenUseCase()),
-    Bind.lazySingleton((i) => DoLoginUseCase()),
     Bind.lazySingleton((i) => LoginBloc(
           doLoginUseCase: i.get<DoLoginUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
