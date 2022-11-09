@@ -94,9 +94,9 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                 child: ProfileReview(
                     review: reviews?[index],
                     onDelete: () async {
-                      final id = reviews![index].id;
+                      final int? id = reviews?[index].id;
                       Navigator.pop(context);
-                      await controller.deleteReview(id: id) == true
+                      await controller.deleteReview(idReview: id) == true
                           ? SafeSnackBar(
                               message: S.current.textDefaultDeleteReviewMessage,
                               type: SnackBarType.success,
