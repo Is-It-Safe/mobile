@@ -91,25 +91,34 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
               reviews?.length ?? 0,
               (index) => Padding(
                 padding: const EdgeInsets.only(top: 24.0),
-                child: ProfileReview(
-                    review: reviews?[index],
-                    onDelete: () async {
-                      final int? id = reviews?[index].id;
-                      Navigator.pop(context);
-                      await controller.deleteReview(idReview: id) == true
-                          ? SafeSnackBar(
-                              message: S.current.textDefaultDeleteReviewMessage,
-                              type: SnackBarType.success,
-                            ).show(context)
-                          : SafeSnackBar(
-                              message: S.current.textErrorDeleteReview,
-                              type: SnackBarType.error,
-                            ).show(context);
-                    }
+                child: StreamBuilder<SafeEvent<String>>(
+                    stream: controller.deleteReviewController.stream,
+                    builder: (context, snapshot) {
+                      final message = snapshot.data?.data;
+                      return ProfileReview(
+                          review: reviews?[index],
+                          onDelete: () async {
+                            final int? idReview = reviews?[index].id;
+                            Navigator.pop(context);
+                            await controller.deleteReview(idReview: idReview) ==
+                                    true
+                                ? SafeSnackBar(
+                                    message: message ??
+                                        S.current
+                                            .textDefaultDeleteReviewMessage,
+                                    type: SnackBarType.success,
+                                  ).show(context)
+                                : SafeSnackBar(
+                                    message: message ??
+                                        S.current.textErrorDeleteReview,
+                                    type: SnackBarType.error,
+                                  ).show(context);
+                          }
 
-                    //TODO substituir por: controller.shareReview
-                    // onShare: () {},
-                    ),
+                          //TODO substituir por: controller.shareReview
+                          // onShare: () {},
+                          );
+                    }),
               ),
             ),
           ),

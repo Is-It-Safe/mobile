@@ -16,7 +16,7 @@ class DeleteReviewUseCase extends SafeUseCase {
       final response = await _service.deleteReview(idReview);
       return response.message ?? S.current.textDefaultDeleteReviewMessage;
     } else {
-      return 'Erro ao deletar a review, tente novamente em alguns instantes!';
+      return S.current.textErrorDeleteReview;
     }
   }
 }
