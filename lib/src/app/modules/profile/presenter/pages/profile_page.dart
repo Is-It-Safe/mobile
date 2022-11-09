@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
@@ -92,8 +93,18 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                 padding: const EdgeInsets.only(top: 24.0),
                 child: ProfileReview(
                     review: reviews?[index],
-                    onDelete: () {
-                      controller.deleteReview(id: reviews![index].id);
+                    onDelete: () async {
+                      final id = reviews![index].id;
+                      Navigator.pop(context);
+                      await controller.deleteReview(id: id) == true
+                          ? SafeSnackBar(
+                              message: S.current.textDefaultDeleteReviewMessage,
+                              type: SnackBarType.success,
+                            ).show(context)
+                          : SafeSnackBar(
+                              message: S.current.textErrorDeleteReview,
+                              type: SnackBarType.error,
+                            ).show(context);
                     }
 
                     //TODO substituir por: controller.shareReview

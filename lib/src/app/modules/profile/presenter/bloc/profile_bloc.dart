@@ -43,13 +43,15 @@ class ProfileBloc extends SafeBloC {
     }
   }
 
-  Future<void> deleteReview({required int id}) async {
+  Future<bool> deleteReview({required int id}) async {
     try {
       deleteReviewController.add(SafeEvent.load());
       final review = await deleteReviewUseCase.call(id);
       deleteReviewController.add(SafeEvent.done(review));
+      return true;
     } catch (e) {
       deleteReviewController.addError(e.toString());
+      return false;
     }
   }
 
