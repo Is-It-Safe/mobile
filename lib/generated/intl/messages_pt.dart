@@ -71,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
         "textDeleteAccount":
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
+        "textDeleteUser": MessageLookupByLibrary.simpleMessage(
+            "usuário deletado com sucesso"),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(

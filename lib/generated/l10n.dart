@@ -1309,6 +1309,16 @@ class S {
       args: [],
     );
   }
+
+  /// `usuário deletado com sucesso`
+  String get textDeleteUser {
+    return Intl.message(
+      'usuário deletado com sucesso',
+      name: 'textDeleteUser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
