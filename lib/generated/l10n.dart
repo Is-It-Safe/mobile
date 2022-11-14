@@ -1230,6 +1230,36 @@ class S {
     );
   }
 
+  /// `Texto copiado!`
+  String get textShareUserReview {
+    return Intl.message(
+      'Texto copiado!',
+      name: 'textShareUserReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não encontrou o local que estava procurando?`
+  String get textDontFoundThePlace {
+    return Intl.message(
+      'Não encontrou o local que estava procurando?',
+      name: 'textDontFoundThePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crie ele aqui.`
+  String get textCreateHere {
+    return Intl.message(
+      'Crie ele aqui.',
+      name: 'textCreateHere',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(
@@ -1325,6 +1355,16 @@ class S {
     return Intl.message(
       'e avalie locais',
       name: 'textOnBoarding3_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ocorreu um erro ao obter sua localização!`
+  String get textLocationError {
+    return Intl.message(
+      'Ocorreu um erro ao obter sua localização!',
+      name: 'textLocationError',
       desc: '',
       args: [],
     );

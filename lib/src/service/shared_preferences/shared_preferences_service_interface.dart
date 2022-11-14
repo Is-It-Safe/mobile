@@ -13,4 +13,10 @@ abstract class ISharedPreferencesService {
   Future<FormData> readUserAuth();
   void saveTheme(bool value);
   Future<bool> readTheme();
+  void saveUserName(String value);
+  Future<String> readUserName();
+  void saveUserImage(String value);
+  Future<String> readUserImage();
+  void savePlace(String value);
+  Future<String> readPlace();
 }
