@@ -1259,6 +1259,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Ex: Bar santa maria`
+  String get textAddLocaleExample {
+    return Intl.message(
+      'Ex: Bar santa maria',
+      name: 'textAddLocaleExample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `04553434`
+  String get textAddLocaleCepExample {
+    return Intl.message(
+      '04553434',
+      name: 'textAddLocaleCepExample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rua Clodomiro`
+  String get textAddLocaleAddress {
+    return Intl.message(
+      'Rua Clodomiro',
+      name: 'textAddLocaleAddress',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

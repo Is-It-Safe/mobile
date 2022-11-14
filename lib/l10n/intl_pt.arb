@@ -133,5 +133,8 @@
     "textAddLocaleTypePub": "Bar",
     "textAddLocaleTypeRestaurant": "Restaurante",
     "textAddLocaleTypePublicLocation": "Local público",
-    "textAddLocaleTypeNightClub": "Casa noturna"
+    "textAddLocaleTypeNightClub": "Casa noturna",
+    "textAddLocaleExample": "Ex: Bar santa maria",
+    "textAddLocaleCepExample": "04553434",
+    "textAddLocaleAddress": "Rua Clodomiro"
 }

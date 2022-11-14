@@ -11,6 +11,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
+import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 
 class AddLocalePage extends StatefulWidget {
   static String route = '/add_locale_page/';
@@ -122,11 +123,12 @@ class MountTextField extends StatelessWidget {
             child: SafeTextFormField(
               controller: controller.localeNameController,
               validator: (value) {
-                if (value != null && value.isNotEmpty) {
+                if (ValidationUtil.name(value ?? '')) {
                   return null;
                 }
                 return S.current.textErrorEmptyField;
               },
+              hintText: S.current.textAddLocaleExample,
             ),
           ),
           Padding(
@@ -141,11 +143,12 @@ class MountTextField extends StatelessWidget {
             child: SafeTextFormField(
               controller: controller.localeCepController,
               validator: (value) {
-                if (value != null && value.isNotEmpty) {
+                if (ValidationUtil.name(value ?? '')) {
                   return null;
                 }
                 return S.current.textErrorEmptyField;
               },
+              hintText: S.current.textAddLocaleCepExample,
             ),
           ),
           Padding(
@@ -160,11 +163,12 @@ class MountTextField extends StatelessWidget {
             child: SafeTextFormField(
               controller: controller.localeAddressFieldController,
               validator: (value) {
-                if (value != null && value.isNotEmpty) {
+                if (ValidationUtil.name(value ?? '')) {
                   return null;
                 }
                 return S.current.textErrorEmptyField;
               },
+              hintText: S.current.textAddLocaleAddress,
             ),
           ),
           Padding(
