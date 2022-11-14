@@ -370,6 +370,16 @@ class S {
     );
   }
 
+  /// `Sua review foi publicada!`
+  String get textPublishedReview {
+    return Intl.message(
+      'Sua review foi publicada!',
+      name: 'textPublishedReview',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário`
   String get textUsername {
     return Intl.message(
@@ -860,6 +870,96 @@ class S {
     );
   }
 
+  /// `Estrutura`
+  String get textStructure {
+    return Intl.message(
+      'Estrutura',
+      name: 'textStructure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Segurança`
+  String get textSecurity {
+    return Intl.message(
+      'Segurança',
+      name: 'textSecurity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atendimento`
+  String get textService {
+    return Intl.message(
+      'Atendimento',
+      name: 'textService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LGBTfobia`
+  String get textLGBTFobia {
+    return Intl.message(
+      'LGBTfobia',
+      name: 'textLGBTFobia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Escreva aqui...`
+  String get textWriteHere {
+    return Intl.message(
+      'Escreva aqui...',
+      name: 'textWriteHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enviar`
+  String get textSend {
+    return Intl.message(
+      'Enviar',
+      name: 'textSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voltar ao local`
+  String get textBackToLocation {
+    return Intl.message(
+      'Voltar ao local',
+      name: 'textBackToLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review Completa!`
+  String get textReviewCompleted {
+    return Intl.message(
+      'Review Completa!',
+      name: 'textReviewCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continuar`
+  String get textContinue {
+    return Intl.message(
+      'Continuar',
+      name: 'textContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Funcionalidade disponível em breve`
   String get textFeatureAvailableSoon {
     return Intl.message(
@@ -1035,6 +1135,76 @@ class S {
     return Intl.message(
       'Você será redirecionado para a página de login.',
       name: 'textRegisterSuccessMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Como você se sentiu nesse local?`
+  String get textHowDoYouFeelAboutThisPlace {
+    return Intl.message(
+      'Como você se sentiu nesse local?',
+      name: 'textHowDoYouFeelAboutThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Escolha uma classificação para este local!`
+  String get textChooseAClassification {
+    return Intl.message(
+      'Escolha uma classificação para este local!',
+      name: 'textChooseAClassification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seguro para pessoas LGBTQIA+`
+  String get textSafeForLGBT {
+    return Intl.message(
+      'Seguro para pessoas LGBTQIA+',
+      name: 'textSafeForLGBT',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não recomendo este lugar`
+  String get textDontRecomendThisPlace {
+    return Intl.message(
+      'Não recomendo este lugar',
+      name: 'textDontRecomendThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alguns problemas aconteceram`
+  String get textSomeProblemsHappend {
+    return Intl.message(
+      'Alguns problemas aconteceram',
+      name: 'textSomeProblemsHappend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Escolha uma classificação para esse lugar levando em conta as qualidades listadas!`
+  String get textChooseAClassificationForThisPlace {
+    return Intl.message(
+      'Escolha uma classificação para esse lugar levando em conta as qualidades listadas!',
+      name: 'textChooseAClassificationForThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Você pode nos dar mais detalhes?`
+  String get textCanYouGiveMoreDetails {
+    return Intl.message(
+      'Você pode nos dar mais detalhes?',
+      name: 'textCanYouGiveMoreDetails',
       desc: '',
       args: [],
     );

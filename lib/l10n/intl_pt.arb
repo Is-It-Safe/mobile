@@ -39,6 +39,7 @@
     "textDrawerAddLocation":"Adicionar Local",
     "textDrawerMyAccount":"Minha Conta",
 
+    "textPublishedReview":"Sua review foi publicada!",
     "textUsername":"Usuário",
     "textPassword":"Senha",
     "textPasswordConfirmation":"Confirmar senha",
@@ -88,6 +89,16 @@
     "textChangeEmail":"Alterar E-mail",
     "textChangePassword":"Alterar Senha",
     "textAccountInformation":"Informações da Conta",
+    "textStructure":"Estrutura",
+    "textSecurity":"Segurança",
+    "textService":"Atendimento",
+    "textLGBTFobia":"LGBTfobia",
+    "textWriteHere":"Escreva aqui...",
+    "textSend":"Enviar",
+    "textBackToLocation":"Voltar ao local",
+    "textReviewCompleted":"Review Completa!",
+    "textContinue":"Continuar",
+   
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",
     "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, seja criativo!",
@@ -107,10 +118,16 @@
     "textSelectAPicture":"Selecione uma foto antes de salvar.",
     "textRegisterSuccess":"Cadastro realizado com sucesso!",
     "textRegisterSuccessMessage":"Você será redirecionado para a página de login.",
+    "textHowDoYouFeelAboutThisPlace":"Como você se sentiu nesse local?",
+    "textChooseAClassification":"Escolha uma classificação para este local!",
+    "textSafeForLGBT":"Seguro para pessoas LGBTQIA+",
+    "textDontRecomendThisPlace":"Não recomendo este lugar",
+    "textSomeProblemsHappend":"Alguns problemas aconteceram",
+    "textChooseAClassificationForThisPlace":"Escolha uma classificação para esse lugar levando em conta as qualidades listadas!",
+    "textCanYouGiveMoreDetails":"Você pode nos dar mais detalhes?",
 
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
 
-    
     "textOnBoarding1_0":"Foco em",
     "textOnBoarding1_1":"segurança",
     "textOnBoarding1_2":"e",

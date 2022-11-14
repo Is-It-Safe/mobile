@@ -10,7 +10,7 @@ import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProfileReview extends StatefulWidget {
-  final ReviewEntity review;
+  final ReviewEntity? review;
   final Function()? onDelete;
   final Function()? onShare;
 
@@ -89,10 +89,10 @@ class _ProfileReviewState extends State<ProfileReview> {
       mainAxisAlignment:
           _isTextExpanded ? MainAxisAlignment.start : MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(_getEmotionImage(widget.review.myGrade)),
+        SvgPicture.asset(_getEmotionImage(widget.review?.myGrade)),
         const SizedBox(height: 4.0),
         Text(
-          _getEmotionText(widget.review.myGrade),
+          _getEmotionText(widget.review?.myGrade),
           style: TextStyles.bodyText2(),
         ),
       ],
@@ -116,7 +116,7 @@ class _ProfileReviewState extends State<ProfileReview> {
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.5,
           child: Text(
-            widget.review.review ?? StringConstants.empty,
+            widget.review?.review ?? StringConstants.empty,
             style: TextStyles.caption(),
             softWrap: true,
             overflow: TextOverflow.ellipsis,
@@ -126,7 +126,7 @@ class _ProfileReviewState extends State<ProfileReview> {
         ),
         const SizedBox(width: 4),
         Visibility(
-          visible: widget.review.review!.length > 80,
+          visible: (widget.review?.review!.length ?? 0) > 80,
           child: GestureDetector(
             onTap: doSeeMore,
             child: Text(
@@ -146,7 +146,7 @@ class _ProfileReviewState extends State<ProfileReview> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.5,
       child: Text(
-        widget.review.location?.name ?? StringConstants.empty,
+        widget.review?.location?.name ?? StringConstants.empty,
         style: TextStyles.subtitle2(),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,

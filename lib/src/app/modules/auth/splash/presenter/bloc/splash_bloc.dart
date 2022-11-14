@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_on_boarding_use_case.dart';
-import 'package:logger/logger.dart';
 
 class SplashBloc extends SafeBloC {
   late GetUserLoginUseCase _getUserLoginUseCase;
@@ -25,25 +24,23 @@ class SplashBloc extends SafeBloC {
   }
 
   Future<bool> getUserLogin() async {
-    final _response = await _getUserLoginUseCase.call();
-    LogUtil().log(
-      //TODO Add String to intl
+    final response = await _getUserLoginUseCase.call();
+    SafeLogUtil.instance.log(
       title: 'Is User Logged?',
-      message: _response.toString(),
-      level: Level.warning,
+      message: response.toString(),
+      type: SafeLogType.warning,
     );
-    return _response;
+    return response;
   }
 
   Future<bool> getUserOnBoarding() async {
-    final _response = await _getUserOnBoaringUseCase.call();
-    LogUtil().log(
-      //TODO Add String to intl
+    final response = await _getUserOnBoaringUseCase.call();
+    SafeLogUtil.instance.log(
       title: 'Did User See OnBoarding?',
-      message: _response.toString(),
-      level: Level.warning,
+      message: response.toString(),
+      type: SafeLogType.warning,
     );
-    return _response;
+    return response;
   }
 
   @override

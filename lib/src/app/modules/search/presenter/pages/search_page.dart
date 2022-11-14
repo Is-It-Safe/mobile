@@ -6,7 +6,7 @@ import 'package:is_it_safe_app/src/app/modules/search/presenter/widgets/search_l
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
@@ -22,7 +22,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
   @override
@@ -61,6 +61,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
       builder: (context, snapshot) {
         return SafeLayout(
           snapshot: snapshot,
+          context: context,
           onCompleted: _mountResultList(),
           onEmpty: _mountEmptyCard(),
         ).build;

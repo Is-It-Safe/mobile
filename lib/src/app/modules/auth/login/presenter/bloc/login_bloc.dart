@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
@@ -55,8 +55,8 @@ class LoginBloc extends SafeBloC {
       }
       doLoginController.sink.add(SafeEvent.done(loginEntity));
     } catch (e) {
-      doLoginController.sink.add(SafeEvent.error(e.toString()));
-      LogUtil().error(e.toString(), title: 'LOGIN ERROR');
+      doLoginController.addError(SafeEvent.error(e.toString()));
+      SafeLogUtil.instance.logError(e);
     }
   }
 
@@ -71,7 +71,7 @@ class LoginBloc extends SafeBloC {
     try {
       await saveUserLoginUseCase.call(value);
     } catch (e) {
-      LogUtil().error(e.toString());
+      SafeLogUtil.instance.logError(e);
     }
   }
 
@@ -79,7 +79,7 @@ class LoginBloc extends SafeBloC {
     try {
       await saveUserTokenUseCase.call(value);
     } catch (e) {
-      LogUtil().error(e.toString());
+      SafeLogUtil.instance.logError(e);
     }
   }
 
@@ -87,7 +87,7 @@ class LoginBloc extends SafeBloC {
     try {
       await saveUserRefreshTokenUseCase.call(value);
     } catch (e) {
-      LogUtil().error(e.toString());
+      SafeLogUtil.instance.logError(e);
     }
   }
 

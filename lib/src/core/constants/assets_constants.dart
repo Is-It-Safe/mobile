@@ -5,6 +5,7 @@ class AssetConstants {
   static _EmptyAssets empty = _EmptyAssets();
   static _GeneralAssets general = _GeneralAssets();
   static _EmoticonAssets emoticon = _EmoticonAssets();
+  static _ImpressionAssets impression = _ImpressionAssets();
 }
 
 class _EmptyAssets {
@@ -14,11 +15,17 @@ class _EmptyAssets {
 }
 
 class _EmoticonAssets {
-  String angry = 'images/modules/core/review/review_0.svg';
-  String sad = 'images/modules/core/review/review_1.svg';
-  String neutral = 'images/modules/core/review/review_2.svg';
-  String happy = 'images/modules/core/review/review_3.svg';
-  String excited = 'images/modules/core/review/review_4.svg';
+  String angry = 'images/modules/review/review_0.svg';
+  String sad = 'images/modules/review/review_1.svg';
+  String neutral = 'images/modules/review/review_2.svg';
+  String happy = 'images/modules/review/review_3.svg';
+  String excited = 'images/modules/review/review_4.svg';
+}
+
+class _ImpressionAssets {
+  String safe = 'images/modules/review/safe.svg';
+  String warning = 'images/modules/review/warning.svg';
+  String danger = 'images/modules/review/danger.svg';
 }
 
 class _IconsAssets {
@@ -48,6 +55,7 @@ class _GeneralAssets {
   String onBoarding2 = 'images/modules/auth/on_boarding_2.png';
   String onBoarding3 = 'images/modules/auth/on_boarding_3.png';
   String profilePictures = 'images/modules/auth/profile_pictures/profile_pic_';
+  String reviewCompleted = 'images/modules/review/review_completed.svg';
 }
 
 //TODO tentar deixar classe privada

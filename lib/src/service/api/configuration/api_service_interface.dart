@@ -6,6 +6,7 @@ abstract class IApiService {
   Future<Response> post(RequestConfig config);
   Future<Response> get(RequestConfig config);
   Future<Response> patch(RequestConfig config);
+  Future<Response> put(RequestConfig config);
   Future<Response> delete(RequestConfig config);
   Response getResponse(Response response);
 }

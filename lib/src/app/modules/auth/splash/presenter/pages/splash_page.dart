@@ -10,7 +10,7 @@ import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_
 import 'package:is_it_safe_app/src/app/modules/auth/on_boarding/presenter/pages/on_boarding_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/splash/presenter/bloc/splash_bloc.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
-import 'package:is_it_safe_app/src/core/util/log_util.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class SplashPage extends StatefulWidget {
   static const route = '/splash';
@@ -25,7 +25,7 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
   @override
   void initState() {
     super.initState();
-    LogUtil().route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
     defineRoute();
   }
 

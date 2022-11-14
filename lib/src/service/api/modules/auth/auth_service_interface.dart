@@ -13,4 +13,5 @@ abstract class IAuthService {
   Future<ResponseRegister> doRegister(RequestRegister request);
   Future<List<ResponseGender>> getGenders();
   Future<List<ResponseSexualOrientation>> getSexualOrientations();
+  Future<String> getAccessToken();
 }
