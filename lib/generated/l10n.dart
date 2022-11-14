@@ -340,6 +340,16 @@ class S {
     );
   }
 
+  /// `Review deletada com sucesso!`
+  String get textDefaultDeleteReviewMessage {
+    return Intl.message(
+      'Review deletada com sucesso!',
+      name: 'textDefaultDeleteReviewMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário Registrado`
   String get textSuccessRegistration {
     return Intl.message(
@@ -1205,6 +1215,36 @@ class S {
     return Intl.message(
       'Você pode nos dar mais detalhes?',
       name: 'textCanYouGiveMoreDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Texto copiado!`
+  String get textShareUserReview {
+    return Intl.message(
+      'Texto copiado!',
+      name: 'textShareUserReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não encontrou o local que estava procurando?`
+  String get textDontFoundThePlace {
+    return Intl.message(
+      'Não encontrou o local que estava procurando?',
+      name: 'textDontFoundThePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crie ele aqui.`
+  String get textCreateHere {
+    return Intl.message(
+      'Crie ele aqui.',
+      name: 'textCreateHere',
       desc: '',
       args: [],
     );

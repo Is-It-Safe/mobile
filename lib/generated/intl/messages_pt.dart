@@ -95,8 +95,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textConfirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
         "textContact": MessageLookupByLibrary.simpleMessage("Contato"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
+        "textCreateHere":
+            MessageLookupByLibrary.simpleMessage("Crie ele aqui."),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
+        "textDefaultDeleteReviewMessage": MessageLookupByLibrary.simpleMessage(
+            "Review deletada com sucesso!"),
         "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
         "textDeleteAccount":
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
@@ -104,6 +108,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
             "Agora escolha um nome para todos verem, seja criativo!"),
+        "textDontFoundThePlace": MessageLookupByLibrary.simpleMessage(
+            "Não encontrou o local que estava procurando?"),
         "textDontRecomendThisPlace":
             MessageLookupByLibrary.simpleMessage("Não recomendo este lugar"),
         "textDrawerAddLocation":
@@ -229,6 +235,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSexualOrientation":
             MessageLookupByLibrary.simpleMessage("Orientação Sexual"),
         "textShare": MessageLookupByLibrary.simpleMessage("Compartilhar"),
+        "textShareUserReview":
+            MessageLookupByLibrary.simpleMessage("Texto copiado!"),
         "textSignUp": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
         "textSkipForNow": MessageLookupByLibrary.simpleMessage("Pular"),
         "textSomeProblemsHappend": MessageLookupByLibrary.simpleMessage(

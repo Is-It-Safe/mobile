@@ -34,6 +34,8 @@
     "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
 
+    "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
+
     "textSuccessRegistration":"Usuário Registrado",
 
     "textDrawerAddLocation":"Adicionar Local",
@@ -125,6 +127,9 @@
     "textSomeProblemsHappend":"Alguns problemas aconteceram",
     "textChooseAClassificationForThisPlace":"Escolha uma classificação para esse lugar levando em conta as qualidades listadas!",
     "textCanYouGiveMoreDetails":"Você pode nos dar mais detalhes?",
+    "textShareUserReview":"Texto copiado!",
+    "textDontFoundThePlace":"Não encontrou o local que estava procurando?",
+    "textCreateHere":"Crie ele aqui.",
 
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
 

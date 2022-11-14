@@ -5,6 +5,8 @@ import 'package:is_it_safe_app/src/app/modules/search/presenter/bloc/search_bloc
 import 'package:is_it_safe_app/src/app/modules/search/presenter/widgets/search_location_card.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_text_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
@@ -12,7 +14,11 @@ import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class SearchPage extends StatefulWidget {
   static const route = '/search/';
-  const SearchPage({Key? key}) : super(key: key);
+  final Function()? addButton;
+  const SearchPage({
+    Key? key,
+    this.addButton,
+  }) : super(key: key);
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -85,7 +91,16 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
     return Column(
       children: [
         SafeEmptyCard.search(),
-        //TODO add button to add place
+        SafeTextButton(
+          preText: S.current.textDontFoundThePlace,
+          text: S.current.textCreateHere,
+          onTap: () {
+            return SafeSnackBar(
+              message: S.current.textFeatureAvailableSoon,
+              type: SnackBarType.info,
+            ).show(context);
+          },
+        ),
       ],
     );
   }
