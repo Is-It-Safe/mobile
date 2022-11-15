@@ -33,6 +33,7 @@
     "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
     "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
+    "textErrorDeleteReview":"Não foi possível deletar a review!",
 
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
 
