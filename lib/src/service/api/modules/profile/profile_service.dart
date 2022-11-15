@@ -36,7 +36,9 @@ class ProfileService implements IProfileService {
   }
 
   @override
-  Future<ResponseDeleteUser> deleteUser(int idUser) async {
+  Future<ResponseDeleteUser> deleteUser({
+    required int idUser,
+  }) async {
     final token = await _authService.getAccessToken();
 
     final requestConfig = RequestConfig(
@@ -51,3 +53,24 @@ class ProfileService implements IProfileService {
     return ResponseDeleteUser.fromJson(json.decode(response.data));
   }
 }
+
+/*
+
+ @override
+  Future<ResponseDeleteUser> deleteUser(int idUser) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.deleteUser + idUser.toString(),
+      method: HttpMethod.delete,
+      options: Options(
+        headers: {ApiConstants.kAuthorization: token},
+      ),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+    return ResponseDeleteUser.fromJson(json.decode(response.data));
+  }
+
+
+ */
