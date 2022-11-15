@@ -56,7 +56,8 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
                 },
               );
             }
-            if (tab == 1) controller.getBestRatedLocations();
+            //ADD lOCAL PLACE
+            if (tab == 1) controller.getBestRatedPlacesUseCase(toString());
           },
         ),
         body: TabBarView(

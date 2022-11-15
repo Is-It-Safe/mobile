@@ -3,6 +3,7 @@ import 'package:is_it_safe_app/src/components/location/safe_locator.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_places_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/home/home_service.dart';
 
@@ -22,7 +23,7 @@ class HomeModule extends Module {
     ),
     Bind.lazySingleton(
       (i) => HomeBloc(
-        getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
+        getBestRatedPlacesUseCase: i.get<GetBestRatedPlacesUseCase>(),
         safeLocatorContract: i.get<SafeLocator>(),
       ),
     ),
