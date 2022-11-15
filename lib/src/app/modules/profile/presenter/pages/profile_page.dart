@@ -120,7 +120,6 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                           // onShare: () {},
                           );
                     }),
-
               ),
             ),
           ),

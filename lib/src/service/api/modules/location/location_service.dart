@@ -8,11 +8,9 @@ import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service_interface.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/request/request_save_review.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_best_rated_places.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/response/response_delete_review.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_locations_near_user.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_by_cep.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 import 'response/response_get_location_by_id.dart';
 
 class LocationService implements ILocationService {
@@ -23,9 +21,14 @@ class LocationService implements ILocationService {
 
   @override
   Future<List<ResponseGetLocationsById>> getLocationById(int id) async {
+    final token = await _authService.getAccessToken();
+
     final requestConfig = RequestConfig(
       path: '${ApiConstants.getLocationById}/$id',
       method: HttpMethod.get,
+      options: Options(
+        headers: {ApiConstants.kAuthorization: token},
+      ),
     );
 
     final response = await _service.doRequest(requestConfig);
@@ -35,27 +38,15 @@ class LocationService implements ILocationService {
   }
 
   @override
-  Future<ResponseGetUserReview> doReview(RequestSaveReview request) async {
+  Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String place) async {
     final token = await _authService.getAccessToken();
 
     final requestConfig = RequestConfig(
-      path: ApiConstants.doReview,
-      method: HttpMethod.post,
-      body: request.toJson(request),
+      path: '${ApiConstants.getBestRatedPlaces}$place',
+      method: HttpMethod.get,
       options: Options(
         headers: {ApiConstants.kAuthorization: token},
       ),
-    );
-
-    final response = await _service.doRequest(requestConfig);
-    return ResponseGetUserReview.fromJson(json.decode(response.data));
-  }
-
-  @override
-  Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String place) async {
-    final requestConfig = RequestConfig(
-      path: '${ApiConstants.getBestRatedPlaces}$place',
-      method: HttpMethod.get,
     );
 
     final response = await _service.doRequest(requestConfig);
@@ -65,29 +56,38 @@ class LocationService implements ILocationService {
   }
 
   @override
-  Future<ResponseDeleteReview> deleteReview(int idReview) async {
+  Future<ResponseLocationByCep> getLocationByCep(int cep) async {
     final token = await _authService.getAccessToken();
 
     final requestConfig = RequestConfig(
-      path: ApiConstants.deleteReview + idReview.toString(),
-      method: HttpMethod.delete,
+      path: ApiConstants.kUrlCep.replaceAll('cep', cep.toString()),
+      method: HttpMethod.get,
       options: Options(
         headers: {ApiConstants.kAuthorization: token},
       ),
     );
 
     final response = await _service.doRequest(requestConfig);
-    return ResponseDeleteReview(message: response.data);
+    return ResponseLocationByCep.fromJson(json.decode(response.data));
   }
 
   @override
-  Future<ResponseLocationByCep> getLocationByCep(int cep) async {
+  Future<List<ResponseGetLocationsNearUser>> getLocationsNearUser(
+      double userLatitude, double userLongitude) async {
+    final token = await _authService.getAccessToken();
+
     final requestConfig = RequestConfig(
-      path: ApiConstants.kUrlCep.replaceAll('cep', cep.toString()),
+      path:
+          '${ApiConstants.getLocationsNearUser}latitude=$userLatitude&longitude=$userLongitude',
       method: HttpMethod.get,
+      options: Options(
+        headers: {ApiConstants.kAuthorization: token},
+      ),
     );
 
     final response = await _service.doRequest(requestConfig);
-    return ResponseLocationByCep.fromJson(json.decode(response.data));
+    return (json.decode(response.data) as List)
+        .map((e) => ResponseGetLocationsNearUser.fromJson(e))
+        .toList();
   }
 }

@@ -1,6 +1,6 @@
 import 'response_location_review.dart';
 
-class ResponseGetLocationsById {
+class ResponseGetLocationsNearUser {
   int? id;
   String? name;
   String? endereco;
@@ -9,7 +9,7 @@ class ResponseGetLocationsById {
   String? averageGrade;
   List<ResponseLocationReview>? reviews;
 
-  ResponseGetLocationsById(
+  ResponseGetLocationsNearUser(
       {this.id,
       this.name,
       this.endereco,
@@ -18,8 +18,8 @@ class ResponseGetLocationsById {
       this.averageGrade,
       this.reviews});
 
-  factory ResponseGetLocationsById.fromJson(Map<String, dynamic> json) {
-    return ResponseGetLocationsById(
+  factory ResponseGetLocationsNearUser.fromJson(Map<String, dynamic> json) {
+    return ResponseGetLocationsNearUser(
       id: json['id'],
       name: json['name'],
       endereco: json['endereco'],
