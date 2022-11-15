@@ -7,7 +7,9 @@ import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service_interface.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_update_user.dart';
 
 import 'response/response_delete_user.dart';
 
@@ -36,6 +38,7 @@ class ProfileService implements IProfileService {
   }
 
   @override
+
   Future<ResponseDeleteUser> deleteUser({
     required int idUser,
   }) async {
@@ -46,10 +49,26 @@ class ProfileService implements IProfileService {
       method: HttpMethod.delete,
       options: Options(
         headers: {ApiConstants.kAuthorization: token},
+
+  Future<ResponseUpdateUser> updateUser(RequestUpdateUser request) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: '${ApiConstants.updateUser}/${request.id}',
+      method: HttpMethod.put,
+      options: Options(
+        headers: {
+          ApiConstants.kAuthorization: token,
+        },
+
       ),
     );
 
     final response = await _service.doRequest(requestConfig);
+
     return ResponseDeleteUser.fromJson(json.decode(response.data));
+
+    return ResponseUpdateUser.fromJson(json.decode(response.data));
+
   }
 }

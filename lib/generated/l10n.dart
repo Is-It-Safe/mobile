@@ -340,6 +340,26 @@ class S {
     );
   }
 
+  /// `Não foi possível deletar a review!`
+  String get textErrorDeleteReview {
+    return Intl.message(
+      'Não foi possível deletar a review!',
+      name: 'textErrorDeleteReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review deletada com sucesso!`
+  String get textDefaultDeleteReviewMessage {
+    return Intl.message(
+      'Review deletada com sucesso!',
+      name: 'textDefaultDeleteReviewMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Usuário Registrado`
   String get textSuccessRegistration {
     return Intl.message(
@@ -1210,6 +1230,36 @@ class S {
     );
   }
 
+  /// `Texto copiado!`
+  String get textShareUserReview {
+    return Intl.message(
+      'Texto copiado!',
+      name: 'textShareUserReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não encontrou o local que estava procurando?`
+  String get textDontFoundThePlace {
+    return Intl.message(
+      'Não encontrou o local que estava procurando?',
+      name: 'textDontFoundThePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crie ele aqui.`
+  String get textCreateHere {
+    return Intl.message(
+      'Crie ele aqui.',
+      name: 'textCreateHere',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(
@@ -1310,11 +1360,19 @@ class S {
     );
   }
 
+
   /// `usuário deletado com sucesso`
   String get textDeleteUser {
     return Intl.message(
       'usuário deletado com sucesso',
       name: 'textDeleteUser',
+
+  /// `Ocorreu um erro ao obter sua localização!`
+  String get textLocationError {
+    return Intl.message(
+      'Ocorreu um erro ao obter sua localização!',
+      name: 'textLocationError',
+
       desc: '',
       args: [],
     );
