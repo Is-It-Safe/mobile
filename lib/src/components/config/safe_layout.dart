@@ -83,12 +83,12 @@ class SafeLayout {
 
   bool _checkIfListIsNotEmpty() {
     if (snapshot.data?.data is List) {
-      if (snapshot.data?.data.isNotEmpty) return false;
+      if (snapshot.data?.data.isNotEmpty) return true;
     }
-    return true;
+    return false;
   }
 
   bool _checkIfDataIsNotEmpty() {
-    return snapshot.data?.data != null;
+    return snapshot.data?.data == null;
   }
 }
