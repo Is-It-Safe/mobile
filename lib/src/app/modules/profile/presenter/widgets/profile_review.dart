@@ -14,14 +14,14 @@ class ProfileReview extends StatefulWidget {
   final ReviewEntity? review;
   final Function()? onDelete;
   final Function()? onShare;
-  final String name;
+  final String? name;
 
   const ProfileReview({
     Key? key,
     required this.review,
     this.onDelete,
     this.onShare,
-    required this.name,
+    this.name,
   }) : super(key: key);
 
   @override
