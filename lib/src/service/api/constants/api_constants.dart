@@ -20,12 +20,14 @@ class ApiConstants {
   static String kBasicAuth = 'Basic $kEncodedClientCredentials';
 
   ///URL para requisições de autenticação
-  static const String kAuthUrl =
-      'https://is-it-safe-api-homolog.herokuapp.com/';
+  static const String kAuthUrl = 'https://is-it-safe-api-v2.herokuapp.com/';
 
   ///Url default para requisições da API
   static const String kUrl =
-      'https://is-it-safe-api-homolog.herokuapp.com/is-it-safe/';
+      'https://is-it-safe-api-v2.herokuapp.com/is-it-safe/';
+
+  ///URL para requisições voltadas a localização via CEP
+  static const String kUrlCep = 'viacep.com.br/ws/cep/json/';
 
   /*--------------------------------------------------------------------*/
 
@@ -34,15 +36,19 @@ class ApiConstants {
   static const String doRegister = '${kUrl}user/save';
   static const String getGenders = '${kUrl}gender/find-all';
   static const String getSexualOrientations = '${kUrl}orientation/find-all';
+  static const String confirmPassword = '${kUrl}user/is-password-correct';
 
   //Location
   static const String getBestRatedLocations = '${kUrl}location/find-all';
   static const String getLocationsByName = '${kUrl}location/find-all?name=';
   static const String getLocationById = '${kUrl}location';
+  static const String getBestRatedPlaces = '${kUrl}location/trending?cityName=';
 
   //User
   static const String getUser = '${kUrl}user/profile';
+  static const String updateUser = '${kUrl}user/update';
 
   //Review
   static const String doReview = '${kUrl}review/save';
+  static const String deleteReview = '${kUrl}review/delete/';
 }

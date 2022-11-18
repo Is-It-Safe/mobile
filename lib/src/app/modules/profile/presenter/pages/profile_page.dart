@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
@@ -82,6 +83,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
       stream: controller.userController.stream,
       builder: (context, snapshot) {
         final reviews = snapshot.data?.data?.reviews;
+        final name = snapshot.data?.data?.name;
         return SafeLayout(
           snapshot: snapshot,
           context: context,
@@ -91,15 +93,34 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
               reviews?.length ?? 0,
               (index) => Padding(
                 padding: const EdgeInsets.only(top: 24.0),
-                child: ProfileReview(
-                  name: snapshot.data?.data?.name ?? StringConstants.empty,
-                  review: reviews?[index],
+                child: StreamBuilder<SafeEvent<String>>(
+                    stream: controller.deleteReviewController.stream,
+                    builder: (context, snapshot) {
+                      final message = snapshot.data?.data;
+                      return ProfileReview(
+                        review: reviews?[index],
+                        onDelete: () async {
+                          final int? idReview = reviews?[index].id;
+                          Navigator.pop(context);
+                          await controller.deleteReview(idReview: idReview) ==
+                                  true
+                              ? SafeSnackBar(
+                                  message: message ??
+                                      S.current.textDefaultDeleteReviewMessage,
+                                  type: SnackBarType.success,
+                                ).show(context)
+                              : SafeSnackBar(
+                                  message: message ??
+                                      S.current.textErrorDeleteReview,
+                                  type: SnackBarType.error,
+                                ).show(context);
+                        },
+                        name: name.toString(),
 
-                  //TODO substituir por: controller.deleteReview
-                  // onDelete: () {},
-                  //TODO substituir por: controller.shareReview
-                  // onShare: () {},
-                ),
+                        //TODO substituir por: controller.shareReview
+                        // onShare: () {},
+                      );
+                    }),
               ),
             ),
           ),
