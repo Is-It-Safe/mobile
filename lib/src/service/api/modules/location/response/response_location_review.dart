@@ -1,11 +1,11 @@
-class ResponseReview {
+class ResponseLocationReview {
   int? id;
   String? author;
   String? review;
   String? createdAt;
   double? myGrade;
 
-  ResponseReview({
+  ResponseLocationReview({
     this.id,
     this.author,
     this.review,
@@ -13,8 +13,8 @@ class ResponseReview {
     this.myGrade,
   });
 
-  factory ResponseReview.fromJson(Map<String, dynamic> json) {
-    return ResponseReview(
+  factory ResponseLocationReview.fromJson(Map<String, dynamic> json) {
+    return ResponseLocationReview(
       id: json['id'],
       author: json['author'],
       review: json['review'],
