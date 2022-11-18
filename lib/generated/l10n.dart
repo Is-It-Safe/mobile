@@ -540,6 +540,16 @@ class S {
     );
   }
 
+  /// `Apelido`
+  String get textNickName {
+    return Intl.message(
+      'Apelido',
+      name: 'textNickName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Endereço de E-mail`
   String get textEmailAddress {
     return Intl.message(
@@ -825,6 +835,16 @@ class S {
     return Intl.message(
       'Editar Perfil',
       name: 'textEditProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Editar Informações Pessoais`
+  String get textEditPersonalInformation {
+    return Intl.message(
+      'Editar Informações  Pessoais',
+      name: 'textEditPersonalInformation',
       desc: '',
       args: [],
     );
