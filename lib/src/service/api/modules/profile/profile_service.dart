@@ -13,6 +13,8 @@ import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_update_user.dart';
 
+import 'response/response_delete_user.dart';
+
 class ProfileService implements IProfileService {
   final ApiService _service = ApiService();
   final AuthService _authService;
@@ -38,6 +40,18 @@ class ProfileService implements IProfileService {
   }
 
   @override
+
+  Future<ResponseDeleteUser> deleteUser({
+    required int idUser,
+  }) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.deleteUser + idUser.toString(),
+      method: HttpMethod.delete,
+      options: Options(
+        headers: {ApiConstants.kAuthorization: token},
+
   Future<ResponseUpdateUser> updateUser(RequestUpdateUser request) async {
     final token = await _authService.getAccessToken();
 
@@ -48,11 +62,16 @@ class ProfileService implements IProfileService {
         headers: {
           ApiConstants.kAuthorization: token,
         },
+
       ),
     );
 
     final response = await _service.doRequest(requestConfig);
+
+    return ResponseDeleteUser.fromJson(json.decode(response.data));
+
     return ResponseUpdateUser.fromJson(json.decode(response.data));
+
   }
 
   @override

@@ -1360,11 +1360,19 @@ class S {
     );
   }
 
+
+  /// `usuário deletado com sucesso`
+  String get textDeleteUser {
+    return Intl.message(
+      'usuário deletado com sucesso',
+      name: 'textDeleteUser',
+
   /// `Ocorreu um erro ao obter sua localização!`
   String get textLocationError {
     return Intl.message(
       'Ocorreu um erro ao obter sua localização!',
       name: 'textLocationError',
+
       desc: '',
       args: [],
     );

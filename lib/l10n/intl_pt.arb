@@ -143,5 +143,12 @@
     "textOnBoarding3_0":"Descreva suas",
     "textOnBoarding3_1":"experiências",
     "textOnBoarding3_2":"e avalie locais",
+
+
+    "textDeleteUser":"usuário deletado com sucesso"
+
+    
+
     "textLocationError": "Ocorreu um erro ao obter sua localização!"
+
 }

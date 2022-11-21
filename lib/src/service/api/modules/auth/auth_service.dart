@@ -18,6 +18,7 @@ import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_logi
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_refresh_token.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_register.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_sexual_orientation.dart';
+
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 

@@ -47,6 +47,9 @@ class ApiConstants {
 
   //User
   static const String getUser = '${kUrl}user/profile';
+
+  static const String deleteUser = '${kUrl}user/delete/';
+
   static const String updateUser = '${kUrl}user/update';
 
   //Review
