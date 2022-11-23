@@ -44,7 +44,6 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
           onBottomTap: (tab) {
             //TODO manter comentado mediante implementação da feature
             if (tab == 0) {
-              // controller.getClosePlacesLocations();
               controller.getCurrentPlaces().whenComplete(
                 () {
                   controller.userLocationController.stream.handleError(

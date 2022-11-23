@@ -23,7 +23,6 @@ class HomeModule extends Module {
     ),
     Bind.lazySingleton(
       (i) => HomeBloc(
-        // getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
         getBestRatedPlacesUseCase: i.get<GetBestRatedPlacesUseCase>(),
         safeLocatorContract: i.get<SafeLocator>(),
       ),

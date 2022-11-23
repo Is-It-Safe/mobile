@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_locator.dart';
-// import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_places_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
@@ -13,7 +12,6 @@ import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.da
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 
 class HomeBloc extends SafeBloC {
-  // final GetBestRatedLocationsUseCase getBestRatedLocationsUseCase;
   final GetBestRatedPlacesUseCase getBestRatedPlacesUseCase;
   final ISafeLocator safeLocatorContract;
 
@@ -23,7 +21,6 @@ class HomeBloc extends SafeBloC {
   List<LocationEntity> listBestRatedPlaces = [];
 
   HomeBloc({
-    // required this.getBestRatedLocationsUseCase,
     required this.getBestRatedPlacesUseCase,
     required this.safeLocatorContract,
   }) {
@@ -40,7 +37,7 @@ class HomeBloc extends SafeBloC {
     try {
       //TODO Somente chamar a api mediante um isRefresh == true ou caso listBestRatedLocations esteja vazia
       bestRatedPlacesController.add(SafeEvent.load());
-      // listBestRatedLocations = await getBestRatedLocationsUseCase.call();
+      listBestRatedPlaces = await getBestRatedPlacesUseCase.call('Salvador');
       bestRatedPlacesController.add(SafeEvent.done(listBestRatedPlaces));
     } on Exception catch (e) {
       if (e is UnauthorizedException) await ApiInterceptors.doLogout();
