@@ -5,21 +5,15 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dar
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/home/home_service.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton(
-      (i) => HomeService(
-        i.get<AuthService>(),
-      ),
-    ),
-    Bind.lazySingleton(
-      (i) => GetBestRatedLocationsUseCase(),
-    ),
-    Bind.lazySingleton(
-      (i) => SafeLocator(),
-    ),
+    Bind.lazySingleton((i) => HomeService(i.get<AuthService>())),
+    Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
+    Bind.lazySingleton((i) => GetBestRatedLocationsUseCase()),
+    Bind.lazySingleton((i) => SafeLocator()),
     Bind.lazySingleton(
       (i) => HomeBloc(
         getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
