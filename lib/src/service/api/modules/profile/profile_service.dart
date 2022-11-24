@@ -40,7 +40,6 @@ class ProfileService implements IProfileService {
   }
 
   @override
-
   Future<ResponseDeleteUser> deleteUser({
     required int idUser,
   }) async {
@@ -51,7 +50,15 @@ class ProfileService implements IProfileService {
       method: HttpMethod.delete,
       options: Options(
         headers: {ApiConstants.kAuthorization: token},
+      ),
+    );
 
+    final response = await _service.doRequest(requestConfig);
+
+    return ResponseDeleteUser.fromJson(json.decode(response.data));
+  }
+
+  @override
   Future<ResponseUpdateUser> updateUser(RequestUpdateUser request) async {
     final token = await _authService.getAccessToken();
 
@@ -62,16 +69,12 @@ class ProfileService implements IProfileService {
         headers: {
           ApiConstants.kAuthorization: token,
         },
-
       ),
     );
 
     final response = await _service.doRequest(requestConfig);
 
-    return ResponseDeleteUser.fromJson(json.decode(response.data));
-
     return ResponseUpdateUser.fromJson(json.decode(response.data));
-
   }
 
   @override

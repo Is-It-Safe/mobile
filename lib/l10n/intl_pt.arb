@@ -34,6 +34,7 @@
     "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
     "textErrorDeleteReview":"Não foi possível deletar a review!",
+    "textErrorGetLocation": "Ocorreu um erro ao obter sua localização!",
 
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
 
@@ -131,7 +132,7 @@
     "textShareUserReview":"Texto copiado!",
     "textDontFoundThePlace":"Não encontrou o local que estava procurando?",
     "textCreateHere":"Crie ele aqui.",
-
+    "textDeleteUser":"usuário deletado com sucesso",
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
 
     "textOnBoarding1_0":"Foco em",
@@ -142,13 +143,5 @@
     "textOnBoarding2_1":"segurança",
     "textOnBoarding3_0":"Descreva suas",
     "textOnBoarding3_1":"experiências",
-    "textOnBoarding3_2":"e avalie locais",
-
-
-    "textDeleteUser":"usuário deletado com sucesso"
-
-    
-
-    "textLocationError": "Ocorreu um erro ao obter sua localização!"
-
+    "textOnBoarding3_2":"e avalie locais"
 }

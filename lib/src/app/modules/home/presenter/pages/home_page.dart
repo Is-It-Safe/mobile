@@ -49,7 +49,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
                 () {
                   controller.userLocationController.stream.handleError(
                     (x) => SafeSnackBar(
-                      message: S.current.textLocationError,
+                      message: S.current.textErrorGetLocation,
                       type: SnackBarType.error,
                     ),
                   );
