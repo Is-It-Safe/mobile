@@ -13,7 +13,7 @@ class EditAccountBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 32),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(

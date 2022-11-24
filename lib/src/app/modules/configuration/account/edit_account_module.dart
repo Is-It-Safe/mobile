@@ -1,7 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/edit_account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/edit_account_page.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
@@ -15,9 +18,13 @@ class EditAccountModule extends Module {
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
     Bind.lazySingleton((i) => GetUserUseCase()),
-    Bind.lazySingleton((i) => AccountBloc(
+    Bind.lazySingleton((i) => GetGendersUseCase()),
+    Bind.lazySingleton((i) => GetSexualOrientationsUseCase()),
+    Bind.lazySingleton((i) => EditAccountBloc(
           getUserUseCase: i.get<GetUserUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
+          getGendersUseCase: i.get<GetGendersUseCase>(),
+          getSexualOrientationsUseCase: i.get<GetSexualOrientationsUseCase>(),
         )),
   ];
 
