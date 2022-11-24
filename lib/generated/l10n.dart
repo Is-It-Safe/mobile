@@ -350,6 +350,16 @@ class S {
     );
   }
 
+  /// `Ocorreu um erro ao obter sua localização!`
+  String get textErrorGetLocation {
+    return Intl.message(
+      'Ocorreu um erro ao obter sua localização!',
+      name: 'textErrorGetLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Review deletada com sucesso!`
   String get textDefaultDeleteReviewMessage {
     return Intl.message(
@@ -1260,6 +1270,16 @@ class S {
     );
   }
 
+  /// `usuário deletado com sucesso`
+  String get textDeleteUser {
+    return Intl.message(
+      'usuário deletado com sucesso',
+      name: 'textDeleteUser',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(
@@ -1355,16 +1375,6 @@ class S {
     return Intl.message(
       'e avalie locais',
       name: 'textOnBoarding3_2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Ocorreu um erro ao obter sua localização!`
-  String get textLocationError {
-    return Intl.message(
-      'Ocorreu um erro ao obter sua localização!',
-      name: 'textLocationError',
       desc: '',
       args: [],
     );

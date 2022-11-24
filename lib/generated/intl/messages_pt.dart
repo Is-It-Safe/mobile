@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -75,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
         "textDeleteAccount":
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
+        "textDeleteUser": MessageLookupByLibrary.simpleMessage(
+            "usuário deletado com sucesso"),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
@@ -104,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, selecione seu avatar!"),
         "textErrorEmptyField": MessageLookupByLibrary.simpleMessage(
             "Esse campo não pode ficar vazio"),
+        "textErrorGetLocation": MessageLookupByLibrary.simpleMessage(
+            "Ocorreu um erro ao obter sua localização!"),
         "textErrorHome": MessageLookupByLibrary.simpleMessage(
             "Nenhum lugar próximo encontrado, comece a avaliar seu bairro!"),
         "textErrorInvalidDate": MessageLookupByLibrary.simpleMessage(
@@ -145,8 +148,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "textLettersAndNumbers":
             MessageLookupByLibrary.simpleMessage("- letras e números"),
         "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
-        "textLocationError": MessageLookupByLibrary.simpleMessage(
-            "Ocorreu um erro ao obter sua localização!"),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textMeetingYouWillBeAPleasure":

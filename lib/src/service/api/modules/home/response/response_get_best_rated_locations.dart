@@ -57,6 +57,7 @@ class ResponseGetBestRatedLocationsLocation {
   String? endereco;
   String? imgUrl;
   double? averageGrade;
+  String? averageImpressionStatus;
   int? reviewsQnt;
 
   ResponseGetBestRatedLocationsLocation({
@@ -65,6 +66,7 @@ class ResponseGetBestRatedLocationsLocation {
     this.endereco,
     this.imgUrl,
     this.averageGrade,
+    this.averageImpressionStatus,
     this.reviewsQnt,
   });
 
@@ -75,6 +77,7 @@ class ResponseGetBestRatedLocationsLocation {
       endereco: json['endereco'],
       imgUrl: json['imgUrl'],
       averageGrade: json['averageGrade'],
+      averageImpressionStatus: json['averageImpressionStatus'],
       reviewsQnt: json['reviewsQnt'],
     );
   }

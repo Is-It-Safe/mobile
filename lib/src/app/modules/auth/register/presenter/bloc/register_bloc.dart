@@ -67,12 +67,12 @@ class RegisterBloc extends SafeBloC {
     sexualOrientationsController = StreamController.broadcast();
     doRegisterController = StreamController.broadcast();
 
-    nameController = TextEditingController(text: 'ester');
-    usernameController = TextEditingController(text: 'ester1');
+    nameController = TextEditingController();
+    usernameController = TextEditingController();
     pronounController = TextEditingController();
-    emailController = TextEditingController(text: 'ester1@gmail.com');
-    passwordController = TextEditingController(text: '1234567q');
-    confirmPasswordController = TextEditingController(text: '1234567q');
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
     birthdateController = TextEditingController();
     genderController = TextEditingController();
     sexualOrientationController = TextEditingController();
