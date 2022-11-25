@@ -4,8 +4,10 @@ import 'package:is_it_safe_app/src/service/api/modules/location/response/respons
 
 abstract class ILocationService {
   Future<List<ResponseGetLocationsById>> getLocationById(int id);
-  Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String place);
+  Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String? place);
   Future<void> getLocationByCep(int cep);
   Future<List<ResponseGetLocationsNearUser>> getLocationsNearUser(
-      double userLatitude, double userLongitude);
+    double userLatitude,
+    double userLongitude,
+  );
 }
