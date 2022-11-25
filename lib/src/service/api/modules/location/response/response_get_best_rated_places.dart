@@ -3,7 +3,7 @@ class ResponseGetRatedPlaces {
   String? name;
   String? endereco;
   String? imgUrl;
-  String? averageGrade;
+  double? averageGrade;
   String? averageImpressionStatus;
   int? reviewsQnt;
 
@@ -18,12 +18,13 @@ class ResponseGetRatedPlaces {
 
   factory ResponseGetRatedPlaces.fromJson(Map<String, dynamic> json) {
     return ResponseGetRatedPlaces(
-        id: json['id'],
-        name: json['name'],
-        endereco: json['endereco'],
-        imgUrl: json['imgUrl'],
-        averageGrade: json['averageGrade'],
-        averageImpressionStatus: json['averageImpressionStatus'],
-        reviewsQnt: json['reviewsQnt']);
+      id: json['id'],
+      name: json['name'],
+      endereco: json['endereco'],
+      imgUrl: json['imgUrl'],
+      averageGrade: json['averageGrade'],
+      averageImpressionStatus: json['averageImpressionStatus'],
+      reviewsQnt: json['reviewsQnt'],
+    );
   }
 }

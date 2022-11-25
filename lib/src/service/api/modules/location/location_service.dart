@@ -38,11 +38,15 @@ class LocationService implements ILocationService {
   }
 
   @override
-  Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String place) async {
+  Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String? place) async {
     final token = await _authService.getAccessToken();
 
+    final path = place == null
+        ? ApiConstants.getBestRatedLocations
+        : '${ApiConstants.getBestRatedLocationsByCity}$place';
+
     final requestConfig = RequestConfig(
-      path: '${ApiConstants.getBestRatedPlaces}$place',
+      path: path,
       method: HttpMethod.get,
       options: Options(
         headers: {ApiConstants.kAuthorization: token},
