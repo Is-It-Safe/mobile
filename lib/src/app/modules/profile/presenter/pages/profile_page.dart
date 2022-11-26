@@ -115,7 +115,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
                                   type: SnackBarType.error,
                                 ).show(context);
                         },
-                        name: name.toString(),
+                        name: name,
 
                         //TODO substituir por: controller.shareReview
                         // onShare: () {},

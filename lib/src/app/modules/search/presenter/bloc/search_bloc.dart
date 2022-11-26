@@ -50,6 +50,6 @@ class SearchBloc extends SafeBloC {
   @override
   Future<void> dispose() async {
     searchController.close();
-    placeSearchController.dispose();
+    placeSearchController.clear();
   }
 }

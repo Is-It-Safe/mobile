@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:geocoding/geocoding.dart';
 
 abstract class ISharedPreferencesService {
   void saveOnBoarding(bool value);
@@ -17,6 +18,6 @@ abstract class ISharedPreferencesService {
   Future<String> readUserName();
   void saveUserImage(String value);
   Future<String> readUserImage();
-  void savePlace(String value);
-  Future<String> readPlace();
+  void savePlace(Placemark value);
+  Future<Placemark> readPlace();
 }
