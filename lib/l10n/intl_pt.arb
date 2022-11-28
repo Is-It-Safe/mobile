@@ -132,8 +132,12 @@
     "textShareUserReview":"Texto copiado!",
     "textDontFoundThePlace":"Não encontrou o local que estava procurando?",
     "textCreateHere":"Crie ele aqui.",
-    "textDeleteUser":"usuário deletado com sucesso",
+    "textDeleteUser":"Usuário deletado com sucesso",
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
+
+    "textSafeDialogTypeSucces":"Sucesso!",
+    "textSafeDialogTypeAlert":"Atenção!",
+    "textSafeDialogTypeError":"Erro!",
 
     "textOnBoarding1_0":"Foco em",
     "textOnBoarding1_1":"segurança",

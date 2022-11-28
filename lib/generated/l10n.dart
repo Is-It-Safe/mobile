@@ -1270,10 +1270,10 @@ class S {
     );
   }
 
-  /// `usuário deletado com sucesso`
+  /// `Usuário deletado com sucesso`
   String get textDeleteUser {
     return Intl.message(
-      'usuário deletado com sucesso',
+      'Usuário deletado com sucesso',
       name: 'textDeleteUser',
       desc: '',
       args: [],
@@ -1285,6 +1285,36 @@ class S {
     return Intl.message(
       'Exemplo: Ela/Dela, Elu/Delu, Ela/Elu',
       name: 'textExamplePronouns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sucesso!`
+  String get textSafeDialogTypeSucces {
+    return Intl.message(
+      'Sucesso!',
+      name: 'textSafeDialogTypeSucces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atenção!`
+  String get textSafeDialogTypeAlert {
+    return Intl.message(
+      'Atenção!',
+      name: 'textSafeDialogTypeAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Erro!`
+  String get textSafeDialogTypeError {
+    return Intl.message(
+      'Erro!',
+      name: 'textSafeDialogTypeError',
       desc: '',
       args: [],
     );

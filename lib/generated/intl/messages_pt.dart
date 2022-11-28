@@ -75,7 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDeleteAccount":
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
         "textDeleteUser": MessageLookupByLibrary.simpleMessage(
-            "usuário deletado com sucesso"),
+            "Usuário deletado com sucesso"),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
@@ -196,6 +196,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textReviewCompleted":
             MessageLookupByLibrary.simpleMessage("Review Completa!"),
         "textReviews": MessageLookupByLibrary.simpleMessage("Avaliações"),
+        "textSafeDialogTypeAlert":
+            MessageLookupByLibrary.simpleMessage("Atenção!"),
+        "textSafeDialogTypeError":
+            MessageLookupByLibrary.simpleMessage("Erro!"),
+        "textSafeDialogTypeSucces":
+            MessageLookupByLibrary.simpleMessage("Sucesso!"),
         "textSafeForLGBT": MessageLookupByLibrary.simpleMessage(
             "Seguro para pessoas LGBTQIA+"),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
