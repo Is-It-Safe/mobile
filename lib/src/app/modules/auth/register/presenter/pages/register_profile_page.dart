@@ -86,14 +86,18 @@ class _RegisterProfilePageState
         case Status.done:
           showDialog(
             context: context,
-            builder: (context) => SafeDialogs.dialog(
+            builder: (context) => SafeDialog(
               title: S.current.textRegisterSuccess,
               message: S.current.textRegisterSuccessMessage,
-              onTap: () {
-                Modular.to.pop();
-                Modular.to
-                    .pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
-              },
+              primaryBtn: SafeButton(
+                title: S.current.textOk,
+                onTap: () {
+                  Modular.to.pop();
+                  Modular.to
+                      .pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
+                },
+              ),
+              type: SafeDialogType.success,
             ),
           );
           break;
@@ -105,7 +109,13 @@ class _RegisterProfilePageState
 
           showDialog(
             context: context,
-            builder: (_) => SafeDialogs.error(message: event.message),
+            builder: (_) => SafeDialog(
+              message: event.message ?? S.current.textErrorDropdown,
+              primaryBtn: SafeButton(
+                title: S.current.textOk,
+              ),
+              type: SafeDialogType.error,
+            ),
           );
           break;
       }
