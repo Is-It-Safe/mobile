@@ -13,6 +13,8 @@ import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
+import 'confirm_password.dart';
+
 class AccountPage extends StatefulWidget {
   static const route = '/account/';
 
@@ -193,10 +195,11 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
     return AccountInfoButton(
       text: S.current.textChangePassword,
       //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
+      onTap: () => Modular.to.push(
+        MaterialPageRoute(
+          builder: (_) => const ConfirmPassword(),
+        ),
+      ),
     );
   }
 

@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -63,6 +64,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "textConfiguration":
             MessageLookupByLibrary.simpleMessage("Configurações"),
         "textConfirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
+        "textConfirmCurrentPassword":
+            MessageLookupByLibrary.simpleMessage("Confirme sua senha atual"),
+        "textConfirmPassword":
+            MessageLookupByLibrary.simpleMessage("Confirme sua senha"),
         "textContact": MessageLookupByLibrary.simpleMessage("Contato"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
         "textCreateHere":
@@ -93,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textError": MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
+        "textErrorConfirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível confirmar sua senha!"),
         "textErrorDeleteReview": MessageLookupByLibrary.simpleMessage(
             "Não foi possível deletar a review!"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
@@ -188,6 +195,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPublishedReview":
             MessageLookupByLibrary.simpleMessage("Sua review foi publicada!"),
         "textReady": MessageLookupByLibrary.simpleMessage("Pronto"),
+        "textReenterPassword1_0":
+            MessageLookupByLibrary.simpleMessage("Insira sua senha novamente"),
+        "textReenterPassword1_1":
+            MessageLookupByLibrary.simpleMessage("para continuar."),
         "textRegister": MessageLookupByLibrary.simpleMessage("Cadastrar"),
         "textRegisterSuccess": MessageLookupByLibrary.simpleMessage(
             "Cadastro realizado com sucesso!"),

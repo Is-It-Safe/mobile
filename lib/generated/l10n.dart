@@ -1290,6 +1290,56 @@ class S {
     );
   }
 
+  /// `Confirme sua senha`
+  String get textConfirmPassword {
+    return Intl.message(
+      'Confirme sua senha',
+      name: 'textConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insira sua senha novamente`
+  String get textReenterPassword1_0 {
+    return Intl.message(
+      'Insira sua senha novamente',
+      name: 'textReenterPassword1_0',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `para continuar.`
+  String get textReenterPassword1_1 {
+    return Intl.message(
+      'para continuar.',
+      name: 'textReenterPassword1_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirme sua senha atual`
+  String get textConfirmCurrentPassword {
+    return Intl.message(
+      'Confirme sua senha atual',
+      name: 'textConfirmCurrentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível confirmar sua senha!`
+  String get textErrorConfirmPassword {
+    return Intl.message(
+      'Não foi possível confirmar sua senha!',
+      name: 'textErrorConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Foco em`
   String get textOnBoarding1_0 {
     return Intl.message(
