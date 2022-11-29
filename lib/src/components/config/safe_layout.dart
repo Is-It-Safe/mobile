@@ -64,7 +64,7 @@ class SafeLayout {
               ),
               type: SafeDialogType.error,
               // onTap: () => Navigator.pop(context),
-            ).error(),
+            ),
           );
         });
       }

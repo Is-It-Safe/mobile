@@ -154,7 +154,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
       controller: controller.passwordController,
       obscureText: _showPassword,
       labelText: S.current.textPassword + StringConstants.asterisk,
-      bottomText: S.current.textTellUsTheEmailAssociatedWithYourAccount,
+      bottomText: S.current.textPasswordSpecifications,
       onChanged: (value) => controller.toogleRegisterButton(),
       validator: (value) => controller.validatePassword(value),
       suffixIcon: SafeShowFieldButton(

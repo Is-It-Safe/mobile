@@ -110,11 +110,11 @@ class _RegisterProfilePageState
           showDialog(
             context: context,
             builder: (_) => SafeDialog(
-              message: event.message ?? 'Mensagem Padrão',
-              type: SafeDialogType.error,
+              message: event.message ?? S.current.textErrorDropdown,
               primaryBtn: SafeButton(
                 title: S.current.textOk,
               ),
+              type: SafeDialogType.error,
             ),
           );
           break;
