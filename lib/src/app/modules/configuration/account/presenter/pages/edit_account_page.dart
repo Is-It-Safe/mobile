@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/edit_account_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_button.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_tile.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_section_banner.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/edit_account_banner.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
@@ -13,9 +9,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dropdown.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_text_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
@@ -33,6 +26,8 @@ class EditAccountPage extends StatefulWidget {
   State<EditAccountPage> createState() => _EditAccountPageState();
 }
 
+final _scaffoldKey = GlobalKey<ScaffoldState>();
+final _formKey = GlobalKey<FormState>();
 bool isGenderDropdownExpanded = false;
 bool isSexualOrientationDropdownExpanded = false;
 
@@ -41,6 +36,7 @@ class _EditAccountPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: SafeAppBar(
         title: S.current.textConfiguration,
       ),
@@ -69,67 +65,167 @@ class _EditAccountPageState
     );
   }
 
+  submit() {
+    Modular.to.pop(context);
+  }
+
   Widget _mountEditNameField() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(
-            S.current.textName,
-            style: TextStyles.subtitle1(),
-          ),
-        ),
-        const SizedBox(height: 8),
-        SafeTextFormField(
-          controller: controller.nameController,
-          labelText: S.current.textName,
-          keyboardType: TextInputType.name,
-        )
-      ],
-    );
+    return StreamBuilder<SafeEvent<UserEntity>>(
+        stream: controller.userController.stream,
+        builder: (context, snapshot) {
+          final user = snapshot.data?.data;
+          switch (snapshot.data?.status) {
+            case Status.loading:
+              return const SafeLoading();
+            case Status.error:
+              showDialog(
+                context: context,
+                builder: (context) => SafeDialogs.error(
+                  message: snapshot.data?.message,
+                ),
+              );
+              break;
+            case Status.done:
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      S.current.textName,
+                      style: TextStyles.subtitle1(),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SafeTextFormField(
+                    controller: controller.nameController,
+                    labelText: S.current.textName,
+                    keyboardType: TextInputType.name,
+                  )
+                ],
+              );
+
+            default:
+              return const Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: SafeLoading(),
+              );
+          }
+          return const SizedBox.shrink();
+        });
   }
 
   Widget _mountEditNickNameField() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Text(
-          S.current.textNickName,
-          style: TextStyles.subtitle1(),
-        ),
-      ),
-      const SizedBox(height: 8),
-      SafeTextFormField(
-        controller: controller.usernameController,
-        labelText: S.current.textUsername,
-        keyboardType: TextInputType.name,
-      ),
-    ]);
+    return StreamBuilder<SafeEvent<UserEntity>>(
+        stream: controller.userController.stream,
+        builder: (context, snapshot) {
+          final user = snapshot.data?.data;
+          switch (snapshot.data?.status) {
+            case Status.loading:
+              return const SafeLoading();
+            case Status.error:
+              showDialog(
+                context: context,
+                builder: (context) => SafeDialogs.error(
+                  message: snapshot.data?.message,
+                ),
+              );
+              break;
+            case Status.done:
+              return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        S.current.textNickName,
+                        style: TextStyles.subtitle1(),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    SafeTextFormField(
+                      controller: controller.usernameController,
+                      labelText: S.current.textUsername,
+                      keyboardType: TextInputType.name,
+                    ),
+                  ]);
+            default:
+              return const Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: SafeLoading(),
+              );
+          }
+          return const SizedBox.shrink();
+        });
   }
 
   Widget _mountEditBirthdateField() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(
-            S.current.textDateOfBirth,
-            style: TextStyles.subtitle1(),
-          ),
-        ),
-        const SizedBox(height: 8),
-        SafeTextFormField(
-          controller: controller.birthdateController,
-          labelText: S.current.textDateOfBirth,
-          inputFormatters: [controller.birthdayInputMask],
-          keyboardType: TextInputType.number,
-          validator: (value) => controller.validateBirthdate(value),
-        )
-      ],
-    );
+    return StreamBuilder<SafeEvent<UserEntity>>(
+        stream: controller.userController.stream,
+        builder: (context, snapshot) {
+          final user = snapshot.data?.data;
+          switch (snapshot.data?.status) {
+            case Status.loading:
+              return const SafeLoading();
+            case Status.error:
+              showDialog(
+                context: context,
+                builder: (context) => SafeDialogs.error(
+                  message: snapshot.data?.message,
+                ),
+              );
+              break;
+            case Status.done:
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      S.current.textDateOfBirth,
+                      style: TextStyles.subtitle1(),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SafeTextFormField(
+                    controller: controller.birthdateController,
+                    labelText: S.current.textDateOfBirth,
+                    inputFormatters: [controller.birthdayInputMask],
+                    keyboardType: TextInputType.number,
+                    validator: (value) => controller.validateBirthdate(value),
+                  )
+                ],
+              );
+            default:
+              return const Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: SafeLoading(),
+              );
+          }
+          return const SizedBox.shrink();
+        });
   }
+  // Column(
+  //   crossAxisAlignment: CrossAxisAlignment.start,
+  //   children: [
+  //     Padding(
+  //       padding: const EdgeInsets.only(left: 8.0),
+  //       child: Text(
+  //         S.current.textDateOfBirth,
+  //         style: TextStyles.subtitle1(),
+  //       ),
+  //     ),
+  //     const SizedBox(height: 8),
+  //     SafeTextFormField(
+  //       controller: controller.birthdateController,
+  //       labelText: S.current.textDateOfBirth,
+  //       inputFormatters: [controller.birthdayInputMask],
+  //       keyboardType: TextInputType.number,
+  //       validator: (value) => controller.validateBirthdate(value),
+  //     )
+  //   ],
+  // );
+  // }
 
   Widget _mountSexualOrientationsDropdown() {
     return StreamBuilder<SafeEvent<List<SexualOrientationEntity>>>(
