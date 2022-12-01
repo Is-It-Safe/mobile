@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 class RequestAddLocation {
   String? name;
   String? cep;
@@ -18,12 +20,16 @@ class RequestAddLocation {
     imgUrl = json['file'];
   }
 
-  Map<String, dynamic> toJson() {
+  FormData toFormData() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['cep'] = cep;
     data['locationTypeId'] = locationTypeId;
-    data['file'] = imgUrl;
-    return data;
+    if (imgUrl != null) {
+      data['file'] = MultipartFile.fromFileSync(imgUrl!);
+    } else {
+      data['file'] = null;
+    }
+    return FormData.fromMap(data);
   }
 }

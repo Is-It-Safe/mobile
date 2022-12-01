@@ -4,28 +4,30 @@ import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/modules/add_location/response/request_add_location.dart';
+import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 
 import 'add_location_service_contract.dart';
 
 class AddLocationService implements AddLocationServiceContract {
   final ApiService _service = ApiService();
+  final AuthService _authService;
+
+  AddLocationService(this._authService);
 
   @override
   Future<bool> addLocationService({
     required RequestAddLocation request,
   }) async {
-    final requestConfig = RequestConfig(
-      path: ApiConstants.addLocation,
-      method: HttpMethod.post,
-      body: request.toJson(),
+    final token = await _authService.getAccessToken();
+    final response = await _service.dio.post(
+      ApiConstants.addLocation,
+      data: request.toFormData(),
       options: Options(
         headers: {
-          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
+          ApiConstants.kAuthorization: token,
         },
       ),
     );
-    final response = await _service.doRequest(requestConfig);
 
     if (response.statusCode == 200) {
       return true;

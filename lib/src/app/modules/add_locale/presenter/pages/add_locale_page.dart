@@ -36,8 +36,7 @@ class _AddLocalePageState extends ModularState<AddLocalePage, AddLocaleBloc> {
         builder: (context, snapshot) {
           return AnimatedSwitcher(
             duration: const Duration(milliseconds: 200),
-            child: snapshot.connectionState == ConnectionState.none &&
-                    snapshot.data == null
+            child: snapshot.connectionState != ConnectionState.waiting
                 ? SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(

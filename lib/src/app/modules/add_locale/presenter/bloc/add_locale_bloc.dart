@@ -61,6 +61,7 @@ class AddLocaleBloc extends SafeBloC {
         name: localeNameController.text,
         cep: localeCepController.text,
         locationTypeId: locationId,
+        imgUrl: imageNotifier.value,
       ),
     );
     if (result == true) {
