@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/app/modules/location/review/presenter/bloc/re
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_impression_carroussel.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_slider_emoji.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
@@ -52,14 +53,18 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
           initialData: SafeEvent.initial(),
           builder: (context, snapshot) {
             // if (snapshot.data?.status == Status.done) {
-            //   showDialog(
-            //     context: context,
-            //     builder: (context) => SafeDialog(
-            //       title: S.current.textPublishedReview,
-            //       message: snapshot.data?.data?.message,
-            //       onTap: () => Modular.to.pop(),
-            //     ).show(),
-            //   );
+            //   Future.delayed(Duration.zero, () {
+            //     showDialog(
+            //       context: context,
+            //       builder: (context) => SafeDialog(
+            //         title: S.current.textPublishedReview,
+            //         message:
+            //             snapshot.data?.data?.message ?? StringConstants.empty,
+            //         type: SafeDialogType.success,
+            //         primaryBtn: SafeButton(title: S.current.textOk),
+            //       ),
+            //     );
+            //   });
             // }
             return SafeLayout(
               snapshot: snapshot,

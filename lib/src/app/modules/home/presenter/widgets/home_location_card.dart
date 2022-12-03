@@ -35,6 +35,9 @@ class HomeLocationCard extends StatelessWidget {
               height: location.imagePath?.isNotEmpty == true ? 0.0 : 16.0,
             ),
             _mountBody(context),
+            const SizedBox(height: 0),
+            _textExpansionTile(context),
+            const SizedBox(height: 8),
           ],
         ),
       ),
@@ -143,6 +146,34 @@ class HomeLocationCard extends StatelessWidget {
               StringConstants.space +
               S.current.textReviews,
           style: TextStyles.helper(color: SafeColors.textColors.dark),
+        ),
+      ],
+    );
+  }
+
+  Widget _textExpansionTile(BuildContext context) {
+    return ExpansionTile(
+      trailing: const Icon(Icons.more_horiz),
+      title: Row(
+        children: [
+          SvgPicture.asset(AssetConstants.icons.comment),
+          const SizedBox(width: 10),
+          Text(
+            location.reviewsQnt.toString() +
+                StringConstants.space +
+                S.current.textReviews,
+            style: TextStyles.helper(color: SafeColors.textColors.dark),
+          ),
+        ],
+      ),
+      expandedCrossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('ID do Local: ${location.id}'),
+        Text(
+          'ID da review: ${location.reviewEntity?.id.toString()}',
+        ),
+        Text(
+          'Texto da review: ${location.reviewEntity?.review}',
         ),
       ],
     );

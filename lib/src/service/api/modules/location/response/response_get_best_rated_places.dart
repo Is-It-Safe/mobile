@@ -1,3 +1,5 @@
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_review.dart';
+
 class ResponseGetRatedPlaces {
   int? id;
   String? name;
@@ -6,15 +8,18 @@ class ResponseGetRatedPlaces {
   double? averageGrade;
   String? averageImpressionStatus;
   int? reviewsQnt;
+  ResponseLocationReview? review;
 
-  ResponseGetRatedPlaces(
-      {this.id,
-      this.name,
-      this.endereco,
-      this.imgUrl,
-      this.averageGrade,
-      this.averageImpressionStatus,
-      this.reviewsQnt});
+  ResponseGetRatedPlaces({
+    this.id,
+    this.name,
+    this.endereco,
+    this.imgUrl,
+    this.averageGrade,
+    this.averageImpressionStatus,
+    this.reviewsQnt,
+    this.review,
+  });
 
   factory ResponseGetRatedPlaces.fromJson(Map<String, dynamic> json) {
     return ResponseGetRatedPlaces(
@@ -25,6 +30,7 @@ class ResponseGetRatedPlaces {
       averageGrade: json['averageGrade'],
       averageImpressionStatus: json['averageImpressionStatus'],
       reviewsQnt: json['reviewsQnt'],
+      review: json['review'],
     );
   }
 }
