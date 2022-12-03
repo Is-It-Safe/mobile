@@ -7,7 +7,6 @@ import 'package:is_it_safe_app/src/app/modules/location/review/presenter/bloc/re
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_impression_carroussel.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_slider_emoji.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
