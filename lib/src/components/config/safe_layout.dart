@@ -77,7 +77,7 @@ class SafeLayout {
           return onLoading;
         case Status.done:
           if (_checkIfListIsNotEmpty() || _checkIfDataIsNotEmpty()) {
-            //if (doOnCompleted != null) doOnCompleted!();
+            if (doOnCompleted != null) doOnCompleted!();
             return onCompleted;
           }
           return onEmpty;
@@ -89,12 +89,15 @@ class SafeLayout {
 
   bool _checkIfListIsNotEmpty() {
     if (snapshot.data?.data is List) {
-      if (snapshot.data?.data.isNotEmpty) return true;
+      if (snapshot.data?.data.isEmpty) return false;
     }
-    return false;
+    return true;
   }
 
   bool _checkIfDataIsNotEmpty() {
-    return snapshot.data?.data == null;
+    if (snapshot.data?.data != null) {
+      if (snapshot.data?.data.isEmpty) return false;
+    }
+    return true;
   }
 }
