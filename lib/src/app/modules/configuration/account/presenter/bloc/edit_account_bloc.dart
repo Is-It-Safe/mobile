@@ -16,7 +16,9 @@ import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class EditAccountBloc extends SafeBloC {
@@ -24,6 +26,7 @@ class EditAccountBloc extends SafeBloC {
   final SaveUserLoginUseCase saveUserLoginUseCase;
   final GetSexualOrientationsUseCase getSexualOrientationsUseCase;
   final GetGendersUseCase getGendersUseCase;
+  final UpdateUserUseCase updateUserUseCase;
 
   late final MaskTextInputFormatter birthdayInputMask;
 
@@ -31,6 +34,8 @@ class EditAccountBloc extends SafeBloC {
   late StreamController<SafeEvent<List<GenderEntity>>> gendersController;
   late StreamController<SafeEvent<List<SexualOrientationEntity>>>
       sexualOrientationsController;
+  late StreamController<SafeEvent<UserEntity>> upDateUserController;
+  late StreamController<bool> upDateButtonController;
   late TextEditingController nameController;
   late TextEditingController usernameController;
   late TextEditingController birthdateController;
@@ -40,6 +45,7 @@ class EditAccountBloc extends SafeBloC {
   List<SexualOrientationEntity> listSexualOrientations = [];
 
   EditAccountBloc({
+    required this.updateUserUseCase,
     required this.getUserUseCase,
     required this.saveUserLoginUseCase,
     required this.getGendersUseCase,
@@ -52,16 +58,52 @@ class EditAccountBloc extends SafeBloC {
   Future<void> init() async {
     userController = StreamController.broadcast();
     getUser();
-    // getGenders();
-    // getSexualOrientations();
+    getGenders();
+    getSexualOrientations();
     birthdayInputMask = MaskTextInputFormatter(mask: StringConstants.dateMask);
     sexualOrientationsController = StreamController.broadcast();
-    nameController = TextEditingController(text: 'ester');
-    usernameController = TextEditingController(text: 'ester1');
+    nameController = TextEditingController();
+    usernameController = TextEditingController();
     birthdateController = TextEditingController();
     gendersController = StreamController.broadcast();
     sexualOrientationController = TextEditingController();
     genderController = TextEditingController();
+    upDateButtonController = StreamController.broadcast();
+  }
+
+  Future<void> updateUser() async {
+    try {
+      upDateUserController.sink.add(SafeEvent.load());
+      RequestUpdateUser request = RequestUpdateUser(
+        // id: 1,
+        name: nameController.text,
+        nickname: usernameController.text,
+        // birthDate: isAdvanceButton == true
+        //     ? birthdateController.text
+        //     : StringConstants.empty,
+        // pronoun: "pronounController.text",
+        genderId: int.parse(genderController.text ?? 11.toString()),
+        sexualOrientationId:
+            int.parse(sexualOrientationController.text ?? 8.toString()),
+        // profilePhoto: /* isAdvanceButton == true
+        //     ? selectedProfilePhoto
+        //     : */
+        //     StringConstants.empty,
+      );
+      UserEntity userEntity = await updateUserUseCase.call(request);
+      upDateUserController.sink.add(SafeEvent.done(userEntity));
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+      upDateUserController.sink.add(SafeEvent.error(e.toString()));
+    }
+  }
+
+  void toogleUpdateButton() {
+    bool isRegisterButtonEnabled = (nameController.text.isNotEmpty &&
+        usernameController.text.isNotEmpty &&
+        genderController.text.isNotEmpty &&
+        sexualOrientationController.text.isNotEmpty);
+    upDateButtonController.sink.add(isRegisterButtonEnabled);
   }
 
   Future<void> getUser() async {
@@ -70,7 +112,6 @@ class EditAccountBloc extends SafeBloC {
       final response = await getUserUseCase.call();
       userController.sink.add(SafeEvent.done(response));
     } on Exception catch (e) {
-      //TODO colocar tratamento de erro de autenticação em todas as requisições
       userController.addError(e.toString());
       if (e is UnauthorizedException) await doLogout();
     }

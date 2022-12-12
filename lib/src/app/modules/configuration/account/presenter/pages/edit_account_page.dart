@@ -42,38 +42,63 @@ class _EditAccountPageState
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            EditAccountBanner(text: S.current.textEditPersonalInformation),
-            const SizedBox(height: 16),
-            _mountEditNameField(),
-            const SizedBox(height: 16),
-            _mountEditNickNameField(),
-            const SizedBox(height: 16),
-            _mountEditBirthdateField(),
-            const SizedBox(height: 16),
-            _mountSexualOrientationsDropdown(),
-            const SizedBox(height: 16),
-            _mountGenderDropdown(),
-            const SizedBox(height: 24),
-            const SafeButton(title: "ATUALIZAR INFORMAÇÕES"),
-            const SizedBox(height: 20),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              EditAccountBanner(text: S.current.textEditPersonalInformation),
+              const SizedBox(height: 16),
+              _mountEditNameField(),
+              const SizedBox(height: 16),
+              _mountEditNickNameField(),
+              const SizedBox(height: 16),
+              _mountEditBirthdateField(),
+              const SizedBox(height: 16),
+              _mountSexualOrientationsDropdown(),
+              const SizedBox(height: 16),
+              _mountGenderDropdown(),
+              const SizedBox(height: 24),
+              _mountUpdateUserButton(),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
   }
 
   submit() {
+    _formKey.currentState?.validate();
     Modular.to.pop(context);
+  }
+
+  Widget _mountUpdateUserButton() {
+    return StreamBuilder<bool>(
+      stream: controller.upDateButtonController.stream,
+      initialData: false,
+      builder: (context, snapshot) {
+        return SafeButton(
+          title: S.current.textUpdateInformation,
+          size: ButtonSize.large,
+          state:
+              snapshot.data == true ? ButtonState.rest : ButtonState.disabled,
+          onTap: () async {
+            _formKey.currentState?.validate();
+            if (snapshot.data == true) {
+              // await controller.save();
+            }
+          },
+        );
+      },
+    );
   }
 
   Widget _mountEditNameField() {
     return StreamBuilder<SafeEvent<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
-          final user = snapshot.data?.data;
+          final name = snapshot.data?.data!.name;
           switch (snapshot.data?.status) {
             case Status.loading:
               return const SafeLoading();
@@ -86,6 +111,7 @@ class _EditAccountPageState
               );
               break;
             case Status.done:
+              controller.nameController.text = name!;
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -101,6 +127,7 @@ class _EditAccountPageState
                     controller: controller.nameController,
                     labelText: S.current.textName,
                     keyboardType: TextInputType.name,
+                    onChanged: (value) => controller.toogleUpdateButton(),
                   )
                 ],
               );
@@ -119,7 +146,8 @@ class _EditAccountPageState
     return StreamBuilder<SafeEvent<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
-          final user = snapshot.data?.data;
+          final nickname = snapshot.data?.data!.nickname;
+
           switch (snapshot.data?.status) {
             case Status.loading:
               return const SafeLoading();
@@ -132,6 +160,7 @@ class _EditAccountPageState
               );
               break;
             case Status.done:
+              controller.usernameController.text = nickname!;
               return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -147,6 +176,7 @@ class _EditAccountPageState
                       controller: controller.usernameController,
                       labelText: S.current.textUsername,
                       keyboardType: TextInputType.name,
+                      onChanged: (value) => controller.toogleUpdateButton(),
                     ),
                   ]);
             default:
@@ -163,7 +193,7 @@ class _EditAccountPageState
     return StreamBuilder<SafeEvent<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
-          final user = snapshot.data?.data;
+          final birthDate = snapshot.data?.data!.birthDate;
           switch (snapshot.data?.status) {
             case Status.loading:
               return const SafeLoading();
@@ -176,6 +206,7 @@ class _EditAccountPageState
               );
               break;
             case Status.done:
+              controller.birthdateController.text = birthDate!;
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -192,7 +223,8 @@ class _EditAccountPageState
                     labelText: S.current.textDateOfBirth,
                     inputFormatters: [controller.birthdayInputMask],
                     keyboardType: TextInputType.number,
-                    validator: (value) => controller.validateBirthdate(value),
+                    // validator: (value) => controller.validateBirthdate(value),
+                    onChanged: (value) => controller.toogleUpdateButton(),
                   )
                 ],
               );

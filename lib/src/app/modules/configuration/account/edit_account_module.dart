@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
@@ -20,11 +21,13 @@ class EditAccountModule extends Module {
     Bind.lazySingleton((i) => GetUserUseCase()),
     Bind.lazySingleton((i) => GetGendersUseCase()),
     Bind.lazySingleton((i) => GetSexualOrientationsUseCase()),
+    Bind.lazySingleton((i) => UpdateUserUseCase()),
     Bind.lazySingleton((i) => EditAccountBloc(
           getUserUseCase: i.get<GetUserUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
           getGendersUseCase: i.get<GetGendersUseCase>(),
           getSexualOrientationsUseCase: i.get<GetSexualOrientationsUseCase>(),
+          updateUserUseCase: i.get<UpdateUserUseCase>(),
         )),
   ];
 

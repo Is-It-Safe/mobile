@@ -910,6 +910,16 @@ class S {
     );
   }
 
+  /// `ATUALIZAR INFORMAÇÕES CONTA`
+  String get textUpdateInformation {
+    return Intl.message(
+      'Atualizar Informações',
+      name: 'textUpdateInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Estrutura`
   String get textStructure {
     return Intl.message(
