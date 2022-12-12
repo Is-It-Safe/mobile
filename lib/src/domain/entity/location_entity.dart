@@ -35,8 +35,10 @@ class LocationEntity {
       averageImpressionStatus:
           location.averageImpressionStatus ?? StringConstants.empty,
       reviewEntity: ReviewEntity(
-        id: location.review ?? 0,
+        id: location.review.id ?? 0,
         review: location.review ?? StringConstants.empty,
+        author: location.author ?? StringConstants.empty,
+        createdAt: location.createdAt ?? StringConstants.empty,
       ),
     );
   }

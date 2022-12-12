@@ -81,8 +81,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
     return StreamBuilder<SafeEvent<UserEntity>>(
       stream: controller.userController.stream,
       builder: (context, snapshot) {
-        // Adicionada inversão da lista, para pegar da review mais recente para a mais antiga.
-        final reviews = snapshot.data?.data?.reviews!.reversed.toList();
+        final reviews = snapshot.data?.data?.reviews?.reversed.toList();
         return SafeLayout(
           snapshot: snapshot,
           context: context,

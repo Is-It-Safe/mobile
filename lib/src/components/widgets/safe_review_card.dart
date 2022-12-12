@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/util/formatter_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
 
 class SafeReviewCard extends StatefulWidget {
@@ -40,40 +41,46 @@ class _SafeReviewCardState extends State<SafeReviewCard> {
       duration: const Duration(milliseconds: 200),
       padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 17.0),
       decoration: BoxDecoration(
-        color: SafeColors.generalColors.primary,
+        color: SafeColors.generalColors.background,
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _mountUserProfile(),
-              // const SizedBox(width: 5),
-              _mountUserName(),
-              _mountReviewDate(),
-            ],
-          ),
-          _mountUserReview(),
-        ],
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _mountUserAvatar(),
+                _mountUserName(),
+                _mountReviewDate(),
+              ],
+            ),
+            _mountUserReview(),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _mountUserProfile() {
-    return SafeProfileAvatar(
-      image: PlaceHolderAssets.profileAvatar,
-      type: ProfileAvatarType.main,
-      size: MediaQuery.of(context).size.width * 0.1,
+  Widget _mountUserAvatar() {
+    return Flexible(
+      flex: 2,
+      child: SafeProfileAvatar(
+        image: PlaceHolderAssets.profileAvatar,
+        type: ProfileAvatarType.main,
+        size: MediaQuery.of(context).size.width * 0.1,
+      ),
     );
   }
 
   Widget _mountUserName() {
     return Flexible(
-      flex: 4,
+      fit: FlexFit.tight,
+      flex: 6,
       child: Text(
-        'My user name' ?? StringConstants.empty,
+        widget.review?.author ?? StringConstants.empty,
         style: TextStyles.subtitle2(),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
@@ -83,10 +90,11 @@ class _SafeReviewCardState extends State<SafeReviewCard> {
 
   Widget _mountReviewDate() {
     return Flexible(
-      flex: 2,
+      flex: 3,
       child: Text(
-        '05/08/07' ?? StringConstants.empty,
-        style: TextStyles.subtitle2(),
+        FormatterUtil.dateFormatter(
+            widget.review?.createdAt ?? StringConstants.empty),
+        style: TextStyles.bodyText2(),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
       ),
@@ -98,34 +106,34 @@ class _SafeReviewCardState extends State<SafeReviewCard> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Container(
-          padding: const EdgeInsets.only(left: 6, right: 6, top: 12),
+          padding: const EdgeInsets.only(top: 14),
           width: MediaQuery.of(context).size.width,
-          child: widget.review!.review!.length > 200
+          child: (widget.review?.review?.length ?? 0) > 200
               ? Text(
                   _isTextExpanded
-                      ? widget.review!.review!
-                      : '${widget.review!.review!.substring(0, 200)}...',
-                  style: TextStyles.subtitle1(),
+                      ? widget.review?.review ?? StringConstants.empty
+                      : '${widget.review?.review?.substring(0, 200)}...',
+                  style: TextStyles.bodyText2(),
                   softWrap: true,
                   textAlign: TextAlign.left,
                 )
               : Text(
-                  widget.review!.review!,
-                  style: TextStyles.subtitle1(),
+                  widget.review?.review ?? StringConstants.empty,
+                  style: TextStyles.bodyText2(),
                   softWrap: true,
                   textAlign: TextAlign.left,
                 ),
         ),
-        const SizedBox(width: 4),
+        const SizedBox(height: 4),
         Visibility(
-          visible: (widget.review?.review!.length ?? 0) >= 200,
+          visible: (widget.review?.review?.length ?? 0) >= 200,
           child: GestureDetector(
             onTap: doSeeMore,
             child: _textSeeMore != S.current.textSeeMore
                 ? Text(
                     _textSeeMore,
                     style: TextStyles.caption(
-                      color: SafeColors.statusColors.error,
+                      color: SafeColors.buttonColors.primary,
                       textDecoration: TextDecoration.underline,
                     ),
                   )
