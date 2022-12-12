@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/key_constants.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
@@ -111,16 +112,18 @@ class SharedPreferencesService implements ISharedPreferencesService {
   }
 
   @override
-  void savePlace(String value) async {
+  void savePlace(Placemark value) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString(KeyConstants.keyPlace, value);
+    prefs.setString(KeyConstants.keyPlace, value.toString());
   }
 
   @override
-  Future<String> readPlace() async {
+  Future<Placemark> readPlace() async {
     final prefs = await SharedPreferences.getInstance();
-    bool _result = prefs.containsKey(KeyConstants.keyPlace);
-    if (!_result) prefs.setString(KeyConstants.keyPlace, StringConstants.place);
-    return prefs.getString(KeyConstants.keyPlace) ?? StringConstants.empty;
+    bool result = prefs.containsKey(KeyConstants.keyPlace);
+    if (!result) prefs.setString(KeyConstants.keyPlace, StringConstants.place);
+    return Placemark.fromMap(
+      prefs.getString(KeyConstants.keyPlace) ?? StringConstants.empty,
+    );
   }
 }

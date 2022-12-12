@@ -42,10 +42,15 @@ class ApiConstants {
   static const String getBestRatedLocations = '${kUrl}location/find-all';
   static const String getLocationsByName = '${kUrl}location/find-all?name=';
   static const String getLocationById = '${kUrl}location';
-  static const String getBestRatedPlaces = '${kUrl}location/trending?cityName=';
+  static const String getBestRatedLocationsByCity =
+      '${kUrl}location/trending?cityName=';
+  static const String getLocationsNearUser = '${kUrl}location/near?';
 
   //User
   static const String getUser = '${kUrl}user/profile';
+
+  static const String deleteUser = '${kUrl}user/delete/';
+
   static const String updateUser = '${kUrl}user/update';
 
   //Review

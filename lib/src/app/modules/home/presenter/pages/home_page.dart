@@ -44,19 +44,18 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
           onBottomTap: (tab) {
             //TODO manter comentado mediante implementação da feature
             if (tab == 0) {
-              // controller.getClosePlacesLocations();
               controller.getCurrentLocation().whenComplete(
                 () {
                   controller.userLocationController.stream.handleError(
                     (x) => SafeSnackBar(
-                      message: S.current.textLocationError,
+                      message: S.current.textErrorGetLocation,
                       type: SnackBarType.error,
                     ),
                   );
                 },
               );
             }
-            if (tab == 1) controller.getBestRatedLocations();
+            if (tab == 1) controller.getBestRatedPlaces();
           },
         ),
         body: TabBarView(
@@ -64,7 +63,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
             SafeEmptyCard.home(),
             _mountTab(
               stream: controller.bestRatedPlacesController.stream,
-              list: controller.listBestRatedLocations,
+              list: controller.listBestRatedPlaces,
             ),
           ],
         ),
@@ -84,8 +83,8 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
           context: context,
           onEmpty: SafeEmptyCard.home(),
           onCompleted: _mountSeparatedList(
-            length: controller.listBestRatedLocations.length,
-            list: controller.listBestRatedLocations,
+            length: controller.listBestRatedPlaces.length,
+            list: controller.listBestRatedPlaces,
           ),
         ).build;
       },
