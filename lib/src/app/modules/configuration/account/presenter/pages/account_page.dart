@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/w
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_tile.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_section_banner.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
@@ -69,8 +70,13 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
             case Status.error:
               showDialog(
                 context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
+                builder: (context) => SafeDialog(
+                  message:
+                      snapshot.data?.message ?? S.current.textErrorDropdown,
+                  primaryBtn: SafeButton(
+                    title: S.current.textOk,
+                  ),
+                  type: SafeDialogType.error,
                 ),
               );
               break;
@@ -108,8 +114,13 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
             case Status.error:
               showDialog(
                 context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
+                builder: (context) => SafeDialog(
+                  message:
+                      snapshot.data?.message ?? S.current.textErrorDropdown,
+                  primaryBtn: SafeButton(
+                    title: S.current.textOk,
+                  ),
+                  type: SafeDialogType.error,
                 ),
               );
               break;

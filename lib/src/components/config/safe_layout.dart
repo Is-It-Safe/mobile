@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 
@@ -57,8 +59,12 @@ class SafeLayout {
             context: context,
             builder: (context) => SafeDialog(
               message: snapshot.error.toString(),
-              onTap: () => Navigator.pop(context),
-            ).error(),
+              primaryBtn: SafeButton(
+                title: S.current.textOk,
+              ),
+              type: SafeDialogType.error,
+              // onTap: () => Navigator.pop(context),
+            ),
           );
         });
       }

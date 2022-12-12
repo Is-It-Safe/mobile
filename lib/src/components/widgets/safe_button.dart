@@ -13,10 +13,12 @@ class SafeButton extends StatelessWidget {
   final Function()? onTap;
   final ButtonSize? size;
   final ButtonState? state;
+  final TextStyle? style;
   const SafeButton({
     Key? key,
     required this.title,
     this.onTap,
+    this.style,
     this.hasBackground = true,
     this.hasBorder = false,
     this.size = ButtonSize.large,
@@ -50,9 +52,10 @@ class SafeButton extends StatelessWidget {
       child: Center(
         child: Text(
           title.toUpperCase(),
-          style: TextStyles.button(
-            color: _getTextColor(),
-          ),
+          style: style ??
+              TextStyles.button(
+                color: _getTextColor(),
+              ),
         ),
       ),
     );
