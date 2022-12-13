@@ -58,8 +58,8 @@ class EditAccountBloc extends SafeBloC {
   Future<void> init() async {
     userController = StreamController.broadcast();
     getUser();
-    getGenders();
-    getSexualOrientations();
+    // getGenders();
+    // getSexualOrientations();
     birthdayInputMask = MaskTextInputFormatter(mask: StringConstants.dateMask);
     sexualOrientationsController = StreamController.broadcast();
     nameController = TextEditingController();
