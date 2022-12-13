@@ -15,6 +15,7 @@ import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart'
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
+import '../../../../../../components/widgets/safe_snack_bar.dart';
 import '../../../../../../core/util/safe_log_util.dart';
 
 class EditAccountPage extends StatefulWidget {
@@ -74,24 +75,53 @@ class _EditAccountPageState
   }
 
   Widget _mountUpdateUserButton() {
-    return StreamBuilder<bool>(
-      stream: controller.upDateButtonController.stream,
-      initialData: false,
-      builder: (context, snapshot) {
-        return SafeButton(
-          title: S.current.textUpdateInformation,
-          size: ButtonSize.large,
-          state:
-              snapshot.data == true ? ButtonState.rest : ButtonState.disabled,
-          onTap: () async {
-            _formKey.currentState?.validate();
-            if (snapshot.data == true) {
-              // await controller.save();
-            }
-          },
-        );
-      },
-    );
+    return StreamBuilder<SafeEvent<UserEntity>>(
+        stream: controller.userController.stream,
+        builder: (context, snapshot) {
+          final userId = snapshot.data?.data!.id;
+          switch (snapshot.data?.status) {
+            case Status.loading:
+              return const SafeLoading();
+            case Status.error:
+              showDialog(
+                context: context,
+                builder: (context) => SafeDialogs.error(
+                  message: snapshot.data?.message,
+                ),
+              );
+              break;
+            case Status.done:
+              return SafeButton(
+                title: S.current.textUpdateInformation,
+                size: ButtonSize.large,
+                onTap: () async {
+                  _formKey.currentState?.save();
+                  bool status = await controller.updateUser(userId: userId!);
+                  if (status) {
+                    // ignore: use_build_context_synchronously
+                    SafeSnackBar(
+                      message: S.current.textInformationChangedSuccessfully,
+                      type: SnackBarType.success,
+                    ).show(context);
+                    Modular.to.pop();
+                    Modular.to.pop();
+                  } else {
+                    // ignore: use_build_context_synchronously
+                    SafeSnackBar(
+                      message: S.current.textUnableToChangeInformation,
+                      type: SnackBarType.error,
+                    ).show(context);
+                  }
+                },
+              );
+            default:
+              return const Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: SafeLoading(),
+              );
+          }
+          return const SizedBox.shrink();
+        });
   }
 
   Widget _mountEditNameField() {

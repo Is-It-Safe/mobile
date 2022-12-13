@@ -1030,6 +1030,26 @@ class S {
     );
   }
 
+  /// `Informações alteradas com sucesso!`
+  String get textInformationChangedSuccessfully {
+    return Intl.message(
+      'Informações alteradas com sucesso!',
+      name: 'textInformationChangedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível alterar suas informações!`
+  String get textUnableToChangeInformation {
+    return Intl.message(
+      'Não foi possível alterar suas informações!',
+      name: 'textUnableToChangeInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Agora escolha um nome para todos verem, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(

@@ -41,6 +41,7 @@ class EditAccountBloc extends SafeBloC {
   late TextEditingController birthdateController;
   late TextEditingController genderController;
   late TextEditingController sexualOrientationController;
+  late TextEditingController userIdController;
   List<GenderEntity> listGenders = [];
   List<SexualOrientationEntity> listSexualOrientations = [];
 
@@ -69,22 +70,24 @@ class EditAccountBloc extends SafeBloC {
     sexualOrientationController = TextEditingController();
     genderController = TextEditingController();
     upDateButtonController = StreamController.broadcast();
+    upDateUserController = StreamController.broadcast();
+    userIdController = TextEditingController();
   }
 
-  Future<void> updateUser() async {
+  Future<bool> updateUser({required int userId}) async {
     try {
       upDateUserController.sink.add(SafeEvent.load());
       RequestUpdateUser request = RequestUpdateUser(
-        // id: 1,
+        id: userId,
         name: nameController.text,
         nickname: usernameController.text,
         // birthDate: isAdvanceButton == true
         //     ? birthdateController.text
         //     : StringConstants.empty,
         // pronoun: "pronounController.text",
-        genderId: int.parse(genderController.text ?? 11.toString()),
-        sexualOrientationId:
-            int.parse(sexualOrientationController.text ?? 8.toString()),
+        // genderId: genderController.text.length,
+        // sexualOrientationId:
+        //     int.parse(sexualOrientationController.text ?? 8.toString()),
         // profilePhoto: /* isAdvanceButton == true
         //     ? selectedProfilePhoto
         //     : */
@@ -92,9 +95,11 @@ class EditAccountBloc extends SafeBloC {
       );
       UserEntity userEntity = await updateUserUseCase.call(request);
       upDateUserController.sink.add(SafeEvent.done(userEntity));
+      return true;
     } catch (e) {
       SafeLogUtil.instance.logError(e);
       upDateUserController.sink.add(SafeEvent.error(e.toString()));
+      return false;
     }
   }
 

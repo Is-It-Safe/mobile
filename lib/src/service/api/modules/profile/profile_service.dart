@@ -65,6 +65,7 @@ class ProfileService implements IProfileService {
     final requestConfig = RequestConfig(
       path: '${ApiConstants.updateUser}/${request.id}',
       method: HttpMethod.put,
+      body: request.toJson(),
       options: Options(
         headers: {
           ApiConstants.kAuthorization: token,
