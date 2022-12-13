@@ -93,7 +93,8 @@ class _SafeReviewCardState extends State<SafeReviewCard> {
       flex: 3,
       child: Text(
         FormatterUtil.dateFormatter(
-            widget.review?.createdAt ?? StringConstants.empty),
+          widget.review?.createdAt ?? StringConstants.empty,
+        ),
         style: TextStyles.bodyText2(),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
