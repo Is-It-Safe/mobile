@@ -60,7 +60,6 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
             //       onTap: () => Modular.to.pop(),
             //     ).show(),
             //   );
-            // }
             return SafeLayout(
               snapshot: snapshot,
               context: context,

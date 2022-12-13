@@ -10,6 +10,8 @@ class ReviewEntity {
   double? myGrade;
   LocationEntity? location;
   String? message;
+  String? author;
+  String? createdAt;
 
   ReviewEntity({
     required this.id,
@@ -18,6 +20,8 @@ class ReviewEntity {
     this.myGrade,
     this.location,
     this.message,
+    this.author,
+    this.createdAt,
   });
 
   factory ReviewEntity.toEntity(ResponseGetUserReview review) {
@@ -32,6 +36,8 @@ class ReviewEntity {
         name: review.locationName ?? StringConstants.empty,
         address: review.locationAddress ?? StringConstants.empty,
       ),
+      author: review.author ?? StringConstants.empty,
+      createdAt: review.createdAt ?? StringConstants.empty,
     );
   }
 }
