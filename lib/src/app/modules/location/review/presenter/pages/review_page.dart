@@ -52,19 +52,14 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
           initialData: SafeEvent.initial(),
           builder: (context, snapshot) {
             // if (snapshot.data?.status == Status.done) {
-            //   Future.delayed(Duration.zero, () {
-            //     showDialog(
-            //       context: context,
-            //       builder: (context) => SafeDialog(
-            //         title: S.current.textPublishedReview,
-            //         message:
-            //             snapshot.data?.data?.message ?? StringConstants.empty,
-            //         type: SafeDialogType.success,
-            //         primaryBtn: SafeButton(title: S.current.textOk),
-            //       ),
-            //     );
-            //   });
-            // }
+            //   showDialog(
+            //     context: context,
+            //     builder: (context) => SafeDialog(
+            //       title: S.current.textPublishedReview,
+            //       message: snapshot.data?.data?.message,
+            //       onTap: () => Modular.to.pop(),
+            //     ).show(),
+            //   );
             return SafeLayout(
               snapshot: snapshot,
               context: context,
