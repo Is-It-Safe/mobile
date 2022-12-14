@@ -15,9 +15,7 @@ class AddLocationService implements AddLocationServiceContract {
   AddLocationService(this._authService);
 
   @override
-  Future<bool> addLocationService({
-    required RequestAddLocation request,
-  }) async {
+  Future<bool> addLocationService({required RequestAddLocation request}) async {
     final token = await _authService.getAccessToken();
     final response = await _service.dio.post(
       ApiConstants.addLocation,

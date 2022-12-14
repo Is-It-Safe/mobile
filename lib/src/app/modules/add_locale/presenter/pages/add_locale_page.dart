@@ -14,7 +14,8 @@ import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 
 class AddLocalePage extends StatefulWidget {
-  static String route = '/add_locale_page/';
+  // static String route = '/add_locale_page/';
+  static String route = '/profile/';
 
   const AddLocalePage({Key? key}) : super(key: key);
 
