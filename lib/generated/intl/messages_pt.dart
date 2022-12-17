@@ -24,6 +24,35 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAbout": MessageLookupByLibrary.simpleMessage("Sobre"),
         "textAccountInformation":
             MessageLookupByLibrary.simpleMessage("Informações da Conta"),
+        "textAddLocaleAddress":
+            MessageLookupByLibrary.simpleMessage("Rua Clodomiro"),
+        "textAddLocaleAddressFieldTitle":
+            MessageLookupByLibrary.simpleMessage("Endereço"),
+        "textAddLocaleCepExample":
+            MessageLookupByLibrary.simpleMessage("04553434"),
+        "textAddLocaleCepFieldTitle":
+            MessageLookupByLibrary.simpleMessage("CEP"),
+        "textAddLocaleConfirm":
+            MessageLookupByLibrary.simpleMessage("ADICIONAR LOCAL"),
+        "textAddLocaleExample":
+            MessageLookupByLibrary.simpleMessage("Ex: Bar santa maria"),
+        "textAddLocaleNameTextFieldTitle":
+            MessageLookupByLibrary.simpleMessage("Nome do local"),
+        "textAddLocalePhotoFieldTitle":
+            MessageLookupByLibrary.simpleMessage("Adicionar Foto (opcional)"),
+        "textAddLocaleSubTitle":
+            MessageLookupByLibrary.simpleMessage("Adicionar Local"),
+        "textAddLocaleTitle":
+            MessageLookupByLibrary.simpleMessage("Configurações"),
+        "textAddLocaleTypeNightClub":
+            MessageLookupByLibrary.simpleMessage("Casa noturna"),
+        "textAddLocaleTypePub": MessageLookupByLibrary.simpleMessage("Bar"),
+        "textAddLocaleTypePublicLocation":
+            MessageLookupByLibrary.simpleMessage("Local público"),
+        "textAddLocaleTypeRestaurant":
+            MessageLookupByLibrary.simpleMessage("Restaurante"),
+        "textAddTypeLocaleFieldTitle":
+            MessageLookupByLibrary.simpleMessage("Tipo de local"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
         "textAngry": MessageLookupByLibrary.simpleMessage("Irritado"),
         "textAppBarChooseProfilePhotoPage":

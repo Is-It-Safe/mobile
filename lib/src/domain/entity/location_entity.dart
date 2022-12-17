@@ -12,6 +12,9 @@ class LocationEntity {
   String? averageImpressionStatus;
   int? reviewsQnt;
   ReviewEntity? reviewEntity;
+  String? cep;
+  int? locationTypeId;
+  String? imgUrl;
 
   LocationEntity({
     required this.id,
@@ -22,6 +25,9 @@ class LocationEntity {
     this.averageImpressionStatus,
     this.reviewsQnt,
     this.reviewEntity,
+    this.cep,
+    this.locationTypeId,
+    this.imgUrl,
   });
 
   factory LocationEntity.toEntity(dynamic location) {
