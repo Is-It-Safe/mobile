@@ -167,7 +167,6 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
   Widget _mountEditProfileButton() {
     return AccountInfoButton(
         text: S.current.textEditProfile,
-        //TODO substituir por: navegação para tela de editar conta
         onTap: () => Modular.to
             .pushNamed(ConfigurationModule.route + EditAccountPage.route));
   }

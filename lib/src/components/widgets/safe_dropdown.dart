@@ -70,6 +70,7 @@ class _SafeDropDownState extends State<SafeDropDown> {
                         widget.controller.text = object.id.toString();
                         widget.isExapanded = !widget.isExapanded;
                       });
+                      debugPrint("${widget.controller.text} - ${widget.title}");
                     },
                     child: Text(
                       object.title,

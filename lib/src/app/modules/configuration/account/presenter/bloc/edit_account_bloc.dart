@@ -42,6 +42,8 @@ class EditAccountBloc extends SafeBloC {
   late TextEditingController genderController;
   late TextEditingController sexualOrientationController;
   late TextEditingController userIdController;
+  late TextEditingController pronounController;
+  late UserEntity responseGetUSer;
   List<GenderEntity> listGenders = [];
   List<SexualOrientationEntity> listSexualOrientations = [];
 
@@ -58,36 +60,44 @@ class EditAccountBloc extends SafeBloC {
   @override
   Future<void> init() async {
     userController = StreamController.broadcast();
-    getUser();
+    upDateButtonController = StreamController.broadcast();
+    upDateUserController = StreamController.broadcast();
+    sexualOrientationsController = StreamController.broadcast();
+    gendersController = StreamController.broadcast();
     // getGenders();
     // getSexualOrientations();
     birthdayInputMask = MaskTextInputFormatter(mask: StringConstants.dateMask);
-    sexualOrientationsController = StreamController.broadcast();
+
     nameController = TextEditingController();
     usernameController = TextEditingController();
     birthdateController = TextEditingController();
-    gendersController = StreamController.broadcast();
     sexualOrientationController = TextEditingController();
     genderController = TextEditingController();
-    upDateButtonController = StreamController.broadcast();
-    upDateUserController = StreamController.broadcast();
     userIdController = TextEditingController();
+    pronounController = TextEditingController();
+    // getUser();
+    // getGenders();
+    // getSexualOrientations();
   }
 
   Future<bool> updateUser({required int userId}) async {
     try {
+      debugPrint(".........>>>>>>${genderController.text} <<<<<<");
       upDateUserController.sink.add(SafeEvent.load());
       RequestUpdateUser request = RequestUpdateUser(
-        id: userId,
-        name: nameController.text,
-        nickname: usernameController.text,
+        id: int.parse(userIdController.text),
+        name: nameController.text.trim(),
+        nickname: usernameController.text.trim(),
+        genderId: genderController.text == null
+            ? int.parse(genderController.text)
+            : null,
+        sexualOrientationId: sexualOrientationController.text == null
+            ? int.parse(sexualOrientationController.text)
+            : null,
         // birthDate: isAdvanceButton == true
         //     ? birthdateController.text
         //     : StringConstants.empty,
         // pronoun: "pronounController.text",
-        // genderId: genderController.text.length,
-        // sexualOrientationId:
-        //     int.parse(sexualOrientationController.text ?? 8.toString()),
         // profilePhoto: /* isAdvanceButton == true
         //     ? selectedProfilePhoto
         //     : */
@@ -114,8 +124,16 @@ class EditAccountBloc extends SafeBloC {
   Future<void> getUser() async {
     try {
       userController.sink.add(SafeEvent.load());
-      final response = await getUserUseCase.call();
-      userController.sink.add(SafeEvent.done(response));
+      responseGetUSer = await getUserUseCase.call();
+      userIdController.text = responseGetUSer.id.toString();
+      nameController.text = responseGetUSer.name!;
+      usernameController.text = responseGetUSer.nickname!;
+      birthdateController.text = responseGetUSer.birthDate!;
+      pronounController.text = responseGetUSer.pronoun!;
+      genderController.text = responseGetUSer.genreId.toString();
+      sexualOrientationController.text =
+          responseGetUSer.sexualOrientationId.toString();
+      userController.sink.add(SafeEvent.done(responseGetUSer));
     } on Exception catch (e) {
       userController.addError(e.toString());
       if (e is UnauthorizedException) await doLogout();
@@ -162,6 +180,13 @@ class EditAccountBloc extends SafeBloC {
   String validateBirthdate(String? value) {
     if (!ValidationUtil.date(value ?? StringConstants.empty) || value == null) {
       return S.current.textErrorInvalidDate;
+    }
+    return StringConstants.empty;
+  }
+
+  String validateTextField(String? value) {
+    if (!ValidationUtil.name(value ?? StringConstants.empty) || value == null) {
+      return S.current.textErrorEmptyField;
     }
     return StringConstants.empty;
   }
