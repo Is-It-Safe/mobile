@@ -64,8 +64,7 @@ class EditAccountBloc extends SafeBloC {
     upDateUserController = StreamController.broadcast();
     sexualOrientationsController = StreamController.broadcast();
     gendersController = StreamController.broadcast();
-    // getGenders();
-    // getSexualOrientations();
+
     birthdayInputMask = MaskTextInputFormatter(mask: StringConstants.dateMask);
 
     nameController = TextEditingController();
@@ -75,9 +74,6 @@ class EditAccountBloc extends SafeBloC {
     genderController = TextEditingController();
     userIdController = TextEditingController();
     pronounController = TextEditingController();
-    // getUser();
-    // getGenders();
-    // getSexualOrientations();
   }
 
   Future<bool> updateUser({required int userId}) async {
