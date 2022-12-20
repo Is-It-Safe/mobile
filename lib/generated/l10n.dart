@@ -1290,36 +1290,6 @@ class S {
     );
   }
 
-  /// `Sucesso!`
-  String get textSafeDialogTypeSucces {
-    return Intl.message(
-      'Sucesso!',
-      name: 'textSafeDialogTypeSucces',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Atenção!`
-  String get textSafeDialogTypeAlert {
-    return Intl.message(
-      'Atenção!',
-      name: 'textSafeDialogTypeAlert',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Erro!`
-  String get textSafeDialogTypeError {
-    return Intl.message(
-      'Erro!',
-      name: 'textSafeDialogTypeError',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Confirme sua senha`
   String get textConfirmPassword {
     return Intl.message(
@@ -1365,6 +1335,36 @@ class S {
     return Intl.message(
       'Não foi possível confirmar sua senha!',
       name: 'textErrorConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sucesso!`
+  String get textSafeDialogTypeSucces {
+    return Intl.message(
+      'Sucesso!',
+      name: 'textSafeDialogTypeSucces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atenção!`
+  String get textSafeDialogTypeAlert {
+    return Intl.message(
+      'Atenção!',
+      name: 'textSafeDialogTypeAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Erro!`
+  String get textSafeDialogTypeError {
+    return Intl.message(
+      'Erro!',
+      name: 'textSafeDialogTypeError',
       desc: '',
       args: [],
     );
