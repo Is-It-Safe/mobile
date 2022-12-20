@@ -3,7 +3,7 @@ import 'package:is_it_safe_app/src/components/location/safe_locator.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_Case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service.dart';
