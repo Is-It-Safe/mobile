@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/location/add_location/presenter/bloc/add_locale_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/location/add_location/presenter/widgets/locale_photo_component.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_photo.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
@@ -13,17 +13,17 @@ import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 
-class AddLocalePage extends StatefulWidget {
-  static String route = '/profile/';
-  // static String route = '/add_locale_page/';
+class SaveLocationPage extends StatefulWidget {
+  static const route = '/save_location/';
 
-  const AddLocalePage({Key? key}) : super(key: key);
+  const SaveLocationPage({Key? key}) : super(key: key);
 
   @override
-  State<AddLocalePage> createState() => _AddLocalePageState();
+  State<SaveLocationPage> createState() => _SaveLocationPageState();
 }
 
-class _AddLocalePageState extends ModularState<AddLocalePage, AddLocaleBloc> {
+class _SaveLocationPageState
+    extends ModularState<SaveLocationPage, SaveLocationBloc> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -96,7 +96,7 @@ class _AddLocalePageState extends ModularState<AddLocalePage, AddLocaleBloc> {
 // ignore: must_be_immutable
 class MountTextField extends StatelessWidget {
   final GlobalKey<FormState> formKey;
-  final AddLocaleBloc controller;
+  final SaveLocationBloc controller;
 
   const MountTextField({
     Key? key,

@@ -1,8 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/home/home_module.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
-import 'package:is_it_safe_app/src/app/modules/location/add_location/presenter/pages/add_locale_page.dart';
-import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/bloc/navigation_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/presenter/pages/profile_page.dart';
@@ -24,8 +22,7 @@ class NavigationModule extends Module {
       children: [
         ModuleRoute(HomePage.route, module: HomeModule()),
         ModuleRoute(SearchPage.route, module: SearchModule()),
-        // ModuleRoute(ProfilePage.route, module: ProfileModule()),
-        ModuleRoute(AddLocalePage.route, module: LocationModule()),
+        ModuleRoute(ProfilePage.route, module: ProfileModule()),
       ],
     ),
   ];

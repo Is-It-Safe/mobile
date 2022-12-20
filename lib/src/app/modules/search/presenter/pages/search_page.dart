@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
 import 'package:is_it_safe_app/src/app/modules/search/presenter/bloc/search_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/search/presenter/widgets/search_location_card.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
@@ -94,12 +96,16 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
         SafeTextButton(
           preText: S.current.textDontFoundThePlace,
           text: S.current.textCreateHere,
-          onTap: () {
-            return SafeSnackBar(
-              message: S.current.textFeatureAvailableSoon,
-              type: SnackBarType.info,
-            ).show(context);
-          },
+          onTap: () => Modular.to.pushNamed(
+            SaveLocationPage.route,
+          ),
+
+          // onTap: () {
+          //   return SafeSnackBar(
+          //     message: S.current.textFeatureAvailableSoon,
+          //     type: SnackBarType.info,
+          //   ).show(context);
+          // },
         ),
       ],
     );

@@ -105,7 +105,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       itemBuilder: (context, index) => HomeLocationCard(
         location: list[index],
         onTap: () => Modular.to.pushNamed(
-          LocationModule.route + ReviewPage.route,
+          ReviewPage.route,
           arguments: list[index],
         ),
       ),

@@ -4,29 +4,29 @@ class RequestAddLocation {
   String? name;
   String? cep;
   int? locationTypeId;
-  String? file;
+  String? imgUrl;
 
   RequestAddLocation({
     this.name,
     this.cep,
     this.locationTypeId,
-    this.file,
+    this.imgUrl,
   });
 
   RequestAddLocation.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     cep = json['cep'];
     locationTypeId = json['locationTypeId'];
-    file = json['file'];
+    imgUrl = json['file'];
   }
 
-  FormData toFormData(RequestAddLocation request) {
+  FormData toFormData() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['cep'] = cep;
     data['locationTypeId'] = locationTypeId;
-    if (file != null) {
-      data['file'] = MultipartFile.fromFileSync(file!);
+    if (imgUrl != null) {
+      data['file'] = MultipartFile.fromFileSync(imgUrl!);
     } else {
       data['file'] = null;
     }

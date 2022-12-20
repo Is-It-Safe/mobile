@@ -8,10 +8,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
 
-class AddLocaleBloc extends SafeBloC {
+class SaveLocationBloc extends SafeBloC {
   final SaveLocationUseCase saveLocationUseCase;
 
-  AddLocaleBloc({
+  SaveLocationBloc({
     required this.saveLocationUseCase,
   });
 
@@ -59,7 +59,7 @@ class AddLocaleBloc extends SafeBloC {
       name: localeNameController.text,
       cep: localeCepController.text,
       locationTypeId: locationId,
-      file: imageNotifier.value.toString(),
+      imgUrl: imageNotifier.value,
     );
     if (result == true) {
       isSavingLocation?.add(SafeEvent.done(true));
