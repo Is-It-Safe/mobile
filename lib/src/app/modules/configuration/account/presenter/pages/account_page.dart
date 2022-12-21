@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/w
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_impression_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';

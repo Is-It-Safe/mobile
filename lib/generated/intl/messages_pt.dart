@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -25,6 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAccountInformation":
             MessageLookupByLibrary.simpleMessage("Informações da Conta"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
+        "textAlertCard1":
+            MessageLookupByLibrary.simpleMessage("Algumas pessoas"),
+        "textAlertCard2":
+            MessageLookupByLibrary.simpleMessage("reportaram problemas"),
+        "textAlertCard3": MessageLookupByLibrary.simpleMessage(
+            "associados a esse local para"),
         "textAngry": MessageLookupByLibrary.simpleMessage("Irritado"),
         "textAppBarChooseProfilePhotoPage":
             MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
@@ -97,6 +104,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textError": MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
+        "textErrorCard1":
+            MessageLookupByLibrary.simpleMessage("Local não recomendado."),
+        "textErrorCard2":
+            MessageLookupByLibrary.simpleMessage("A maioria das pessoas não"),
+        "textErrorCard3":
+            MessageLookupByLibrary.simpleMessage("considera esse local seguro"),
         "textErrorConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Não foi possível confirmar sua senha!"),
         "textErrorDeleteReview": MessageLookupByLibrary.simpleMessage(
@@ -234,6 +247,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSomeProblemsHappend": MessageLookupByLibrary.simpleMessage(
             "Alguns problemas aconteceram"),
         "textStructure": MessageLookupByLibrary.simpleMessage("Estrutura"),
+        "textSuccessCard1":
+            MessageLookupByLibrary.simpleMessage("A maioria das pessoas"),
+        "textSuccessCard2":
+            MessageLookupByLibrary.simpleMessage("considera esse local seguro"),
+        "textSuccessCard3":
+            MessageLookupByLibrary.simpleMessage("para comunidade LGBTQIA+"),
         "textSuccessRegistration":
             MessageLookupByLibrary.simpleMessage("Usuário Registrado"),
         "textTellUsTheEmailAssociatedWithYourAccount":
