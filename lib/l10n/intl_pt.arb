@@ -165,6 +165,8 @@
     "textAddTypeLocaleFieldTitle": "Tipo de local",
     "textAddLocalePhotoFieldTitle": "Adicionar Foto (opcional)",
     "textAddLocaleConfirm": "ADICIONAR LOCAL",
+    "textAddLocaleSuccess": "Local adicionado com sucesso!",
+    
 
     "textAddLocaleTypePub": "Bar",
     "textAddLocaleTypeRestaurant": "Restaurante",

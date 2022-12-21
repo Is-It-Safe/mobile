@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
 
 class SaveLocationBloc extends SafeBloC {
@@ -17,7 +18,7 @@ class SaveLocationBloc extends SafeBloC {
 
   ValueNotifier<String?> imageNotifier = ValueNotifier(null);
 
-  StreamController<SafeEvent<bool>>? isSavingLocation;
+  StreamController<SafeEvent<LocationEntity>>? isSavingLocation;
 
   TextEditingController localeNameController = TextEditingController();
   TextEditingController localeCepController = TextEditingController();
@@ -28,11 +29,6 @@ class SaveLocationBloc extends SafeBloC {
       LocationTypeEnum.pub,
     ),
   );
-
-  @override
-  Future<void> dispose() async {
-    isSavingLocation?.close();
-  }
 
   @override
   Future<void> init() async {
@@ -48,21 +44,30 @@ class SaveLocationBloc extends SafeBloC {
     return null;
   }
 
-  Future<void> sendNewLocation() async {
-    isSavingLocation?.add(SafeEvent.load());
-    int locationId = LocationTypeEnum.values.indexWhere(
-      (element) =>
-          ParseEnum.parseLocationTypeEnum(element) ==
-          locationTypeNotifier.value,
-    );
-    final result = await saveLocationUseCase(
-      name: localeNameController.text,
-      cep: localeCepController.text,
-      locationTypeId: locationId,
-      imgUrl: imageNotifier.value,
-    );
-    if (result == true) {
-      isSavingLocation?.add(SafeEvent.done(true));
+  Future<bool> sendNewLocation() async {
+    try {
+      isSavingLocation?.add(SafeEvent.load());
+      int locationId = LocationTypeEnum.values.indexWhere(
+        (element) =>
+            ParseEnum.parseLocationTypeEnum(element) ==
+            locationTypeNotifier.value,
+      );
+      final result = await saveLocationUseCase(
+        name: localeNameController.text,
+        cep: localeCepController.text,
+        locationTypeId: locationId + 1,
+        imgUrl: imageNotifier.value,
+      );
+      isSavingLocation?.add(SafeEvent.done(result));
+      return true;
+    } catch (e) {
+      isSavingLocation?.addError(e.toString());
+      return false;
     }
+  }
+
+  @override
+  Future<void> dispose() async {
+    isSavingLocation?.close();
   }
 }

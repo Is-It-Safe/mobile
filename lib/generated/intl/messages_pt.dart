@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Adicionar Foto (opcional)"),
         "textAddLocaleSubTitle":
             MessageLookupByLibrary.simpleMessage("Adicionar Local"),
+        "textAddLocaleSuccess": MessageLookupByLibrary.simpleMessage(
+            "Local adicionado com sucesso!"),
         "textAddLocaleTitle":
             MessageLookupByLibrary.simpleMessage("Configurações"),
         "textAddLocaleTypeNightClub":

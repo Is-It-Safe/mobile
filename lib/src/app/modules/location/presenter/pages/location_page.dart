@@ -3,15 +3,18 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_photo.dart';
+import 'package:is_it_safe_app/src/app/modules/search/presenter/pages/search_page.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 
 class SaveLocationPage extends StatefulWidget {
   static const route = '/save_location/';
@@ -32,7 +35,7 @@ class _SaveLocationPageState
       appBar: SafeAppBar(
         title: S.current.textAddLocaleTitle,
       ),
-      body: StreamBuilder<SafeEvent<bool>>(
+      body: StreamBuilder<SafeEvent<LocationEntity>>(
         stream: controller.isSavingLocation?.stream,
         builder: (context, snapshot) {
           return AnimatedSwitcher(
@@ -78,7 +81,30 @@ class _SaveLocationPageState
                               title: S.current.textAddLocaleConfirm,
                               hasBackground: true,
                               size: ButtonSize.large,
-                              onTap: () => controller.sendNewLocation(),
+                              onTap: () async {
+                                await controller.sendNewLocation() == true
+                                    ? showDialog(
+                                        context: context,
+                                        builder: (context) => SafeDialog(
+                                          message:
+                                              S.current.textAddLocaleSuccess,
+                                          primaryBtn: SafeButton(
+                                            title: S.current.textOk,
+                                          ),
+                                          type: SafeDialogType.success,
+                                        ),
+                                      )
+                                    : showDialog(
+                                        context: context,
+                                        builder: (context) => SafeDialog(
+                                          message: S.current.textErrorDropdown,
+                                          primaryBtn: SafeButton(
+                                            title: S.current.textOk,
+                                          ),
+                                          type: SafeDialogType.error,
+                                        ),
+                                      );
+                              },
                             ),
                           ),
                         ],
@@ -188,10 +214,10 @@ class MountTextField extends StatelessWidget {
                   items: LocationTypeEnum.values
                       .map(
                         (e) => DropdownMenuItem<String>(
+                          value: ParseEnum.parseLocationTypeEnum(e),
                           child: Text(
                             ParseEnum.parseLocationTypeEnum(e),
                           ),
-                          value: ParseEnum.parseLocationTypeEnum(e),
                         ),
                       )
                       .toList(),

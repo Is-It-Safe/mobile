@@ -6,14 +6,15 @@ import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service.dart';
 
 class LocationModule extends Module {
-  // static const route = '/location';
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveLocationUseCase()),
-    Bind.lazySingleton((i) => SaveLocationBloc(
-          saveLocationUseCase: i.get<SaveLocationUseCase>(),
-        )),
+    Bind.lazySingleton(
+      (i) => SaveLocationBloc(
+        saveLocationUseCase: i.get<SaveLocationUseCase>(),
+      ),
+    ),
   ];
 
   @override

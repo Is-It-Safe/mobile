@@ -1540,6 +1540,16 @@ class S {
     );
   }
 
+  /// `Local adicionado com sucesso!`
+  String get textAddLocaleSuccess {
+    return Intl.message(
+      'Local adicionado com sucesso!',
+      name: 'textAddLocaleSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Bar`
   String get textAddLocaleTypePub {
     return Intl.message(
