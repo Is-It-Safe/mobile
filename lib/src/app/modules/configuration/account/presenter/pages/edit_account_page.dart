@@ -3,6 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/edit_account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/edit_account_banner.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/gender_edit_account.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/sexual_orientaion_edit_account.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
@@ -58,9 +60,18 @@ class _EditAccountPageState
                 const SizedBox(height: 16),
                 _mountEditPronoun(),
                 const SizedBox(height: 16),
-                _mountSexualOrientationsDropdown(),
+                SexualOrientationEditAcount(
+                  controller: controller.sexualOrientationsController,
+                  sexualOrientationController:
+                      controller.sexualOrientationController,
+                  isSexualOrientationDropdownExpanded:
+                      isSexualOrientationDropdownExpanded,
+                ),
                 const SizedBox(height: 16),
-                _mountGenderDropdown(),
+                GenderEditAcount(
+                    controller: controller.gendersController,
+                    genderController: controller.genderController,
+                    isGenderDropdownExpanded: isGenderDropdownExpanded),
                 const SizedBox(height: 24),
                 _mountUpdateUserButton(),
                 const SizedBox(height: 20),

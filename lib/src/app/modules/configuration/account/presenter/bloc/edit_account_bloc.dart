@@ -78,26 +78,14 @@ class EditAccountBloc extends SafeBloC {
 
   Future<bool> updateUser({required int userId}) async {
     try {
-      debugPrint(".........>>>>>>${genderController.text} <<<<<<");
       upDateUserController.sink.add(SafeEvent.load());
       RequestUpdateUser request = RequestUpdateUser(
         id: int.parse(userIdController.text),
         name: nameController.text.trim(),
         nickname: usernameController.text.trim(),
-        genderId: genderController.text == null
-            ? int.parse(genderController.text)
-            : null,
-        sexualOrientationId: sexualOrientationController.text == null
-            ? int.parse(sexualOrientationController.text)
-            : null,
-        // birthDate: isAdvanceButton == true
-        //     ? birthdateController.text
-        //     : StringConstants.empty,
-        // pronoun: "pronounController.text",
-        // profilePhoto: /* isAdvanceButton == true
-        //     ? selectedProfilePhoto
-        //     : */
-        //     StringConstants.empty,
+        genderId: int.parse(genderController.text),
+        sexualOrientationId: int.parse(sexualOrientationController.text),
+        pronoun: pronounController.text,
       );
       UserEntity userEntity = await updateUserUseCase.call(request);
       upDateUserController.sink.add(SafeEvent.done(userEntity));
