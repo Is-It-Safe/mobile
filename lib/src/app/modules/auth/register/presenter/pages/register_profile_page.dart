@@ -3,16 +3,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_picture_page.dart';
-import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/widgets/choose_profile_avatar.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/widgets/stream_safe_dropdown.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dropdown.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/register_entity.dart';
@@ -27,10 +24,11 @@ class RegisterProfilePage extends StatefulWidget {
   State<RegisterProfilePage> createState() => _RegisterProfilePageState();
 }
 
-class _RegisterProfilePageState
-    extends ModularState<RegisterProfilePage, RegisterBloc> {
+class _RegisterProfilePageState extends State<RegisterProfilePage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
+
+  final controller = Modular.get<RegisterBloc>();
 
   bool isGenderDropdownExpanded = false;
   bool isSexualOrientationDropdownExpanded = false;
@@ -62,13 +60,30 @@ class _RegisterProfilePageState
                   key: _formKey,
                   child: Column(
                     children: [
-                      _mountChooseProfileAvatar(),
+                      ChooseProfileAvatar(controller: controller),
                       const SizedBox(height: 30),
-                      _mountBirthdateField(),
+                      SafeTextFormField(
+                        controller: controller.birthdateController,
+                        labelText: S.current.textDateOfBirth,
+                        inputFormatters: [controller.birthdayInputMask],
+                        keyboardType: TextInputType.number,
+                        validator: (value) =>
+                            controller.validateBirthdate(value),
+                      ),
                       const SizedBox(height: 30),
-                      _mountGenderDropdown(),
+                      StreamSafeDropdown<GenderEntity>(
+                        stream: controller.gendersController.stream,
+                        textController: controller.genderController,
+                        isGenderDropdownExpanded: isGenderDropdownExpanded,
+                        title: S.current.textGender,
+                      ),
                       const SizedBox(height: 30),
-                      _mountSexualOrientationsDropdown(),
+                      StreamSafeDropdown<SexualOrientationEntity>(
+                        stream: controller.sexualOrientationsController.stream,
+                        textController: controller.sexualOrientationController,
+                        isGenderDropdownExpanded: isGenderDropdownExpanded,
+                        title: S.current.textSexualOrientation,
+                      ),
                       const SizedBox(height: 30),
                       _mountButtons(),
                     ],
@@ -145,126 +160,5 @@ class _RegisterProfilePageState
         ),
       ],
     );
-  }
-
-  Widget _mountSexualOrientationsDropdown() {
-    return StreamBuilder<SafeEvent<List<SexualOrientationEntity>>>(
-      stream: controller.sexualOrientationsController.stream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          switch (snapshot.data?.status ?? Status.loading) {
-            case Status.done:
-              return SafeDropDown(
-                title: S.current.textSexualOrientation,
-                controller: controller.genderController,
-                values: snapshot.data?.data ?? [],
-                isExapanded: isGenderDropdownExpanded,
-              );
-
-            case Status.loading:
-              return const SafeTextFormField(
-                dropdownType: DropdownType.loading,
-              );
-            case Status.error:
-              return const SafeTextFormField(
-                dropdownType: DropdownType.error,
-              );
-          }
-        }
-        return const SafeTextFormField(
-          dropdownType: DropdownType.loading,
-        );
-      },
-    );
-  }
-
-  Widget _mountGenderDropdown() {
-    return StreamBuilder<SafeEvent<List<GenderEntity>>>(
-      stream: controller.gendersController.stream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          switch (snapshot.data?.status ?? Status.loading) {
-            case Status.done:
-              return SafeDropDown(
-                title: S.current.textGender,
-                controller: controller.genderController,
-                values: snapshot.data?.data ?? [],
-                isExapanded: isGenderDropdownExpanded,
-              );
-
-            case Status.loading:
-              return const SafeTextFormField(
-                dropdownType: DropdownType.loading,
-              );
-            case Status.error:
-              return const SafeTextFormField(
-                dropdownType: DropdownType.error,
-              );
-          }
-        }
-        return const SafeTextFormField(
-          dropdownType: DropdownType.loading,
-        );
-      },
-    );
-  }
-
-  Widget _mountBirthdateField() {
-    return SafeTextFormField(
-      controller: controller.birthdateController,
-      labelText: S.current.textDateOfBirth,
-      inputFormatters: [controller.birthdayInputMask],
-      keyboardType: TextInputType.number,
-      validator: (value) => controller.validateBirthdate(value),
-    );
-  }
-
-  Widget _mountChooseProfileAvatar() {
-    return Center(
-      child: Column(
-        children: [
-          _mountProfileAvatar(),
-          const SizedBox(height: 20),
-          Text(
-            S.current.textPageTitleProfileRegisterPage,
-            style: TextStyles.subtitle2(),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            S.current.textYourRepresentationHereInside,
-            style: TextStyles.helper(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _mountProfileAvatar() {
-    return StreamBuilder<String>(
-      stream: controller.profilePictureController.stream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return SafeProfileAvatar(
-            image: controller.selectedProfilePhoto,
-            onTap: _goToProfilePicturePage,
-          );
-        } else {
-          return SafeProfileAvatar(
-            isEditable: true,
-            onTap: _goToProfilePicturePage,
-          );
-        }
-      },
-    );
-  }
-
-  void _goToProfilePicturePage() {
-    Modular.to
-        .pushNamed(StringConstants.dot + RegisterProfilePicturePage.route)
-        .then((value) {
-      if (value != null) {
-        controller.setProfitePicture(value.toString());
-      }
-    });
   }
 }
