@@ -22,12 +22,10 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   bool _showPassword = true;
-
-  final controller = Modular.get<RegisterBloc>();
 
   @override
   void initState() {

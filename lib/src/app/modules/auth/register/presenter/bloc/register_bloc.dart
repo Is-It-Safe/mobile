@@ -115,7 +115,6 @@ class RegisterBloc extends SafeBloC {
       }
     } catch (e) {
       SafeLogUtil.instance.logError(e);
-      // gendersController.sink.add(SafeEvent.error(e.toString())); /// [Deprecated]
       gendersController.addError(e.toString());
     }
   }
@@ -131,7 +130,6 @@ class RegisterBloc extends SafeBloC {
       }
     } catch (e) {
       SafeLogUtil.instance.logError(e);
-      // sexualOrientationsController.sink.add(SafeEvent.error(e.toString())); /// [Deprecated]
       sexualOrientationsController.addError(e.toString());
     }
   }
@@ -160,7 +158,6 @@ class RegisterBloc extends SafeBloC {
       doRegisterController.sink.add(SafeEvent.done(response));
     } catch (e) {
       SafeLogUtil.instance.logError(e);
-      // doRegisterController.sink.add(SafeEvent.error(e.toString())); /// [Deprecated]
       doRegisterController.addError(e.toString());
     }
   }

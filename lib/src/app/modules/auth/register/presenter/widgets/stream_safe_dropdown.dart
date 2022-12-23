@@ -7,13 +7,13 @@ import '../../../../../../components/widgets/safe_text_form_field.dart';
 class StreamSafeDropdown<T> extends StatelessWidget {
   final Stream<SafeEvent<List<T>>> stream;
   final TextEditingController textController;
-  final bool isGenderDropdownExpanded;
+  final bool isDropdownExpanded;
   final String title;
   const StreamSafeDropdown({
     Key? key,
     required this.stream,
     required this.textController,
-    required this.isGenderDropdownExpanded,
+    required this.isDropdownExpanded,
     required this.title,
   }) : super(key: key);
 
@@ -29,7 +29,7 @@ class StreamSafeDropdown<T> extends StatelessWidget {
                 title: title,
                 controller: textController,
                 values: snapshot.data!.data ?? [],
-                isExapanded: isGenderDropdownExpanded,
+                isExapanded: isDropdownExpanded,
               );
 
             case Status.loading:

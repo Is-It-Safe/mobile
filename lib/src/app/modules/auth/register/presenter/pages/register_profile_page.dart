@@ -24,13 +24,12 @@ class RegisterProfilePage extends StatefulWidget {
   State<RegisterProfilePage> createState() => _RegisterProfilePageState();
 }
 
-class _RegisterProfilePageState extends State<RegisterProfilePage> {
+class _RegisterProfilePageState
+    extends ModularState<RegisterProfilePage, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
-  final controller = Modular.get<RegisterBloc>();
-
-  bool isGenderDropdownExpanded = false;
+  bool isDropdownExpanded = false;
   bool isSexualOrientationDropdownExpanded = false;
 
   @override
@@ -74,14 +73,14 @@ class _RegisterProfilePageState extends State<RegisterProfilePage> {
                       StreamSafeDropdown<GenderEntity>(
                         stream: controller.gendersController.stream,
                         textController: controller.genderController,
-                        isGenderDropdownExpanded: isGenderDropdownExpanded,
+                        isDropdownExpanded: isDropdownExpanded,
                         title: S.current.textGender,
                       ),
                       const SizedBox(height: 30),
                       StreamSafeDropdown<SexualOrientationEntity>(
                         stream: controller.sexualOrientationsController.stream,
                         textController: controller.sexualOrientationController,
-                        isGenderDropdownExpanded: isGenderDropdownExpanded,
+                        isDropdownExpanded: isDropdownExpanded,
                         title: S.current.textSexualOrientation,
                       ),
                       const SizedBox(height: 30),
