@@ -139,18 +139,9 @@
     "textReenterPassword1_1":"para continuar.",
     "textConfirmCurrentPassword":"Confirme sua senha atual",
     "textErrorConfirmPassword":"Não foi possível confirmar sua senha!",
-    "textSuccessCard1":"A maioria das pessoas",
-    "textSuccessCard2":"considera esse local seguro",
-    "textSuccessCard3":"para comunidade LGBTQIA+",
-    "textAlertCard1":"Algumas pessoas",
-    "textAlertCard2":"reportaram problemas",
-    "textAlertCard3":"associados a esse local para",
-    "textErrorCard1":"Local não recomendado.",
-    "textErrorCard2":"A maioria das pessoas não",
-    "textErrorCard3":"considera esse local seguro",
-
-
-
+    "textMostPeopleSafePlace":"A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+",
+    "textMostPeopleAlertPlace":"Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+",
+    "textMostPeopleDangerPlace":"Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+",
 
 
     "textSafeDialogTypeSucces":"Sucesso!",

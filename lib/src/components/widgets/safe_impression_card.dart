@@ -5,7 +5,7 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 enum Cards {
-  sucess,
+  success,
   alert,
   error,
 }
@@ -23,10 +23,10 @@ class _SafeImpressionCardState extends State<SafeImpressionCard> {
     double height = 128;
     double width = 344;
 
-    Cards card = Cards.error;
+    Cards card = Cards.alert;
 
     switch (card) {
-      case Cards.sucess:
+      case Cards.success:
         return Center(
           child: SizedBox(
             height: height,
@@ -75,19 +75,10 @@ Widget _successCard() {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 16, top: 33, bottom: 32),
-          child: RichText(
-            text: TextSpan(
-              text: '${S.current.textSuccessCard1}\n',
-              style: TextStyles.bodyText2(
-                color: SafeColors.materialcardColors.text,
-              ),
-              children: <TextSpan>[
-                TextSpan(text: '${S.current.textSuccessCard2}\n'),
-                TextSpan(text: S.current.textSuccessCard3),
-              ],
-            ),
-          ),
-        ),
+          child: Text(S.current.textMostPeopleSafePlace, style: TextStyles.bodyText2(
+            color: SafeColors.materialcardColors.text,
+          ),),
+                 ),
         Stack(
           children: [
             Positioned(
@@ -136,19 +127,9 @@ Widget _alertCard() {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 16, top: 22, bottom: 22),
-          child: RichText(
-            text: TextSpan(
-              text: '${S.current.textAlertCard1}\n',
-              style: TextStyles.bodyText2(
-                color: SafeColors.materialcardColors.text,
-              ),
-              children: <TextSpan>[
-                TextSpan(text: '${S.current.textAlertCard2}\n'),
-                TextSpan(text: '${S.current.textAlertCard3}\n'),
-                TextSpan(text: S.current.textSuccessCard3),
-              ],
-            ),
-          ),
+          child: Text(S.current.textMostPeopleAlertPlace, style: TextStyles.bodyText2(
+            color: SafeColors.materialcardColors.text),
+                    ),
         ),
         Positioned(
           left: 250,
@@ -179,19 +160,8 @@ Widget _errorCard() {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 16, top: 22, bottom: 22),
-          child: RichText(
-            text: TextSpan(
-              text: '${S.current.textErrorCard1}\n',
-              style: TextStyles.bodyText2(
-                color: SafeColors.materialcardColors.text,
-              ),
-              children: <TextSpan>[
-                TextSpan(text: '${S.current.textErrorCard2}\n'),
-                TextSpan(text: '${S.current.textErrorCard3}\n'),
-                TextSpan(text: S.current.textSuccessCard3),
-              ],
-            ),
-          ),
+          child: Text(S.current.textMostPeopleDangerPlace, style: TextStyles.bodyText2(
+              color: SafeColors.materialcardColors.text),),
         ),
         Positioned(
           left: 228,

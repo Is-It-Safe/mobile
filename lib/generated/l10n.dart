@@ -1340,91 +1340,31 @@ class S {
     );
   }
 
-  /// `A maioria das pessoas`
-  String get textSuccessCard1 {
+  /// `A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleSafePlace {
     return Intl.message(
-      'A maioria das pessoas',
-      name: 'textSuccessCard1',
+      'A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleSafePlace',
       desc: '',
       args: [],
     );
   }
 
-  /// `considera esse local seguro`
-  String get textSuccessCard2 {
+  /// `Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+`
+  String get textMostPeopleAlertPlace {
     return Intl.message(
-      'considera esse local seguro',
-      name: 'textSuccessCard2',
+      'Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+',
+      name: 'textMostPeopleAlertPlace',
       desc: '',
       args: [],
     );
   }
 
-  /// `para comunidade LGBTQIA+`
-  String get textSuccessCard3 {
+  /// `Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleDangerPlace {
     return Intl.message(
-      'para comunidade LGBTQIA+',
-      name: 'textSuccessCard3',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Algumas pessoas`
-  String get textAlertCard1 {
-    return Intl.message(
-      'Algumas pessoas',
-      name: 'textAlertCard1',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `reportaram problemas`
-  String get textAlertCard2 {
-    return Intl.message(
-      'reportaram problemas',
-      name: 'textAlertCard2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `associados a esse local para`
-  String get textAlertCard3 {
-    return Intl.message(
-      'associados a esse local para',
-      name: 'textAlertCard3',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Local não recomendado.`
-  String get textErrorCard1 {
-    return Intl.message(
-      'Local não recomendado.',
-      name: 'textErrorCard1',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `A maioria das pessoas não`
-  String get textErrorCard2 {
-    return Intl.message(
-      'A maioria das pessoas não',
-      name: 'textErrorCard2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `considera esse local seguro`
-  String get textErrorCard3 {
-    return Intl.message(
-      'considera esse local seguro',
-      name: 'textErrorCard3',
+      'Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleDangerPlace',
       desc: '',
       args: [],
     );

@@ -178,10 +178,11 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
     return AccountInfoButton(
       text: S.current.textEditProfile,
       //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => SafeImpressionCard()))
+      //     SafeSnackBar(
+      //   message: S.current.textFeatureAvailableSoon,
+      //   type: SnackBarType.info,
+      // ).show(context),
     );
   }
 
