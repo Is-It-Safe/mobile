@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_photo.dart';
-import 'package:is_it_safe_app/src/app/modules/search/presenter/pages/search_page.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
@@ -154,7 +153,7 @@ class MountTextField extends StatelessWidget {
                 }
                 return S.current.textErrorEmptyField;
               },
-              hintText: S.current.textAddLocaleExample,
+              labelText: S.current.textAddLocaleExample,
             ),
           ),
           Padding(
@@ -174,7 +173,7 @@ class MountTextField extends StatelessWidget {
                 }
                 return S.current.textErrorEmptyField;
               },
-              hintText: S.current.textAddLocaleCepExample,
+              labelText: S.current.textAddLocaleCepExample,
             ),
           ),
           Padding(
@@ -194,7 +193,7 @@ class MountTextField extends StatelessWidget {
                 }
                 return S.current.textErrorEmptyField;
               },
-              hintText: S.current.textAddLocaleAddress,
+              labelText: S.current.textAddLocaleAddress,
             ),
           ),
           Padding(

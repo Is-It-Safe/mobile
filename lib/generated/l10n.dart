@@ -1600,20 +1600,20 @@ class S {
     );
   }
 
-  /// `04553434`
+  /// `Ex: 04553434`
   String get textAddLocaleCepExample {
     return Intl.message(
-      '04553434',
+      'Ex: 04553434',
       name: 'textAddLocaleCepExample',
       desc: '',
       args: [],
     );
   }
 
-  /// `Rua Clodomiro`
+  /// `Ex: Rua Clodomiro`
   String get textAddLocaleAddress {
     return Intl.message(
-      'Rua Clodomiro',
+      'Ex: Rua Clodomiro',
       name: 'textAddLocaleAddress',
       desc: '',
       args: [],

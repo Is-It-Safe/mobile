@@ -25,11 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAccountInformation":
             MessageLookupByLibrary.simpleMessage("Informações da Conta"),
         "textAddLocaleAddress":
-            MessageLookupByLibrary.simpleMessage("Rua Clodomiro"),
+            MessageLookupByLibrary.simpleMessage("Ex: Rua Clodomiro"),
         "textAddLocaleAddressFieldTitle":
             MessageLookupByLibrary.simpleMessage("Endereço"),
         "textAddLocaleCepExample":
-            MessageLookupByLibrary.simpleMessage("04553434"),
+            MessageLookupByLibrary.simpleMessage("Ex: 04553434"),
         "textAddLocaleCepFieldTitle":
             MessageLookupByLibrary.simpleMessage("CEP"),
         "textAddLocaleConfirm":

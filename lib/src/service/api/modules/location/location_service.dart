@@ -100,6 +100,8 @@ class LocationService implements ILocationService {
   @override
   Future<ResponseSaveLocation> saveLocation(RequestAddLocation request) async {
     final token = await _authService.getAccessToken();
+
+    //TODO Ajustar abstração do RequestConfig para receber FormData
     final response = await _service.dio.post(
       ApiConstants.addLocation,
       data: request.toFormData(),
@@ -110,18 +112,5 @@ class LocationService implements ILocationService {
       ),
     );
     return ResponseSaveLocation.fromJson(json.decode(response.data));
-
-    // final requestConfig = RequestConfig(
-    //   path: ApiConstants.addLocation,
-    //   method: HttpMethod.post,
-    //   body: request.toFormData(),
-    //   options: Options(
-    //     headers: {
-    //       ApiConstants.kAuthorization: token,
-    //     },
-    //   ),
-    // );
-    // final response = await _service.doRequest(requestConfig);
-    // return ResponseSaveLocation(message: response.data);
   }
 }
