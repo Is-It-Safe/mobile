@@ -67,10 +67,9 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
       builder: (context, snapshot) {
         return SafeLayout(
           snapshot: snapshot,
-          context: context,
           onCompleted: _mountResultList(),
           onEmpty: _mountEmptyCard(),
-        ).build;
+        );
       },
     );
   }
