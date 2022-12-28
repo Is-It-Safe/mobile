@@ -39,6 +39,7 @@ class ReviewBloc extends SafeBloC {
   }) {
     init();
   }
+
   @override
   Future<void> init() async {
     reviewController = StreamController.broadcast();

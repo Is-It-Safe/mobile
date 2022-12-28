@@ -1,6 +1,5 @@
 class ResponseSaveLocation {
-  String? message;
-  String? id;
+  int? id;
   String? name;
   String? endereco;
   String? averageGrade;
@@ -9,7 +8,6 @@ class ResponseSaveLocation {
   String? averageImpressionStatus;
 
   ResponseSaveLocation({
-    this.message,
     this.id,
     this.name,
     this.endereco,
@@ -19,9 +17,8 @@ class ResponseSaveLocation {
     this.averageImpressionStatus,
   });
 
-  factory ResponseSaveLocation.fromJson(Map<String, dynamic> json) {
+  factory ResponseSaveLocation.fromJson(dynamic json) {
     return ResponseSaveLocation(
-      message: json['message'],
       id: json['id'],
       name: json['name'],
       endereco: json['endereco'],

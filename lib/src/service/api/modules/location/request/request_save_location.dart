@@ -1,26 +1,26 @@
 import 'package:dio/dio.dart';
 
-class RequestAddLocation {
+class RequestSaveLocation {
   String? name;
   String? cep;
   int? locationTypeId;
   String? imgUrl;
 
-  RequestAddLocation({
+  RequestSaveLocation({
     this.name,
     this.cep,
     this.locationTypeId,
     this.imgUrl,
   });
 
-  RequestAddLocation.fromJson(Map<String, dynamic> json) {
+  RequestSaveLocation.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     cep = json['cep'];
     locationTypeId = json['locationTypeId'];
     imgUrl = json['file'];
   }
 
-  FormData toFormData() {
+  FormData toFormData(RequestSaveLocation request) {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['cep'] = cep;

@@ -98,19 +98,19 @@ class LocationService implements ILocationService {
   }
 
   @override
-  Future<ResponseSaveLocation> saveLocation(RequestAddLocation request) async {
+  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request) async {
     final token = await _authService.getAccessToken();
 
-    //TODO Ajustar abstração do RequestConfig para receber FormData
-    final response = await _service.dio.post(
-      ApiConstants.addLocation,
-      data: request.toFormData(),
+    final requestConfig = RequestConfig(
+      path: ApiConstants.addLocation,
+      method: HttpMethod.post,
+      body: request.toFormData(request),
       options: Options(
-        headers: {
-          ApiConstants.kAuthorization: token,
-        },
+        headers: {ApiConstants.kAuthorization: token},
       ),
     );
+
+    final response = await _service.doRequest(requestConfig);
     return ResponseSaveLocation.fromJson(json.decode(response.data));
   }
 }

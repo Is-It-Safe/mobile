@@ -12,5 +12,5 @@ abstract class ILocationService {
     double userLatitude,
     double userLongitude,
   );
-  Future<ResponseSaveLocation> saveLocation(RequestAddLocation request);
+  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request);
 }

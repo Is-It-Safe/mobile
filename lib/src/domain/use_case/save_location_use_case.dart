@@ -5,18 +5,6 @@ import 'package:is_it_safe_app/src/service/api/modules/location/location_service
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/request/request_save_location.dart';
 
-// class SaveLocationUseCase extends SafeUseCase {
-//   late AddLocationService service;
-
-//   SaveLocationUseCase() {
-//     service = Modular.get<AddLocationService>();
-//   }
-
-//   Future<bool> call({required RequestAddLocation request}) async {
-//     return service.addLocationService(request: request);
-//   }
-// }
-
 class SaveLocationUseCase extends SafeUseCase {
   late final ILocationService _service;
 
@@ -30,7 +18,7 @@ class SaveLocationUseCase extends SafeUseCase {
     required int locationTypeId,
     String? imgUrl,
   }) async {
-    final request = RequestAddLocation(
+    final request = RequestSaveLocation(
       name: name,
       cep: cep,
       locationTypeId: locationTypeId,
