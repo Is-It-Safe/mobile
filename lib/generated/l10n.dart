@@ -1461,160 +1461,160 @@ class S {
   }
 
   /// `Configurações`
-  String get textAddLocaleTitle {
+  String get textAddLocationTitle {
     return Intl.message(
       'Configurações',
-      name: 'textAddLocaleTitle',
+      name: 'textAddLocationTitle',
       desc: '',
       args: [],
     );
   }
 
   /// `Adicionar Local`
-  String get textAddLocaleSubTitle {
+  String get textAddLocationSubTitle {
     return Intl.message(
       'Adicionar Local',
-      name: 'textAddLocaleSubTitle',
+      name: 'textAddLocationSubTitle',
       desc: '',
       args: [],
     );
   }
 
   /// `Nome do local`
-  String get textAddLocaleNameTextFieldTitle {
+  String get textAddLocationNameTextFieldTitle {
     return Intl.message(
       'Nome do local',
-      name: 'textAddLocaleNameTextFieldTitle',
+      name: 'textAddLocationNameTextFieldTitle',
       desc: '',
       args: [],
     );
   }
 
   /// `CEP`
-  String get textAddLocaleCepFieldTitle {
+  String get textAddLocationCepFieldTitle {
     return Intl.message(
       'CEP',
-      name: 'textAddLocaleCepFieldTitle',
+      name: 'textAddLocationCepFieldTitle',
       desc: '',
       args: [],
     );
   }
 
   /// `Endereço`
-  String get textAddLocaleAddressFieldTitle {
+  String get textAddLocationAddressFieldTitle {
     return Intl.message(
       'Endereço',
-      name: 'textAddLocaleAddressFieldTitle',
+      name: 'textAddLocationAddressFieldTitle',
       desc: '',
       args: [],
     );
   }
 
   /// `Tipo de local`
-  String get textAddTypeLocaleFieldTitle {
+  String get textAddTypeLocationFieldTitle {
     return Intl.message(
       'Tipo de local',
-      name: 'textAddTypeLocaleFieldTitle',
+      name: 'textAddTypeLocationFieldTitle',
       desc: '',
       args: [],
     );
   }
 
   /// `Adicionar Foto (opcional)`
-  String get textAddLocalePhotoFieldTitle {
+  String get textAddLocationPhotoFieldTitle {
     return Intl.message(
       'Adicionar Foto (opcional)',
-      name: 'textAddLocalePhotoFieldTitle',
+      name: 'textAddLocationPhotoFieldTitle',
       desc: '',
       args: [],
     );
   }
 
   /// `ADICIONAR LOCAL`
-  String get textAddLocaleConfirm {
+  String get textAddLocationConfirm {
     return Intl.message(
       'ADICIONAR LOCAL',
-      name: 'textAddLocaleConfirm',
+      name: 'textAddLocationConfirm',
       desc: '',
       args: [],
     );
   }
 
   /// `Local adicionado com sucesso!`
-  String get textAddLocaleSuccess {
+  String get textAddLocationSuccess {
     return Intl.message(
       'Local adicionado com sucesso!',
-      name: 'textAddLocaleSuccess',
+      name: 'textAddLocationSuccess',
       desc: '',
       args: [],
     );
   }
 
   /// `Bar`
-  String get textAddLocaleTypePub {
+  String get textAddLocationTypePub {
     return Intl.message(
       'Bar',
-      name: 'textAddLocaleTypePub',
+      name: 'textAddLocationTypePub',
       desc: '',
       args: [],
     );
   }
 
   /// `Restaurante`
-  String get textAddLocaleTypeRestaurant {
+  String get textAddLocationTypeRestaurant {
     return Intl.message(
       'Restaurante',
-      name: 'textAddLocaleTypeRestaurant',
+      name: 'textAddLocationTypeRestaurant',
       desc: '',
       args: [],
     );
   }
 
   /// `Local público`
-  String get textAddLocaleTypePublicLocation {
+  String get textAddLocationTypePublicLocation {
     return Intl.message(
       'Local público',
-      name: 'textAddLocaleTypePublicLocation',
+      name: 'textAddLocationTypePublicLocation',
       desc: '',
       args: [],
     );
   }
 
   /// `Casa noturna`
-  String get textAddLocaleTypeNightClub {
+  String get textAddLocationTypeNightClub {
     return Intl.message(
       'Casa noturna',
-      name: 'textAddLocaleTypeNightClub',
+      name: 'textAddLocationTypeNightClub',
       desc: '',
       args: [],
     );
   }
 
   /// `Ex: Bar santa maria`
-  String get textAddLocaleExample {
+  String get textAddLocationExample {
     return Intl.message(
       'Ex: Bar santa maria',
-      name: 'textAddLocaleExample',
+      name: 'textAddLocationExample',
       desc: '',
       args: [],
     );
   }
 
   /// `Ex: 04553434`
-  String get textAddLocaleCepExample {
+  String get textAddLocationCepExample {
     return Intl.message(
       'Ex: 04553434',
-      name: 'textAddLocaleCepExample',
+      name: 'textAddLocationCepExample',
       desc: '',
       args: [],
     );
   }
 
   /// `Ex: Rua Clodomiro`
-  String get textAddLocaleAddress {
+  String get textAddLocationAddress {
     return Intl.message(
       'Ex: Rua Clodomiro',
-      name: 'textAddLocaleAddress',
+      name: 'textAddLocationAddress',
       desc: '',
       args: [],
     );

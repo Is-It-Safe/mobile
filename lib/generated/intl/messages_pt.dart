@@ -24,36 +24,36 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAbout": MessageLookupByLibrary.simpleMessage("Sobre"),
         "textAccountInformation":
             MessageLookupByLibrary.simpleMessage("Informações da Conta"),
-        "textAddLocaleAddress":
+        "textAddLocationAddress":
             MessageLookupByLibrary.simpleMessage("Ex: Rua Clodomiro"),
-        "textAddLocaleAddressFieldTitle":
+        "textAddLocationAddressFieldTitle":
             MessageLookupByLibrary.simpleMessage("Endereço"),
-        "textAddLocaleCepExample":
+        "textAddLocationCepExample":
             MessageLookupByLibrary.simpleMessage("Ex: 04553434"),
-        "textAddLocaleCepFieldTitle":
+        "textAddLocationCepFieldTitle":
             MessageLookupByLibrary.simpleMessage("CEP"),
-        "textAddLocaleConfirm":
+        "textAddLocationConfirm":
             MessageLookupByLibrary.simpleMessage("ADICIONAR LOCAL"),
-        "textAddLocaleExample":
+        "textAddLocationExample":
             MessageLookupByLibrary.simpleMessage("Ex: Bar santa maria"),
-        "textAddLocaleNameTextFieldTitle":
+        "textAddLocationNameTextFieldTitle":
             MessageLookupByLibrary.simpleMessage("Nome do local"),
-        "textAddLocalePhotoFieldTitle":
+        "textAddLocationPhotoFieldTitle":
             MessageLookupByLibrary.simpleMessage("Adicionar Foto (opcional)"),
-        "textAddLocaleSubTitle":
+        "textAddLocationSubTitle":
             MessageLookupByLibrary.simpleMessage("Adicionar Local"),
-        "textAddLocaleSuccess": MessageLookupByLibrary.simpleMessage(
+        "textAddLocationSuccess": MessageLookupByLibrary.simpleMessage(
             "Local adicionado com sucesso!"),
-        "textAddLocaleTitle":
+        "textAddLocationTitle":
             MessageLookupByLibrary.simpleMessage("Configurações"),
-        "textAddLocaleTypeNightClub":
+        "textAddLocationTypeNightClub":
             MessageLookupByLibrary.simpleMessage("Casa noturna"),
-        "textAddLocaleTypePub": MessageLookupByLibrary.simpleMessage("Bar"),
-        "textAddLocaleTypePublicLocation":
+        "textAddLocationTypePub": MessageLookupByLibrary.simpleMessage("Bar"),
+        "textAddLocationTypePublicLocation":
             MessageLookupByLibrary.simpleMessage("Local público"),
-        "textAddLocaleTypeRestaurant":
+        "textAddLocationTypeRestaurant":
             MessageLookupByLibrary.simpleMessage("Restaurante"),
-        "textAddTypeLocaleFieldTitle":
+        "textAddTypeLocationFieldTitle":
             MessageLookupByLibrary.simpleMessage("Tipo de local"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
         "textAngry": MessageLookupByLibrary.simpleMessage("Irritado"),

@@ -31,7 +31,7 @@ class _SaveLocationPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SafeAppBar(
-        title: S.current.textAddLocaleSubTitle,
+        title: S.current.textAddLocationSubTitle,
       ),
       body: StreamBuilder<SafeEvent<LocationEntity>>(
         stream: controller.isSavingLocation.stream,
@@ -75,7 +75,7 @@ class _SaveLocationPageState
                             ),
                             Center(
                               child: SafeButton(
-                                title: S.current.textAddLocaleConfirm,
+                                title: S.current.textAddLocationConfirm,
                                 hasBackground: true,
                                 size: ButtonSize.large,
                                 onTap: () async {
@@ -117,7 +117,7 @@ class MountTextField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 12.0),
             child: Text(
-              S.current.textAddLocaleNameTextFieldTitle,
+              S.current.textAddLocationNameTextFieldTitle,
               style: TextStyles.subtitle1(),
             ),
           ),
@@ -126,13 +126,13 @@ class MountTextField extends StatelessWidget {
             child: SafeTextFormField(
               controller: controller.localeNameController,
               // validator: (value) => controller.validateTextField(value),
-              labelText: S.current.textAddLocaleExample,
+              labelText: S.current.textAddLocationExample,
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 12.0),
             child: Text(
-              S.current.textAddLocaleCepFieldTitle,
+              S.current.textAddLocationCepFieldTitle,
               style: TextStyles.subtitle1(),
             ),
           ),
@@ -141,13 +141,13 @@ class MountTextField extends StatelessWidget {
             child: SafeTextFormField(
               controller: controller.localeCepController,
               // validator: (value) => controller.validateTextField(value),
-              labelText: S.current.textAddLocaleCepExample,
+              labelText: S.current.textAddLocationCepExample,
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 12.0),
             child: Text(
-              S.current.textAddLocaleAddressFieldTitle,
+              S.current.textAddLocationAddressFieldTitle,
               style: TextStyles.subtitle1(),
             ),
           ),
@@ -156,13 +156,13 @@ class MountTextField extends StatelessWidget {
             child: SafeTextFormField(
               controller: controller.localeAddressFieldController,
               // validator: (value) => controller.validateTextField(value),
-              labelText: S.current.textAddLocaleAddress,
+              labelText: S.current.textAddLocationAddress,
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 12.0),
             child: Text(
-              S.current.textAddTypeLocaleFieldTitle,
+              S.current.textAddTypeLocationFieldTitle,
               style: TextStyles.subtitle1(),
             ),
           ),

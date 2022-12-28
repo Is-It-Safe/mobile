@@ -5,13 +5,13 @@ class ParseEnum {
   static String parseLocationTypeEnum(LocationTypeEnum location) {
     switch (location) {
       case LocationTypeEnum.pub:
-        return S.current.textAddLocaleTypePub;
+        return S.current.textAddLocationTypePub;
       case LocationTypeEnum.restaurant:
-        return S.current.textAddLocaleTypeRestaurant;
+        return S.current.textAddLocationTypeRestaurant;
       case LocationTypeEnum.publicLocation:
-        return S.current.textAddLocaleTypePublicLocation;
+        return S.current.textAddLocationTypePublicLocation;
       case LocationTypeEnum.nightClub:
-        return S.current.textAddLocaleTypeNightClub;
+        return S.current.textAddLocationTypeNightClub;
       default:
         return '';
     }

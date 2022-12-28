@@ -157,22 +157,22 @@
     "textOnBoarding3_2":"e avalie locais",
 
     
-    "textAddLocaleTitle": "Configurações",
-    "textAddLocaleSubTitle": "Adicionar Local",
-    "textAddLocaleNameTextFieldTitle": "Nome do local",
-    "textAddLocaleCepFieldTitle": "CEP",
-    "textAddLocaleAddressFieldTitle": "Endereço",
-    "textAddTypeLocaleFieldTitle": "Tipo de local",
-    "textAddLocalePhotoFieldTitle": "Adicionar Foto (opcional)",
-    "textAddLocaleConfirm": "ADICIONAR LOCAL",
-    "textAddLocaleSuccess": "Local adicionado com sucesso!",
+    "textAddLocationTitle": "Configurações",
+    "textAddLocationSubTitle": "Adicionar Local",
+    "textAddLocationNameTextFieldTitle": "Nome do local",
+    "textAddLocationCepFieldTitle": "CEP",
+    "textAddLocationAddressFieldTitle": "Endereço",
+    "textAddTypeLocationFieldTitle": "Tipo de local",
+    "textAddLocationPhotoFieldTitle": "Adicionar Foto (opcional)",
+    "textAddLocationConfirm": "ADICIONAR LOCAL",
+    "textAddLocationSuccess": "Local adicionado com sucesso!",
     
 
-    "textAddLocaleTypePub": "Bar",
-    "textAddLocaleTypeRestaurant": "Restaurante",
-    "textAddLocaleTypePublicLocation": "Local público",
-    "textAddLocaleTypeNightClub": "Casa noturna",
-    "textAddLocaleExample": "Ex: Bar santa maria",
-    "textAddLocaleCepExample": "Ex: 04553434",
-    "textAddLocaleAddress": "Ex: Rua Clodomiro"
+    "textAddLocationTypePub": "Bar",
+    "textAddLocationTypeRestaurant": "Restaurante",
+    "textAddLocationTypePublicLocation": "Local público",
+    "textAddLocationTypeNightClub": "Casa noturna",
+    "textAddLocationExample": "Ex: Bar santa maria",
+    "textAddLocationCepExample": "Ex: 04553434",
+    "textAddLocationAddress": "Ex: Rua Clodomiro"
 }

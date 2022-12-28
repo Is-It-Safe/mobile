@@ -26,7 +26,7 @@ class _LocalePhotoComponentState extends State<LocalePhotoComponent> {
         Padding(
           padding: const EdgeInsets.only(bottom: 12.0),
           child: Text(
-            S.current.textAddLocalePhotoFieldTitle,
+            S.current.textAddLocationPhotoFieldTitle,
             style: TextStyles.subtitle1(),
           ),
         ),
