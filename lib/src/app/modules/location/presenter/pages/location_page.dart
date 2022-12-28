@@ -8,7 +8,6 @@ import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
@@ -32,7 +31,7 @@ class _SaveLocationPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SafeAppBar(
-        title: S.current.textAddLocaleTitle,
+        title: S.current.textAddLocaleSubTitle,
       ),
       body: StreamBuilder<SafeEvent<LocationEntity>>(
         stream: controller.isSavingLocation.stream,
@@ -55,13 +54,6 @@ class _SaveLocationPageState
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 32.0),
-                              child: Text(
-                                S.current.textAddLocaleSubTitle,
-                                style: TextStyles.headline3(),
-                              ),
-                            ),
                             MountTextField(
                               formKey: _formKey,
                               controller: controller,

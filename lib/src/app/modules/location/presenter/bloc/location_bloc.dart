@@ -40,8 +40,10 @@ class SaveLocationBloc extends SafeBloC {
   }
 
   Future<String?> handleCameraTap() async {
-    final XFile? photo =
-        await ImagePicker().pickImage(source: ImageSource.camera);
+    final XFile? photo = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 5,
+    );
     if (photo != null && photo.path.isNotEmpty) {
       return photo.path;
     }
