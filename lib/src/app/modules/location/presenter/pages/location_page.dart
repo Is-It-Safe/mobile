@@ -125,7 +125,7 @@ class MountTextField extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 32.0),
             child: SafeTextFormField(
               controller: controller.localeNameController,
-              // validator: (value) => controller.validateTextField(value),
+              validator: (value) => controller.validateTextField(value),
               labelText: S.current.textAddLocationExample,
             ),
           ),
@@ -140,7 +140,7 @@ class MountTextField extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 32.0),
             child: SafeTextFormField(
               controller: controller.localeCepController,
-              // validator: (value) => controller.validateTextField(value),
+              validator: (value) => controller.validateTextField(value),
               labelText: S.current.textAddLocationCepExample,
             ),
           ),
@@ -155,7 +155,7 @@ class MountTextField extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 32.0),
             child: SafeTextFormField(
               controller: controller.localeAddressFieldController,
-              // validator: (value) => controller.validateTextField(value),
+              validator: (value) => controller.validateTextField(value),
               labelText: S.current.textAddLocationAddress,
             ),
           ),
