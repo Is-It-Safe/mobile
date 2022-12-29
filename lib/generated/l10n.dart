@@ -1210,6 +1210,16 @@ class S {
     );
   }
 
+  /// `Como as pessoas se sentiram nesse local:`
+  String get textHowDoPeopleFellAboutThisPlace {
+    return Intl.message(
+      'Como as pessoas se sentiram nesse local:',
+      name: 'textHowDoPeopleFellAboutThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Escolha uma classificação para este local!`
   String get textChooseAClassification {
     return Intl.message(

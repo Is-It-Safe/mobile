@@ -15,12 +15,18 @@ class SafeEmotionGraphicStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Row(
-      children: [
-        Text(status),
-        Text("$avaliations"),
-        _GraphicGradePercentLine(grade: statusGrade, size: size),
-      ],
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(status),
+          SizedBox(width: size.width * .044),
+          Text("$avaliations"),
+          SizedBox(width: size.width * .01744),
+          _GraphicGradePercentLine(grade: statusGrade, size: size),
+        ],
+      ),
     );
   }
 }
@@ -32,11 +38,12 @@ class _GraphicGradePercentLine extends StatelessWidget {
     Key? key,
     required this.grade,
     required this.size,
-  }) : super(key: key);
+  })  : assert(grade >= 0 && grade <= 5),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double fullSize = size.width * .6;
+    double fullSize = size.width * .45;
 
     return Stack(
       alignment: AlignmentDirectional.centerStart,
@@ -47,8 +54,8 @@ class _GraphicGradePercentLine extends StatelessWidget {
           color: SafeColors.componentsColors.emotionStatusColor,
         ),
         Container(
-          height: .5,
-          width: (grade / fullSize),
+          height: 10,
+          width: (grade * fullSize) / 5,
           color: SafeColors.componentsColors.emotionStatusColor,
         ),
       ],

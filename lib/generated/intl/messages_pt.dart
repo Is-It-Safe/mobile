@@ -144,6 +144,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
         "textHappy": MessageLookupByLibrary.simpleMessage("Contente"),
+        "textHowDoPeopleFellAboutThisPlace":
+            MessageLookupByLibrary.simpleMessage(
+                "Como as pessoas se sentiram nesse local:"),
         "textHowDoYouFeelAboutThisPlace": MessageLookupByLibrary.simpleMessage(
             "Como você se sentiu nesse local?"),
         "textHowDoYouPreferWeReferToYou": MessageLookupByLibrary.simpleMessage(
