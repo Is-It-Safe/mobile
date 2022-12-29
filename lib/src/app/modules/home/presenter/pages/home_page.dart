@@ -89,7 +89,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
             list: controller.listBestRatedPlaces,
           ),
         ).build;
-      },
+        },
     );
   }
 

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -11,138 +12,72 @@ enum SafeImpressionEnum {
   danger,
  }
 
+ extension SafeImpressionEnumString on SafeImpressionEnum {
+  String get message{
+    switch (this) {
+      case SafeImpressionEnum.success:
+        return S.current.textMostPeopleSafePlace;
 
+      case SafeImpressionEnum.alert:
+        return S.current.textMostPeopleAlertPlace;
 
- extension SafeImpressionCardEnum on SafeImpressionEnum {
-  Widget? get card => {
-    SafeImpressionEnum.success: _successCard(),
-    SafeImpressionEnum.alert: _alertCard(),
-    SafeImpressionEnum.danger: _dangerCard(),
- }[this];
+      case SafeImpressionEnum.danger:
+        return S.current.textMostPeopleDangerPlace;
+    }
+  }
+  String get icon {
+    switch (this) {
+      case SafeImpressionEnum.success:
+        return AssetConstants.impression.safe;
 
-  static Widget get success => _successCard();
-  static Widget get alert => _alertCard();
-  static Widget get danger => _dangerCard();
- }
+      case SafeImpressionEnum.alert:
+        return AssetConstants.impression.warning;
 
-class SafeImpressionCard extends StatefulWidget {
-  const SafeImpressionCard({Key? key, required this.card}) : super(key: key);
-  final Widget card;
-
-
-  @override
-  State<SafeImpressionCard> createState() => _SafeImpressionCardState();
+      case SafeImpressionEnum.danger:
+        return AssetConstants.impression.danger;
+    }
+  }
 }
 
-class _SafeImpressionCardState extends State<SafeImpressionCard> {
+class SafeImpressionCard extends StatelessWidget {
+  const SafeImpressionCard({Key? key, required this.type}) : super(key: key);
+  final SafeImpressionEnum type;
+
   @override
   Widget build(BuildContext context) {
 
-   return Center(child: widget.card);
+   return Container(
+     height: 128,
+     width: MediaQuery.of(context).size.width * .9,
+     decoration: BoxDecoration(
+       borderRadius: BorderRadius.circular(8.0),
+       gradient: LinearGradient(
+         begin: Alignment.topLeft,
+         end: Alignment.bottomRight,
+         colors: <Color>[
+           SafeColors.materialcardColors.secondary,
+           SafeColors.materialcardColors.primary,
+         ],
+       ),
+     ),
+     child: Stack(
+       children: [
+         Padding(
+           padding: const EdgeInsets.only(left: 16, top: 33, bottom: 32),
+           child: Text(type.message, style: TextStyles.bodyText2(
+             color: SafeColors.materialcardColors.text,
+           ),),
+         ),
+         Positioned(
+           left: 250,
+           top: 30,
+           child: SvgPicture.asset(type.icon),
+         ),
+       ],
+     ),
+   );
 
 
 
   }
-
 }
-
-//TODO falta colocar o MediaQuery
-
-Widget _successCard() {
-  return Container(
-    height: 128,
-    width: 344,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8.0),
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: <Color>[
-          SafeColors.materialcardColors.secondary,
-          SafeColors.materialcardColors.primary,
-        ],
-      ),
-    ),
-    child: Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16, top: 33, bottom: 32),
-          child: Text(S.current.textMostPeopleSafePlace, style: TextStyles.bodyText2(
-            color: SafeColors.materialcardColors.text,
-          ),),
-        ),
-        Positioned(
-          left: 250,
-          top: 30,
-          child: SvgPicture.asset(AssetConstants.impression.safe),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _alertCard() {
-  return Container(
-    height: 128,
-    width: 344,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8.0),
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: <Color>[
-          SafeColors.materialcardColors.secondary,
-          SafeColors.materialcardColors.primary,
-        ],
-      ),
-    ),
-    child: Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16, top: 22, bottom: 22),
-          child: Text(S.current.textMostPeopleAlertPlace, style: TextStyles.bodyText2(
-              color: SafeColors.materialcardColors.text),
-          ),
-        ),
-        Positioned(
-          left: 250,
-          top: 30,
-          child: SvgPicture.asset(AssetConstants.impression.warning),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _dangerCard() {
-  return Container(
-    height: 128,
-    width: 344,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8.0),
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: <Color>[
-          SafeColors.materialcardColors.secondary,
-          SafeColors.materialcardColors.primary,
-        ],
-      ),
-    ),
-    child: Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16, top: 22, bottom: 22),
-          child: Text(S.current.textMostPeopleDangerPlace, style: TextStyles.bodyText2(
-              color: SafeColors.materialcardColors.text),),
-        ),
-        Positioned(
-          left: 228,
-          top: 4,
-          child: SvgPicture.asset(AssetConstants.impression.danger),
-        ),
-      ],
-    ),
-  );
-}
-
