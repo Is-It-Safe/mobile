@@ -22,6 +22,7 @@ class _GeneralColors {
 class _ComponentsColors {
   Color smoothPageIndicatorColor = const Color(0xFFE9E9E9);
   _IconColors iconColors = _IconColors();
+  Color emotionStatusColor = const Color(0xff441578);
 }
 
 class _IconColors {

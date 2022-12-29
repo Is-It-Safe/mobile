@@ -750,11 +750,41 @@ class S {
     );
   }
 
+  /// `Regular`
+  String get textRegular {
+    return Intl.message(
+      'Regular',
+      name: 'textRegular',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Neutro`
   String get textNeutral {
     return Intl.message(
       'Neutro',
       name: 'textNeutral',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Satisfeito`
+  String get textSatisfied {
+    return Intl.message(
+      'Satisfeito',
+      name: 'textSatisfied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incrível`
+  String get textIncredible {
+    return Intl.message(
+      'Incrível',
+      name: 'textIncredible',
       desc: '',
       args: [],
     );
