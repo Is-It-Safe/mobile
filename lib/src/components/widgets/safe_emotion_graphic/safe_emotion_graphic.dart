@@ -27,6 +27,7 @@ class SafeEmotionGrapic extends StatelessWidget {
               padding: EdgeInsets.only(
                 left: size.width * .076,
                 right: size.width * .055,
+                top: size.height * .023,
                 bottom: size.height * .018,
               ),
               decoration: BoxDecoration(
@@ -37,7 +38,6 @@ class SafeEmotionGrapic extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: size.height * .023),
                   Row(
                     children: [
                       Text(
