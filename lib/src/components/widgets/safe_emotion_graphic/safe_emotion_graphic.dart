@@ -37,7 +37,7 @@ class SafeEmotionGrapic extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: size.height * .04),
+                  SizedBox(height: size.height * .023),
                   Row(
                     children: [
                       Text(
