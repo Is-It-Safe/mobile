@@ -56,8 +56,8 @@ class _EditAccountPageState
                 const SizedBox(height: 16),
                 _mountEditNickNameField(),
                 const SizedBox(height: 16),
-                _mountEditBirthdateField(),
-                const SizedBox(height: 16),
+                // _mountEditBirthdateField(),
+                // const SizedBox(height: 16),
                 _mountEditPronoun(),
                 const SizedBox(height: 16),
                 SexualOrientationEditAcount(
@@ -97,8 +97,14 @@ class _EditAccountPageState
             case Status.error:
               showDialog(
                 context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
+                builder: (context) => SafeDialog(
+                  primaryBtn: SafeButton(
+                      title: S.current.textSafeDialogTypeError,
+                      size: ButtonSize.large,
+                      state: ButtonState.disabled,
+                      onTap: () async {}),
+                  type: SafeDialogType.error,
+                  message: snapshot.data!.message.toString(),
                 ),
               );
               break;
@@ -148,8 +154,14 @@ class _EditAccountPageState
             case Status.error:
               showDialog(
                 context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
+                builder: (context) => SafeDialog(
+                  primaryBtn: SafeButton(
+                      title: S.current.textSafeDialogTypeError,
+                      size: ButtonSize.large,
+                      state: ButtonState.disabled,
+                      onTap: () async {}),
+                  type: SafeDialogType.error,
+                  message: snapshot.data!.message.toString(),
                 ),
               );
               break;
@@ -206,8 +218,14 @@ class _EditAccountPageState
             case Status.error:
               showDialog(
                 context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
+                builder: (context) => SafeDialog(
+                  primaryBtn: SafeButton(
+                      title: S.current.textSafeDialogTypeError,
+                      size: ButtonSize.large,
+                      state: ButtonState.disabled,
+                      onTap: () async {}),
+                  type: SafeDialogType.error,
+                  message: snapshot.data!.message.toString(),
                 ),
               );
               break;
@@ -261,8 +279,14 @@ class _EditAccountPageState
             case Status.error:
               showDialog(
                 context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
+                builder: (context) => SafeDialog(
+                  primaryBtn: SafeButton(
+                      title: S.current.textSafeDialogTypeError,
+                      size: ButtonSize.large,
+                      state: ButtonState.disabled,
+                      onTap: () async {}),
+                  type: SafeDialogType.error,
+                  message: snapshot.data!.message.toString(),
                 ),
               );
               break;
@@ -319,8 +343,14 @@ class _EditAccountPageState
             case Status.error:
               showDialog(
                 context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
+                builder: (context) => SafeDialog(
+                  primaryBtn: SafeButton(
+                      title: S.current.textSafeDialogTypeError,
+                      size: ButtonSize.large,
+                      state: ButtonState.disabled,
+                      onTap: () async {}),
+                  type: SafeDialogType.error,
+                  message: snapshot.data!.message.toString(),
                 ),
               );
               break;
