@@ -158,6 +158,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textMeetingYouWillBeAPleasure":
             MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer."),
+        "textMostPeopleAlertPlace": MessageLookupByLibrary.simpleMessage(
+            "Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+"),
+        "textMostPeopleDangerPlace": MessageLookupByLibrary.simpleMessage(
+            "Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+"),
+        "textMostPeopleSafePlace": MessageLookupByLibrary.simpleMessage(
+            "A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+"),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
         "textNeutral": MessageLookupByLibrary.simpleMessage("Neutro"),
         "textOk": MessageLookupByLibrary.simpleMessage("Ok"),

@@ -139,7 +139,9 @@
     "textReenterPassword1_1":"para continuar.",
     "textConfirmCurrentPassword":"Confirme sua senha atual",
     "textErrorConfirmPassword":"Não foi possível confirmar sua senha!",
-
+    "textMostPeopleSafePlace":"A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+",
+    "textMostPeopleAlertPlace":"Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+",
+    "textMostPeopleDangerPlace":"Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+",
 
 
     "textSafeDialogTypeSucces":"Sucesso!",

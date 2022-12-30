@@ -13,7 +13,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-
 import 'confirm_password.dart';
 
 class AccountPage extends StatefulWidget {
@@ -194,7 +193,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
   Widget _mountChangeEmailButton() {
     return AccountInfoButton(
       text: S.current.textChangeEmail,
-      //TODO substituir por: navegação para tela de editar conta
+      //TODO substituir por: navegação para tela de editar conta//
       onTap: () => SafeSnackBar(
         message: S.current.textFeatureAvailableSoon,
         type: SnackBarType.info,

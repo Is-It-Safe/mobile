@@ -1340,6 +1340,36 @@ class S {
     );
   }
 
+  /// `A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleSafePlace {
+    return Intl.message(
+      'A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleSafePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+`
+  String get textMostPeopleAlertPlace {
+    return Intl.message(
+      'Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+',
+      name: 'textMostPeopleAlertPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleDangerPlace {
+    return Intl.message(
+      'Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleDangerPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sucesso!`
   String get textSafeDialogTypeSucces {
     return Intl.message(
