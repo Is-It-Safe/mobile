@@ -8,7 +8,6 @@ import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
@@ -25,7 +24,7 @@ class SaveLocationPage extends StatefulWidget {
 
 class _SaveLocationPageState
     extends ModularState<SaveLocationPage, SaveLocationBloc> {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,53 +40,48 @@ class _SaveLocationPageState
             snapshot: snapshot,
             context: context,
             onCompleted: const SizedBox.shrink(),
-            onInitial: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              child: snapshot.connectionState == ConnectionState.done
-                  ? const SafeLoading()
-                  : SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24.0,
-                          vertical: 8.0,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            MountTextField(
-                              formKey: _formKey,
-                              controller: controller,
-                            ),
-                            ValueListenableBuilder<String?>(
-                              valueListenable: controller.imageNotifier,
-                              builder: (context, value, _) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 48.0),
-                                  child: LocalePhotoComponent(
-                                    path: value,
-                                    onTap: () async {
-                                      controller.imageNotifier.value =
-                                          await controller.handleCameraTap();
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                            Center(
-                              child: SafeButton(
-                                title: S.current.textAddLocationConfirm,
-                                hasBackground: true,
-                                size: ButtonSize.large,
-                                onTap: () async {
-                                  await controller.sendNewLocation();
-                                },
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                          ],
-                        ),
+            onInitial: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                  vertical: 8.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MountTextField(
+                      formKey: _formKey,
+                      controller: controller,
+                    ),
+                    ValueListenableBuilder<String?>(
+                      valueListenable: controller.imageNotifier,
+                      builder: (context, value, _) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 48.0),
+                          child: LocalePhotoComponent(
+                            path: value,
+                            onTap: () async {
+                              controller.imageNotifier.value =
+                                  await controller.handleCameraTap();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                    Center(
+                      child: SafeButton(
+                        title: S.current.textAddLocationConfirm,
+                        hasBackground: true,
+                        size: ButtonSize.large,
+                        onTap: () async {
+                          await controller.sendNewLocation();
+                        },
                       ),
                     ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              ),
             ),
           ).build;
         },
@@ -96,7 +90,6 @@ class _SaveLocationPageState
   }
 }
 
-// ignore: must_be_immutable
 class MountTextField extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final SaveLocationBloc controller;
@@ -124,7 +117,7 @@ class MountTextField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 32.0),
             child: SafeTextFormField(
-              controller: controller.localeNameController,
+              controller: controller.locationNameController,
               validator: (value) => controller.validateTextField(value),
               labelText: S.current.textAddLocationExample,
             ),
@@ -139,7 +132,7 @@ class MountTextField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 32.0),
             child: SafeTextFormField(
-              controller: controller.localeCepController,
+              controller: controller.locationCepController,
               validator: (value) => controller.validateTextField(value),
               labelText: S.current.textAddLocationCepExample,
             ),
@@ -154,7 +147,7 @@ class MountTextField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 32.0),
             child: SafeTextFormField(
-              controller: controller.localeAddressFieldController,
+              controller: controller.locationAddressFieldController,
               validator: (value) => controller.validateTextField(value),
               labelText: S.current.textAddLocationAddress,
             ),

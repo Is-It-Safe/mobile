@@ -19,10 +19,9 @@ class SaveLocationBloc extends SafeBloC {
 
   late ValueNotifier<String?> imageNotifier = ValueNotifier(null);
 
-  late TextEditingController localeNameController = TextEditingController();
-  late TextEditingController localeCepController = TextEditingController();
-  late TextEditingController localeAddressFieldController =
-      TextEditingController();
+  late TextEditingController locationNameController;
+  late TextEditingController locationCepController;
+  late TextEditingController locationAddressFieldController;
 
   late ValueNotifier<String> locationTypeNotifier = ValueNotifier(
     ParseEnum.parseLocationTypeEnum(LocationTypeEnum.pub),
@@ -37,6 +36,9 @@ class SaveLocationBloc extends SafeBloC {
   @override
   Future<void> init() async {
     isSavingLocation = StreamController.broadcast();
+    locationNameController = TextEditingController();
+    locationCepController = TextEditingController();
+    locationAddressFieldController = TextEditingController();
   }
 
   Future<String?> handleCameraTap() async {
@@ -59,8 +61,8 @@ class SaveLocationBloc extends SafeBloC {
             locationTypeNotifier.value,
       );
       final response = await saveLocationUseCase(
-        name: localeNameController.text,
-        cep: localeCepController.text,
+        name: locationNameController.text,
+        cep: locationCepController.text,
         locationTypeId: locationId + 1,
         imgUrl: imageNotifier.value,
       );
@@ -82,5 +84,8 @@ class SaveLocationBloc extends SafeBloC {
   @override
   Future<void> dispose() async {
     isSavingLocation.close();
+    locationNameController = TextEditingController();
+    locationCepController = TextEditingController();
+    locationAddressFieldController = TextEditingController();
   }
 }
