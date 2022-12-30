@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_emotion_graphic/safe_emotion_graphic_status.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 
@@ -42,11 +43,9 @@ class SafeEmotionGrapic extends StatelessWidget {
                     children: [
                       Text(
                         "$grade",
-                        style: TextStyle(
-                          color: SafeColors.textColors.dark,
-                          fontSize: 22,
+                        style: TextStyles.headline3(
                           fontWeight: FontWeight.w700,
-                        ),
+                        ).copyWith(fontSize: 22),
                       ),
                       SizedBox(width: size.width * .115),
                       Flexible(
@@ -56,20 +55,16 @@ class SafeEmotionGrapic extends StatelessWidget {
                             Text(
                               S.current.textHowDoPeopleFellAboutThisPlace,
                               textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 16,
+                              style: TextStyles.bodyText1().copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: SafeColors.textColors.dark,
                                 overflow: TextOverflow.clip,
                               ),
                             ),
                             SizedBox(height: size.height * .007),
                             Text(
                               "$avaliationCount avaliações",
-                              style: TextStyle(
-                                color: SafeColors.textColors.dark,
+                              style: TextStyles.label(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
                               ),
                             ),
                           ],
