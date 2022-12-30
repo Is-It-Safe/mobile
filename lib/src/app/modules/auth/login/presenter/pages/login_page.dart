@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
@@ -9,7 +10,6 @@ import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/naviga
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
@@ -48,7 +48,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
           break;
         case Status.error:
           Modular.to.pop();
-          SafeDialogs.error(message: event.message);
+          SafeDialog(
+            message: event.message ?? S.current.textErrorDropdown,
+            primaryBtn: SafeButton(
+              title: S.current.textOk,
+            ),
+            type: SafeDialogType.error,
+          );
           break;
         default:
           break;
@@ -79,7 +85,14 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
                   } else if (snapshot.data?.status == Status.error) {
                     // Modular.to.pop();
                     //TODO Algum erro rola aqui quando o serviço ta indisponível
-                    return SafeDialogs.error(message: snapshot.data?.message);
+                    return SafeDialog(
+                      message:
+                          snapshot.data?.message ?? S.current.textErrorDropdown,
+                      primaryBtn: SafeButton(
+                        title: S.current.textOk,
+                      ),
+                      type: SafeDialogType.error,
+                    );
                   }
 
                   return Form(

@@ -60,10 +60,8 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
             //       onTap: () => Modular.to.pop(),
             //     ).show(),
             //   );
-            // }
             return SafeLayout(
               snapshot: snapshot,
-              context: context,
               onCompleted: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -155,7 +153,7 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
                   ),
                 ),
               ),
-            ).build;
+            );
           }),
     );
   }

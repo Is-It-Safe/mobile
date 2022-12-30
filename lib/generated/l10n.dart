@@ -1320,10 +1320,10 @@ class S {
     );
   }
 
-  /// `usuário deletado com sucesso`
+  /// `Usuário deletado com sucesso`
   String get textDeleteUser {
     return Intl.message(
-      'usuário deletado com sucesso',
+      'Usuário deletado com sucesso',
       name: 'textDeleteUser',
       desc: '',
       args: [],
@@ -1335,6 +1335,86 @@ class S {
     return Intl.message(
       'Exemplo: Ela/Dela, Elu/Delu, Ela/Elu',
       name: 'textExamplePronouns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirme sua senha`
+  String get textConfirmPassword {
+    return Intl.message(
+      'Confirme sua senha',
+      name: 'textConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insira sua senha novamente`
+  String get textReenterPassword1_0 {
+    return Intl.message(
+      'Insira sua senha novamente',
+      name: 'textReenterPassword1_0',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `para continuar.`
+  String get textReenterPassword1_1 {
+    return Intl.message(
+      'para continuar.',
+      name: 'textReenterPassword1_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirme sua senha atual`
+  String get textConfirmCurrentPassword {
+    return Intl.message(
+      'Confirme sua senha atual',
+      name: 'textConfirmCurrentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível confirmar sua senha!`
+  String get textErrorConfirmPassword {
+    return Intl.message(
+      'Não foi possível confirmar sua senha!',
+      name: 'textErrorConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sucesso!`
+  String get textSafeDialogTypeSucces {
+    return Intl.message(
+      'Sucesso!',
+      name: 'textSafeDialogTypeSucces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atenção!`
+  String get textSafeDialogTypeAlert {
+    return Intl.message(
+      'Atenção!',
+      name: 'textSafeDialogTypeAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Erro!`
+  String get textSafeDialogTypeError {
+    return Intl.message(
+      'Erro!',
+      name: 'textSafeDialogTypeError',
       desc: '',
       args: [],
     );
