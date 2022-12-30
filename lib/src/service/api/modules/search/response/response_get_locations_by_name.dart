@@ -1,3 +1,5 @@
+import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
+
 class ResponseGetLocationsByName {
   List<ResponseGetLocationsByNameLocation>? locations;
   ResponseGetLocationsByNamePageable? pageable;
@@ -60,6 +62,7 @@ class ResponseGetLocationsByNameLocation {
   double? averageGrade;
   String? averageImpressionStatus;
   int? reviewsQnt;
+  ReviewEntity? review;
 
   ResponseGetLocationsByNameLocation({
     this.id,
@@ -69,6 +72,7 @@ class ResponseGetLocationsByNameLocation {
     this.averageGrade,
     this.averageImpressionStatus,
     this.reviewsQnt,
+    this.review,
   });
 
   factory ResponseGetLocationsByNameLocation.fromJson(dynamic json) {
@@ -80,6 +84,7 @@ class ResponseGetLocationsByNameLocation {
       averageGrade: json['averageGrade'],
       averageImpressionStatus: json['averageImpressionStatus'],
       reviewsQnt: json['reviewsQnt'],
+      review: json['review'],
     );
   }
 }

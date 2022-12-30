@@ -132,8 +132,19 @@
     "textShareUserReview":"Texto copiado!",
     "textDontFoundThePlace":"Não encontrou o local que estava procurando?",
     "textCreateHere":"Crie ele aqui.",
-    "textDeleteUser":"usuário deletado com sucesso",
+    "textDeleteUser":"Usuário deletado com sucesso",
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
+    "textConfirmPassword":"Confirme sua senha",
+    "textReenterPassword1_0":"Insira sua senha novamente",
+    "textReenterPassword1_1":"para continuar.",
+    "textConfirmCurrentPassword":"Confirme sua senha atual",
+    "textErrorConfirmPassword":"Não foi possível confirmar sua senha!",
+
+
+
+    "textSafeDialogTypeSucces":"Sucesso!",
+    "textSafeDialogTypeAlert":"Atenção!",
+    "textSafeDialogTypeError":"Erro!",
 
     "textOnBoarding1_0":"Foco em",
     "textOnBoarding1_1":"segurança",
