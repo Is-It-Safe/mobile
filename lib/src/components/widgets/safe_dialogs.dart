@@ -27,16 +27,22 @@ class SafeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return AlertDialog(
       backgroundColor: SafeColors.generalColors.background,
       title: Row(
         children: [
           _getIconByType(),
           const SizedBox(width: 10),
-          Text(
-            title ?? _getTitleByType(),
-            style: TextStyles.headline3(
-              color: _getColorByType(),
+          Flexible(
+            child: Text(
+              title ?? _getTitleByType(),
+              style: TextStyles.headline3(
+                color: _getColorByType(),
+              ).copyWith(
+                fontSize: size.width * .05,
+                overflow: TextOverflow.clip,
+              ),
             ),
           ),
         ],
