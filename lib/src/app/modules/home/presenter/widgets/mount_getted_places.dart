@@ -12,11 +12,13 @@ class MountGettePlaces extends StatelessWidget {
   final Stream<SafeEvent<List<LocationEntity>>> stream;
   final List<LocationEntity> list;
   final Widget? onEmpty;
+  final bool showErrorDialog;
   const MountGettePlaces({
     Key? key,
     required this.stream,
     required this.list,
     this.onEmpty,
+    this.showErrorDialog = true,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class MountGettePlaces extends StatelessWidget {
       builder: (context, snapshot) {
         return SafeLayout(
           snapshot: snapshot,
+          showErrorDialog: showErrorDialog,
           onEmpty: onEmpty ?? const SizedBox.shrink(),
           onCompleted: _SepararedList(list: list),
         );
