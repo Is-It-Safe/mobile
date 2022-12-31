@@ -15,9 +15,9 @@ class GetLocationsNearUser extends SafeUseCase {
     double userLatitude,
     double userLongitude,
   ) async {
-    final _response =
+    final response =
         await _service.getLocationsNearUser(userLatitude, userLongitude);
 
-    return _response.map((e) => LocationEntity.toEntity(e)).toList();
+    return response.map((e) => LocationEntity.toEntity(e)).toList();
   }
 }

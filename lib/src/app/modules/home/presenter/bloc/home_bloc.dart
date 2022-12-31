@@ -81,8 +81,11 @@ class HomeBloc extends SafeBloC {
   Future<void> getBestRatedPlaces() async {
     try {
       bestRatedPlacesController.add(SafeEvent.load());
-      listBestRatedPlaces =
-          await getBestRatedLocationsUseCase.call(place: await userCity);
+      await getBestRatedLocationsUseCase
+          .call(place: await userCity)
+          .then((locations) {
+        listBestRatedPlaces.addAll(locations);
+      });
       bestRatedPlacesController.add(SafeEvent.done(listBestRatedPlaces));
     } on Exception catch (e) {
       if (e is UnauthorizedException) await ApiInterceptors.doLogout();
@@ -94,11 +97,14 @@ class HomeBloc extends SafeBloC {
     try {
       locationsNearUserController.add(SafeEvent.load());
       final location = await Geolocator.getCurrentPosition();
-      listLocationsNeartUser = await getLocationsNearUserUsecase.call(
-          location.latitude, location.altitude);
+      await getLocationsNearUserUsecase
+          .call(location.latitude, location.longitude)
+          .then((locations) {
+        listLocationsNeartUser.addAll(locations);
+      });
       locationsNearUserController.add(SafeEvent.done(listLocationsNeartUser));
     } on Exception catch (e) {
-      if (e is UnauthorizedException) await ApiInterceptors.doLogout();
+      SafeLogUtil.instance.logError(e);
       locationsNearUserController.addError(e.toString());
     }
   }

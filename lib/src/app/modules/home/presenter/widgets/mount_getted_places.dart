@@ -27,13 +27,19 @@ class MountGettePlaces extends StatelessWidget {
         return SafeLayout(
           snapshot: snapshot,
           onEmpty: onEmpty ?? const SizedBox.shrink(),
-          onCompleted: _mountSepararedList(),
+          onCompleted: _SepararedList(list: list),
         );
       },
     );
   }
+}
 
-  Widget _mountSepararedList() {
+class _SepararedList extends StatelessWidget {
+  final List<LocationEntity> list;
+  const _SepararedList({Key? key, required this.list}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(
         horizontal: 20.0,
