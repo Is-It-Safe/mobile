@@ -9,6 +9,7 @@ import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_locations_near_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
 
@@ -17,17 +18,22 @@ import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 
 class HomeBloc extends SafeBloC {
   final GetBestRatedLocationsUseCase getBestRatedLocationsUseCase;
+  final GetLocationsNearUser getLocationsNearUserUsecase;
   final SaveUserLocationTokenUseCase saveUserLocationTokenUseCase;
   final GetUserLocationTokenUseCase getUserLocationTokenUseCase;
   final ISafeLocator locator;
 
   late StreamController<SafeEvent<List<LocationEntity>>>
       bestRatedPlacesController;
+  late StreamController<SafeEvent<List<LocationEntity>>>
+      locationsNearUserController;
   late StreamController<SafeEvent<Placemark>> userLocationController;
   List<LocationEntity> listBestRatedPlaces = [];
+  List<LocationEntity> listLocationsNeartUser = [];
 
   HomeBloc({
     required this.getBestRatedLocationsUseCase,
+    required this.getLocationsNearUserUsecase,
     required this.saveUserLocationTokenUseCase,
     required this.getUserLocationTokenUseCase,
     required this.locator,
@@ -38,6 +44,7 @@ class HomeBloc extends SafeBloC {
   @override
   Future<void> init() async {
     bestRatedPlacesController = StreamController.broadcast();
+    locationsNearUserController = StreamController.broadcast();
     userLocationController = StreamController.broadcast();
   }
 
@@ -83,12 +90,24 @@ class HomeBloc extends SafeBloC {
     }
   }
 
+  Future<void> getLocationsNearUser() async {
+    try {
+      locationsNearUserController.add(SafeEvent.load());
+      final location = await Geolocator.getCurrentPosition();
+      listLocationsNeartUser = await getLocationsNearUserUsecase.call(
+          location.latitude, location.altitude);
+      locationsNearUserController.add(SafeEvent.done(listLocationsNeartUser));
+    } on Exception catch (e) {
+      if (e is UnauthorizedException) await ApiInterceptors.doLogout();
+      locationsNearUserController.addError(e.toString());
+    }
+  }
+
   Future<void> getCurrentLocation() async {
-    final Placemark? userLocation = await locator.getLocation(
-      onLocationDenied: () => userLocationController.sink.addError(
-        const LocationServiceDisabledException(),
-      ),
-    );
+    final Placemark? userLocation =
+        await locator.getLocation(onLocationDenied: () async {
+      await locator.requestPermission();
+    });
     if (userLocation != null) {
       await saveUserLocation(userLocation: userLocation);
       userLocationController.sink.add(SafeEvent.done(userLocation));

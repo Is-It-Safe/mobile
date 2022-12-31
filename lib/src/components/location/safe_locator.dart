@@ -10,7 +10,7 @@ class SafeLocator implements ISafeLocator {
     );
     if (userPosition != null) {
       List<Placemark> resultList =
-      await GeocodingPlatform.instance.placemarkFromCoordinates(
+          await GeocodingPlatform.instance.placemarkFromCoordinates(
         userPosition.latitude,
         userPosition.longitude,
       );
@@ -26,7 +26,7 @@ class SafeLocator implements ISafeLocator {
     );
     if (userPosition != null) {
       List<Placemark> resultList =
-      await GeocodingPlatform.instance.placemarkFromCoordinates(
+          await GeocodingPlatform.instance.placemarkFromCoordinates(
         userPosition.latitude,
         userPosition.longitude,
       );

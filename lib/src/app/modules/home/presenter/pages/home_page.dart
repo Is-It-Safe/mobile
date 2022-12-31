@@ -28,6 +28,18 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
 
   @override
   void initState() {
+    controller.getCurrentLocation().whenComplete(
+      () {
+        controller.userLocationController.stream.handleError(
+          (x) => SafeSnackBar(
+            message: S.current.textErrorGetLocation,
+            type: SnackBarType.error,
+          ),
+        );
+      },
+    ).then((_) {
+      controller.getLocationsNearUser();
+    });
     super.initState();
     SafeLogUtil.instance.route(Modular.to.path);
   }
@@ -41,10 +53,10 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
         endDrawer: const HomeDrawer(),
         appBar: const SafeAppBar().home(
           onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
-          onBottomTap: (tab) {
+          onBottomTap: (tab) async {
             //TODO manter comentado mediante implementação da feature
             if (tab == 0) {
-              controller.getCurrentLocation().whenComplete(
+              await controller.getCurrentLocation().whenComplete(
                 () {
                   controller.userLocationController.stream.handleError(
                     (x) => SafeSnackBar(
@@ -54,13 +66,18 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
                   );
                 },
               );
+              await controller.getLocationsNearUser();
             }
             if (tab == 1) controller.getBestRatedPlaces();
           },
         ),
         body: TabBarView(
           children: [
-            SafeEmptyCard.home(),
+            // SafeEmptyCard.home(),
+            _mountTab(
+              stream: controller.locationsNearUserController.stream,
+              list: controller.listLocationsNeartUser,
+            ),
             _mountTab(
               stream: controller.bestRatedPlacesController.stream,
               list: controller.listBestRatedPlaces,
@@ -76,7 +93,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
     required List<LocationEntity> list,
   }) {
     return StreamBuilder<SafeEvent<List<LocationEntity>>>(
-      stream: controller.bestRatedPlacesController.stream,
+      stream: stream,
       builder: (context, snapshot) {
         return SafeLayout(
           snapshot: snapshot,

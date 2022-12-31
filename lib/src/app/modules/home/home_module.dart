@@ -3,6 +3,7 @@ import 'package:is_it_safe_app/src/components/location/safe_locator.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_locations_near_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
@@ -15,11 +16,13 @@ class HomeModule extends Module {
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton((i) => GetBestRatedLocationsUseCase()),
+    Bind.lazySingleton((i) => GetLocationsNearUser()),
     Bind.lazySingleton((i) => SaveUserLocationTokenUseCase()),
     Bind.lazySingleton((i) => GetUserLocationTokenUseCase()),
     Bind.lazySingleton((i) => SafeLocator()),
     Bind.lazySingleton(
       (i) => HomeBloc(
+        getLocationsNearUserUsecase: i.get<GetLocationsNearUser>(),
         getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
         getUserLocationTokenUseCase: i.get<GetUserLocationTokenUseCase>(),
         saveUserLocationTokenUseCase: i.get<SaveUserLocationTokenUseCase>(),
