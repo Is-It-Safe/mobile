@@ -109,11 +109,14 @@ class HomeBloc extends SafeBloC {
     }
   }
 
-  Future<void> getCurrentLocation() async {
-    final Placemark? userLocation =
-        await locator.getLocation(onLocationDenied: () async {
+  Future<bool> verifyLocationPermission() async {
+    return await locator.verifyPermission(onLocationDenied: () async {
       await locator.requestPermission();
     });
+  }
+
+  Future<void> getCurrentLocation() async {
+    final Placemark? userLocation = await locator.getLocation();
     if (userLocation != null) {
       await saveUserLocation(userLocation: userLocation);
       userLocationController.sink.add(SafeEvent.done(userLocation));

@@ -24,7 +24,9 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
   @override
   void initState() {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await _requestPermissionAndShowNearLocations();
+      await _requestPermissionAndShowNearLocations().then((_) async {
+        await controller.getLocationsNearUser();
+      });
     });
     super.initState();
     SafeLogUtil.instance.route(Modular.to.path);
@@ -41,7 +43,9 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
           onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
           onBottomTap: (tab) async {
             if (tab == 0) {
-              await _requestPermissionAndShowNearLocations();
+              await _requestPermissionAndShowNearLocations().then((_) async {
+                await controller.getLocationsNearUser();
+              });
             }
             if (tab == 1) controller.getBestRatedPlaces();
           },
@@ -51,6 +55,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
             MountGettePlaces(
               stream: controller.locationsNearUserController.stream,
               list: controller.listLocationsNeartUser,
+              showErrorDialog: false,
               onEmpty: SafeEmptyCard.home(),
             ),
             MountGettePlaces(
@@ -65,7 +70,9 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
 
   Future _requestPermissionAndShowNearLocations() async {
     await controller.getCurrentLocation().then((_) async {
-      await controller.getLocationsNearUser();
+      await controller.verifyLocationPermission().then((allowed) async {
+        ///
+      });
     }).whenComplete(() {
       controller.userLocationController.stream.handleError(
         (x) => SafeSnackBar(
