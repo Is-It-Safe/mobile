@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_mout_textfield.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_photo.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
-import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
-import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
-import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 
 class SaveLocationPage extends StatefulWidget {
@@ -74,115 +71,22 @@ class _SaveLocationPageState
                         hasBackground: true,
                         size: ButtonSize.large,
                         onTap: () async {
-                          await controller.sendNewLocation();
+                          if (_formKey.currentState?.validate() == true) {
+                            print(_formKey.currentState?.validate().toString());
+                            await controller.sendNewLocation();
+                          } else {
+                            print(_formKey.currentState?.validate().toString());
+                          }
                         },
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 26),
                   ],
                 ),
               ),
             ),
           ).build;
         },
-      ),
-    );
-  }
-}
-
-class MountTextField extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
-  final SaveLocationBloc controller;
-
-  const MountTextField({
-    Key? key,
-    required this.formKey,
-    required this.controller,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12.0),
-            child: Text(
-              S.current.textAddLocationNameTextFieldTitle,
-              style: TextStyles.subtitle1(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 32.0),
-            child: SafeTextFormField(
-              controller: controller.locationNameController,
-              validator: (value) => controller.validateTextField(value),
-              labelText: S.current.textAddLocationExample,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12.0),
-            child: Text(
-              S.current.textAddLocationCepFieldTitle,
-              style: TextStyles.subtitle1(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 32.0),
-            child: SafeTextFormField(
-              controller: controller.locationCepController,
-              validator: (value) => controller.validateTextField(value),
-              labelText: S.current.textAddLocationCepExample,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12.0),
-            child: Text(
-              S.current.textAddLocationAddressFieldTitle,
-              style: TextStyles.subtitle1(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 32.0),
-            child: SafeTextFormField(
-              controller: controller.locationAddressFieldController,
-              validator: (value) => controller.validateTextField(value),
-              labelText: S.current.textAddLocationAddress,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12.0),
-            child: Text(
-              S.current.textAddTypeLocationFieldTitle,
-              style: TextStyles.subtitle1(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 32.0),
-            child: ValueListenableBuilder<String>(
-              valueListenable: controller.locationTypeNotifier,
-              builder: (context, value, _) {
-                return DropdownButtonFormField<String>(
-                  value: value,
-                  items: LocationTypeEnum.values
-                      .map(
-                        (e) => DropdownMenuItem<String>(
-                          value: ParseEnum.parseLocationTypeEnum(e),
-                          child: Text(
-                            ParseEnum.parseLocationTypeEnum(e),
-                          ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) =>
-                      controller.locationTypeNotifier.value = value!,
-                );
-              },
-            ),
-          ),
-        ],
       ),
     );
   }

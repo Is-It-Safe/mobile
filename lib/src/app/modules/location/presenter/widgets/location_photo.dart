@@ -38,8 +38,8 @@ class _LocalePhotoComponentState extends State<LocalePhotoComponent> {
             borderType: BorderType.RRect,
             radius: const Radius.circular(6.0),
             dashPattern: const [
-              10,
-              10,
+              3,
+              3,
             ],
             child: Center(
               child: GestureDetector(

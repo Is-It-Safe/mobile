@@ -22,6 +22,8 @@ class SafeTextFormField extends StatefulWidget {
   final Function()? onEditingComplete;
   final FormFieldValidator<String>? validator;
   final DropdownType dropdownType;
+  final int? maxLength;
+  final TextInputAction? textInputAction;
 
   const SafeTextFormField({
     Key? key,
@@ -39,6 +41,8 @@ class SafeTextFormField extends StatefulWidget {
     this.inputFormatters,
     this.readOnly = false,
     this.dropdownType = DropdownType.none,
+    this.maxLength,
+    this.textInputAction,
   }) : super(key: key);
 
   @override
@@ -76,6 +80,7 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
           keyboardType: widget.keyboardType ?? TextInputType.text,
           inputFormatters: widget.inputFormatters,
           decoration: InputDecoration(
+            counterText: '',
             labelText: labelText,
             labelStyle: TextStyles.label(
               color: _focusNode.hasFocus
@@ -91,6 +96,8 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
           onChanged: widget.onChanged,
           onEditingComplete: widget.onEditingComplete,
           validator: widget.validator,
+          maxLength: widget.maxLength,
+          textInputAction: widget.textInputAction,
         ),
         Visibility(
           visible: widget.bottomText?.isNotEmpty ?? false,
