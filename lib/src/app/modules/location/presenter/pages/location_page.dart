@@ -72,10 +72,7 @@ class _SaveLocationPageState
                         size: ButtonSize.large,
                         onTap: () async {
                           if (_formKey.currentState?.validate() == true) {
-                            print(_formKey.currentState?.validate().toString());
                             await controller.sendNewLocation();
-                          } else {
-                            print(_formKey.currentState?.validate().toString());
                           }
                         },
                       ),
