@@ -16,7 +16,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart'
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/bloc/login_bloc.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 
 class LoginPage extends StatefulWidget {
   static const route = '/login/';
@@ -170,15 +170,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginBloc> {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () async {
-          const url =
-              'https://is-it-safe-api-v2.herokuapp.com/is-it-safe/forgot';
-          if (await canLaunch(url)) {
-            await launch(url);
-          } else {
-            throw 'Could not launch $url';
-          }
-        },
+        onPressed: () => bloc.forgotPassword(ApiConstants.kForgotPassword),
         child: Text(
           S.current.textButtonForgotPassword,
           style: TextStyles.button(
