@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
@@ -21,7 +22,7 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
+class _SplashPageState extends SafeState<SplashPage, SplashBloc> {
   @override
   void initState() {
     super.initState();
@@ -30,8 +31,8 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
   }
 
   void defineRoute() async {
-    await Future.delayed(const Duration(seconds: 4)).then((_) {
-      if (controller.isUserLogged) {
+    await Future.delayed(const Duration(seconds: 4)).then((_) async {
+      if (await bloc.isUserLogged) {
         goToHome();
       } else {
         goToOnBoarding();
@@ -47,7 +48,7 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
   }
 
   void goToOnBoarding() async {
-    if (controller.isUserOnBoarding) {
+    if (await bloc.didUserSeeOnboarding) {
       goToLogin();
     } else {
       Modular.to.pushNamedAndRemoveUntil(
@@ -72,35 +73,27 @@ class _SplashPageState extends ModularState<SplashPage, SplashBloc> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _mountLogo(context),
-            _mountTitle(),
+            FadeAnimation(
+              delay: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Image.asset(
+                  AssetConstants.general.logo,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+              ),
+            ),
+            FadeAnimation(
+              delay: 2,
+              child: Text(
+                S.current.textIsItSafe,
+                textAlign: TextAlign.center,
+                style: TextStyles.headline1(
+                  color: SafeColors.generalColors.primary,
+                ),
+              ),
+            ),
           ],
-        ),
-      ),
-    );
-  }
-
-  FadeAnimation _mountLogo(BuildContext context) {
-    return FadeAnimation(
-      delay: 1,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Image.asset(
-          AssetConstants.general.logo,
-          height: MediaQuery.of(context).size.height * 0.2,
-        ),
-      ),
-    );
-  }
-
-  FadeAnimation _mountTitle() {
-    return FadeAnimation(
-      delay: 2,
-      child: Text(
-        S.current.textIsItSafe,
-        textAlign: TextAlign.center,
-        style: TextStyles.headline1(
-          color: SafeColors.generalColors.primary,
         ),
       ),
     );

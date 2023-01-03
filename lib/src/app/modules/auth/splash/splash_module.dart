@@ -13,7 +13,10 @@ class SplashModule extends Module {
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => GetUserLoginUseCase()),
     Bind.lazySingleton((i) => GetUserOnBoaringUseCase()),
-    Bind.lazySingleton((i) => SplashBloc()),
+    Bind.lazySingleton((i) => SplashBloc(
+          getUserLoginUseCase: i(),
+          getUserOnBoaringUseCase: i(),
+        )),
   ];
 
   @override
