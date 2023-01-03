@@ -5,15 +5,18 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
 
 class MountTextField extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final SaveLocationBloc controller;
+  final SaveLocationUseCase? locationUseCase;
 
   const MountTextField({
     Key? key,
     required this.formKey,
     required this.controller,
+    this.locationUseCase,
   }) : super(key: key);
 
   @override
@@ -39,6 +42,7 @@ class MountTextField extends StatelessWidget {
               labelText: S.current.textAddLocationExample,
               textInputAction: TextInputAction.next,
               validator: (value) => controller.validateTextField(value),
+              onChanged: (value) => controller.validateTextField(value),
             ),
           ),
           Padding(
@@ -57,6 +61,7 @@ class MountTextField extends StatelessWidget {
               maxLength: 8,
               textInputAction: TextInputAction.next,
               validator: (value) => controller.validateTextField(value),
+              onChanged: (value) => controller.validateTextField(value),
             ),
           ),
           Padding(
@@ -73,6 +78,7 @@ class MountTextField extends StatelessWidget {
               labelText: S.current.textAddLocationAddress,
               textInputAction: TextInputAction.next,
               validator: (value) => controller.validateTextField(value),
+              onChanged: (value) => controller.validateTextField(value),
             ),
           ),
           Padding(

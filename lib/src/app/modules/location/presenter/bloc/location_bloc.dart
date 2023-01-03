@@ -74,11 +74,11 @@ class SaveLocationBloc extends SafeBloC {
     }
   }
 
-  String validateTextField(String? value) {
+  validateTextField(String? value) {
     if (!ValidationUtil.name(value ?? StringConstants.empty) || value == null) {
       return S.current.textErrorEmptyField;
     }
-    return StringConstants.empty;
+    return null;
   }
 
   @override

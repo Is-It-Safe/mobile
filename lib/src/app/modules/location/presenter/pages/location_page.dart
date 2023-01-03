@@ -71,9 +71,8 @@ class _SaveLocationPageState
                         hasBackground: true,
                         size: ButtonSize.large,
                         onTap: () async {
-                          if (_formKey.currentState?.validate() == true) {
+                          if (_formKey.currentState?.validate() ?? false)
                             await controller.sendNewLocation();
-                          }
                         },
                       ),
                     ),
