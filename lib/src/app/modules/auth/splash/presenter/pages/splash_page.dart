@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/l10n/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
-import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/components/animations/fade_animation.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/on_boarding/presenter/pages/on_boarding_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/splash/presenter/bloc/splash_bloc.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
-import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class SplashPage extends StatefulWidget {
   static const route = '/splash';
@@ -23,48 +17,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends SafeState<SplashPage, SplashBloc> {
-  @override
-  void initState() {
-    super.initState();
-    SafeLogUtil.instance.route(Modular.to.path);
-    defineRoute();
-  }
-
-  void defineRoute() async {
-    await Future.delayed(const Duration(seconds: 4)).then((_) async {
-      if (await bloc.isUserLogged) {
-        goToHome();
-      } else {
-        goToOnBoarding();
-      }
-    });
-  }
-
-  void goToHome() async {
-    Modular.to.pushNamedAndRemoveUntil(
-      NavigationPage.route + HomePage.route,
-      (r) => false,
-    );
-  }
-
-  void goToOnBoarding() async {
-    if (await bloc.didUserSeeOnboarding) {
-      goToLogin();
-    } else {
-      Modular.to.pushNamedAndRemoveUntil(
-        OnBoardingPage.route,
-        (r) => false,
-      );
-    }
-  }
-
-  void goToLogin() async {
-    Modular.to.pushNamedAndRemoveUntil(
-      LoginPage.route,
-      (r) => false,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
