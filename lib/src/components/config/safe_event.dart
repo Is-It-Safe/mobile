@@ -1,5 +1,7 @@
+@Deprecated('Use SafeState with SafeStream instead.')
 enum Status { loading, done, error, initial }
 
+@Deprecated('Use SafeStream with SafeState instead.')
 class SafeEvent<T> {
   Status status;
   T? data;
