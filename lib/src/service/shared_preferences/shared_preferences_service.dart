@@ -127,4 +127,16 @@ class SharedPreferencesService implements ISharedPreferencesService {
           StringConstants.empty,
     );
   }
+
+  @override
+  Future<bool> readLocationPermission() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(KeyConstants.locationPermission) ?? false;
+  }
+
+  @override
+  void saveLocationPermission(bool alreadySeeIt) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(KeyConstants.locationPermission, alreadySeeIt);
+  }
 }

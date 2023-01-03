@@ -16,11 +16,18 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.d
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 
+import '../../../../../domain/use_case/get_user_location_permission_usecase.dart';
+import '../../../../../domain/use_case/save_user_location_permission_use_case.dart';
+
 class HomeBloc extends SafeBloC {
   final GetBestRatedLocationsUseCase getBestRatedLocationsUseCase;
   final GetLocationsNearUser getLocationsNearUserUsecase;
   final SaveUserLocationTokenUseCase saveUserLocationTokenUseCase;
   final GetUserLocationTokenUseCase getUserLocationTokenUseCase;
+  final SaveUserLocationPermissionFirstSettingsUseCase
+      saveUserLocationPermissionFirstSettingsUseCase;
+  final GetUserLocationPermissionFirstSettingsUseCase
+      getUserLocationPermissionFirstSettingsUseCase;
   final ISafeLocator locator;
 
   late StreamController<SafeEvent<List<LocationEntity>>>
@@ -36,6 +43,8 @@ class HomeBloc extends SafeBloC {
     required this.getLocationsNearUserUsecase,
     required this.saveUserLocationTokenUseCase,
     required this.getUserLocationTokenUseCase,
+    required this.saveUserLocationPermissionFirstSettingsUseCase,
+    required this.getUserLocationPermissionFirstSettingsUseCase,
     required this.locator,
   }) {
     init();
@@ -116,7 +125,11 @@ class HomeBloc extends SafeBloC {
   Future<void> getCurrentLocation() async {
     final Placemark? userLocation =
         await locator.getLocation(onLocationDenied: () async {
-      await locator.requestPermission();
+      await getUserLocationPermission().then((alreadySeeIt) async {
+        if (!alreadySeeIt) {
+          await locator.requestPermission();
+        }
+      });
     });
     if (userLocation != null) {
       await saveUserLocation(userLocation: userLocation);
@@ -124,7 +137,27 @@ class HomeBloc extends SafeBloC {
     }
   }
 
+  Future<bool> getUserLocationPermission() async {
+    try {
+      final permission =
+          await getUserLocationPermissionFirstSettingsUseCase.call();
+      return permission;
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+    }
+    return false;
+  }
+
+  Future<void> saveUserLocationPermission(bool alreadySeeIt) async {
+    try {
+      await saveUserLocationPermissionFirstSettingsUseCase.call(alreadySeeIt);
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+    }
+  }
+
   Future<bool> requestPermissionAndShowNearLocations() async {
+    saveUserLocationPermission(true);
     bool granted = false;
     await getCurrentLocation();
     await Future.doWhile(() async {

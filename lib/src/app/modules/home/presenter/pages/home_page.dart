@@ -45,7 +45,13 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
           onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
           onBottomTap: (tab) async {
             if (tab == 0) {
-              await controller.requestPermissionAndShowNearLocations();
+              await controller
+                  .requestPermissionAndShowNearLocations()
+                  .then((granted) {
+                controller.getLocationsNearUser();
+              }).timeout(const Duration(milliseconds: 400), onTimeout: () {
+                controller.getLocationsNearUser();
+              });
             }
             if (tab == 1) {
               await controller.getBestRatedPlaces();
