@@ -750,11 +750,41 @@ class S {
     );
   }
 
+  /// `Regular`
+  String get textRegular {
+    return Intl.message(
+      'Regular',
+      name: 'textRegular',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Neutro`
   String get textNeutral {
     return Intl.message(
       'Neutro',
       name: 'textNeutral',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Satisfeito`
+  String get textSatisfied {
+    return Intl.message(
+      'Satisfeito',
+      name: 'textSatisfied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incrível`
+  String get textIncredible {
+    return Intl.message(
+      'Incrível',
+      name: 'textIncredible',
       desc: '',
       args: [],
     );
@@ -1180,6 +1210,16 @@ class S {
     );
   }
 
+  /// `Como as pessoas se sentiram nesse local:`
+  String get textHowDoPeopleFellAboutThisPlace {
+    return Intl.message(
+      'Como as pessoas se sentiram nesse local:',
+      name: 'textHowDoPeopleFellAboutThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Escolha uma classificação para este local!`
   String get textChooseAClassification {
     return Intl.message(
@@ -1335,6 +1375,36 @@ class S {
     return Intl.message(
       'Não foi possível confirmar sua senha!',
       name: 'textErrorConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleSafePlace {
+    return Intl.message(
+      'A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleSafePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+`
+  String get textMostPeopleAlertPlace {
+    return Intl.message(
+      'Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+',
+      name: 'textMostPeopleAlertPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleDangerPlace {
+    return Intl.message(
+      'Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleDangerPlace',
       desc: '',
       args: [],
     );

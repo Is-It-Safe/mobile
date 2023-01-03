@@ -78,14 +78,14 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       stream: controller.bestRatedPlacesController.stream,
       builder: (context, snapshot) {
         return SafeLayout(
-          snapshot: snapshot,
           context: context,
+          snapshot: snapshot,
           onEmpty: SafeEmptyCard.home(),
           onCompleted: _mountSeparatedList(
             length: controller.listBestRatedPlaces.length,
             list: controller.listBestRatedPlaces,
           ),
-        ).build;
+        );
       },
     );
   }

@@ -61,8 +61,8 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
             //     ).show(),
             //   );
             return SafeLayout(
-              snapshot: snapshot,
               context: context,
+              snapshot: snapshot,
               onCompleted: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -154,7 +154,7 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
                   ),
                 ),
               ),
-            ).build;
+            );
           }),
     );
   }

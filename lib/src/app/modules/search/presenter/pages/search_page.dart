@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
 import 'package:is_it_safe_app/src/app/modules/search/presenter/bloc/search_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/search/presenter/widgets/search_location_card.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
@@ -68,11 +66,11 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
       initialData: SafeEvent.initial(),
       builder: (context, snapshot) {
         return SafeLayout(
-          snapshot: snapshot,
           context: context,
+          snapshot: snapshot,
           onCompleted: _mountResultList(),
           onEmpty: _mountEmptyCard(),
-        ).build;
+        );
       },
     );
   }
@@ -99,13 +97,6 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
           onTap: () => Modular.to.pushNamed(
             SaveLocationPage.route,
           ),
-
-          // onTap: () {
-          //   return SafeSnackBar(
-          //     message: S.current.textFeatureAvailableSoon,
-          //     type: SnackBarType.info,
-          //   ).show(context);
-          // },
         ),
       ],
     );

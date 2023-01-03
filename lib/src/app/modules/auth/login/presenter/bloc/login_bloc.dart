@@ -14,6 +14,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginBloc extends SafeBloC {
   final DoLoginUseCase doLoginUseCase;
@@ -133,6 +134,12 @@ class LoginBloc extends SafeBloC {
       S.of(context).textErrorLoginPassword;
     }
     return StringConstants.empty;
+  }
+
+  Future<void> forgotPassword(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    }
   }
 
   @override

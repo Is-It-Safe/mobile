@@ -115,7 +115,7 @@ class RegisterBloc extends SafeBloC {
       }
     } catch (e) {
       SafeLogUtil.instance.logError(e);
-      gendersController.sink.add(SafeEvent.error(e.toString()));
+      gendersController.addError(e.toString());
     }
   }
 
@@ -130,7 +130,7 @@ class RegisterBloc extends SafeBloC {
       }
     } catch (e) {
       SafeLogUtil.instance.logError(e);
-      sexualOrientationsController.sink.add(SafeEvent.error(e.toString()));
+      sexualOrientationsController.addError(e.toString());
     }
   }
 
@@ -143,23 +143,22 @@ class RegisterBloc extends SafeBloC {
         name: nameController.text,
         username: usernameController.text,
         birthDate: isAdvanceButton == true
-            ? birthdateController.text
-            : StringConstants.empty,
+            ? StringConstants.empty
+            : birthdateController.text,
         pronoun: pronounController.text,
         email: emailController.text,
         password: passwordController.text,
         profilePhoto: isAdvanceButton == true
-            ? selectedProfilePhoto
-            : StringConstants.empty,
-        gender: isAdvanceButton == true ? genderController.text : 11.toString(),
-        sexualOrientation: isAdvanceButton == true
-            ? sexualOrientationController.text
-            : 8.toString(),
+            ? StringConstants.empty
+            : selectedProfilePhoto,
+        gender: isAdvanceButton == true ? "${7}" : genderController.text,
+        sexualOrientation:
+            isAdvanceButton == true ? "${2}" : sexualOrientationController.text,
       );
       doRegisterController.sink.add(SafeEvent.done(response));
     } catch (e) {
       SafeLogUtil.instance.logError(e);
-      doRegisterController.sink.add(SafeEvent.error(e.toString()));
+      doRegisterController.addError(e.toString());
     }
   }
 

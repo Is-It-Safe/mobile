@@ -9,7 +9,7 @@ import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_Case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
 
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';

@@ -59,8 +59,8 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
         builder: (context, snapshot) {
           final user = snapshot.data?.data;
           return SafeLayout(
-            snapshot: snapshot,
             context: context,
+            snapshot: snapshot,
             showErrorDialog: false,
             onEmpty: const SafeProfileHeader(),
             onError: const SafeProfileHeader(),
@@ -73,7 +73,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
               gender: user?.gender,
               sexualOrientation: user?.orientation,
             ),
-          ).build;
+          );
         });
   }
 
@@ -83,8 +83,8 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
       builder: (context, snapshot) {
         final reviews = snapshot.data?.data?.reviews?.reversed.toList();
         return SafeLayout(
-          snapshot: snapshot,
           context: context,
+          snapshot: snapshot,
           onEmpty: SafeEmptyCard.profile(),
           onCompleted: Column(
             children: List.generate(
@@ -122,7 +122,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
               ),
             ),
           ),
-        ).build;
+        );
       },
     );
   }
