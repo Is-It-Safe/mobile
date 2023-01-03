@@ -21,96 +21,79 @@ class MountTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double alturaTextForm = 32;
-    const double alturaText = 12;
+    const double alturaTextFormField = 32;
+    const double alturaTitleText = 12;
     return Form(
       key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: alturaText),
-            child: Text(
-              S.current.textAddLocationNameTextFieldTitle,
-              style: TextStyles.subtitle1(),
-            ),
+          Text(
+            S.current.textAddLocationNameTextFieldTitle,
+            style: TextStyles.subtitle1(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: alturaTextForm),
-            child: SafeTextFormField(
-              controller: controller.locationNameController,
-              labelText: S.current.textAddLocationExample,
-              textInputAction: TextInputAction.next,
-              validator: (value) => controller.validateTextField(value),
-              onChanged: (value) => controller.validateTextField(value),
-            ),
+          const SizedBox(height: alturaTitleText),
+          SafeTextFormField(
+            controller: controller.locationNameController,
+            labelText: S.current.textAddLocationExample,
+            textInputAction: TextInputAction.next,
+            textCapitalization: TextCapitalization.words,
+            validator: (value) => controller.validateTextField(value),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: alturaText),
-            child: Text(
-              S.current.textAddLocationCepFieldTitle,
-              style: TextStyles.subtitle1(),
-            ),
+          const SizedBox(height: alturaTextFormField),
+          Text(
+            S.current.textAddLocationCepFieldTitle,
+            style: TextStyles.subtitle1(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: alturaTextForm),
-            child: SafeTextFormField(
-              controller: controller.locationCepController,
-              labelText: S.current.textAddLocationCepExample,
-              keyboardType: TextInputType.number,
-              maxLength: 8,
-              textInputAction: TextInputAction.next,
-              validator: (value) => controller.validateTextField(value),
-              onChanged: (value) => controller.validateTextField(value),
-            ),
+          const SizedBox(height: alturaTitleText),
+          SafeTextFormField(
+            controller: controller.locationCepController,
+            labelText: S.current.textAddLocationCepExample,
+            keyboardType: TextInputType.number,
+            maxLength: 8,
+            textInputAction: TextInputAction.next,
+            validator: (value) => controller.validateTextField(value),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: alturaText),
-            child: Text(
-              S.current.textAddLocationAddressFieldTitle,
-              style: TextStyles.subtitle1(),
-            ),
+          const SizedBox(height: alturaTextFormField),
+          Text(
+            S.current.textAddLocationAddressFieldTitle,
+            style: TextStyles.subtitle1(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: alturaTextForm),
-            child: SafeTextFormField(
-              controller: controller.locationAddressFieldController,
-              labelText: S.current.textAddLocationAddress,
-              textInputAction: TextInputAction.next,
-              validator: (value) => controller.validateTextField(value),
-              onChanged: (value) => controller.validateTextField(value),
-            ),
+          const SizedBox(height: alturaTitleText),
+          SafeTextFormField(
+            controller: controller.locationAddressFieldController,
+            labelText: S.current.textAddLocationAddress,
+            textInputAction: TextInputAction.next,
+            textCapitalization: TextCapitalization.sentences,
+            validator: (value) => controller.validateTextField(value),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: alturaText),
-            child: Text(
-              S.current.textAddTypeLocationFieldTitle,
-              style: TextStyles.subtitle1(),
-            ),
+          const SizedBox(height: alturaTextFormField),
+          Text(
+            S.current.textAddTypeLocationFieldTitle,
+            style: TextStyles.subtitle1(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: alturaTextForm),
-            child: ValueListenableBuilder<String>(
-              valueListenable: controller.locationTypeNotifier,
-              builder: (context, value, _) {
-                return DropdownButtonFormField<String>(
-                  value: value,
-                  items: LocationTypeEnum.values
-                      .map(
-                        (e) => DropdownMenuItem<String>(
-                          value: ParseEnum.parseLocationTypeEnum(e),
-                          child: Text(
-                            ParseEnum.parseLocationTypeEnum(e),
-                          ),
+          const SizedBox(height: alturaTitleText),
+          ValueListenableBuilder<String>(
+            valueListenable: controller.locationTypeNotifier,
+            builder: (context, value, _) {
+              return DropdownButtonFormField<String>(
+                value: value,
+                items: LocationTypeEnum.values
+                    .map(
+                      (e) => DropdownMenuItem<String>(
+                        value: ParseEnum.parseLocationTypeEnum(e),
+                        child: Text(
+                          ParseEnum.parseLocationTypeEnum(e),
                         ),
-                      )
-                      .toList(),
-                  onChanged: (value) =>
-                      controller.locationTypeNotifier.value = value!,
-                );
-              },
-            ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) =>
+                    controller.locationTypeNotifier.value = value!,
+              );
+            },
           ),
+          const SizedBox(height: alturaTextFormField),
         ],
       ),
     );

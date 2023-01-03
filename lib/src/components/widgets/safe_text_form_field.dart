@@ -24,6 +24,7 @@ class SafeTextFormField extends StatefulWidget {
   final DropdownType dropdownType;
   final int? maxLength;
   final TextInputAction? textInputAction;
+  final TextCapitalization textCapitalization;
 
   const SafeTextFormField({
     Key? key,
@@ -43,6 +44,7 @@ class SafeTextFormField extends StatefulWidget {
     this.dropdownType = DropdownType.none,
     this.maxLength,
     this.textInputAction,
+    this.textCapitalization = TextCapitalization.none,
   }) : super(key: key);
 
   @override
@@ -98,6 +100,7 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
           validator: widget.validator,
           maxLength: widget.maxLength,
           textInputAction: widget.textInputAction,
+          textCapitalization: widget.textCapitalization,
         ),
         Visibility(
           visible: widget.bottomText?.isNotEmpty ?? false,
