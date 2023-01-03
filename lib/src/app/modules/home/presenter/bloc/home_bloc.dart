@@ -124,6 +124,16 @@ class HomeBloc extends SafeBloC {
     }
   }
 
+  Future<bool> requestPermissionAndShowNearLocations() async {
+    bool granted = false;
+    await getCurrentLocation();
+    await Future.doWhile(() async {
+      return !(await verifyLocationPermission());
+    });
+    granted = true;
+    return granted;
+  }
+
   @override
   Future<void> dispose() async {
     bestRatedPlacesController.close();
