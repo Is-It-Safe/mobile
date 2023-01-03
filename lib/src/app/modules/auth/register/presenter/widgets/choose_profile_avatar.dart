@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
-
-import '../../../../../../../generated/l10n.dart';
-import '../../../../../../components/style/text/text_styles.dart';
-import '../../../../../../components/widgets/safe_profile_avatar.dart';
-import '../../../../../../core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import '../pages/register_profile_picture_page.dart';
 
 class ChooseProfileAvatar extends StatelessWidget {
