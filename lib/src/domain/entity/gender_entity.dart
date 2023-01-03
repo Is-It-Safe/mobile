@@ -1,5 +1,5 @@
-import '../../core/constants/int_constants.dart';
-import '../../core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class GenderEntity {
   int id;

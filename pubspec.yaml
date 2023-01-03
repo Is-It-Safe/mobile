@@ -67,7 +67,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - test/src/service/api/modules/auth/mocks/
     - images/logo/logo.png
     - images/
     - images/modules/
