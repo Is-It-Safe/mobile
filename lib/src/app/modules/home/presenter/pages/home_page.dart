@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permission_card.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,9 +25,9 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
   void initState() {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
       await controller.requestPermissionAndShowNearLocations().then((granted) {
-        if (granted) {
-          controller.getLocationsNearUser();
-        }
+        controller.getLocationsNearUser();
+      }).timeout(const Duration(milliseconds: 400), onTimeout: () {
+        controller.getLocationsNearUser();
       });
     });
     super.initState();

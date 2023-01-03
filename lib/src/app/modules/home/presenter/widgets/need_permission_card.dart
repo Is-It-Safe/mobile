@@ -26,6 +26,7 @@ class NeedPermissionCard extends StatelessWidget {
         const SizedBox(height: 20),
         SafeButton(
           title: buttonText,
+          size: ButtonSize.small,
           onTap: onTapButton as void Function(),
         ),
       ],
