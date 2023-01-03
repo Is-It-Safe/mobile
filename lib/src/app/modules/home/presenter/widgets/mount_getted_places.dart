@@ -8,17 +8,19 @@ import '../../../location/location_module.dart';
 import '../../../location/review/presenter/pages/review_page.dart';
 import 'home_location_card.dart';
 
-class MountGettePlaces extends StatelessWidget {
+class MountGettedPlaces extends StatelessWidget {
   final Stream<SafeEvent<List<LocationEntity>>> stream;
   final List<LocationEntity> list;
   final Widget? onEmpty;
+  final Widget? onError;
   final bool showErrorDialog;
-  const MountGettePlaces({
+  const MountGettedPlaces({
     Key? key,
     required this.stream,
     required this.list,
     this.onEmpty,
     this.showErrorDialog = true,
+    this.onError,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class MountGettePlaces extends StatelessWidget {
           snapshot: snapshot,
           showErrorDialog: showErrorDialog,
           onEmpty: onEmpty ?? const SizedBox.shrink(),
+          onError: onError ?? const SizedBox.shrink(),
           onCompleted: _SepararedList(list: list),
         );
       },

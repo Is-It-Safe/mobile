@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Nenhum lugar próximo encontrado, ative as permissões de localização!`
+  String get textErrorLocationPermission {
+    return Intl.message(
+      'Nenhum lugar próximo encontrado, ative as permissões de localização!',
+      name: 'textErrorLocationPermission',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Você não fez nenhum review ainda, começe assim que puder!`
   String get textErrorProfile {
     return Intl.message(
