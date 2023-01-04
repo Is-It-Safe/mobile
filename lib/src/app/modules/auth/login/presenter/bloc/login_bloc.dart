@@ -19,6 +19,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
+import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginBloc extends SafeBloC {
@@ -76,9 +77,12 @@ class LoginBloc extends SafeBloC {
       }
       loginEntityStream.data = loginEntity;
       navigateToHome();
+    } on UnauthorizedException {
+      loginEntityStream.show();
+      safeSnackBar.error(S.current.textErrorLoginUnauthorized);
     } catch (e) {
       loginEntityStream.show();
-      safeSnackBar.error('$e');
+      safeSnackBar.error(S.current.textErrorLoginFailed);
       SafeLogUtil.instance.logError(e);
     }
   }
