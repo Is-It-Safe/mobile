@@ -24,6 +24,7 @@ dependencies:
   geolocator: ^9.0.2
   geocoding: ^2.0.5
   visibility_detector: ^0.3.3
+  overlay_support: ^2.1.0
 
   #Requisições HTTP
   dio: ^4.0.6

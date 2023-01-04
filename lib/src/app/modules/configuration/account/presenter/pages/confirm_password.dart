@@ -4,7 +4,6 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 
 import '../../../../../../components/widgets/safe_show_field_button.dart';
@@ -18,7 +17,7 @@ class ConfirmPassword extends StatefulWidget {
 
 class _ConfirmPasswordState extends State<ConfirmPassword> {
   final _formKey = GlobalKey<FormState>();
-  bool _showPassword = true;
+  final bool _showPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,10 +82,10 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
                       title: S.current.textAdvance,
                       onTap: () {
                         if (context == context) {
-                          SafeSnackBar(
-                            message: S.current.textErrorConfirmPassword,
-                            type: SnackBarType.error,
-                          ).show(context);
+                          // SafeSnackBar(
+                          //   message: S.current.textErrorConfirmPassword,
+                          //   type: SnackBarTypeEnum.error,
+                          // ).show();
                         }
                         Modular.to.pop();
                       },
@@ -108,12 +107,12 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
     return SafeTextFormField(
       labelText: S.current.textPassword,
       obscureText: _showPassword,
-      suffixIcon: SafeShowFieldButton(
-        value: _showPassword,
-        onTap: () => setState(() {
-          _showPassword = !_showPassword;
-        }),
-      ),
+      // suffixIcon: SafeShowFieldButton(
+      //   value: _showPassword,
+      //   onTap: () => setState(() {
+      //     _showPassword = !_showPassword;
+      //   }),
+      // ),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:is_it_safe_app/src/app/modules/configuration/configuration_modul
 import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/navigation_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
@@ -24,6 +25,7 @@ class AppModule extends Module {
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
     Bind.lazySingleton((i) => SaveUserImageUseCase()),
     Bind.lazySingleton((i) => SaveUserNameUseCase()),
+    Bind.lazySingleton<ISafeSnackBar>((i) => SafeSnackBar()),
   ];
 
   @override

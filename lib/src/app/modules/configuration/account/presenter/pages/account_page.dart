@@ -10,7 +10,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'confirm_password.dart';
@@ -90,10 +89,10 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                 sexualOrientation: user?.orientation,
                 isEditabled: true,
                 //TODO substituir por: navegação para tela de editar profile picture
-                onPhotoTap: () => SafeSnackBar(
-                  message: S.current.textFeatureAvailableSoon,
-                  type: SnackBarType.info,
-                ).show(context),
+                // onPhotoTap: () => SafeSnackBar(
+                //   message: S.current.textFeatureAvailableSoon,
+                //   type: SnackBarTypeEnum.info,
+                // ).show(),
               );
             default:
               return const SafeProfileHeader();
@@ -176,10 +175,10 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
     return AccountInfoButton(
       text: S.current.textEditProfile,
       //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
+      // onTap: () => SafeSnackBar(
+      //   message: S.current.textFeatureAvailableSoon,
+      //   type: SnackBarTypeEnum.info,
+      // ).show(),
     );
   }
 
@@ -194,10 +193,10 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
     return AccountInfoButton(
       text: S.current.textChangeEmail,
       //TODO substituir por: navegação para tela de editar conta//
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
+      // onTap: () => SafeSnackBar(
+      //   message: S.current.textFeatureAvailableSoon,
+      //   type: SnackBarTypeEnum.info,
+      // ).show(),
     );
   }
 
@@ -217,10 +216,10 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
     return AccountInfoButton(
       text: S.current.textDisableAccount,
       //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
+      // onTap: () => SafeSnackBar(
+      //   message: S.current.textFeatureAvailableSoon,
+      //   type: SnackBarTypeEnum.info,
+      // ).show(),
     );
   }
 }

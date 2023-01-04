@@ -26,6 +26,7 @@ class LoginModule extends Module {
           saveUserRefreshTokenUseCase: i.get<SaveUserRefreshTokenUseCase>(),
           saveUserImageUseCase: i.get<SaveUserImageUseCase>(),
           saveUserNameUseCase: i.get<SaveUserNameUseCase>(),
+          safeSnackBar: i(),
         )),
   ];
 

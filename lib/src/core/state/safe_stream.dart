@@ -50,7 +50,7 @@ class SafeStream<T> {
   }
 
   void show() {
-    if (status == SafeStatus.hidden) {
+    if (status == SafeStatus.hidden || status == SafeStatus.loading) {
       _changeState(SafeStatus.success);
     }
   }

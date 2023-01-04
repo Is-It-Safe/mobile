@@ -9,7 +9,6 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_check_box.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
@@ -25,7 +24,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  bool _showPassword = true;
+  final bool _showPassword = true;
 
   @override
   void initState() {
@@ -89,12 +88,12 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   bottomText: S.current.textPasswordSpecifications,
                   onChanged: (value) => controller.toogleRegisterButton(),
                   validator: (value) => controller.validatePassword(value),
-                  suffixIcon: SafeShowFieldButton(
-                    value: _showPassword,
-                    onTap: () => setState(() {
-                      _showPassword = !_showPassword;
-                    }),
-                  ),
+                  suffixIcon: const SizedBox.shrink(),
+                  // suffixIcon: SafeShowFieldButton(
+                  //   visibility: _showPassword,
+                  //   onTap: () => setState(() {
+                  //     _showPassword = !_showPassword;
+                  //   }),
                 ),
                 const SizedBox(height: 20),
                 SafeTextFormField(
@@ -107,12 +106,13 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                     value,
                     errorText: S.current.textErrorDifferentPasswords,
                   ),
-                  suffixIcon: SafeShowFieldButton(
-                    value: _showPassword,
-                    onTap: () => setState(() {
-                      _showPassword = !_showPassword;
-                    }),
-                  ),
+                  suffixIcon: const SizedBox.shrink(),
+                  // suffixIcon: SafeShowFieldButton(
+                  //   value: _showPassword,
+                  //   onTap: () => setState(() {
+                  //     _showPassword = !_showPassword;
+                  //   }),
+                  // ),
                 ),
                 const SizedBox(height: 20),
                 _mountTermsAndConditions(),

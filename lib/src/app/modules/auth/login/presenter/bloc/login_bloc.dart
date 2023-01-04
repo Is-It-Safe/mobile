@@ -1,19 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
+import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
+import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
+import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
-import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginBloc extends SafeBloC {
@@ -23,11 +28,14 @@ class LoginBloc extends SafeBloC {
   final SaveUserRefreshTokenUseCase saveUserRefreshTokenUseCase;
   final SaveUserImageUseCase saveUserImageUseCase;
   final SaveUserNameUseCase saveUserNameUseCase;
+  final ISafeSnackBar safeSnackBar;
 
-  late StreamController<bool> loginButtonController;
-  late StreamController<SafeEvent<LoginEntity>> doLoginController;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  final isLoginEnabled = SafeStream<bool>(data: false);
+  final loginEntityStream = SafeStream<LoginEntity?>(data: null);
+  final isPassowrdVisible = SafeStream<bool>(data: false);
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   LoginBloc({
     required this.doLoginUseCase,
@@ -36,25 +44,29 @@ class LoginBloc extends SafeBloC {
     required this.saveUserRefreshTokenUseCase,
     required this.saveUserImageUseCase,
     required this.saveUserNameUseCase,
-  }) {
-    init();
-  }
+    required this.safeSnackBar,
+  });
 
   @override
   Future<void> init() async {
-    loginButtonController = StreamController.broadcast();
-    doLoginController = StreamController.broadcast();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    SafeLogUtil.instance.route(Modular.to.path);
+  }
+
+  void navigateToHome() {
+    Modular.to.pushNamedAndRemoveUntil(
+      NavigationPage.route + HomePage.route,
+      (r) => false,
+    );
   }
 
   Future<void> doLogin() async {
     try {
-      doLoginController.sink.add(SafeEvent.load());
+      loginEntityStream.setLoading();
       LoginEntity loginEntity = await doLoginUseCase.call(
         email: emailController.text,
         password: passwordController.text,
       );
+
       if (loginEntity.accessToken.isNotEmpty) {
         saveUserToken(loginEntity.accessToken);
         saveUserRefreshToken(loginEntity.refreshToken);
@@ -62,18 +74,20 @@ class LoginBloc extends SafeBloC {
         saveUserImage(loginEntity.userImage);
         saveUserLogin(true);
       }
-      doLoginController.sink.add(SafeEvent.done(loginEntity));
+      loginEntityStream.data = loginEntity;
+      navigateToHome();
     } catch (e) {
-      doLoginController.addError(e.toString());
+      loginEntityStream.show();
+      safeSnackBar.error('$e');
       SafeLogUtil.instance.logError(e);
     }
   }
 
   void toogleLoginButton() {
-    bool isUsernameOk = ValidationUtil.name(emailController.text);
-    bool isPasswordOk = ValidationUtil.passoword(passwordController.text);
-    bool isButtonEnabled = (isUsernameOk && isPasswordOk);
-    loginButtonController.sink.add(isButtonEnabled);
+    bool isEmailOk = emailController.text.isEmail;
+    bool isPasswordOk = passwordController.text.isPassword;
+    bool isButtonEnabled = (isEmailOk && isPasswordOk);
+    isLoginEnabled.data = isButtonEnabled;
   }
 
   Future<void> saveUserLogin(bool value) async {
@@ -116,32 +130,40 @@ class LoginBloc extends SafeBloC {
     }
   }
 
-  String validateEmail(
-    BuildContext context, {
-    required String? value,
-  }) {
-    if (!ValidationUtil.email(value ?? StringConstants.empty)) {
-      S.of(context).textErrorEmail;
+  String? validateEmail(String? value) {
+    if (!(value ?? StringConstants.empty).isEmail) {
+      return S.current.textErrorEmail;
+    } else if (value?.isEmpty ?? false) {
+      return S.current.textErrorEmptyField;
     }
-    return StringConstants.empty;
+    return null;
   }
 
-  String validatePassword(
-    BuildContext context, {
-    required String? value,
-  }) {
-    if (!ValidationUtil.passoword(value ?? StringConstants.empty)) {
-      S.of(context).textErrorLoginPassword;
+  String? validatePassword(String? value) {
+    if (!(value ?? StringConstants.empty).isPassword) {
+      return S.current.textErrorLoginPassword;
+    } else if (value?.isEmpty ?? false) {
+      return S.current.textErrorEmptyField;
     }
-    return StringConstants.empty;
+    return null;
   }
 
-  Future<void> forgotPassword(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+  Future<void> forgotPassword() async {
+    final Uri url = Uri(path: ApiConstants.kForgotPassword);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     }
+  }
+
+  void tooglePasswordVisibility() {
+    isPassowrdVisible.data = !isPassowrdVisible.data;
   }
 
   @override
-  Future<void> dispose() async {}
+  Future<void> dispose() async {
+    emailController.dispose();
+    passwordController.dispose();
+    isLoginEnabled.data = false;
+    loginEntityStream.data = null;
+  }
 }
