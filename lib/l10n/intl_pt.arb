@@ -161,5 +161,25 @@
     "textOnBoarding2_1":"segurança",
     "textOnBoarding3_0":"Descreva suas",
     "textOnBoarding3_1":"experiências",
-    "textOnBoarding3_2":"e avalie locais"
+    "textOnBoarding3_2":"e avalie locais",
+
+    
+    "textAddLocationTitle": "Configurações",
+    "textAddLocationSubTitle": "Adicionar Local",
+    "textAddLocationNameTextFieldTitle": "Nome do local",
+    "textAddLocationCepFieldTitle": "CEP",
+    "textAddLocationAddressFieldTitle": "Endereço",
+    "textAddTypeLocationFieldTitle": "Tipo de local",
+    "textAddLocationPhotoFieldTitle": "Adicionar Foto (opcional)",
+    "textAddLocationConfirm": "ADICIONAR LOCAL",
+    "textAddLocationSuccess": "Local adicionado com sucesso!",
+    
+
+    "textAddLocationTypePub": "Bar",
+    "textAddLocationTypeRestaurant": "Restaurante",
+    "textAddLocationTypePublicLocation": "Local público",
+    "textAddLocationTypeNightClub": "Casa noturna",
+    "textAddLocationExample": "Ex: Bar santa maria",
+    "textAddLocationCepExample": "Ex: 04553434",
+    "textAddLocationAddress": "Ex: Rua Clodomiro"
 }

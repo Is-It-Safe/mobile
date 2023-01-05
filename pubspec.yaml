@@ -23,6 +23,7 @@ dependencies:
   meta: ^1.7.0
   geolocator: ^9.0.2
   geocoding: ^2.0.5
+  image_picker: ^0.8.6
 
   #Requisições HTTP
   dio: ^4.0.6
@@ -42,6 +43,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   flutter_svg: ^1.1.4
   simple_animations: ^4.0.1
+  dotted_border: ^2.0.0
 
   #Armazenamento
   shared_preferences: ^2.0.15

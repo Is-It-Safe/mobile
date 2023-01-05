@@ -9,6 +9,10 @@ class ResponseGetRatedPlaces {
   String? averageImpressionStatus;
   int? reviewsQnt;
   ResponseLocationReview? review;
+  int? reviewId;
+  String? reviewReview;
+  String? reviewAuthor;
+  String? reviewCreatedAt;
 
   ResponseGetRatedPlaces({
     this.id,
@@ -19,6 +23,10 @@ class ResponseGetRatedPlaces {
     this.averageImpressionStatus,
     this.reviewsQnt,
     this.review,
+    this.reviewId,
+    this.reviewReview,
+    this.reviewAuthor,
+    this.reviewCreatedAt,
   });
 
   factory ResponseGetRatedPlaces.fromJson(Map<String, dynamic> json) {
@@ -31,6 +39,10 @@ class ResponseGetRatedPlaces {
       averageImpressionStatus: json['averageImpressionStatus'],
       reviewsQnt: json['reviewsQnt'],
       review: json['review'],
+      reviewId: json['reviewId'],
+      reviewReview: json['reviewReview'],
+      reviewAuthor: json['reviewAuthor'],
+      reviewCreatedAt: json['reviewCreatedAt'],
     );
   }
 }

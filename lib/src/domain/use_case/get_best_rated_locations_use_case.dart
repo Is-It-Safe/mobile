@@ -13,6 +13,8 @@ class GetBestRatedLocationsUseCase extends SafeUseCase {
 
   Future<List<LocationEntity>> call({String? place}) async {
     final response = await _service.getBestRatedPlaces(place);
-    return response.map((e) => LocationEntity.toEntity(e)).toList();
+    return response
+        .map((e) => LocationEntity.toEntityGetRatedPlaces(e))
+        .toList();
   }
 }

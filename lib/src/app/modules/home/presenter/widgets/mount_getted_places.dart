@@ -29,6 +29,7 @@ class MountGettedPlaces extends StatelessWidget {
       stream: stream,
       builder: (context, snapshot) {
         return SafeLayout(
+          context: context,
           snapshot: snapshot,
           showErrorDialog: showErrorDialog,
           onEmpty: onEmpty ?? const SizedBox.shrink(),
@@ -56,7 +57,7 @@ class _SepararedList extends StatelessWidget {
       itemBuilder: (context, index) => HomeLocationCard(
         location: list[index],
         onTap: () => Modular.to.pushNamed(
-          LocationModule.route + ReviewPage.route,
+          ReviewPage.route,
           arguments: list[index],
         ),
       ),
