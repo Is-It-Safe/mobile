@@ -1,4 +1,5 @@
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 
 class ParseEnum {
@@ -13,7 +14,7 @@ class ParseEnum {
       case LocationTypeEnum.nightClub:
         return S.current.textAddLocationTypeNightClub;
       default:
-        return '';
+        return StringConstants.empty;
     }
   }
 }

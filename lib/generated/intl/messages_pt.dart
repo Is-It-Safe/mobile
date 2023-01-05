@@ -149,6 +149,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nenhum lugar próximo encontrado, comece a avaliar seu bairro!"),
         "textErrorInvalidDate": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite uma data válida"),
+        "textErrorLocationPermission": MessageLookupByLibrary.simpleMessage(
+            "Nenhum lugar próximo encontrado, ative as permissões de localização!"),
         "textErrorLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite uma senha válida"),
         "textErrorLoginUsername": MessageLookupByLibrary.simpleMessage(
