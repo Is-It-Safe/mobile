@@ -12,10 +12,16 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 class HomeDrawer extends StatelessWidget {
   final String? image;
   final String? name;
+  final String? icon;
+  final String? text;
+  final String? route;
   const HomeDrawer({
     Key? key,
     this.image = PlaceHolderAssets.profileAvatar,
     this.name,
+    this.icon,
+    this.text,
+    this.route,
   }) : super(key: key);
 
   @override
@@ -29,10 +35,14 @@ class HomeDrawer extends StatelessWidget {
           ),
           child: Column(
             children: [
-              _mountHeader(),
+              DrawerHeader(
+                image: image,
+                name: name,
+              ),
               const SizedBox(height: 90),
-              //Minha Conta
-              _mountItem(
+
+              // Minha Conta
+              DrawerItem(
                 icon: AssetConstants.icons.account,
                 text: S.current.textDrawerMyAccount,
                 route: ConfigurationModule.route + AccountPage.route,
@@ -43,8 +53,20 @@ class HomeDrawer extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _mountHeader() {
+class DrawerHeader extends StatelessWidget {
+  const DrawerHeader({
+    Key? key,
+    required this.image,
+    required this.name,
+  }) : super(key: key);
+
+  final String? image;
+  final String? name;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,12 +90,22 @@ class HomeDrawer extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _mountItem({
-    required String icon,
-    required String text,
-    required String route,
-  }) {
+class DrawerItem extends StatelessWidget {
+  const DrawerItem({
+    Key? key,
+    required this.route,
+    required this.icon,
+    required this.text,
+  }) : super(key: key);
+
+  final String route;
+  final String icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Modular.to.pushNamed(route),
       child: Row(
