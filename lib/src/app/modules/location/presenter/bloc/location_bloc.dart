@@ -11,8 +11,8 @@ import '../../../../../service/api/error/error_exceptions.dart';
 class LocationBloC extends SafeBloC {
   final GetLocationsByIdUseCase getLocationsByIdUseCase;
 
-  late StreamController<SafeEvent<List<LocationEntity>>> locationByIDController;
-  List<LocationEntity> listLocationsByID = [];
+  late StreamController<SafeEvent<LocationEntity>> locationByIDController;
+  late LocationEntity locationById;
 
   LocationBloC({
     required this.getLocationsByIdUseCase,
@@ -28,10 +28,10 @@ class LocationBloC extends SafeBloC {
   Future<void> getLocationById(int id) async {
     try {
       locationByIDController.add(SafeEvent.load());
-      await getLocationsByIdUseCase.call(id).then((locations) {
-        listLocationsByID.addAll(locations);
+      await getLocationsByIdUseCase.call(id).then((location) {
+        locationById = location;
       });
-      locationByIDController.add(SafeEvent.done(listLocationsByID));
+      locationByIDController.add(SafeEvent.done(locationById));
     } on Exception catch (e) {
       if (e is UnauthorizedException) await ApiInterceptors.doLogout();
       locationByIDController.addError(e.toString());

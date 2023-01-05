@@ -2,6 +2,8 @@ import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
+import '../../service/api/modules/location/response/response_location_review.dart';
+
 class LocationEntity {
   final int id;
   final String name;
@@ -10,6 +12,7 @@ class LocationEntity {
   final double? averageGrade;
   final String? averageImpressionStatus;
   final int? reviewsQnt;
+  final List<ResponseLocationReview>? reviews;
 
   LocationEntity({
     required this.id,
@@ -19,6 +22,7 @@ class LocationEntity {
     this.averageGrade,
     this.averageImpressionStatus,
     this.reviewsQnt,
+    this.reviews,
   });
 
   factory LocationEntity.toEntity(dynamic location) {
@@ -31,6 +35,7 @@ class LocationEntity {
       imagePath: location.imgUrl ?? StringConstants.empty,
       averageImpressionStatus:
           location.averageImpressionStatus ?? StringConstants.empty,
+      reviews: location.reviews ?? [],
     );
   }
 }

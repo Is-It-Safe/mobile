@@ -3,7 +3,7 @@ import 'package:is_it_safe_app/src/service/api/modules/location/response/respons
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_locations_near_user.dart';
 
 abstract class ILocationService {
-  Future<List<ResponseGetLocationsById>> getLocationById(int id);
+  Future<ResponseGetLocationsById> getLocationById(int id);
   Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String? place);
   Future<void> getLocationByCep(int cep);
   Future<List<ResponseGetLocationsNearUser>> getLocationsNearUser(
