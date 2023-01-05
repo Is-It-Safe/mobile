@@ -61,7 +61,7 @@ class _GraphicGradePercentLine extends StatelessWidget {
         Container(
           height: 10,
           // width: fullSize / 2,
-          width: grade == 0
+          width: (grade == 0 || avaliations == 0 || sumOfAvaliations == 0)
               ? 1
               : ((grade * (avaliations / sumOfAvaliations)) * fullSize) / 5,
           color: SafeColors.componentsColors.emotionStatusColor,

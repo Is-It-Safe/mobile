@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/r
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_emotion_graphic/safe_emotion_graphic.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_impression_card.dart';
@@ -35,7 +36,7 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -45,7 +46,11 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
           );
         },
         backgroundColor: SafeColors.buttonColors.secondary,
-        child: const Icon(Icons.add, color: Colors.white),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+          size: size.width * .11,
+        ),
       ),
       appBar: SafeAppBar(
         title: widget.location.name,
@@ -62,23 +67,71 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                 snapshot: snapshot,
                 onCompleted: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(loc.imagePath ?? StringConstants.empty),
-                      Text(loc.name),
-                      Text(loc.address),
+                      Image.network(
+                        loc.imagePath ?? StringConstants.empty,
+                        width: size.width,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(height: size.height * .032),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: size.width * .08454,
+                          right: size.width * .273,
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              loc.name,
+                              overflow: TextOverflow.clip,
+                              style: TextStyles.headline3().copyWith(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              loc.address,
+                              overflow: TextOverflow.clip,
+                              style: TextStyles.caption().copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: size.height * .047),
                       SafeEmotionGrapic(
                         grade: loc.averageGrade ?? 0,
                         avaliationCount: loc.reviews!.length,
                       ),
-                      const SafeImpressionCard(
-                        type: SafeImpressionEnum.success,
+                      SizedBox(height: size.height * .023),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: size.width * .08212),
+                        child: const SafeImpressionCard(
+                          type: SafeImpressionEnum.success,
+                        ),
                       ),
+                      SizedBox(height: size.height * .035),
                       Divider(
                         color: SafeColors.generalColors.secondary,
                       ),
-                      Text(S.current.textWhatPeopleAreTalkingAboutThisPlace),
+                      SizedBox(height: size.height * .037),
+                      Container(
+                        margin: EdgeInsets.only(left: size.width * .084),
+                        child: Text(
+                          S.current.textWhatPeopleAreTalkingAboutThisPlace,
+                          style: TextStyles.subtitle2().copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: size.height * .023),
                       ListView.builder(
                         shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: loc.reviews!.length,
                         itemBuilder: (_, index) {
                           return SafeReviewCard(

@@ -12,6 +12,9 @@ import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
+import '../../../location/location_module.dart';
+import '../../../location/presenter/pages/location_page.dart';
+
 class SearchPage extends StatefulWidget {
   static const route = '/search/';
   final Function()? addButton;
@@ -82,6 +85,12 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
       separatorBuilder: (_, i) => const SizedBox(height: 15),
       itemBuilder: (context, index) => SearchLocationCard(
         location: controller.searchResultLocations[index],
+        onTap: () async {
+          await Modular.to.pushNamed(
+            LocationModule.route + LocationPage.route,
+            arguments: controller.searchResultLocations[index],
+          );
+        },
       ),
     );
   }

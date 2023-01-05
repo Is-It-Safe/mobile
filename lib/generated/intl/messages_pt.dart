@@ -266,7 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textWelcome": MessageLookupByLibrary.simpleMessage("Olá!,"),
         "textWhatPeopleAreTalkingAboutThisPlace":
             MessageLookupByLibrary.simpleMessage(
-                "O que as pessoas estão falando sobre esse local:"),
+                "O que estão falando sobre esse local:"),
         "textWriteHere":
             MessageLookupByLibrary.simpleMessage("Escreva aqui..."),
         "textYourRepresentationHereInside":
