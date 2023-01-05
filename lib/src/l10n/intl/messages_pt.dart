@@ -119,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, digite uma data válida"),
         "textErrorLocationPermission": MessageLookupByLibrary.simpleMessage(
             "Nenhum lugar próximo encontrado, ative as permissões de localização!"),
+        "textErrorLoginExpired": MessageLookupByLibrary.simpleMessage(
+            "Sua sessão expirou, faça login novamente!"),
         "textErrorLoginFailed": MessageLookupByLibrary.simpleMessage(
             "Login falhou, tente novamente!"),
         "textErrorLoginPassword": MessageLookupByLibrary.simpleMessage(
