@@ -33,7 +33,7 @@ class LoginBloc extends SafeBloC {
 
   final isLoginEnabled = SafeStream<bool>(data: false);
   final loginEntityStream = SafeStream<LoginEntity?>(data: null);
-  final isPassowrdVisible = SafeStream<bool>(data: false);
+  final isPassowordVisible = SafeStream<bool>(data: false);
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -62,7 +62,7 @@ class LoginBloc extends SafeBloC {
 
   Future<void> doLogin() async {
     try {
-      loginEntityStream.setLoading();
+      loginEntityStream.loading();
       LoginEntity loginEntity = await doLoginUseCase.call(
         email: emailController.text,
         password: passwordController.text,
@@ -160,7 +160,7 @@ class LoginBloc extends SafeBloC {
   }
 
   void tooglePasswordVisibility() {
-    isPassowrdVisible.data = !isPassowrdVisible.data;
+    isPassowordVisible.data = !isPassowordVisible.data;
   }
 
   @override

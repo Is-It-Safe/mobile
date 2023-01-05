@@ -1,5 +1,7 @@
 /// A classe [StingConstants] é responsável por gerenciar as constantes de String.
 class StringConstants {
+  StringConstants._();
+
   static const String empty = '';
   static const String hyphen = '-';
   static const String slash = '/';
@@ -30,4 +32,7 @@ class StringConstants {
 
   //place
   static const String place = 'Salvador';
+
+  //Register
+  static const String assetsManifestPath = 'AssetManifest.json';
 }

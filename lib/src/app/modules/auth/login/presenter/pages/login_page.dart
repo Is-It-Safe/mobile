@@ -22,10 +22,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends SafeState<LoginPage, LoginBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  final bool _showPassword = true;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       key: _scaffoldKey,
       body: Center(
@@ -34,7 +34,7 @@ class _LoginPageState extends SafeState<LoginPage, LoginBloc> {
             padding: const EdgeInsets.all(30),
             child: SafeBuilder2<LoginEntity?, bool>(
               stream1: bloc.loginEntityStream,
-              stream2: bloc.isPassowrdVisible,
+              stream2: bloc.isPassowordVisible,
               builder: (loginEntity, isPasswordVisible) {
                 return Form(
                   key: _formKey,

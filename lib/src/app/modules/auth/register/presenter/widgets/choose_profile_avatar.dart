@@ -1,28 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
+import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import '../pages/register_profile_picture_page.dart';
 
-class ChooseProfileAvatar extends StatelessWidget {
-  final RegisterBloc controller;
-  const ChooseProfileAvatar({Key? key, required this.controller})
-      : super(key: key);
+class ChooseProfileAvatar extends StatefulWidget {
+  final SafeStream<String> selectedProfilePhoto;
+  final Function(String value) onSelectProfilePhoto;
+
+  const ChooseProfileAvatar({
+    Key? key,
+    required this.selectedProfilePhoto,
+    required this.onSelectProfilePhoto,
+  }) : super(key: key);
+
+  @override
+  State<ChooseProfileAvatar> createState() => _ChooseProfileAvatarState();
+}
+
+class _ChooseProfileAvatarState extends State<ChooseProfileAvatar> {
+  void _goToProfilePicturePage() {
+    Modular.to
+        .pushNamed(StringConstants.dot + RegisterProfilePicturePage.route)
+        .then((value) {
+      if (value != null) widget.onSelectProfilePhoto('$value');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         children: [
-          StreamBuilder<String>(
-            stream: controller.profilePictureController.stream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
+          SafeBuilder<String>(
+            stream: widget.selectedProfilePhoto,
+            builder: (selectedProfilePhoto) {
+              if (selectedProfilePhoto.isNotEmpty) {
                 return SafeProfileAvatar(
-                  image: controller.selectedProfilePhoto,
+                  image: selectedProfilePhoto,
                   onTap: _goToProfilePicturePage,
                 );
               } else {
@@ -46,15 +65,5 @@ class ChooseProfileAvatar extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _goToProfilePicturePage() {
-    Modular.to
-        .pushNamed(StringConstants.dot + RegisterProfilePicturePage.route)
-        .then((value) {
-      if (value != null) {
-        controller.setProfitePicture(value.toString());
-      }
-    });
   }
 }

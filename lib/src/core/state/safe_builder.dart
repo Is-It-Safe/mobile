@@ -20,7 +20,7 @@ class _SafeBuilder0<A, B, C, D, E> extends StatefulWidget {
     E value5,
   ) builder;
   late final Widget Function() onLoading;
-  late final Widget Function(String message) onAlert;
+  late final Widget Function(String message) onError;
   late final Widget Function(Widget child) onUnauthorized;
 
   _SafeBuilder0({
@@ -32,12 +32,12 @@ class _SafeBuilder0<A, B, C, D, E> extends StatefulWidget {
     required this.stream5,
     required this.builder,
     Widget Function()? onLoading,
-    Widget Function(String message)? onAlert,
+    Widget Function(String message)? onError,
     Widget Function(Widget child)? onUnauthorized,
   }) {
     this.onLoading = onLoading ?? () => const Center(child: SafeLoading());
 
-    this.onAlert = onAlert ?? (_) => const SizedBox.shrink();
+    this.onError = onError ?? (_) => const SizedBox.shrink();
 
     this.onUnauthorized = onUnauthorized ?? (child) => const SizedBox.shrink();
   }
@@ -78,13 +78,13 @@ class _SafeBuilder0State<A, B, C, D, E>
       widget.stream5.status,
     ];
 
-    if (listStates.contains(SafeStatus.alert)) {
+    if (listStates.contains(SafeStatus.error)) {
       final message = widget.stream1.alertMessage ??
           widget.stream2.alertMessage ??
           widget.stream3.alertMessage ??
           widget.stream4.alertMessage ??
           widget.stream5.alertMessage;
-      buildWidget = widget.onAlert(message ?? StringConstants.empty);
+      buildWidget = widget.onError(message ?? StringConstants.empty);
     } else if (listStates.contains(SafeStatus.hidden)) {
       buildWidget = const SizedBox.shrink();
     } else if (listStates.contains(SafeStatus.loading)) {
@@ -119,7 +119,7 @@ class SafeBuilder<A>
     required SafeStream<A> stream,
     required Widget Function(A value1) builder,
     super.onLoading,
-    super.onAlert,
+    super.onError,
     super.onUnauthorized,
   }) : super(
           stream1: stream,
@@ -141,7 +141,7 @@ class SafeBuilder2<A, B>
     required super.stream2,
     required Widget Function(A value1, B value2) builder,
     super.onLoading,
-    super.onAlert,
+    super.onError,
     super.onUnauthorized,
   }) : super(
           stream3: SafeStream<dynamic>(data: null, ignore: true),
@@ -161,7 +161,7 @@ class SafeBuilder3<A, B, C> extends _SafeBuilder0<A, B, C, dynamic, dynamic> {
     required super.stream3,
     required Widget Function(A value1, B value2, C value3) builder,
     super.onLoading,
-    super.onAlert,
+    super.onError,
     super.onUnauthorized,
   }) : super(
           stream4: SafeStream<dynamic>(data: null, ignore: true),
@@ -181,7 +181,7 @@ class SafeBuilder4<A, B, C, D> extends _SafeBuilder0<A, B, C, D, dynamic> {
     required super.stream4,
     required Widget Function(A value1, B value2, C value3, D value4) builder,
     super.onLoading,
-    super.onAlert,
+    super.onError,
     super.onUnauthorized,
   }) : super(
           stream5: SafeStream<dynamic>(data: null, ignore: true),
@@ -202,7 +202,7 @@ class VmSelector5<A, B, C, D, E> extends _SafeBuilder0<A, B, C, D, E> {
     required Widget Function(A value1, B value2, C value3, D value4, E value5)
         builder,
     super.onLoading,
-    super.onAlert,
+    super.onError,
     super.onUnauthorized,
   }) : super(
           builder: (A value1, B value2, C value3, D value4, E value5) {
