@@ -400,6 +400,16 @@ class S {
     );
   }
 
+  /// `Sua sessão expirou, faça login novamente!`
+  String get textErrorLoginExpired {
+    return Intl.message(
+      'Sua sessão expirou, faça login novamente!',
+      name: 'textErrorLoginExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Review deletada com sucesso!`
   String get textDefaultDeleteReviewMessage {
     return Intl.message(

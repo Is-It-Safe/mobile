@@ -39,6 +39,7 @@
     "textErrorLoginFailed": "Login falhou, tente novamente!",
     "textErrorRegisterFailed": "Cadastro falhou, tente novamente!",
     "textErrorLoginUnauthorized": "Usuário ou senha incorretos!",
+    "textErrorLoginExpired": "Sua sessão expirou, faça login novamente!",
 
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
 

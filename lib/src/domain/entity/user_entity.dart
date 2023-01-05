@@ -57,4 +57,32 @@ class UserEntity {
       sexualOrientationId: user.sexualOrientationId ?? IntConstants.empty,
     );
   }
+
+  UserEntity copyWith({
+    int? id,
+    String? profilePhoto,
+    String? name,
+    String? nickname,
+    String? pronoun,
+    String? gender,
+    String? orientation,
+    String? birthDate,
+    List<ReviewEntity>? reviews,
+    int? genreId,
+    int? sexualOrientationId,
+  }) {
+    return UserEntity(
+      id: id ?? this.id,
+      profilePhoto: profilePhoto ?? this.profilePhoto,
+      name: name ?? this.name,
+      nickname: nickname ?? this.nickname,
+      pronoun: pronoun ?? this.pronoun,
+      gender: gender ?? this.gender,
+      orientation: orientation ?? this.orientation,
+      birthDate: birthDate ?? this.birthDate,
+      reviews: reviews ?? this.reviews,
+      genreId: genreId ?? this.genreId,
+      sexualOrientationId: sexualOrientationId ?? this.sexualOrientationId,
+    );
+  }
 }

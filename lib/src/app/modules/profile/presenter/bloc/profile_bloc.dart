@@ -1,63 +1,79 @@
 import 'dart:async';
 
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/delete_review_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 
 class ProfileBloc extends SafeBloC {
+  final SafeSnackBar safeSnackbar;
   final GetUserUseCase getUserUseCase;
   final SaveUserLoginUseCase saveUserLoginUseCase;
   final DeleteReviewUseCase deleteReviewUseCase;
 
-  late StreamController<SafeEvent<UserEntity>> userController;
-  late StreamController<SafeEvent<String>> deleteReviewController;
+  final user = SafeStream<UserEntity?>(data: null);
+  final messageDeleteReview = SafeStream<String>(data: StringConstants.empty);
 
   ProfileBloc({
+    required this.safeSnackbar,
     required this.getUserUseCase,
     required this.saveUserLoginUseCase,
     required this.deleteReviewUseCase,
-  }) {
-    init();
-  }
+  });
 
   @override
   Future<void> init() async {
-    userController = StreamController.broadcast();
+    SafeLogUtil.instance.route(Modular.to.path);
     getUser();
-    deleteReviewController = StreamController.broadcast();
   }
 
   Future<void> getUser() async {
     try {
-      userController.sink.add(SafeEvent.load());
+      user.loading();
       final response = await getUserUseCase.call();
-      userController.sink.add(SafeEvent.done(response));
-    } on Exception catch (e) {
-      if (e is UnauthorizedException) await ApiInterceptors.doLogout();
-      userController.addError(e.toString());
+      user.data = response;
+      user.show();
+    } on UnauthorizedException {
+      safeSnackbar.error(S.current.textErrorLoginExpired);
+      await ApiInterceptors.doLogout();
+    } catch (e) {
+      user.show();
+      safeSnackbar.error('$e');
     }
   }
 
-  Future<bool> deleteReview({required int? idReview}) async {
+  Future<void> deleteReview({required int? idReview}) async {
     try {
-      deleteReviewController.add(SafeEvent.load());
       final review = await deleteReviewUseCase.call(idReview);
-      deleteReviewController.add(SafeEvent.done(review));
-      return true;
+      messageDeleteReview.data = review;
+      user.data = user.data?.copyWith(
+        reviews: (user.data?.reviews ?? [])
+            .where((element) => element.id != idReview)
+            .toList(),
+      );
+      safeSnackbar.success(S.current.textDefaultDeleteReviewMessage);
     } catch (e) {
-      deleteReviewController.addError(e.toString());
-      return false;
+      messageDeleteReview.show();
+      safeSnackbar.error(S.current.textErrorDeleteReview);
     }
+  }
+
+  void shareReview({required int? idReview}) {
+    safeSnackbar.info(S.current.textFeatureAvailableSoon);
   }
 
   @override
   Future<void> dispose() async {
-    userController.close();
-    deleteReviewController.close();
+    user.data = null;
+    messageDeleteReview.data = StringConstants.empty;
   }
 }

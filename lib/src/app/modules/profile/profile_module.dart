@@ -22,6 +22,7 @@ class ProfileModule extends Module {
           getUserUseCase: i.get<GetUserUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
           deleteReviewUseCase: i.get<DeleteReviewUseCase>(),
+          safeSnackbar: i(),
         )),
   ];
 
