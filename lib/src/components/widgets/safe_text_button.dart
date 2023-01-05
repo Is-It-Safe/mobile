@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class SafeTextButton extends StatelessWidget {
   final String text;

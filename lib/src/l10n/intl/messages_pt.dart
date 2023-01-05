@@ -239,6 +239,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
         "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
+        "textSearchAPlace":
+            MessageLookupByLibrary.simpleMessage("Pesquise locais pelo nome"),
         "textSecurity": MessageLookupByLibrary.simpleMessage("Segurança"),
         "textSeeLess": MessageLookupByLibrary.simpleMessage("Ver menos"),
         "textSeeMore": MessageLookupByLibrary.simpleMessage("Ver mais"),

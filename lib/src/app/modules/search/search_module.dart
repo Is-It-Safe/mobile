@@ -12,7 +12,8 @@ class SearchModule extends Module {
     Bind.lazySingleton((i) => GetLocationsByNameUseCase()),
     Bind.lazySingleton(
       (i) => SearchBloc(
-        getLocationsByNameUseCase: i.get<GetLocationsByNameUseCase>(),
+        getLocationsByNameUseCase: i(),
+        safeSnackBar: i(),
       ),
     ),
   ];

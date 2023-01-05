@@ -65,6 +65,12 @@ class SafeStream<T> {
     }
   }
 
+  void initial() {
+    if (!ignore) {
+      _changeState(SafeStatus.initial);
+    }
+  }
+
   void addObserver(SafeObserver vmObserver) {
     if (!ignore) {
       _observers.add(vmObserver);

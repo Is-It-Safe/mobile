@@ -19,22 +19,83 @@ class SearchLocationCard extends StatelessWidget {
 
     return Row(
       children: [
-        _mountImage(size),
-        _mountLocationDetails(size),
+        SearchLocationCardImageWidget(locationImagePath: location.imagePath),
+        Container(
+          height: size.width * 0.22,
+          width: size.width * 0.50,
+          padding: const EdgeInsets.only(left: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SearchLocationCardName(name: location.name),
+              SearchLocationCardAddress(address: location.address),
+            ],
+          ),
+        ),
       ],
     );
   }
+}
 
-  Widget _mountImage(Size size) {
-    return Container(
-      width: size.width * 0.25,
-      height: size.width * 0.22,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
+class SearchLocationCardAddress extends StatelessWidget {
+  final String address;
+  const SearchLocationCardAddress({
+    Key? key,
+    required this.address,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      address,
+      textAlign: TextAlign.left,
+      softWrap: true,
+      style: TextStyles.label(),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
+    );
+  }
+}
+
+class SearchLocationCardName extends StatelessWidget {
+  final String name;
+  const SearchLocationCardName({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      name,
+      textAlign: TextAlign.left,
+      softWrap: true,
+      style: TextStyles.bodyText1(),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
+    );
+  }
+}
+
+class SearchLocationCardImageWidget extends StatelessWidget {
+  final String? locationImagePath;
+
+  const SearchLocationCardImageWidget({
+    Key? key,
+    required this.locationImagePath,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8.0),
       child: Image.network(
-        location.imagePath ?? PlaceHolderAssets.searchLocation,
+        locationImagePath ?? PlaceHolderAssets.searchLocation,
         fit: BoxFit.fitHeight,
+        width: size.width * 0.25,
+        height: size.width * 0.22,
         errorBuilder: (context, object, stackTrace) {
           return Image.asset(
             PlaceHolderAssets.searchLocation,
@@ -42,44 +103,6 @@ class SearchLocationCard extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-
-  Widget _mountLocationDetails(Size size) {
-    return Container(
-      height: size.width * 0.22,
-      width: size.width * 0.50,
-      padding: const EdgeInsets.only(left: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _mountLocationName(size),
-          _mountLocationAddress(size),
-        ],
-      ),
-    );
-  }
-
-  Widget _mountLocationAddress(Size size) {
-    return Text(
-      location.address,
-      textAlign: TextAlign.left,
-      softWrap: true,
-      style: TextStyles.label(),
-      overflow: TextOverflow.ellipsis,
-      maxLines: 1,
-    );
-  }
-
-  Widget _mountLocationName(Size size) {
-    return Text(
-      location.name,
-      textAlign: TextAlign.left,
-      softWrap: true,
-      style: TextStyles.bodyText1(),
-      overflow: TextOverflow.ellipsis,
-      maxLines: 2,
     );
   }
 }

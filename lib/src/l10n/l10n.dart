@@ -1070,6 +1070,16 @@ class S {
     );
   }
 
+  /// `Pesquise locais pelo nome`
+  String get textSearchAPlace {
+    return Intl.message(
+      'Pesquise locais pelo nome',
+      name: 'textSearchAPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Funcionalidade disponível em breve`
   String get textFeatureAvailableSoon {
     return Intl.message(

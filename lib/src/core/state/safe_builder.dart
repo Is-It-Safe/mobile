@@ -22,6 +22,7 @@ class _SafeBuilder0<A, B, C, D, E> extends StatefulWidget {
   late final Widget Function() onLoading;
   late final Widget Function(String message) onError;
   late final Widget Function(Widget child) onUnauthorized;
+  late final Widget Function() onInitial;
 
   _SafeBuilder0({
     super.key,
@@ -34,12 +35,15 @@ class _SafeBuilder0<A, B, C, D, E> extends StatefulWidget {
     Widget Function()? onLoading,
     Widget Function(String message)? onError,
     Widget Function(Widget child)? onUnauthorized,
+    Widget Function()? onInitial,
   }) {
     this.onLoading = onLoading ?? () => const Center(child: SafeLoading());
 
     this.onError = onError ?? (_) => const SizedBox.shrink();
 
     this.onUnauthorized = onUnauthorized ?? (child) => const SizedBox.shrink();
+
+    this.onInitial = onInitial ?? () => const SizedBox.shrink();
   }
 
   @override
@@ -90,6 +94,8 @@ class _SafeBuilder0State<A, B, C, D, E>
     } else if (listStates.contains(SafeStatus.loading)) {
       buildWidget = widget.onLoading();
     } else if (listStates.contains(SafeStatus.unAuthorized)) {
+    } else if (listStates.contains(SafeStatus.initial)) {
+      buildWidget = widget.onInitial();
     } else {
       buildWidget = widget.builder(
         widget.stream1.data,
@@ -121,6 +127,7 @@ class SafeBuilder<A>
     super.onLoading,
     super.onError,
     super.onUnauthorized,
+    super.onInitial,
   }) : super(
           stream1: stream,
           stream2: SafeStream<dynamic>(data: null, ignore: true),
@@ -143,6 +150,7 @@ class SafeBuilder2<A, B>
     super.onLoading,
     super.onError,
     super.onUnauthorized,
+    super.onInitial,
   }) : super(
           stream3: SafeStream<dynamic>(data: null, ignore: true),
           stream4: SafeStream<dynamic>(data: null, ignore: true),
@@ -163,6 +171,7 @@ class SafeBuilder3<A, B, C> extends _SafeBuilder0<A, B, C, dynamic, dynamic> {
     super.onLoading,
     super.onError,
     super.onUnauthorized,
+    super.onInitial,
   }) : super(
           stream4: SafeStream<dynamic>(data: null, ignore: true),
           stream5: SafeStream<dynamic>(data: null, ignore: true),
@@ -183,6 +192,7 @@ class SafeBuilder4<A, B, C, D> extends _SafeBuilder0<A, B, C, D, dynamic> {
     super.onLoading,
     super.onError,
     super.onUnauthorized,
+    super.onInitial,
   }) : super(
           stream5: SafeStream<dynamic>(data: null, ignore: true),
           builder: (A value1, B value2, C value3, D value4, value5) {
@@ -204,6 +214,7 @@ class VmSelector5<A, B, C, D, E> extends _SafeBuilder0<A, B, C, D, E> {
     super.onLoading,
     super.onError,
     super.onUnauthorized,
+    super.onInitial,
   }) : super(
           builder: (A value1, B value2, C value3, D value4, E value5) {
             return builder(value1, value2, value3, value4, value5);

@@ -22,10 +22,10 @@ class SafeEmptyCard extends StatelessWidget {
     );
   }
 
-  static Widget search() {
+  static Widget search({String? message}) {
     return SafeEmptyCard(
       image: AssetConstants.empty.search,
-      text: S.current.textErrorSearch,
+      text: message ?? S.current.textErrorSearch,
     );
   }
 
