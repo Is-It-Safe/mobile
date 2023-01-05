@@ -90,7 +90,8 @@ class LocationService implements ILocationService {
     );
 
     final response = await _service.doRequest(requestConfig);
-    return (json.decode(response.data) as List)
+    final map = (json.decode(response.data) as Map<String, dynamic>);
+    return (map['content'] as List)
         .map((e) => ResponseGetLocationsNearUser.fromJson(e))
         .toList();
   }

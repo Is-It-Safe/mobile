@@ -9,4 +9,5 @@ class KeyConstants {
   static const String keyUserAuth = 'userAuth';
   static const String keyTheme = 'theme';
   static const String keyPlace = 'place';
+  static const String locationPermission = 'location-permission';
 }
