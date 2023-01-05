@@ -117,14 +117,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nenhum lugar próximo encontrado, comece a avaliar seu bairro!"),
         "textErrorInvalidDate": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite uma data válida"),
+        "textErrorLoginFailed": MessageLookupByLibrary.simpleMessage(
+            "Login falhou, tente novamente!"),
         "textErrorLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite uma senha válida"),
+        "textErrorLoginUnauthorized": MessageLookupByLibrary.simpleMessage(
+            "Usuário ou senha incorretos!"),
         "textErrorLoginUsername": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite um nome de usuário válido"),
         "textErrorProfile": MessageLookupByLibrary.simpleMessage(
             "Você não fez nenhum review ainda, começe assim que puder!"),
         "textErrorPronouns": MessageLookupByLibrary.simpleMessage(
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
+        "textErrorRegisterFailed": MessageLookupByLibrary.simpleMessage(
+            "Cadastro falhou, tente novamente!"),
         "textErrorSearch": MessageLookupByLibrary.simpleMessage(
             "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?"),
         "textErrorTryAgain": MessageLookupByLibrary.simpleMessage(

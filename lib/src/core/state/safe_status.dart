@@ -1,1 +1,1 @@
-enum SafeStatus { success, loading, alert, hidden, unAuthorized }
+enum SafeStatus { success, loading, error, hidden, unAuthorized }

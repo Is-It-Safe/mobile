@@ -360,6 +360,36 @@ class S {
     );
   }
 
+  /// `Login falhou, tente novamente!`
+  String get textErrorLoginFailed {
+    return Intl.message(
+      'Login falhou, tente novamente!',
+      name: 'textErrorLoginFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cadastro falhou, tente novamente!`
+  String get textErrorRegisterFailed {
+    return Intl.message(
+      'Cadastro falhou, tente novamente!',
+      name: 'textErrorRegisterFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Usuário ou senha incorretos!`
+  String get textErrorLoginUnauthorized {
+    return Intl.message(
+      'Usuário ou senha incorretos!',
+      name: 'textErrorLoginUnauthorized',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Review deletada com sucesso!`
   String get textDefaultDeleteReviewMessage {
     return Intl.message(

@@ -36,12 +36,12 @@ class SafeStream<T> {
     }
   }
 
-  void setAlert(String message) {
+  void error(String message) {
     alertMessage = message;
-    _changeState(SafeStatus.alert);
+    _changeState(SafeStatus.error);
   }
 
-  void setLoading() {
+  void loading() {
     _changeState(SafeStatus.loading);
   }
 
@@ -50,7 +50,7 @@ class SafeStream<T> {
   }
 
   void show() {
-    if (status == SafeStatus.hidden) {
+    if (status == SafeStatus.hidden || status == SafeStatus.loading) {
       _changeState(SafeStatus.success);
     }
   }

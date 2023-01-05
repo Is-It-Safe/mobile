@@ -4,7 +4,6 @@ import 'package:is_it_safe_app/src/l10n/l10n.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_modal.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
@@ -181,10 +180,10 @@ class _ProfileReviewState extends State<ProfileReview> {
       onTap: widget.onDelete ??
           () {
             Navigator.pop(context);
-            return SafeSnackBar(
-              message: S.current.textFeatureAvailableSoon,
-              type: SnackBarType.info,
-            ).show(context);
+            // return SafeSnackBar(
+            //   message: S.current.textFeatureAvailableSoon,
+            //   type: SnackBarTypeEnum.info,
+            // ).show();
           },
     );
   }
@@ -199,10 +198,10 @@ class _ProfileReviewState extends State<ProfileReview> {
 
             ClipboardUtils.paste().toString();
             Navigator.pop(context);
-            return SafeSnackBar(
-              message: S.current.textShareUserReview,
-              type: SnackBarType.info,
-            ).show(context);
+            // return SafeSnackBar(
+            //   message: S.current.textShareUserReview,
+            //   type: SnackBarTypeEnum.info,
+            // ).show();
           },
     );
   }

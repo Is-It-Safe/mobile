@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_profile_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_picture_page.dart';
@@ -18,9 +20,19 @@ class RegisterModule extends Module {
     Bind.lazySingleton((i) => GetGendersUseCase()),
     Bind.lazySingleton((i) => DoRegisterUseCase()),
     Bind.lazySingleton((i) => RegisterBloc(
-          doRegisterUseCase: i.get<DoRegisterUseCase>(),
-          getGendersUseCase: i.get<GetGendersUseCase>(),
-          getSexualOrientationsUseCase: i.get<GetSexualOrientationsUseCase>(),
+          store: i(),
+          safeSnackBar: i(),
+        )),
+    Bind.lazySingleton((i) => RegisterProfileBloc(
+          store: i(),
+          doRegisterUseCase: i(),
+          getGendersUseCase: i(),
+          getSexualOrientationsUseCase: i(),
+          safeSnackBar: i(),
+        )),
+    Bind.lazySingleton((i) => RegisterProfilePictureBloc(
+          store: i(),
+          safeSnackBar: i(),
         )),
   ];
 
