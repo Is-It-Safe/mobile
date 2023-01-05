@@ -114,7 +114,7 @@ class SharedPreferencesService implements ISharedPreferencesService {
   @override
   void savePlace(Placemark value) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString(KeyConstants.keyPlace, value.toString());
+    prefs.setString(KeyConstants.keyPlace, value.toJson().toString());
   }
 
   @override
@@ -123,7 +123,20 @@ class SharedPreferencesService implements ISharedPreferencesService {
     bool result = prefs.containsKey(KeyConstants.keyPlace);
     if (!result) prefs.setString(KeyConstants.keyPlace, StringConstants.place);
     return Placemark.fromMap(
-      prefs.getString(KeyConstants.keyPlace) ?? StringConstants.empty,
+      jsonDecode(prefs.getString(KeyConstants.keyPlace) ?? "") ??
+          StringConstants.empty,
     );
+  }
+
+  @override
+  Future<bool> readLocationPermission() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(KeyConstants.locationPermission) ?? false;
+  }
+
+  @override
+  void saveLocationPermission(bool alreadySeeIt) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(KeyConstants.locationPermission, alreadySeeIt);
   }
 }
