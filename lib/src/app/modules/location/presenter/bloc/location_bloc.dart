@@ -1,24 +1,45 @@
+import 'dart:async';
+
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_id_use_case.dart';
+
+import '../../../../../components/config/safe_event.dart';
+import '../../../../../service/api/configuration/api_interceptors.dart';
+import '../../../../../service/api/error/error_exceptions.dart';
 
 class LocationBloC extends SafeBloC {
   final GetLocationsByIdUseCase getLocationsByIdUseCase;
 
+  late StreamController<SafeEvent<List<LocationEntity>>> locationByIDController;
+  List<LocationEntity> listLocationsByID = [];
+
   LocationBloC({
     required this.getLocationsByIdUseCase,
-  });
+  }) {
+    init();
+  }
+
+  @override
+  Future<void> init() async {
+    locationByIDController = StreamController.broadcast();
+  }
 
   Future<void> getLocationById(int id) async {
-    try {} catch (e) {}
+    try {
+      locationByIDController.add(SafeEvent.load());
+      await getLocationsByIdUseCase.call(id).then((locations) {
+        listLocationsByID.addAll(locations);
+      });
+      locationByIDController.add(SafeEvent.done(listLocationsByID));
+    } on Exception catch (e) {
+      if (e is UnauthorizedException) await ApiInterceptors.doLogout();
+      locationByIDController.addError(e.toString());
+    }
   }
 
   @override
-  Future<void> init() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> dispose() {
-    throw UnimplementedError();
+  Future<void> dispose() async {
+    locationByIDController.close();
   }
 }
