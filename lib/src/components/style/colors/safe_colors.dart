@@ -7,6 +7,7 @@ class SafeColors {
   static _TextColors textColors = _TextColors();
   static _ButtonColors buttonColors = _ButtonColors();
   static _MaterialButtonColors materialButtonColors = _MaterialButtonColors();
+  static _CardColors materialcardColors = _CardColors();
 }
 
 class _GeneralColors {
@@ -22,6 +23,7 @@ class _GeneralColors {
 class _ComponentsColors {
   Color smoothPageIndicatorColor = const Color(0xFFE9E9E9);
   _IconColors iconColors = _IconColors();
+  Color emotionStatusColor = const Color(0xff441578);
 }
 
 class _IconColors {
@@ -57,6 +59,14 @@ class _MaterialButtonColors {
     0xFF5C45ED,
     _materialColorButtonPrimaryMap,
   );
+}
+
+class _CardColors {
+  Color primary = const Color(0xFF4937BE);
+  Color secondary = const Color(0xFF241B5E);
+  Color text = const Color(0xFFEFECFD);
+  Color alert = const Color(0xFFF1C40F);
+
 }
 
 const Map<int, Color> _materialColorButtonPrimaryMap = {

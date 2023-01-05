@@ -29,6 +29,9 @@ class ApiConstants {
   ///URL para requisições voltadas a localização via CEP
   static const String kUrlCep = 'viacep.com.br/ws/cep/json/';
 
+  ///URL para direcionar usuario a pagina web de esqueceu a senha
+  static const String kForgotPassword =
+      'https://is-it-safe-api-v2.herokuapp.com/is-it-safe/forgot';
   /*--------------------------------------------------------------------*/
 
   //Auth

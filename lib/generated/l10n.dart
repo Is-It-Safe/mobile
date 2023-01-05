@@ -550,16 +550,6 @@ class S {
     );
   }
 
-  /// `Apelido`
-  String get textNickName {
-    return Intl.message(
-      'Apelido',
-      name: 'textNickName',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Endereço de E-mail`
   String get textEmailAddress {
     return Intl.message(
@@ -760,11 +750,41 @@ class S {
     );
   }
 
+  /// `Regular`
+  String get textRegular {
+    return Intl.message(
+      'Regular',
+      name: 'textRegular',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Neutro`
   String get textNeutral {
     return Intl.message(
       'Neutro',
       name: 'textNeutral',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Satisfeito`
+  String get textSatisfied {
+    return Intl.message(
+      'Satisfeito',
+      name: 'textSatisfied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incrível`
+  String get textIncredible {
+    return Intl.message(
+      'Incrível',
+      name: 'textIncredible',
       desc: '',
       args: [],
     );
@@ -850,16 +870,6 @@ class S {
     );
   }
 
-  /// `Editar Informações Pessoais`
-  String get textEditPersonalInformation {
-    return Intl.message(
-      'Editar Informações  Pessoais',
-      name: 'textEditPersonalInformation',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Sair`
   String get textLogout {
     return Intl.message(
@@ -915,16 +925,6 @@ class S {
     return Intl.message(
       'Informações da Conta',
       name: 'textAccountInformation',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `ATUALIZAR INFORMAÇÕES CONTA`
-  String get textUpdateInformation {
-    return Intl.message(
-      'Atualizar Informações',
-      name: 'textUpdateInformation',
       desc: '',
       args: [],
     );
@@ -1025,26 +1025,6 @@ class S {
     return Intl.message(
       'Funcionalidade disponível em breve',
       name: 'textFeatureAvailableSoon',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Informações alteradas com sucesso!`
-  String get textInformationChangedSuccessfully {
-    return Intl.message(
-      'Informações alteradas com sucesso!',
-      name: 'textInformationChangedSuccessfully',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Não foi possível alterar suas informações!`
-  String get textUnableToChangeInformation {
-    return Intl.message(
-      'Não foi possível alterar suas informações!',
-      name: 'textUnableToChangeInformation',
       desc: '',
       args: [],
     );
@@ -1230,6 +1210,16 @@ class S {
     );
   }
 
+  /// `Como as pessoas se sentiram nesse local:`
+  String get textHowDoPeopleFellAboutThisPlace {
+    return Intl.message(
+      'Como as pessoas se sentiram nesse local:',
+      name: 'textHowDoPeopleFellAboutThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Escolha uma classificação para este local!`
   String get textChooseAClassification {
     return Intl.message(
@@ -1320,10 +1310,10 @@ class S {
     );
   }
 
-  /// `usuário deletado com sucesso`
+  /// `Usuário deletado com sucesso`
   String get textDeleteUser {
     return Intl.message(
-      'usuário deletado com sucesso',
+      'Usuário deletado com sucesso',
       name: 'textDeleteUser',
       desc: '',
       args: [],
@@ -1335,6 +1325,116 @@ class S {
     return Intl.message(
       'Exemplo: Ela/Dela, Elu/Delu, Ela/Elu',
       name: 'textExamplePronouns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirme sua senha`
+  String get textConfirmPassword {
+    return Intl.message(
+      'Confirme sua senha',
+      name: 'textConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insira sua senha novamente`
+  String get textReenterPassword1_0 {
+    return Intl.message(
+      'Insira sua senha novamente',
+      name: 'textReenterPassword1_0',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `para continuar.`
+  String get textReenterPassword1_1 {
+    return Intl.message(
+      'para continuar.',
+      name: 'textReenterPassword1_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirme sua senha atual`
+  String get textConfirmCurrentPassword {
+    return Intl.message(
+      'Confirme sua senha atual',
+      name: 'textConfirmCurrentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível confirmar sua senha!`
+  String get textErrorConfirmPassword {
+    return Intl.message(
+      'Não foi possível confirmar sua senha!',
+      name: 'textErrorConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleSafePlace {
+    return Intl.message(
+      'A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleSafePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+`
+  String get textMostPeopleAlertPlace {
+    return Intl.message(
+      'Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+',
+      name: 'textMostPeopleAlertPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleDangerPlace {
+    return Intl.message(
+      'Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleDangerPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sucesso!`
+  String get textSafeDialogTypeSucces {
+    return Intl.message(
+      'Sucesso!',
+      name: 'textSafeDialogTypeSucces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atenção!`
+  String get textSafeDialogTypeAlert {
+    return Intl.message(
+      'Atenção!',
+      name: 'textSafeDialogTypeAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Erro!`
+  String get textSafeDialogTypeError {
+    return Intl.message(
+      'Erro!',
+      name: 'textSafeDialogTypeError',
       desc: '',
       args: [],
     );

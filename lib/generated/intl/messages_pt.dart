@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -63,6 +64,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "textConfiguration":
             MessageLookupByLibrary.simpleMessage("Configurações"),
         "textConfirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
+        "textConfirmCurrentPassword":
+            MessageLookupByLibrary.simpleMessage("Confirme sua senha atual"),
+        "textConfirmPassword":
+            MessageLookupByLibrary.simpleMessage("Confirme sua senha"),
         "textContact": MessageLookupByLibrary.simpleMessage("Contato"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
         "textCreateHere":
@@ -75,7 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDeleteAccount":
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
         "textDeleteUser": MessageLookupByLibrary.simpleMessage(
-            "usuário deletado com sucesso"),
+            "Usuário deletado com sucesso"),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
@@ -93,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textError": MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
+        "textErrorConfirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível confirmar sua senha!"),
         "textErrorDeleteReview": MessageLookupByLibrary.simpleMessage(
             "Não foi possível deletar a review!"),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
@@ -137,12 +144,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
         "textHappy": MessageLookupByLibrary.simpleMessage("Contente"),
+        "textHowDoPeopleFellAboutThisPlace":
+            MessageLookupByLibrary.simpleMessage(
+                "Como as pessoas se sentiram nesse local:"),
         "textHowDoYouFeelAboutThisPlace": MessageLookupByLibrary.simpleMessage(
             "Como você se sentiu nesse local?"),
         "textHowDoYouPreferWeReferToYou": MessageLookupByLibrary.simpleMessage(
             "Como prefere que as pessoas se refiram a você?"),
         "textIReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage("Eu li e aceito os "),
+        "textIncredible": MessageLookupByLibrary.simpleMessage("Incrível"),
         "textIsItSafe": MessageLookupByLibrary.simpleMessage("Is It Safe?"),
         "textLGBTFobia": MessageLookupByLibrary.simpleMessage("LGBTfobia"),
         "textLettersAndNumbers":
@@ -152,6 +163,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textMeetingYouWillBeAPleasure":
             MessageLookupByLibrary.simpleMessage("Será um prazer te conhecer."),
+        "textMostPeopleAlertPlace": MessageLookupByLibrary.simpleMessage(
+            "Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+"),
+        "textMostPeopleDangerPlace": MessageLookupByLibrary.simpleMessage(
+            "Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+"),
+        "textMostPeopleSafePlace": MessageLookupByLibrary.simpleMessage(
+            "A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+"),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
         "textNeutral": MessageLookupByLibrary.simpleMessage("Neutro"),
         "textOk": MessageLookupByLibrary.simpleMessage("Ok"),
@@ -188,16 +205,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPublishedReview":
             MessageLookupByLibrary.simpleMessage("Sua review foi publicada!"),
         "textReady": MessageLookupByLibrary.simpleMessage("Pronto"),
+        "textReenterPassword1_0":
+            MessageLookupByLibrary.simpleMessage("Insira sua senha novamente"),
+        "textReenterPassword1_1":
+            MessageLookupByLibrary.simpleMessage("para continuar."),
         "textRegister": MessageLookupByLibrary.simpleMessage("Cadastrar"),
         "textRegisterSuccess": MessageLookupByLibrary.simpleMessage(
             "Cadastro realizado com sucesso!"),
         "textRegisterSuccessMessage": MessageLookupByLibrary.simpleMessage(
             "Você será redirecionado para a página de login."),
+        "textRegular": MessageLookupByLibrary.simpleMessage("Regular"),
         "textReviewCompleted":
             MessageLookupByLibrary.simpleMessage("Review Completa!"),
         "textReviews": MessageLookupByLibrary.simpleMessage("Avaliações"),
+        "textSafeDialogTypeAlert":
+            MessageLookupByLibrary.simpleMessage("Atenção!"),
+        "textSafeDialogTypeError":
+            MessageLookupByLibrary.simpleMessage("Erro!"),
+        "textSafeDialogTypeSucces":
+            MessageLookupByLibrary.simpleMessage("Sucesso!"),
         "textSafeForLGBT": MessageLookupByLibrary.simpleMessage(
             "Seguro para pessoas LGBTQIA+"),
+        "textSatisfied": MessageLookupByLibrary.simpleMessage("Satisfeito"),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
         "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
