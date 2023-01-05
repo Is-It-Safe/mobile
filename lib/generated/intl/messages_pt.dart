@@ -262,6 +262,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós."),
         "textWelcome": MessageLookupByLibrary.simpleMessage("Olá!,"),
+        "textWhatPeopleAreTalkingAboutThisPlace":
+            MessageLookupByLibrary.simpleMessage(
+                "O que as pessoas estão falando sobre esse local:"),
         "textWriteHere":
             MessageLookupByLibrary.simpleMessage("Escreva aqui..."),
         "textYourRepresentationHereInside":

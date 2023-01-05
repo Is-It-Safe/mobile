@@ -6,10 +6,10 @@ class LocationEntity {
   final int id;
   final String name;
   final String address;
-  String? imagePath;
-  double? averageGrade;
-  String? averageImpressionStatus;
-  int? reviewsQnt;
+  final String? imagePath;
+  final double? averageGrade;
+  final String? averageImpressionStatus;
+  final int? reviewsQnt;
 
   LocationEntity({
     required this.id,

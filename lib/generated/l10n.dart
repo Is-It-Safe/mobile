@@ -1220,6 +1220,16 @@ class S {
     );
   }
 
+  /// `O que as pessoas estão falando sobre esse local:`
+  String get textWhatPeopleAreTalkingAboutThisPlace {
+    return Intl.message(
+      'O que as pessoas estão falando sobre esse local:',
+      name: 'textWhatPeopleAreTalkingAboutThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Escolha uma classificação para este local!`
   String get textChooseAClassification {
     return Intl.message(
