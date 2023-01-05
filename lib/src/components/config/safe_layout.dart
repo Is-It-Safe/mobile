@@ -51,14 +51,15 @@ class SafeLayout extends StatelessWidget {
             onEmpty: onEmpty);
       case ConnectionState.done:
         return _OnDone(
-            snapshot: snapshot,
-            onInitial: onInitial,
-            onLoading: onLoading,
-            doOnCompleted: doOnCompleted,
-            onError: onError,
-            onCompleted: onCompleted,
-            showErrorDialog: showErrorDialog,
-            onEmpty: onEmpty);
+          snapshot: snapshot,
+          onInitial: onInitial,
+          onLoading: onLoading,
+          doOnCompleted: doOnCompleted,
+          onError: onError,
+          onCompleted: onCompleted,
+          showErrorDialog: showErrorDialog,
+          onEmpty: onEmpty,
+        );
       default:
         return onInitial;
     }

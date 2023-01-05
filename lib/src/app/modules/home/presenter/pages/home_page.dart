@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
-import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_location_card.dart';
-import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
-import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/review_page.dart';
-import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permission_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
-import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/l10n/l10n.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
@@ -26,6 +23,13 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
 
   @override
   void initState() {
+    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
+      await controller.requestPermissionAndShowNearLocations().then((granted) {
+        controller.getLocationsNearUser();
+      }).timeout(const Duration(milliseconds: 400), onTimeout: () {
+        controller.getLocationsNearUser();
+      });
+    });
     super.initState();
     SafeLogUtil.instance.route(Modular.to.path);
   }
@@ -39,71 +43,41 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
         endDrawer: const HomeDrawer(),
         appBar: const SafeAppBar().home(
           onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
-          onBottomTap: (tab) {
-            //TODO manter comentado mediante implementação da feature
+          onBottomTap: (tab) async {
             if (tab == 0) {
-              controller.getCurrentLocation().whenComplete(
-                () {
-                  // controller.userLocationController.stream.handleError(
-                  //   (x) => SafeSnackBar(
-                  //     message: S.current.textErrorGetLocation,
-                  //     type: SnackBarTypeEnum.error,
-                  //   ),
-                  // );
-                },
-              );
+              await controller
+                  .requestPermissionAndShowNearLocations()
+                  .then((granted) {
+                controller.getLocationsNearUser();
+              }).timeout(const Duration(milliseconds: 400), onTimeout: () {
+                controller.getLocationsNearUser();
+              });
             }
-            if (tab == 1) controller.getBestRatedPlaces();
+            if (tab == 1) {
+              await controller.getBestRatedPlaces();
+            }
           },
         ),
         body: TabBarView(
           children: [
-            SafeEmptyCard.home(),
-            _mountTab(
+            MountGettedPlaces(
+              stream: controller.locationsNearUserController.stream,
+              list: controller.listLocationsNeartUser,
+              showErrorDialog: false,
+              onEmpty: SafeEmptyCard.home(),
+              onError: NeedPermissionCard(
+                text: S.current.textErrorLocationPermission,
+                buttonText: "Abrir configurações",
+                onTapButton: () async {
+                  await controller.locator.requestPermission();
+                },
+              ),
+            ),
+            MountGettedPlaces(
               stream: controller.bestRatedPlacesController.stream,
               list: controller.listBestRatedPlaces,
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _mountTab({
-    required Stream<SafeEvent<List<LocationEntity>>> stream,
-    required List<LocationEntity> list,
-  }) {
-    return StreamBuilder<SafeEvent<List<LocationEntity>>>(
-      stream: controller.bestRatedPlacesController.stream,
-      builder: (context, snapshot) {
-        return SafeLayout(
-          snapshot: snapshot,
-          onEmpty: SafeEmptyCard.home(),
-          onCompleted: _mountSeparatedList(
-            length: controller.listBestRatedPlaces.length,
-            list: controller.listBestRatedPlaces,
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _mountSeparatedList({
-    required int length,
-    required List<LocationEntity> list,
-  }) {
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20.0,
-        vertical: 20.0,
-      ),
-      itemCount: length,
-      separatorBuilder: (_, i) => const SizedBox(height: 15),
-      itemBuilder: (context, index) => HomeLocationCard(
-        location: list[index],
-        onTap: () => Modular.to.pushNamed(
-          LocationModule.route + ReviewPage.route,
-          arguments: list[index],
         ),
       ),
     );
