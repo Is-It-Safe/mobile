@@ -550,6 +550,16 @@ class S {
     );
   }
 
+  /// `Apelido`
+  String get textNickName {
+    return Intl.message(
+      'Apelido',
+      name: 'textNickName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Endereço de E-mail`
   String get textEmailAddress {
     return Intl.message(
@@ -870,6 +880,16 @@ class S {
     );
   }
 
+  /// `Editar Informações Pessoais`
+  String get textEditPersonalInformation {
+    return Intl.message(
+      'Editar Informações  Pessoais',
+      name: 'textEditPersonalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sair`
   String get textLogout {
     return Intl.message(
@@ -925,6 +945,16 @@ class S {
     return Intl.message(
       'Informações da Conta',
       name: 'textAccountInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ATUALIZAR INFORMAÇÕES CONTA`
+  String get textUpdateInformation {
+    return Intl.message(
+      'Atualizar Informações',
+      name: 'textUpdateInformation',
       desc: '',
       args: [],
     );
@@ -1025,6 +1055,26 @@ class S {
     return Intl.message(
       'Funcionalidade disponível em breve',
       name: 'textFeatureAvailableSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informações alteradas com sucesso!`
+  String get textInformationChangedSuccessfully {
+    return Intl.message(
+      'Informações alteradas com sucesso!',
+      name: 'textInformationChangedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível alterar suas informações!`
+  String get textUnableToChangeInformation {
+    return Intl.message(
+      'Não foi possível alterar suas informações!',
+      name: 'textUnableToChangeInformation',
       desc: '',
       args: [],
     );
