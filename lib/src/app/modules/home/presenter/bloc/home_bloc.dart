@@ -11,7 +11,9 @@ import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_locations_near_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart';
 
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
@@ -30,6 +32,11 @@ class HomeBloc extends SafeBloC {
       getUserLocationPermissionFirstSettingsUseCase;
   final ISafeLocator locator;
 
+  final SaveUserNameUseCase saveUserNameUseCase;
+  final GetUserNameUseCase getUserNameUseCase;
+
+  late StreamController<SafeEvent<String>> userNameController;
+
   late StreamController<SafeEvent<List<LocationEntity>>>
       bestRatedPlacesController;
   late StreamController<SafeEvent<List<LocationEntity>>>
@@ -46,6 +53,8 @@ class HomeBloc extends SafeBloC {
     required this.saveUserLocationPermissionFirstSettingsUseCase,
     required this.getUserLocationPermissionFirstSettingsUseCase,
     required this.locator,
+    required this.saveUserNameUseCase,
+    required this.getUserNameUseCase,
   }) {
     init();
   }
@@ -55,6 +64,26 @@ class HomeBloc extends SafeBloC {
     bestRatedPlacesController = StreamController.broadcast();
     locationsNearUserController = StreamController.broadcast();
     userLocationController = StreamController.broadcast();
+    userNameController = StreamController.broadcast();
+  }
+
+  Future<void> saveUserName({required String userName}) async {
+    await saveUserNameUseCase.call(userName);
+  }
+
+  Future<String> getUserName() async {
+    return await getUserNameUseCase.call();
+  }
+
+  Future<String> useUserName() async {
+    try {
+      userNameController.add(SafeEvent.load());
+      final data = await getUserNameUseCase.call();
+      userNameController.add(SafeEvent.done(data));
+    } catch (e) {
+      userNameController.addError(e.toString());
+    }
+    return 'vazio';
   }
 
   Future<Placemark?> getUserLocation() async {

@@ -11,14 +11,14 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class HomeDrawer extends StatelessWidget {
   final String? image;
-  final String? name;
+  final String name;
   final String? icon;
   final String? text;
   final String? route;
   const HomeDrawer({
     Key? key,
     this.image = PlaceHolderAssets.profileAvatar,
-    this.name,
+    required this.name,
     this.icon,
     this.text,
     this.route,
