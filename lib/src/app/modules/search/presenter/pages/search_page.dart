@@ -45,52 +45,40 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
           ),
           child: Column(
             children: [
-              _mountSearchField(),
-              _mountSearchResult(),
+              SafeTextFormField(
+                controller: controller.placeSearchController,
+                labelText: S.current.textSearch,
+                prefixIcon: const Icon(Icons.search),
+                onEditingComplete: () => controller.searchLocation(),
+              ),
+              StreamBuilder<SafeEvent<List<LocationEntity>>>(
+                stream: controller.searchController.stream,
+                initialData: SafeEvent.initial(),
+                builder: (context, snapshot) {
+                  return SafeLayout(
+                    snapshot: snapshot,
+                    onEmpty: _mountEmptyCard(),
+                    onCompleted: ListView.separated(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      itemCount: controller.searchResultLocations.length,
+                      separatorBuilder: (_, i) => const SizedBox(height: 15),
+                      itemBuilder: (context, index) => SearchLocationCard(
+                        location: controller.searchResultLocations[index],
+                        onTap: () async {
+                          await Modular.to.pushNamed(
+                            LocationModule.route + LocationPage.route,
+                            arguments: controller.searchResultLocations[index],
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _mountSearchField() {
-    return SafeTextFormField(
-      controller: controller.placeSearchController,
-      labelText: S.current.textSearch,
-      prefixIcon: const Icon(Icons.search),
-      onEditingComplete: () => controller.searchLocation(),
-    );
-  }
-
-  Widget _mountSearchResult() {
-    return StreamBuilder<SafeEvent<List<LocationEntity>>>(
-      stream: controller.searchController.stream,
-      initialData: SafeEvent.initial(),
-      builder: (context, snapshot) {
-        return SafeLayout(
-          snapshot: snapshot,
-          onCompleted: _mountResultList(),
-          onEmpty: _mountEmptyCard(),
-        );
-      },
-    );
-  }
-
-  ListView _mountResultList() {
-    return ListView.separated(
-      shrinkWrap: true,
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
-      itemCount: controller.searchResultLocations.length,
-      separatorBuilder: (_, i) => const SizedBox(height: 15),
-      itemBuilder: (context, index) => SearchLocationCard(
-        location: controller.searchResultLocations[index],
-        onTap: () async {
-          await Modular.to.pushNamed(
-            LocationModule.route + LocationPage.route,
-            arguments: controller.searchResultLocations[index],
-          );
-        },
       ),
     );
   }

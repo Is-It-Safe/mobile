@@ -10,15 +10,14 @@ class LocationModule extends Module {
   static const route = '/location';
   @override
   final List<Bind> binds = [
-    Bind((i) => GetLocationsByIdUseCase()),
-    Bind((i) => LocationBloC(
+    Bind.lazySingleton((i) => GetLocationsByIdUseCase()),
+    Bind.lazySingleton((i) => LocationBloC(
           getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
         )),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    //ModuleRoute(Modular.initialRoute, module: LocationModule()),
     ChildRoute('/location-page',
         child: (_, args) =>
             LocationPage(location: (args.data as LocationEntity))),

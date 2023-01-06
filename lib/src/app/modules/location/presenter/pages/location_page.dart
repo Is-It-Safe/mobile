@@ -117,6 +117,9 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                       SizedBox(height: size.height * .035),
                       Divider(
                         color: SafeColors.generalColors.secondary,
+                        thickness: 1,
+                        indent: size.width * .0845,
+                        endIndent: size.width * .0845,
                       ),
                       SizedBox(height: size.height * .037),
                       Container(
@@ -129,15 +132,23 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                         ),
                       ),
                       SizedBox(height: size.height * .023),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: loc.reviews!.length,
-                        itemBuilder: (_, index) {
-                          return SafeReviewCard(
-                            review: ReviewEntity.toEntity(loc.reviews![index]),
-                          );
-                        },
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: size.width * .07,
+                          right: size.width * .0845,
+                          bottom: size.height * .058,
+                        ),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: loc.reviews!.length,
+                          itemBuilder: (_, index) {
+                            return SafeReviewCard(
+                              review:
+                                  ReviewEntity.toEntity(loc.reviews![index]),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
