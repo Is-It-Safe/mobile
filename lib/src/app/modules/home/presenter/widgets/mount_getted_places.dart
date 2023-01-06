@@ -30,6 +30,7 @@ class MountGettedPlaces extends StatelessWidget {
       stream: stream,
       builder: (context, snapshot) {
         return SafeLayout(
+          context: context,
           snapshot: snapshot,
           showErrorDialog: showErrorDialog,
           onEmpty: onEmpty ?? const SizedBox.shrink(),

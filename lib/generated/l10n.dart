@@ -1549,6 +1549,166 @@ class S {
       args: [],
     );
   }
+
+  /// `Configurações`
+  String get textAddLocationTitle {
+    return Intl.message(
+      'Configurações',
+      name: 'textAddLocationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adicionar Local`
+  String get textAddLocationSubTitle {
+    return Intl.message(
+      'Adicionar Local',
+      name: 'textAddLocationSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nome do local`
+  String get textAddLocationNameTextFieldTitle {
+    return Intl.message(
+      'Nome do local',
+      name: 'textAddLocationNameTextFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CEP`
+  String get textAddLocationCepFieldTitle {
+    return Intl.message(
+      'CEP',
+      name: 'textAddLocationCepFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Endereço`
+  String get textAddLocationAddressFieldTitle {
+    return Intl.message(
+      'Endereço',
+      name: 'textAddLocationAddressFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tipo de local`
+  String get textAddTypeLocationFieldTitle {
+    return Intl.message(
+      'Tipo de local',
+      name: 'textAddTypeLocationFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adicionar Foto (opcional)`
+  String get textAddLocationPhotoFieldTitle {
+    return Intl.message(
+      'Adicionar Foto (opcional)',
+      name: 'textAddLocationPhotoFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADICIONAR LOCAL`
+  String get textAddLocationConfirm {
+    return Intl.message(
+      'ADICIONAR LOCAL',
+      name: 'textAddLocationConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local adicionado com sucesso!`
+  String get textAddLocationSuccess {
+    return Intl.message(
+      'Local adicionado com sucesso!',
+      name: 'textAddLocationSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bar`
+  String get textAddLocationTypePub {
+    return Intl.message(
+      'Bar',
+      name: 'textAddLocationTypePub',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Restaurante`
+  String get textAddLocationTypeRestaurant {
+    return Intl.message(
+      'Restaurante',
+      name: 'textAddLocationTypeRestaurant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local público`
+  String get textAddLocationTypePublicLocation {
+    return Intl.message(
+      'Local público',
+      name: 'textAddLocationTypePublicLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Casa noturna`
+  String get textAddLocationTypeNightClub {
+    return Intl.message(
+      'Casa noturna',
+      name: 'textAddLocationTypeNightClub',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ex: Bar santa maria`
+  String get textAddLocationExample {
+    return Intl.message(
+      'Ex: Bar santa maria',
+      name: 'textAddLocationExample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ex: 04553434`
+  String get textAddLocationCepExample {
+    return Intl.message(
+      'Ex: 04553434',
+      name: 'textAddLocationCepExample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ex: Rua Clodomiro`
+  String get textAddLocationAddress {
+    return Intl.message(
+      'Ex: Rua Clodomiro',
+      name: 'textAddLocationAddress',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

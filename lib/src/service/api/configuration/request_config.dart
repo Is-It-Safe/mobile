@@ -5,7 +5,7 @@ import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 class RequestConfig {
   final String path;
   final HttpMethod method;
-  final Map<String, dynamic>? body;
+  final dynamic body;
   final Map<String, dynamic>? parameters;
   final Options? options;
 

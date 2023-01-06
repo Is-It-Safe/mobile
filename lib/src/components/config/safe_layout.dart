@@ -25,6 +25,7 @@ class SafeLayout extends StatelessWidget {
     this.onEmpty = const SizedBox.shrink(),
     this.onInitial = const SizedBox.shrink(),
     this.onError = const SizedBox.shrink(),
+    required BuildContext context,
   }) : super(key: key);
 
   @override

@@ -6,8 +6,10 @@ import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/request/request_save_location.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service_interface.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_save_location.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_best_rated_places.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_locations_near_user.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_by_cep.dart';
@@ -94,5 +96,22 @@ class LocationService implements ILocationService {
     return (map['content'] as List)
         .map((e) => ResponseGetLocationsNearUser.fromJson(e))
         .toList();
+  }
+
+  @override
+  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request) async {
+    final token = await _authService.getAccessToken();
+
+    final requestConfig = RequestConfig(
+      path: ApiConstants.addLocation,
+      method: HttpMethod.post,
+      body: request.toFormData(request),
+      options: Options(
+        headers: {ApiConstants.kAuthorization: token},
+      ),
+    );
+
+    final response = await _service.doRequest(requestConfig);
+    return ResponseSaveLocation.fromJson(json.decode(response.data));
   }
 }

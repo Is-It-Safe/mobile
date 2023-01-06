@@ -25,6 +25,37 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAbout": MessageLookupByLibrary.simpleMessage("Sobre"),
         "textAccountInformation":
             MessageLookupByLibrary.simpleMessage("Informações da Conta"),
+        "textAddLocationAddress":
+            MessageLookupByLibrary.simpleMessage("Ex: Rua Clodomiro"),
+        "textAddLocationAddressFieldTitle":
+            MessageLookupByLibrary.simpleMessage("Endereço"),
+        "textAddLocationCepExample":
+            MessageLookupByLibrary.simpleMessage("Ex: 04553434"),
+        "textAddLocationCepFieldTitle":
+            MessageLookupByLibrary.simpleMessage("CEP"),
+        "textAddLocationConfirm":
+            MessageLookupByLibrary.simpleMessage("ADICIONAR LOCAL"),
+        "textAddLocationExample":
+            MessageLookupByLibrary.simpleMessage("Ex: Bar santa maria"),
+        "textAddLocationNameTextFieldTitle":
+            MessageLookupByLibrary.simpleMessage("Nome do local"),
+        "textAddLocationPhotoFieldTitle":
+            MessageLookupByLibrary.simpleMessage("Adicionar Foto (opcional)"),
+        "textAddLocationSubTitle":
+            MessageLookupByLibrary.simpleMessage("Adicionar Local"),
+        "textAddLocationSuccess": MessageLookupByLibrary.simpleMessage(
+            "Local adicionado com sucesso!"),
+        "textAddLocationTitle":
+            MessageLookupByLibrary.simpleMessage("Configurações"),
+        "textAddLocationTypeNightClub":
+            MessageLookupByLibrary.simpleMessage("Casa noturna"),
+        "textAddLocationTypePub": MessageLookupByLibrary.simpleMessage("Bar"),
+        "textAddLocationTypePublicLocation":
+            MessageLookupByLibrary.simpleMessage("Local público"),
+        "textAddLocationTypeRestaurant":
+            MessageLookupByLibrary.simpleMessage("Restaurante"),
+        "textAddTypeLocationFieldTitle":
+            MessageLookupByLibrary.simpleMessage("Tipo de local"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
         "textAngry": MessageLookupByLibrary.simpleMessage("Irritado"),
         "textAppBarChooseProfilePhotoPage":
