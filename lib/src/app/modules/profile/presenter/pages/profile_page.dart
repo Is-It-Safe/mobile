@@ -59,7 +59,6 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
         builder: (context, snapshot) {
           final user = snapshot.data?.data;
           return SafeLayout(
-            context: context,
             snapshot: snapshot,
             showErrorDialog: false,
             onEmpty: const SafeProfileHeader(),
@@ -83,7 +82,6 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
       builder: (context, snapshot) {
         final reviews = snapshot.data?.data?.reviews?.reversed.toList();
         return SafeLayout(
-          context: context,
           snapshot: snapshot,
           onEmpty: SafeEmptyCard.profile(),
           onCompleted: Column(

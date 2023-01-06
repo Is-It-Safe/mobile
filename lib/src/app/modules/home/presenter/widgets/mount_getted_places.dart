@@ -6,7 +6,6 @@ import '../../../../../components/config/safe_event.dart';
 import '../../../../../components/config/safe_layout.dart';
 import '../../../../../domain/entity/location_entity.dart';
 import '../../../location/location_module.dart';
-import '../../../location/review/presenter/pages/review_page.dart';
 import 'home_location_card.dart';
 
 class MountGettedPlaces extends StatelessWidget {
@@ -30,7 +29,6 @@ class MountGettedPlaces extends StatelessWidget {
       stream: stream,
       builder: (context, snapshot) {
         return SafeLayout(
-          context: context,
           snapshot: snapshot,
           showErrorDialog: showErrorDialog,
           onEmpty: onEmpty ?? const SizedBox.shrink(),
