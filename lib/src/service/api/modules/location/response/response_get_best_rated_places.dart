@@ -8,11 +8,7 @@ class ResponseGetRatedPlaces {
   double? averageGrade;
   String? averageImpressionStatus;
   int? reviewsQnt;
-  ResponseLocationReview? review;
-  int? reviewId;
-  String? reviewReview;
-  String? reviewAuthor;
-  String? reviewCreatedAt;
+  final List<ResponseLocationReview>? reviews;
 
   ResponseGetRatedPlaces({
     this.id,
@@ -22,11 +18,7 @@ class ResponseGetRatedPlaces {
     this.averageGrade,
     this.averageImpressionStatus,
     this.reviewsQnt,
-    this.review,
-    this.reviewId,
-    this.reviewReview,
-    this.reviewAuthor,
-    this.reviewCreatedAt,
+    this.reviews,
   });
 
   factory ResponseGetRatedPlaces.fromJson(Map<String, dynamic> json) {
@@ -38,11 +30,11 @@ class ResponseGetRatedPlaces {
       averageGrade: json['averageGrade'],
       averageImpressionStatus: json['averageImpressionStatus'],
       reviewsQnt: json['reviewsQnt'],
-      review: json['review'],
-      reviewId: json['reviewId'],
-      reviewReview: json['reviewReview'],
-      reviewAuthor: json['reviewAuthor'],
-      reviewCreatedAt: json['reviewCreatedAt'],
+      reviews: json['reviews'] != null
+          ? (json['reviews'] as List)
+              .map((i) => ResponseLocationReview.fromJson(i))
+              .toList()
+          : null,
     );
   }
 }

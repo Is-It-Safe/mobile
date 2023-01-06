@@ -83,7 +83,7 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
                       SvgPicture.asset(AssetConstants.general.reviewCompleted),
                       const SizedBox(height: 30),
                       Text(
-                        snapshot.data?.data?.message ?? StringConstants.empty,
+                        snapshot.data?.data?.review ?? StringConstants.empty,
                         style: TextStyles.bodyText1(),
                       ),
                       const SizedBox(height: 120),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
 
 import '../../../../../components/config/safe_event.dart';
 import '../../../../../components/config/safe_layout.dart';
@@ -57,7 +58,7 @@ class _SepararedList extends StatelessWidget {
       itemBuilder: (context, index) => HomeLocationCard(
         location: list[index],
         onTap: () => Modular.to.pushNamed(
-          ReviewPage.route,
+          LocationModule.route + LocationPage.route,
           arguments: list[index],
         ),
       ),

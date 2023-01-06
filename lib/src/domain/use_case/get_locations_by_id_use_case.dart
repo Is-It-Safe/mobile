@@ -11,9 +11,9 @@ class GetLocationsByIdUseCase extends SafeUseCase {
     _service = Modular.get<LocationService>();
   }
 
-  Future<List<LocationEntity>> call(int id) async {
+  Future<LocationEntity> call(int id) async {
     final response = await _service.getLocationById(id);
 
-    return response.map((e) => LocationEntity.toEntity(e)).toList();
+    return LocationEntity.toEntity(response);
   }
 }

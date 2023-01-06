@@ -1,5 +1,13 @@
 import 'dart:async';
 
+import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_id_use_case.dart';
+
+import '../../../../../components/config/safe_event.dart';
+import '../../../../../service/api/configuration/api_interceptors.dart';
+import '../../../../../service/api/error/error_exceptions.dart';
+
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
@@ -11,6 +19,44 @@ import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
+
+class LocationBloC extends SafeBloC {
+  final GetLocationsByIdUseCase getLocationsByIdUseCase;
+
+  late StreamController<SafeEvent<LocationEntity>> locationByIDController;
+  late LocationEntity locationById;
+
+  LocationBloC({
+    required this.getLocationsByIdUseCase,
+  }) {
+    init();
+  }
+ 
+    @override
+  Future<void> init() async {
+    locationByIDController = StreamController.broadcast();
+  }
+
+  Future<void> getLocationById(int id) async {
+    try {
+      locationByIDController.add(SafeEvent.load());
+      await getLocationsByIdUseCase.call(id).then((location) {
+        locationById = location;
+      });
+      locationByIDController.add(SafeEvent.done(locationById));
+    } on Exception catch (e) {
+      if (e is UnauthorizedException) await ApiInterceptors.doLogout();
+      locationByIDController.addError(e.toString());
+    }
+  }
+
+  @override
+  Future<void> dispose() async {
+    locationByIDController.close();
+  }
+ 
+ }
+
 
 class SaveLocationBloc extends SafeBloC {
   final SaveLocationUseCase saveLocationUseCase;
