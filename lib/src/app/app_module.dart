@@ -2,7 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/auth_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
 import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
-import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
 import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/review_page.dart';
 import 'package:is_it_safe_app/src/app/modules/location/review/review_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/navigation_module.dart';
@@ -15,6 +14,8 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_c
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
+
+import 'modules/location/presenter/pages/save_location_page.dart';
 
 class AppModule extends Module {
   @override

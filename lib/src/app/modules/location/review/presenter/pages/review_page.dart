@@ -61,7 +61,6 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
             //     ).show(),
             //   );
             return SafeLayout(
-              context: context,
               snapshot: snapshot,
               onCompleted: Padding(
                 padding: const EdgeInsets.symmetric(
