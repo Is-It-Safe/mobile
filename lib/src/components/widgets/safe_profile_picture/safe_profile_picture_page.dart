@@ -17,9 +17,8 @@ class SafeProfilePicturePage extends StatefulWidget {
   State<SafeProfilePicturePage> createState() => _SafeProfilePicturePageState();
 }
 
-class _SafeProfilePicturePageState extends State<SafeProfilePicturePage> {
-  final controller = Modular.get<SafeProfilePictureBloC>();
-
+class _SafeProfilePicturePageState
+    extends ModularState<SafeProfilePicturePage, SafeProfilePictureBloC> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   late String userAvatarPath;
 
@@ -48,36 +47,32 @@ class _SafeProfilePicturePageState extends State<SafeProfilePicturePage> {
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Stack(
           children: [
-            _mountPhotosGridView(),
+            GridView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.only(bottom: 100),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 30,
+                mainAxisSpacing: 10,
+              ),
+              itemCount: controller.listProfilePicturePaths.length,
+              itemBuilder: (context, index) {
+                var avatarPaths = controller.listProfilePicturePaths;
+                return SafeProfileAvatar(
+                  image: avatarPaths[index],
+                  isSelected: userAvatarPath == avatarPaths[index],
+                  type: ProfileAvatarType.animated,
+                  onTap: () => setState(() {
+                    userAvatarPath = avatarPaths[index];
+                    controller.setProfitePicture(userAvatarPath);
+                  }),
+                );
+              },
+            ),
             _mountButtons(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _mountPhotosGridView() {
-    return GridView.builder(
-      shrinkWrap: true,
-      padding: const EdgeInsets.only(bottom: 100),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 30,
-        mainAxisSpacing: 10,
-      ),
-      itemCount: controller.listProfilePicturePaths.length,
-      itemBuilder: (context, index) {
-        var avatarPaths = controller.listProfilePicturePaths;
-        return SafeProfileAvatar(
-          image: avatarPaths[index],
-          isSelected: userAvatarPath == avatarPaths[index],
-          type: ProfileAvatarType.animated,
-          onTap: () => setState(() {
-            userAvatarPath = avatarPaths[index];
-            controller.setProfitePicture(userAvatarPath);
-          }),
-        );
-      },
     );
   }
 

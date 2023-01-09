@@ -86,26 +86,29 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
               //TODO salvar o usuário no shared preferences
               return SafeProfileHeader(
                   nickname: user?.nickname,
-                  //TODO descomentar a foto
-                  photo: controller.safeProfilePictureBloc.selectedProfilePhoto,
+                  photo: user?.profilePhoto,
                   pronoun: user?.pronoun,
                   gender: user?.gender,
                   sexualOrientation: user?.orientation,
                   isEditabled: true,
-                  //TODO substituir por: navegação para tela de editar profile picture
                   onPhotoTap: () {
                     Modular.to
                         .pushNamed(
                             StringConstants.dot + SafeProfilePicturePage.route)
                         .then((value) async {
                       if (value != null) {
-                        controller.safeProfilePictureBloc
-                            .setProfitePicture(value.toString());
-                        setState(() {});
-                        await controller.updateUser(RequestUpdateUser(
+                        setState(() {
+                          controller.safeProfilePictureBloc
+                              .setProfitePicture(value.toString());
+                        });
+                        await controller
+                            .updateUser(RequestUpdateUser(
                           id: user!.id,
                           profilePhoto: value.toString(),
-                        ));
+                        ))
+                            .then((_) async {
+                          await controller.getUser();
+                        });
                       }
                     });
                   });
@@ -146,32 +149,32 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textName,
-                      value: user?.name,
+                      value: user!.name,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textUsername,
-                      value: user?.nickname,
+                      value: user.nickname,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textPronouns,
-                      value: user?.pronoun,
+                      value: user.pronoun,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textDateOfBirth,
-                      value: user?.birthDate,
+                      value: user.birthDate,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textSexualOrientation,
-                      value: user?.orientation,
+                      value: user.orientation,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textGender,
-                      value: user?.gender,
+                      value: user.gender,
                     ),
                   ],
                 ),
