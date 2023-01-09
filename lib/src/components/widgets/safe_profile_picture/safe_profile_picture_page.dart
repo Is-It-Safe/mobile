@@ -17,8 +17,8 @@ class SafeProfilePicturePage extends StatefulWidget {
   State<SafeProfilePicturePage> createState() => _SafeProfilePicturePageState();
 }
 
-class _SafeProfilePicturePageState
-    extends ModularState<SafeProfilePicturePage, SafeProfilePictureBloC> {
+class _SafeProfilePicturePageState extends State<SafeProfilePicturePage> {
+  final controller = Modular.get<SafeProfilePictureBloC>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   late String userAvatarPath;
 

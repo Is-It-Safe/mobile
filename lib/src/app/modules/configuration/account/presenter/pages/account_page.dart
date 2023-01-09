@@ -101,6 +101,18 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                           controller.safeProfilePictureBloc
                               .setProfitePicture(value.toString());
                         });
+                        SafeSnackBar(
+                                type: SnackBarType.success,
+                                message: S.current.textAvatarSuccessUpated)
+                            .show(context);
+
+                        controller.userController.stream.handleError((x) {
+                          SafeSnackBar(
+                                  type: SnackBarType.error,
+                                  message: S.current.textFailedToUpdateAvatar)
+                              .show(context);
+                        });
+
                         await controller
                             .updateUser(RequestUpdateUser(
                           id: user!.id,
