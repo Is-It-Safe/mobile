@@ -17,6 +17,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart'
 
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
 import '../../../../../domain/use_case/get_user_location_permission_usecase.dart';
 import '../../../../../domain/use_case/save_user_location_permission_use_case.dart';
@@ -32,10 +33,7 @@ class HomeBloc extends SafeBloC {
       getUserLocationPermissionFirstSettingsUseCase;
   final ISafeLocator locator;
 
-  final SaveUserNameUseCase saveUserNameUseCase;
   final GetUserNameUseCase getUserNameUseCase;
-
-  late StreamController<SafeEvent<String>> userNameController;
 
   late StreamController<SafeEvent<List<LocationEntity>>>
       bestRatedPlacesController;
@@ -53,7 +51,6 @@ class HomeBloc extends SafeBloC {
     required this.saveUserLocationPermissionFirstSettingsUseCase,
     required this.getUserLocationPermissionFirstSettingsUseCase,
     required this.locator,
-    required this.saveUserNameUseCase,
     required this.getUserNameUseCase,
   }) {
     init();
@@ -64,26 +61,16 @@ class HomeBloc extends SafeBloC {
     bestRatedPlacesController = StreamController.broadcast();
     locationsNearUserController = StreamController.broadcast();
     userLocationController = StreamController.broadcast();
-    userNameController = StreamController.broadcast();
-  }
-
-  Future<void> saveUserName({required String userName}) async {
-    await saveUserNameUseCase.call(userName);
   }
 
   Future<String> getUserName() async {
-    return await getUserNameUseCase.call();
-  }
-
-  Future<String> useUserName() async {
     try {
-      userNameController.add(SafeEvent.load());
-      final data = await getUserNameUseCase.call();
-      userNameController.add(SafeEvent.done(data));
+      final userName = await getUserNameUseCase.call();
+      return userName;
     } catch (e) {
-      userNameController.addError(e.toString());
+      SafeLogUtil.instance.logError(e);
     }
-    return 'vazio';
+    return StringConstants.empty;
   }
 
   Future<Placemark?> getUserLocation() async {

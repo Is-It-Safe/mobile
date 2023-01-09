@@ -40,7 +40,6 @@ class HomeModule extends Module {
             i.get<GetUserLocationPermissionFirstSettingsUseCase>(),
         locator: i.get<SafeLocator>(),
         getUserNameUseCase: i.get<GetUserNameUseCase>(),
-        saveUserNameUseCase: i.get<SaveUserNameUseCase>(),
       ),
     ),
   ];
