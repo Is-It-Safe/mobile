@@ -1,11 +1,11 @@
 class RequestUpdateUser {
-  int? id;
-  String? name;
-  String? nickname;
-  String? pronoun;
-  int? genderId;
-  int? sexualOrientationId;
-  String? profilePhoto;
+  final int? id;
+  final String? name;
+  final String? nickname;
+  final String? pronoun;
+  final int? genderId;
+  final int? sexualOrientationId;
+  final String? profilePhoto;
 
   RequestUpdateUser({
     this.id,

@@ -13,6 +13,9 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
+import '../../../../../../components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
+import '../../../../../../core/constants/string_constants.dart';
 import 'confirm_password.dart';
 
 class AccountPage extends StatefulWidget {
@@ -82,19 +85,30 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
             case Status.done:
               //TODO salvar o usuário no shared preferences
               return SafeProfileHeader(
-                nickname: user?.nickname,
-                //TODO descomentar a foto
-                //photo: user?.profilePhoto,
-                pronoun: user?.pronoun,
-                gender: user?.gender,
-                sexualOrientation: user?.orientation,
-                isEditabled: true,
-                //TODO substituir por: navegação para tela de editar profile picture
-                onPhotoTap: () => SafeSnackBar(
-                  message: S.current.textFeatureAvailableSoon,
-                  type: SnackBarType.info,
-                ).show(context),
-              );
+                  nickname: user?.nickname,
+                  //TODO descomentar a foto
+                  photo: controller.safeProfilePictureBloc.selectedProfilePhoto,
+                  pronoun: user?.pronoun,
+                  gender: user?.gender,
+                  sexualOrientation: user?.orientation,
+                  isEditabled: true,
+                  //TODO substituir por: navegação para tela de editar profile picture
+                  onPhotoTap: () {
+                    Modular.to
+                        .pushNamed(
+                            StringConstants.dot + SafeProfilePicturePage.route)
+                        .then((value) async {
+                      if (value != null) {
+                        controller.safeProfilePictureBloc
+                            .setProfitePicture(value.toString());
+                        setState(() {});
+                        await controller.updateUser(RequestUpdateUser(
+                          id: user!.id,
+                          profilePhoto: value.toString(),
+                        ));
+                      }
+                    });
+                  });
             default:
               return const SafeProfileHeader();
           }

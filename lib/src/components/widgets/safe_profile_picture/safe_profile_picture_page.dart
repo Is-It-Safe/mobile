@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
-class RegisterProfilePicturePage extends StatefulWidget {
+class SafeProfilePicturePage extends StatefulWidget {
   static const route = '/profile-picture';
-  const RegisterProfilePicturePage({Key? key}) : super(key: key);
+  const SafeProfilePicturePage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterProfilePicturePage> createState() =>
-      _RegisterProfilePicturePageState();
+  State<SafeProfilePicturePage> createState() => _SafeProfilePicturePageState();
 }
 
-class _RegisterProfilePicturePageState
-    extends ModularState<RegisterProfilePicturePage, RegisterBloc> {
+class _SafeProfilePicturePageState extends State<SafeProfilePicturePage> {
+  final controller = Modular.get<SafeProfilePictureBloC>();
+
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   late String userAvatarPath;
 
