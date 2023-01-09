@@ -13,13 +13,12 @@ class GetUserNameUseCase implements SafeUseCase {
   }
 
   Future<String> call() async {
-    return await _sharedPreferences.readUserName();
-    //   try {
-    //     final response = await _sharedPreferences.readUserName();
-    //     return response;
-    //   } catch (e) {
-    //     SafeLogUtil.instance.logError(e);
-    //   }
-    //   return StringConstants.empty;
+    try {
+      final response = await _sharedPreferences.readUserName();
+      return response;
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+    }
+    return StringConstants.empty;
   }
 }
