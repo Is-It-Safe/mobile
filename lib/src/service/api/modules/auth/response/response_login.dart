@@ -26,8 +26,8 @@ class ResponseLogin {
       refreshToken: json["refresh_token"],
       expiresIn: json["expires_in"],
       scope: json["scope"],
-      userFirstName: json["user_first_name"],
-      userId: json["user_id"],
+      userFirstName: json["userFirstName"],
+      userId: json["userId"],
       userImage: json["profilePhoto"],
     );
   }

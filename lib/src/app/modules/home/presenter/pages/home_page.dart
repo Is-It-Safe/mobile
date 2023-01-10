@@ -8,7 +8,6 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permi
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
-import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
@@ -42,11 +41,9 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       child: Scaffold(
         key: _scaffoldKey,
         endDrawer: FutureBuilder(
-          future: controller.getUserName(),
+          future: controller.getHomeDrawerItensContent(),
           builder: (context, snapshot) {
-            return HomeDrawer(
-              name: snapshot.data.toString(),
-            );
+            return HomeDrawer();
           },
         ),
         appBar: const SafeAppBar().home(

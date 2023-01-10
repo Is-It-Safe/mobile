@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../../components/config/safe_event.dart';
 import '../../../../../components/config/safe_layout.dart';
 import '../../../../../domain/entity/location_entity.dart';
-import '../../../location/location_module.dart';
 import '../../../location/review/presenter/pages/review_page.dart';
 import 'home_location_card.dart';
 
