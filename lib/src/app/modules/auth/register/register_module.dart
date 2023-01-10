@@ -3,6 +3,7 @@ import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/regi
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_picture_page.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_register_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
