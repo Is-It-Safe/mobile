@@ -15,7 +15,7 @@ class HomeDrawer extends StatelessWidget {
   final String? icon;
   final String? text;
   final String? route;
-  final Object? homeDrawerVO;
+  final HomeDrawerVO? drawerInfo;
 
   const HomeDrawer({
     Key? key,
@@ -24,7 +24,7 @@ class HomeDrawer extends StatelessWidget {
     this.icon,
     this.text,
     this.route,
-    this.homeDrawerVO,
+    this.drawerInfo,
   }) : super(key: key);
 
   @override
@@ -126,21 +126,12 @@ class DrawerItem extends StatelessWidget {
   }
 }
 
-class HomeDrawerVO extends StatelessWidget {
-  final String? userName;
-  final String? userImage;
+class HomeDrawerVO {
+  final String userName;
+  final String userImage;
 
-  const HomeDrawerVO({
-    Key? key,
-    this.userName,
-    this.userImage,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return HomeDrawer(
-      name: userName,
-      image: userImage,
-    );
-  }
+  HomeDrawerVO({
+    required this.userName,
+    required this.userImage,
+  });
 }

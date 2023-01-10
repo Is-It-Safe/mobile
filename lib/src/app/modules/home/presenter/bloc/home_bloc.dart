@@ -84,7 +84,7 @@ class HomeBloc extends SafeBloC {
     return StringConstants.empty;
   }
 
-  Future<Widget> getHomeDrawerItensContent() async {
+  Future<HomeDrawerVO> getHomeDrawerInfo() async {
     final userName = await getUserName();
     final userImage = await getUserImage();
     final drawerHeader = HomeDrawerVO(

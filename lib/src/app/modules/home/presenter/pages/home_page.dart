@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -41,9 +43,11 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       child: Scaffold(
         key: _scaffoldKey,
         endDrawer: FutureBuilder(
-          future: controller.getHomeDrawerItensContent(),
+          future: controller.getHomeDrawerInfo(),
           builder: (context, snapshot) {
-            return HomeDrawer();
+            return HomeDrawer(
+              drawerInfo: snapshot.data,
+            );
           },
         ),
         appBar: const SafeAppBar().home(
