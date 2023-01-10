@@ -56,8 +56,6 @@ class _EditAccountPageState
                 const SizedBox(height: 16),
                 _mountEditNickNameField(),
                 const SizedBox(height: 16),
-                // _mountEditBirthdateField(),
-                // const SizedBox(height: 16),
                 _mountEditPronoun(),
                 const SizedBox(height: 16),
                 SexualOrientationEditAcount(
@@ -182,7 +180,7 @@ class _EditAccountPageState
                     controller: controller.nameController,
                     labelText: S.current.textName,
                     keyboardType: TextInputType.name,
-                    // validator: (value) => controller.validateTextField(value),
+                    validator: (value) => controller.validateTextField(value),
                     onChanged: (value) => controller.toogleUpdateButton(),
                   )
                 ],
@@ -246,7 +244,7 @@ class _EditAccountPageState
                       labelText: S.current.textNickName,
                       keyboardType: TextInputType.name,
                       onChanged: (value) => controller.toogleUpdateButton(),
-                      // validator: (value) => controller.validateTextField(value),
+                      validator: (value) => controller.validateTextField(value),
                     ),
                   ]);
             default:
@@ -306,7 +304,7 @@ class _EditAccountPageState
                     controller: controller.pronounController,
                     labelText: S.current.textPronouns,
                     keyboardType: TextInputType.name,
-                    // validator: (value) => controller.validateTextField(value),
+                    validator: (value) => controller.validateTextField(value),
                     onChanged: (value) => controller.toogleUpdateButton(),
                   )
                 ],
@@ -320,71 +318,6 @@ class _EditAccountPageState
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
                       S.current.textPronouns,
-                      style: TextStyles.subtitle1(),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const SafeLoading(),
-                ],
-              );
-          }
-          return const SizedBox.shrink();
-        });
-  }
-
-  Widget _mountEditBirthdateField() {
-    return StreamBuilder<SafeEvent<UserEntity>>(
-        stream: controller.userController.stream,
-        builder: (context, snapshot) {
-          final birthDate = snapshot.data?.data!.birthDate;
-          switch (snapshot.data?.status) {
-            case Status.loading:
-              return const SafeLoading();
-            case Status.error:
-              showDialog(
-                context: context,
-                builder: (context) => SafeDialog(
-                  primaryBtn: SafeButton(
-                      title: S.current.textSafeDialogTypeError,
-                      size: ButtonSize.large,
-                      state: ButtonState.disabled,
-                      onTap: () async {}),
-                  type: SafeDialogType.error,
-                  message: snapshot.data!.message.toString(),
-                ),
-              );
-              break;
-            case Status.done:
-              // controller.birthdateController.text = birthDate!;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      S.current.textDateOfBirth,
-                      style: TextStyles.subtitle1(),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  SafeTextFormField(
-                    controller: controller.birthdateController,
-                    labelText: S.current.textDateOfBirth,
-                    inputFormatters: [controller.birthdayInputMask],
-                    keyboardType: TextInputType.number,
-                    // validator: (value) => controller.validateBirthdate(value),
-                    onChanged: (value) => controller.toogleUpdateButton(),
-                  )
-                ],
-              );
-            default:
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      S.current.textDateOfBirth,
                       style: TextStyles.subtitle1(),
                     ),
                   ),
