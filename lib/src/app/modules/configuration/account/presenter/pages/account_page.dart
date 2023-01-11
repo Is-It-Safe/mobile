@@ -18,6 +18,7 @@ import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_
 import '../../../../../../components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
 import '../../../../../../core/constants/string_constants.dart';
 import '../../../configuration_module.dart';
+import 'confirm_password.dart';
 
 class AccountPage extends StatefulWidget {
   static const route = '/account/';
