@@ -17,14 +17,14 @@ class RequestUpdateUser {
     this.profilePhoto,
   });
 
-  Map<String, dynamic> toJson(RequestUpdateUser request) {
+  Map<String, dynamic> toJson() {
     return {
-      'name': request.name,
-      'nickname': request.nickname,
-      'pronoun': request.pronoun,
-      'gender_id': request.genderId,
-      'orientation_id': request.sexualOrientationId,
-      'photoUrl': request.profilePhoto,
+      'name': name,
+      'nickname': nickname,
+      'pronoun': pronoun,
+      'gender_id': genderId,
+      'orientation_id': sexualOrientationId,
+      'photoUrl': profilePhoto,
     };
   }
 }
