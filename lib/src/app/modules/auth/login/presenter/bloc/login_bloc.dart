@@ -8,16 +8,21 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_image_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginBloc extends SafeBloC {
   final DoLoginUseCase doLoginUseCase;
   final SaveUserLoginUseCase saveUserLoginUseCase;
   final SaveUserTokenUseCase saveUserTokenUseCase;
   final SaveUserRefreshTokenUseCase saveUserRefreshTokenUseCase;
+  final SaveUserImageUseCase saveUserImageUseCase;
+  final SaveUserNameUseCase saveUserNameUseCase;
 
   late StreamController<bool> loginButtonController;
   late StreamController<SafeEvent<LoginEntity>> doLoginController;
@@ -29,6 +34,8 @@ class LoginBloc extends SafeBloC {
     required this.saveUserLoginUseCase,
     required this.saveUserTokenUseCase,
     required this.saveUserRefreshTokenUseCase,
+    required this.saveUserImageUseCase,
+    required this.saveUserNameUseCase,
   }) {
     init();
   }
@@ -51,11 +58,13 @@ class LoginBloc extends SafeBloC {
       if (loginEntity.accessToken.isNotEmpty) {
         saveUserToken(loginEntity.accessToken);
         saveUserRefreshToken(loginEntity.refreshToken);
+        saveUserName(loginEntity.userFirstName);
+        saveUserImage(loginEntity.userImage);
         saveUserLogin(true);
       }
       doLoginController.sink.add(SafeEvent.done(loginEntity));
     } catch (e) {
-      doLoginController.addError(SafeEvent.error(e.toString()));
+      doLoginController.addError(e.toString());
       SafeLogUtil.instance.logError(e);
     }
   }
@@ -70,6 +79,22 @@ class LoginBloc extends SafeBloC {
   Future<void> saveUserLogin(bool value) async {
     try {
       await saveUserLoginUseCase.call(value);
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+    }
+  }
+
+  Future<void> saveUserName(String value) async {
+    try {
+      await saveUserNameUseCase.call(value);
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+    }
+  }
+
+  Future<void> saveUserImage(String value) async {
+    try {
+      await saveUserImageUseCase.call(value);
     } catch (e) {
       SafeLogUtil.instance.logError(e);
     }
@@ -109,6 +134,12 @@ class LoginBloc extends SafeBloC {
       S.of(context).textErrorLoginPassword;
     }
     return StringConstants.empty;
+  }
+
+  Future<void> forgotPassword(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    }
   }
 
   @override

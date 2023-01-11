@@ -2,16 +2,16 @@ import 'package:is_it_safe_app/src/core/constants/regex_constants.dart';
 
 extension SafeValidation on String {
   /// Retorna true caso a String seja um e-mail válido.
-  bool isEmail() => contains(RegExp(RegexConstants.emailRegex as String));
+  bool get isEmail => contains(RegExp(RegexConstants.emailRegex as String));
 
   /// Retorna true caso a String seja uma senha válida.
-  bool isPassword() => contains(
+  bool get isPassword => contains(
         RegExp(RegexConstants.passwordRegex as String),
       );
 
-  bool isName() => !isEmpty;
+  bool get isName => !isEmpty;
 
-  bool isDate() {
+  bool get isDate {
     final value = this;
     if (value.length == 10) {
       int day = int.parse(
