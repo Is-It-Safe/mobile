@@ -28,16 +28,16 @@ class HomeLocationCard extends StatelessWidget {
         width: size.width,
         decoration: BoxDecoration(
           color: SafeColors.generalColors.primary,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: LayoutBuilder(builder: (context, constraints) {
           return Stack(
             children: [
               Column(
                 children: [
-                  _LocationPicture(location: location),
+                  _LocationPicture(location: location, size: size),
                   SizedBox(
-                    height: location.imagePath?.isNotEmpty == true ? 0.0 : 16.0,
+                    height: location.imagePath?.isNotEmpty == true ? 0 : 16,
                   ),
                   _LocationBody(location: location, size: size),
                 ],
@@ -57,20 +57,22 @@ class HomeLocationCard extends StatelessWidget {
 
 class _LocationPicture extends StatelessWidget {
   final LocationEntity location;
-  const _LocationPicture({Key? key, required this.location}) : super(key: key);
+  final Size size;
+  const _LocationPicture({Key? key, required this.location, required this.size})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (location.imagePath?.isNotEmpty == true) {
       return Container(
-        margin: const EdgeInsets.all(16.0),
-        height: 140,
+        margin: const EdgeInsets.all(16),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Image.network(
           location.imagePath!,
+          height: size.height * .15,
           fit: BoxFit.fitWidth,
           errorBuilder: (context, object, stackTrace) {
             return Image.asset(
@@ -119,7 +121,7 @@ class _LocationBody extends StatelessWidget {
 
   Widget _mountName(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.60,
+      width: MediaQuery.of(context).size.width * .6,
       child: Text(
         location.name,
         textAlign: TextAlign.start,
@@ -133,7 +135,7 @@ class _LocationBody extends StatelessWidget {
 
   Widget _moundAddress(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.65,
+      width: MediaQuery.of(context).size.width * .65,
       child: Text(
         location.address,
         maxLines: 2,
