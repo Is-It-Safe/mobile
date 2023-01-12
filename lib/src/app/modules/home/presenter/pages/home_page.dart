@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print, deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
