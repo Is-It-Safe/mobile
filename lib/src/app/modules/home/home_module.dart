@@ -10,7 +10,6 @@ import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.da
 import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_permission_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
@@ -29,7 +28,6 @@ class HomeModule extends Module {
     Bind.lazySingleton((i) => SafeLocator()),
     Bind.lazySingleton((i) => GetUserNameUseCase()),
     Bind.lazySingleton((i) => GetUserImageUseCase()),
-    Bind.lazySingleton((i) => SaveUserNameUseCase()),
     Bind.lazySingleton(
       (i) => HomeBloc(
         getLocationsNearUserUsecase: i.get<GetLocationsNearUser>(),

@@ -4,27 +4,30 @@ import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class HomeDrawer extends StatelessWidget {
+  final Stream<SafeEvent<HomeDrawerVO>>? stream;
   final String? image;
   final String? name;
   final String? icon;
   final String? text;
   final String? route;
-  final HomeDrawerVO? drawerInfo;
+  final Future<HomeDrawerVO>? drawerInfor;
 
   const HomeDrawer({
     Key? key,
+    this.stream,
     this.image = PlaceHolderAssets.profileAvatar,
     this.name,
     this.icon,
     this.text,
     this.route,
-    this.drawerInfo,
+    this.drawerInfor,
   }) : super(key: key);
 
   @override
@@ -127,8 +130,8 @@ class DrawerItem extends StatelessWidget {
 }
 
 class HomeDrawerVO {
-  final String userName;
-  final String userImage;
+  String userName;
+  String userImage;
 
   HomeDrawerVO({
     required this.userName,

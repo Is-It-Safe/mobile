@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
@@ -64,34 +63,22 @@ class HomeBloc extends SafeBloC {
     userLocationController = StreamController.broadcast();
   }
 
-  Future<String> getUserName() async {
+  Future<HomeDrawerVO> getHomeDrawerInfo() async {
     try {
       final userName = await getUserNameUseCase.call();
-      return userName;
-    } catch (e) {
-      SafeLogUtil.instance.logError(e);
-    }
-    return StringConstants.empty;
-  }
-
-  Future<String> getUserImage() async {
-    try {
       final userImage = await getUserImageUseCase.call();
-      return userImage;
+      final homeDrawerVO = HomeDrawerVO(
+        userName: userName,
+        userImage: userImage,
+      );
+      return homeDrawerVO;
     } catch (e) {
       SafeLogUtil.instance.logError(e);
     }
-    return StringConstants.empty;
-  }
-
-  Future<HomeDrawerVO> getHomeDrawerInfo() async {
-    final userName = await getUserName();
-    final userImage = await getUserImage();
-    final drawerHeader = HomeDrawerVO(
-      userName: userName,
-      userImage: userImage,
+    return HomeDrawerVO(
+      userName: StringConstants.empty,
+      userImage: StringConstants.empty,
     );
-    return drawerHeader;
   }
 
   Future<Placemark?> getUserLocation() async {
@@ -207,5 +194,6 @@ class HomeBloc extends SafeBloC {
   @override
   Future<void> dispose() async {
     bestRatedPlacesController.close();
+    // homeDrawrVOController.close();
   }
 }
