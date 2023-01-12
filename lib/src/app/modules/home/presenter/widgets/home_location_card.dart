@@ -23,7 +23,7 @@ class HomeLocationCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function(),
       child: Container(
         width: size.width,
         decoration: BoxDecoration(

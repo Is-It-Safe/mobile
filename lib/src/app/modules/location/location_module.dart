@@ -33,7 +33,7 @@ class LocationModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/location-page',
+    ChildRoute(LocationPage.route,
         child: (_, args) =>
             LocationPage(location: (args.data as LocationEntity))),
     ModuleRoute(ReviewPage.route, module: ReviewModule()),
