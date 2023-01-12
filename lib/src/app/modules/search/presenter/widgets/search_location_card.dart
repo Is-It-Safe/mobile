@@ -17,11 +17,14 @@ class SearchLocationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Row(
-      children: [
-        _mountImage(size),
-        _mountLocationDetails(size),
-      ],
+    return GestureDetector(
+      onTap: onTap as void Function(),
+      child: Row(
+        children: [
+          _mountImage(size),
+          _mountLocationDetails(size),
+        ],
+      ),
     );
   }
 

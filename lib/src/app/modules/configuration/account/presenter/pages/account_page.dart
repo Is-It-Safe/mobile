@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/edit_account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_button.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_tile.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_section_banner.dart';
@@ -13,6 +14,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import '../../../configuration_module.dart';
 import 'confirm_password.dart';
 
 class AccountPage extends StatefulWidget {
@@ -174,13 +176,9 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
 
   Widget _mountEditProfileButton() {
     return AccountInfoButton(
-      text: S.current.textEditProfile,
-      //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
-    );
+        text: S.current.textEditProfile,
+        onTap: () => Modular.to
+            .pushNamed(ConfigurationModule.route + EditAccountPage.route));
   }
 
   Widget _mountLogoutButton() {

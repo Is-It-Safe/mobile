@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
 
 import '../../../../../components/config/safe_event.dart';
 import '../../../../../components/config/safe_layout.dart';
 import '../../../../../domain/entity/location_entity.dart';
-import '../../../location/review/presenter/pages/review_page.dart';
+import '../../../location/location_module.dart';
 import 'home_location_card.dart';
 
 class MountGettedPlaces extends StatelessWidget {
@@ -28,7 +29,6 @@ class MountGettedPlaces extends StatelessWidget {
       stream: stream,
       builder: (context, snapshot) {
         return SafeLayout(
-          context: context,
           snapshot: snapshot,
           showErrorDialog: showErrorDialog,
           onEmpty: onEmpty ?? const SizedBox.shrink(),
@@ -56,7 +56,7 @@ class _SepararedList extends StatelessWidget {
       itemBuilder: (context, index) => HomeLocationCard(
         location: list[index],
         onTap: () => Modular.to.pushNamed(
-          ReviewPage.route,
+          LocationModule.route + LocationPage.route,
           arguments: list[index],
         ),
       ),

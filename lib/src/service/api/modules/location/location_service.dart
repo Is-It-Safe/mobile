@@ -22,7 +22,7 @@ class LocationService implements ILocationService {
   LocationService(this._authService);
 
   @override
-  Future<List<ResponseGetLocationsById>> getLocationById(int id) async {
+  Future<ResponseGetLocationsById> getLocationById(int id) async {
     final token = await _authService.getAccessToken();
 
     final requestConfig = RequestConfig(
@@ -34,9 +34,9 @@ class LocationService implements ILocationService {
     );
 
     final response = await _service.doRequest(requestConfig);
-    return (json.decode(response.data) as List)
-        .map((e) => ResponseGetLocationsById.fromJson(e))
-        .toList();
+    print((json.decode(response.data)));
+    final data = (json.decode(response.data) as Map<String, dynamic>);
+    return ResponseGetLocationsById.fromJson(data);
   }
 
   @override
