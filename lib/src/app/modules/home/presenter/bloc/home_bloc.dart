@@ -131,6 +131,7 @@ class HomeBloc extends SafeBloC {
         }
       });
     });
+    print(userLocation);
     if (userLocation != null) {
       await saveUserLocation(userLocation: userLocation);
       userLocationController.sink.add(SafeEvent.done(userLocation));
@@ -157,14 +158,16 @@ class HomeBloc extends SafeBloC {
   }
 
   Future<bool> requestPermissionAndShowNearLocations() async {
-    saveUserLocationPermission(true);
     bool granted = false;
     await getCurrentLocation();
-    await Future.doWhile(() async {
-      return !(await verifyLocationPermission());
-    });
-    granted = true;
-    return granted;
+    if (!(await getUserLocationPermission())) {
+      saveUserLocationPermission(true);
+      await Future.doWhile(() async {
+        granted = !(await verifyLocationPermission());
+        return granted;
+      });
+    }
+    return !granted;
   }
 
   @override

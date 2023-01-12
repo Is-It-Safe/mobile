@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -24,10 +26,14 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
   @override
   void initState() {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await controller.requestPermissionAndShowNearLocations().then((granted) {
-        controller.getLocationsNearUser();
-      }).timeout(const Duration(milliseconds: 400), onTimeout: () {
-        controller.getLocationsNearUser();
+      await controller
+          .requestPermissionAndShowNearLocations()
+          .then((granted) async {
+        if (granted) {
+          await controller.getLocationsNearUser();
+        }
+      }).timeout(const Duration(milliseconds: 400), onTimeout: () async {
+        await controller.getLocationsNearUser();
       });
     });
     super.initState();
@@ -49,8 +55,6 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
                   .requestPermissionAndShowNearLocations()
                   .then((granted) {
                 controller.getLocationsNearUser();
-              }).timeout(const Duration(milliseconds: 400), onTimeout: () {
-                controller.getLocationsNearUser();
               });
             }
             if (tab == 1) {
@@ -70,6 +74,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
                 buttonText: "Abrir configurações",
                 onTapButton: () async {
                   await controller.locator.requestPermission();
+                  await controller.getLocationsNearUser();
                 },
               ),
             ),

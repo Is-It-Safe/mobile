@@ -64,7 +64,7 @@ class SafeLocator implements ISafeLocator {
   }
 
   @override
-  Future<void> requestPermission() => Geolocator.openLocationSettings();
+  Future<bool> requestPermission() => Geolocator.openLocationSettings();
 
   @override
   Future<bool> verifyPermission({Function? onLocationDenied}) async {
