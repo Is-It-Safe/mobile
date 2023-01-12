@@ -194,6 +194,5 @@ class HomeBloc extends SafeBloC {
   @override
   Future<void> dispose() async {
     bestRatedPlacesController.close();
-    // homeDrawrVOController.close();
   }
 }
