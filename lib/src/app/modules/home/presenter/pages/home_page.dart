@@ -40,9 +40,19 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       length: 2,
       child: Scaffold(
         key: _scaffoldKey,
-        endDrawer: const HomeDrawer(),
+        endDrawer: FutureBuilder<HomeDrawerVO>(
+          future: controller.getHomeDrawerInfo(),
+          builder: (context, snapshot) {
+            return HomeDrawer(
+              name: snapshot.data?.userName,
+              image: snapshot.data?.userImage,
+            );
+          },
+        ),
         appBar: const SafeAppBar().home(
-          onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
+          onOpenDrawer: () {
+            _scaffoldKey.currentState!.openEndDrawer();
+          },
           onBottomTap: (tab) async {
             if (tab == 0) {
               await controller
