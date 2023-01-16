@@ -146,11 +146,15 @@ class HomeBloc extends SafeBloC {
     return await locator.verifyPermission();
   }
 
-  Future<void> getCurrentLocation() async {
+  Future<void> getCurrentLocation({bool forceRequest = false}) async {
     final Placemark? userLocation =
         await locator.getLocation(onLocationDenied: () async {
-      await getUserLocationPermission().then((alreadySeeIt) async {
+      await getUserAlreadyRequestedLocationPermission()
+          .then((alreadySeeIt) async {
         if (!alreadySeeIt) {
+          await locator.requestPermission();
+        }
+        if (forceRequest) {
           await locator.requestPermission();
         }
       });
@@ -161,7 +165,7 @@ class HomeBloc extends SafeBloC {
     }
   }
 
-  Future<bool> getUserLocationPermission() async {
+  Future<bool> getUserAlreadyRequestedLocationPermission() async {
     try {
       final permission =
           await getUserLocationPermissionFirstSettingsUseCase.call();
@@ -172,7 +176,8 @@ class HomeBloc extends SafeBloC {
     return false;
   }
 
-  Future<void> saveUserLocationPermission(bool alreadySeeIt) async {
+  Future<void> saveUserAlreadyRequestedLocationPermission(
+      bool alreadySeeIt) async {
     try {
       await saveUserLocationPermissionFirstSettingsUseCase.call(alreadySeeIt);
     } catch (e) {
@@ -180,15 +185,27 @@ class HomeBloc extends SafeBloC {
     }
   }
 
-  Future<bool> requestPermissionAndShowNearLocations() async {
-    saveUserLocationPermission(true);
+  Future<bool> requestAppLocationPermission() async {
     bool granted = false;
     await getCurrentLocation();
+    if (!(await getUserAlreadyRequestedLocationPermission())) {
+      saveUserAlreadyRequestedLocationPermission(true);
+      await Future.doWhile(() async {
+        granted = !(await verifyLocationPermission());
+        return granted;
+      });
+    }
+    return !granted;
+  }
+
+  Future<bool> forcedRequestLocationPermission() async {
+    bool granted = false;
+    await getCurrentLocation(forceRequest: true);
     await Future.doWhile(() async {
-      return !(await verifyLocationPermission());
+      granted = !(await verifyLocationPermission());
+      return granted;
     });
-    granted = true;
-    return granted;
+    return !granted;
   }
 
   @override

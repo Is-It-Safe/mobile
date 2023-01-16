@@ -55,10 +55,12 @@ class _SepararedList extends StatelessWidget {
       separatorBuilder: (_, i) => const SizedBox(height: 15),
       itemBuilder: (context, index) => HomeLocationCard(
         location: list[index],
-        onTap: () => Modular.to.pushNamed(
-          LocationModule.route + LocationPage.route,
-          arguments: list[index],
-        ),
+        onTap: () async {
+          await Modular.to.pushNamed(
+            LocationModule.route + LocationPage.route,
+            arguments: list[index],
+          );
+        },
       ),
     );
   }

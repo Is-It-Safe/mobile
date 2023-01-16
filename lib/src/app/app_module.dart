@@ -36,6 +36,6 @@ class AppModule extends Module {
     ModuleRoute(NavigationPage.route, module: NavigationModule()),
     ModuleRoute(ConfigurationModule.route, module: ConfigurationModule()),
     ModuleRoute(ReviewPage.route, module: ReviewModule()),
-    ModuleRoute(SaveLocationPage.route, module: LocationModule()),
+    ModuleRoute(LocationModule.route, module: LocationModule()),
   ];
 }
