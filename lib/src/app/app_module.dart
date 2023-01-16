@@ -7,8 +7,8 @@ import 'package:is_it_safe_app/src/app/modules/location/review/review_module.dar
 import 'package:is_it_safe_app/src/app/modules/navigation/navigation_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_image_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
@@ -36,6 +36,6 @@ class AppModule extends Module {
     ModuleRoute(NavigationPage.route, module: NavigationModule()),
     ModuleRoute(ConfigurationModule.route, module: ConfigurationModule()),
     ModuleRoute(ReviewPage.route, module: ReviewModule()),
-    ModuleRoute(SaveLocationPage.route, module: LocationModule()),
+    ModuleRoute(LocationModule.route, module: LocationModule()),
   ];
 }

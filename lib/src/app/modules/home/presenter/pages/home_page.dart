@@ -24,11 +24,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
   @override
   void initState() {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await controller.requestPermissionAndShowNearLocations().then((granted) {
-        controller.getLocationsNearUser();
-      }).timeout(const Duration(milliseconds: 400), onTimeout: () {
-        controller.getLocationsNearUser();
-      });
+      await _requestLocationPermission();
     });
     super.initState();
     SafeLogUtil.instance.route(Modular.to.path);
@@ -40,18 +36,22 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       length: 2,
       child: Scaffold(
         key: _scaffoldKey,
-        endDrawer: const HomeDrawer(),
+        endDrawer: FutureBuilder<HomeDrawerVO>(
+          future: controller.getHomeDrawerInfo(),
+          builder: (context, snapshot) {
+            return HomeDrawer(
+              name: snapshot.data?.userName,
+              image: snapshot.data?.userImage,
+            );
+          },
+        ),
         appBar: const SafeAppBar().home(
-          onOpenDrawer: () => _scaffoldKey.currentState!.openEndDrawer(),
+          onOpenDrawer: () {
+            _scaffoldKey.currentState!.openEndDrawer();
+          },
           onBottomTap: (tab) async {
             if (tab == 0) {
-              await controller
-                  .requestPermissionAndShowNearLocations()
-                  .then((granted) {
-                controller.getLocationsNearUser();
-              }).timeout(const Duration(milliseconds: 400), onTimeout: () {
-                controller.getLocationsNearUser();
-              });
+              await _requestLocationPermission();
             }
             if (tab == 1) {
               await controller.getBestRatedPlaces();
@@ -69,7 +69,13 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
                 text: S.current.textErrorLocationPermission,
                 buttonText: "Abrir configurações",
                 onTapButton: () async {
-                  await controller.locator.requestPermission();
+                  await controller
+                      .forcedRequestLocationPermission()
+                      .then((granted) async {
+                    if (granted) {
+                      await controller.getLocationsNearUser();
+                    }
+                  });
                 },
               ),
             ),
@@ -82,13 +88,14 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
       ),
     );
   }
-}
 
-// whenComplete(() {
-//       userLocationController.stream.handleError(
-//         (x) => SafeSnackBar(
-//           message: S.current.textErrorGetLocation,
-//           type: SnackBarType.error,
-//         ),
-//       );
-//     });
+  Future<void> _requestLocationPermission() async {
+    await controller.requestAppLocationPermission().then((granted) async {
+      if (granted) {
+        await controller.getLocationsNearUser();
+      }
+    }).timeout(const Duration(milliseconds: 400), onTimeout: () async {
+      await controller.getLocationsNearUser();
+    });
+  }
+}

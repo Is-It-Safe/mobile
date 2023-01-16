@@ -14,6 +14,9 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
+import '../../../../../../components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
+import '../../../../../../core/constants/string_constants.dart';
 import '../../../configuration_module.dart';
 import 'confirm_password.dart';
 
@@ -84,19 +87,45 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
             case Status.done:
               //TODO salvar o usuário no shared preferences
               return SafeProfileHeader(
-                nickname: user?.nickname,
-                //TODO descomentar a foto
-                //photo: user?.profilePhoto,
-                pronoun: user?.pronoun,
-                gender: user?.gender,
-                sexualOrientation: user?.orientation,
-                isEditabled: true,
-                //TODO substituir por: navegação para tela de editar profile picture
-                onPhotoTap: () => SafeSnackBar(
-                  message: S.current.textFeatureAvailableSoon,
-                  type: SnackBarType.info,
-                ).show(context),
-              );
+                  nickname: user?.nickname,
+                  photo: user?.profilePhoto,
+                  pronoun: user?.pronoun,
+                  gender: user?.gender,
+                  sexualOrientation: user?.orientation,
+                  isEditabled: true,
+                  onPhotoTap: () {
+                    Modular.to
+                        .pushNamed(
+                            StringConstants.dot + SafeProfilePicturePage.route)
+                        .then((value) async {
+                      if (value != null) {
+                        setState(() {
+                          controller.safeProfilePictureBloc
+                              .setProfitePicture(value.toString());
+                        });
+                        SafeSnackBar(
+                                type: SnackBarType.success,
+                                message: S.current.textAvatarSuccessUpated)
+                            .show(context);
+
+                        controller.userController.stream.handleError((x) {
+                          SafeSnackBar(
+                                  type: SnackBarType.error,
+                                  message: S.current.textFailedToUpdateAvatar)
+                              .show(context);
+                        });
+
+                        await controller
+                            .updateUser(RequestUpdateUser(
+                          id: user!.id,
+                          profilePhoto: value.toString(),
+                        ))
+                            .then((_) async {
+                          await controller.getUser();
+                        });
+                      }
+                    });
+                  });
             default:
               return const SafeProfileHeader();
           }
@@ -134,32 +163,32 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textName,
-                      value: user?.name,
+                      value: user!.name,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textUsername,
-                      value: user?.nickname,
+                      value: user.nickname,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textPronouns,
-                      value: user?.pronoun,
+                      value: user.pronoun,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textDateOfBirth,
-                      value: user?.birthDate,
+                      value: user.birthDate,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textSexualOrientation,
-                      value: user?.orientation,
+                      value: user.orientation,
                     ),
                     const SizedBox(height: 20),
                     AccountInfoTile(
                       title: S.current.textGender,
-                      value: user?.gender,
+                      value: user.gender,
                     ),
                   ],
                 ),

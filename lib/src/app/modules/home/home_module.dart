@@ -4,8 +4,10 @@ import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_locations_near_user_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_location_permission_usecase.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_permission_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
@@ -24,6 +26,8 @@ class HomeModule extends Module {
     Bind.lazySingleton((i) => SaveUserLocationPermissionFirstSettingsUseCase()),
     Bind.lazySingleton((i) => GetUserLocationPermissionFirstSettingsUseCase()),
     Bind.lazySingleton((i) => SafeLocator()),
+    Bind.lazySingleton((i) => GetUserNameUseCase()),
+    Bind.lazySingleton((i) => GetUserImageUseCase()),
     Bind.lazySingleton(
       (i) => HomeBloc(
         getLocationsNearUserUsecase: i.get<GetLocationsNearUser>(),
@@ -35,6 +39,8 @@ class HomeModule extends Module {
         getUserLocationPermissionFirstSettingsUseCase:
             i.get<GetUserLocationPermissionFirstSettingsUseCase>(),
         locator: i.get<SafeLocator>(),
+        getUserNameUseCase: i.get<GetUserNameUseCase>(),
+        getUserImageUseCase: i.get<GetUserImageUseCase>(),
       ),
     ),
   ];

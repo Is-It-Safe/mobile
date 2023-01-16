@@ -4,18 +4,30 @@ import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class HomeDrawer extends StatelessWidget {
+  final Stream<SafeEvent<HomeDrawerVO>>? stream;
   final String? image;
   final String? name;
+  final String? icon;
+  final String? text;
+  final String? route;
+  final Future<HomeDrawerVO>? drawerInfor;
+
   const HomeDrawer({
     Key? key,
+    this.stream,
     this.image = PlaceHolderAssets.profileAvatar,
     this.name,
+    this.icon,
+    this.text,
+    this.route,
+    this.drawerInfor,
   }) : super(key: key);
 
   @override
@@ -29,10 +41,14 @@ class HomeDrawer extends StatelessWidget {
           ),
           child: Column(
             children: [
-              _mountHeader(),
+              DrawerHeader(
+                image: image,
+                name: name,
+              ),
               const SizedBox(height: 90),
-              //Minha Conta
-              _mountItem(
+
+              // Minha Conta
+              DrawerItem(
                 icon: AssetConstants.icons.account,
                 text: S.current.textDrawerMyAccount,
                 route: ConfigurationModule.route + AccountPage.route,
@@ -43,8 +59,20 @@ class HomeDrawer extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _mountHeader() {
+class DrawerHeader extends StatelessWidget {
+  const DrawerHeader({
+    Key? key,
+    required this.image,
+    required this.name,
+  }) : super(key: key);
+
+  final String? image;
+  final String? name;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,12 +96,22 @@ class HomeDrawer extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _mountItem({
-    required String icon,
-    required String text,
-    required String route,
-  }) {
+class DrawerItem extends StatelessWidget {
+  const DrawerItem({
+    Key? key,
+    required this.route,
+    required this.icon,
+    required this.text,
+  }) : super(key: key);
+
+  final String route;
+  final String icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Modular.to.pushNamed(route),
       child: Row(
@@ -89,4 +127,14 @@ class HomeDrawer extends StatelessWidget {
       ),
     );
   }
+}
+
+class HomeDrawerVO {
+  String userName;
+  String userImage;
+
+  HomeDrawerVO({
+    required this.userName,
+    required this.userImage,
+  });
 }

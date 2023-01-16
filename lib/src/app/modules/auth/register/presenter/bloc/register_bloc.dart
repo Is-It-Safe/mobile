@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
@@ -17,16 +15,18 @@ import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_ca
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import '../../../../../../components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
+
 class RegisterBloc extends SafeBloC {
   final DoRegisterUseCase doRegisterUseCase;
   final GetSexualOrientationsUseCase getSexualOrientationsUseCase;
   final GetGendersUseCase getGendersUseCase;
+  final SafeProfilePictureBloC profilePictureController;
 
   late final MaskTextInputFormatter birthdayInputMask;
   late final MaskTextInputFormatter phoneInputMask;
 
   late StreamController<bool> registerButtonController;
-  late StreamController<String> profilePictureController;
   late StreamController<SafeEvent<List<GenderEntity>>> gendersController;
   late StreamController<SafeEvent<List<SexualOrientationEntity>>>
       sexualOrientationsController;
@@ -43,15 +43,14 @@ class RegisterBloc extends SafeBloC {
   late TextEditingController sexualOrientationController;
 
   bool isTermsAndConditionsChecked = false;
-  List<String> listProfilePicturePaths = [];
   List<GenderEntity> listGenders = [];
   List<SexualOrientationEntity> listSexualOrientations = [];
-  String selectedProfilePhoto = StringConstants.empty;
 
   RegisterBloc({
     required this.doRegisterUseCase,
     required this.getGendersUseCase,
     required this.getSexualOrientationsUseCase,
+    required this.profilePictureController,
   }) {
     init();
   }
@@ -62,7 +61,6 @@ class RegisterBloc extends SafeBloC {
     phoneInputMask = MaskTextInputFormatter(mask: StringConstants.phoneMask);
 
     registerButtonController = StreamController.broadcast();
-    profilePictureController = StreamController.broadcast();
     gendersController = StreamController.broadcast();
     sexualOrientationsController = StreamController.broadcast();
     doRegisterController = StreamController.broadcast();
@@ -86,24 +84,6 @@ class RegisterBloc extends SafeBloC {
         confirmPasswordController.text.isNotEmpty &&
         isTermsAndConditionsChecked);
     registerButtonController.sink.add(isRegisterButtonEnabled);
-  }
-
-  Future<void> getProfilePicturePathsList(BuildContext context) async {
-    listProfilePicturePaths.clear();
-    final assetManifestJson =
-        await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
-    final List<String> profilePicturePaths = json
-        .decode(assetManifestJson)
-        .keys
-        .where((String key) =>
-            key.startsWith(AssetConstants.general.profilePictures))
-        .toList();
-    listProfilePicturePaths.addAll(profilePicturePaths);
-  }
-
-  void setProfitePicture(String path) {
-    selectedProfilePhoto = path;
-    profilePictureController.sink.add(path);
   }
 
   Future<void> getGenders() async {
@@ -150,7 +130,7 @@ class RegisterBloc extends SafeBloC {
         password: passwordController.text,
         profilePhoto: isAdvanceButton == true
             ? StringConstants.empty
-            : selectedProfilePhoto,
+            : profilePictureController.selectedProfilePhoto,
         gender: isAdvanceButton == true ? "${7}" : genderController.text,
         sexualOrientation:
             isAdvanceButton == true ? "${2}" : sexualOrientationController.text,
