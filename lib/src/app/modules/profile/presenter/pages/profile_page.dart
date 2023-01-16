@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
@@ -59,7 +60,6 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
           final user = snapshot.data?.data;
           return SafeLayout(
             snapshot: snapshot,
-            context: context,
             showErrorDialog: false,
             onEmpty: const SafeProfileHeader(),
             onError: const SafeProfileHeader(),
@@ -72,7 +72,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
               gender: user?.gender,
               sexualOrientation: user?.orientation,
             ),
-          ).build;
+          );
         });
   }
 
@@ -80,27 +80,47 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileBloc> {
     return StreamBuilder<SafeEvent<UserEntity>>(
       stream: controller.userController.stream,
       builder: (context, snapshot) {
-        final reviews = snapshot.data?.data?.reviews;
+        final reviews = snapshot.data?.data?.reviews?.reversed.toList();
         return SafeLayout(
           snapshot: snapshot,
-          context: context,
           onEmpty: SafeEmptyCard.profile(),
           onCompleted: Column(
             children: List.generate(
               reviews?.length ?? 0,
               (index) => Padding(
                 padding: const EdgeInsets.only(top: 24.0),
-                child: ProfileReview(
-                  review: reviews?[index],
-                  //TODO substituir por: controller.deleteReview
-                  // onDelete: () {},
-                  //TODO substituir por: controller.shareReview
-                  // onShare: () {},
-                ),
+                child: StreamBuilder<SafeEvent<String>>(
+                    stream: controller.deleteReviewController.stream,
+                    builder: (context, snapshot) {
+                      final message = snapshot.data?.data;
+                      return ProfileReview(
+                          review: reviews?[index],
+                          onDelete: () async {
+                            final int? idReview = reviews?[index].id;
+                            Navigator.pop(context);
+                            await controller.deleteReview(idReview: idReview) ==
+                                    true
+                                ? SafeSnackBar(
+                                    message: message ??
+                                        S.current
+                                            .textDefaultDeleteReviewMessage,
+                                    type: SnackBarType.success,
+                                  ).show(context)
+                                : SafeSnackBar(
+                                    message: message ??
+                                        S.current.textErrorDeleteReview,
+                                    type: SnackBarType.error,
+                                  ).show(context);
+                          }
+
+                          //TODO substituir por: controller.shareReview
+                          // onShare: () {},
+                          );
+                    }),
               ),
             ),
           ),
-        ).build;
+        );
       },
     );
   }

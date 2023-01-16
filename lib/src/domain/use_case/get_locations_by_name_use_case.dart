@@ -12,8 +12,8 @@ class GetLocationsByNameUseCase extends SafeUseCase {
   }
 
   Future<List<LocationEntity>> call(String name) async {
-    final _response = await _service.searchLocationByName(name);
+    final response = await _service.searchLocationByName(name);
 
-    return _response?.map((e) => LocationEntity.toEntity(e)).toList() ?? [];
+    return response?.map((e) => LocationEntity.toEntity(e)).toList() ?? [];
   }
 }

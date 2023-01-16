@@ -5,14 +5,23 @@ import 'package:is_it_safe_app/src/app/modules/search/presenter/bloc/search_bloc
 import 'package:is_it_safe_app/src/app/modules/search/presenter/widgets/search_location_card.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_text_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
+import '../../../location/location_module.dart';
+import '../../../location/presenter/pages/location_page.dart';
+
 class SearchPage extends StatefulWidget {
   static const route = '/search/';
-  const SearchPage({Key? key}) : super(key: key);
+  final Function()? addButton;
+  const SearchPage({
+    Key? key,
+    this.addButton,
+  }) : super(key: key);
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -36,47 +45,40 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
           ),
           child: Column(
             children: [
-              _mountSearchField(),
-              _mountSearchResult(),
+              SafeTextFormField(
+                controller: controller.placeSearchController,
+                labelText: S.current.textSearch,
+                prefixIcon: const Icon(Icons.search),
+                onEditingComplete: () => controller.searchLocation(),
+              ),
+              StreamBuilder<SafeEvent<List<LocationEntity>>>(
+                stream: controller.searchController.stream,
+                initialData: SafeEvent.initial(),
+                builder: (context, snapshot) {
+                  return SafeLayout(
+                    snapshot: snapshot,
+                    onEmpty: _mountEmptyCard(),
+                    onCompleted: ListView.separated(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      itemCount: controller.searchResultLocations.length,
+                      separatorBuilder: (_, i) => const SizedBox(height: 15),
+                      itemBuilder: (context, index) => SearchLocationCard(
+                        location: controller.searchResultLocations[index],
+                        onTap: () async {
+                          await Modular.to.pushNamed(
+                            LocationModule.route + LocationPage.route,
+                            arguments: controller.searchResultLocations[index],
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _mountSearchField() {
-    return SafeTextFormField(
-      controller: controller.placeSearchController,
-      labelText: S.current.textSearch,
-      prefixIcon: const Icon(Icons.search),
-      onEditingComplete: () => controller.searchLocation(),
-    );
-  }
-
-  Widget _mountSearchResult() {
-    return StreamBuilder<SafeEvent<List<LocationEntity>>>(
-      stream: controller.searchController.stream,
-      initialData: SafeEvent.initial(),
-      builder: (context, snapshot) {
-        return SafeLayout(
-          snapshot: snapshot,
-          context: context,
-          onCompleted: _mountResultList(),
-          onEmpty: _mountEmptyCard(),
-        ).build;
-      },
-    );
-  }
-
-  ListView _mountResultList() {
-    return ListView.separated(
-      shrinkWrap: true,
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
-      itemCount: controller.searchResultLocations.length,
-      separatorBuilder: (_, i) => const SizedBox(height: 15),
-      itemBuilder: (context, index) => SearchLocationCard(
-        location: controller.searchResultLocations[index],
       ),
     );
   }
@@ -85,7 +87,16 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
     return Column(
       children: [
         SafeEmptyCard.search(),
-        //TODO add button to add place
+        SafeTextButton(
+          preText: S.current.textDontFoundThePlace,
+          text: S.current.textCreateHere,
+          onTap: () {
+            return SafeSnackBar(
+              message: S.current.textFeatureAvailableSoon,
+              type: SnackBarType.info,
+            ).show(context);
+          },
+        ),
       ],
     );
   }

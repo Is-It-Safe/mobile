@@ -31,8 +31,13 @@
     "textErrorTryAgain": "Tente novamente em alguns instantes.",
     "textErrorSearch" : "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?",
     "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
+    "textErrorLocationPermission": "Nenhum lugar próximo encontrado, ative as permissões de localização!",
     "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
+    "textErrorDeleteReview":"Não foi possível deletar a review!",
+    "textErrorGetLocation": "Ocorreu um erro ao obter sua localização!",
+
+    "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
 
     "textSuccessRegistration":"Usuário Registrado",
 
@@ -74,7 +79,10 @@
     "textYourReviews":"Suas Avaliações",
     "textAngry":"Irritado",
     "textUpset":"Chateado",
+    "textRegular":"Regular",
     "textNeutral":"Neutro",
+    "textSatisfied":"Satisfeito",
+    "textIncredible":"Incrível",
     "textHappy":"Contente",
     "textExcited":"Alegre",
     "textSeeMore":"Ver mais",
@@ -119,14 +127,32 @@
     "textRegisterSuccess":"Cadastro realizado com sucesso!",
     "textRegisterSuccessMessage":"Você será redirecionado para a página de login.",
     "textHowDoYouFeelAboutThisPlace":"Como você se sentiu nesse local?",
+    "textHowDoPeopleFellAboutThisPlace":"Como as pessoas se sentiram nesse local:",
+    "textWhatPeopleAreTalkingAboutThisPlace": "O que estão falando sobre esse local:",
     "textChooseAClassification":"Escolha uma classificação para este local!",
     "textSafeForLGBT":"Seguro para pessoas LGBTQIA+",
     "textDontRecomendThisPlace":"Não recomendo este lugar",
     "textSomeProblemsHappend":"Alguns problemas aconteceram",
     "textChooseAClassificationForThisPlace":"Escolha uma classificação para esse lugar levando em conta as qualidades listadas!",
     "textCanYouGiveMoreDetails":"Você pode nos dar mais detalhes?",
-
+    "textShareUserReview":"Texto copiado!",
+    "textDontFoundThePlace":"Não encontrou o local que estava procurando?",
+    "textCreateHere":"Crie ele aqui.",
+    "textDeleteUser":"Usuário deletado com sucesso",
     "textExamplePronouns":"Exemplo: Ela/Dela, Elu/Delu, Ela/Elu",
+    "textConfirmPassword":"Confirme sua senha",
+    "textReenterPassword1_0":"Insira sua senha novamente",
+    "textReenterPassword1_1":"para continuar.",
+    "textConfirmCurrentPassword":"Confirme sua senha atual",
+    "textErrorConfirmPassword":"Não foi possível confirmar sua senha!",
+    "textMostPeopleSafePlace":"A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+",
+    "textMostPeopleAlertPlace":"Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+",
+    "textMostPeopleDangerPlace":"Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+",
+
+
+    "textSafeDialogTypeSucces":"Sucesso!",
+    "textSafeDialogTypeAlert":"Atenção!",
+    "textSafeDialogTypeError":"Erro!",
 
     "textOnBoarding1_0":"Foco em",
     "textOnBoarding1_1":"segurança",
@@ -136,7 +162,25 @@
     "textOnBoarding2_1":"segurança",
     "textOnBoarding3_0":"Descreva suas",
     "textOnBoarding3_1":"experiências",
-    "textOnBoarding3_2":"e avalie locais"
+    "textOnBoarding3_2":"e avalie locais",
 
     
+    "textAddLocationTitle": "Configurações",
+    "textAddLocationSubTitle": "Adicionar Local",
+    "textAddLocationNameTextFieldTitle": "Nome do local",
+    "textAddLocationCepFieldTitle": "CEP",
+    "textAddLocationAddressFieldTitle": "Endereço",
+    "textAddTypeLocationFieldTitle": "Tipo de local",
+    "textAddLocationPhotoFieldTitle": "Adicionar Foto (opcional)",
+    "textAddLocationConfirm": "ADICIONAR LOCAL",
+    "textAddLocationSuccess": "Local adicionado com sucesso!",
+    
+
+    "textAddLocationTypePub": "Bar",
+    "textAddLocationTypeRestaurant": "Restaurante",
+    "textAddLocationTypePublicLocation": "Local público",
+    "textAddLocationTypeNightClub": "Casa noturna",
+    "textAddLocationExample": "Ex: Bar santa maria",
+    "textAddLocationCepExample": "Ex: 04553434",
+    "textAddLocationAddress": "Ex: Rua Clodomiro"
 }
