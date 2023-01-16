@@ -149,6 +149,8 @@
     "textMostPeopleAlertPlace":"Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+",
     "textMostPeopleDangerPlace":"Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+",
 
+    "textAvatarSuccessUpated": "Avatar alterado com sucesso!",
+    "textFailedToUpdateAvatar": "Não foi possível alterar o avatar!",
 
     "textSafeDialogTypeSucces":"Sucesso!",
     "textSafeDialogTypeAlert":"Atenção!",

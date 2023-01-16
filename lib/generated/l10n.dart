@@ -1480,6 +1480,26 @@ class S {
     );
   }
 
+  /// `Avatar alterado com sucesso!`
+  String get textAvatarSuccessUpated {
+    return Intl.message(
+      'Avatar alterado com sucesso!',
+      name: 'textAvatarSuccessUpated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível alterar o avatar!`
+  String get textFailedToUpdateAvatar {
+    return Intl.message(
+      'Não foi possível alterar o avatar!',
+      name: 'textFailedToUpdateAvatar',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sucesso!`
   String get textSafeDialogTypeSucces {
     return Intl.message(

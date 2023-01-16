@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAppBarSignUp": MessageLookupByLibrary.simpleMessage("Cadastro"),
         "textAtLeast8Characteres": MessageLookupByLibrary.simpleMessage(
             "- Sua senha deve ter mais de 8 caracteres"),
+        "textAvatarSuccessUpated": MessageLookupByLibrary.simpleMessage(
+            "Avatar alterado com sucesso!"),
         "textBackToLocation":
             MessageLookupByLibrary.simpleMessage("Voltar ao local"),
         "textBestRates":
@@ -170,6 +172,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
         "textExcited": MessageLookupByLibrary.simpleMessage("Alegre"),
+        "textFailedToUpdateAvatar": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível alterar o avatar!"),
         "textFeatureAvailableSoon": MessageLookupByLibrary.simpleMessage(
             "Funcionalidade disponível em breve"),
         "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar"),
