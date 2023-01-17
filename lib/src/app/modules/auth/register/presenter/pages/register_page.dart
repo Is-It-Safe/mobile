@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_page.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
@@ -175,7 +176,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      //TODO Add navigation to terms and conditions
+                    Modular.to.push(MaterialPageRoute(builder: (_) => const TermsAndConditionsPage()));
                     }),
             ],
           ),
