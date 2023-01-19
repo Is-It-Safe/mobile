@@ -106,7 +106,11 @@
     "textBackToLocation":"Voltar ao local",
     "textReviewCompleted":"Review Completa!",
     "textContinue":"Continuar",
-   
+    "textEditPersonalInformation":"Editar informações pessoais",
+    "textUpdateInformation":"Atualizar informações",
+    "textInformationChangedSuccessfully":"Informações atualizadas com sucesso!",
+    "textUnableToChangeInformation":"Não foi possível atualizar as informações!",
+    
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",
     "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, seja criativo!",

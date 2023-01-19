@@ -1030,6 +1030,46 @@ class S {
     );
   }
 
+  /// `Editar informações pessoais`
+  String get textEditPersonalInformation {
+    return Intl.message(
+      'Editar informações pessoais',
+      name: 'textEditPersonalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atualizar informações`
+  String get textUpdateInformation {
+    return Intl.message(
+      'Atualizar informações',
+      name: 'textUpdateInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informações atualizadas com sucesso!`
+  String get textInformationChangedSuccessfully {
+    return Intl.message(
+      'Informações atualizadas com sucesso!',
+      name: 'textInformationChangedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível atualizar as informações!`
+  String get textUnableToChangeInformation {
+    return Intl.message(
+      'Não foi possível atualizar as informações!',
+      name: 'textUnableToChangeInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Funcionalidade disponível em breve`
   String get textFeatureAvailableSoon {
     return Intl.message(
