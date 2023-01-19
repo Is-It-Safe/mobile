@@ -9,11 +9,8 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dropdown.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
-import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
-import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
@@ -115,7 +112,6 @@ class _EditAccountPageState
                   _formKey.currentState?.save();
                   bool status = await controller.updateUser(userId: userId!);
                   if (status) {
-                    // ignore: use_build_context_synchronously
                     SafeSnackBar(
                       message: S.current.textInformationChangedSuccessfully,
                       type: SnackBarType.success,
@@ -123,7 +119,6 @@ class _EditAccountPageState
                     Modular.to.pop();
                     Modular.to.pop();
                   } else {
-                    // ignore: use_build_context_synchronously
                     SafeSnackBar(
                       message: S.current.textUnableToChangeInformation,
                       type: SnackBarType.error,
@@ -234,14 +229,14 @@ class _EditAccountPageState
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
-                        S.current.textNickName,
+                        S.current.textUsername,
                         style: TextStyles.subtitle1(),
                       ),
                     ),
                     const SizedBox(height: 8),
                     SafeTextFormField(
                       controller: controller.usernameController,
-                      labelText: S.current.textNickName,
+                      labelText: S.current.textUsername,
                       keyboardType: TextInputType.name,
                       onChanged: (value) => controller.toogleUpdateButton(),
                       validator: (value) => controller.validateTextField(value),
@@ -254,7 +249,7 @@ class _EditAccountPageState
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
-                      S.current.textNickName,
+                      S.current.textUsername,
                       style: TextStyles.subtitle1(),
                     ),
                   ),

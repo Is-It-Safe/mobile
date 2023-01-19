@@ -125,6 +125,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Adicionar Local"),
         "textDrawerMyAccount":
             MessageLookupByLibrary.simpleMessage("Minha Conta"),
+        "textEditPersonalInformation":
+            MessageLookupByLibrary.simpleMessage("Editar informações pessoais"),
         "textEditProfile":
             MessageLookupByLibrary.simpleMessage("Editar Perfil"),
         "textEmailAddress":
@@ -190,6 +192,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "textIReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage("Eu li e aceito os "),
         "textIncredible": MessageLookupByLibrary.simpleMessage("Incrível"),
+        "textInformationChangedSuccessfully":
+            MessageLookupByLibrary.simpleMessage(
+                "Informações atualizadas com sucesso!"),
         "textIsItSafe": MessageLookupByLibrary.simpleMessage("Is It Safe?"),
         "textLGBTFobia": MessageLookupByLibrary.simpleMessage("LGBTfobia"),
         "textLettersAndNumbers":
@@ -293,6 +298,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "textTermsOfUse": MessageLookupByLibrary.simpleMessage("Termos de Uso"),
         "textTypeTheNameOfAPlaceToSearch": MessageLookupByLibrary.simpleMessage(
             "Digite o nome de um local para buscar."),
+        "textUnableToChangeInformation": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível atualizar as informações!"),
+        "textUpdateInformation":
+            MessageLookupByLibrary.simpleMessage("Atualizar informações"),
         "textUpset": MessageLookupByLibrary.simpleMessage("Chateado"),
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
