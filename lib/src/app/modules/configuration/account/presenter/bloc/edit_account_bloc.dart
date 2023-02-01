@@ -20,6 +20,7 @@ import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:result_dart/result_dart.dart';
 
 class EditAccountBloc extends SafeBloC {
   final GetUserUseCase getUserUseCase;
@@ -137,7 +138,12 @@ class EditAccountBloc extends SafeBloC {
     try {
       if (listGenders.isEmpty) {
         gendersController.sink.add(SafeEvent.load());
-        // listGenders = await getGendersUseCase.call();
+        await getGendersUseCase.call().fold(
+          (success) {
+            listGenders = success;
+          },
+          (error) {},
+        );
         gendersController.sink.add(SafeEvent.done(listGenders));
       }
     } catch (e) {
@@ -150,7 +156,12 @@ class EditAccountBloc extends SafeBloC {
     try {
       if (listSexualOrientations.isEmpty) {
         sexualOrientationsController.sink.add(SafeEvent.load());
-        listSexualOrientations = await getSexualOrientationsUseCase.call();
+        await getSexualOrientationsUseCase.call().fold(
+          (success) {
+            listSexualOrientations = success;
+          },
+          (error) {},
+        );
         sexualOrientationsController.sink.add(
           SafeEvent.done(listSexualOrientations),
         );

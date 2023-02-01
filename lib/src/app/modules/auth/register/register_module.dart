@@ -17,9 +17,10 @@ class RegisterModule extends Module {
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => ApiService()),
     Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
-    Bind.lazySingleton((i) => GetSexualOrientationsUseCase()),
+    Bind.lazySingleton(
+        (i) => GetSexualOrientationsUseCase(i.get<AuthService>())),
     Bind.lazySingleton((i) => GetGendersUseCase(i.get<AuthService>())),
-    Bind.lazySingleton((i) => DoRegisterUseCase()),
+    Bind.lazySingleton((i) => DoRegisterUseCase(i.get<AuthService>())),
     Bind.lazySingleton((i) => SafeProfilePictureBloC()),
     Bind.lazySingleton((i) => RegisterBloc(
           doRegisterUseCase: i.get<DoRegisterUseCase>(),

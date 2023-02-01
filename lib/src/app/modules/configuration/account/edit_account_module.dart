@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_ca
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
@@ -16,11 +17,14 @@ class EditAccountModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
+    Bind.lazySingleton((i) => ApiService()),
+    Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
     Bind.lazySingleton((i) => GetUserUseCase()),
     Bind.lazySingleton((i) => GetGendersUseCase(i.get<AuthService>())),
-    Bind.lazySingleton((i) => GetSexualOrientationsUseCase()),
+    Bind.lazySingleton(
+        (i) => GetSexualOrientationsUseCase(i.get<AuthService>())),
     Bind.lazySingleton((i) => UpdateUserUseCase()),
     Bind.lazySingleton((i) => EditAccountBloc(
           getUserUseCase: i.get<GetUserUseCase>(),

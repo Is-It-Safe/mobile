@@ -14,6 +14,7 @@ import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:result_dart/result_dart.dart';
 
 import '../../../../../../components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 
@@ -90,7 +91,12 @@ class RegisterBloc extends SafeBloC {
     try {
       if (listGenders.isEmpty) {
         gendersController.sink.add(SafeEvent.load());
-        // listGenders = await getGendersUseCase.call();
+        await getGendersUseCase.call().fold(
+          (success) {
+            listGenders = success;
+          },
+          (error) {},
+        );
         gendersController.sink.add(SafeEvent.done(listGenders));
       }
     } catch (e) {
@@ -103,7 +109,12 @@ class RegisterBloc extends SafeBloC {
     try {
       if (listSexualOrientations.isEmpty) {
         sexualOrientationsController.sink.add(SafeEvent.load());
-        listSexualOrientations = await getSexualOrientationsUseCase.call();
+        await getSexualOrientationsUseCase.call().fold(
+          (success) {
+            listSexualOrientations = success;
+          },
+          (error) {},
+        );
         sexualOrientationsController.sink.add(
           SafeEvent.done(listSexualOrientations),
         );
@@ -119,7 +130,8 @@ class RegisterBloc extends SafeBloC {
   }) async {
     try {
       doRegisterController.sink.add(SafeEvent.load());
-      final response = await doRegisterUseCase.call(
+      final response = await doRegisterUseCase
+          .call(
         name: nameController.text,
         username: usernameController.text,
         birthDate: isAdvanceButton == true
@@ -134,8 +146,13 @@ class RegisterBloc extends SafeBloC {
         gender: isAdvanceButton == true ? "${7}" : genderController.text,
         sexualOrientation:
             isAdvanceButton == true ? "${2}" : sexualOrientationController.text,
+      )
+          .fold(
+        (success) {
+          doRegisterController.sink.add(SafeEvent.done(success));
+        },
+        (error) {},
       );
-      doRegisterController.sink.add(SafeEvent.done(response));
     } catch (e) {
       SafeLogUtil.instance.logError(e);
       doRegisterController.addError(e.toString());

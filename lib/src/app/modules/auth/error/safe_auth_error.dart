@@ -1,26 +1,26 @@
 // ignore_for_file: overridden_fields
 
-abstract class SafeError {
+abstract class SafeAuthError {
   final String message;
 
-  SafeError(this.message);
+  SafeAuthError(this.message);
 }
 
-class SafeInvalidCredentialsError extends SafeError {
+class SafeInvalidCredentialsError extends SafeAuthError {
   @override
   final String message;
 
   SafeInvalidCredentialsError(this.message) : super(message);
 }
 
-class SafeExceptionsCatchedError extends SafeError {
+class SafeExceptionsCatchedError extends SafeAuthError {
   @override
   final String message;
 
   SafeExceptionsCatchedError(this.message) : super(message);
 }
 
-class SafeDioResponseError extends SafeError {
+class SafeDioResponseError extends SafeAuthError {
   @override
   final String message;
 
