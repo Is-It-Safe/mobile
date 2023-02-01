@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_
 import 'package:is_it_safe_app/src/domain/use_case/do_register_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
@@ -14,9 +15,10 @@ class RegisterModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton((i) => AuthService()),
+    Bind.lazySingleton((i) => ApiService()),
+    Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
     Bind.lazySingleton((i) => GetSexualOrientationsUseCase()),
-    Bind.lazySingleton((i) => GetGendersUseCase()),
+    Bind.lazySingleton((i) => GetGendersUseCase(i.get<AuthService>())),
     Bind.lazySingleton((i) => DoRegisterUseCase()),
     Bind.lazySingleton((i) => SafeProfilePictureBloC()),
     Bind.lazySingleton((i) => RegisterBloc(

@@ -19,7 +19,7 @@ class EditAccountModule extends Module {
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
     Bind.lazySingleton((i) => GetUserUseCase()),
-    Bind.lazySingleton((i) => GetGendersUseCase()),
+    Bind.lazySingleton((i) => GetGendersUseCase(i.get<AuthService>())),
     Bind.lazySingleton((i) => GetSexualOrientationsUseCase()),
     Bind.lazySingleton((i) => UpdateUserUseCase()),
     Bind.lazySingleton((i) => EditAccountBloc(

@@ -11,6 +11,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart'
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
@@ -18,7 +19,8 @@ class LoginModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton((i) => AuthService()),
+    Bind.lazySingleton((i) => ApiService()),
+    Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
     Bind.lazySingleton((i) => LoginBloc(
           doLoginUseCase: i.get<DoLoginUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),

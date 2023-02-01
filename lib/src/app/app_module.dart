@@ -12,6 +12,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart'
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
@@ -20,10 +21,11 @@ import 'modules/location/presenter/pages/save_location_page.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => AuthService()),
+    Bind.lazySingleton((i) => ApiService()),
+    Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => SaveUserRefreshTokenUseCase()),
-    Bind.lazySingleton((i) => DoLoginUseCase()),
+    Bind.lazySingleton((i) => DoLoginUseCase(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveUserTokenUseCase()),
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
     Bind.lazySingleton((i) => SaveUserImageUseCase()),

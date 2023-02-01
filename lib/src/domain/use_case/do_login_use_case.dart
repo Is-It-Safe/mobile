@@ -1,28 +1,29 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
+import 'package:is_it_safe_app/src/domain/error/safe_error.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_login.dart';
+import 'package:result_dart/result_dart.dart';
 
 class DoLoginUseCase extends SafeUseCase {
-  late final IAuthService _service;
+  final IAuthService service;
 
-  DoLoginUseCase() {
-    _service = Modular.get<AuthService>();
-  }
+  DoLoginUseCase(this.service);
 
-  Future<LoginEntity> call({
+  Future<Result<LoginEntity, SafeError>> call({
     required String email,
     required String password,
   }) async {
-    final request = RequestLogin(
-      email: email,
-      password: password,
-    );
+    try {
+      final request = RequestLogin(
+        email: email,
+        password: password,
+      );
+      final response = await service.doLogin(request);
 
-    final response = await _service.doLogin(request);
-
-    return LoginEntity.toEntity(response);
+      return Success(LoginEntity.toEntity(response));
+    } on SafeError catch (e) {
+      throw Failure(e);
+    }
   }
 }

@@ -90,7 +90,7 @@ class RegisterBloc extends SafeBloC {
     try {
       if (listGenders.isEmpty) {
         gendersController.sink.add(SafeEvent.load());
-        listGenders = await getGendersUseCase.call();
+        // listGenders = await getGendersUseCase.call();
         gendersController.sink.add(SafeEvent.done(listGenders));
       }
     } catch (e) {

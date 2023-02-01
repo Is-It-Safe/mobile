@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
+import 'package:is_it_safe_app/src/domain/error/safe_error.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
+import 'package:is_it_safe_app/src/service/api/error/safe_exceptions.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_refresh_token.dart';
@@ -23,30 +25,41 @@ import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences
 import 'package:jwt_decode/jwt_decode.dart';
 
 class AuthService implements IAuthService {
-  final ApiService _service = ApiService();
+  final ApiService service;
+
+  AuthService(this.service);
+
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
-    //TODO Request mockada
-    request = RequestLogin(
-      email: 'basic@gmail.com',
-      password: '123456',
-    );
-    final requestConfig = RequestConfig(
-      path: ApiConstants.doAuth,
-      method: HttpMethod.post,
-      body: request.toJson(request),
-      options: Options(
-        contentType: Headers.formUrlEncodedContentType,
-        headers: {
-          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
-        },
-      ),
-    );
+    try {
+      assert(request.email.isNotEmpty, "Campo e-mail não pode estar vazio!");
+      assert(request.password.isNotEmpty, "Campo e-mail não pode estar vazio!");
 
-    final response = await _service.doRequest(requestConfig);
+      request = RequestLogin(
+        email: request.email,
+        password: request.password,
+      );
+      final requestConfig = RequestConfig(
+        path: ApiConstants.doAuth,
+        method: HttpMethod.post,
+        body: request.toJson(request),
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+          headers: {
+            ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
+            ApiConstants.kContentType: 'application/x-www-form-urlencoded',
+          },
+        ),
+      );
 
-    return ResponseLogin.fromJson(jsonDecode(response.data));
+      final response = await service.doRequest(requestConfig);
+
+      return ResponseLogin.fromJson(jsonDecode(response.data));
+    } on DioError catch (error) {
+      throw SafeDioResponseError(error.message);
+    } on AssertionError catch (e) {
+      throw SafeInvalidCredentialsError(e.message.toString());
+    }
   }
 
   @override
@@ -88,7 +101,7 @@ class AuthService implements IAuthService {
       ),
     );
 
-    final response = await _service.doRequest(requestConfig);
+    final response = await service.doRequest(requestConfig);
 
     return ResponseRefreshToken.fromJson(jsonDecode(response.data));
   }
@@ -109,7 +122,7 @@ class AuthService implements IAuthService {
       ),
     );
 
-    final response = await _service.doRequest(requestConfig);
+    final response = await service.doRequest(requestConfig);
 
     return jsonDecode(response.data);
   }
@@ -122,22 +135,26 @@ class AuthService implements IAuthService {
       body: request.toJson(request),
     );
 
-    final response = await _service.doRequest(requestConfig);
+    final response = await service.doRequest(requestConfig);
 
     return ResponseRegister.fromJson(jsonDecode(response.data));
   }
 
   @override
   Future<List<ResponseGender>> getGenders() async {
-    final requestConfig = RequestConfig(
-      path: ApiConstants.getGenders,
-      method: HttpMethod.get,
-    );
+    try {
+      final requestConfig = RequestConfig(
+        path: ApiConstants.getGenders,
+        method: HttpMethod.get,
+      );
 
-    final response = await _service.doRequest(requestConfig);
-    return (json.decode(response.data) as List)
-        .map((e) => ResponseGender.fromJson(e))
-        .toList();
+      final response = await service.doRequest(requestConfig);
+      return (json.decode(response.data) as List)
+          .map((e) => ResponseGender.fromJson(e))
+          .toList();
+    } on DioError catch (error) {
+      throw SafeDioResponseError(error.message);
+    }
   }
 
   @override
@@ -147,7 +164,7 @@ class AuthService implements IAuthService {
       method: HttpMethod.get,
     );
 
-    final response = await _service.doRequest(requestConfig);
+    final response = await service.doRequest(requestConfig);
     return (json.decode(response.data) as List)
         .map((e) => ResponseSexualOrientation.fromJson(e))
         .toList();

@@ -51,18 +51,18 @@ class LoginBloc extends SafeBloC {
   Future<void> doLogin() async {
     try {
       doLoginController.sink.add(SafeEvent.load());
-      LoginEntity loginEntity = await doLoginUseCase.call(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      if (loginEntity.accessToken.isNotEmpty) {
-        saveUserToken(loginEntity.accessToken);
-        saveUserRefreshToken(loginEntity.refreshToken);
-        saveUserName(loginEntity.userFirstName);
-        saveUserImage(loginEntity.userImage);
-        saveUserLogin(true);
-      }
-      doLoginController.sink.add(SafeEvent.done(loginEntity));
+      // LoginEntity loginEntity = await doLoginUseCase.call(
+      //   email: emailController.text,
+      //   password: passwordController.text,
+      // );
+      // if (loginEntity.accessToken.isNotEmpty) {
+      //   saveUserToken(loginEntity.accessToken);
+      //   saveUserRefreshToken(loginEntity.refreshToken);
+      //   saveUserName(loginEntity.userFirstName);
+      //   saveUserImage(loginEntity.userImage);
+      //   saveUserLogin(true);
+      // }
+      // doLoginController.sink.add(SafeEvent.done(loginEntity));
     } catch (e) {
       doLoginController.addError(e.toString());
       SafeLogUtil.instance.logError(e);
