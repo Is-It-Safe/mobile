@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/contact/presenter/bloc/contact_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class ContactPage extends StatelessWidget {
+class ContactPage extends StatefulWidget {
   static const route = '/contact/';
 
   const ContactPage({
@@ -14,9 +14,16 @@ class ContactPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ContactPage> createState() => _ContactPageState();
+}
+
+class _ContactPageState extends State<ContactPage> {
+  final formKey = GlobalKey<FormState>();
+  final textController = TextEditingController();
+  final contactBloc = ContactBloc();
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final textController = TextEditingController();
     return Scaffold(
       appBar: SafeAppBar(
         title: S.current.textContact,
@@ -32,10 +39,10 @@ class ContactPage extends StatelessWidget {
                 key: formKey,
                 child: TextFormField(
                   controller: textController,
+                  textCapitalization: TextCapitalization.sentences,
                   expands: true,
                   maxLines: null,
                   textAlignVertical: TextAlignVertical.top,
-                  onChanged: (value) {},
                   decoration: InputDecoration(
                     hintText: S.current.textContacHowToHelpYou,
                     hintStyle: TextStyles.label(),
@@ -52,31 +59,19 @@ class ContactPage extends StatelessWidget {
             const SizedBox(height: 40),
             SafeButton(
               title: S.current.textSend,
-              onTap: () => launchEmail(
-                toEmail: 'devlucasandrade@gmail.com',
-                // toEmail: 'contato@isitsafe.com.br',
-                subject: '[Feedback-App] - @{nome do usuário}',
-                message: textController.text,
-              ),
-            )
+              onTap: () async {
+                if (formKey.currentState?.validate() ?? false) {
+                  contactBloc.launchEmail(
+                    message: textController.text,
+                  );
+                  Modular.to.pop();
+                }
+                return;
+              },
+            ),
           ],
         ),
       ),
     );
-  }
-
-  Future launchEmail({
-    required String toEmail,
-    required String subject,
-    required String message,
-  }) async {
-    final url = Uri.parse(
-      'mailto:$toEmail?subject=$subject&body=$message',
-    );
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      throw 'Não foi possível enviar o e-mail';
-    }
   }
 }
