@@ -100,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirme sua senha atual"),
         "textConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirme sua senha"),
+        "textContacHowToHelpYou": MessageLookupByLibrary.simpleMessage(
+            "Nos conte como podemos te ajudar"),
         "textContact": MessageLookupByLibrary.simpleMessage("Contato"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
         "textCreateHere":

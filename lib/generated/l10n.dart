@@ -1769,6 +1769,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Nos conte como podemos te ajudar`
+  String get textContacHowToHelpYou {
+    return Intl.message(
+      'Nos conte como podemos te ajudar',
+      name: 'textContacHowToHelpYou',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
