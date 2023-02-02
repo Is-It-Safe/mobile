@@ -34,6 +34,7 @@ class _ContactPageState extends ModularState<ContactPage, ContactBloc> {
               child: Form(
                 key: _formKey,
                 child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.textController,
                   textCapitalization: TextCapitalization.sentences,
                   expands: true,
