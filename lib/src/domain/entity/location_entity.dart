@@ -1,6 +1,7 @@
 import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 
 import '../../service/api/modules/location/response/response_location_review.dart';
 
@@ -37,5 +38,13 @@ class LocationEntity {
           location.averageImpressionStatus ?? StringConstants.empty,
       reviews: location.reviews ?? [],
     );
+  }
+
+  factory LocationEntity.fromResponseGetUserReview(
+      ResponseGetUserReview review) {
+    return LocationEntity(
+        id: review.id ?? 0,
+        name: review.locationName ?? StringConstants.empty,
+        address: review.locationAddress ?? StringConstants.empty);
   }
 }

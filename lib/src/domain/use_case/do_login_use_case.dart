@@ -24,11 +24,7 @@ class DoLoginUseCase extends SafeUseCase {
       final request = RequestLogin(
         email: email,
         password: password,
-        grantType: ApiConstants.kGrantTypePassword,
       );
-      print(request.email);
-      print(request.password);
-      print(request.grantType);
       final response = await service.doLogin(request);
 
       return Success(LoginEntity.toEntity(response));

@@ -16,8 +16,6 @@ import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 
-import 'modules/location/presenter/pages/save_location_page.dart';
-
 class AppModule extends Module {
   @override
   final List<Bind> binds = [

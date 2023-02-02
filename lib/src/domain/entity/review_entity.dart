@@ -26,6 +26,7 @@ class ReviewEntity {
       myGrade: review.myGrade ?? DoubleConstants.empty,
       author: review.author ?? StringConstants.empty,
       createdAt: review.createdAt ?? StringConstants.empty,
+      location: LocationEntity.fromResponseGetUserReview(review),
     );
   }
 }

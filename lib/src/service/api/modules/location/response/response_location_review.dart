@@ -1,9 +1,9 @@
 class ResponseLocationReview {
-  int? id;
-  String? author;
-  String? review;
-  String? createdAt;
-  double? myGrade;
+  final int? id;
+  final String? author;
+  final String? review;
+  final String? createdAt;
+  final double? myGrade;
 
   ResponseLocationReview({
     this.id,

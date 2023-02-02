@@ -57,13 +57,13 @@ class LoginBloc extends SafeBloC {
         email: emailController.text,
         password: passwordController.text,
       )
-          .fold((loginEntity) {
+          .fold((loginEntity) async {
         if (loginEntity.accessToken.isNotEmpty) {
-          saveUserToken(loginEntity.accessToken);
-          saveUserRefreshToken(loginEntity.refreshToken);
-          saveUserName(loginEntity.userFirstName);
-          saveUserImage(loginEntity.userImage);
-          saveUserLogin(true);
+          await saveUserToken(loginEntity.accessToken);
+          await saveUserRefreshToken(loginEntity.refreshToken);
+          await saveUserName(loginEntity.userFirstName);
+          await saveUserImage(loginEntity.userImage);
+          await saveUserLogin(true);
         }
         doLoginController.sink.add(SafeEvent.done(loginEntity));
       }, (error) => null);

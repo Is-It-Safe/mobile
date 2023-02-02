@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 
 class RequestRefreshToken {
@@ -10,22 +8,10 @@ class RequestRefreshToken {
     this.grantType = ApiConstants.kGrantTypeRefreshToken,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson(RequestRefreshToken request) {
     return {
-      'refresh_token': refreshToken,
-      'grant_type': grantType,
+      'refresh_token': request.refreshToken,
+      'grant_type': request.grantType,
     };
   }
-
-  factory RequestRefreshToken.fromMap(Map<String, dynamic> map) {
-    return RequestRefreshToken(
-      refreshToken: map['refresh_token'] ?? '',
-      grantType: map['grant_type'] ?? '',
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory RequestRefreshToken.fromJson(String source) =>
-      RequestRefreshToken.fromMap(json.decode(source));
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 
 /// [RequestLogin] é uma classe que contém os dados necessários para fazer uma solicitação de login ao servidor
@@ -13,24 +11,11 @@ class RequestLogin {
     this.grantType = ApiConstants.kGrantTypePassword,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson(RequestLogin request) {
     return {
-      'username': email,
-      'password': password,
-      'grant_type': grantType,
+      'username': request.email,
+      'password': request.password,
+      'grant_type': ApiConstants.kGrantTypePassword,
     };
   }
-
-  factory RequestLogin.fromMap(Map<String, dynamic> map) {
-    return RequestLogin(
-      email: map['username'] ?? '',
-      password: map['password'] ?? '',
-      grantType: map['grant_type'] ?? '',
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory RequestLogin.fromJson(String source) =>
-      RequestLogin.fromMap(json.decode(source));
 }
