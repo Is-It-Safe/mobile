@@ -9,18 +9,14 @@ import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 class ContactPage extends StatefulWidget {
   static const route = '/contact/';
 
-  const ContactPage({
-    Key? key,
-  }) : super(key: key);
+  const ContactPage({Key? key}) : super(key: key);
 
   @override
   State<ContactPage> createState() => _ContactPageState();
 }
 
-class _ContactPageState extends State<ContactPage> {
-  final formKey = GlobalKey<FormState>();
-  final textController = TextEditingController();
-  final contactBloc = ContactBloc();
+class _ContactPageState extends ModularState<ContactPage, ContactBloc> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +32,9 @@ class _ContactPageState extends State<ContactPage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
               child: Form(
-                key: formKey,
+                key: _formKey,
                 child: TextFormField(
-                  controller: textController,
+                  controller: controller.textController,
                   textCapitalization: TextCapitalization.sentences,
                   expands: true,
                   maxLines: null,
@@ -47,12 +43,7 @@ class _ContactPageState extends State<ContactPage> {
                     hintText: S.current.textContacHowToHelpYou,
                     hintStyle: TextStyles.label(),
                   ),
-                  validator: (value) {
-                    if (value?.trim().isEmpty ?? false) {
-                      return S.current.textErrorEmptyField;
-                    }
-                    return null;
-                  },
+                  validator: (value) => controller.validateText(value),
                 ),
               ),
             ),
@@ -60,9 +51,9 @@ class _ContactPageState extends State<ContactPage> {
             SafeButton(
               title: S.current.textSend,
               onTap: () async {
-                if (formKey.currentState?.validate() ?? false) {
-                  contactBloc.launchEmail(
-                    message: textController.text,
+                if (_formKey.currentState?.validate() ?? false) {
+                  controller.launchEmail(
+                    message: controller.textController.text,
                   );
                   Modular.to.pop();
                 }

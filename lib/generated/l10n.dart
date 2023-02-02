@@ -1779,6 +1779,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Não foi possível realizar a ação.`
+  String get textContacActionError {
+    return Intl.message(
+      'Não foi possível realizar a ação.',
+      name: 'textContacActionError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
