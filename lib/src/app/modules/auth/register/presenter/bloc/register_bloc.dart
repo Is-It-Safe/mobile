@@ -130,7 +130,7 @@ class RegisterBloc extends SafeBloC {
   }) async {
     try {
       doRegisterController.sink.add(SafeEvent.load());
-      final response = await doRegisterUseCase
+      await doRegisterUseCase
           .call(
         name: nameController.text,
         username: usernameController.text,

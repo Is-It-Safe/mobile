@@ -30,30 +30,31 @@ class AuthService implements IAuthService {
 
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
-    try {
-      request = RequestLogin(
-        email: request.email,
-        password: request.password,
-      );
-      final requestConfig = RequestConfig(
-        path: ApiConstants.doAuth,
-        method: HttpMethod.post,
-        body: request.toJson(),
-        options: Options(
-          contentType: Headers.formUrlEncodedContentType,
-          headers: {
-            ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-            ApiConstants.kContentType: 'application/x-www-form-urlencoded',
-          },
-        ),
-      );
+    request = RequestLogin(
+      email: 'basic@gmail.com',
+      password: '123456',
+      grantType: ApiConstants.kGrantTypePassword,
+    );
+    final requestConfig = RequestConfig(
+      path: ApiConstants.doAuth,
+      method: HttpMethod.post,
+      body: request.toJson(),
+      options: Options(
+        contentType: Headers.formUrlEncodedContentType,
+        headers: {
+          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
+          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
 
-      final response = await service.doRequest(requestConfig);
+    final response = await service.doRequest(requestConfig);
 
-      return ResponseLogin.fromJson(jsonDecode(response.data));
-    } on DioError catch (error) {
-      throw SafeDioResponseError(error.message);
-    }
+    return ResponseLogin.fromJson(jsonDecode(response.data));
+    // try {
+    // } on DioError catch (error) {
+    //   throw SafeDioResponseError(error.message);
+    // }
   }
 
   @override

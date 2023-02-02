@@ -24,29 +24,29 @@ class RequestRegister {
 
   Map<String, dynamic> toMap() {
     return {
-      'photoUrl': photoUrl,
+      'photo_url': photoUrl,
       'name': name,
-      'birthDate': birthDate,
+      'birth_date': birthDate,
       'nickname': nickname,
       'email': email,
       'password': password,
       'pronoun': pronoun,
-      'genderId': genderId,
-      'sexualOrientationId': sexualOrientationId,
+      'gender_id': genderId,
+      'orientation_id': sexualOrientationId,
     };
   }
 
   factory RequestRegister.fromMap(Map<String, dynamic> map) {
     return RequestRegister(
-      photoUrl: map['photoUrl'],
+      photoUrl: map['photo_url'],
       name: map['name'],
-      birthDate: map['birthDate'],
+      birthDate: map['birth_date'],
       nickname: map['nickname'],
       email: map['email'],
       password: map['password'],
       pronoun: map['pronoun'],
-      genderId: map['genderId']?.toInt(),
-      sexualOrientationId: map['sexualOrientationId']?.toInt(),
+      genderId: map['gender_id']?.toInt(),
+      sexualOrientationId: map['orientation_id']?.toInt(),
     );
   }
 
