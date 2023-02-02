@@ -23,7 +23,12 @@ main() {
       when(() => service.doLogin(request))
           .thenAnswer((_) async => ResponseLogin(
                 accessToken: 'fdu43-dfh33-fs9df8s-dsdan32k-ck2sa21',
+                tokenType: 'token',
+                refreshToken: 'dfh33-fdu43-fs9df8s-ck2sa21-dsdan32k',
                 userFirstName: 'Fulano',
+                expiresIn: 5,
+                scope: 'scope',
+                userImage: 'path',
                 userId: 1,
               ));
 

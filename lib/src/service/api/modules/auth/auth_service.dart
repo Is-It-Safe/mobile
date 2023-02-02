@@ -9,7 +9,6 @@ import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
-import 'package:is_it_safe_app/src/service/api/error/safe_exceptions.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_refresh_token.dart';
@@ -32,9 +31,6 @@ class AuthService implements IAuthService {
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
     try {
-      assert(request.email.isNotEmpty, "Campo e-mail não pode estar vazio!");
-      assert(request.password.isNotEmpty, "Campo e-mail não pode estar vazio!");
-
       request = RequestLogin(
         email: request.email,
         password: request.password,
@@ -42,7 +38,7 @@ class AuthService implements IAuthService {
       final requestConfig = RequestConfig(
         path: ApiConstants.doAuth,
         method: HttpMethod.post,
-        body: request.toJson(request),
+        body: request.toJson(),
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
           headers: {
@@ -57,8 +53,6 @@ class AuthService implements IAuthService {
       return ResponseLogin.fromJson(jsonDecode(response.data));
     } on DioError catch (error) {
       throw SafeDioResponseError(error.message);
-    } on AssertionError catch (e) {
-      throw SafeInvalidCredentialsError(e.message.toString());
     }
   }
 
@@ -92,7 +86,7 @@ class AuthService implements IAuthService {
     final requestConfig = RequestConfig(
       path: ApiConstants.doAuth,
       method: HttpMethod.post,
-      body: request.toJson(request),
+      body: request.toJson(),
       options: Options(
         headers: {
           ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
@@ -113,7 +107,7 @@ class AuthService implements IAuthService {
     final requestConfig = RequestConfig(
       path: ApiConstants.confirmPassword,
       method: HttpMethod.post,
-      body: request.toJson(request),
+      body: request.toJson(),
       options: Options(
         headers: {
           ApiConstants.kAuthorization: ApiConstants.kBasicAuth,

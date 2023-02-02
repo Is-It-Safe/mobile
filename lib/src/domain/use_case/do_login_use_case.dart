@@ -14,6 +14,11 @@ class DoLoginUseCase extends SafeUseCase {
     required String email,
     required String password,
   }) async {
+    if (email.isEmpty || password.isEmpty) {
+      return Failure(SafeInvalidCredentialsError(
+          "Campos de autenticação não podem estar vazios!"));
+    }
+
     try {
       final request = RequestLogin(
         email: email,
