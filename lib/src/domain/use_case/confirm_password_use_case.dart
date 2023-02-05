@@ -1,4 +1,3 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
 import 'package:result_dart/result_dart.dart';
 

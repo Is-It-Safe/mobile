@@ -45,8 +45,8 @@ class RequestRegister {
       email: map['email'],
       password: map['password'],
       pronoun: map['pronoun'],
-      genderId: map['gender_id']?.toInt(),
-      sexualOrientationId: map['orientation_id']?.toInt(),
+      genderId: int.tryParse(map['gender_id']),
+      sexualOrientationId: int.tryParse(map['orientation_id']),
     );
   }
 

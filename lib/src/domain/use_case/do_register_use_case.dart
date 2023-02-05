@@ -18,8 +18,8 @@ class DoRegisterUseCase extends SafeUseCase {
     required String email,
     required String password,
     required String pronoun,
-    required String? gender,
-    required String? sexualOrientation,
+    required int? gender,
+    required int? sexualOrientation,
   }) async {
     final request = RequestRegister(
       photoUrl: profilePhoto,
@@ -29,8 +29,8 @@ class DoRegisterUseCase extends SafeUseCase {
       email: email.trim(),
       password: password.trim(),
       pronoun: pronoun.trim(),
-      genderId: int.parse(gender ?? 11.toString()),
-      sexualOrientationId: int.parse(sexualOrientation ?? 8.toString()),
+      genderId: gender ?? 11,
+      sexualOrientationId: sexualOrientation ?? 8,
     );
 
     if (name.isEmpty || username.isEmpty || email.isEmpty || password.isEmpty) {

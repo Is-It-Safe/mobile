@@ -38,7 +38,7 @@ class AuthService implements IAuthService {
       final requestConfig = RequestConfig(
         path: ApiConstants.doAuth,
         method: HttpMethod.post,
-        body: request.toJson(request),
+        body: request.toMap(),
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
           headers: {

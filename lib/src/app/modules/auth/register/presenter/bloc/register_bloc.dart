@@ -143,9 +143,10 @@ class RegisterBloc extends SafeBloC {
         profilePhoto: isAdvanceButton == true
             ? StringConstants.empty
             : profilePictureController.selectedProfilePhoto,
-        gender: isAdvanceButton == true ? "${7}" : genderController.text,
-        sexualOrientation:
-            isAdvanceButton == true ? "${2}" : sexualOrientationController.text,
+        gender: isAdvanceButton == true ? 7 : int.parse(genderController.text),
+        sexualOrientation: isAdvanceButton == true
+            ? 2
+            : int.parse(sexualOrientationController.text),
       )
           .fold(
         (success) {
