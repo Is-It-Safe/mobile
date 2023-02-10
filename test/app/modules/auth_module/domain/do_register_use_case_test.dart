@@ -1,18 +1,22 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_register_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_register.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_register.dart';
-import 'package:mocktail/mocktail.dart';
+import 'package:modular_test/modular_test.dart';
 
-import '../mocks/auth_mocks.dart';
+import '../mocks/mock_auth_service.dart';
+
+class DoRegisterSuccessTestModule extends Module {
+  @override
+  List<Bind<Object>> get binds => [
+        Bind((i) => MockAuthService()),
+        Bind((i) => DoRegisterUseCase(i.get<MockAuthService>())),
+      ];
+}
 
 main() {
-  late AuthServiceMock service;
-  late DoRegisterUseCase useCase;
-
   setUpAll(() {
-    service = AuthServiceMock();
-    useCase = DoRegisterUseCase(service);
+    initModule(DoRegisterSuccessTestModule());
   });
 
   group('DoRegisterUseCase <Success>', () {
@@ -27,11 +31,10 @@ main() {
       sexualOrientationId: 5,
       birthDate: '01-01-2003',
     );
-    test('Retorna mensagem de ok', () async {
-      when(() => service.doRegister(request)).thenAnswer((_) async =>
-          ResponseRegister(message: "Usuário Registrado com sucesso !"));
+    test('Testa se o cadastro foi realizado com sucesso', () async {
+      final usecase = Modular.get<DoRegisterUseCase>();
 
-      final responseUsecase = await useCase(
+      final responseUsecase = await usecase(
         name: request.name!,
         username: request.nickname!,
         password: request.password!,
@@ -53,73 +56,4 @@ main() {
       );
     });
   });
-
-  // group('ConfirmPasswordUseCase <Failure>', () {
-  //   final request = RequestRegister(
-  //     photoUrl: '',
-  //     name: '',
-  //     nickname: '',
-  //     email: '',
-  //     password: '',
-  //     pronoun: '',
-  //     genderId: 0,
-  //     sexualOrientationId: 1,
-  //     birthDate: '',
-  //   );
-
-  //   test('Retorna <false> caso a senha seja válida', () async {
-  //     when(() => service.doRegister(request))
-  //         .thenAnswer((_) async => ResponseRegister.fromJson(request.toJson()));
-
-  //     final responseUsecase = await useCase(
-  //       name: request.name!,
-  //       username: request.nickname!,
-  //       password: request.password!,
-  //       email: request.email!,
-  //       birthDate: request.birthDate!,
-  //       sexualOrientation: request.sexualOrientationId!,
-  //       gender: request.genderId!,
-  //       profilePhoto: request.photoUrl!,
-  //       pronoun: request.pronoun!,
-  //     );
-
-  //     responseUsecase.fold(
-  //       (success) {
-  //         expect(success, null);
-  //       },
-  //       (failure) {
-  //         expect(failure, isA<SafeInvalidCredentialsError>());
-  //         expect(failure.message, equals("A senha não pode estar vazia!"));
-  //       },
-  //     );
-  //   });
-
-  //   test('Testa mensagem de erro', () async {
-  //     final requestErrorMessage =
-  //         RequestConfirmPassword(password: 'password123');
-  //     when(() => service.confirmPassword(requestErrorMessage))
-  //         .thenThrow(SafeDioResponseError("safe.dio_response.error"));
-
-  //     final responseUsecase = await useCase(
-  //       name: request.name!,
-  //       username: request.nickname!,
-  //       password: request.password!,
-  //       email: request.email!,
-  //       birthDate: request.birthDate!,
-  //       sexualOrientation: request.sexualOrientationId!.toString(),
-  //       gender: request.genderId!.toString(),
-  //       profilePhoto: request.photoUrl!,
-  //       pronoun: request.pronoun!,
-  //     );
-
-  //     responseUsecase.fold(
-  //       (success) {
-  //         expect(success, null);
-  //       },
-  //       (failure) {
-  //         expect(failure.message, "safe.dio_response.error");
-  //       },
-  //     );
-  //   });
-  // });
 }
