@@ -4,30 +4,26 @@ import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/contact/presenter/pages/contact_page.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class HomeDrawer extends StatelessWidget {
-  final Stream<SafeEvent<HomeDrawerVO>>? stream;
-  final String? image;
+  final String image;
   final String? name;
   final String? icon;
   final String? text;
   final String? route;
-  final Future<HomeDrawerVO>? drawerInfor;
 
   const HomeDrawer({
     Key? key,
-    this.stream,
     this.image = PlaceHolderAssets.profileAvatar,
     this.name,
     this.icon,
     this.text,
     this.route,
-    this.drawerInfor,
   }) : super(key: key);
 
   @override
@@ -53,6 +49,13 @@ class HomeDrawer extends StatelessWidget {
                 text: S.current.textDrawerMyAccount,
                 route: ConfigurationModule.route + AccountPage.route,
               ),
+              const SizedBox(height: 30),
+              // Contato
+              DrawerItem(
+                icon: AssetConstants.icons.contact,
+                text: S.current.textContact,
+                route: ConfigurationModule.route + ContactPage.route,
+              ),
             ],
           ),
         ),
@@ -68,7 +71,7 @@ class DrawerHeader extends StatelessWidget {
     required this.name,
   }) : super(key: key);
 
-  final String? image;
+  final String image;
   final String? name;
 
   @override
@@ -78,7 +81,7 @@ class DrawerHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SafeProfileAvatar(
-          image: image!,
+          image: image,
           size: 60,
         ),
         const SizedBox(width: 25),
