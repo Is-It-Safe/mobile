@@ -52,8 +52,6 @@ dependencies:
   mocktail: ^0.3.0
   url_launcher: ^6.1.7
 
-  #Error Handling
-  result_dart: ^1.0.5
 
 
 dev_dependencies:
