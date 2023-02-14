@@ -46,11 +46,12 @@ dependencies:
   dotted_border: ^2.0.0
 
   #Armazenamento
-  shared_preferences: ^2.0.17
+  shared_preferences: ^2.0.15
 
   #Testes
   mocktail: ^0.3.0
   url_launcher: ^6.1.7
+  result_dart: ^1.0.5
 
 
 

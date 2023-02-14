@@ -3,6 +3,8 @@ import 'package:is_it_safe_app/src/app/modules/configuration/account/account_mod
 import 'package:is_it_safe_app/src/app/modules/configuration/account/edit_account_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/edit_account_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/contact/contact_module.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/contact/presenter/pages/contact_page.dart';
 
 class ConfigurationModule extends Module {
   static const route = '/config';
@@ -13,6 +15,7 @@ class ConfigurationModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ModuleRoute(AccountPage.route, module: AccountModule()),
+    ModuleRoute(ContactPage.route, module: ContactModule()),
     ModuleRoute(EditAccountPage.route, module: EditAccountModule()),
   ];
 }

@@ -188,5 +188,8 @@
     "textAddLocationTypeNightClub": "Casa noturna",
     "textAddLocationExample": "Ex: Bar santa maria",
     "textAddLocationCepExample": "Ex: 04553434",
-    "textAddLocationAddress": "Ex: Rua Clodomiro"
+    "textAddLocationAddress": "Ex: Rua Clodomiro",
+
+    "textContacHowToHelpYou": "Nos conte como podemos te ajudar",
+    "textContacActionError": "Não foi possível realizar a ação."
 }

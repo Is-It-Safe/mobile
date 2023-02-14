@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_gett
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permission_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
+import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,7 +42,8 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
           builder: (context, snapshot) {
             return HomeDrawer(
               name: snapshot.data?.userName,
-              image: snapshot.data?.userImage,
+              image:
+                  snapshot.data?.userImage ?? PlaceHolderAssets.profileAvatar,
             );
           },
         ),
