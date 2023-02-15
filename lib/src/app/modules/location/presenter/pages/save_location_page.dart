@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_mout_textfield.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_photo.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
@@ -9,7 +10,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 
 import '../../../../../../generated/l10n.dart';
-import '../bloc/save_location_bloc.dart';
 
 class SaveLocationPage extends StatefulWidget {
   static const route = '/save_location/';
@@ -21,7 +21,7 @@ class SaveLocationPage extends StatefulWidget {
 }
 
 class _SaveLocationPageState
-    extends ModularState<SaveLocationPage, SaveLocationBloc> {
+    extends ModularState<SaveLocationPage, LocationBloC> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override

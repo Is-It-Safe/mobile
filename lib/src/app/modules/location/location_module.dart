@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/save_location_page.dart';
 
@@ -24,8 +23,6 @@ class LocationModule extends Module {
         (i) => GetLocationsByIdUseCase(i.get<LocationService>())),
     Bind.lazySingleton((i) => LocationBloC(
           getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
-        )),
-    Bind.lazySingleton((i) => SaveLocationBloc(
           saveLocationUseCase: i.get<SaveLocationUseCase>(),
         )),
   ];
