@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
@@ -23,30 +24,37 @@ import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences
 import 'package:jwt_decode/jwt_decode.dart';
 
 class AuthService implements IAuthService {
-  final ApiService _service = ApiService();
+  final ApiService service;
+
+  AuthService(this.service);
+
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
-    //TODO Request mockada
-    request = RequestLogin(
-      email: 'basic@gmail.com',
-      password: '123456',
-    );
-    final requestConfig = RequestConfig(
-      path: ApiConstants.doAuth,
-      method: HttpMethod.post,
-      body: request.toJson(request),
-      options: Options(
-        contentType: Headers.formUrlEncodedContentType,
-        headers: {
-          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
-        },
-      ),
-    );
+    try {
+      request = RequestLogin(
+        email: request.email,
+        password: request.password,
+        grantType: request.grantType,
+      );
+      final requestConfig = RequestConfig(
+        path: ApiConstants.doAuth,
+        method: HttpMethod.post,
+        body: request.toMap(),
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+          headers: {
+            ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
+            ApiConstants.kContentType: 'application/x-www-form-urlencoded',
+          },
+        ),
+      );
 
-    final response = await _service.doRequest(requestConfig);
+      final response = await service.doRequest(requestConfig);
 
-    return ResponseLogin.fromJson(jsonDecode(response.data));
+      return ResponseLogin.fromJson(jsonDecode(response.data));
+    } on DioError catch (e) {
+      throw SafeDioResponseError(e.message);
+    }
   }
 
   @override
@@ -88,7 +96,7 @@ class AuthService implements IAuthService {
       ),
     );
 
-    final response = await _service.doRequest(requestConfig);
+    final response = await service.doRequest(requestConfig);
 
     return ResponseRefreshToken.fromJson(jsonDecode(response.data));
   }
@@ -100,7 +108,7 @@ class AuthService implements IAuthService {
     final requestConfig = RequestConfig(
       path: ApiConstants.confirmPassword,
       method: HttpMethod.post,
-      body: request.toJson(request),
+      body: request.toJson(),
       options: Options(
         headers: {
           ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
@@ -109,47 +117,59 @@ class AuthService implements IAuthService {
       ),
     );
 
-    final response = await _service.doRequest(requestConfig);
+    final response = await service.doRequest(requestConfig);
 
     return jsonDecode(response.data);
   }
 
   @override
   Future<ResponseRegister> doRegister(RequestRegister request) async {
-    final requestConfig = RequestConfig(
-      path: ApiConstants.doRegister,
-      method: HttpMethod.post,
-      body: request.toJson(request),
-    );
+    try {
+      final requestConfig = RequestConfig(
+        path: ApiConstants.doRegister,
+        method: HttpMethod.post,
+        body: request.toJson(),
+      );
 
-    final response = await _service.doRequest(requestConfig);
+      final response = await service.doRequest(requestConfig);
 
-    return ResponseRegister.fromJson(jsonDecode(response.data));
+      return ResponseRegister.fromJson(jsonDecode(response.data));
+    } on DioError catch (e) {
+      throw SafeDioResponseError(e.message);
+    }
   }
 
   @override
   Future<List<ResponseGender>> getGenders() async {
-    final requestConfig = RequestConfig(
-      path: ApiConstants.getGenders,
-      method: HttpMethod.get,
-    );
+    try {
+      final requestConfig = RequestConfig(
+        path: ApiConstants.getGenders,
+        method: HttpMethod.get,
+      );
 
-    final response = await _service.doRequest(requestConfig);
-    return (json.decode(response.data) as List)
-        .map((e) => ResponseGender.fromJson(e))
-        .toList();
+      final response = await service.doRequest(requestConfig);
+      return (json.decode(response.data) as List)
+          .map((e) => ResponseGender.fromJson(e))
+          .toList();
+    } on DioError catch (error) {
+      throw SafeDioResponseError(error.message);
+    }
   }
 
   @override
   Future<List<ResponseSexualOrientation>> getSexualOrientations() async {
-    final requestConfig = RequestConfig(
-      path: ApiConstants.getSexualOrientations,
-      method: HttpMethod.get,
-    );
+    try {
+      final requestConfig = RequestConfig(
+        path: ApiConstants.getSexualOrientations,
+        method: HttpMethod.get,
+      );
 
-    final response = await _service.doRequest(requestConfig);
-    return (json.decode(response.data) as List)
-        .map((e) => ResponseSexualOrientation.fromJson(e))
-        .toList();
+      final response = await service.doRequest(requestConfig);
+      return (json.decode(response.data) as List)
+          .map((e) => ResponseSexualOrientation.fromJson(e))
+          .toList();
+    } on DioError catch (e) {
+      throw SafeDioResponseError(e.message);
+    }
   }
 }

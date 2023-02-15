@@ -1,0 +1,10 @@
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzYwODI5NjAsInVzZXJfbmFtZSI6ImJhc2ljQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQkFTSUMiXSwianRpIjoiYzQxODY2ZmEtYmM1OS00Y2JjLTk3MzEtZmQ4NTMwYWU5MDJmIiwiY2xpZW50X2lkIjoiaXNpdHNhZmUiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.2M4RX5Z0ZFBWUttd8KYqvNEVSexOSPAR93-u0kCmkUI",
+    "token_type": "bearer",
+    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJiYXNpY0BnbWFpbC5jb20iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiYXRpIjoiYzQxODY2ZmEtYmM1OS00Y2JjLTk3MzEtZmQ4NTMwYWU5MDJmIiwiZXhwIjoxNjc2MDgyOTYwLCJhdXRob3JpdGllcyI6WyJST0xFX0JBU0lDIl0sImp0aSI6ImMxMzg2MGMxLWYxOGQtNDM0Yy04MDhhLTc0NjBjODdlMDdkZiIsImNsaWVudF9pZCI6ImlzaXRzYWZlIn0.9Minc7K4YZMuR93g_ybauoMYi_AewI-fwduGAq2p6u8",
+    "expires_in": 86399,
+    "scope": "read write",
+    "profilePhoto": "images/modules/auth/profile_pictures/profile_pic_13.png",
+    "userFirstName": "Bruni Pinho TESTE 3",
+    "userId": 3
+  }
