@@ -1,23 +1,26 @@
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_review.dart';
+
 class ResponseSaveLocation {
   int? id;
   String? name;
   String? endereco;
-  String? averageGrade;
-  String? reviewsQnt;
+  double? averageGrade;
+  int? reviewsQnt;
   String? imgUrl;
   String? averageImpressionStatus;
+  final List<ResponseLocationReview>? reviews;
 
-  ResponseSaveLocation({
-    this.id,
-    this.name,
-    this.endereco,
-    this.averageGrade,
-    this.reviewsQnt,
-    this.imgUrl,
-    this.averageImpressionStatus,
-  });
+  ResponseSaveLocation(
+      {this.id,
+      this.name,
+      this.endereco,
+      this.averageGrade,
+      this.reviewsQnt,
+      this.imgUrl,
+      this.averageImpressionStatus,
+      this.reviews});
 
-  factory ResponseSaveLocation.fromJson(dynamic json) {
+  factory ResponseSaveLocation.fromJson(Map<String, dynamic> json) {
     return ResponseSaveLocation(
       id: json['id'],
       name: json['name'],

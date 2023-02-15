@@ -1,6 +1,7 @@
 import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_save_location.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 
 import '../../service/api/modules/location/response/response_location_review.dart';
@@ -27,6 +28,21 @@ class LocationEntity {
   });
 
   factory LocationEntity.toEntity(dynamic location) {
+    return LocationEntity(
+      id: location.id ?? IntConstants.empty,
+      name: location.name ?? StringConstants.empty,
+      address: location.endereco ?? StringConstants.empty,
+      averageGrade: location.averageGrade ?? DoubleConstants.empty,
+      reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
+      imagePath: location.imgUrl ?? StringConstants.empty,
+      averageImpressionStatus:
+          location.averageImpressionStatus ?? StringConstants.empty,
+      reviews: location.reviews ?? [],
+    );
+  }
+
+  factory LocationEntity.fromResponseSaveLocation(
+      ResponseSaveLocation location) {
     return LocationEntity(
       id: location.id ?? IntConstants.empty,
       name: location.name ?? StringConstants.empty,
