@@ -87,13 +87,19 @@ class LocationBloC extends SafeBloC {
             ParseEnum.parseLocationTypeEnum(element) ==
             locationTypeNotifier.value,
       );
-      final response = await saveLocationUseCase(
+      await saveLocationUseCase
+          .call(
         name: locationNameController.text,
         cep: locationCepController.text,
         locationTypeId: locationId + 1,
         imgUrl: imageNotifier.value,
+      )
+          .fold(
+        (success) {
+          isSavingLocation.add(SafeEvent.done(success));
+        },
+        (error) {},
       );
-      isSavingLocation.add(SafeEvent.done(response));
       return true;
     } catch (e) {
       isSavingLocation.addError(e.toString());

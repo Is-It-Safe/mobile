@@ -6,11 +6,11 @@ import 'package:is_it_safe_app/src/service/api/modules/location/response/respons
 
 abstract class ILocationService {
   Future<ResponseGetLocationsById> getLocationById(int id);
+  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request);
   Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String? place);
   Future<void> getLocationByCep(int cep);
   Future<List<ResponseGetLocationsNearUser>> getLocationsNearUser(
     double userLatitude,
     double userLongitude,
   );
-  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request);
 }

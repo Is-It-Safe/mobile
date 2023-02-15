@@ -18,7 +18,7 @@ class LocationModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
-    Bind.lazySingleton((i) => SaveLocationUseCase()),
+    Bind.lazySingleton((i) => SaveLocationUseCase(i.get<LocationService>())),
     Bind.lazySingleton(
         (i) => GetLocationsByIdUseCase(i.get<LocationService>())),
     Bind.lazySingleton((i) => LocationBloC(
@@ -29,9 +29,10 @@ class LocationModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(LocationPage.route,
-        child: (_, args) =>
-            LocationPage(location: (args.data as LocationEntity))),
+    ChildRoute(
+      LocationPage.route,
+      child: (_, args) => LocationPage(location: (args.data as LocationEntity)),
+    ),
     ModuleRoute(ReviewPage.route, module: ReviewModule()),
     ChildRoute(
       '/save-location',

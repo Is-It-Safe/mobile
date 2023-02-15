@@ -7,25 +7,26 @@ import 'package:mocktail/mocktail.dart';
 import '../mocks/location_mocks.dart';
 
 main() {
-  late LocationServiceMock service;
-  late GetLocationsByIdUseCase useCase;
+  late LocationServiceMock serviceMock;
+  late GetLocationsByIdUseCase getLocationsByIdUseCase;
+  const int locationId = 1;
 
   setUpAll(() {
-    service = LocationServiceMock();
-    useCase = GetLocationsByIdUseCase(service);
+    serviceMock = LocationServiceMock();
+    getLocationsByIdUseCase = GetLocationsByIdUseCase(serviceMock);
   });
 
   group('GetLocationsByIdUseCase <Success>', () {
     test('Retorna local pelo [LocationEntity]', () async {
-      when(() => service.getLocationById(1)).thenAnswer(
+      when(() => serviceMock.getLocationById(locationId)).thenAnswer(
         (_) async => ResponseGetLocationsById(
             id: 1, name: 'Restaurante Paraíso da Carne de Sol'),
       );
 
-      final responseUseCase = await useCase(1);
+      final responseUseCase = await getLocationsByIdUseCase(locationId);
       responseUseCase.fold(
         (success) {
-          expect(success.id, equals(1));
+          expect(success.id, equals(locationId));
           expect(success.name, equals("Restaurante Paraíso da Carne de Sol"));
         },
         (failure) {
@@ -36,10 +37,10 @@ main() {
   });
   group('GetLocationsByIdUseCase <Failure>', () {
     test('Retorna [SafeDioResponseLocationError]', () async {
-      when(() => service.getLocationById(1))
+      when(() => serviceMock.getLocationById(locationId))
           .thenThrow(SafeDioResponseLocationError("safe.dio_response.error"));
 
-      final responseUseCase = await useCase(1);
+      final responseUseCase = await getLocationsByIdUseCase(locationId);
 
       responseUseCase.fold(
         (success) {

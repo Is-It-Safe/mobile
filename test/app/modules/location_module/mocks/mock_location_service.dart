@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_save_location.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_locations_near_user.dart';
@@ -31,8 +34,11 @@ class MockLocationService implements ILocationService {
   }
 
   @override
-  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request) {
-    // TODO: implement saveLocation
-    throw UnimplementedError();
+  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request) async {
+    return ResponseSaveLocation.fromJson(
+      jsonDecode(
+          File("test/app/modules/location_module/savelocation_response.json")
+              .readAsStringSync()),
+    );
   }
 }
