@@ -18,17 +18,16 @@ class LocationModule extends Module {
 
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => GetLocationsByIdUseCase()),
-    Bind.lazySingleton((i) => LocationBloC(
-          getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
-        )),
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveLocationUseCase()),
     Bind.lazySingleton(
-      (i) => SaveLocationBloc(
-        saveLocationUseCase: i.get<SaveLocationUseCase>(),
-      ),
-    ),
+        (i) => GetLocationsByIdUseCase(i.get<LocationService>())),
+    Bind.lazySingleton((i) => LocationBloC(
+          getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
+        )),
+    Bind.lazySingleton((i) => SaveLocationBloc(
+          saveLocationUseCase: i.get<SaveLocationUseCase>(),
+        )),
   ];
 
   @override
