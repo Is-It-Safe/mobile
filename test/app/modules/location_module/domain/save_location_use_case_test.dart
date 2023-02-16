@@ -44,5 +44,4 @@ main() {
       );
     });
   });
-  group('SaveLocationUseCase <Failure>', () {});
 }

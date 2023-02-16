@@ -95,7 +95,7 @@ class ProfileService implements IProfileService {
   }
 
   @override
-  Future<ResponseGetUserReview> doReview(RequestSaveReview request) async {
+  Future<ResponseGetUserReview> saveReview(RequestSaveReview request) async {
     final token = await _authService.getAccessToken();
 
     final requestConfig = RequestConfig(

@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_review_use_case.dart';
+import 'package:result_dart/result_dart.dart';
 
 class ReviewBloc extends SafeBloC {
   final SaveReviewUseCase saveReviewUseCase;
@@ -81,13 +82,19 @@ class ReviewBloc extends SafeBloC {
   Future sendReview({required int id}) async {
     try {
       reviewController.add(SafeEvent.load());
-      final place = await saveReviewUseCase.call(
+      await saveReviewUseCase
+          .call(
         review: textReviewController.text,
         grade: grade.toInt(),
         impressionStatus: impressionStatus,
         locationId: id,
+      )
+          .fold(
+        (success) {
+          reviewController.add(SafeEvent.done(success));
+        },
+        (error) {},
       );
-      reviewController.add(SafeEvent.done(place));
     } catch (e) {
       reviewController.addError(e.toString());
     }

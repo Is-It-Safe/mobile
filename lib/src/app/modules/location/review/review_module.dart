@@ -4,12 +4,13 @@ import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/r
 import 'package:is_it_safe_app/src/domain/use_case/save_review_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 
 class ReviewModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
-    Bind.lazySingleton((i) => SaveReviewUseCase()),
+    Bind.lazySingleton((i) => SaveReviewUseCase(i.get<ProfileService>())),
     Bind.lazySingleton(
       (i) => ReviewBloc(
         saveReviewUseCase: i.get<SaveReviewUseCase>(),

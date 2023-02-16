@@ -15,6 +15,15 @@ class MockLocationService implements ILocationService {
   }
 
   @override
+  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request) async {
+    return ResponseSaveLocation.fromJson(
+      jsonDecode(
+          File("test/app/modules/location_module/savelocation_response.json")
+              .readAsStringSync()),
+    );
+  }
+
+  @override
   Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String? place) {
     // TODO: implement getBestRatedPlaces
     throw UnimplementedError();
@@ -31,14 +40,5 @@ class MockLocationService implements ILocationService {
       double userLatitude, double userLongitude) {
     // TODO: implement getLocationsNearUser
     throw UnimplementedError();
-  }
-
-  @override
-  Future<ResponseSaveLocation> saveLocation(RequestSaveLocation request) async {
-    return ResponseSaveLocation.fromJson(
-      jsonDecode(
-          File("test/app/modules/location_module/savelocation_response.json")
-              .readAsStringSync()),
-    );
   }
 }
