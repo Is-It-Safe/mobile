@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 
 import '../../../../../components/widgets/safe_button.dart';
 import '../../../../../components/widgets/safe_empty_card.dart';
@@ -27,6 +28,11 @@ class NeedPermissionCard extends StatelessWidget {
         SafeButton(
           title: buttonText,
           size: ButtonSize.small,
+          style: TextStyle(
+            color: SafeColors.generalColors.white,
+            fontSize: 14,
+            overflow: TextOverflow.fade,
+          ),
           onTap: onTapButton as void Function(),
         ),
       ],

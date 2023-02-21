@@ -19,13 +19,22 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends ModularState<HomePage, HomeBloc> {
+class _HomePageState extends ModularState<HomePage, HomeBloc>
+    with TickerProviderStateMixin {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  late TabController tabController;
 
   @override
   void initState() {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await _requestLocationPermission();
+      await controller.requestAccessLocationPermission();
+    });
+    tabController = TabController(length: 2, vsync: this);
+    tabController.addListener(() {
+      setState(() {
+        controller.onTabIndexChange(tabController.index);
+      });
     });
     super.initState();
     SafeLogUtil.instance.route(Modular.to.path);
@@ -48,19 +57,23 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
           },
         ),
         appBar: const SafeAppBar().home(
+          tabController: tabController,
           onOpenDrawer: () {
             _scaffoldKey.currentState!.openEndDrawer();
           },
           onBottomTap: (tab) async {
-            if (tab == 0) {
-              await _requestLocationPermission();
-            }
-            if (tab == 1) {
-              await controller.getBestRatedPlaces();
+            switch (tab) {
+              case 0:
+                await controller.requestAccessLocationPermission();
+                break;
+              case 1:
+                await controller.getBestRatedPlaces();
+                break;
             }
           },
         ),
         body: TabBarView(
+          controller: tabController,
           children: [
             MountGettedPlaces(
               stream: controller.locationsNearUserController.stream,
@@ -69,7 +82,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
               onEmpty: SafeEmptyCard.home(),
               onError: NeedPermissionCard(
                 text: S.current.textErrorLocationPermission,
-                buttonText: "Abrir configurações",
+                buttonText: S.current.textOpenPermissions,
                 onTapButton: () async {
                   await controller
                       .forcedRequestLocationPermission()
@@ -89,15 +102,5 @@ class _HomePageState extends ModularState<HomePage, HomeBloc> {
         ),
       ),
     );
-  }
-
-  Future<void> _requestLocationPermission() async {
-    await controller.requestAppLocationPermission().then((granted) async {
-      if (granted) {
-        await controller.getLocationsNearUser();
-      }
-    }).timeout(const Duration(milliseconds: 400), onTimeout: () async {
-      await controller.getLocationsNearUser();
-    });
   }
 }

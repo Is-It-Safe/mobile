@@ -1770,6 +1770,16 @@ class S {
     );
   }
 
+  /// `Abrir Permissões`
+  String get textOpenPermissions {
+    return Intl.message(
+      'Abrir Permissões',
+      name: 'textOpenPermissions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nos conte como podemos te ajudar`
   String get textContacHowToHelpYou {
     return Intl.message(
