@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/save_location_page.dart';
 
@@ -18,24 +17,22 @@ class LocationModule extends Module {
 
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => GetLocationsByIdUseCase()),
+    Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
+    Bind.lazySingleton((i) => SaveLocationUseCase(i.get<LocationService>())),
+    Bind.lazySingleton(
+        (i) => GetLocationsByIdUseCase(i.get<LocationService>())),
     Bind.lazySingleton((i) => LocationBloC(
           getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
+          saveLocationUseCase: i.get<SaveLocationUseCase>(),
         )),
-    Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
-    Bind.lazySingleton((i) => SaveLocationUseCase()),
-    Bind.lazySingleton(
-      (i) => SaveLocationBloc(
-        saveLocationUseCase: i.get<SaveLocationUseCase>(),
-      ),
-    ),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(LocationPage.route,
-        child: (_, args) =>
-            LocationPage(location: (args.data as LocationEntity))),
+    ChildRoute(
+      LocationPage.route,
+      child: (_, args) => LocationPage(location: (args.data as LocationEntity)),
+    ),
     ModuleRoute(ReviewPage.route, module: ReviewModule()),
     ChildRoute(
       '/save-location',
