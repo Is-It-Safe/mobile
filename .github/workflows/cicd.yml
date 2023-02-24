@@ -36,11 +36,11 @@ jobs:
         run: flutter build apk
 
       # Upload APK as artifact
-     # - name: Upload APK
-      #  uses: actions/upload-artifact@v2
-      #  with:
-        #  name: app-release
-        #  path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
 
       # Send message to Discord webhook
       - name: Send message to Discord
