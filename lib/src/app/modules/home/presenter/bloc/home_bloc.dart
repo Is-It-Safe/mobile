@@ -27,7 +27,7 @@ class HomeBloc extends SafeBloC {
   final GetUserLocationTokenUseCase getUserLocationTokenUseCase;
   final SaveUserLocationPermissionFirstSettingsUseCase
       saveUserLocationPermissionFirstSettingsUseCase;
-  final GetUserLocationPermissionFirstSettingsUseCase
+  final GetUserLocationPermissionUseCase
       getUserLocationPermissionFirstSettingsUseCase;
   final ISafeLocator locator;
 
@@ -149,7 +149,7 @@ class HomeBloc extends SafeBloC {
   Future<void> getCurrentLocation({bool forceRequest = false}) async {
     final Placemark? userLocation =
         await locator.getLocation(onLocationDenied: () async {
-      await getUserAlreadyRequestedLocationPermission()
+      await _getUserAlreadyRequestedLocationPermission()
           .then((alreadySeeIt) async {
         if (!alreadySeeIt) {
           await locator.requestPermission();
@@ -165,7 +165,7 @@ class HomeBloc extends SafeBloC {
     }
   }
 
-  Future<bool> getUserAlreadyRequestedLocationPermission() async {
+  Future<bool> _getUserAlreadyRequestedLocationPermission() async {
     try {
       final permission =
           await getUserLocationPermissionFirstSettingsUseCase.call();
@@ -176,7 +176,7 @@ class HomeBloc extends SafeBloC {
     return false;
   }
 
-  Future<void> saveUserAlreadyRequestedLocationPermission(
+  Future<void> _saveUserAlreadyRequestedLocationPermission(
       bool alreadySeeIt) async {
     try {
       await saveUserLocationPermissionFirstSettingsUseCase.call(alreadySeeIt);
@@ -185,11 +185,11 @@ class HomeBloc extends SafeBloC {
     }
   }
 
-  Future<bool> requestAppLocationPermission() async {
+  Future<bool> _requestAppLocationPermission() async {
     bool granted = false;
     await getCurrentLocation();
-    if (!(await getUserAlreadyRequestedLocationPermission())) {
-      saveUserAlreadyRequestedLocationPermission(true);
+    if (!(await _getUserAlreadyRequestedLocationPermission())) {
+      _saveUserAlreadyRequestedLocationPermission(true);
       await Future.doWhile(() async {
         granted = !(await verifyLocationPermission());
         return granted;
@@ -206,6 +206,27 @@ class HomeBloc extends SafeBloC {
       return granted;
     });
     return !granted;
+  }
+
+  Future<void> requestAccessLocationPermission() async {
+    await _requestAppLocationPermission().then((granted) async {
+      if (granted) {
+        await getLocationsNearUser();
+      }
+    }).timeout(const Duration(milliseconds: 400), onTimeout: () async {
+      await getLocationsNearUser();
+    });
+  }
+
+  onTabIndexChange(int index) async {
+    switch (index) {
+      case 0:
+        await requestAccessLocationPermission();
+        break;
+      case 1:
+        await getBestRatedPlaces();
+        break;
+    }
   }
 
   @override

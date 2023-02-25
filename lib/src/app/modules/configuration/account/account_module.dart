@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 import '../../../../domain/use_case/update_user_use_case.dart';
 
@@ -16,7 +17,8 @@ class AccountModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
-    Bind.lazySingleton((i) => SaveUserLoginUseCase()),
+    Bind.lazySingleton(
+        (i) => SaveUserLoginUseCase(i.get<ISharedPreferencesService>())),
     Bind.lazySingleton((i) => GetUserUseCase()),
     Bind.lazySingleton((i) => UpdateUserUseCase()),
     Bind.lazySingleton((i) => SafeProfilePictureBloC()),

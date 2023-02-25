@@ -12,15 +12,17 @@ import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class EditAccountModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    // Bind.lazySingleton((i) => ApiService()),
-    // Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
+    Bind.lazySingleton((i) => ApiService()),
+    Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
-    Bind.lazySingleton((i) => SaveUserLoginUseCase()),
+    Bind.lazySingleton(
+        (i) => SaveUserLoginUseCase(i.get<ISharedPreferencesService>())),
     Bind.lazySingleton((i) => GetUserUseCase()),
     Bind.lazySingleton((i) => GetGendersUseCase(i.get<AuthService>())),
     Bind.lazySingleton(

@@ -23,7 +23,7 @@ class ApiService implements IApiService {
         responseType: ResponseType.plain,
       ),
     );
-    dio.interceptors.addAll({ApiInterceptors(dio)});
+    dio.interceptors.addAll({ApiInterceptors()});
     return dio;
   }
 
