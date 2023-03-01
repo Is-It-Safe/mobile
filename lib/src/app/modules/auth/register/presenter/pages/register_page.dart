@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_page.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
@@ -49,17 +50,71 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
               children: [
                 _mountWelcomeText(),
                 const SizedBox(height: 30),
-                _mountNameField(),
+                SafeTextFormField(
+                  controller: controller.nameController,
+                  labelText: S.current.textName + StringConstants.asterisk,
+                  bottomText: S.current.textSayYourNameThisInfoIsPrivate,
+                  onChanged: (value) => controller.toogleRegisterButton(),
+                  validator: (value) => controller.validateTextField(value),
+                ),
                 const SizedBox(height: 20),
-                _mountUsernameField(),
+                SafeTextFormField(
+                  controller: controller.usernameController,
+                  labelText: S.current.textUsername + StringConstants.asterisk,
+                  bottomText: S.current.textDontBeAfraidToBeCreative,
+                  onChanged: (value) => controller.toogleRegisterButton(),
+                  validator: (value) => controller.validateTextField(value),
+                ),
                 const SizedBox(height: 20),
-                _mountPronounField(),
+                SafeTextFormField(
+                  controller: controller.pronounController,
+                  labelText: S.current.textPronouns,
+                  bottomText: S.current.textHowDoYouPreferWeReferToYou,
+                  onChanged: (value) => controller.toogleRegisterButton(),
+                ),
                 const SizedBox(height: 20),
-                _mountEmailField(),
+                SafeTextFormField(
+                  controller: controller.emailController,
+                  labelText:
+                      S.current.textEmailAddress + StringConstants.asterisk,
+                  bottomText:
+                      S.current.textTellUsTheEmailAssociatedWithYourAccount,
+                  onChanged: (value) => controller.toogleRegisterButton(),
+                  validator: (value) => controller.validateEmail(value),
+                ),
                 const SizedBox(height: 20),
-                _mountPasswordField(),
+                SafeTextFormField(
+                  controller: controller.passwordController,
+                  obscureText: _showPassword,
+                  labelText: S.current.textPassword + StringConstants.asterisk,
+                  bottomText: S.current.textPasswordSpecifications,
+                  onChanged: (value) => controller.toogleRegisterButton(),
+                  validator: (value) => controller.validatePassword(value),
+                  suffixIcon: SafeShowFieldButton(
+                    value: _showPassword,
+                    onTap: () => setState(() {
+                      _showPassword = !_showPassword;
+                    }),
+                  ),
+                ),
                 const SizedBox(height: 20),
-                _mountConfirmPasswordField(),
+                SafeTextFormField(
+                  controller: controller.confirmPasswordController,
+                  obscureText: _showPassword,
+                  labelText: S.current.textPasswordConfirmation +
+                      StringConstants.asterisk,
+                  onChanged: (value) => controller.toogleRegisterButton(),
+                  validator: (value) => controller.validatePassword(
+                    value,
+                    errorText: S.current.textErrorDifferentPasswords,
+                  ),
+                  suffixIcon: SafeShowFieldButton(
+                    value: _showPassword,
+                    onTap: () => setState(() {
+                      _showPassword = !_showPassword;
+                    }),
+                  ),
+                ),
                 const SizedBox(height: 20),
                 _mountTermsAndConditions(),
                 const SizedBox(height: 20),
@@ -121,87 +176,12 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      //TODO Add navigation to terms and conditions
+                    Modular.to.push(MaterialPageRoute(builder: (_) => const TermsAndConditionsPage()));
                     }),
             ],
           ),
         ),
       ],
-    );
-  }
-
-  SafeTextFormField _mountConfirmPasswordField() {
-    return SafeTextFormField(
-      controller: controller.confirmPasswordController,
-      obscureText: _showPassword,
-      labelText: S.current.textPasswordConfirmation + StringConstants.asterisk,
-      onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validatePassword(
-        value,
-        errorText: S.current.textErrorDifferentPasswords,
-      ),
-      suffixIcon: SafeShowFieldButton(
-        value: _showPassword,
-        onTap: () => setState(() {
-          _showPassword = !_showPassword;
-        }),
-      ),
-    );
-  }
-
-  SafeTextFormField _mountPasswordField() {
-    return SafeTextFormField(
-      controller: controller.passwordController,
-      obscureText: _showPassword,
-      labelText: S.current.textPassword + StringConstants.asterisk,
-      bottomText: S.current.textTellUsTheEmailAssociatedWithYourAccount,
-      onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validatePassword(value),
-      suffixIcon: SafeShowFieldButton(
-        value: _showPassword,
-        onTap: () => setState(() {
-          _showPassword = !_showPassword;
-        }),
-      ),
-    );
-  }
-
-  SafeTextFormField _mountEmailField() {
-    return SafeTextFormField(
-      controller: controller.emailController,
-      labelText: S.current.textEmailAddress + StringConstants.asterisk,
-      bottomText: S.current.textTellUsTheEmailAssociatedWithYourAccount,
-      onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validateEmail(value),
-    );
-  }
-
-  SafeTextFormField _mountPronounField() {
-    return SafeTextFormField(
-      controller: controller.pronounController,
-      labelText: S.current.textPronouns,
-      bottomText: S.current.textHowDoYouPreferWeReferToYou,
-      onChanged: (value) => controller.toogleRegisterButton(),
-    );
-  }
-
-  SafeTextFormField _mountUsernameField() {
-    return SafeTextFormField(
-      controller: controller.usernameController,
-      labelText: S.current.textUsername + StringConstants.asterisk,
-      bottomText: S.current.textDontBeAfraidToBeCreative,
-      onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validateTextField(value),
-    );
-  }
-
-  SafeTextFormField _mountNameField() {
-    return SafeTextFormField(
-      controller: controller.nameController,
-      labelText: S.current.textName + StringConstants.asterisk,
-      bottomText: S.current.textSayYourNameThisInfoIsPrivate,
-      onChanged: (value) => controller.toogleRegisterButton(),
-      validator: (value) => controller.validateTextField(value),
     );
   }
 

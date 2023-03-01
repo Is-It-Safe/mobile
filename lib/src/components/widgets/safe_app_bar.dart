@@ -28,12 +28,14 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
   SafeAppBar home({
     Function(int)? onBottomTap,
     Function()? onOpenDrawer,
+    required TabController tabController,
   }) {
     return SafeAppBar(
       title: S.current.textIsItSafe,
       appBarType: AppBarType.home,
       onTap: onOpenDrawer,
       bottom: TabBar(
+        controller: tabController,
         indicatorColor: SafeColors.textColors.dark,
         indicatorSize: TabBarIndicatorSize.tab,
         onTap: onBottomTap,
@@ -74,91 +76,74 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     switch (appBarType) {
       case AppBarType.regular:
-        return _mountRegularAppBar();
-      case AppBarType.home:
-        return _mountHomeAppBar();
-    }
-  }
-
-  AppBar _mountRegularAppBar() {
-    return AppBar(
-      backgroundColor: SafeColors.generalColors.background,
-      elevation: 0.0,
-      centerTitle: false,
-      title: Text(
-        title,
-        style: TextStyles.subtitle1(),
-      ),
-      automaticallyImplyLeading: hasLeading,
-      leading: _mountLeading(),
-      bottom: bottom,
-    );
-  }
-
-  Widget? _mountLeading() {
-    if (hasLeading) {
-      return IconButton(
-        onPressed: onTap ?? () => Modular.to.pop(),
-        icon: SvgPicture.asset(
-          AssetConstants.icons.arrowBack,
-        ),
-      );
-    }
-    return null;
-  }
-
-  Center _mountHomeAppBar() {
-    return Center(
-      child: Container(
-        decoration: BoxDecoration(
-          color: SafeColors.generalColors.background,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 30,
-                vertical: 20,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _moundAppBarHomeTitle(),
-                  IconButton(
-                    onPressed: onTap,
-                    icon: SvgPicture.asset(
-                      AssetConstants.icons.drawer,
-                    ),
+        return AppBar(
+          backgroundColor: SafeColors.generalColors.background,
+          elevation: 0.0,
+          centerTitle: false,
+          title: Text(
+            title,
+            style: TextStyles.subtitle1(),
+          ),
+          automaticallyImplyLeading: hasLeading,
+          leading: hasLeading
+              ? IconButton(
+                  onPressed: onTap ?? () => Modular.to.pop(),
+                  icon: SvgPicture.asset(
+                    AssetConstants.icons.arrowBack,
                   ),
-                ],
-              ),
+                )
+              : null,
+          bottom: bottom,
+        );
+      case AppBarType.home:
+        return Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: SafeColors.generalColors.background,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10,
-              ),
-              child: bottom!,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 20,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset(
+                            AssetConstants.general.logo,
+                            height: 30,
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            title,
+                            style: TextStyles.appBarHome(),
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                        onPressed: onTap,
+                        icon: SvgPicture.asset(
+                          AssetConstants.icons.drawer,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                  ),
+                  child: bottom!,
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _moundAppBarHomeTitle() {
-    return Row(
-      children: [
-        Image.asset(
-          AssetConstants.general.logo,
-          height: 30,
-        ),
-        const SizedBox(width: 10),
-        Text(
-          title,
-          style: TextStyles.appBarHome(),
-        ),
-      ],
-    );
+          ),
+        );
+    }
   }
 }

@@ -1,58 +1,77 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../safe_test.dart';
-
-void main() {
-  HomeServiceTest().runTests();
-}
-
-class MockSharedPreferencesService extends Mock
+class SharedPreferencesServiceMock extends Mock
     implements ISharedPreferencesService {}
 
-class HomeServiceTest extends SafeTest {
-  late MockSharedPreferencesService _sharedPreferences;
+main() {
+  setUpAll(() {
+    SharedPreferences.setMockInitialValues({
+      'test-bool': false,
+      'test-string': "is-it-safe",
+      'test-int': 1,
+      'test-double': 3.3,
+      'test-stringed-list': [],
+    });
+  });
 
-  HomeServiceTest() {
-    _sharedPreferences = MockSharedPreferencesService();
-  }
+  test(
+      'Testa se a operação de atualizar e resgatar valores `bool` está funcionando.',
+      () async {
+    final prefs = await SharedPreferences.getInstance();
 
-  @override
-  void runTests() {
-    safeGroup(
-      description: 'SharedPreferencesService',
-      body: () {
-        _saveOnBoarding();
-        _readOnBoarding();
-        _saveLogin();
-        _readLogin();
-        _saveToken();
-        _readToken();
-        _saveRefreshToken();
-        _readRefreshToken();
-        _saveUserAuth();
-        _readUserAuth();
-      },
-    );
-  }
+    expect(prefs.getBool('test-bool'), false); // Valor antigo
 
-  void _saveOnBoarding() {}
+    expect(await prefs.setBool('test-bool', true), true);
 
-  void _readOnBoarding() {}
+    expect(prefs.getBool('test-bool'), true); // Valor novo
+  });
+  test(
+      'Testa se a operação de atualizar e resgatar valores `String` está funcionando.',
+      () async {
+    final prefs = await SharedPreferences.getInstance();
 
-  void _saveLogin() {}
+    expect(prefs.getString('test-string'), "is-it-safe"); // Valor antigo
 
-  void _readLogin() {}
+    expect(await prefs.setString('test-string', "Is It Safe?"), true);
 
-  void _saveToken() {}
+    expect(prefs.getString('test-string'), "Is It Safe?"); // Valor novo
+  });
 
-  void _readToken() {}
+  test(
+      'Testa se a operação de atualizar e resgatar valores `int` está funcionando.',
+      () async {
+    final prefs = await SharedPreferences.getInstance();
 
-  void _saveRefreshToken() {}
+    expect(prefs.getInt('test-int'), 1); // Valor antigo
 
-  void _readRefreshToken() {}
+    expect(await prefs.setInt('test-int', 33), true);
 
-  void _saveUserAuth() {}
+    expect(prefs.getInt('test-int'), 33); // Valor novo
+  });
+  test(
+      'Testa se a operação de atualizar e resgatar valores `double` está funcionando.',
+      () async {
+    final prefs = await SharedPreferences.getInstance();
 
-  void _readUserAuth() {}
+    expect(prefs.getDouble('test-double'), 3.3); // Valor antigo
+
+    expect(await prefs.setDouble('test-double', 4.2), true);
+
+    expect(prefs.getDouble('test-double'), 4.2); // Valor novo
+  });
+  test(
+      'Testa se a operação de atualizar e resgatar valores `List<String>` está funcionando.',
+      () async {
+    final prefs = await SharedPreferences.getInstance();
+
+    expect(prefs.get('test-stringed-list'), []); // Valor antigo
+
+    expect(
+        await prefs.setStringList('test-stringed-list', ['1', '2', '3']), true);
+
+    expect(prefs.get('test-stringed-list'), ['1', '2', '3']); // Valor novo
+  });
 }

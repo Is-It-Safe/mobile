@@ -3,6 +3,7 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 enum ButtonSize { small, large }
+
 enum ButtonState { rest, disabled, danger }
 
 class SafeButton extends StatelessWidget {
@@ -12,10 +13,12 @@ class SafeButton extends StatelessWidget {
   final Function()? onTap;
   final ButtonSize? size;
   final ButtonState? state;
+  final TextStyle? style;
   const SafeButton({
     Key? key,
     required this.title,
     this.onTap,
+    this.style,
     this.hasBackground = true,
     this.hasBorder = false,
     this.size = ButtonSize.large,
@@ -49,9 +52,10 @@ class SafeButton extends StatelessWidget {
       child: Center(
         child: Text(
           title.toUpperCase(),
-          style: TextStyles.button(
-            color: _getTextColor(),
-          ),
+          style: style ??
+              TextStyles.button(
+                color: _getTextColor(),
+              ),
         ),
       ),
     );

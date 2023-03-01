@@ -3,17 +3,23 @@ import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/service/api/modules/search/search_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/search/search_service_interface.dart';
+import 'package:result_dart/result_dart.dart';
+
+import '../../app/modules/search/error/safe_search_error.dart';
 
 class GetLocationsByNameUseCase extends SafeUseCase {
-  late final ISearchService _service;
+  final ISearchService service;
 
-  GetLocationsByNameUseCase() {
-    _service = Modular.get<SearchService>();
-  }
+  GetLocationsByNameUseCase(this.service);
 
-  Future<List<LocationEntity>> call(String name) async {
-    final _response = await _service.searchLocationByName(name);
-
-    return _response?.map((e) => LocationEntity.toEntity(e)).toList() ?? [];
+  Future<Result<List<LocationEntity>, SafeSearchError>> call(
+      String name) async {
+    try {
+      final response = await service.searchLocationByName(name);
+      return Success(
+          response?.map((e) => LocationEntity.toEntity(e)).toList() ?? []);
+    } on SafeSearchError catch (e) {
+      return Failure(e);
+    }
   }
 }

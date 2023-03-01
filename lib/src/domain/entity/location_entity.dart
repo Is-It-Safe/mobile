@@ -1,14 +1,20 @@
 import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_save_location.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
+
+import '../../service/api/modules/location/response/response_location_review.dart';
 
 class LocationEntity {
   final int id;
   final String name;
   final String address;
-  String? imagePath;
-  double? averageGrade;
-  int? reviewsQnt;
+  final String? imagePath;
+  final double? averageGrade;
+  final String? averageImpressionStatus;
+  final int? reviewsQnt;
+  final List<ResponseLocationReview>? reviews;
 
   LocationEntity({
     required this.id,
@@ -16,7 +22,9 @@ class LocationEntity {
     required this.address,
     this.imagePath,
     this.averageGrade,
+    this.averageImpressionStatus,
     this.reviewsQnt,
+    this.reviews,
   });
 
   factory LocationEntity.toEntity(dynamic location) {
@@ -27,6 +35,32 @@ class LocationEntity {
       averageGrade: location.averageGrade ?? DoubleConstants.empty,
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,
+      averageImpressionStatus:
+          location.averageImpressionStatus ?? StringConstants.empty,
+      reviews: location.reviews ?? [],
     );
+  }
+
+  factory LocationEntity.fromResponseSaveLocation(
+      ResponseSaveLocation location) {
+    return LocationEntity(
+      id: location.id ?? IntConstants.empty,
+      name: location.name ?? StringConstants.empty,
+      address: location.endereco ?? StringConstants.empty,
+      averageGrade: location.averageGrade ?? DoubleConstants.empty,
+      reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
+      imagePath: location.imgUrl ?? StringConstants.empty,
+      averageImpressionStatus:
+          location.averageImpressionStatus ?? StringConstants.empty,
+      reviews: location.reviews ?? [],
+    );
+  }
+
+  factory LocationEntity.fromResponseGetUserReview(
+      ResponseGetUserReview review) {
+    return LocationEntity(
+        id: review.id ?? 0,
+        name: review.locationName ?? StringConstants.empty,
+        address: review.locationAddress ?? StringConstants.empty);
   }
 }

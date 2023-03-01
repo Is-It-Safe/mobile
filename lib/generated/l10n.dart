@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Nenhum lugar próximo encontrado, ative as permissões de localização!`
+  String get textErrorLocationPermission {
+    return Intl.message(
+      'Nenhum lugar próximo encontrado, ative as permissões de localização!',
+      name: 'textErrorLocationPermission',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Você não fez nenhum review ainda, começe assim que puder!`
   String get textErrorProfile {
     return Intl.message(
@@ -335,6 +345,36 @@ class S {
     return Intl.message(
       'Algo de errado aconteceu, tente novamente em alguns instantes.',
       name: 'textErrorUnknown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível deletar a review!`
+  String get textErrorDeleteReview {
+    return Intl.message(
+      'Não foi possível deletar a review!',
+      name: 'textErrorDeleteReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ocorreu um erro ao obter sua localização!`
+  String get textErrorGetLocation {
+    return Intl.message(
+      'Ocorreu um erro ao obter sua localização!',
+      name: 'textErrorGetLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review deletada com sucesso!`
+  String get textDefaultDeleteReviewMessage {
+    return Intl.message(
+      'Review deletada com sucesso!',
+      name: 'textDefaultDeleteReviewMessage',
       desc: '',
       args: [],
     );
@@ -720,11 +760,41 @@ class S {
     );
   }
 
+  /// `Regular`
+  String get textRegular {
+    return Intl.message(
+      'Regular',
+      name: 'textRegular',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Neutro`
   String get textNeutral {
     return Intl.message(
       'Neutro',
       name: 'textNeutral',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Satisfeito`
+  String get textSatisfied {
+    return Intl.message(
+      'Satisfeito',
+      name: 'textSatisfied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incrível`
+  String get textIncredible {
+    return Intl.message(
+      'Incrível',
+      name: 'textIncredible',
       desc: '',
       args: [],
     );
@@ -960,6 +1030,46 @@ class S {
     );
   }
 
+  /// `Editar informações pessoais`
+  String get textEditPersonalInformation {
+    return Intl.message(
+      'Editar informações pessoais',
+      name: 'textEditPersonalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atualizar informações`
+  String get textUpdateInformation {
+    return Intl.message(
+      'Atualizar informações',
+      name: 'textUpdateInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Informações atualizadas com sucesso!`
+  String get textInformationChangedSuccessfully {
+    return Intl.message(
+      'Informações atualizadas com sucesso!',
+      name: 'textInformationChangedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível atualizar as informações!`
+  String get textUnableToChangeInformation {
+    return Intl.message(
+      'Não foi possível atualizar as informações!',
+      name: 'textUnableToChangeInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Funcionalidade disponível em breve`
   String get textFeatureAvailableSoon {
     return Intl.message(
@@ -1150,6 +1260,26 @@ class S {
     );
   }
 
+  /// `Como as pessoas se sentiram nesse local:`
+  String get textHowDoPeopleFellAboutThisPlace {
+    return Intl.message(
+      'Como as pessoas se sentiram nesse local:',
+      name: 'textHowDoPeopleFellAboutThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O que estão falando sobre esse local:`
+  String get textWhatPeopleAreTalkingAboutThisPlace {
+    return Intl.message(
+      'O que estão falando sobre esse local:',
+      name: 'textWhatPeopleAreTalkingAboutThisPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Escolha uma classificação para este local!`
   String get textChooseAClassification {
     return Intl.message(
@@ -1210,11 +1340,181 @@ class S {
     );
   }
 
+  /// `Texto copiado!`
+  String get textShareUserReview {
+    return Intl.message(
+      'Texto copiado!',
+      name: 'textShareUserReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não encontrou o local que estava procurando?`
+  String get textDontFoundThePlace {
+    return Intl.message(
+      'Não encontrou o local que estava procurando?',
+      name: 'textDontFoundThePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crie ele aqui.`
+  String get textCreateHere {
+    return Intl.message(
+      'Crie ele aqui.',
+      name: 'textCreateHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Usuário deletado com sucesso`
+  String get textDeleteUser {
+    return Intl.message(
+      'Usuário deletado com sucesso',
+      name: 'textDeleteUser',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exemplo: Ela/Dela, Elu/Delu, Ela/Elu`
   String get textExamplePronouns {
     return Intl.message(
       'Exemplo: Ela/Dela, Elu/Delu, Ela/Elu',
       name: 'textExamplePronouns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirme sua senha`
+  String get textConfirmPassword {
+    return Intl.message(
+      'Confirme sua senha',
+      name: 'textConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insira sua senha novamente`
+  String get textReenterPassword1_0 {
+    return Intl.message(
+      'Insira sua senha novamente',
+      name: 'textReenterPassword1_0',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `para continuar.`
+  String get textReenterPassword1_1 {
+    return Intl.message(
+      'para continuar.',
+      name: 'textReenterPassword1_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirme sua senha atual`
+  String get textConfirmCurrentPassword {
+    return Intl.message(
+      'Confirme sua senha atual',
+      name: 'textConfirmCurrentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível confirmar sua senha!`
+  String get textErrorConfirmPassword {
+    return Intl.message(
+      'Não foi possível confirmar sua senha!',
+      name: 'textErrorConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleSafePlace {
+    return Intl.message(
+      'A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleSafePlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+`
+  String get textMostPeopleAlertPlace {
+    return Intl.message(
+      'Algumas pessoas\n reportaram problemas\n associados a esse local para\n comunidade LGBTQIA+',
+      name: 'textMostPeopleAlertPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+`
+  String get textMostPeopleDangerPlace {
+    return Intl.message(
+      'Local não recomendado.\n A maioria das pessoas não\n considera esse local seguro\n para comunidade LGBTQIA+',
+      name: 'textMostPeopleDangerPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avatar alterado com sucesso!`
+  String get textAvatarSuccessUpated {
+    return Intl.message(
+      'Avatar alterado com sucesso!',
+      name: 'textAvatarSuccessUpated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível alterar o avatar!`
+  String get textFailedToUpdateAvatar {
+    return Intl.message(
+      'Não foi possível alterar o avatar!',
+      name: 'textFailedToUpdateAvatar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sucesso!`
+  String get textSafeDialogTypeSucces {
+    return Intl.message(
+      'Sucesso!',
+      name: 'textSafeDialogTypeSucces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atenção!`
+  String get textSafeDialogTypeAlert {
+    return Intl.message(
+      'Atenção!',
+      name: 'textSafeDialogTypeAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Erro!`
+  String get textSafeDialogTypeError {
+    return Intl.message(
+      'Erro!',
+      name: 'textSafeDialogTypeError',
       desc: '',
       args: [],
     );
@@ -1305,6 +1605,196 @@ class S {
     return Intl.message(
       'e avalie locais',
       name: 'textOnBoarding3_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Configurações`
+  String get textAddLocationTitle {
+    return Intl.message(
+      'Configurações',
+      name: 'textAddLocationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adicionar Local`
+  String get textAddLocationSubTitle {
+    return Intl.message(
+      'Adicionar Local',
+      name: 'textAddLocationSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nome do local`
+  String get textAddLocationNameTextFieldTitle {
+    return Intl.message(
+      'Nome do local',
+      name: 'textAddLocationNameTextFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CEP`
+  String get textAddLocationCepFieldTitle {
+    return Intl.message(
+      'CEP',
+      name: 'textAddLocationCepFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Endereço`
+  String get textAddLocationAddressFieldTitle {
+    return Intl.message(
+      'Endereço',
+      name: 'textAddLocationAddressFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tipo de local`
+  String get textAddTypeLocationFieldTitle {
+    return Intl.message(
+      'Tipo de local',
+      name: 'textAddTypeLocationFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adicionar Foto (opcional)`
+  String get textAddLocationPhotoFieldTitle {
+    return Intl.message(
+      'Adicionar Foto (opcional)',
+      name: 'textAddLocationPhotoFieldTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADICIONAR LOCAL`
+  String get textAddLocationConfirm {
+    return Intl.message(
+      'ADICIONAR LOCAL',
+      name: 'textAddLocationConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local adicionado com sucesso!`
+  String get textAddLocationSuccess {
+    return Intl.message(
+      'Local adicionado com sucesso!',
+      name: 'textAddLocationSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bar`
+  String get textAddLocationTypePub {
+    return Intl.message(
+      'Bar',
+      name: 'textAddLocationTypePub',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Restaurante`
+  String get textAddLocationTypeRestaurant {
+    return Intl.message(
+      'Restaurante',
+      name: 'textAddLocationTypeRestaurant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Local público`
+  String get textAddLocationTypePublicLocation {
+    return Intl.message(
+      'Local público',
+      name: 'textAddLocationTypePublicLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Casa noturna`
+  String get textAddLocationTypeNightClub {
+    return Intl.message(
+      'Casa noturna',
+      name: 'textAddLocationTypeNightClub',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ex: Bar santa maria`
+  String get textAddLocationExample {
+    return Intl.message(
+      'Ex: Bar santa maria',
+      name: 'textAddLocationExample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ex: 04553434`
+  String get textAddLocationCepExample {
+    return Intl.message(
+      'Ex: 04553434',
+      name: 'textAddLocationCepExample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ex: Rua Clodomiro`
+  String get textAddLocationAddress {
+    return Intl.message(
+      'Ex: Rua Clodomiro',
+      name: 'textAddLocationAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Abrir Permissões`
+  String get textOpenPermissions {
+    return Intl.message(
+      'Abrir Permissões',
+      name: 'textOpenPermissions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nos conte como podemos te ajudar`
+  String get textContacHowToHelpYou {
+    return Intl.message(
+      'Nos conte como podemos te ajudar',
+      name: 'textContacHowToHelpYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível realizar a ação.`
+  String get textContacActionError {
+    return Intl.message(
+      'Não foi possível realizar a ação.',
+      name: 'textContacActionError',
       desc: '',
       args: [],
     );

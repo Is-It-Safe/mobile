@@ -1,3 +1,7 @@
+import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
+
+import '../../location/response/response_location_review.dart';
+
 class ResponseGetLocationsByName {
   List<ResponseGetLocationsByNameLocation>? locations;
   ResponseGetLocationsByNamePageable? pageable;
@@ -53,12 +57,14 @@ class ResponseGetLocationsByName {
 }
 
 class ResponseGetLocationsByNameLocation {
-  int? id;
-  String? name;
-  String? endereco;
-  String? imgUrl;
-  double? averageGrade;
-  int? reviewsQnt;
+  final int? id;
+  final String? name;
+  final String? endereco;
+  final String? imgUrl;
+  final double? averageGrade;
+  final String? averageImpressionStatus;
+  final int? reviewsQnt;
+  final List<ResponseLocationReview>? reviews;
 
   ResponseGetLocationsByNameLocation({
     this.id,
@@ -66,7 +72,9 @@ class ResponseGetLocationsByNameLocation {
     this.endereco,
     this.imgUrl,
     this.averageGrade,
+    this.averageImpressionStatus,
     this.reviewsQnt,
+    this.reviews,
   });
 
   factory ResponseGetLocationsByNameLocation.fromJson(dynamic json) {
@@ -76,7 +84,13 @@ class ResponseGetLocationsByNameLocation {
       endereco: json['endereco'],
       imgUrl: json['imgUrl'],
       averageGrade: json['averageGrade'],
+      averageImpressionStatus: json['averageImpressionStatus'],
       reviewsQnt: json['reviewsQnt'],
+      reviews: json['reviews'] != null
+          ? (json['reviews'] as List)
+              .map((i) => ResponseLocationReview.fromJson(i))
+              .toList()
+          : null,
     );
   }
 }
