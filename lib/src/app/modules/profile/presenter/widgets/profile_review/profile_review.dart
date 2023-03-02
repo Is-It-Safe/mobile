@@ -36,21 +36,20 @@ class _ProfileReviewState extends State<ProfileReview> {
     if (grade == 0.0 && grade < 1.0) return AssetConstants.emoticon.angry;
     if (grade >= 1.0 && grade < 2.0) return AssetConstants.emoticon.sad;
     if (grade >= 2.0 && grade < 3.0) return AssetConstants.emoticon.neutral;
-    if (grade >= 3.0 && grade < 4.0) return AssetConstants.emoticon.happy;
-    if (grade >= 4.0) return AssetConstants.emoticon.excited;
+    if (grade >= 3.0) return AssetConstants.emoticon.happy;
 
     return AssetConstants.emoticon.neutral;
   }
 
   String _getEmotionText(double? grade) {
-    if (grade == null) return S.current.textNeutral;
+    if (grade == null) return S.current.textRegular;
     if (grade == 0.0 && grade < 1.0) return S.current.textAngry;
     if (grade >= 1.0 && grade < 2.0) return S.current.textUpset;
-    if (grade >= 2.0 && grade < 3.0) return S.current.textNeutral;
-    if (grade >= 3.0 && grade < 4.0) return S.current.textHappy;
-    if (grade >= 4.0) return S.current.textExcited;
+    if (grade >= 2.0 && grade < 3.0) return S.current.textRegular;
+    if (grade >= 3.0) return S.current.textSatisfied;
 
-    return S.current.textNeutral;
+
+    return S.current.textRegular;
   }
 
   void doSeeMore() {
@@ -97,7 +96,7 @@ class _ProfileReviewState extends State<ProfileReview> {
   Widget _mountEmotion() {
     return Column(
       mainAxisAlignment:
-          _isTextExpanded ? MainAxisAlignment.start : MainAxisAlignment.center,
+      _isTextExpanded ? MainAxisAlignment.start : MainAxisAlignment.center,
       children: [
         SvgPicture.asset(_getEmotionImage(widget.review.myGrade)),
         const SizedBox(height: 4.0),

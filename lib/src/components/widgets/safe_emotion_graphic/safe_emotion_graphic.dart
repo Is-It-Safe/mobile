@@ -30,7 +30,7 @@ class SafeEmotionGrapic extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border:
-                  Border.all(width: 1, color: SafeColors.generalColors.primary),
+              Border.all(width: 1, color: SafeColors.generalColors.primary),
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
             ),
@@ -93,12 +93,6 @@ class SafeEmotionGrapic extends StatelessWidget {
                   avaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 3,
-                ),
-                SafeEmotionGraphicStatus(
-                  status: S.current.textIncredible,
-                  avaliations: 0,
-                  sumOfAvaliations: avaliationCount,
-                  statusGrade: 4,
                 ),
               ],
             ),

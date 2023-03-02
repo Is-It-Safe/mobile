@@ -15,7 +15,7 @@ class SafeEmotionSlider extends StatefulWidget {
     Key? key,
     required this.value,
     this.min = 0,
-    this.max = 5,
+    this.max = 4,
     required this.onChanged,
   }) : super(key: key);
 
@@ -35,7 +35,7 @@ class _SafeEmotionSliderState extends State<SafeEmotionSlider> {
             inactiveTrackColor: SafeColors.componentsColors.iconColors.navBar,
             thumbColor: SafeColors.componentsColors.iconColors.navBar,
             overlayColor:
-                SafeColors.componentsColors.iconColors.navBar.withOpacity(0.2),
+            SafeColors.componentsColors.iconColors.navBar.withOpacity(0.2),
             trackHeight: 2.0,
             trackShape: const RectangularSliderTrackShape(),
             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
@@ -75,15 +75,11 @@ class TextRowBuilder extends StatelessWidget {
         ),
         TextItem(
           isVisible: value > 2 && value <= 3,
-          text: S.current.textNeutral,
+          text: S.current.textRegular,
         ),
         TextItem(
-          isVisible: value > 3 && value <= 4,
-          text: S.current.textHappy,
-        ),
-        TextItem(
-          isVisible: value > 4,
-          text: S.current.textExcited,
+          isVisible: value > 3,
+          text: S.current.textSatisfied,
         ),
       ],
     );
@@ -116,11 +112,7 @@ class IconRowBuilder extends StatelessWidget {
         ),
         IconItem(
           icon: AssetConstants.emoticon.happy,
-          isVisible: value > 3 && value <= 4,
-        ),
-        IconItem(
-          icon: AssetConstants.emoticon.excited,
-          isVisible: value > 4,
+          isVisible: value > 3,
         ),
       ],
     );
