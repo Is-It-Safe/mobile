@@ -109,7 +109,8 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                         SizedBox(height: size.height * .023),
                         Container(
                           margin: EdgeInsets.symmetric(
-                              horizontal: size.width * .08212),
+                            horizontal: size.width * .08212,
+                          ),
                           child: const SafeImpressionCard(
                             type: SafeImpressionEnum.success,
                           ),
