@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dar
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permission_card.dart';
+import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
@@ -46,13 +47,18 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
       length: 2,
       child: Scaffold(
         key: _scaffoldKey,
-        endDrawer: FutureBuilder<HomeDrawerVO>(
-          future: controller.getHomeDrawerInfo(),
+        endDrawer: StreamBuilder<SafeEvent<HomeDrawerVO>>(
+          initialData: controller.lastDrawerEvent,
+          stream: controller.userDrawerDataController.stream,
           builder: (context, snapshot) {
+            HomeDrawerVO? userData = snapshot.data?.data;
+            userData ??= controller.lastDrawerEvent.data;
             return HomeDrawer(
-              name: snapshot.data?.userName,
-              image:
-                  snapshot.data?.userImage ?? PlaceHolderAssets.profileAvatar,
+              name: userData?.userName,
+              image: userData?.userImage == null ||
+                      userData?.userImage.isEmpty == true
+                  ? PlaceHolderAssets.profileAvatar
+                  : userData!.userImage,
             );
           },
         ),
@@ -60,6 +66,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
           tabController: tabController,
           onOpenDrawer: () {
             _scaffoldKey.currentState!.openEndDrawer();
+            controller.getHomeDrawerInfo();
           },
           onBottomTap: (tab) async {
             switch (tab) {
