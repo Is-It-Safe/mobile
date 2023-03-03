@@ -145,8 +145,9 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                             itemCount: loc.reviews!.length,
                             itemBuilder: (_, index) {
                               return SafeReviewCard(
-                                review:
-                                    ReviewEntity.toEntity(loc.reviews![index]),
+                                review: ReviewEntity.toEntity(
+                                  loc.reviews![index],
+                                ),
                               );
                             },
                           ),
