@@ -26,7 +26,7 @@ class SafeEmotionGrapic extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(
               left: size.width * .076,
-              right: size.width * .055,
+              right: size.width * .035,
               top: size.height * .023,
               bottom: size.height * .018,
             ),
@@ -40,13 +40,7 @@ class SafeEmotionGrapic extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    // Text(
-                    //   "$grade",
-                    //   style: TextStyles.headline3(
-                    //     fontWeight: FontWeight.w700,
-                    //   ).copyWith(fontSize: 22),
-                    // ),
-                    SizedBox(width: size.width * .21),
+                    SizedBox(width: size.width * .22),
                     Flexible(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,13 +74,13 @@ class SafeEmotionGrapic extends StatelessWidget {
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textUpset,
-                  emotionalStatusAvaliations: 2,
+                  emotionalStatusAvaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 1,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textRegular, // Neutro
-                  emotionalStatusAvaliations: 0,
+                  emotionalStatusAvaliations: 2,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 2,
                 ),

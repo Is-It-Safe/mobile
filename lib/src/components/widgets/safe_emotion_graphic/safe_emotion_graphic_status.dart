@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 class SafeEmotionGraphicStatus extends StatelessWidget {
   final String emotionalStatus;
@@ -22,15 +23,19 @@ class SafeEmotionGraphicStatus extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(
-            emotionalStatus,
-            textAlign: TextAlign.right,
-            overflow: TextOverflow.ellipsis,
+          Flexible(
+            flex: 3,
+            child: Text(
+              emotionalStatus,
+              textAlign: TextAlign.right,
+              style: TextStyles.emotionalStatus(),
+            ),
           ),
           SizedBox(width: size.width * .044),
           Text("$emotionalStatusAvaliations"),
-          SizedBox(width: size.width * .01744),
-          Expanded(
+          SizedBox(width: size.width * .017),
+          Flexible(
+            flex: 6,
             child: _GraphicGradePercentLine(
               grade: statusGrade,
               avaliations: emotionalStatusAvaliations,
@@ -60,7 +65,7 @@ class _GraphicGradePercentLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double fullSize = size.width * .45;
+    double fullSize = size.width * .5;
 
     return Stack(
       alignment: AlignmentDirectional.centerStart,
