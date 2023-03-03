@@ -30,11 +30,6 @@ class AuthService implements IAuthService {
 
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
-    //TODO request mockada
-    request = RequestLogin(
-      email: 'basic@gmail.com',
-      password: '123456',
-    );
     try {
       request = RequestLogin(
         email: request.email,

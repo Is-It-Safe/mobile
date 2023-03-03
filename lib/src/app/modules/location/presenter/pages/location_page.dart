@@ -125,6 +125,7 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                         SizedBox(height: size.height * .037),
                         Container(
                           margin: EdgeInsets.only(left: size.width * .084),
+                          padding: EdgeInsets.only(right: size.width * .1),
                           child: Text(
                             S.current.textWhatPeopleAreTalkingAboutThisPlace,
                             style: TextStyles.subtitle2().copyWith(
