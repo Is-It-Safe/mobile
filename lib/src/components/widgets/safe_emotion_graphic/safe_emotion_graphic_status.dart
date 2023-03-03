@@ -25,15 +25,18 @@ class SafeEmotionGraphicStatus extends StatelessWidget {
           Text(
             emotionalStatus,
             textAlign: TextAlign.right,
+            overflow: TextOverflow.ellipsis,
           ),
           SizedBox(width: size.width * .044),
           Text("$emotionalStatusAvaliations"),
           SizedBox(width: size.width * .01744),
-          _GraphicGradePercentLine(
-            grade: statusGrade,
-            avaliations: emotionalStatusAvaliations,
-            sumOfAvaliations: sumOfAvaliations,
-            size: size,
+          Expanded(
+            child: _GraphicGradePercentLine(
+              grade: statusGrade,
+              avaliations: emotionalStatusAvaliations,
+              sumOfAvaliations: sumOfAvaliations,
+              size: size,
+            ),
           ),
         ],
       ),
@@ -67,7 +70,7 @@ class _GraphicGradePercentLine extends StatelessWidget {
           // width: fullSize / 2,
           width: (grade == 0 || avaliations == 0 || sumOfAvaliations == 0)
               ? 1
-              : ((grade * (avaliations / sumOfAvaliations)) * fullSize),
+              : (((avaliations / sumOfAvaliations)) * fullSize),
           color: SafeColors.componentsColors.emotionStatusColor,
         ),
         Container(

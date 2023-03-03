@@ -85,13 +85,13 @@ class SafeEmotionGrapic extends StatelessWidget {
                   statusGrade: 1,
                 ),
                 SafeEmotionGraphicStatus(
-                  emotionalStatus: S.current.textRegular,
+                  emotionalStatus: S.current.textRegular, // Neutro
                   emotionalStatusAvaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 2,
                 ),
                 SafeEmotionGraphicStatus(
-                  emotionalStatus: S.current.textSatisfied,
+                  emotionalStatus: S.current.textSatisfied, // Contente
                   emotionalStatusAvaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 3,
