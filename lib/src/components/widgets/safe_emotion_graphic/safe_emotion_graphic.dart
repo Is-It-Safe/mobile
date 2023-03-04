@@ -7,11 +7,11 @@ import 'package:is_it_safe_app/src/components/widgets/safe_emotion_graphic/safe_
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 
 class SafeEmotionGrapic extends StatelessWidget {
-  final double grade;
+  final double averageGrade;
   final int avaliationCount;
   const SafeEmotionGrapic({
     Key? key,
-    required this.grade,
+    required this.averageGrade,
     required this.avaliationCount,
   }) : super(key: key);
 
@@ -74,18 +74,18 @@ class SafeEmotionGrapic extends StatelessWidget {
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textUpset,
-                  emotionalStatusAvaliations: 0,
+                  emotionalStatusAvaliations: 1,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 1,
                 ),
                 SafeEmotionGraphicStatus(
-                  emotionalStatus: S.current.textRegular, // Neutro
-                  emotionalStatusAvaliations: 2,
+                  emotionalStatus: S.current.textRegular,
+                  emotionalStatusAvaliations: 1,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 2,
                 ),
                 SafeEmotionGraphicStatus(
-                  emotionalStatus: S.current.textSatisfied, // Contente
+                  emotionalStatus: S.current.textSatisfied,
                   emotionalStatusAvaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 3,
@@ -109,7 +109,7 @@ class SafeEmotionGrapic extends StatelessWidget {
                   width: size.width * .15,
                 ),
                 Text(
-                  "$grade",
+                  "$averageGrade",
                   style: TextStyles.headline3(
                     fontWeight: FontWeight.w700,
                   ).copyWith(fontSize: 22),

@@ -103,7 +103,7 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                         ),
                         SizedBox(height: size.height * .047),
                         SafeEmotionGrapic(
-                          grade: loc.averageGrade ?? 0,
+                          averageGrade: loc.averageGrade ?? 0,
                           avaliationCount: loc.reviews!.length,
                         ),
                         SizedBox(height: size.height * .023),
