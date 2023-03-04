@@ -1080,10 +1080,10 @@ class S {
     );
   }
 
-  /// `Agora escolha um nome para todos verem, seja criativo!`
+  /// `Agora escolha um nome para todos verem, são no total 10 caracteres, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(
-      'Agora escolha um nome para todos verem, seja criativo!',
+      'Agora escolha um nome para todos verem, são no total 10 caracteres, seja criativo!',
       name: 'textDontBeAfraidToBeCreative',
       desc: '',
       args: [],
@@ -1770,16 +1770,6 @@ class S {
     );
   }
 
-  /// `Abrir Permissões`
-  String get textOpenPermissions {
-    return Intl.message(
-      'Abrir Permissões',
-      name: 'textOpenPermissions',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Nos conte como podemos te ajudar`
   String get textContacHowToHelpYou {
     return Intl.message(
@@ -1795,6 +1785,16 @@ class S {
     return Intl.message(
       'Não foi possível realizar a ação.',
       name: 'textContacActionError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O nome não pode ter menos que 3 letras.`
+  String get textRegisterValidateUserName {
+    return Intl.message(
+      'O nome não pode ter menos que 3 letras.',
+      name: 'textRegisterValidateUserName',
       desc: '',
       args: [],
     );

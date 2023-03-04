@@ -55,7 +55,9 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   labelText: S.current.textName + StringConstants.asterisk,
                   bottomText: S.current.textSayYourNameThisInfoIsPrivate,
                   onChanged: (value) => controller.toogleRegisterButton(),
-                  validator: (value) => controller.validateTextField(value),
+                  validator: (value) => controller.validateNameTextField(value),
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
                 ),
                 const SizedBox(height: 20),
                 SafeTextFormField(
@@ -63,7 +65,10 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   labelText: S.current.textUsername + StringConstants.asterisk,
                   bottomText: S.current.textDontBeAfraidToBeCreative,
                   onChanged: (value) => controller.toogleRegisterButton(),
-                  validator: (value) => controller.validateTextField(value),
+                  validator: (value) =>
+                      controller.validateUserNameTextField(value),
+                  textInputAction: TextInputAction.next,
+                  maxLength: 10,
                 ),
                 const SizedBox(height: 20),
                 SafeTextFormField(
@@ -71,6 +76,8 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   labelText: S.current.textPronouns,
                   bottomText: S.current.textHowDoYouPreferWeReferToYou,
                   onChanged: (value) => controller.toogleRegisterButton(),
+                  textCapitalization: TextCapitalization.words,
+                  textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 20),
                 SafeTextFormField(
@@ -81,6 +88,8 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                       S.current.textTellUsTheEmailAssociatedWithYourAccount,
                   onChanged: (value) => controller.toogleRegisterButton(),
                   validator: (value) => controller.validateEmail(value),
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 20),
                 SafeTextFormField(
@@ -96,6 +105,8 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                       _showPassword = !_showPassword;
                     }),
                   ),
+                  keyboardType: TextInputType.visiblePassword,
+                  textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 20),
                 SafeTextFormField(
@@ -104,16 +115,15 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   labelText: S.current.textPasswordConfirmation +
                       StringConstants.asterisk,
                   onChanged: (value) => controller.toogleRegisterButton(),
-                  validator: (value) => controller.validatePassword(
-                    value,
-                    errorText: S.current.textErrorDifferentPasswords,
-                  ),
+                  validator: (value) => controller.validatePassword(value),
                   suffixIcon: SafeShowFieldButton(
                     value: _showPassword,
                     onTap: () => setState(() {
                       _showPassword = !_showPassword;
                     }),
                   ),
+                  keyboardType: TextInputType.visiblePassword,
+                  textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 20),
                 _mountTermsAndConditions(),
@@ -176,7 +186,8 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                    Modular.to.push(MaterialPageRoute(builder: (_) => const TermsAndConditionsPage()));
+                      Modular.to.push(MaterialPageRoute(
+                          builder: (_) => const TermsAndConditionsPage()));
                     }),
             ],
           ),

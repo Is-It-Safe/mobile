@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -121,7 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
-            "Agora escolha um nome para todos verem, seja criativo!"),
+            "Agora escolha um nome para todos verem, são no total 10 caracteres, seja criativo!"),
         "textDontFoundThePlace": MessageLookupByLibrary.simpleMessage(
             "Não encontrou o local que estava procurando?"),
         "textDontRecomendThisPlace":
@@ -231,8 +230,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("experiências"),
         "textOnBoarding3_2":
             MessageLookupByLibrary.simpleMessage("e avalie locais"),
-        "textOpenPermissions":
-            MessageLookupByLibrary.simpleMessage("Abrir Permissões"),
         "textPageSubtitleLogin":
             MessageLookupByLibrary.simpleMessage("Sentimos sua falta!"),
         "textPageSubtitleProfileRegisterPage":
@@ -262,6 +259,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cadastro realizado com sucesso!"),
         "textRegisterSuccessMessage": MessageLookupByLibrary.simpleMessage(
             "Você será redirecionado para a página de login."),
+        "textRegisterValidateUserName": MessageLookupByLibrary.simpleMessage(
+            "O nome não pode ter menos que 3 letras."),
         "textRegular": MessageLookupByLibrary.simpleMessage("Regular"),
         "textReviewCompleted":
             MessageLookupByLibrary.simpleMessage("Review Completa!"),

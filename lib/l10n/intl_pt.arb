@@ -113,7 +113,7 @@
     
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",
-    "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, seja criativo!",
+    "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, são no total 10 caracteres, seja criativo!",
     "textHowDoYouPreferWeReferToYou":"Como prefere que as pessoas se refiram a você?",
     "textWeCareAboutYourSafety":"Sua segurança é muito importante para nós.",
     "textAtLeast8Characteres":"- Sua senha deve ter mais de 8 caracteres",
@@ -190,8 +190,8 @@
     "textAddLocationCepExample": "Ex: 04553434",
     "textAddLocationAddress": "Ex: Rua Clodomiro",
 
-    "textOpenPermissions": "Abrir Permissões",
-
     "textContacHowToHelpYou": "Nos conte como podemos te ajudar",
-    "textContacActionError": "Não foi possível realizar a ação."
+    "textContacActionError": "Não foi possível realizar a ação.",
+
+    "textRegisterValidateUserName":"O nome não pode ter menos que 3 letras."
 }
