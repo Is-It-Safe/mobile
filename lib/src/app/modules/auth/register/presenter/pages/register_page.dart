@@ -48,7 +48,20 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
             key: _formKey,
             child: Column(
               children: [
-                _mountWelcomeText(),
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: S.current.textWelcome + StringConstants.breakLine,
+                        style: TextStyles.headline1(),
+                      ),
+                      TextSpan(
+                        text: S.current.textMeetingYouWillBeAPleasure,
+                        style: TextStyles.headline2(),
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(height: 30),
                 SafeTextFormField(
                   controller: controller.nameController,
@@ -126,9 +139,47 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                   textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 20),
-                _mountTermsAndConditions(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SafeCheckBox(
+                      value: controller.isTermsAndConditionsChecked,
+                      onChanged: (value) => setState(() {
+                        controller.toogleTermsAndConditions();
+                        controller.toogleRegisterButton();
+                      }),
+                    ),
+                    RichText(
+                      overflow: TextOverflow.fade,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: S.current.textIReadAndAcceptThe,
+                            style: TextStyles.helper(),
+                          ),
+                          TextSpan(
+                            text: S.current.textTermsAndConditions +
+                                StringConstants.asterisk,
+                            style: TextStyles.helper(
+                              color: SafeColors.statusColors.active,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Modular.to.push(
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        const TermsAndConditionsPage(),
+                                  ),
+                                );
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 20),
-                _mountRegisterButton(),
+                MountRegisterButton(controller: controller, formKey: _formKey),
                 const SizedBox(height: 20),
               ],
             ),
@@ -137,79 +188,39 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
       ),
     );
   }
+}
 
-  StreamBuilder<bool> _mountRegisterButton() {
+class MountRegisterButton extends StatelessWidget {
+  const MountRegisterButton({
+    Key? key,
+    required this.controller,
+    required GlobalKey<FormState> formKey,
+  })  : _formKey = formKey,
+        super(key: key);
+
+  final RegisterBloc controller;
+  final GlobalKey<FormState> _formKey;
+
+  @override
+  Widget build(BuildContext context) {
     return StreamBuilder<bool>(
-        stream: controller.registerButtonController.stream,
-        initialData: false,
-        builder: (context, snapshot) {
-          return SafeButton(
-              title: S.current.textRegister,
-              state: snapshot.data == true
-                  ? ButtonState.rest
-                  : ButtonState.disabled,
-              onTap: () {
-                _formKey.currentState?.validate();
-                if (snapshot.data == true) {
-                  Modular.to.pushNamed(
-                    StringConstants.dot + RegisterProfilePage.route,
-                  );
-                }
-              });
-        });
-  }
-
-  Row _mountTermsAndConditions() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SafeCheckBox(
-          value: controller.isTermsAndConditionsChecked,
-          onChanged: (value) => setState(() {
-            controller.toogleTermsAndConditions();
-            controller.toogleRegisterButton();
-          }),
-        ),
-        RichText(
-          overflow: TextOverflow.fade,
-          text: TextSpan(
-            children: [
-              TextSpan(
-                text: S.current.textIReadAndAcceptThe,
-                style: TextStyles.helper(),
-              ),
-              TextSpan(
-                  text: S.current.textTermsAndConditions +
-                      StringConstants.asterisk,
-                  style: TextStyles.helper(
-                    color: SafeColors.statusColors.active,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      Modular.to.push(MaterialPageRoute(
-                          builder: (_) => const TermsAndConditionsPage()));
-                    }),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  RichText _mountWelcomeText() {
-    return RichText(
-      text: TextSpan(
-        children: [
-          TextSpan(
-            text: S.current.textWelcome + StringConstants.breakLine,
-            style: TextStyles.headline1(),
-          ),
-          TextSpan(
-            text: S.current.textMeetingYouWillBeAPleasure,
-            style: TextStyles.headline2(),
-          ),
-        ],
-      ),
+      stream: controller.registerButtonController.stream,
+      initialData: false,
+      builder: (context, snapshot) {
+        return SafeButton(
+          title: S.current.textRegister,
+          state:
+              snapshot.data == true ? ButtonState.rest : ButtonState.disabled,
+          onTap: () {
+            _formKey.currentState?.validate();
+            if (snapshot.data == true) {
+              Modular.to.pushNamed(
+                StringConstants.dot + RegisterProfilePage.route,
+              );
+            }
+          },
+        );
+      },
     );
   }
 }

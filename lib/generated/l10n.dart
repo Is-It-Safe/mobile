@@ -1080,10 +1080,10 @@ class S {
     );
   }
 
-  /// `Agora escolha um nome para todos verem, são no total 10 caracteres, seja criativo!`
+  /// `Agora escolha um nome para todos verem, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(
-      'Agora escolha um nome para todos verem, são no total 10 caracteres, seja criativo!',
+      'Agora escolha um nome para todos verem, seja criativo!',
       name: 'textDontBeAfraidToBeCreative',
       desc: '',
       args: [],
@@ -1765,6 +1765,16 @@ class S {
     return Intl.message(
       'Ex: Rua Clodomiro',
       name: 'textAddLocationAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Abrir Permissões`
+  String get textOpenPermissions {
+    return Intl.message(
+      'Abrir Permissões',
+      name: 'textOpenPermissions',
       desc: '',
       args: [],
     );

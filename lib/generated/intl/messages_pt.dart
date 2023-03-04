@@ -120,7 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
-            "Agora escolha um nome para todos verem, são no total 10 caracteres, seja criativo!"),
+            "Agora escolha um nome para todos verem, seja criativo!"),
         "textDontFoundThePlace": MessageLookupByLibrary.simpleMessage(
             "Não encontrou o local que estava procurando?"),
         "textDontRecomendThisPlace":
@@ -230,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("experiências"),
         "textOnBoarding3_2":
             MessageLookupByLibrary.simpleMessage("e avalie locais"),
+        "textOpenPermissions":
+            MessageLookupByLibrary.simpleMessage("Abrir Permissões"),
         "textPageSubtitleLogin":
             MessageLookupByLibrary.simpleMessage("Sentimos sua falta!"),
         "textPageSubtitleProfileRegisterPage":
