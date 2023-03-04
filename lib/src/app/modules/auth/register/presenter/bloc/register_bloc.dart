@@ -164,6 +164,8 @@ class RegisterBloc extends SafeBloC {
   validateNameTextField(String? value) {
     if (!ValidationUtil.name(value ?? StringConstants.empty) || value == null) {
       return S.current.textErrorEmptyField;
+    } else if (value.length < 3) {
+      return S.current.textRegisterValidateUserName;
     }
     return null;
   }

@@ -1080,10 +1080,10 @@ class S {
     );
   }
 
-  /// `Agora escolha um nome para todos verem, seja criativo!`
+  /// `Agora escolha um nome para todos verem, são no máximo 10 caracteres, seja criativo!`
   String get textDontBeAfraidToBeCreative {
     return Intl.message(
-      'Agora escolha um nome para todos verem, seja criativo!',
+      'Agora escolha um nome para todos verem, são no máximo 10 caracteres, seja criativo!',
       name: 'textDontBeAfraidToBeCreative',
       desc: '',
       args: [],
@@ -1210,10 +1210,10 @@ class S {
     );
   }
 
-  /// `Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números`
+  /// `Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - Letras e números`
   String get textPasswordSpecifications {
     return Intl.message(
-      'Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números',
+      'Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - Letras e números',
       name: 'textPasswordSpecifications',
       desc: '',
       args: [],

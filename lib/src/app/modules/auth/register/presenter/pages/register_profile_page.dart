@@ -54,6 +54,7 @@ class _RegisterProfilePageState
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: StreamBuilder<SafeEvent<RegisterEntity>>(
               stream: controller.doRegisterController.stream,
+              // initialData: SafeEvent.initial(),
               builder: (context, snapshot) {
                 return Form(
                   key: _formKey,
@@ -68,6 +69,7 @@ class _RegisterProfilePageState
                         keyboardType: TextInputType.number,
                         validator: (value) =>
                             controller.validateBirthdate(value),
+                        textInputAction: TextInputAction.next,
                       ),
                       const SizedBox(height: 30),
                       StreamSafeDropdown<GenderEntity>(
@@ -84,7 +86,28 @@ class _RegisterProfilePageState
                         title: S.current.textSexualOrientation,
                       ),
                       const SizedBox(height: 30),
-                      _mountButtons(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SafeButton(
+                            title: S.current.textAdvance,
+                            hasBackground: false,
+                            size: ButtonSize.small,
+                            onTap: () {
+                              controller.doRegister(
+                                isAdvanceButton: true,
+                              );
+                            },
+                          ),
+                          SafeButton(
+                            title: S.current.textFinish,
+                            size: ButtonSize.small,
+                            onTap: () {
+                              controller.doRegister();
+                            },
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 );
@@ -95,69 +118,46 @@ class _RegisterProfilePageState
   }
 
   void onRegistrationInit() {
-    controller.doRegisterController.stream.listen((event) async {
-      switch (event.status) {
-        case Status.done:
-          showDialog(
-            context: context,
-            builder: (context) => SafeDialog(
-              title: S.current.textRegisterSuccess,
-              message: S.current.textRegisterSuccessMessage,
-              primaryBtn: SafeButton(
-                title: S.current.textOk,
-                onTap: () {
-                  Modular.to.pop();
-                  Modular.to
-                      .pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
-                },
+    controller.doRegisterController.stream.listen(
+      (event) async {
+        switch (event.status) {
+          case Status.done:
+            showDialog(
+              context: context,
+              builder: (context) => SafeDialog(
+                title: S.current.textRegisterSuccess,
+                message: S.current.textRegisterSuccessMessage,
+                primaryBtn: SafeButton(
+                  title: S.current.textOk,
+                  onTap: () {
+                    Modular.to.pop();
+                    Modular.to
+                        .pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
+                  },
+                ),
+                type: SafeDialogType.success,
               ),
-              type: SafeDialogType.success,
-            ),
-          );
-          break;
-        case Status.loading:
-          const SafeLoading();
-          break;
-        case Status.error:
-          Modular.to.pop();
-
-          showDialog(
-            context: context,
-            builder: (_) => SafeDialog(
-              message: event.message ?? S.current.textErrorDropdown,
-              primaryBtn: SafeButton(
-                title: S.current.textOk,
-              ),
-              type: SafeDialogType.error,
-            ),
-          );
-          break;
-      }
-    });
-  }
-
-  Widget _mountButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SafeButton(
-          title: S.current.textAdvance,
-          hasBackground: false,
-          size: ButtonSize.small,
-          onTap: () {
-            controller.doRegister(
-              isAdvanceButton: true,
             );
-          },
-        ),
-        SafeButton(
-          title: S.current.textFinish,
-          size: ButtonSize.small,
-          onTap: () {
-            controller.doRegister();
-          },
-        ),
-      ],
+            break;
+          case Status.loading:
+            const SafeLoading();
+            break;
+          case Status.error:
+            Modular.to.pop();
+
+            showDialog(
+              context: context,
+              builder: (_) => SafeDialog(
+                message: event.message ?? S.current.textErrorDropdown,
+                primaryBtn: SafeButton(
+                  title: S.current.textOk,
+                ),
+                type: SafeDialogType.error,
+              ),
+            );
+            break;
+        }
+      },
     );
   }
 }

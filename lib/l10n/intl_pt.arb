@@ -113,7 +113,7 @@
     
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",
-    "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, seja criativo!",
+    "textDontBeAfraidToBeCreative":"Agora escolha um nome para todos verem, são no máximo 10 caracteres, seja criativo!",
     "textHowDoYouPreferWeReferToYou":"Como prefere que as pessoas se refiram a você?",
     "textWeCareAboutYourSafety":"Sua segurança é muito importante para nós.",
     "textAtLeast8Characteres":"- Sua senha deve ter mais de 8 caracteres",
@@ -126,7 +126,7 @@
     "textTellUsTheEmailAssociatedWithYourAccount":"Nos diga seu e-mail, ele será associado a sua conta",
     "textYourRepresentationHereInside":"Uma representação sua aqui dentro!",
     "textTypeTheNameOfAPlaceToSearch":"Digite o nome de um local para buscar.",
-    "textPasswordSpecifications":"Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números",
+    "textPasswordSpecifications":"Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - Letras e números",
     "textSelectAPicture":"Selecione uma foto antes de salvar.",
     "textRegisterSuccess":"Cadastro realizado com sucesso!",
     "textRegisterSuccessMessage":"Você será redirecionado para a página de login.",

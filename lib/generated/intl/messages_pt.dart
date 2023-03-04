@@ -120,7 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
-            "Agora escolha um nome para todos verem, seja criativo!"),
+            "Agora escolha um nome para todos verem, são no máximo 10 caracteres, seja criativo!"),
         "textDontFoundThePlace": MessageLookupByLibrary.simpleMessage(
             "Não encontrou o local que estava procurando?"),
         "textDontRecomendThisPlace":
@@ -244,7 +244,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPasswordConfirmation":
             MessageLookupByLibrary.simpleMessage("Confirmar senha"),
         "textPasswordSpecifications": MessageLookupByLibrary.simpleMessage(
-            "Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números"),
+            "Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - Letras e números"),
         "textPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Informações Pessoais"),
         "textPrivacy": MessageLookupByLibrary.simpleMessage("Privacidade"),

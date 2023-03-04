@@ -34,8 +34,11 @@ class DoRegisterUseCase extends SafeUseCase {
     );
 
     if (name.isEmpty || username.isEmpty || email.isEmpty || password.isEmpty) {
-      return Failure(SafeInvalidCredentialsError(
-          "Campos de autenticação não podem estar vazios."));
+      return Failure(
+        SafeInvalidCredentialsError(
+          "Campos de autenticação não podem estar vazios.",
+        ),
+      );
     }
 
     try {
