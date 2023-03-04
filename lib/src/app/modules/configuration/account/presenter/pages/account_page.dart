@@ -121,6 +121,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
                           profilePhoto: value.toString(),
                         ))
                             .then((_) async {
+                          await controller.updateUserImage(value.toString());
                           await controller.getUser();
                         });
                       }
