@@ -105,14 +105,16 @@ class AuthService implements IAuthService {
   Future<bool> confirmPassword(
     RequestConfirmPassword request,
   ) async {
+    final token = await getAccessToken();
+
     final requestConfig = RequestConfig(
       path: ApiConstants.confirmPassword,
       method: HttpMethod.post,
-      body: request.toJson(),
+      body: request.toMap(),
       options: Options(
         headers: {
-          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
+          ApiConstants.kAuthorization: token,
+          ApiConstants.kContentType: 'application/json',
         },
       ),
     );

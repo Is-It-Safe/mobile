@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
+import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/confirm_password_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
 import 'package:result_dart/result_dart.dart';
@@ -12,7 +14,9 @@ class ChangePasswordBloC extends SafeBloC {
   final ConfirmPasswordUseCase confirmPasswordUseCase;
   ChangePasswordBloC({
     required this.confirmPasswordUseCase,
-  });
+  }) {
+    init();
+  }
 
   late StreamController<SafeEvent<bool>> confirmPasswordController;
 
@@ -46,6 +50,17 @@ class ChangePasswordBloC extends SafeBloC {
       confirmPasswordController.sink.addError(e.toString());
       return false;
     }
+  }
+
+  final newPasswordText = TextEditingController();
+  final confirmNewPasswordText = TextEditingController();
+
+  bool get validateNewPassword {
+    return ((newPasswordText.text.isNotEmpty &&
+            confirmNewPasswordText.text.isNotEmpty) &&
+        (newPasswordText.text.isPassword &&
+            confirmNewPasswordText.text.isPassword) &&
+        (newPasswordText.text == confirmNewPasswordText.text));
   }
 
   @override
