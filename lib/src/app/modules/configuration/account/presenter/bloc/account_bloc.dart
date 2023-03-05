@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
@@ -17,6 +18,7 @@ class AccountBloc extends SafeBloC {
   final UpdateUserUseCase updateUserUseCase;
   final SaveUserLoginUseCase saveUserLoginUseCase;
   final SafeProfilePictureBloC safeProfilePictureBloc;
+  final SaveUserImageUseCase saveUserImageUseCase;
 
   late StreamController<SafeEvent<UserEntity>> userController;
 
@@ -25,6 +27,7 @@ class AccountBloc extends SafeBloC {
     required this.updateUserUseCase,
     required this.saveUserLoginUseCase,
     required this.safeProfilePictureBloc,
+    required this.saveUserImageUseCase,
   }) {
     init();
   }
@@ -57,6 +60,10 @@ class AccountBloc extends SafeBloC {
       userController.addError(e.toString());
       if (e is UnauthorizedException) await doLogout();
     }
+  }
+
+  Future<void> updateUserImage(String imagePath) async {
+    await saveUserImageUseCase.call(imagePath);
   }
 
   Future<void> doLogout() async {

@@ -9,6 +9,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_
 import 'package:is_it_safe_app/src/domain/use_case/change_password_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/confirm_password_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
@@ -36,14 +37,17 @@ class AccountModule extends Module {
           confirmPasswordUseCase: i.get<ConfirmPasswordUseCase>(),
           changePasswordUsecase: i.get<ChangePasswordUsecase>(),
         )),
-    Bind.lazySingleton((i) => AccountBloc(
-          getUserUseCase: i.get<GetUserUseCase>(),
-          updateUserUseCase: i.get<UpdateUserUseCase>(),
-          saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
-          safeProfilePictureBloc: i.get<SafeProfilePictureBloC>(),
-        )),
     Bind.lazySingleton(
         (i) => GlobalKey<ScaffoldState>(debugLabel: "key-password-confirm")),
+    Bind.lazySingleton(
+      (i) => AccountBloc(
+        getUserUseCase: i.get<GetUserUseCase>(),
+        updateUserUseCase: i.get<UpdateUserUseCase>(),
+        saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
+        safeProfilePictureBloc: i.get<SafeProfilePictureBloC>(),
+        saveUserImageUseCase: i.get<SaveUserImageUseCase>(),
+      ),
+    ),
   ];
 
   @override

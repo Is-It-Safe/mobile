@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/contact/presenter/pages/contact_page.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
@@ -48,6 +49,7 @@ class HomeDrawer extends StatelessWidget {
                 icon: AssetConstants.icons.account,
                 text: S.current.textDrawerMyAccount,
                 route: ConfigurationModule.route + AccountPage.route,
+                onNavigationCompleted: () => Modular.get<HomeBloc>().getHomeDrawerInfo(),
               ),
               const SizedBox(height: 30),
               // Contato
@@ -107,16 +109,24 @@ class DrawerItem extends StatelessWidget {
     required this.route,
     required this.icon,
     required this.text,
+    this.onNavigationCompleted,
   }) : super(key: key);
 
   final String route;
   final String icon;
   final String text;
+  final Function? onNavigationCompleted;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Modular.to.pushNamed(route),
+      onTap: () => Modular.to.pushNamed(route).then(
+        (value) {
+          if (onNavigationCompleted != null) {
+            onNavigationCompleted!();
+          }
+        },
+      ),
       child: Row(
         children: [
           SvgPicture.asset(icon),
