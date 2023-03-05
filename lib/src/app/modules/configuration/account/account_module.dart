@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/change_password_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/p
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/change_password_page.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
+import 'package:is_it_safe_app/src/domain/use_case/change_password_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/confirm_password_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
@@ -29,14 +31,19 @@ class AccountModule extends Module {
     Bind.lazySingleton((i) => UpdateUserUseCase()),
     Bind.lazySingleton((i) => SafeProfilePictureBloC()),
     Bind.lazySingleton((i) => ConfirmPasswordUseCase(i.get<AuthService>())),
+    Bind.lazySingleton((i) => ChangePasswordUsecase(i.get<AuthService>())),
     Bind.lazySingleton((i) => ChangePasswordBloC(
-        confirmPasswordUseCase: i.get<ConfirmPasswordUseCase>())),
+          confirmPasswordUseCase: i.get<ConfirmPasswordUseCase>(),
+          changePasswordUsecase: i.get<ChangePasswordUsecase>(),
+        )),
     Bind.lazySingleton((i) => AccountBloc(
           getUserUseCase: i.get<GetUserUseCase>(),
           updateUserUseCase: i.get<UpdateUserUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
           safeProfilePictureBloc: i.get<SafeProfilePictureBloC>(),
         )),
+    Bind.lazySingleton(
+        (i) => GlobalKey<ScaffoldState>(debugLabel: "key-password-confirm")),
   ];
 
   @override

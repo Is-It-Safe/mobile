@@ -30,18 +30,27 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
     controller.confirmPasswordText.addListener(() async {
       if (debounce?.isActive ?? false) debounce?.cancel();
       debounce = Timer(const Duration(milliseconds: 700), () async {
-        await controller.confirmPassword(
-            password: controller.confirmPasswordText.text);
-        setState(() {});
+        if (controller.confirmPasswordText.text.isNotEmpty ||
+            controller.confirmPasswordText.value.text.isNotEmpty) {
+          await controller.confirmPassword(
+              password: controller.confirmPasswordText.text);
+          if (controller.validated) {
+            setState(() {});
+          }
+        }
       });
     });
   }
 
   final _formKey = GlobalKey<FormState>();
+
+  final _scaffoldKey = Modular.get<GlobalKey<ScaffoldState>>();
+
   bool _showPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: SafeAppBar(
         title: S.current.textConfiguration,
       ),

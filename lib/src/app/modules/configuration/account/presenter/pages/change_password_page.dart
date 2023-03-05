@@ -101,8 +101,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       ? ButtonState.disabled
                       : null,
                   onTap: () async {
-                    // await controller.changePassword(
-                    //     password: controller.confirmPasswordText.text);
+                    // TODO: Terminar implementação quando o endpoint estiver pronto
+                    await controller.changePassword(password: 'password');
                   }),
             ],
           ),

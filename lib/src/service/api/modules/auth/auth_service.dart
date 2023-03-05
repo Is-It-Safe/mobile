@@ -174,4 +174,10 @@ class AuthService implements IAuthService {
       throw SafeDioResponseError(e.message);
     }
   }
+
+  @override
+  Future<bool> changePassword(String password) async {
+    // TODO: Implementar endpoint quando estiver pronto
+    throw UnimplementedError();
+  }
 }
