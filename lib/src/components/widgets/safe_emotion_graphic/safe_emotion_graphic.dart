@@ -94,6 +94,12 @@ class SafeEmotionGrapic extends StatelessWidget {
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 3,
                 ),
+                SafeEmotionGraphicStatus(
+                  status: S.current.textIncredible,
+                  avaliations: 0,
+                  sumOfAvaliations: avaliationCount,
+                  statusGrade: 4,
+                ),
               ],
             ),
           ),

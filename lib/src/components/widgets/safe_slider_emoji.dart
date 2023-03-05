@@ -15,7 +15,7 @@ class SafeEmotionSlider extends StatefulWidget {
     Key? key,
     required this.value,
     this.min = 0,
-    this.max = 4,
+    this.max = 5,
     required this.onChanged,
   }) : super(key: key);
 
@@ -78,9 +78,12 @@ class TextRowBuilder extends StatelessWidget {
           text: S.current.textRegular,
         ),
         TextItem(
-          isVisible: value > 3,
+          isVisible: value > 3 && value <= 4,
           text: S.current.textSatisfied,
         ),
+        TextItem(isVisible: value > 4, 
+        text: S.current.textIncredible),
+
       ],
     );
   }
@@ -112,7 +115,11 @@ class IconRowBuilder extends StatelessWidget {
         ),
         IconItem(
           icon: AssetConstants.emoticon.happy,
-          isVisible: value > 3,
+          isVisible: value > 3 && value <= 4,
+        ),
+        IconItem(
+          icon: AssetConstants.emoticon.excited,
+          isVisible: value > 4,
         ),
       ],
     );
