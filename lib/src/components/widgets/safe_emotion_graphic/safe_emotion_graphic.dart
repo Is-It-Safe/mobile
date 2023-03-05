@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_emotion_graphic/safe_emotion_graphic_status.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_review.dart';
 
 class SafeEmotionGrapic extends StatelessWidget {
@@ -20,30 +21,6 @@ class SafeEmotionGrapic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int angry = 0;
-    int sad = 0;
-    int regular = 0;
-    int satisfied = 0;
-    int incredible = 0;
-
-    for (int i = 0; i < grade!.length; i++) {
-      if (grade?[i].myGrade == 1.0) {
-        angry += 1;
-      }
-      if (grade?[i].myGrade == 2.0) {
-        sad += 1;
-      }
-      if (grade?[i].myGrade == 3.0) {
-        regular += 1;
-      }
-      if (grade?[i].myGrade == 4.0) {
-        satisfied += 1;
-      }
-      if (grade?[i].myGrade == 5.0) {
-        incredible += 1;
-      }
-    }
-
     final size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: size.width * .0844),
@@ -53,7 +30,7 @@ class SafeEmotionGrapic extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(
               left: size.width * .076,
-              right: size.width * .035,
+              right: size.width * .040,
               top: size.height * .023,
               bottom: size.height * .018,
             ),
@@ -95,31 +72,31 @@ class SafeEmotionGrapic extends StatelessWidget {
                 SizedBox(height: size.height * .02),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textAngry,
-                  emotionalStatusAvaliations: angry,
+                  emotionalStatusAvaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 0,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textUpset,
-                  emotionalStatusAvaliations: sad,
+                  emotionalStatusAvaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 1,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textRegular,
-                  emotionalStatusAvaliations: regular,
+                  emotionalStatusAvaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 2,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textSatisfied,
-                  emotionalStatusAvaliations: satisfied,
+                  emotionalStatusAvaliations: 0,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 3,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textIncredible,
-                  emotionalStatusAvaliations: incredible,
+                  emotionalStatusAvaliations: 2,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 4,
                 ),
@@ -136,7 +113,7 @@ class SafeEmotionGrapic extends StatelessWidget {
                   width: size.width * .15,
                 ),
                 Text(
-                  "$averageGrade",
+                  averageGrade == 0.0 ? StringConstants.empty : "$averageGrade",
                   style: TextStyles.headline3(
                     fontWeight: FontWeight.w700,
                   ).copyWith(fontSize: 22),
