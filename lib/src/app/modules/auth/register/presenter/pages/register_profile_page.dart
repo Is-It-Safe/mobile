@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/widgets/choose_profile_avatar.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/widgets/stream_safe_dropdown.dart';
+import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
@@ -54,61 +55,67 @@ class _RegisterProfilePageState
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: StreamBuilder<SafeEvent<RegisterEntity>>(
               stream: controller.doRegisterController.stream,
-              // initialData: SafeEvent.initial(),
+              initialData: SafeEvent.initial(),
               builder: (context, snapshot) {
-                return Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      ChooseProfileAvatar(controller: controller),
-                      const SizedBox(height: 30),
-                      SafeTextFormField(
-                        controller: controller.birthdateController,
-                        labelText: S.current.textDateOfBirth,
-                        inputFormatters: [controller.birthdayInputMask],
-                        keyboardType: TextInputType.number,
-                        validator: (value) =>
-                            controller.validateBirthdate(value),
-                        textInputAction: TextInputAction.next,
-                      ),
-                      const SizedBox(height: 30),
-                      StreamSafeDropdown<GenderEntity>(
-                        stream: controller.gendersController.stream,
-                        textController: controller.genderController,
-                        isDropdownExpanded: isDropdownExpanded,
-                        title: S.current.textGender,
-                      ),
-                      const SizedBox(height: 30),
-                      StreamSafeDropdown<SexualOrientationEntity>(
-                        stream: controller.sexualOrientationsController.stream,
-                        textController: controller.sexualOrientationController,
-                        isDropdownExpanded: isDropdownExpanded,
-                        title: S.current.textSexualOrientation,
-                      ),
-                      const SizedBox(height: 30),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SafeButton(
-                            title: S.current.textAdvance,
-                            hasBackground: false,
-                            size: ButtonSize.small,
-                            onTap: () {
-                              controller.doRegister(
-                                isAdvanceButton: true,
-                              );
-                            },
-                          ),
-                          SafeButton(
-                            title: S.current.textFinish,
-                            size: ButtonSize.small,
-                            onTap: () {
-                              controller.doRegister();
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
+                return SafeLayout(
+                  snapshot: snapshot,
+                  onCompleted: const SizedBox.shrink(),
+                  onInitial: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        ChooseProfileAvatar(controller: controller),
+                        const SizedBox(height: 30),
+                        SafeTextFormField(
+                          controller: controller.birthdateController,
+                          labelText: S.current.textDateOfBirth,
+                          inputFormatters: [controller.birthdayInputMask],
+                          keyboardType: TextInputType.number,
+                          validator: (value) =>
+                              controller.validateBirthdate(value),
+                          textInputAction: TextInputAction.next,
+                        ),
+                        const SizedBox(height: 30),
+                        StreamSafeDropdown<GenderEntity>(
+                          stream: controller.gendersController.stream,
+                          textController: controller.genderController,
+                          isDropdownExpanded: isDropdownExpanded,
+                          title: S.current.textGender,
+                        ),
+                        const SizedBox(height: 30),
+                        StreamSafeDropdown<SexualOrientationEntity>(
+                          stream:
+                              controller.sexualOrientationsController.stream,
+                          textController:
+                              controller.sexualOrientationController,
+                          isDropdownExpanded: isDropdownExpanded,
+                          title: S.current.textSexualOrientation,
+                        ),
+                        const SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SafeButton(
+                              title: S.current.textAdvance,
+                              hasBackground: false,
+                              size: ButtonSize.small,
+                              onTap: () {
+                                controller.doRegister(
+                                  isAdvanceButton: true,
+                                );
+                              },
+                            ),
+                            SafeButton(
+                              title: S.current.textFinish,
+                              size: ButtonSize.small,
+                              onTap: () {
+                                controller.doRegister();
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }),

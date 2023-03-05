@@ -126,11 +126,9 @@ class RegisterBloc extends SafeBloC {
     }
   }
 
-  Future<void> doRegister({
-    bool? isAdvanceButton,
-  }) async {
+  Future<void> doRegister({bool? isAdvanceButton}) async {
     try {
-      doRegisterController.sink.add(SafeEvent.load());
+      doRegisterController.add(SafeEvent.load());
       await doRegisterUseCase
           .call(
         name: nameController.text,
@@ -151,7 +149,7 @@ class RegisterBloc extends SafeBloC {
       )
           .fold(
         (success) {
-          doRegisterController.sink.add(SafeEvent.done(success));
+          doRegisterController.add(SafeEvent.done(success));
         },
         (error) {},
       );
