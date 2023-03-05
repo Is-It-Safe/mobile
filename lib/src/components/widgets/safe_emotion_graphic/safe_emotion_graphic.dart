@@ -5,18 +5,45 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_emotion_graphic/safe_emotion_graphic_status.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_review.dart';
 
 class SafeEmotionGrapic extends StatelessWidget {
   final double averageGrade;
   final int avaliationCount;
+  final List<ResponseLocationReview>? grade;
   const SafeEmotionGrapic({
     Key? key,
     required this.averageGrade,
     required this.avaliationCount,
+    this.grade,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int angry = 0;
+    int sad = 0;
+    int regular = 0;
+    int satisfied = 0;
+    int incredible = 0;
+
+    for (int i = 0; i < grade!.length; i++) {
+      if (grade?[i].myGrade == 1.0) {
+        angry += 1;
+      }
+      if (grade?[i].myGrade == 2.0) {
+        sad += 1;
+      }
+      if (grade?[i].myGrade == 3.0) {
+        regular += 1;
+      }
+      if (grade?[i].myGrade == 4.0) {
+        satisfied += 1;
+      }
+      if (grade?[i].myGrade == 5.0) {
+        incredible += 1;
+      }
+    }
+
     final size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: size.width * .0844),
@@ -68,31 +95,31 @@ class SafeEmotionGrapic extends StatelessWidget {
                 SizedBox(height: size.height * .02),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textAngry,
-                  emotionalStatusAvaliations: 0,
+                  emotionalStatusAvaliations: angry,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 0,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textUpset,
-                  emotionalStatusAvaliations: 1,
+                  emotionalStatusAvaliations: sad,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 1,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textRegular,
-                  emotionalStatusAvaliations: 1,
+                  emotionalStatusAvaliations: regular,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 2,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textSatisfied,
-                  emotionalStatusAvaliations: 0,
+                  emotionalStatusAvaliations: satisfied,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 3,
                 ),
                 SafeEmotionGraphicStatus(
                   emotionalStatus: S.current.textIncredible,
-                  emotionalStatusAvaliations: 0,
+                  emotionalStatusAvaliations: incredible,
                   sumOfAvaliations: avaliationCount,
                   statusGrade: 4,
                 ),
