@@ -31,9 +31,9 @@ class AuthService implements IAuthService {
   Future<ResponseLogin> doLogin(RequestLogin request) async {
     try {
       request = RequestLogin(
-        email: 'basic@gmail.com',
-        password: '123456',
-        //grantType: request.grantType,
+        email: request.email,
+        password: request.password,
+        grantType: request.grantType,
       );
       final requestConfig = RequestConfig(
         path: ApiConstants.doAuth,
