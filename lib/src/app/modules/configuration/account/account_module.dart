@@ -17,8 +17,8 @@ class AccountModule extends Module {
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
-    Bind.lazySingleton((i) => GetUserUseCase()),
-    Bind.lazySingleton((i) => UpdateUserUseCase()),
+    Bind.lazySingleton((i) => GetUserUseCase(i.get<ProfileService>())),
+    Bind.lazySingleton((i) => UpdateUserUseCase(i.get<ProfileService>())),
     Bind.lazySingleton((i) => SafeProfilePictureBloC()),
     Bind.lazySingleton((i) => AccountBloc(
           getUserUseCase: i.get<GetUserUseCase>(),

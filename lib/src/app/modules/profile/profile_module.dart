@@ -16,8 +16,8 @@ class ProfileModule extends Module {
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveUserLoginUseCase()),
-    Bind.lazySingleton((i) => GetUserUseCase()),
-    Bind.lazySingleton((i) => DeleteReviewUseCase()),
+    Bind.lazySingleton((i) => GetUserUseCase(i.get<ProfileService>())),
+    Bind.lazySingleton((i) => DeleteReviewUseCase(i.get<ProfileService>())),
     Bind.lazySingleton((i) => ProfileBloc(
           getUserUseCase: i.get<GetUserUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),

@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/errors/safe_account_error.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/error/safe_profile_error.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
@@ -23,20 +25,23 @@ class ProfileService implements IProfileService {
 
   @override
   Future<ResponseGetUser> getUser() async {
-    final token = await _authService.getAccessToken();
+    try {
+      final token = await _authService.getAccessToken();
 
-    final requestConfig = RequestConfig(
-      path: ApiConstants.getUser,
-      method: HttpMethod.get,
-      options: Options(
-        headers: {
-          ApiConstants.kAuthorization: token,
-        },
-      ),
-    );
-
-    final response = await _service.doRequest(requestConfig);
-    return ResponseGetUser.fromJson(json.decode(response.data));
+      final requestConfig = RequestConfig(
+        path: ApiConstants.getUser,
+        method: HttpMethod.get,
+        options: Options(
+          headers: {
+            ApiConstants.kAuthorization: token,
+          },
+        ),
+      );
+      final response = await _service.doRequest(requestConfig);
+      return ResponseGetUser.fromJson(json.decode(response.data));
+    } on DioError catch (e) {
+      throw SafeDioResponseProfileError(e.message);
+    }
   }
 
   @override
@@ -60,38 +65,46 @@ class ProfileService implements IProfileService {
 
   @override
   Future<ResponseUpdateUser> updateUser(RequestUpdateUser request) async {
-    final token = await _authService.getAccessToken();
+    try {
+      final token = await _authService.getAccessToken();
 
-    final requestConfig = RequestConfig(
-      path: '${ApiConstants.updateUser}/${request.id}',
-      method: HttpMethod.put,
-      body: request.toJson(),
-      options: Options(
-        headers: {
-          ApiConstants.kAuthorization: token,
-        },
-      ),
-    );
+      final requestConfig = RequestConfig(
+        path: '${ApiConstants.updateUser}/${request.id}',
+        method: HttpMethod.put,
+        body: request.toJson(),
+        options: Options(
+          headers: {
+            ApiConstants.kAuthorization: token,
+          },
+        ),
+      );
 
-    final response = await _service.doRequest(requestConfig);
+      final response = await _service.doRequest(requestConfig);
 
-    return ResponseUpdateUser.fromJson(json.decode(response.data));
+      return ResponseUpdateUser.fromJson(json.decode(response.data));
+    } on DioError catch (e) {
+      throw SafeDioResponseAccountError(e.message);
+    }
   }
 
   @override
   Future<ResponseDeleteReview> deleteReview(int idReview) async {
-    final token = await _authService.getAccessToken();
+    try {
+      final token = await _authService.getAccessToken();
 
-    final requestConfig = RequestConfig(
-      path: ApiConstants.deleteReview + idReview.toString(),
-      method: HttpMethod.delete,
-      options: Options(
-        headers: {ApiConstants.kAuthorization: token},
-      ),
-    );
+      final requestConfig = RequestConfig(
+        path: ApiConstants.deleteReview + idReview.toString(),
+        method: HttpMethod.delete,
+        options: Options(
+          headers: {ApiConstants.kAuthorization: token},
+        ),
+      );
 
-    final response = await _service.doRequest(requestConfig);
-    return ResponseDeleteReview(message: response.data);
+      final response = await _service.doRequest(requestConfig);
+      return ResponseDeleteReview(message: response.data);
+    } on DioError catch (e) {
+      throw SafeDioResponseProfileError(e.message);
+    }
   }
 
   @override

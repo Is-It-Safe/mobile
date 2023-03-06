@@ -11,6 +11,7 @@ import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
+import 'package:result_dart/result_dart.dart';
 
 class AccountBloc extends SafeBloC {
   final GetUserUseCase getUserUseCase;
@@ -38,8 +39,9 @@ class AccountBloc extends SafeBloC {
   Future<void> getUser() async {
     try {
       userController.sink.add(SafeEvent.load());
-      final response = await getUserUseCase.call();
-      userController.sink.add(SafeEvent.done(response));
+      await getUserUseCase.call().fold(
+          (userEntity) => userController.sink.add(SafeEvent.done(userEntity)),
+          (error) => null);
     } on Exception catch (e) {
       //TODO colocar tratamento de erro de autenticação em todas as requisições
       userController.addError(e.toString());
@@ -50,8 +52,9 @@ class AccountBloc extends SafeBloC {
   Future<void> updateUser(RequestUpdateUser request) async {
     try {
       userController.sink.add(SafeEvent.load());
-      final response = await updateUserUseCase.call(request);
-      userController.sink.add(SafeEvent.done(response));
+      await updateUserUseCase.call(request).fold(
+          (response) => userController.sink.add(SafeEvent.done(response)),
+          (error) => null);
     } on Exception catch (e) {
       //TODO colocar tratamento de erro de autenticação em todas as requisições
       userController.addError(e.toString());

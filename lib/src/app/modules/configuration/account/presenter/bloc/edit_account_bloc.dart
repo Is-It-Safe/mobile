@@ -88,8 +88,10 @@ class EditAccountBloc extends SafeBloC {
         sexualOrientationId: int.parse(sexualOrientationController.text),
         pronoun: pronounController.text,
       );
-      UserEntity userEntity = await updateUserUseCase.call(request);
-      upDateUserController.sink.add(SafeEvent.done(userEntity));
+      await updateUserUseCase.call(request).fold(
+          (userEntity) =>
+              upDateUserController.sink.add(SafeEvent.done(userEntity)),
+          (error) => null);
       return true;
     } catch (e) {
       SafeLogUtil.instance.logError(e);
@@ -109,16 +111,17 @@ class EditAccountBloc extends SafeBloC {
   Future<void> getUser() async {
     try {
       userController.sink.add(SafeEvent.load());
-      responseGetUSer = await getUserUseCase.call();
-      userIdController.text = responseGetUSer.id.toString();
-      nameController.text = responseGetUSer.name!;
-      usernameController.text = responseGetUSer.nickname!;
-      birthdateController.text = responseGetUSer.birthDate!;
-      pronounController.text = responseGetUSer.pronoun!;
-      genderController.text = responseGetUSer.genreId.toString();
-      sexualOrientationController.text =
-          responseGetUSer.sexualOrientationId.toString();
-      userController.sink.add(SafeEvent.done(responseGetUSer));
+      await getUserUseCase.call().fold((responseGetUSer) {
+        userIdController.text = responseGetUSer.id.toString();
+        nameController.text = responseGetUSer.name!;
+        usernameController.text = responseGetUSer.nickname!;
+        birthdateController.text = responseGetUSer.birthDate!;
+        pronounController.text = responseGetUSer.pronoun!;
+        genderController.text = responseGetUSer.genreId.toString();
+        sexualOrientationController.text =
+            responseGetUSer.sexualOrientationId.toString();
+        userController.sink.add(SafeEvent.done(responseGetUSer));
+      }, (error) => null);
     } on Exception catch (e) {
       userController.addError(e.toString());
       if (e is UnauthorizedException) await doLogout();
