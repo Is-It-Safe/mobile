@@ -1,4 +1,4 @@
-name: Flutter CI/CD
+name: Dev - Flutter CI/CD
 
 on:
   push:
@@ -26,16 +26,16 @@ jobs:
       - name: Run tests
         run: flutter test
         
-      - name: Notify Discord of test failures
-        if: failure()
-        uses: discord/send-webhook@v1
-        with:
-          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: 'Flutter tests failed! Check the logs for details.'
+     # - name: Notify Discord of test failures
+     #   if: failure()
+     #   uses: discord/send-webhook@v1
+     #   with:
+     #     url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+     #     content: 'Flutter tests failed! Check the logs for details.'
           
-      - name: Notify Discord of test pass
-        if: success()
-        uses: discord/send-webhook@v1
-        with:
-          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: 'Flutter tests passed!'
+     # - name: Notify Discord of test pass
+     #   if: success()
+     #   uses: discord/send-webhook@v1
+     #   with:
+     #    url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+     #     content: 'Flutter tests passed!'
