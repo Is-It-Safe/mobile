@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 class SafeEmotionGraphicStatus extends StatelessWidget {
-  final String status;
-  final int avaliations;
+  final String emotionalStatus;
+  final int emotionalStatusAvaliations;
   final int sumOfAvaliations;
   final double statusGrade;
   const SafeEmotionGraphicStatus({
     Key? key,
-    required this.status,
-    required this.avaliations,
+    required this.emotionalStatus,
+    required this.emotionalStatusAvaliations,
     required this.sumOfAvaliations,
     required this.statusGrade,
   }) : super(key: key);
@@ -22,15 +23,26 @@ class SafeEmotionGraphicStatus extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(status),
+          Flexible(
+            flex: 3,
+            child: Text(
+              emotionalStatus,
+              textAlign: TextAlign.right,
+              style: TextStyles.emotionalStatus(),
+            ),
+          ),
           SizedBox(width: size.width * .044),
-          Text("$avaliations"),
-          SizedBox(width: size.width * .01744),
-          _GraphicGradePercentLine(
+          Text("$emotionalStatusAvaliations"),
+          SizedBox(width: size.width * .017),
+          Flexible(
+            flex: 6,
+            child: _GraphicGradePercentLine(
               grade: statusGrade,
-              avaliations: avaliations,
+              avaliations: emotionalStatusAvaliations,
               sumOfAvaliations: sumOfAvaliations,
-              size: size),
+              size: size,
+            ),
+          ),
         ],
       ),
     );
@@ -53,7 +65,7 @@ class _GraphicGradePercentLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double fullSize = size.width * .45;
+    double fullSize = size.width * .5;
 
     return Stack(
       alignment: AlignmentDirectional.centerStart,
@@ -63,7 +75,7 @@ class _GraphicGradePercentLine extends StatelessWidget {
           // width: fullSize / 2,
           width: (grade == 0 || avaliations == 0 || sumOfAvaliations == 0)
               ? 1
-              : ((grade * (avaliations / sumOfAvaliations)) * fullSize) / 5,
+              : (((avaliations / sumOfAvaliations)) * fullSize),
           color: SafeColors.componentsColors.emotionStatusColor,
         ),
         Container(

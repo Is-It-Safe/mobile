@@ -52,102 +52,86 @@ class _SafeReviewCardState extends State<SafeReviewCard> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _mountUserAvatar(),
-                _mountUserName(),
-                _mountReviewDate(),
+                Flexible(
+                  flex: 2,
+                  child: SafeProfileAvatar(
+                    image: PlaceHolderAssets.profileAvatar,
+                    type: ProfileAvatarType.main,
+                    size: MediaQuery.of(context).size.width * 0.1,
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  flex: 6,
+                  child: Text(
+                    widget.review?.author ?? StringConstants.empty,
+                    style: TextStyles.subtitle2(),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ),
+                Flexible(
+                  flex: 4,
+                  child: Text(
+                    FormatterUtil.dateFormatter(
+                      widget.review?.createdAt ?? StringConstants.empty,
+                    ),
+                    style: TextStyles.bodyText2(),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ),
               ],
             ),
-            _mountUserReview(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 14),
+                  width: MediaQuery.of(context).size.width,
+                  child: (widget.review?.review?.length ?? 0) > 200
+                      ? Text(
+                          _isTextExpanded
+                              ? widget.review?.review ?? StringConstants.empty
+                              : '${widget.review?.review?.substring(0, 200)}...',
+                          style: TextStyles.bodyText2(),
+                          softWrap: true,
+                          textAlign: TextAlign.left,
+                        )
+                      : Text(
+                          widget.review?.review ?? StringConstants.empty,
+                          style: TextStyles.bodyText2(),
+                          softWrap: true,
+                          textAlign: TextAlign.left,
+                        ),
+                ),
+                const SizedBox(height: 4),
+                Visibility(
+                  visible: (widget.review?.review?.length ?? 0) >= 200,
+                  child: GestureDetector(
+                    onTap: doSeeMore,
+                    child: _textSeeMore != S.current.textSeeMore
+                        ? Text(
+                            _textSeeMore,
+                            style: TextStyles.caption(
+                              color: SafeColors.buttonColors.primary,
+                              textDecoration: TextDecoration.underline,
+                            ),
+                          )
+                        : Text(
+                            _textSeeMore,
+                            style: TextStyles.caption(
+                              color: SafeColors.buttonColors.primary,
+                              textDecoration: TextDecoration.underline,
+                            ),
+                          ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _mountUserAvatar() {
-    return Flexible(
-      flex: 2,
-      child: SafeProfileAvatar(
-        image: PlaceHolderAssets.profileAvatar,
-        type: ProfileAvatarType.main,
-        size: MediaQuery.of(context).size.width * 0.1,
-      ),
-    );
-  }
-
-  Widget _mountUserName() {
-    return Flexible(
-      fit: FlexFit.tight,
-      flex: 6,
-      child: Text(
-        widget.review?.author ?? StringConstants.empty,
-        style: TextStyles.subtitle2(),
-        overflow: TextOverflow.ellipsis,
-        maxLines: 1,
-      ),
-    );
-  }
-
-  Widget _mountReviewDate() {
-    return Flexible(
-      flex: 3,
-      child: Text(
-        FormatterUtil.dateFormatter(
-          widget.review?.createdAt ?? StringConstants.empty,
-        ),
-        style: TextStyles.bodyText2(),
-        overflow: TextOverflow.ellipsis,
-        maxLines: 1,
-      ),
-    );
-  }
-
-  Widget _mountUserReview() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Container(
-          padding: const EdgeInsets.only(top: 14),
-          width: MediaQuery.of(context).size.width,
-          child: (widget.review?.review?.length ?? 0) > 200
-              ? Text(
-                  _isTextExpanded
-                      ? widget.review?.review ?? StringConstants.empty
-                      : '${widget.review?.review?.substring(0, 200)}...',
-                  style: TextStyles.bodyText2(),
-                  softWrap: true,
-                  textAlign: TextAlign.left,
-                )
-              : Text(
-                  widget.review?.review ?? StringConstants.empty,
-                  style: TextStyles.bodyText2(),
-                  softWrap: true,
-                  textAlign: TextAlign.left,
-                ),
-        ),
-        const SizedBox(height: 4),
-        Visibility(
-          visible: (widget.review?.review?.length ?? 0) >= 200,
-          child: GestureDetector(
-            onTap: doSeeMore,
-            child: _textSeeMore != S.current.textSeeMore
-                ? Text(
-                    _textSeeMore,
-                    style: TextStyles.caption(
-                      color: SafeColors.buttonColors.primary,
-                      textDecoration: TextDecoration.underline,
-                    ),
-                  )
-                : Text(
-                    _textSeeMore,
-                    style: TextStyles.caption(
-                      color: SafeColors.buttonColors.primary,
-                      textDecoration: TextDecoration.underline,
-                    ),
-                  ),
-          ),
-        ),
-      ],
     );
   }
 }
