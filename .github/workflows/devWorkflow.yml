@@ -1,0 +1,41 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches:
+     - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Set up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+          # Use the latest Flutter version available
+          flutter-version: 'latest'
+
+      # Install dependencies
+      - name: Get dependencies
+        run: flutter pub get
+
+      # Run tests
+      - name: Run tests
+        run: flutter test
+        
+      - name: Notify Discord of test failures
+        if: failure()
+        uses: discord/send-webhook@v1
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          content: 'Flutter tests failed! Check the logs for details.'
+          
+      - name: Notify Discord of test pass
+        if: success()
+        uses: discord/send-webhook@v1
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          content: 'Flutter tests passed!'
