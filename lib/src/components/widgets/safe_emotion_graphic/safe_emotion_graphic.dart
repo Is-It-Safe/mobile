@@ -36,7 +36,7 @@ class SafeEmotionGrapic extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border:
-                  Border.all(width: 1, color: SafeColors.generalColors.primary),
+              Border.all(width: 1, color: SafeColors.generalColors.primary),
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
             ),
