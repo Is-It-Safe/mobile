@@ -43,12 +43,9 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
 
       # Send message to Discord webhook
-      - name: Send message to Discord
-        uses: discord/send-webhook@v1
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        uses: Ilshidur/action-discord@master
         with:
-          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: |
-            A new APK has been built:
-            ```
-            ${{ github.repository }} - branch/tag: ${{ github.ref }}
-            ```
+          args: 'A new version is available'
