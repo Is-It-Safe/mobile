@@ -43,6 +43,7 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
 
       # Send message to Discord webhook
+
       - name: Send message to Discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
