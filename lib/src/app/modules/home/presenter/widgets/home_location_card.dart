@@ -176,7 +176,9 @@ class _LocationGrade extends StatelessWidget {
           width: 35,
         ),
         Text(
-          location.averageGrade.toString(),
+          location.averageGrade == 0.0
+              ? StringConstants.empty
+              : location.averageGrade.toString(),
           style: TextStyles.headline3(),
         ),
       ],

@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class ProfileModule extends Module {
   @override
@@ -15,7 +16,8 @@ class ProfileModule extends Module {
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
-    Bind.lazySingleton((i) => SaveUserLoginUseCase()),
+    Bind.lazySingleton(
+        (i) => SaveUserLoginUseCase(i.get<ISharedPreferencesService>())),
     Bind.lazySingleton((i) => GetUserUseCase()),
     Bind.lazySingleton((i) => DeleteReviewUseCase()),
     Bind.lazySingleton((i) => ProfileBloc(

@@ -190,6 +190,12 @@
     "textAddLocationCepExample": "Ex: 04553434",
     "textAddLocationAddress": "Ex: Rua Clodomiro",
 
+    "textOpenPermissions": "Abrir Permissões",
+
     "textContacHowToHelpYou": "Nos conte como podemos te ajudar",
-    "textContacActionError": "Não foi possível realizar a ação."
+    "textContacActionError": "Não foi possível realizar a ação.",
+
+    "textPasswordSuccessChanged": "Senha alterada com sucesso!",
+    "textPasswordFailureChanged": "Não foi possível alterar sua senha!"
+
 }

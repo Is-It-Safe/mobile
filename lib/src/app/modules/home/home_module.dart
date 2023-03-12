@@ -13,6 +13,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.d
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class HomeModule extends Module {
   @override
@@ -22,12 +23,16 @@ class HomeModule extends Module {
     Bind.lazySingleton((i) => GetBestRatedLocationsUseCase()),
     Bind.lazySingleton((i) => GetLocationsNearUser()),
     Bind.lazySingleton((i) => SaveUserLocationTokenUseCase()),
-    Bind.lazySingleton((i) => GetUserLocationTokenUseCase()),
+    Bind.lazySingleton(
+        (i) => GetUserLocationTokenUseCase(i.get<ISharedPreferencesService>())),
     Bind.lazySingleton((i) => SaveUserLocationPermissionFirstSettingsUseCase()),
-    Bind.lazySingleton((i) => GetUserLocationPermissionFirstSettingsUseCase()),
+    Bind.lazySingleton((i) =>
+        GetUserLocationPermissionUseCase(i.get<ISharedPreferencesService>())),
     Bind.lazySingleton((i) => SafeLocator()),
-    Bind.lazySingleton((i) => GetUserNameUseCase()),
-    Bind.lazySingleton((i) => GetUserImageUseCase()),
+    Bind.lazySingleton(
+        (i) => GetUserNameUseCase(i.get<ISharedPreferencesService>())),
+    Bind.lazySingleton(
+        (i) => GetUserImageUseCase(i.get<ISharedPreferencesService>())),
     Bind.lazySingleton(
       (i) => HomeBloc(
         getLocationsNearUserUsecase: i.get<GetLocationsNearUser>(),
@@ -37,7 +42,7 @@ class HomeModule extends Module {
         saveUserLocationPermissionFirstSettingsUseCase:
             i.get<SaveUserLocationPermissionFirstSettingsUseCase>(),
         getUserLocationPermissionFirstSettingsUseCase:
-            i.get<GetUserLocationPermissionFirstSettingsUseCase>(),
+            i.get<GetUserLocationPermissionUseCase>(),
         locator: i.get<SafeLocator>(),
         getUserNameUseCase: i.get<GetUserNameUseCase>(),
         getUserImageUseCase: i.get<GetUserImageUseCase>(),

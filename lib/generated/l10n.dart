@@ -1770,6 +1770,16 @@ class S {
     );
   }
 
+  /// `Abrir Permissões`
+  String get textOpenPermissions {
+    return Intl.message(
+      'Abrir Permissões',
+      name: 'textOpenPermissions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nos conte como podemos te ajudar`
   String get textContacHowToHelpYou {
     return Intl.message(
@@ -1785,6 +1795,26 @@ class S {
     return Intl.message(
       'Não foi possível realizar a ação.',
       name: 'textContacActionError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Senha alterada com sucesso!`
+  String get textPasswordSuccessChanged {
+    return Intl.message(
+      'Senha alterada com sucesso!',
+      name: 'textPasswordSuccessChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível alterar sua senha!`
+  String get textPasswordFailureChanged {
+    return Intl.message(
+      'Não foi possível alterar sua senha!',
+      name: 'textPasswordFailureChanged',
       desc: '',
       args: [],
     );

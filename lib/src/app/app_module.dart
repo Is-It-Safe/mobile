@@ -15,6 +15,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class AppModule extends Module {
   @override
@@ -22,12 +23,17 @@ class AppModule extends Module {
     Bind.lazySingleton((i) => ApiService()),
     Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton((i) => SaveUserRefreshTokenUseCase()),
+    Bind.lazySingleton(
+        (i) => SaveUserRefreshTokenUseCase(i.get<ISharedPreferencesService>())),
     Bind.lazySingleton((i) => DoLoginUseCase(i.get<AuthService>())),
-    Bind.lazySingleton((i) => SaveUserTokenUseCase()),
-    Bind.lazySingleton((i) => SaveUserLoginUseCase()),
-    Bind.lazySingleton((i) => SaveUserImageUseCase()),
-    Bind.lazySingleton((i) => SaveUserNameUseCase()),
+    Bind.lazySingleton(
+        (i) => SaveUserTokenUseCase(i.get<ISharedPreferencesService>())),
+    Bind.lazySingleton(
+        (i) => SaveUserLoginUseCase(i.get<ISharedPreferencesService>())),
+    Bind.lazySingleton(
+        (i) => SaveUserImageUseCase(i.get<ISharedPreferencesService>())),
+    Bind.lazySingleton(
+        (i) => SaveUserNameUseCase(i.get<ISharedPreferencesService>())),
   ];
 
   @override

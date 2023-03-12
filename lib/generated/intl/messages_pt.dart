@@ -230,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("experiências"),
         "textOnBoarding3_2":
             MessageLookupByLibrary.simpleMessage("e avalie locais"),
+        "textOpenPermissions":
+            MessageLookupByLibrary.simpleMessage("Abrir Permissões"),
         "textPageSubtitleLogin":
             MessageLookupByLibrary.simpleMessage("Sentimos sua falta!"),
         "textPageSubtitleProfileRegisterPage":
@@ -241,8 +243,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPassword": MessageLookupByLibrary.simpleMessage("Senha"),
         "textPasswordConfirmation":
             MessageLookupByLibrary.simpleMessage("Confirmar senha"),
+        "textPasswordFailureChanged": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível alterar sua senha!"),
         "textPasswordSpecifications": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números"),
+        "textPasswordSuccessChanged":
+            MessageLookupByLibrary.simpleMessage("Senha alterada com sucesso!"),
         "textPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Informações Pessoais"),
         "textPrivacy": MessageLookupByLibrary.simpleMessage("Privacidade"),

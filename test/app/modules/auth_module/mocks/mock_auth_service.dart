@@ -50,4 +50,9 @@ class MockAuthService implements IAuthService {
   Future<List<ResponseSexualOrientation>> getSexualOrientations() {
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> changePassword(String password) {
+    throw UnimplementedError();
+  }
 }

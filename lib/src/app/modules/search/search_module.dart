@@ -15,7 +15,8 @@ class SearchModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SearchService(i.get<AuthService>())),
-    Bind.lazySingleton((i) => GetLocationsByNameUseCase()),
+    Bind.lazySingleton(
+        (i) => GetLocationsByNameUseCase(i.get<SearchService>())),
     Bind.lazySingleton(
       (i) => SearchBloc(
         getLocationsByNameUseCase: i.get<GetLocationsByNameUseCase>(),

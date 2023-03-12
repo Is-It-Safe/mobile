@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:result_dart/result_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_name_use_case.dart';
@@ -37,12 +37,12 @@ class SearchBloc extends SafeBloC {
       }
       if (placeSearchController.text == lastSearch) return;
       searchController.add(SafeEvent.load());
-      searchResultLocations = await getLocationsByNameUseCase.call(
-        placeSearchController.text,
-      );
-      searchController.sink.add(SafeEvent.done(searchResultLocations));
-      lastSearch = placeSearchController.text;
-    } on Exception catch (e) {
+      await getLocationsByNameUseCase.call(placeSearchController.text).fold(
+          (searchResultLocations) {
+        searchController.sink.add(SafeEvent.done(searchResultLocations));
+        lastSearch = placeSearchController.text;
+      }, (error) => null);
+    } catch (e) {
       searchController.addError(e.toString());
     }
   }
