@@ -8,7 +8,7 @@ on:
      # - dev
     tags:
       # Only build for tags that follow semantic versioning
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+[0-9]'
 jobs:
   build:
     runs-on: ubuntu-latest
