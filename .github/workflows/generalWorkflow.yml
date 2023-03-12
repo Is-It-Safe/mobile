@@ -2,9 +2,9 @@ name: Flutter CI/CD
 
 on:
   push:
-    # branches:
+    branches:
      # - main
-     # - release
+      - release
      # - dev
     tags:
       # Only build for tags that follow semantic versioning
