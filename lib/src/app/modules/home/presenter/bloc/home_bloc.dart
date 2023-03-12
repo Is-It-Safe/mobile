@@ -127,6 +127,7 @@ class HomeBloc extends SafeBloC {
       await getBestRatedLocationsUseCase
           .call(place: await userCity)
           .then((locations) {
+        listBestRatedPlaces.clear();
         listBestRatedPlaces.addAll(locations);
       });
       bestRatedPlacesController.add(SafeEvent.done(listBestRatedPlaces));
@@ -143,6 +144,7 @@ class HomeBloc extends SafeBloC {
       await getLocationsNearUserUsecase
           .call(location.latitude, location.longitude)
           .then((locations) {
+        listLocationsNeartUser.clear();
         listLocationsNeartUser.addAll(locations);
       });
       locationsNearUserController.add(SafeEvent.done(listLocationsNeartUser));
