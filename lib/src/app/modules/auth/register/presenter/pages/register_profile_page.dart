@@ -102,15 +102,16 @@ class _RegisterProfilePageState
                               title: S.current.textAdvance,
                               hasBackground: false,
                               size: ButtonSize.small,
-                              onTap: () {
-                                controller.doRegister(isAdvanceButton: true);
+                              onTap: () async {
+                                await controller.doRegister(
+                                    isAdvanceButton: true);
                               },
                             ),
                             SafeButton(
                               title: S.current.textFinish,
                               size: ButtonSize.small,
-                              onTap: () {
-                                controller.doRegister();
+                              onTap: () async {
+                                await controller.doRegister();
                               },
                             ),
                           ],

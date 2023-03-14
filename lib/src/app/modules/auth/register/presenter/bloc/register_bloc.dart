@@ -128,36 +128,28 @@ class RegisterBloc extends SafeBloC {
 
   Future<void> doRegister({bool? isAdvanceButton}) async {
     try {
-      birthdateController.text.isEmpty == true
-          ? StringConstants.empty
-          : birthdateController.text;
-      profilePictureController.selectedProfilePhoto.isEmpty == true
-          ? StringConstants.empty
-          : profilePictureController.selectedProfilePhoto;
-      genderController.text.isEmpty == true
-          ? StringConstants.empty
-          : genderController.text;
-      sexualOrientationController.text.isEmpty == true
-          ? StringConstants.empty
-          : sexualOrientationController.text;
       doRegisterController.add(SafeEvent.load());
       await doRegisterUseCase
           .call(
         name: nameController.text,
         username: usernameController.text,
-        birthDate: isAdvanceButton == true
+        birthDate: isAdvanceButton == true || birthdateController.text.isEmpty
             ? StringConstants.empty
             : birthdateController.text,
         pronoun: pronounController.text,
         email: emailController.text,
         password: passwordController.text,
-        profilePhoto: isAdvanceButton == true
+        profilePhoto: isAdvanceButton == true ||
+                profilePictureController.selectedProfilePhoto.isEmpty
             ? StringConstants.empty
             : profilePictureController.selectedProfilePhoto,
-        gender: isAdvanceButton == true ? 7 : int.parse(genderController.text),
-        sexualOrientation: isAdvanceButton == true
-            ? 8
-            : int.parse(sexualOrientationController.text),
+        gender: isAdvanceButton == true || genderController.text.isEmpty
+            ? 7
+            : int.parse(genderController.text),
+        sexualOrientation:
+            isAdvanceButton == true || sexualOrientationController.text.isEmpty
+                ? 8
+                : int.parse(sexualOrientationController.text),
       )
           .fold(
         (success) {
