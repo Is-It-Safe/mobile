@@ -128,6 +128,18 @@ class RegisterBloc extends SafeBloC {
 
   Future<void> doRegister({bool? isAdvanceButton}) async {
     try {
+      birthdateController.text.isEmpty == true
+          ? StringConstants.empty
+          : birthdateController.text;
+      profilePictureController.selectedProfilePhoto.isEmpty == true
+          ? StringConstants.empty
+          : profilePictureController.selectedProfilePhoto;
+      genderController.text.isEmpty == true
+          ? StringConstants.empty
+          : genderController.text;
+      sexualOrientationController.text.isEmpty == true
+          ? StringConstants.empty
+          : sexualOrientationController.text;
       doRegisterController.add(SafeEvent.load());
       await doRegisterUseCase
           .call(
@@ -151,7 +163,10 @@ class RegisterBloc extends SafeBloC {
         (success) {
           doRegisterController.add(SafeEvent.done(success));
         },
-        (error) {},
+        (error) {
+          // TODO Refatorar código
+          doRegisterController.add(SafeEvent.error(error.message));
+        },
       );
     } catch (e) {
       SafeLogUtil.instance.logError(e);
@@ -206,6 +221,8 @@ class RegisterBloc extends SafeBloC {
 
   validateBirthdate(String? value) {
     if (!ValidationUtil.date(value ?? StringConstants.empty) || value == null) {
+      return S.current.textErrorInvalidDate;
+    } else if (value.length < 10) {
       return S.current.textErrorInvalidDate;
     }
     return null;

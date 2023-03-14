@@ -30,12 +30,6 @@ class AuthService implements IAuthService {
 
   @override
   Future<ResponseLogin> doLogin(RequestLogin request) async {
-    //TODO Request mockada
-//- REMOVER DEPOIS DE USAR -
-    request = RequestLogin(
-      email: 'basic@gmail.com',
-      password: '123456',
-    );
     try {
       request = RequestLogin(
         email: request.email,
@@ -141,6 +135,12 @@ class AuthService implements IAuthService {
 
       return ResponseRegister.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
+      // TODO Refatorar código
+      if (e.message == StringConstants.empty) {
+        throw SafeDioResponseError(
+          'E-mail ou usuário já cadastrado, tente recuperar sua senha.',
+        );
+      }
       throw SafeDioResponseError(e.message);
     }
   }

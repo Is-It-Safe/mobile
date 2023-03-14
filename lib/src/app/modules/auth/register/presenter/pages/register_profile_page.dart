@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/widgets/choose_profile_avatar.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/widgets/stream_safe_dropdown.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
@@ -10,7 +11,9 @@ import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/register_entity.dart';
@@ -100,9 +103,7 @@ class _RegisterProfilePageState
                               hasBackground: false,
                               size: ButtonSize.small,
                               onTap: () {
-                                controller.doRegister(
-                                  isAdvanceButton: true,
-                                );
+                                controller.doRegister(isAdvanceButton: true);
                               },
                             ),
                             SafeButton(
@@ -138,8 +139,10 @@ class _RegisterProfilePageState
                   title: S.current.textOk,
                   onTap: () {
                     Modular.to.pop();
-                    Modular.to
-                        .pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
+                    Modular.to.pushNamedAndRemoveUntil(
+                      LoginPage.route,
+                      (r) => false,
+                    );
                   },
                 ),
                 type: SafeDialogType.success,
@@ -150,14 +153,19 @@ class _RegisterProfilePageState
             const SafeLoading();
             break;
           case Status.error:
-            Modular.to.pop();
-
             showDialog(
               context: context,
               builder: (_) => SafeDialog(
                 message: event.message ?? S.current.textErrorDropdown,
                 primaryBtn: SafeButton(
                   title: S.current.textOk,
+                  onTap: () {
+                    Modular.to.pop();
+                    Modular.to.pushNamedAndRemoveUntil(
+                      LoginPage.route,
+                      (r) => false,
+                    );
+                  },
                 ),
                 type: SafeDialogType.error,
               ),
