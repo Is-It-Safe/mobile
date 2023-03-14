@@ -1819,6 +1819,16 @@ class S {
       args: [],
     );
   }
+
+  /// `O nome não pode ter menos que 3 letras.`
+  String get textRegisterValidateUserName {
+    return Intl.message(
+      'O nome não pode ter menos que 3 letras.',
+      name: 'textRegisterValidateUserName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

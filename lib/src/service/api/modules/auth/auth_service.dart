@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
@@ -11,14 +11,15 @@ import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_login.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_refresh_token.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_register.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_gender.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_login.dart';
+import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_login.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_refresh_token.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_register.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_sexual_orientation.dart';
+
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
@@ -104,16 +105,14 @@ class AuthService implements IAuthService {
   Future<bool> confirmPassword(
     RequestConfirmPassword request,
   ) async {
-    final token = await getAccessToken();
-
     final requestConfig = RequestConfig(
       path: ApiConstants.confirmPassword,
       method: HttpMethod.post,
-      body: request.toMap(),
+      body: request.toJson(),
       options: Options(
         headers: {
-          ApiConstants.kAuthorization: token,
-          ApiConstants.kContentType: 'application/json',
+          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
+          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
         },
       ),
     );
@@ -136,6 +135,12 @@ class AuthService implements IAuthService {
 
       return ResponseRegister.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
+      // TODO Refatorar código
+      if (e.message == StringConstants.empty) {
+        throw SafeDioResponseError(
+          'E-mail ou usuário já cadastrado, tente recuperar sua senha.',
+        );
+      }
       throw SafeDioResponseError(e.message);
     }
   }

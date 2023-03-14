@@ -265,6 +265,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cadastro realizado com sucesso!"),
         "textRegisterSuccessMessage": MessageLookupByLibrary.simpleMessage(
             "Você será redirecionado para a página de login."),
+        "textRegisterValidateUserName": MessageLookupByLibrary.simpleMessage(
+            "O nome não pode ter menos que 3 letras."),
         "textRegular": MessageLookupByLibrary.simpleMessage("Regular"),
         "textReviewCompleted":
             MessageLookupByLibrary.simpleMessage("Review Completa!"),
