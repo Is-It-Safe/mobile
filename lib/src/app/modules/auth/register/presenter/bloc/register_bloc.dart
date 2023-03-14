@@ -83,6 +83,7 @@ class RegisterBloc extends SafeBloC {
         emailController.text.isNotEmpty &&
         passwordController.text.isNotEmpty &&
         confirmPasswordController.text.isNotEmpty &&
+        confirmPasswordController.text == passwordController.text &&
         isTermsAndConditionsChecked);
     registerButtonController.sink.add(isRegisterButtonEnabled);
   }
@@ -125,34 +126,39 @@ class RegisterBloc extends SafeBloC {
     }
   }
 
-  Future<void> doRegister({
-    bool? isAdvanceButton,
-  }) async {
+  Future<void> doRegister({bool? isAdvanceButton}) async {
     try {
-      doRegisterController.sink.add(SafeEvent.load());
+      doRegisterController.add(SafeEvent.load());
       await doRegisterUseCase
           .call(
         name: nameController.text,
         username: usernameController.text,
-        birthDate: isAdvanceButton == true
+        birthDate: isAdvanceButton == true || birthdateController.text.isEmpty
             ? StringConstants.empty
             : birthdateController.text,
         pronoun: pronounController.text,
         email: emailController.text,
         password: passwordController.text,
-        profilePhoto: isAdvanceButton == true
+        profilePhoto: isAdvanceButton == true ||
+                profilePictureController.selectedProfilePhoto.isEmpty
             ? StringConstants.empty
             : profilePictureController.selectedProfilePhoto,
-        gender: isAdvanceButton == true ? 7 : int.parse(genderController.text),
-        sexualOrientation: isAdvanceButton == true
-            ? 2
-            : int.parse(sexualOrientationController.text),
+        gender: isAdvanceButton == true || genderController.text.isEmpty
+            ? 7
+            : int.parse(genderController.text),
+        sexualOrientation:
+            isAdvanceButton == true || sexualOrientationController.text.isEmpty
+                ? 8
+                : int.parse(sexualOrientationController.text),
       )
           .fold(
         (success) {
-          doRegisterController.sink.add(SafeEvent.done(success));
+          doRegisterController.add(SafeEvent.done(success));
         },
-        (error) {},
+        (error) {
+          // TODO Refatorar código
+          doRegisterController.add(SafeEvent.error(error.message));
+        },
       );
     } catch (e) {
       SafeLogUtil.instance.logError(e);
@@ -160,37 +166,58 @@ class RegisterBloc extends SafeBloC {
     }
   }
 
-  String validateTextField(String? value) {
+  validateNameTextField(String? value) {
     if (!ValidationUtil.name(value ?? StringConstants.empty) || value == null) {
       return S.current.textErrorEmptyField;
+    } else if (value.length < 3) {
+      return S.current.textRegisterValidateUserName;
     }
-    return StringConstants.empty;
+    return null;
   }
 
-  String validateEmail(String? value) {
+  validateUserNameTextField(String? value) {
+    if (!ValidationUtil.name(value ?? StringConstants.empty) || value == null) {
+      return S.current.textErrorEmptyField;
+    } else if (value.length < 3) {
+      return S.current.textRegisterValidateUserName;
+    }
+    return null;
+  }
+
+  validateEmail(String? value) {
     if (!ValidationUtil.email(value ?? StringConstants.empty) ||
         value == null) {
       return S.current.textErrorEmail;
     }
-    return StringConstants.empty;
+    return null;
   }
 
-  String validatePassword(
-    String? value, {
-    String? errorText,
-  }) {
+  validatePassword(String? value) {
     if (!ValidationUtil.passoword(value ?? StringConstants.empty) ||
         value == null) {
-      return errorText ?? S.current.textErrorLoginPassword;
+      return S.current.textErrorLoginPassword;
     }
-    return StringConstants.empty;
+    return null;
   }
 
-  String validateBirthdate(String? value) {
+  validateConfirmPassword(String? value) {
+    if (!ValidationUtil.passoword(value ?? StringConstants.empty) ||
+        value == null) {
+      return S.current.textErrorLoginPassword;
+    }
+    if (value != passwordController.text) {
+      return S.current.textErrorDifferentPasswords;
+    }
+    return null;
+  }
+
+  validateBirthdate(String? value) {
     if (!ValidationUtil.date(value ?? StringConstants.empty) || value == null) {
       return S.current.textErrorInvalidDate;
+    } else if (value.length < 10) {
+      return S.current.textErrorInvalidDate;
     }
-    return StringConstants.empty;
+    return null;
   }
 
   void toogleTermsAndConditions() {
