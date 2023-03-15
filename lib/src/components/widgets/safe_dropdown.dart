@@ -22,6 +22,17 @@ class SafeDropDown extends StatefulWidget {
 
 class _SafeDropDownState extends State<SafeDropDown> {
   @override
+  void initState() {
+    if (int.tryParse(widget.controller.text) != null) {
+      dynamic foundValue = widget.values.firstWhere(
+        (element) => element.id == int.parse(widget.controller.text),
+      );
+      widget.title = foundValue.title;
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
