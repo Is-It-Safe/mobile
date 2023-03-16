@@ -1829,6 +1829,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Seu e-mail atual é`
+  String get textYourCurrentEmailIs {
+    return Intl.message(
+      'Seu e-mail atual é',
+      name: 'textYourCurrentEmailIs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qual será o novo endereço de e-mail?`
+  String get textWhatWillBeYourEmailAddress {
+    return Intl.message(
+      'Qual será o novo endereço de e-mail?',
+      name: 'textWhatWillBeYourEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

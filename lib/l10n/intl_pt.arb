@@ -198,6 +198,9 @@
     "textPasswordSuccessChanged": "Senha alterada com sucesso!",
     "textPasswordFailureChanged": "Não foi possível alterar sua senha!",
 	
-	"textRegisterValidateUserName":"O nome não pode ter menos que 3 letras."
+	"textRegisterValidateUserName":"O nome não pode ter menos que 3 letras.",
+
+    "textYourCurrentEmailIs": "Seu e-mail atual é",
+    "textWhatWillBeYourEmailAddress": "Qual será o novo endereço de e-mail?"
 
 }
