@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
@@ -100,8 +101,9 @@ class RegisterBloc extends SafeBloC {
         );
         gendersController.sink.add(SafeEvent.done(listGenders));
       }
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
       gendersController.addError(e.toString());
     }
   }
@@ -120,8 +122,9 @@ class RegisterBloc extends SafeBloC {
           SafeEvent.done(listSexualOrientations),
         );
       }
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
       sexualOrientationsController.addError(e.toString());
     }
   }
@@ -160,8 +163,9 @@ class RegisterBloc extends SafeBloC {
           doRegisterController.add(SafeEvent.error(error.message));
         },
       );
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
       doRegisterController.addError(e.toString());
     }
   }

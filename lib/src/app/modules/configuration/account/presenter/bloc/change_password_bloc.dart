@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -61,8 +62,9 @@ class ChangePasswordBloC extends SafeBloC {
         },
       );
       return true;
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
       confirmPasswordController.sink.addError(e.toString());
       return false;
     }
