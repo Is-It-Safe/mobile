@@ -76,6 +76,11 @@ class EditAccountBloc extends SafeBloC {
     genderController = TextEditingController();
     userIdController = TextEditingController();
     pronounController = TextEditingController();
+
+    await getUser().whenComplete(() {
+      getGenders();
+      getSexualOrientations();
+    });
   }
 
   Future<bool> updateUser({required int userId}) async {
@@ -122,10 +127,21 @@ class EditAccountBloc extends SafeBloC {
         genderController.text = responseGetUSer.genreId.toString();
         sexualOrientationController.text =
             responseGetUSer.sexualOrientationId.toString();
-        userController.sink.add(SafeEvent.done(responseGetUSer));
+        if (responseGetUSer.genreId == null ||
+          responseGetUSer.sexualOrientationId == null) {
+        await Future.microtask(
+          () {
+            loadGenderFromList(
+              currentGender: responseGetUSer.gender ?? '',
+            );
+            loadSexualOrientationFromList(
+              currentSexualOrientation: responseGetUSer.orientation ?? '',
+            );
+          },
+        );
+      }
+      userController.sink.add(SafeEvent.done(responseGetUSer));
       }, (error) => null);
-    } on Exception catch (e) {
-
     } on Exception catch (e, stacktrace) {
       userController.addError(e.toString());
       Catcher.reportCheckedError(e, stacktrace);
@@ -198,4 +214,32 @@ class EditAccountBloc extends SafeBloC {
 
   @override
   Future<void> dispose() async {}
+
+  Future<void> loadGenderFromList({
+    required String currentGender,
+  }) async {
+    getGendersUseCase.call().fold(
+      (success) {
+        GenderEntity selectedGender = success.firstWhere(
+          (element) => element.title == currentGender,
+        );
+        genderController.text = selectedGender.id.toString();
+      },
+      (error) {},
+    );
+  }
+
+  Future<void> loadSexualOrientationFromList({
+    required String currentSexualOrientation,
+  }) async {
+    getSexualOrientationsUseCase.call().fold(
+      (success) {
+        SexualOrientationEntity selectedSexualOrientation = success.firstWhere(
+          (element) => element.title == currentSexualOrientation,
+        );
+        sexualOrientationController.text = selectedSexualOrientation.id.toString();
+      },
+      (error) {},
+    );
+  }
 }
