@@ -59,8 +59,9 @@ class LocationEntity {
   factory LocationEntity.fromResponseGetUserReview(
       ResponseGetUserReview review) {
     return LocationEntity(
-        id: review.id ?? 0,
-        name: review.locationName ?? StringConstants.empty,
-        address: review.locationAddress ?? StringConstants.empty);
+      id: review.id ?? 0,
+      name: review.locationName ?? StringConstants.empty,
+      address: review.locationAddress ?? StringConstants.empty,
+    );
   }
 }

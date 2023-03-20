@@ -25,6 +25,8 @@ class SafeTextFormField extends StatefulWidget {
   final int? maxLength;
   final TextInputAction? textInputAction;
   final TextCapitalization textCapitalization;
+  final String? obscuringCharacter;
+  final AutovalidateMode? autovalidateMode;
 
   const SafeTextFormField({
     Key? key,
@@ -45,6 +47,8 @@ class SafeTextFormField extends StatefulWidget {
     this.maxLength,
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
+    this.obscuringCharacter,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
   }) : super(key: key);
 
   @override
@@ -95,12 +99,14 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
             prefixIcon: widget.prefixIcon,
           ),
           obscureText: widget.obscureText ?? false,
+          obscuringCharacter: widget.obscuringCharacter ?? '•',
           onChanged: widget.onChanged,
           onEditingComplete: widget.onEditingComplete,
           validator: widget.validator,
           maxLength: widget.maxLength,
           textInputAction: widget.textInputAction,
           textCapitalization: widget.textCapitalization,
+          autovalidateMode: widget.autovalidateMode,
         ),
         Visibility(
           visible: widget.bottomText?.isNotEmpty ?? false,

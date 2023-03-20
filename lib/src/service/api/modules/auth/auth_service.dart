@@ -135,6 +135,12 @@ class AuthService implements IAuthService {
 
       return ResponseRegister.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
+      // TODO Refatorar código
+      if (e.message == StringConstants.empty) {
+        throw SafeDioResponseError(
+          'E-mail ou usuário já cadastrado, tente recuperar sua senha.',
+        );
+      }
       throw SafeDioResponseError(e.message);
     }
   }
@@ -171,5 +177,11 @@ class AuthService implements IAuthService {
     } on DioError catch (e) {
       throw SafeDioResponseError(e.message);
     }
+  }
+
+  @override
+  Future<bool> changePassword(String password) async {
+    // TODO: Implementar endpoint quando estiver pronto
+    throw UnimplementedError();
   }
 }

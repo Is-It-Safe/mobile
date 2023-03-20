@@ -16,4 +16,5 @@ abstract class IAuthService {
   Future<List<ResponseSexualOrientation>> getSexualOrientations();
   Future<String> getAccessToken();
   Future<bool> confirmPassword(RequestConfirmPassword request);
+  Future<bool> changePassword(String password);
 }

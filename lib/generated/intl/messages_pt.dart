@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -244,8 +243,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPassword": MessageLookupByLibrary.simpleMessage("Senha"),
         "textPasswordConfirmation":
             MessageLookupByLibrary.simpleMessage("Confirmar senha"),
+        "textPasswordFailureChanged": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível alterar sua senha!"),
         "textPasswordSpecifications": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números"),
+        "textPasswordSuccessChanged":
+            MessageLookupByLibrary.simpleMessage("Senha alterada com sucesso!"),
         "textPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Informações Pessoais"),
         "textPrivacy": MessageLookupByLibrary.simpleMessage("Privacidade"),
@@ -262,6 +265,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cadastro realizado com sucesso!"),
         "textRegisterSuccessMessage": MessageLookupByLibrary.simpleMessage(
             "Você será redirecionado para a página de login."),
+        "textRegisterValidateUserName": MessageLookupByLibrary.simpleMessage(
+            "O nome não pode ter menos que 3 letras."),
         "textRegular": MessageLookupByLibrary.simpleMessage("Regular"),
         "textReviewCompleted":
             MessageLookupByLibrary.simpleMessage("Review Completa!"),

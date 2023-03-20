@@ -193,5 +193,11 @@
     "textOpenPermissions": "Abrir Permissões",
 
     "textContacHowToHelpYou": "Nos conte como podemos te ajudar",
-    "textContacActionError": "Não foi possível realizar a ação."
+    "textContacActionError": "Não foi possível realizar a ação.",
+
+    "textPasswordSuccessChanged": "Senha alterada com sucesso!",
+    "textPasswordFailureChanged": "Não foi possível alterar sua senha!",
+	
+	"textRegisterValidateUserName":"O nome não pode ter menos que 3 letras."
+
 }

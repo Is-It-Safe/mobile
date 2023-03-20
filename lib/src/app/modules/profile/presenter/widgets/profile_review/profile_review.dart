@@ -43,14 +43,14 @@ class _ProfileReviewState extends State<ProfileReview> {
   }
 
   String _getEmotionText(double? grade) {
-    if (grade == null) return S.current.textNeutral;
+    if (grade == null) return S.current.textRegular;
     if (grade == 0.0 && grade < 1.0) return S.current.textAngry;
     if (grade >= 1.0 && grade < 2.0) return S.current.textUpset;
-    if (grade >= 2.0 && grade < 3.0) return S.current.textNeutral;
-    if (grade >= 3.0 && grade < 4.0) return S.current.textHappy;
-    if (grade >= 4.0) return S.current.textExcited;
+    if (grade >= 2.0 && grade < 3.0) return S.current.textRegular;
+    if (grade >= 3.0 && grade < 4.0) return S.current.textSatisfied;
+    if (grade >= 4.0) return S.current.textIncredible;
 
-    return S.current.textNeutral;
+    return S.current.textRegular;
   }
 
   void doSeeMore() {

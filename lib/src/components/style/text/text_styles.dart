@@ -182,4 +182,17 @@ class TextStyles {
       fontSize: FontSize.xSmall,
     );
   }
+
+  ///Método que retorna estilização de texto correspondente ao **Safe Emotional Graphic**.
+  static TextStyle emotionalStatus({
+    Color? color,
+    TextDecoration? textDecoration,
+  }) {
+    return GoogleFonts.poppins(
+      color: color ?? SafeColors.textColors.dark,
+      fontWeight: FontWeight.w500,
+      decoration: textDecoration,
+      fontSize: FontSize.xSmall,
+    );
+  }
 }

@@ -1799,6 +1799,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Senha alterada com sucesso!`
+  String get textPasswordSuccessChanged {
+    return Intl.message(
+      'Senha alterada com sucesso!',
+      name: 'textPasswordSuccessChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível alterar sua senha!`
+  String get textPasswordFailureChanged {
+    return Intl.message(
+      'Não foi possível alterar sua senha!',
+      name: 'textPasswordFailureChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O nome não pode ter menos que 3 letras.`
+  String get textRegisterValidateUserName {
+    return Intl.message(
+      'O nome não pode ter menos que 3 letras.',
+      name: 'textRegisterValidateUserName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
