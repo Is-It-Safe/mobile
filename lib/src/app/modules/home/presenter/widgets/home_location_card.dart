@@ -108,12 +108,7 @@ class _LocationBody extends StatelessWidget {
           children: [
             _mountName(context),
             const SizedBox(width: 8),
-            Container(
-              margin: const EdgeInsets.only(
-                left: 8,
-              ),
-              child: _moundAddress(context),
-            ),
+            _moundAddress(context),
             const SizedBox(
               height: 8,
             ),
@@ -121,7 +116,7 @@ class _LocationBody extends StatelessWidget {
             const SizedBox(height: 8),
           ],
         ),
-        SizedBox(width: size.width * .08),
+        SizedBox(width: size.width * .065),
       ],
     );
   }
