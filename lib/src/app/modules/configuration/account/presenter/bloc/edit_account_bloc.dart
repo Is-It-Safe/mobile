@@ -94,8 +94,10 @@ class EditAccountBloc extends SafeBloC {
         sexualOrientationId: int.parse(sexualOrientationController.text),
         pronoun: pronounController.text,
       );
-      UserEntity userEntity = await updateUserUseCase.call(request);
-      upDateUserController.sink.add(SafeEvent.done(userEntity));
+      await updateUserUseCase.call(request).fold(
+          (userEntity) =>
+              upDateUserController.sink.add(SafeEvent.done(userEntity)),
+          (error) => null);
       return true;
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
@@ -116,16 +118,16 @@ class EditAccountBloc extends SafeBloC {
   Future<void> getUser() async {
     try {
       userController.sink.add(SafeEvent.load());
-      responseGetUSer = await getUserUseCase.call();
-      userIdController.text = responseGetUSer.id.toString();
-      nameController.text = responseGetUSer.name!;
-      usernameController.text = responseGetUSer.nickname!;
-      birthdateController.text = responseGetUSer.birthDate!;
-      pronounController.text = responseGetUSer.pronoun!;
-      genderController.text = responseGetUSer.genreId.toString();
-      sexualOrientationController.text =
-          responseGetUSer.sexualOrientationId.toString();
-      if (responseGetUSer.genreId == null ||
+      await getUserUseCase.call().fold((responseGetUSer) {
+        userIdController.text = responseGetUSer.id.toString();
+        nameController.text = responseGetUSer.name!;
+        usernameController.text = responseGetUSer.nickname!;
+        birthdateController.text = responseGetUSer.birthDate!;
+        pronounController.text = responseGetUSer.pronoun!;
+        genderController.text = responseGetUSer.genreId.toString();
+        sexualOrientationController.text =
+            responseGetUSer.sexualOrientationId.toString();
+        if (responseGetUSer.genreId == null ||
           responseGetUSer.sexualOrientationId == null) {
         await Future.microtask(
           () {
@@ -139,6 +141,7 @@ class EditAccountBloc extends SafeBloC {
         );
       }
       userController.sink.add(SafeEvent.done(responseGetUSer));
+      }, (error) => null);
     } on Exception catch (e, stacktrace) {
       userController.addError(e.toString());
       Catcher.reportCheckedError(e, stacktrace);

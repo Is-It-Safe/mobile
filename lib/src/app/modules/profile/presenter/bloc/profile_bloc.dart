@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
+import 'package:result_dart/result_dart.dart';
 
 class ProfileBloc extends SafeBloC {
   final GetUserUseCase getUserUseCase;
@@ -35,8 +36,9 @@ class ProfileBloc extends SafeBloC {
   Future<void> getUser() async {
     try {
       userController.sink.add(SafeEvent.load());
-      final response = await getUserUseCase.call();
-      userController.sink.add(SafeEvent.done(response));
+      await getUserUseCase.call().fold(
+          (userEntity) => userController.sink.add(SafeEvent.done(userEntity)),
+          (error) => null);
     } on Exception catch (e) {
       if (e is UnauthorizedException) await ApiInterceptors.doLogout();
       userController.addError(e.toString());
@@ -46,8 +48,10 @@ class ProfileBloc extends SafeBloC {
   Future<bool> deleteReview({required int? idReview}) async {
     try {
       deleteReviewController.add(SafeEvent.load());
-      final review = await deleteReviewUseCase.call(idReview);
-      deleteReviewController.add(SafeEvent.done(review));
+      await deleteReviewUseCase.call(idReview).fold(
+            (review) => deleteReviewController.add(SafeEvent.done(review)),
+            (error) => null,
+          );
       return true;
     } catch (e) {
       deleteReviewController.addError(e.toString());
