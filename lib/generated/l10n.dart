@@ -1829,6 +1829,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Ocorreu um erro inesperado!`
+  String get textCriticalErrorPageTitle {
+    return Intl.message(
+      'Ocorreu um erro inesperado!',
+      name: 'textCriticalErrorPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!`
+  String get textCriticalErrorPageBody {
+    return Intl.message(
+      'Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!',
+      name: 'textCriticalErrorPageBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reportar erro`
+  String get textCriticalErrorPageGoToReport {
+    return Intl.message(
+      'Reportar erro',
+      name: 'textCriticalErrorPageGoToReport',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
