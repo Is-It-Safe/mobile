@@ -53,7 +53,8 @@ dependencies:
   url_launcher: ^6.1.7
   result_dart: ^1.0.5
 
-
+  #Monitoramento
+  catcher: ^0.7.0
 
 dev_dependencies:
   flutter_test:

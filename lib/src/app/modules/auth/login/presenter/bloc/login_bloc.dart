@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
@@ -67,9 +68,10 @@ class LoginBloc extends SafeBloC {
         }
         doLoginController.sink.add(SafeEvent.done(loginEntity));
       }, (error) => null);
-    } catch (e) {
+    } catch (e, stacktrace) {
       doLoginController.addError(e.toString());
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
     }
   }
 
@@ -83,40 +85,45 @@ class LoginBloc extends SafeBloC {
   Future<void> saveUserLogin(bool value) async {
     try {
       await saveUserLoginUseCase.call(value);
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
     }
   }
 
   Future<void> saveUserName(String value) async {
     try {
       await saveUserNameUseCase.call(value);
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
     }
   }
 
   Future<void> saveUserImage(String value) async {
     try {
       await saveUserImageUseCase.call(value);
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
     }
   }
 
   Future<void> saveUserToken(String value) async {
     try {
       await saveUserTokenUseCase.call(value);
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
     }
   }
 
   Future<void> saveUserRefreshToken(String value) async {
     try {
       await saveUserRefreshTokenUseCase.call(value);
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
     }
   }
 

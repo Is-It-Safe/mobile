@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:catcher/catcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -93,8 +94,9 @@ class EditAccountBloc extends SafeBloC {
               upDateUserController.sink.add(SafeEvent.done(userEntity)),
           (error) => null);
       return true;
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
       upDateUserController.sink.add(SafeEvent.error(e.toString()));
       return false;
     }
@@ -123,7 +125,10 @@ class EditAccountBloc extends SafeBloC {
         userController.sink.add(SafeEvent.done(responseGetUSer));
       }, (error) => null);
     } on Exception catch (e) {
+
+    } on Exception catch (e, stacktrace) {
       userController.addError(e.toString());
+      Catcher.reportCheckedError(e, stacktrace);
       if (e is UnauthorizedException) await doLogout();
     }
   }
@@ -149,8 +154,9 @@ class EditAccountBloc extends SafeBloC {
         );
         gendersController.sink.add(SafeEvent.done(listGenders));
       }
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
       gendersController.sink.add(SafeEvent.error(e.toString()));
     }
   }
@@ -169,8 +175,9 @@ class EditAccountBloc extends SafeBloC {
           SafeEvent.done(listSexualOrientations),
         );
       }
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
       sexualOrientationsController.sink.add(SafeEvent.error(e.toString()));
     }
   }
