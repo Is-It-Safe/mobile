@@ -2,6 +2,10 @@ import 'dart:convert';
 
 /// [ApiConstants] é uma classe que contém todas as constantes usadas nas requisições da API
 class ApiConstants {
+  ///URL representando webhook para monitoramento da aplicação.
+  static const String kDiscordMonitoringWebhook =
+      'https://discord.com/api/webhooks/1086465967468597298/BoP0DfykuMDBCsc-XM8e2d8mdapE-TT4Zjtu6m2t_gfyv2EPILuJUz3n27bXY82ekRYB';
+
   ///Credenciais de autenticação
   static const String kClientCredentials = 'isitsafe:isitsafe123';
   static const String kAuthorization = 'Authorization';
