@@ -8,6 +8,7 @@ class UserEntity {
   int id;
   String? profilePhoto;
   String? name;
+  String? email;
   String? nickname;
   String? pronoun;
   String? gender;
@@ -21,6 +22,7 @@ class UserEntity {
     required this.id,
     this.profilePhoto,
     this.name,
+    this.email,
     this.nickname,
     this.pronoun,
     this.gender,
@@ -35,6 +37,7 @@ class UserEntity {
     return UserEntity(
       id: user.id!,
       name: user.name ?? StringConstants.empty,
+      email: user.email ?? StringConstants.empty,
       nickname: user.nickname ?? StringConstants.empty,
       profilePhoto: user.profilePhoto ?? StringConstants.empty,
       pronoun: user.pronoun ?? StringConstants.empty,

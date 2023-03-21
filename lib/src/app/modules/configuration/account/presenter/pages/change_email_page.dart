@@ -30,6 +30,7 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
   @override
   void initState() {
     widget.accountBloc.getUser();
+
     super.initState();
   }
 
@@ -79,7 +80,7 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                         child: Text.rich(
                           TextSpan(
                             text:
-                                "${S.current.textYourCurrentEmailIs} ${user?.name}\n",
+                                "${S.current.textYourCurrentEmailIs} ${user?.email}\n",
                             style: TextStyles.subtitle1(), // default text style
                             children: <TextSpan>[
                               TextSpan(
@@ -108,7 +109,8 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                           ),
                           SizedBox(
                             child: SafeButton(
-                              title: S.current.textAdvance,
+                              title: S.current
+                                  .textAdvance, // TODO: Criar String internacionalizada para 'Alterar' ao invés de usar 'Avançar' neste botão
                               state: !controller.emailValidated
                                   ? ButtonState.disabled
                                   : null,
