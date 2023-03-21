@@ -109,12 +109,14 @@ class _LocationBody extends StatelessWidget {
             _mountName(context),
             const SizedBox(width: 8),
             _moundAddress(context),
-            const SizedBox(height: 8),
+            const SizedBox(
+              height: 8,
+            ),
             _mountReviews(),
             const SizedBox(height: 8),
           ],
         ),
-        SizedBox(width: size.width * .08),
+        SizedBox(width: size.width * .065),
       ],
     );
   }
