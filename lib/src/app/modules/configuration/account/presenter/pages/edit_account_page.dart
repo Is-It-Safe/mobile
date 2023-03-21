@@ -64,9 +64,10 @@ class _EditAccountPageState
                 ),
                 const SizedBox(height: 16),
                 GenderEditAcount(
-                    controller: controller.gendersController,
-                    genderController: controller.genderController,
-                    isGenderDropdownExpanded: isGenderDropdownExpanded),
+                  controller: controller.gendersController,
+                  genderController: controller.genderController,
+                  isGenderDropdownExpanded: isGenderDropdownExpanded,
+                ),
                 const SizedBox(height: 24),
                 _mountUpdateUserButton(),
                 const SizedBox(height: 20),
@@ -329,8 +330,5 @@ class _EditAccountPageState
   void initState() {
     super.initState();
     SafeLogUtil.instance.route(Modular.to.path);
-    controller.getUser();
-    controller.getGenders();
-    controller.getSexualOrientations();
   }
 }

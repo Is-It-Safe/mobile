@@ -1,3 +1,4 @@
+import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
@@ -21,8 +22,9 @@ class OnBoardingBloc extends SafeBloC {
   Future<void> saveUserOnBoarding(bool value) async {
     try {
       await saveUserOnBoardingUseCase.call(value);
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
     }
   }
 

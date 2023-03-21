@@ -1835,6 +1835,14 @@ class S {
     return Intl.message(
       'Seu e-mail atual é',
       name: 'textYourCurrentEmailIs',
+    );
+  }
+
+  /// `Ocorreu um erro inesperado!`
+  String get textCriticalErrorPageTitle {
+    return Intl.message(
+      'Ocorreu um erro inesperado!',
+      name: 'textCriticalErrorPageTitle',
       desc: '',
       args: [],
     );
@@ -1845,6 +1853,24 @@ class S {
     return Intl.message(
       'Qual será o novo endereço de e-mail?',
       name: 'textWhatWillBeYourEmailAddress',
+    );
+  }
+
+  /// `Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!`
+  String get textCriticalErrorPageBody {
+    return Intl.message(
+      'Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!',
+      name: 'textCriticalErrorPageBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reportar erro`
+  String get textCriticalErrorPageGoToReport {
+    return Intl.message(
+      'Reportar erro',
+      name: 'textCriticalErrorPageGoToReport',
       desc: '',
       args: [],
     );

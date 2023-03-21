@@ -109,6 +109,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
         "textCreateHere":
             MessageLookupByLibrary.simpleMessage("Crie ele aqui."),
+        "textCriticalErrorPageBody": MessageLookupByLibrary.simpleMessage(
+            "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!"),
+        "textCriticalErrorPageGoToReport":
+            MessageLookupByLibrary.simpleMessage("Reportar erro"),
+        "textCriticalErrorPageTitle":
+            MessageLookupByLibrary.simpleMessage("Ocorreu um erro inesperado!"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
         "textDefaultDeleteReviewMessage": MessageLookupByLibrary.simpleMessage(
