@@ -9,6 +9,7 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart';
@@ -25,6 +26,7 @@ class LoginBloc extends SafeBloC {
   final SaveUserRefreshTokenUseCase saveUserRefreshTokenUseCase;
   final SaveUserImageUseCase saveUserImageUseCase;
   final SaveUserNameUseCase saveUserNameUseCase;
+  final SaveUserEmailUsecase saveUserEmailUseCase;
 
   late StreamController<bool> loginButtonController;
   late StreamController<SafeEvent<LoginEntity>> doLoginController;
@@ -38,6 +40,7 @@ class LoginBloc extends SafeBloC {
     required this.saveUserRefreshTokenUseCase,
     required this.saveUserImageUseCase,
     required this.saveUserNameUseCase,
+    required this.saveUserEmailUseCase,
   }) {
     init();
   }
@@ -63,6 +66,7 @@ class LoginBloc extends SafeBloC {
           await saveUserToken(loginEntity.accessToken);
           await saveUserRefreshToken(loginEntity.refreshToken);
           await saveUserName(loginEntity.userFirstName);
+          await saveUserEmail(emailController.text);
           await saveUserImage(loginEntity.userImage);
           await saveUserLogin(true);
         }
@@ -94,6 +98,15 @@ class LoginBloc extends SafeBloC {
   Future<void> saveUserName(String value) async {
     try {
       await saveUserNameUseCase.call(value);
+    } catch (e, stacktrace) {
+      SafeLogUtil.instance.logError(e);
+      Catcher.reportCheckedError(e, stacktrace);
+    }
+  }
+
+  Future<void> saveUserEmail(String value) async {
+    try {
+      await saveUserEmailUseCase.call(userEmail: value);
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
       Catcher.reportCheckedError(e, stacktrace);

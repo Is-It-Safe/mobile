@@ -9,7 +9,9 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/change_password_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/confirm_password_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
@@ -50,7 +52,9 @@ class AccountModule extends Module {
         saveUserImageUseCase: i.get<SaveUserImageUseCase>(),
       ),
     ),
-    Bind((i) => ChangeEmailBloc()),
+    Bind((i) => GetUserEmailUsecase(i.get<ISharedPreferencesService>())),
+    Bind((i) => SaveUserEmailUsecase(i.get<ISharedPreferencesService>())),
+    Bind((i) => ChangeEmailBloc(i.get<GetUserEmailUsecase>())),
   ];
 
   @override
@@ -69,7 +73,7 @@ class AccountModule extends Module {
     ),
     ChildRoute(
       ChangeEmailPage.route,
-      child: (context, args) => ChangeEmailPage(accountBloc: args.data),
+      child: (context, args) => const ChangeEmailPage(),
     ),
   ];
 }

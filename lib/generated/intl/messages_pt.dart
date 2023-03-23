@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textCanYouGiveMoreDetails": MessageLookupByLibrary.simpleMessage(
             "Você pode nos dar mais detalhes?"),
         "textCancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "textChange": MessageLookupByLibrary.simpleMessage("Alterar"),
         "textChangeEmail":
             MessageLookupByLibrary.simpleMessage("Alterar E-mail"),
         "textChangePassword":

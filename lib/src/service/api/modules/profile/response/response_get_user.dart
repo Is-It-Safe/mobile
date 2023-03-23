@@ -2,7 +2,6 @@ class ResponseGetUser {
   int? id;
   String? profilePhoto;
   String? name;
-  String? email;
   String? nickname;
   String? pronoun;
   String? gender;
@@ -14,7 +13,6 @@ class ResponseGetUser {
     this.id,
     this.profilePhoto,
     this.name,
-    this.email,
     this.nickname,
     this.pronoun,
     this.gender,
@@ -33,7 +31,6 @@ class ResponseGetUser {
       profilePhoto: json['profilePhoto'],
       name: json['fullName'],
       nickname: json['nickname'],
-      email: json['email'],
       pronoun: json['pronoun'],
       gender: json['gender'],
       orientation: json['orientation'],

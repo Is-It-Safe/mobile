@@ -2,6 +2,7 @@
 class KeyConstants {
   static const String keyUserOnBoarding = 'userOnBoarding';
   static const String keyUserLogged = 'userLogged';
+  static const String keyUserEmail = 'userEmail';
   static const String keyUserToken = 'userToken';
   static const String keyUserRefreshToken = 'userRefreshToken';
   static const String keyUserImage = 'userImage';
