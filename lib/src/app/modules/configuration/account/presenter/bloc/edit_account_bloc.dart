@@ -118,7 +118,7 @@ class EditAccountBloc extends SafeBloC {
   Future<void> getUser() async {
     try {
       userController.sink.add(SafeEvent.load());
-      await getUserUseCase.call().fold((responseGetUSer) {
+      await getUserUseCase.call().fold((responseGetUSer) async {
         userIdController.text = responseGetUSer.id.toString();
         nameController.text = responseGetUSer.name!;
         usernameController.text = responseGetUSer.nickname!;
@@ -128,19 +128,19 @@ class EditAccountBloc extends SafeBloC {
         sexualOrientationController.text =
             responseGetUSer.sexualOrientationId.toString();
         if (responseGetUSer.genreId == null ||
-          responseGetUSer.sexualOrientationId == null) {
-        await Future.microtask(
-          () {
-            loadGenderFromList(
-              currentGender: responseGetUSer.gender ?? '',
-            );
-            loadSexualOrientationFromList(
-              currentSexualOrientation: responseGetUSer.orientation ?? '',
-            );
-          },
-        );
-      }
-      userController.sink.add(SafeEvent.done(responseGetUSer));
+            responseGetUSer.sexualOrientationId == null) {
+          await Future.microtask(
+            () {
+              loadGenderFromList(
+                currentGender: responseGetUSer.gender ?? '',
+              );
+              loadSexualOrientationFromList(
+                currentSexualOrientation: responseGetUSer.orientation ?? '',
+              );
+            },
+          );
+        }
+        userController.sink.add(SafeEvent.done(responseGetUSer));
       }, (error) => null);
     } on Exception catch (e, stacktrace) {
       userController.addError(e.toString());
@@ -237,7 +237,8 @@ class EditAccountBloc extends SafeBloC {
         SexualOrientationEntity selectedSexualOrientation = success.firstWhere(
           (element) => element.title == currentSexualOrientation,
         );
-        sexualOrientationController.text = selectedSexualOrientation.id.toString();
+        sexualOrientationController.text =
+            selectedSexualOrientation.id.toString();
       },
       (error) {},
     );
