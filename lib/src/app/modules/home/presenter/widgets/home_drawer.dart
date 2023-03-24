@@ -58,7 +58,7 @@ class HomeDrawer extends StatelessWidget {
 
               // Termos de uso
               DrawerItem(
-                icon: AssetConstants.icons.comment,
+                icon: AssetConstants.icons.termsOfUse,
                 text: S.current.textTermsOfUse,
                 route: ConfigurationModule.route + TermsAndConditionsPage.route,
               ),

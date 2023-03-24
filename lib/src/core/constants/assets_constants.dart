@@ -43,6 +43,7 @@ class _IconsAssets {
   String search = 'images/modules/core/icons/search_icon.svg';
   String account = 'images/modules/core/icons/account_icon.svg';
   String contact = 'images/modules/core/icons/contact_icon.svg';
+  String termsOfUse = 'images/modules/core/icons/terms_of_use_icon.svg';
 }
 
 class _MockAssets {
