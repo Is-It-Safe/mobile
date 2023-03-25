@@ -139,4 +139,16 @@ class SharedPreferencesService implements ISharedPreferencesService {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(KeyConstants.locationPermission, alreadySeeIt);
   }
+
+  @override
+  Future<void> saveUserEmail({required String userEmail}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(KeyConstants.keyUserEmail, userEmail);
+  }
+
+  @override
+  Future<String> getUserEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(KeyConstants.keyUserEmail) ?? StringConstants.empty;
+  }
 }

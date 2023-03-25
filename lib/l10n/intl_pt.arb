@@ -200,8 +200,12 @@
 	
 	"textRegisterValidateUserName":"O nome não pode ter menos que 3 letras.",
 
+
+    "textYourCurrentEmailIs": "Seu e-mail atual é",
+    "textWhatWillBeYourEmailAddress": "Qual será o novo endereço de e-mail?",
     "textCriticalErrorPageTitle": "Ocorreu um erro inesperado!",
     "textCriticalErrorPageBody": "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!",
-    "textCriticalErrorPageGoToReport": "Reportar erro"
-
+    "textCriticalErrorPageGoToReport": "Reportar erro",
+    
+    "textChange": "Alterar"
 }

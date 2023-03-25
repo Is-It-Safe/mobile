@@ -1830,6 +1830,26 @@ class S {
     );
   }
 
+  /// `Seu e-mail atual é`
+  String get textYourCurrentEmailIs {
+    return Intl.message(
+      'Seu e-mail atual é',
+      name: 'textYourCurrentEmailIs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qual será o novo endereço de e-mail?`
+  String get textWhatWillBeYourEmailAddress {
+    return Intl.message(
+      'Qual será o novo endereço de e-mail?',
+      name: 'textWhatWillBeYourEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Ocorreu um erro inesperado!`
   String get textCriticalErrorPageTitle {
     return Intl.message(
@@ -1855,6 +1875,16 @@ class S {
     return Intl.message(
       'Reportar erro',
       name: 'textCriticalErrorPageGoToReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alterar`
+  String get textChange {
+    return Intl.message(
+      'Alterar',
+      name: 'textChange',
       desc: '',
       args: [],
     );

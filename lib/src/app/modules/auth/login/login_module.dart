@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.da
 import 'package:is_it_safe_app/src/app/modules/navigation/navigation_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
@@ -14,6 +15,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
+import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class LoginModule extends Module {
   @override
@@ -21,6 +23,7 @@ class LoginModule extends Module {
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => ApiService()),
     Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
+    Bind((i) => SaveUserEmailUsecase(i.get<ISharedPreferencesService>())),
     Bind.lazySingleton((i) => LoginBloc(
           doLoginUseCase: i.get<DoLoginUseCase>(),
           saveUserLoginUseCase: i.get<SaveUserLoginUseCase>(),
@@ -28,6 +31,7 @@ class LoginModule extends Module {
           saveUserRefreshTokenUseCase: i.get<SaveUserRefreshTokenUseCase>(),
           saveUserImageUseCase: i.get<SaveUserImageUseCase>(),
           saveUserNameUseCase: i.get<SaveUserNameUseCase>(),
+          saveUserEmailUseCase: i.get<SaveUserEmailUsecase>(),
         )),
   ];
 
