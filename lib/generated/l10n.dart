@@ -370,6 +370,26 @@ class S {
     );
   }
 
+  /// `Usuário ou senha inválido!`
+  String get textErrorLoginUnauthorized {
+    return Intl.message(
+      'Usuário ou senha inválido!',
+      name: 'textErrorLoginUnauthorized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível fazer login, tente novamente em alguns instantes.`
+  String get textErrorLoginFailed {
+    return Intl.message(
+      'Não foi possível fazer login, tente novamente em alguns instantes.',
+      name: 'textErrorLoginFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Review deletada com sucesso!`
   String get textDefaultDeleteReviewMessage {
     return Intl.message(

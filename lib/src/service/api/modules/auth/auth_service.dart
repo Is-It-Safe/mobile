@@ -34,17 +34,14 @@ class AuthService implements IAuthService {
       request = RequestLogin(
         email: request.email,
         password: request.password,
-        grantType: request.grantType,
       );
       final requestConfig = RequestConfig(
         path: ApiConstants.doAuth,
         method: HttpMethod.post,
         body: request.toMap(),
         options: Options(
-          contentType: Headers.formUrlEncodedContentType,
           headers: {
             ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-            ApiConstants.kContentType: 'application/x-www-form-urlencoded',
           },
         ),
       );
@@ -85,15 +82,8 @@ class AuthService implements IAuthService {
     RequestRefreshToken request,
   ) async {
     final requestConfig = RequestConfig(
-      path: ApiConstants.doAuth,
+      path: ApiConstants.doRefresh,
       method: HttpMethod.post,
-      body: request.toJson(request),
-      options: Options(
-        headers: {
-          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
-        },
-      ),
     );
 
     final response = await service.doRequest(requestConfig);

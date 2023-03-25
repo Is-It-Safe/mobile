@@ -14,7 +14,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart'
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
-import '../../../../../../components/widgets/safe_snack_bar.dart';
 import '../../../../../../core/util/safe_log_util.dart';
 
 class EditAccountPage extends StatefulWidget {
@@ -113,17 +112,15 @@ class _EditAccountPageState
                   _formKey.currentState?.save();
                   bool status = await controller.updateUser(userId: userId!);
                   if (status) {
-                    SafeSnackBar(
-                      message: S.current.textInformationChangedSuccessfully,
-                      type: SnackBarType.success,
-                    ).show(context);
+                    controller.safeSnackBar
+                        .success(S.current.textInformationChangedSuccessfully);
+
                     Modular.to.pop();
                     Modular.to.pop();
                   } else {
-                    SafeSnackBar(
-                      message: S.current.textUnableToChangeInformation,
-                      type: SnackBarType.error,
-                    ).show(context);
+                    controller.safeSnackBar.error(
+                      S.current.textUnableToChangeInformation,
+                    );
                   }
                 },
               );

@@ -6,7 +6,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class SafeProfilePicturePage extends StatefulWidget {
@@ -100,10 +99,7 @@ class _SafeProfilePicturePageState extends State<SafeProfilePicturePage> {
       size: ButtonSize.small,
       onTap: () {
         if (controller.selectedProfilePhoto.isEmpty) {
-          SafeSnackBar(
-            message: S.current.textSelectAPicture,
-            type: SnackBarType.error,
-          ).show(context);
+          controller.safeSnackBar.error(S.current.textSelectAPicture);
         } else {
           Modular.to.pop(userAvatarPath);
         }

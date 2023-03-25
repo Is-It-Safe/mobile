@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 
+@Deprecated('Use SafeBuilder instead.')
 class SafeLayout extends StatelessWidget {
   final AsyncSnapshot<SafeEvent<dynamic>> snapshot;
   final bool showErrorDialog;

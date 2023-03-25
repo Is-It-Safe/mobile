@@ -17,7 +17,6 @@ class ApiConstants {
   );
 
   ///Grant Type
-  static const String kGrantTypePassword = 'password';
   static const String kGrantTypeRefreshToken = 'refresh_token';
 
   ///Basic Auth para autenticação do Login
@@ -39,7 +38,8 @@ class ApiConstants {
   /*--------------------------------------------------------------------*/
 
   //Auth
-  static const String doAuth = '${kAuthUrl}oauth/token';
+  static const String doAuth = '${kUrl}auth/login';
+  static const String doRefresh = '${kUrl}auth/refreshtoken';
   static const String doRegister = '${kUrl}user/save';
   static const String getGenders = '${kUrl}gender/find-all';
   static const String getSexualOrientations = '${kUrl}orientation/find-all';
