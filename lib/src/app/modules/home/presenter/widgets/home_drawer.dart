@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/contact/presenter/pages/contact_page.dart';
@@ -49,9 +50,21 @@ class HomeDrawer extends StatelessWidget {
                 icon: AssetConstants.icons.account,
                 text: S.current.textDrawerMyAccount,
                 route: ConfigurationModule.route + AccountPage.route,
-                onNavigationCompleted: () => Modular.get<HomeBloc>().getHomeDrawerInfo(),
+                onNavigationCompleted: () =>
+                    Modular.get<HomeBloc>().getHomeDrawerInfo(),
               ),
+
               const SizedBox(height: 30),
+
+              // Termos de uso
+              DrawerItem(
+                icon: AssetConstants.icons.termsOfUse,
+                text: S.current.textTermsOfUse,
+                route: ConfigurationModule.route + TermsAndConditionsPage.route,
+              ),
+
+              const SizedBox(height: 30),
+
               // Contato
               DrawerItem(
                 icon: AssetConstants.icons.contact,
