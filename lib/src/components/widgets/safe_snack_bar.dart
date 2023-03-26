@@ -1,119 +1,132 @@
 import 'package:flutter/material.dart';
+import 'package:is_it_safe_app/src/components/enum/safe_snackbar_type_enum.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
+import 'package:overlay_support/overlay_support.dart';
 
-enum SnackBarType { active, success, alert, error, info }
+abstract class ISafeSnackBar {
+  void info(String message);
+  void error(String message);
+  void alert(String message);
+  void success(String message);
+  void active(String message);
+}
 
-class SafeSnackBar extends StatelessWidget {
-  final String message;
-  final SnackBarType type;
-  final Icon? icon;
+class SafeSnackBar implements ISafeSnackBar {
+  OverlaySupportEntry? overlaySupportEntry;
+  final duration = const Duration(seconds: 3);
 
-  const SafeSnackBar({
-    Key? key,
-    required this.message,
-    this.type = SnackBarType.active,
-    this.icon,
-  }) : super(key: key);
-
-  void show(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        content: SafeSnackBar(
+  @override
+  void active(String message) {
+    overlaySupportEntry = showOverlayNotification(
+      (context) {
+        return SafeSnackBarImpl(
+          type: SafeSnackBarTypeEnum.active,
           message: message,
-          type: type,
-        ),
-      ),
+        );
+      },
+      position: NotificationPosition.bottom,
+      duration: duration,
     );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: _getBackgroundColor(),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          icon ?? _getIcon(),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Text(
-              message,
-              style: TextStyles.bodyText2(
-                color: _getTextIconColor(),
-              ),
-            ),
-          ),
-        ],
-      ),
+  void alert(String message) {
+    overlaySupportEntry = showOverlayNotification(
+      (context) {
+        return SafeSnackBarImpl(
+          type: SafeSnackBarTypeEnum.alert,
+          message: message,
+        );
+      },
+      position: NotificationPosition.bottom,
+      duration: duration,
     );
   }
 
-  Color _getTextIconColor() {
-    switch (type) {
-      case SnackBarType.alert:
-        return SafeColors.generalColors.white;
-      case SnackBarType.error:
-        return SafeColors.generalColors.white;
-      case SnackBarType.success:
-        return SafeColors.generalColors.white;
-      case SnackBarType.active:
-        return SafeColors.generalColors.white;
-      case SnackBarType.info:
-        return SafeColors.generalColors.white;
-    }
+  @override
+  void error(String message) {
+    overlaySupportEntry = showOverlayNotification(
+      (context) {
+        return SafeSnackBarImpl(
+          type: SafeSnackBarTypeEnum.error,
+          message: message,
+        );
+      },
+      position: NotificationPosition.bottom,
+      duration: duration,
+    );
   }
 
-  Color _getBackgroundColor() {
-    switch (type) {
-      case SnackBarType.alert:
-        return SafeColors.statusColors.alert;
-      case SnackBarType.error:
-        return SafeColors.statusColors.error;
-      case SnackBarType.success:
-        return SafeColors.statusColors.success;
-      case SnackBarType.active:
-        return SafeColors.statusColors.active;
-      case SnackBarType.info:
-        return SafeColors.statusColors.info2;
-    }
+  @override
+  void info(String message) {
+    overlaySupportEntry = showOverlayNotification(
+      (context) {
+        return SafeSnackBarImpl(
+          type: SafeSnackBarTypeEnum.info,
+          message: message,
+        );
+      },
+      position: NotificationPosition.bottom,
+      duration: duration,
+    );
   }
 
-  Icon _getIcon() {
-    final iconColor = _getTextIconColor();
-    switch (type) {
-      case SnackBarType.alert:
-        return Icon(
-          Icons.admin_panel_settings_sharp,
-          color: iconColor,
+  @override
+  void success(String message) {
+    overlaySupportEntry = showOverlayNotification(
+      (context) {
+        return SafeSnackBarImpl(
+          type: SafeSnackBarTypeEnum.success,
+          message: message,
         );
-      case SnackBarType.error:
-        return Icon(
-          Icons.error_outline,
-          color: iconColor,
-        );
-      case SnackBarType.success:
-        return Icon(
-          Icons.check_circle_outline,
-          color: iconColor,
-        );
-      case SnackBarType.active:
-        return Icon(
-          Icons.thumb_up_alt,
-          color: iconColor,
-        );
-      case SnackBarType.info:
-        return Icon(
-          Icons.info_outline,
-          color: iconColor,
-        );
-    }
+      },
+      position: NotificationPosition.bottom,
+      duration: duration,
+    );
+  }
+}
+
+class SafeSnackBarImpl extends StatelessWidget {
+  final String message;
+  final Icon? icon;
+  final SafeSnackBarTypeEnum type;
+  const SafeSnackBarImpl({
+    Key? key,
+    required this.message,
+    required this.type,
+    this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 40, left: 16, right: 16),
+        child: Container(
+          height: 80,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: type.background,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Row(
+            children: [
+              icon ?? type.icon,
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  message,
+                  style: TextStyles.bodyText2(
+                    color: SafeColors.generalColors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

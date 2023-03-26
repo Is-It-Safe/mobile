@@ -8,7 +8,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
@@ -66,17 +65,13 @@ class _AccountHeaderState extends State<AccountHeader> {
                           widget.controller.safeProfilePictureBloc
                               .setProfitePicture(value.toString());
                         });
-                        SafeSnackBar(
-                                type: SnackBarType.success,
-                                message: S.current.textAvatarSuccessUpated)
-                            .show(context);
+                        widget.controller.safeSnackBar
+                            .success(S.current.textAvatarSuccessUpated);
 
                         widget.controller.userController.stream
                             .handleError((x) {
-                          SafeSnackBar(
-                                  type: SnackBarType.error,
-                                  message: S.current.textFailedToUpdateAvatar)
-                              .show(context);
+                          widget.controller.safeSnackBar
+                              .error(S.current.textFailedToUpdateAvatar);
                         });
 
                         await widget.controller

@@ -5,19 +5,9 @@ import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/b
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/change_password_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/edit_account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_button.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_tile.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_section_banner.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/personal_information.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
-import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
-import '../../../../../../components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
 import '../../../../../../core/constants/string_constants.dart';
 import '../../../configuration_module.dart';
 import 'account_header.dart';
@@ -76,10 +66,9 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
             const SizedBox(height: 20),
             AccountInfoButton(
               text: S.current.textDisableAccount,
-              onTap: () => SafeSnackBar(
-                message: S.current.textFeatureAvailableSoon,
-                type: SnackBarType.info,
-              ).show(context),
+              onTap: () => controller.safeSnackBar.error(
+                S.current.textFeatureAvailableSoon,
+              ),
             ),
             const SizedBox(height: 20),
             AccountInfoButton(

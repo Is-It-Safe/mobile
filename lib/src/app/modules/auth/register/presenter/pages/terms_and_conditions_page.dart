@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/const_terms_and_conditions.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/core/constants/terms_and_conditions_constants.dart';
 
 class TermsAndConditionsPage extends StatelessWidget {
   static const route = '/terms_and_conditions';
@@ -15,11 +15,9 @@ class TermsAndConditionsPage extends StatelessWidget {
       ),
       body: const SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(termsAndConditions),
-          )),
+        padding: EdgeInsets.all(8.0),
+        child: Text(TermsAndConditionsConstants.text),
+      )),
     );
   }
 }
-
-

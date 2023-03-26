@@ -55,7 +55,7 @@ class _SaveLocationPageState
                       builder: (context, value, _) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 48.0),
-                          child: LocalePhotoComponent(
+                          child: LocationPhotoComponent(
                             path: value,
                             onTap: () async {
                               controller.imageNotifier.value =

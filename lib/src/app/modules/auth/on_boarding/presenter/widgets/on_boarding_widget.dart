@@ -5,7 +5,7 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 class OnBoardingWidget extends StatelessWidget {
   final String backgroundImage;
-  final RichText text;
+  final Widget text;
   final bool? isButtonVisible;
   final Function()? onButtonPressed;
 

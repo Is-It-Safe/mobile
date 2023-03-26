@@ -36,6 +36,8 @@
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
     "textErrorDeleteReview":"Não foi possível deletar a review!",
     "textErrorGetLocation": "Ocorreu um erro ao obter sua localização!",
+    "textErrorLoginUnauthorized": "Usuário ou senha inválido!",
+    "textErrorLoginFailed":"Não foi possível fazer login, tente novamente em alguns instantes.",
 
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
 

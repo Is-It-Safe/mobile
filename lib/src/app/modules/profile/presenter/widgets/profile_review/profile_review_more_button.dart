@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../components/style/colors/safe_colors.dart';
 import '../../../../../../components/widgets/safe_modal.dart';
-import '../../../../../../components/widgets/safe_snack_bar.dart';
 import '../../../../../../core/constants/string_constants.dart';
 
 class ProfileReviewMoreButton extends StatelessWidget {
@@ -30,10 +29,6 @@ class ProfileReviewMoreButton extends StatelessWidget {
             icon: Icons.delete_outline_rounded,
             onTap: () {
               Navigator.pop(context);
-              return SafeSnackBar(
-                message: S.current.textFeatureAvailableSoon,
-                type: SnackBarType.info,
-              ).show(context);
             },
           ),
           _ShareButton(
@@ -44,10 +39,6 @@ class ProfileReviewMoreButton extends StatelessWidget {
 
               ClipboardUtils.paste().toString();
               Navigator.pop(context);
-              return SafeSnackBar(
-                message: S.current.textShareUserReview,
-                type: SnackBarType.info,
-              ).show(context);
             },
           ),
         ],

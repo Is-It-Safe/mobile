@@ -1,5 +1,7 @@
-const String termsAndConditions =
-'''
+class TermsAndConditionsConstants {
+  TermsAndConditionsConstants._();
+
+  static const String text = '''
 TERMOS E CONDIÇÕES DE USO DO APLICATIVO “IS IT SAFE?”
 
 
@@ -170,3 +172,4 @@ Sejam bem - vindes.
 A equipe do aplicativo “Is It Safe?” lhes deseja uma excelente navegação.
 
 ''';
+}

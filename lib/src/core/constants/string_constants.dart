@@ -28,6 +28,9 @@ class StringConstants {
   static const String danger = 'DANGER';
   static const String safe = 'SAFE';
 
-  //place
+  //Place
   static const String place = 'Salvador';
+
+  //Config
+  static const String assetsManifestPath = 'AssetManifest.json';
 }

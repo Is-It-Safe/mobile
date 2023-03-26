@@ -6,17 +6,17 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.da
 import 'package:is_it_safe_app/src/domain/use_case/get_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_on_boarding_use_case.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
-import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class SplashModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton(
-        (i) => GetUserLoginUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton(
-        (i) => GetUserOnBoaringUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton((i) => SplashBloc()),
+    Bind.lazySingleton((i) => GetUserLoginUseCase(i())),
+    Bind.lazySingleton((i) => GetUserOnBoaringUseCase(i())),
+    Bind.lazySingleton((i) => SplashBloc(
+          getUserLoginUseCase: i(),
+          getUserOnBoaringUseCase: i(),
+        )),
   ];
 
   @override

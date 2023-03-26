@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
@@ -48,17 +46,11 @@ class ChangePasswordBloC extends SafeBloC {
           _validated = success;
           confirmPasswordController.sink.add(SafeEvent.done(success));
           if (success == false) {
-            _showSnackbarByScaffoldState(
-              message: S.current.textErrorConfirmPassword,
-              type: SnackBarType.error,
-            );
+            safeSnackBar.error(S.current.textErrorConfirmPassword);
           }
         },
         (error) {
-          _showSnackbarByScaffoldState(
-            message: S.current.textErrorConfirmPassword,
-            type: SnackBarType.error,
-          );
+          safeSnackBar.error(S.current.textErrorConfirmPassword);
         },
       );
       return true;
@@ -84,14 +76,12 @@ class ChangePasswordBloC extends SafeBloC {
   changePassword({required String password}) async {
     final response = await changePasswordUsecase(password: password);
     response.fold((success) {
-      _showSnackbarByScaffoldState(
-        message: S.current.textPasswordSuccessChanged,
-        type: SnackBarType.success,
+      safeSnackBar.error(
+        S.current.textPasswordSuccessChanged,
       );
     }, (failure) {
-      _showSnackbarByScaffoldState(
-        message: S.current.textPasswordFailureChanged,
-        type: SnackBarType.error,
+      safeSnackBar.error(
+        S.current.textPasswordFailureChanged,
       );
     });
   }
@@ -99,14 +89,5 @@ class ChangePasswordBloC extends SafeBloC {
   @override
   Future<void> dispose() async {
     confirmPasswordController.close();
-  }
-
-  _showSnackbarByScaffoldState(
-      {SnackBarType type = SnackBarType.active, required String message}) {
-    final key = Modular.get<GlobalKey<ScaffoldState>>();
-    SafeSnackBar(
-      message: message,
-      type: type,
-    ).show(key.currentState!.context);
   }
 }

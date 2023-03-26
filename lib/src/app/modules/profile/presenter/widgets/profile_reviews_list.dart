@@ -5,7 +5,6 @@ import '../../../../../../generated/l10n.dart';
 import '../../../../../components/config/safe_event.dart';
 import '../../../../../components/config/safe_layout.dart';
 import '../../../../../components/widgets/safe_empty_card.dart';
-import '../../../../../components/widgets/safe_snack_bar.dart';
 import '../../../../../domain/entity/user_entity.dart';
 import 'profile_review/profile_review.dart';
 
@@ -39,17 +38,12 @@ class ProfileReviewsList extends StatelessWidget {
                             Navigator.pop(context);
                             await controller.deleteReview(idReview: idReview) ==
                                     true
-                                ? SafeSnackBar(
-                                    message: message ??
-                                        S.current
-                                            .textDefaultDeleteReviewMessage,
-                                    type: SnackBarType.success,
-                                  ).show(context)
-                                : SafeSnackBar(
-                                    message: message ??
-                                        S.current.textErrorDeleteReview,
-                                    type: SnackBarType.error,
-                                  ).show(context);
+                                ? controller.safeSnackBar.success(
+                                    S.current.textDefaultDeleteReviewMessage,
+                                  )
+                                : controller.safeSnackBar.error(
+                                    S.current.textErrorDeleteReview,
+                                  );
                           }
 
                           //TODO substituir por: controller.shareReview
