@@ -15,7 +15,8 @@ class ProfileHeader extends StatelessWidget {
       stream: user,
       builder: (user) {
         return SafeProfileHeader(
-          showProfilePicture: false,
+          showProfilePicture: user.profilePhoto != null,
+          photo: user.profilePhoto,
           nickname: user.nickname,
           pronoun: user.pronoun,
           gender: user.gender,
