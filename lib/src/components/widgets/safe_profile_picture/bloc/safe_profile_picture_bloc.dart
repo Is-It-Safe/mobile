@@ -34,7 +34,7 @@ class SafeProfilePictureBloC extends SafeBloC {
     listProfilePicturePaths.addAll(profilePicturePaths);
   }
 
-  void setProfitePicture(String path) {
+  void setProfilePicture(String path) {
     selectedProfilePhoto = path;
     profilePictureController.sink.add(path);
   }

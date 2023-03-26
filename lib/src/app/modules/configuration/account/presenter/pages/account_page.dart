@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/w
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_section_banner.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/personal_information.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import '../../../../../../core/constants/string_constants.dart';
 import '../../../configuration_module.dart';
 import 'account_header.dart';
@@ -22,9 +23,10 @@ class AccountPage extends StatefulWidget {
   State<AccountPage> createState() => _AccountPageState();
 }
 
-class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
+class _AccountPageState extends SafeState<AccountPage, AccountBloc> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: SafeAppBar(
         title: S.current.textDrawerMyAccount,
@@ -34,24 +36,28 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AccountHeader(controller: controller),
+            AccountHeader(
+              user: bloc.user,
+              navigateToChangeProfilePicture:
+                  bloc.navigateToChangeProfilePicture,
+            ),
             const SizedBox(height: 52),
-            AccountSextionBanner(text: S.current.textPersonalInformation),
-            PersonalInformation(controller: controller),
+            AccountSectionBanner(text: S.current.textPersonalInformation),
+            PersonalInformation(user: bloc.user),
             const SizedBox(height: 20),
             AccountInfoButton(
                 text: S.current.textEditProfile,
                 onTap: () => Modular.to.pushNamed(
                     ConfigurationModule.route + EditAccountPage.route)),
             const SizedBox(height: 20),
-            AccountSextionBanner(text: S.current.textAccountInformation),
+            AccountSectionBanner(text: S.current.textAccountInformation),
             const SizedBox(height: 10),
             AccountInfoButton(
               text: S.current.textChangeEmail,
               onTap: () async {
                 await Modular.to.pushNamed(
                   StringConstants.dot + ChangeEmailPage.route,
-                  arguments: controller,
+                  arguments: bloc,
                 );
               },
             ),
@@ -66,14 +72,14 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
             const SizedBox(height: 20),
             AccountInfoButton(
               text: S.current.textDisableAccount,
-              onTap: () => controller.safeSnackBar.error(
+              onTap: () => bloc.safeSnackBar.info(
                 S.current.textFeatureAvailableSoon,
               ),
             ),
             const SizedBox(height: 20),
             AccountInfoButton(
               text: S.current.textLogout,
-              onTap: controller.doLogout,
+              onTap: bloc.doLogout,
             ),
           ],
         ),

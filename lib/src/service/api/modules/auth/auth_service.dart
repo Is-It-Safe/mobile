@@ -67,16 +67,6 @@ class AuthService implements IAuthService {
       return 'Bearer $refreshToken';
     } else {
       await ApiInterceptors.doLogout();
-      // final request = RequestRefreshToken(refreshToken: refreshToken);
-
-      // await doRefreshToken(request).then((response) async {
-      //   accessToken = await SharedPreferencesService().readToken();
-      //   refreshToken = response.refreshToken ?? StringConstants.empty;
-      //   SharedPreferencesService().saveRefreshToken(refreshToken);
-      // }).catchError((e, s) {
-      //   SafeLogUtil.instance.logError(e);
-      //   throw GetTokenException();
-      // }).whenComplete(() => 'Bearer $refreshToken');
     }
     return 'Bearer $refreshToken';
   }

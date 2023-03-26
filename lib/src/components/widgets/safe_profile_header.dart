@@ -34,7 +34,7 @@ class SafeProfileHeader extends StatelessWidget {
           if (showProfilePicture)
             SafeProfileAvatar(
               size: 88,
-              image: photo!,
+              image: photo ?? PlaceHolderAssets.profileAvatar,
               isSelected: true,
               isEditable: isEditabled ?? false,
               onTap: onPhotoTap,

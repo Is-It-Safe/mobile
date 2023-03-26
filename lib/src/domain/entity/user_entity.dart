@@ -34,13 +34,13 @@ class UserEntity {
   factory UserEntity.toEntity(ResponseGetUser user) {
     return UserEntity(
       id: user.id!,
-      name: user.name ?? StringConstants.empty,
-      nickname: user.nickname ?? StringConstants.empty,
-      profilePhoto: user.profilePhoto ?? StringConstants.empty,
-      pronoun: user.pronoun ?? StringConstants.empty,
-      gender: user.gender ?? StringConstants.empty,
-      orientation: user.orientation ?? StringConstants.empty,
-      birthDate: user.birthDate ?? StringConstants.empty,
+      name: user.name ?? StringConstants.hyphen,
+      nickname: user.nickname ?? StringConstants.hyphen,
+      profilePhoto: user.profilePhoto ?? StringConstants.hyphen,
+      pronoun: user.pronoun ?? StringConstants.hyphen,
+      gender: user.gender ?? StringConstants.hyphen,
+      orientation: user.orientation ?? StringConstants.hyphen,
+      birthDate: user.birthDate ?? StringConstants.hyphen,
       reviews:
           user.reviews?.map((e) => ReviewEntity.toEntity(e)).toList() ?? [],
     );
@@ -67,6 +67,31 @@ class UserEntity {
       gender: StringConstants.hyphen,
       orientation: StringConstants.hyphen,
       pronoun: StringConstants.hyphen,
+    );
+  }
+
+  UserEntity copyWith({
+    String? profilePhoto,
+    String? name,
+    String? nickname,
+    String? pronoun,
+    String? gender,
+    String? orientation,
+    String? birthDate,
+    int? genreId,
+    int? sexualOrientationId,
+  }) {
+    return UserEntity(
+      id: id,
+      profilePhoto: this.profilePhoto ?? profilePhoto,
+      name: this.name ?? name,
+      nickname: this.nickname ?? nickname,
+      pronoun: this.pronoun ?? pronoun,
+      gender: this.gender ?? gender,
+      birthDate: this.birthDate ?? birthDate,
+      orientation: this.orientation ?? orientation,
+      genreId: this.genreId ?? genreId,
+      sexualOrientationId: this.sexualOrientationId ?? sexualOrientationId,
     );
   }
 }
