@@ -58,8 +58,8 @@ class AuthService implements IAuthService {
   Future<String> getAccessToken() async {
     String token = await SharedPreferencesService().readToken();
     DateTime expirationDate = Jwt.getExpiryDate(token) ?? DateTime.now();
-    int expirationDifference =
-        DateTime.now().difference(expirationDate).inMinutes;
+    int expirationDifference = expirationDate.hour - DateTime.now().hour;
+    expirationDate.difference(DateTime.now()).inMinutes;
     if (expirationDifference < 5) {
       String refreshToken = await SharedPreferencesService().readRefreshToken();
       final request = RequestRefreshToken(refreshToken: refreshToken);
@@ -84,6 +84,11 @@ class AuthService implements IAuthService {
     final requestConfig = RequestConfig(
       path: ApiConstants.doRefresh,
       method: HttpMethod.post,
+      options: Options(
+        headers: {
+          ApiConstants.kAuthorization: 'Bearer ${request.refreshToken}',
+        },
+      ),
     );
 
     final response = await service.doRequest(requestConfig);
@@ -102,7 +107,6 @@ class AuthService implements IAuthService {
       options: Options(
         headers: {
           ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
         },
       ),
     );

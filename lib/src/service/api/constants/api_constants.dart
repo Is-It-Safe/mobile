@@ -16,9 +16,6 @@ class ApiConstants {
     utf8.encode(kClientCredentials),
   );
 
-  ///Grant Type
-  static const String kGrantTypeRefreshToken = 'refresh_token';
-
   ///Basic Auth para autenticação do Login
   static String kBasicAuth = 'Basic $kEncodedClientCredentials';
 
