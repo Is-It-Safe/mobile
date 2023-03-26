@@ -30,26 +30,19 @@ class HomeLocationCard extends StatelessWidget {
           color: SafeColors.generalColors.primary,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: LayoutBuilder(builder: (context, constraints) {
-          return Stack(
-            children: [
-              Column(
-                children: [
-                  _LocationPicture(location: location, size: size),
-                  SizedBox(
-                    height: location.imagePath?.isNotEmpty == true ? 0 : 16,
-                  ),
-                  _LocationBody(location: location, size: size),
-                ],
-              ),
-              Positioned(
-                left: constraints.maxWidth * .058,
-                bottom: size.height * .073,
-                child: _LocationGrade(location: location),
-              ),
-            ],
-          );
-        }),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Column(
+              children: [
+                _LocationPicture(location: location, size: size),
+                SizedBox(
+                  height: location.imagePath?.isNotEmpty == true ? 0 : 16,
+                ),
+                _LocationBody(location: location, size: size),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -98,8 +91,10 @@ class _LocationBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(width: size.width * .03),
+        _LocationGrade(location: location),
         const Spacer(),
         Column(
           mainAxisSize: MainAxisSize.min,
@@ -163,11 +158,24 @@ class _LocationBody extends StatelessWidget {
 
 class _LocationGrade extends StatelessWidget {
   final LocationEntity location;
-  const _LocationGrade({Key? key, required this.location}) : super(key: key);
+
+  const _LocationGrade({
+    Key? key,
+    required this.location,
+  }) : super(key: key);
+
+  String get grade {
+    if (location.averageGrade == null) {
+      return StringConstants.empty;
+    } else {
+      return location.averageGrade!.toStringAsFixed(1);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
         SvgPicture.asset(
@@ -176,9 +184,7 @@ class _LocationGrade extends StatelessWidget {
           width: 35,
         ),
         Text(
-          location.averageGrade == 0.0
-              ? StringConstants.empty
-              : location.averageGrade.toString(),
+          grade,
           style: TextStyles.headline3(),
         ),
       ],
