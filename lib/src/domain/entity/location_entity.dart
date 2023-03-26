@@ -1,6 +1,7 @@
 import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_location_by_id.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_save_location.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
 
@@ -15,6 +16,7 @@ class LocationEntity {
   final String? averageImpressionStatus;
   final int? reviewsQnt;
   final List<ResponseLocationReview>? reviews;
+  final List<ReviewChart>? reviewChart;
 
   LocationEntity({
     required this.id,
@@ -25,6 +27,7 @@ class LocationEntity {
     this.averageImpressionStatus,
     this.reviewsQnt,
     this.reviews,
+    this.reviewChart,
   });
 
   factory LocationEntity.toEntity(dynamic location) {
@@ -38,6 +41,20 @@ class LocationEntity {
       averageImpressionStatus:
           location.averageImpressionStatus ?? StringConstants.empty,
       reviews: location.reviews ?? [],
+      reviewChart: location.reviewChart ?? [],
+    );
+  }
+
+  factory LocationEntity.fromGetBestRatedPlaces(dynamic location) {
+    return LocationEntity(
+      id: location.id ?? IntConstants.empty,
+      name: location.name ?? StringConstants.empty,
+      address: location.endereco ?? StringConstants.empty,
+      averageGrade: location.averageGrade ?? DoubleConstants.empty,
+      reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
+      imagePath: location.imgUrl ?? StringConstants.empty,
+      averageImpressionStatus:
+          location.averageImpressionStatus ?? StringConstants.empty,
     );
   }
 

@@ -57,4 +57,16 @@ class UserEntity {
       sexualOrientationId: user.sexualOrientationId ?? IntConstants.empty,
     );
   }
+
+  factory UserEntity.empty() {
+    return UserEntity(
+      id: IntConstants.empty,
+      name: StringConstants.hyphen,
+      nickname: StringConstants.hyphen,
+      birthDate: StringConstants.hyphen,
+      gender: StringConstants.hyphen,
+      orientation: StringConstants.hyphen,
+      pronoun: StringConstants.hyphen,
+    );
+  }
 }

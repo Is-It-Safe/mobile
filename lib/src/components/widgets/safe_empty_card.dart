@@ -15,10 +15,17 @@ class SafeEmptyCard extends StatelessWidget {
     required this.text,
   }) : super(key: key);
 
-  static Widget home() {
+  static Widget homeNearLocations() {
     return SafeEmptyCard(
       image: AssetConstants.empty.home,
       text: S.current.textErrorHome,
+    );
+  }
+
+  static Widget homeBestRated() {
+    return SafeEmptyCard(
+      image: AssetConstants.empty.home,
+      text: S.current.textErrorHomeBestRated,
     );
   }
 
@@ -26,6 +33,13 @@ class SafeEmptyCard extends StatelessWidget {
     return SafeEmptyCard(
       image: AssetConstants.empty.search,
       text: S.current.textErrorSearch,
+    );
+  }
+
+  static Widget searchInitial() {
+    return SafeEmptyCard(
+      image: AssetConstants.empty.search,
+      text: S.current.textInitialSearch,
     );
   }
 

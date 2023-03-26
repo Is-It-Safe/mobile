@@ -12,6 +12,7 @@ class SafeProfileHeader extends StatelessWidget {
   final String? gender;
   final String? sexualOrientation;
   final bool? isEditabled;
+  final bool showProfilePicture;
   final Function()? onPhotoTap;
   const SafeProfileHeader({
     Key? key,
@@ -21,6 +22,7 @@ class SafeProfileHeader extends StatelessWidget {
     this.gender = StringConstants.empty,
     this.sexualOrientation = StringConstants.empty,
     this.isEditabled = false,
+    this.showProfilePicture = true,
     this.onPhotoTap,
   }) : super(key: key);
 
@@ -29,13 +31,14 @@ class SafeProfileHeader extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          SafeProfileAvatar(
-            size: 88,
-            image: photo!,
-            isSelected: true,
-            isEditable: isEditabled ?? false,
-            onTap: onPhotoTap,
-          ),
+          if (showProfilePicture)
+            SafeProfileAvatar(
+              size: 88,
+              image: photo!,
+              isSelected: true,
+              isEditable: isEditabled ?? false,
+              onTap: onPhotoTap,
+            ),
           const SizedBox(height: 10),
           Offstage(
             offstage: nickname == StringConstants.empty &&

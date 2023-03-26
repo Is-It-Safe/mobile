@@ -31,6 +31,7 @@
     "textErrorTryAgain": "Tente novamente em alguns instantes.",
     "textErrorSearch" : "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?",
     "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
+    "textErrorHomeBestRated":"Nenhum lugar encontrado, comece a avaliar!",
     "textErrorLocationPermission": "Nenhum lugar próximo encontrado, ative as permissões de localização!",
     "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
@@ -39,6 +40,7 @@
     "textErrorLoginUnauthorized": "Usuário ou senha inválido!",
     "textErrorLoginFailed":"Não foi possível fazer login, tente novamente em alguns instantes.",
 
+    "textInitialSearch" : "Pesquise locais para avaliar",
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
 
     "textSuccessRegistration":"Usuário Registrado",
@@ -112,6 +114,7 @@
     "textUpdateInformation":"Atualizar informações",
     "textInformationChangedSuccessfully":"Informações atualizadas com sucesso!",
     "textUnableToChangeInformation":"Não foi possível atualizar as informações!",
+    "textAddLocation":"Adicionar Local",
     
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",

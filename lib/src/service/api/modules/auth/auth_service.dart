@@ -2,13 +2,12 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
-import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_refresh_token.dart';
@@ -67,18 +66,19 @@ class AuthService implements IAuthService {
     } else if (refreshTokenExpiration.isAfter(now)) {
       return 'Bearer $refreshToken';
     } else {
-      final request = RequestRefreshToken(refreshToken: refreshToken);
+      await ApiInterceptors.doLogout();
+      // final request = RequestRefreshToken(refreshToken: refreshToken);
 
-      await doRefreshToken(request).then((response) async {
-        accessToken = await SharedPreferencesService().readToken();
-        refreshToken = response.refreshToken ?? StringConstants.empty;
-        SharedPreferencesService().saveRefreshToken(refreshToken);
-      }).catchError((e, s) {
-        SafeLogUtil.instance.logError(e);
-        throw GetTokenException();
-      }).whenComplete(() => 'Bearer $accessToken');
+      // await doRefreshToken(request).then((response) async {
+      //   accessToken = await SharedPreferencesService().readToken();
+      //   refreshToken = response.refreshToken ?? StringConstants.empty;
+      //   SharedPreferencesService().saveRefreshToken(refreshToken);
+      // }).catchError((e, s) {
+      //   SafeLogUtil.instance.logError(e);
+      //   throw GetTokenException();
+      // }).whenComplete(() => 'Bearer $refreshToken');
     }
-    return 'Bearer $accessToken';
+    return 'Bearer $refreshToken';
   }
 
   @override

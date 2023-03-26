@@ -6,16 +6,19 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_emotion_graphic/safe_emotion_graphic_status.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_location_by_id.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_review.dart';
 
 class SafeEmotionGrapic extends StatelessWidget {
   final double averageGrade;
   final int avaliationCount;
   final List<ResponseLocationReview>? grade;
+  final List<ReviewChart>? reviewChart;
   const SafeEmotionGrapic({
     Key? key,
     required this.averageGrade,
     required this.avaliationCount,
+    required this.reviewChart,
     this.grade,
   }) : super(key: key);
 
@@ -70,33 +73,33 @@ class SafeEmotionGrapic extends StatelessWidget {
               SizedBox(height: size.height * .02),
               SafeEmotionGraphicStatus(
                 emotionalStatus: S.current.textAngry,
-                emotionalStatusAvaliations: 0,
+                emotionalStatusAvaliations: reviewChart![0].value ?? 0,
                 sumOfAvaliations: avaliationCount,
-                statusGrade: 0,
+                statusGrade: averageGrade,
               ),
               SafeEmotionGraphicStatus(
                 emotionalStatus: S.current.textUpset,
-                emotionalStatusAvaliations: 0,
+                emotionalStatusAvaliations: reviewChart![1].value ?? 0,
                 sumOfAvaliations: avaliationCount,
-                statusGrade: 1,
+                statusGrade: averageGrade,
               ),
               SafeEmotionGraphicStatus(
                 emotionalStatus: S.current.textRegular,
-                emotionalStatusAvaliations: 0,
+                emotionalStatusAvaliations: reviewChart![2].value ?? 0,
                 sumOfAvaliations: avaliationCount,
-                statusGrade: 2,
+                statusGrade: averageGrade,
               ),
               SafeEmotionGraphicStatus(
                 emotionalStatus: S.current.textSatisfied,
-                emotionalStatusAvaliations: 0,
+                emotionalStatusAvaliations: reviewChart![3].value ?? 0,
                 sumOfAvaliations: avaliationCount,
-                statusGrade: 3,
+                statusGrade: averageGrade,
               ),
               SafeEmotionGraphicStatus(
                 emotionalStatus: S.current.textIncredible,
-                emotionalStatusAvaliations: 2,
+                emotionalStatusAvaliations: reviewChart![4].value ?? 0,
                 sumOfAvaliations: avaliationCount,
-                statusGrade: 4,
+                statusGrade: averageGrade,
               ),
             ],
           ),

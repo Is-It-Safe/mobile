@@ -69,13 +69,23 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.network(
-                      loc.imagePath ?? StringConstants.empty,
-                      height: size.height * .2,
-                      width: double.infinity,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    SizedBox(height: size.height * .032),
+                    if (loc.imagePath != null)
+                      Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              loc.imagePath ?? StringConstants.empty,
+                              height: size.height * .2,
+                              width: double.infinity,
+                              fit: BoxFit.fitWidth,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  const SizedBox.shrink(),
+                            ),
+                          ),
+                          SizedBox(height: size.height * .032),
+                        ],
+                      ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -103,6 +113,7 @@ class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
                       averageGrade: loc.averageGrade ?? 0,
                       avaliationCount: loc.reviews!.length,
                       grade: loc.reviews,
+                      reviewChart: loc.reviewChart,
                     ),
                     SizedBox(height: size.height * .023),
                     const SafeImpressionCard(
