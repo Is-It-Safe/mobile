@@ -56,25 +56,29 @@ class AuthService implements IAuthService {
 
   @override
   Future<String> getAccessToken() async {
-    String token = await SharedPreferencesService().readToken();
-    DateTime expirationDate = Jwt.getExpiryDate(token) ?? DateTime.now();
-    int expirationDifference = expirationDate.hour - DateTime.now().hour;
-    expirationDate.difference(DateTime.now()).inMinutes;
-    if (expirationDifference < 5) {
-      String refreshToken = await SharedPreferencesService().readRefreshToken();
+    DateTime now = DateTime.now();
+    String accessToken = await SharedPreferencesService().readToken();
+    DateTime accessTokenExpiration = Jwt.getExpiryDate(accessToken) ?? now;
+    String refreshToken = await SharedPreferencesService().readRefreshToken();
+    DateTime refreshTokenExpiration = Jwt.getExpiryDate(refreshToken) ?? now;
+
+    if (accessTokenExpiration.isAfter(now)) {
+      return 'Bearer $accessToken';
+    } else if (refreshTokenExpiration.isAfter(now)) {
+      return 'Bearer $refreshToken';
+    } else {
       final request = RequestRefreshToken(refreshToken: refreshToken);
 
-      await doRefreshToken(request).then((response) {
-        token = response.accessToken ?? StringConstants.empty;
+      await doRefreshToken(request).then((response) async {
+        accessToken = await SharedPreferencesService().readToken();
         refreshToken = response.refreshToken ?? StringConstants.empty;
-        SharedPreferencesService().saveToken(token);
         SharedPreferencesService().saveRefreshToken(refreshToken);
       }).catchError((e, s) {
         SafeLogUtil.instance.logError(e);
         throw GetTokenException();
-      }).whenComplete(() => 'Bearer $token');
+      }).whenComplete(() => 'Bearer $accessToken');
     }
-    return 'Bearer $token';
+    return 'Bearer $accessToken';
   }
 
   @override

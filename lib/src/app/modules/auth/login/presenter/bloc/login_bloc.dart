@@ -62,29 +62,31 @@ class LoginBloc extends SafeBloC {
 
   Future<void> doLogin() async {
     loginEntityStream.loading();
-    final result = await doLoginUseCase.call(
-      email: emailController.text,
-      password: passwordController.text,
-    );
+    try {
+      final result = await doLoginUseCase.call(
+        email: emailController.text,
+        password: passwordController.text,
+      );
 
-    result.fold(
-      (loginEntity) {
-        if (loginEntity.accessToken.isNotEmpty) {
-          saveUserToken(loginEntity.accessToken);
-          saveUserRefreshToken(loginEntity.refreshToken);
-          saveUserName(loginEntity.userFirstName);
-          saveUserImage(loginEntity.userImage);
-          saveUserLogin(true);
-          loginEntityStream.data = loginEntity;
-          navigateToHome();
-        }
-      },
-      (failure) {
-        SafeLogUtil.instance.logError(failure.message);
-        loginEntityStream.show();
-        safeSnackBar.error(failure.message);
-      },
-    );
+      result.fold(
+        (loginEntity) {
+          if (loginEntity.accessToken.isNotEmpty) {
+            saveUserToken(loginEntity.accessToken);
+            saveUserRefreshToken(loginEntity.refreshToken);
+            saveUserName(loginEntity.userFirstName);
+            saveUserImage(loginEntity.userImage);
+            saveUserLogin(true);
+            loginEntityStream.data = loginEntity;
+            navigateToHome();
+          }
+        },
+        (failure) {},
+      );
+    } catch (e) {
+      SafeLogUtil.instance.logError(e);
+      loginEntityStream.show();
+      safeSnackBar.error(S.current.textErrorLoginUnauthorized);
+    }
   }
 
   void toogleLoginButton() {
