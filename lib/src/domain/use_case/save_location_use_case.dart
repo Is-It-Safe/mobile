@@ -24,7 +24,7 @@ class SaveLocationUseCase extends SafeUseCase {
         imgUrl: imgUrl,
       );
       final response = await service.saveLocation(request);
-      return Success(LocationEntity.toEntity(response));
+      return Success(LocationEntity.fromResponseSaveLocation(response));
     } on SafeLocationError catch (e) {
       return Failure(e);
     }
