@@ -48,7 +48,7 @@ class SearchBloc extends SafeBloC {
           locations.data = searchResultLocations;
           lastSearch = searchTextController.text;
         },
-        (error) => null,
+        (error) => locations.error(error.message),
       );
     } catch (e) {
       locations.error(e.toString());

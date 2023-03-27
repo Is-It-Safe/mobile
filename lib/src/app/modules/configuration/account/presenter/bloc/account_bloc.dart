@@ -67,16 +67,22 @@ class AccountBloc extends SafeBloC {
   }
 
   void navigateToChangeProfilePicture() {
+    safeProfilePictureBloc.setProfilePicture(
+      user.data.profilePhoto ?? StringConstants.empty,
+    );
     Modular.to
         .pushNamed(StringConstants.dot + SafeProfilePicturePage.route)
         .then((value) async {
-      safeProfilePictureBloc.setProfilePicture(value.toString());
-      user.data = user.data.copyWith(profilePhoto: value.toString());
+      SetProfilePictureReturn profile = value as SetProfilePictureReturn;
+      if (profile.profilePicturePath == user.data.profilePhoto) return;
+      if (profile.isProfilePictureChanged == false) return;
+      safeProfilePictureBloc.setProfilePicture(profile.profilePicturePath);
+      user.data = user.data.copyWith(profilePhoto: profile.profilePicturePath);
       await updateUser(RequestUpdateUser(
         id: user.data.id,
-        profilePhoto: value.toString(),
+        profilePhoto: profile.profilePicturePath,
       )).then((_) async {
-        await updateUserImage(value.toString());
+        await updateUserImage(profile.profilePicturePath);
         await getUser();
       });
     });

@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/presenter/page/terms_and_conditions_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/terms_and_conditions_module.dart';
 import 'package:is_it_safe_app/src/components/location/safe_locator.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
@@ -56,5 +58,7 @@ class HomeModule extends Module {
       Modular.initialRoute,
       child: (context, args) => const HomePage(),
     ),
+    ModuleRoute(TermsAndConditionsPage.route,
+        module: TermsAndConditionsModule()),
   ];
 }
