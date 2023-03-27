@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Nenhum lugar encontrado, comece a avaliar!`
+  String get textErrorHomeBestRated {
+    return Intl.message(
+      'Nenhum lugar encontrado, comece a avaliar!',
+      name: 'textErrorHomeBestRated',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nenhum lugar próximo encontrado, ative as permissões de localização!`
   String get textErrorLocationPermission {
     return Intl.message(
@@ -385,6 +395,16 @@ class S {
     return Intl.message(
       'Não foi possível fazer login, tente novamente em alguns instantes.',
       name: 'textErrorLoginFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pesquise locais para avaliar`
+  String get textInitialSearch {
+    return Intl.message(
+      'Pesquise locais para avaliar',
+      name: 'textInitialSearch',
       desc: '',
       args: [],
     );
@@ -1085,6 +1105,26 @@ class S {
     return Intl.message(
       'Não foi possível atualizar as informações!',
       name: 'textUnableToChangeInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adicionar Local`
+  String get textAddLocation {
+    return Intl.message(
+      'Adicionar Local',
+      name: 'textAddLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Opções`
+  String get textOptions {
+    return Intl.message(
+      'Opções',
+      name: 'textOptions',
       desc: '',
       args: [],
     );

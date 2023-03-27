@@ -63,7 +63,7 @@ class _SafeProfilePicturePageState extends State<SafeProfilePicturePage> {
                   type: ProfileAvatarType.animated,
                   onTap: () => setState(() {
                     userAvatarPath = avatarPaths[index];
-                    controller.setProfitePicture(userAvatarPath);
+                    controller.setProfilePicture(userAvatarPath);
                   }),
                 );
               },

@@ -240,14 +240,15 @@ class HomeBloc extends SafeBloC {
   }
 
   onTabIndexChange(int index) async {
-    switch (index) {
-      case 0:
-        await requestAccessLocationPermission();
-        break;
-      case 1:
-        await getBestRatedPlaces();
-        break;
-    }
+    await getBestRatedPlaces();
+    // switch (index) {
+    //   case 0:
+    //     await requestAccessLocationPermission();
+    //     break;
+    //   case 1:
+    //     await getBestRatedPlaces();
+    //     break;
+    // }
   }
 
   @override

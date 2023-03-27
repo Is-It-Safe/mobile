@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 
 import '../../../../../components/config/safe_event.dart';
 import '../../../../../components/config/safe_layout.dart';
@@ -31,7 +32,7 @@ class MountGettedPlaces extends StatelessWidget {
         return SafeLayout(
           snapshot: snapshot,
           showErrorDialog: showErrorDialog,
-          onEmpty: onEmpty ?? const SizedBox.shrink(),
+          onEmpty: onEmpty ?? SafeEmptyCard.homeBestRated(),
           onError: onError ?? const SizedBox.shrink(),
           onCompleted: _SepararedList(list: list),
         );

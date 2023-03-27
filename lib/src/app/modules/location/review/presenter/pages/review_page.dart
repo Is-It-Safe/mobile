@@ -100,10 +100,11 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ReviewImageWidget(
-                        image: widget.location.imagePath ??
-                            AssetConstants.mock.locationImage,
-                      ),
+                      if (widget.location.imagePath != null &&
+                          widget.location.imagePath!.isNotEmpty)
+                        ReviewImageWidget(
+                          image: widget.location.imagePath!,
+                        ),
                       const SizedBox(height: 20),
                       ReviewEmotionsWidget(
                         grade: controller.gradeController.stream,
@@ -143,7 +144,7 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
                                   if (_formKey.currentState?.validate() ??
                                       false) {
                                     await controller.sendReview(
-                                        id: widget.location.id);
+                                        id: widget.location.id ?? 0);
                                   }
                                 }
                               : () => _formKey.currentState?.validate(),

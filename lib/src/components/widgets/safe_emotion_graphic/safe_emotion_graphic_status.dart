@@ -72,7 +72,6 @@ class _GraphicGradePercentLine extends StatelessWidget {
       children: [
         Container(
           height: 10,
-          // width: fullSize / 2,
           width: (grade == 0 || avaliations == 0 || sumOfAvaliations == 0)
               ? 1
               : (((avaliations / sumOfAvaliations)) * fullSize),

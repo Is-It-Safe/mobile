@@ -23,7 +23,7 @@ class AccountInfoTile extends StatelessWidget {
         ),
         const SizedBox(height: 2),
         Text(
-          value!,
+          value ?? StringConstants.hyphen,
           style: TextStyles.subtitle1(
             color: SafeColors.textColors.label,
           ),

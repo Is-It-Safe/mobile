@@ -13,7 +13,6 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_review_card.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
-import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
 
@@ -27,28 +26,23 @@ class LocationPage extends StatefulWidget {
   State<LocationPage> createState() => _LocationPageState();
 }
 
-class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
+class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
   @override
   void initState() {
+    controller.getLocationById(widget.location.id ?? 0);
     super.initState();
-    bloc.getLocationById(widget.location.id);
   }
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await Modular.to
-              .pushNamed(
+          await Modular.to.pushNamed(
             LocationModule.route + ReviewPage.route,
             arguments: widget.location,
-          )
-              .then((value) {
-            setState(() {});
-          });
+          );
         },
         backgroundColor: SafeColors.buttonColors.secondary,
         child: const Icon(
@@ -77,14 +71,23 @@ class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
                   Visibility(
                     visible: (location.imagePath != null &&
                         (location.imagePath!.isNotEmpty)),
-                    child: Image.network(
-                      location.imagePath ?? StringConstants.empty,
-                      height: size.height * .2,
-                      width: double.infinity,
-                      fit: BoxFit.fitWidth,
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            location.imagePath ?? StringConstants.empty,
+                            height: size.height * .2,
+                            width: double.infinity,
+                            fit: BoxFit.fitWidth,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const SizedBox.shrink(),
+                          ),
+                        ),
+                        SizedBox(height: size.height * .032),
+                      ],
                     ),
                   ),
-                  SizedBox(height: size.height * .032),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -112,6 +115,7 @@ class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
                     averageGrade: location.averageGrade ?? 0,
                     avaliationCount: location.reviews!.length,
                     grade: location.reviews,
+                    reviewChart: location.reviewChart,
                   ),
                   SizedBox(height: size.height * .023),
                   const SafeImpressionCard(

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAbout": MessageLookupByLibrary.simpleMessage("Sobre"),
         "textAccountInformation":
             MessageLookupByLibrary.simpleMessage("Informações da Conta"),
+        "textAddLocation":
+            MessageLookupByLibrary.simpleMessage("Adicionar Local"),
         "textAddLocationAddress":
             MessageLookupByLibrary.simpleMessage("Ex: Rua Clodomiro"),
         "textAddLocationAddressFieldTitle":
@@ -161,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ocorreu um erro ao obter sua localização!"),
         "textErrorHome": MessageLookupByLibrary.simpleMessage(
             "Nenhum lugar próximo encontrado, comece a avaliar seu bairro!"),
+        "textErrorHomeBestRated": MessageLookupByLibrary.simpleMessage(
+            "Nenhum lugar encontrado, comece a avaliar!"),
         "textErrorInvalidDate": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite uma data válida"),
         "textErrorLocationPermission": MessageLookupByLibrary.simpleMessage(
@@ -210,6 +214,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textInformationChangedSuccessfully":
             MessageLookupByLibrary.simpleMessage(
                 "Informações atualizadas com sucesso!"),
+        "textInitialSearch": MessageLookupByLibrary.simpleMessage(
+            "Pesquise locais para avaliar"),
         "textIsItSafe": MessageLookupByLibrary.simpleMessage("Is It Safe?"),
         "textLGBTFobia": MessageLookupByLibrary.simpleMessage("LGBTfobia"),
         "textLettersAndNumbers":
@@ -243,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("e avalie locais"),
         "textOpenPermissions":
             MessageLookupByLibrary.simpleMessage("Abrir Permissões"),
+        "textOptions": MessageLookupByLibrary.simpleMessage("Opções"),
         "textPageSubtitleLogin":
             MessageLookupByLibrary.simpleMessage("Sentimos sua falta!"),
         "textPageSubtitleProfileRegisterPage":

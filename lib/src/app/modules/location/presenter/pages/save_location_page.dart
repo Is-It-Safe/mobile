@@ -15,7 +15,7 @@ import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import '../../../../../../generated/l10n.dart';
 
 class SaveLocationPage extends StatefulWidget {
-  static const route = '/save_location/';
+  static const route = '/save_location';
 
   const SaveLocationPage({Key? key}) : super(key: key);
 

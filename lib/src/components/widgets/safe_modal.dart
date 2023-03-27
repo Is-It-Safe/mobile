@@ -16,7 +16,7 @@ class SafeModal extends StatelessWidget {
       context: context,
       backgroundColor: SafeColors.generalColors.background,
       constraints: BoxConstraints.tightForFinite(
-        height: height ?? MediaQuery.of(context).size.height * 0.25,
+        height: height ?? MediaQuery.of(context).size.height * 0.2,
       ),
       clipBehavior: Clip.antiAlias,
       shape: const RoundedRectangleBorder(
