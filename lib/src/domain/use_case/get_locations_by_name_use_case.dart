@@ -1,7 +1,5 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/service/api/modules/search/search_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/search/search_service_interface.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -16,8 +14,10 @@ class GetLocationsByNameUseCase extends SafeUseCase {
       String name) async {
     try {
       final response = await service.searchLocationByName(name);
-      return Success(
-          response?.map((e) => LocationEntity.toEntity(e)).toList() ?? []);
+      return Success(response
+              ?.map((e) => LocationEntity.fromResponseSearchLocationByName(e))
+              .toList() ??
+          []);
     } on SafeSearchError catch (e) {
       return Failure(e);
     }

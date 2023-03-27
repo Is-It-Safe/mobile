@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/presenter/page/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/contact/presenter/pages/contact_page.dart';
@@ -60,7 +60,11 @@ class HomeDrawer extends StatelessWidget {
               DrawerItem(
                 icon: AssetConstants.icons.termsOfUse,
                 text: S.current.textTermsOfUse,
-                route: ConfigurationModule.route + TermsAndConditionsPage.route,
+                onTap: () => Modular.to.push(
+                  MaterialPageRoute(
+                    builder: (_) => const TermsAndConditionsPage(),
+                  ),
+                ),
               ),
 
               const SizedBox(height: 30),
@@ -119,27 +123,30 @@ class DrawerHeader extends StatelessWidget {
 class DrawerItem extends StatelessWidget {
   const DrawerItem({
     Key? key,
-    required this.route,
     required this.icon,
     required this.text,
+    this.route,
+    this.onTap,
     this.onNavigationCompleted,
   }) : super(key: key);
 
-  final String route;
+  final String? route;
   final String icon;
   final String text;
   final Function? onNavigationCompleted;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Modular.to.pushNamed(route).then(
-        (value) {
-          if (onNavigationCompleted != null) {
-            onNavigationCompleted!();
-          }
-        },
-      ),
+      onTap: onTap ??
+          () => Modular.to.pushNamed(route ?? StringConstants.empty).then(
+                (value) {
+                  if (onNavigationCompleted != null) {
+                    onNavigationCompleted!();
+                  }
+                },
+              ),
       child: Row(
         children: [
           SvgPicture.asset(icon),

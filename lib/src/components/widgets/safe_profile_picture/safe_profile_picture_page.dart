@@ -101,18 +101,37 @@ class _SafeProfilePicturePageState extends State<SafeProfilePicturePage> {
         if (controller.selectedProfilePhoto.isEmpty) {
           controller.safeSnackBar.error(S.current.textSelectAPicture);
         } else {
-          Modular.to.pop(userAvatarPath);
+          final returnValue = SetProfilePictureReturn(
+            profilePicturePath: userAvatarPath,
+            isProfilePictureChanged:
+                userAvatarPath == controller.selectedProfilePhoto,
+          );
+          Modular.to.pop(returnValue);
         }
       },
     );
   }
 
   Widget _mountCancelButton() {
+    final returnValue = SetProfilePictureReturn(
+      profilePicturePath: controller.selectedProfilePhoto,
+      isProfilePictureChanged: false,
+    );
     return SafeButton(
       title: S.current.textCancel,
       hasBackground: false,
       size: ButtonSize.small,
-      onTap: () => Modular.to.pop(),
+      onTap: () => Modular.to.pop(returnValue),
     );
   }
+}
+
+class SetProfilePictureReturn {
+  final String profilePicturePath;
+  final bool isProfilePictureChanged;
+
+  SetProfilePictureReturn({
+    required this.profilePicturePath,
+    required this.isProfilePictureChanged,
+  });
 }
