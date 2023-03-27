@@ -26,7 +26,7 @@ class AccountHeader extends StatefulWidget {
 class _AccountHeaderState extends State<AccountHeader> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SafeEvent<UserEntity>>(
+    return StreamBuilder<SafeStream<UserEntity>>(
         stream: widget.controller.userController.stream,
         builder: (context, snapshot) {
           final user = snapshot.data?.data;

@@ -10,7 +10,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart'
 import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
 
 class SexualOrientationEditAcount extends StatelessWidget {
-  final StreamController<SafeEvent<List<SexualOrientationEntity>>> controller;
+  final StreamController<SafeStream<List<SexualOrientationEntity>>> controller;
   final TextEditingController sexualOrientationController;
   final bool isSexualOrientationDropdownExpanded;
   const SexualOrientationEditAcount(
@@ -22,7 +22,7 @@ class SexualOrientationEditAcount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SafeEvent<List<SexualOrientationEntity>>>(
+    return StreamBuilder<SafeStream<List<SexualOrientationEntity>>>(
       stream: controller.stream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {

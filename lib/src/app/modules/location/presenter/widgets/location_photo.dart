@@ -46,7 +46,8 @@ class _LocationPhotoComponentState extends State<LocationPhotoComponent> {
                 onTap: () => widget.onTap(),
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: widget.path == null
+                  child: (widget.path == null ||
+                          (widget.path != null && widget.path!.isEmpty))
                       ? const Icon(
                           Icons.add_photo_alternate,
                           color: Colors.grey,

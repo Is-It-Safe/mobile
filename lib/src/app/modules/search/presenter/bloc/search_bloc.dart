@@ -9,7 +9,7 @@ import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class SearchBloc extends SafeBloC {
   final GetLocationsByNameUseCase getLocationsByNameUseCase;
-  late StreamController<SafeEvent<List<LocationEntity>>> searchController;
+  late StreamController<SafeStream<List<LocationEntity>>> searchController;
   late TextEditingController placeSearchController;
 
   String lastSearch = StringConstants.empty;
@@ -32,14 +32,14 @@ class SearchBloc extends SafeBloC {
 
     try {
       if (placeSearchController.text.isEmpty) {
-        searchController.add(SafeEvent.initial());
+        searchController.add(SafeStream.initial());
         return;
       }
       if (placeSearchController.text == lastSearch) return;
-      searchController.add(SafeEvent.load());
+      searchController.add(SafeStream.load());
       await getLocationsByNameUseCase.call(placeSearchController.text).fold(
           (searchResultLocations) {
-        searchController.sink.add(SafeEvent.done(searchResultLocations));
+        searchController.sink.add(SafeStream.done(searchResultLocations));
         lastSearch = placeSearchController.text;
       }, (error) => null);
     } catch (e) {

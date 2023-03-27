@@ -15,7 +15,7 @@ class ProfileReviewsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SafeEvent<UserEntity>>(
+    return StreamBuilder<SafeStream<UserEntity>>(
       stream: controller.userController.stream,
       builder: (context, snapshot) {
         final reviews = snapshot.data?.data?.reviews?.reversed.toList();
@@ -27,7 +27,7 @@ class ProfileReviewsList extends StatelessWidget {
               reviews?.length ?? 0,
               (index) => Padding(
                 padding: const EdgeInsets.only(top: 24.0),
-                child: StreamBuilder<SafeEvent<String>>(
+                child: StreamBuilder<SafeStream<String>>(
                     stream: controller.deleteReviewController.stream,
                     builder: (context, snapshot) {
                       final message = snapshot.data?.data;

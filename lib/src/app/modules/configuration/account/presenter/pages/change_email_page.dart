@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/change_email_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/change_email/change_email_text_widget.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
@@ -10,7 +10,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
-import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
+import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 
 class ChangeEmailPage extends StatefulWidget {
   static String route = "/changeEmail";
@@ -22,18 +22,24 @@ class ChangeEmailPage extends StatefulWidget {
   State<ChangeEmailPage> createState() => _ChangeEmailPageState();
 }
 
-class _ChangeEmailPageState extends State<ChangeEmailPage> {
-  final controller = Modular.get<ChangeEmailBloc>();
-
+class _ChangeEmailPageState
+    extends SafeState<ChangeEmailPage, ChangeEmailBloc> {
   @override
   void initState() {
-    controller.getUserEmail();
     super.initState();
+    bloc.getUserEmail();
+
+    bloc.emailAddressText.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
+      key: Modular.get<GlobalKey<ScaffoldState>>(),
+      resizeToAvoidBottomInset: false,
       appBar: SafeAppBar(
         title: S.current.textConfiguration,
       ),
@@ -48,54 +54,16 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
               S.current.textChangeEmail,
               style: TextStyles.headline2(),
             ),
-            StreamBuilder<SafeEvent<String>>(
-              stream: controller.getEmailController.stream,
-              builder: (context, snapshot) {
-                final email = snapshot.data?.data;
-
-                switch (snapshot.data?.status) {
-                  case Status.loading:
-                    return const SafeLoading();
-                  case Status.initial:
-                    return const SafeLoading();
-                  case Status.error:
-                    showDialog(
-                      context: context,
-                      builder: (context) => SafeDialog(
-                        message: snapshot.data?.message ??
-                            S.current.textErrorDropdown,
-                        primaryBtn: SafeButton(
-                          title: S.current.textOk,
-                        ),
-                        type: SafeDialogType.error,
-                      ),
-                    );
-                    break;
-                  case Status.done:
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text.rich(
-                        TextSpan(
-                          text: "${S.current.textYourCurrentEmailIs} $email\n",
-                          style: TextStyles.subtitle1(), // default text style
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: S.current.textWhatWillBeYourEmailAddress,
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  default:
-                    return const SizedBox.shrink();
-                }
-                return const SizedBox.shrink();
-              },
+            ChangeEmailTextWidget(
+              getEmailStream: bloc.getEmailStream,
             ),
             const SizedBox(height: 69),
             SafeTextFormField(
-              controller: controller.emailAddressText,
+              controller: bloc.emailAddressText,
               labelText: S.current.textEmailAddress,
+              validator: (value) {
+                return bloc.validateEmail(value: value);
+              },
             ),
             const Spacer(),
             Row(
@@ -106,16 +74,19 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                     size: ButtonSize.small,
                     title: S.current.textCancel,
                     hasBackground: false,
-                    onTap: () => Modular.to.pop(),
+                    onTap: () {
+                      bloc.emailAddressText.clear();
+                      Modular.to.pop();
+                    },
                   ),
                 ),
                 SizedBox(
                   child: SafeButton(
                     title: S.current.textChange,
-                    state: !controller.emailValidated
-                        ? ButtonState.disabled
-                        : null,
-                    onTap: () async {},
+                    state: !bloc.emailValidated ? ButtonState.disabled : null,
+                    onTap: () async {
+                      await bloc.changeUserEmail(bloc.emailAddressText.text);
+                    },
                     hasBorder: true,
                     hasBackground: false,
                     size: ButtonSize.small,

@@ -50,9 +50,9 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
                 prefixIcon: const Icon(Icons.search),
                 onEditingComplete: () => controller.searchLocation(),
               ),
-              StreamBuilder<SafeEvent<List<LocationEntity>>>(
+              StreamBuilder<SafeStream<List<LocationEntity>>>(
                 stream: controller.searchController.stream,
-                initialData: SafeEvent.initial(),
+                initialData: SafeStream.initial(),
                 builder: (context, snapshot) {
                   return SafeLayout(
                     snapshot: snapshot,

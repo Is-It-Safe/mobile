@@ -12,7 +12,7 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SafeEvent<UserEntity>>(
+    return StreamBuilder<SafeStream<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           final user = snapshot.data?.data;

@@ -32,11 +32,11 @@ class EditAccountBloc extends SafeBloC {
 
   late final MaskTextInputFormatter birthdayInputMask;
 
-  late StreamController<SafeEvent<UserEntity>> userController;
-  late StreamController<SafeEvent<List<GenderEntity>>> gendersController;
-  late StreamController<SafeEvent<List<SexualOrientationEntity>>>
+  late StreamController<SafeStream<UserEntity>> userController;
+  late StreamController<SafeStream<List<GenderEntity>>> gendersController;
+  late StreamController<SafeStream<List<SexualOrientationEntity>>>
       sexualOrientationsController;
-  late StreamController<SafeEvent<UserEntity>> upDateUserController;
+  late StreamController<SafeStream<UserEntity>> upDateUserController;
   late StreamController<bool> upDateButtonController;
   late TextEditingController nameController;
   late TextEditingController usernameController;
@@ -85,7 +85,7 @@ class EditAccountBloc extends SafeBloC {
 
   Future<bool> updateUser({required int userId}) async {
     try {
-      upDateUserController.sink.add(SafeEvent.load());
+      upDateUserController.sink.add(SafeStream.load());
       RequestUpdateUser request = RequestUpdateUser(
         id: int.parse(userIdController.text),
         name: nameController.text.trim(),
@@ -96,13 +96,13 @@ class EditAccountBloc extends SafeBloC {
       );
       await updateUserUseCase.call(request).fold(
           (userEntity) =>
-              upDateUserController.sink.add(SafeEvent.done(userEntity)),
+              upDateUserController.sink.add(SafeStream.done(userEntity)),
           (error) => null);
       return true;
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
       Catcher.reportCheckedError(e, stacktrace);
-      upDateUserController.sink.add(SafeEvent.error(e.toString()));
+      upDateUserController.sink.add(SafeStream.error(e.toString()));
       return false;
     }
   }
@@ -117,7 +117,7 @@ class EditAccountBloc extends SafeBloC {
 
   Future<void> getUser() async {
     try {
-      userController.sink.add(SafeEvent.load());
+      userController.sink.add(SafeStream.load());
       await getUserUseCase.call().fold((responseGetUSer) async {
         userIdController.text = responseGetUSer.id.toString();
         nameController.text = responseGetUSer.name!;
@@ -140,7 +140,7 @@ class EditAccountBloc extends SafeBloC {
             },
           );
         }
-        userController.sink.add(SafeEvent.done(responseGetUSer));
+        userController.sink.add(SafeStream.done(responseGetUSer));
       }, (error) => null);
     } on Exception catch (e, stacktrace) {
       userController.addError(e.toString());
@@ -161,26 +161,26 @@ class EditAccountBloc extends SafeBloC {
   Future<void> getGenders() async {
     try {
       if (listGenders.isEmpty) {
-        gendersController.sink.add(SafeEvent.load());
+        gendersController.sink.add(SafeStream.load());
         await getGendersUseCase.call().fold(
           (success) {
             listGenders = success;
           },
           (error) {},
         );
-        gendersController.sink.add(SafeEvent.done(listGenders));
+        gendersController.sink.add(SafeStream.done(listGenders));
       }
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
       Catcher.reportCheckedError(e, stacktrace);
-      gendersController.sink.add(SafeEvent.error(e.toString()));
+      gendersController.sink.add(SafeStream.error(e.toString()));
     }
   }
 
   Future<void> getSexualOrientations() async {
     try {
       if (listSexualOrientations.isEmpty) {
-        sexualOrientationsController.sink.add(SafeEvent.load());
+        sexualOrientationsController.sink.add(SafeStream.load());
         await getSexualOrientationsUseCase.call().fold(
           (success) {
             listSexualOrientations = success;
@@ -188,13 +188,13 @@ class EditAccountBloc extends SafeBloC {
           (error) {},
         );
         sexualOrientationsController.sink.add(
-          SafeEvent.done(listSexualOrientations),
+          SafeStream.done(listSexualOrientations),
         );
       }
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
       Catcher.reportCheckedError(e, stacktrace);
-      sexualOrientationsController.sink.add(SafeEvent.error(e.toString()));
+      sexualOrientationsController.sink.add(SafeStream.error(e.toString()));
     }
   }
 
