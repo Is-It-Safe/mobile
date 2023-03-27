@@ -22,7 +22,7 @@ class ChangePasswordBloC extends SafeBloC {
     init();
   }
 
-  late StreamController<SafeEvent<bool>> confirmPasswordController;
+  late StreamController<SafeStream<bool>> confirmPasswordController;
 
   @override
   Future<void> init() async {
@@ -37,14 +37,14 @@ class ChangePasswordBloC extends SafeBloC {
 
   confirmPassword({required String password}) async {
     try {
-      confirmPasswordController.sink.add(SafeEvent.load());
+      confirmPasswordController.sink.add(SafeStream.load());
       RequestConfirmPassword request = RequestConfirmPassword(
         password: password,
       );
       await confirmPasswordUseCase.call(request).fold(
         (success) {
           _validated = success;
-          confirmPasswordController.sink.add(SafeEvent.done(success));
+          confirmPasswordController.sink.add(SafeStream.done(success));
           if (success == false) {
             safeSnackBar.error(S.current.textErrorConfirmPassword);
           }

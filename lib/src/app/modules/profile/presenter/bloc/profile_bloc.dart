@@ -15,8 +15,8 @@ class ProfileBloc extends SafeBloC {
   final SaveUserLoginUseCase saveUserLoginUseCase;
   final DeleteReviewUseCase deleteReviewUseCase;
 
-  late StreamController<SafeEvent<UserEntity>> userController;
-  late StreamController<SafeEvent<String>> deleteReviewController;
+  late StreamController<SafeStream<UserEntity>> userController;
+  late StreamController<SafeStream<String>> deleteReviewController;
 
   ProfileBloc({
     required this.getUserUseCase,
@@ -35,9 +35,9 @@ class ProfileBloc extends SafeBloC {
 
   Future<void> getUser() async {
     try {
-      userController.sink.add(SafeEvent.load());
+      userController.sink.add(SafeStream.load());
       await getUserUseCase.call().fold(
-          (userEntity) => userController.sink.add(SafeEvent.done(userEntity)),
+          (userEntity) => userController.sink.add(SafeStream.done(userEntity)),
           (error) => null);
     } on Exception catch (e) {
       if (e is UnauthorizedException) await ApiInterceptors.doLogout();
@@ -47,9 +47,9 @@ class ProfileBloc extends SafeBloC {
 
   Future<bool> deleteReview({required int? idReview}) async {
     try {
-      deleteReviewController.add(SafeEvent.load());
+      deleteReviewController.add(SafeStream.load());
       await deleteReviewUseCase.call(idReview).fold(
-            (review) => deleteReviewController.add(SafeEvent.done(review)),
+            (review) => deleteReviewController.add(SafeStream.done(review)),
             (error) => null,
           );
       return true;

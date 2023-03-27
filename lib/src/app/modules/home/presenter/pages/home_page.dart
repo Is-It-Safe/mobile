@@ -47,7 +47,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
       length: 2,
       child: Scaffold(
         key: _scaffoldKey,
-        endDrawer: StreamBuilder<SafeEvent<HomeDrawerVO>>(
+        endDrawer: StreamBuilder<SafeStream<HomeDrawerVO>>(
           initialData: controller.lastDrawerEvent,
           stream: controller.userDrawerDataController.stream,
           builder: (context, snapshot) {

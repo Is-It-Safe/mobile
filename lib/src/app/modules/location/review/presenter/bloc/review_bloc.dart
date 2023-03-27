@@ -13,7 +13,7 @@ import 'package:result_dart/result_dart.dart';
 class ReviewBloc extends SafeBloC {
   final SaveReviewUseCase saveReviewUseCase;
 
-  late StreamController<SafeEvent<ReviewEntity>> reviewController;
+  late StreamController<SafeStream<ReviewEntity>> reviewController;
   late StreamController<double> gradeController;
   late StreamController<int> impressionStatusController;
   late StreamController<bool> isButtonEnabledController;
@@ -81,7 +81,7 @@ class ReviewBloc extends SafeBloC {
 
   Future sendReview({required int id}) async {
     try {
-      reviewController.add(SafeEvent.load());
+      reviewController.add(SafeStream.load());
       await saveReviewUseCase
           .call(
         review: textReviewController.text,
@@ -91,7 +91,7 @@ class ReviewBloc extends SafeBloC {
       )
           .fold(
         (success) {
-          reviewController.add(SafeEvent.done(success));
+          reviewController.add(SafeStream.done(success));
         },
         (error) {},
       );

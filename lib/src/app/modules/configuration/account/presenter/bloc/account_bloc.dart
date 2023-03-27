@@ -21,7 +21,7 @@ class AccountBloc extends SafeBloC {
   final SafeProfilePictureBloC safeProfilePictureBloc;
   final SaveUserImageUseCase saveUserImageUseCase;
 
-  late StreamController<SafeEvent<UserEntity>> userController;
+  late StreamController<SafeStream<UserEntity>> userController;
 
   AccountBloc({
     required this.getUserUseCase,
@@ -41,9 +41,9 @@ class AccountBloc extends SafeBloC {
 
   Future<void> getUser() async {
     try {
-      userController.sink.add(SafeEvent.load());
+      userController.sink.add(SafeStream.load());
       await getUserUseCase.call().fold(
-          (userEntity) => userController.sink.add(SafeEvent.done(userEntity)),
+          (userEntity) => userController.sink.add(SafeStream.done(userEntity)),
           (error) => null);
     } on Exception catch (e) {
       //TODO colocar tratamento de erro de autenticação em todas as requisições
@@ -54,9 +54,9 @@ class AccountBloc extends SafeBloC {
 
   Future<void> updateUser(RequestUpdateUser request) async {
     try {
-      userController.sink.add(SafeEvent.load());
+      userController.sink.add(SafeStream.load());
       await updateUserUseCase.call(request).fold(
-          (userEntity) => userController.sink.add(SafeEvent.done(userEntity)),
+          (userEntity) => userController.sink.add(SafeStream.done(userEntity)),
           (error) => null);
     } on Exception catch (e) {
       //TODO colocar tratamento de erro de autenticação em todas as requisições
