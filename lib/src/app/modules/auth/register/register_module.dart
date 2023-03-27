@@ -1,8 +1,11 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_profile_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/bloc/register_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/register_profile_picture_page.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_register_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
@@ -13,14 +16,21 @@ class RegisterModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton((i) => AuthService()),
-    Bind.lazySingleton((i) => GetSexualOrientationsUseCase()),
-    Bind.lazySingleton((i) => GetGendersUseCase()),
-    Bind.lazySingleton((i) => DoRegisterUseCase()),
+    Bind.lazySingleton((i) => AuthService(i())),
+    Bind.lazySingleton((i) => GetSexualOrientationsUseCase(i())),
+    Bind.lazySingleton((i) => GetGendersUseCase(i())),
+    Bind.lazySingleton((i) => DoRegisterUseCase(i())),
     Bind.lazySingleton((i) => RegisterBloc(
-          doRegisterUseCase: i.get<DoRegisterUseCase>(),
-          getGendersUseCase: i.get<GetGendersUseCase>(),
-          getSexualOrientationsUseCase: i.get<GetSexualOrientationsUseCase>(),
+          store: i(),
+        )),
+    Bind.lazySingleton((i) => RegisterProfileBloc(
+          store: i(),
+          doRegisterUseCase: i(),
+          getGendersUseCase: i(),
+          getSexualOrientationsUseCase: i(),
+        )),
+    Bind.lazySingleton((i) => RegisterProfilePictureBloc(
+          store: i(),
         )),
   ];
 
@@ -37,6 +47,10 @@ class RegisterModule extends Module {
     ChildRoute(
       RegisterProfilePicturePage.route,
       child: (context, args) => const RegisterProfilePicturePage(),
+    ),
+    ChildRoute(
+      Modular.initialRoute,
+      child: (context, args) => const TermsAndConditionsPage(),
     ),
   ];
 }

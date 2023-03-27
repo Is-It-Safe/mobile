@@ -1,3 +1,4 @@
+import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_login.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_refresh_token.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_register.dart';
@@ -14,4 +15,6 @@ abstract class IAuthService {
   Future<List<ResponseGender>> getGenders();
   Future<List<ResponseSexualOrientation>> getSexualOrientations();
   Future<String> getAccessToken();
+  Future<bool> confirmPassword(RequestConfirmPassword request);
+  Future<bool> changePassword(String password);
 }

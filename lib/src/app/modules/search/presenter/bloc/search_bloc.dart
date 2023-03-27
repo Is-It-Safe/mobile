@@ -1,55 +1,77 @@
 import 'dart:async';
-
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/save_location_page.dart';
+import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_name_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 class SearchBloc extends SafeBloC {
   final GetLocationsByNameUseCase getLocationsByNameUseCase;
-  late StreamController<SafeEvent<List<LocationEntity>>> searchController;
-  late TextEditingController placeSearchController;
 
+  final locations = SafeStream<List<LocationEntity>>(data: []);
+  final searchTextController = TextEditingController();
   String lastSearch = StringConstants.empty;
-  List<LocationEntity> searchResultLocations = [];
 
   SearchBloc({
     required this.getLocationsByNameUseCase,
-  }) {
-    init();
-  }
+  });
 
   @override
   Future<void> init() async {
-    placeSearchController = TextEditingController();
-    searchController = StreamController.broadcast();
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
+  bool get isSearchEmpty => searchTextController.text.isEmpty;
+
   Future<void> searchLocation() async {
-    searchResultLocations.clear();
+    locations.data.clear();
 
     try {
-      if (placeSearchController.text.isEmpty) {
-        searchController.add(SafeEvent.initial());
+      if (searchTextController.text.isEmpty) {
+        locations.initial();
         return;
       }
-      if (placeSearchController.text == lastSearch) return;
-      searchController.add(SafeEvent.load());
-      searchResultLocations = await getLocationsByNameUseCase.call(
-        placeSearchController.text,
+      if (searchTextController.text == lastSearch) return;
+      locations.loading();
+      final result = await getLocationsByNameUseCase.call(
+        searchTextController.text,
       );
-      searchController.sink.add(SafeEvent.done(searchResultLocations));
-      lastSearch = placeSearchController.text;
-    } on Exception catch (e) {
-      searchController.addError(e.toString());
+
+      result.fold(
+        (searchResultLocations) {
+          locations.data = searchResultLocations;
+          lastSearch = searchTextController.text;
+        },
+        (error) => null,
+      );
+    } catch (e) {
+      locations.error(e.toString());
     }
+  }
+
+  void navigateToLocationPage(LocationEntity location) {
+    Modular.to.pushNamed(
+      LocationModule.route + LocationPage.route,
+      arguments: location,
+    );
+  }
+
+  void navigateToAddLocationPage() {
+    Modular.to.pushNamed(
+      LocationModule.route + SaveLocationPage.route,
+    );
   }
 
   @override
   Future<void> dispose() async {
-    searchController.close();
-    placeSearchController.dispose();
+    locations.data = [];
+    searchTextController.clear();
+    lastSearch = StringConstants.empty;
   }
 }

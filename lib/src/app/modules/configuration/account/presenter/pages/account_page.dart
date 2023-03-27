@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/change_password_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/edit_account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_button.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_tile.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_section_banner.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/personal_information.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
-import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
+import 'package:is_it_safe_app/src/core/state/safe_state.dart';
+import '../../../../../../core/constants/string_constants.dart';
+import '../../../configuration_module.dart';
+import 'account_header.dart';
+import 'change_email_page.dart';
 
 class AccountPage extends StatefulWidget {
   static const route = '/account/';
@@ -22,9 +23,10 @@ class AccountPage extends StatefulWidget {
   State<AccountPage> createState() => _AccountPageState();
 }
 
-class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
+class _AccountPageState extends SafeState<AccountPage, AccountBloc> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: SafeAppBar(
         title: S.current.textDrawerMyAccount,
@@ -34,180 +36,54 @@ class _AccountPageState extends ModularState<AccountPage, AccountBloc> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _mountHeader(),
+            AccountHeader(
+              user: bloc.user,
+              navigateToChangeProfilePicture:
+                  bloc.navigateToChangeProfilePicture,
+            ),
             const SizedBox(height: 52),
-            AccountSextionBanner(text: S.current.textPersonalInformation),
-            _mountPersonalInfo(),
+            AccountSectionBanner(text: S.current.textPersonalInformation),
+            PersonalInformation(user: bloc.user),
             const SizedBox(height: 20),
-            _mountEditProfileButton(),
+            AccountInfoButton(
+                text: S.current.textEditProfile,
+                onTap: () => Modular.to.pushNamed(
+                    ConfigurationModule.route + EditAccountPage.route)),
             const SizedBox(height: 20),
-            AccountSextionBanner(text: S.current.textAccountInformation),
+            AccountSectionBanner(text: S.current.textAccountInformation),
             const SizedBox(height: 10),
-            _mountChangeEmailButton(),
+            AccountInfoButton(
+              text: S.current.textChangeEmail,
+              onTap: () async {
+                await Modular.to.pushNamed(
+                  StringConstants.dot + ChangeEmailPage.route,
+                  arguments: bloc,
+                );
+              },
+            ),
             const SizedBox(height: 20),
-            _mountChangePasswordButton(),
+            AccountInfoButton(
+              text: S.current.textChangePassword,
+              onTap: () async {
+                await Modular.to
+                    .pushNamed(StringConstants.dot + ChangePasswordPage.route);
+              },
+            ),
             const SizedBox(height: 20),
-            _mountDisableAccountButton(),
+            AccountInfoButton(
+              text: S.current.textDisableAccount,
+              onTap: () => bloc.safeSnackBar.info(
+                S.current.textFeatureAvailableSoon,
+              ),
+            ),
             const SizedBox(height: 20),
-            _mountLogoutButton(),
+            AccountInfoButton(
+              text: S.current.textLogout,
+              onTap: bloc.doLogout,
+            ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _mountHeader() {
-    return StreamBuilder<SafeEvent<UserEntity>>(
-        stream: controller.userController.stream,
-        builder: (context, snapshot) {
-          final user = snapshot.data?.data;
-          switch (snapshot.data?.status) {
-            case Status.loading:
-              return const SafeLoading();
-            case Status.error:
-              showDialog(
-                context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
-                ),
-              );
-              break;
-            case Status.done:
-              //TODO salvar o usuário no shared preferences
-              return SafeProfileHeader(
-                nickname: user?.nickname,
-                //TODO descomentar a foto
-                //photo: user?.profilePhoto,
-                pronoun: user?.pronoun,
-                gender: user?.gender,
-                sexualOrientation: user?.orientation,
-                isEditabled: true,
-                //TODO substituir por: navegação para tela de editar profile picture
-                onPhotoTap: () => SafeSnackBar(
-                  message: S.current.textFeatureAvailableSoon,
-                  type: SnackBarType.info,
-                ).show(context),
-              );
-            default:
-              return const SafeProfileHeader();
-          }
-          return const SafeProfileHeader();
-        });
-  }
-
-  Widget _mountPersonalInfo() {
-    return StreamBuilder<SafeEvent<UserEntity>>(
-        stream: controller.userController.stream,
-        builder: (context, snapshot) {
-          final user = snapshot.data?.data;
-          switch (snapshot.data?.status) {
-            case Status.loading:
-              return const SafeLoading();
-            case Status.error:
-              showDialog(
-                context: context,
-                builder: (context) => SafeDialogs.error(
-                  message: snapshot.data?.message,
-                ),
-              );
-              break;
-            case Status.done:
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 33),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 20),
-                    AccountInfoTile(
-                      title: S.current.textName,
-                      value: user?.name,
-                    ),
-                    const SizedBox(height: 20),
-                    AccountInfoTile(
-                      title: S.current.textUsername,
-                      value: user?.nickname,
-                    ),
-                    const SizedBox(height: 20),
-                    AccountInfoTile(
-                      title: S.current.textPronouns,
-                      value: user?.pronoun,
-                    ),
-                    const SizedBox(height: 20),
-                    AccountInfoTile(
-                      title: S.current.textDateOfBirth,
-                      value: user?.birthDate,
-                    ),
-                    const SizedBox(height: 20),
-                    AccountInfoTile(
-                      title: S.current.textSexualOrientation,
-                      value: user?.orientation,
-                    ),
-                    const SizedBox(height: 20),
-                    AccountInfoTile(
-                      title: S.current.textGender,
-                      value: user?.gender,
-                    ),
-                  ],
-                ),
-              );
-            default:
-              return const Padding(
-                padding: EdgeInsets.only(top: 20.0),
-                child: SafeLoading(),
-              );
-          }
-          return const SizedBox.shrink();
-        });
-  }
-
-  Widget _mountEditProfileButton() {
-    return AccountInfoButton(
-      text: S.current.textEditProfile,
-      //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
-    );
-  }
-
-  Widget _mountLogoutButton() {
-    return AccountInfoButton(
-      text: S.current.textLogout,
-      onTap: controller.doLogout,
-    );
-  }
-
-  Widget _mountChangeEmailButton() {
-    return AccountInfoButton(
-      text: S.current.textChangeEmail,
-      //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
-    );
-  }
-
-  Widget _mountChangePasswordButton() {
-    return AccountInfoButton(
-      text: S.current.textChangePassword,
-      //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
-    );
-  }
-
-  Widget _mountDisableAccountButton() {
-    return AccountInfoButton(
-      text: S.current.textDisableAccount,
-      //TODO substituir por: navegação para tela de editar conta
-      onTap: () => SafeSnackBar(
-        message: S.current.textFeatureAvailableSoon,
-        type: SnackBarType.info,
-      ).show(context),
     );
   }
 }

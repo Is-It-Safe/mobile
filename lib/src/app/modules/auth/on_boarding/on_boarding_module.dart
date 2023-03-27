@@ -8,8 +8,10 @@ class OnBoardingModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton((i) => SaveUserOnBoardingUseCase()),
-    Bind.lazySingleton((i) => OnBoardingBloc()),
+    Bind.lazySingleton((i) => SaveUserOnBoardingUseCase(i())),
+    Bind.lazySingleton((i) => OnBoardingBloc(
+          saveUserOnBoardingUseCase: i(),
+        )),
   ];
 
   @override

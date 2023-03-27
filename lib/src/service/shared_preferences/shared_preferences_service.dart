@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/key_constants.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
@@ -84,5 +85,70 @@ class SharedPreferencesService implements ISharedPreferencesService {
   Future<bool> readTheme() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(KeyConstants.keyTheme) ?? false;
+  }
+
+  @override
+  void saveUserName(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(KeyConstants.keyUserName, value);
+  }
+
+  @override
+  Future<String> readUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(KeyConstants.keyUserName) ?? StringConstants.empty;
+  }
+
+  @override
+  void saveUserImage(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(KeyConstants.keyUserImage, value);
+  }
+
+  @override
+  Future<String> readUserImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(KeyConstants.keyUserImage) ?? StringConstants.empty;
+  }
+
+  @override
+  void savePlace(Placemark value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(KeyConstants.keyPlace, value.toJson().toString());
+  }
+
+  @override
+  Future<Placemark> readPlace() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool result = prefs.containsKey(KeyConstants.keyPlace);
+    if (!result) prefs.setString(KeyConstants.keyPlace, StringConstants.place);
+    return Placemark.fromMap(
+      jsonDecode(prefs.getString(KeyConstants.keyPlace) ?? "") ??
+          StringConstants.empty,
+    );
+  }
+
+  @override
+  Future<bool> readLocationPermission() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(KeyConstants.locationPermission) ?? false;
+  }
+
+  @override
+  void saveLocationPermission(bool alreadySeeIt) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(KeyConstants.locationPermission, alreadySeeIt);
+  }
+
+  @override
+  Future<void> saveUserEmail({required String userEmail}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(KeyConstants.keyUserEmail, userEmail);
+  }
+
+  @override
+  Future<String> getUserEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(KeyConstants.keyUserEmail) ?? StringConstants.empty;
   }
 }

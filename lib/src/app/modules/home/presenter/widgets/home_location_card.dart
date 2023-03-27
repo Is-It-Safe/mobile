@@ -20,38 +20,52 @@ class HomeLocationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function(),
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: size.width,
         decoration: BoxDecoration(
           color: SafeColors.generalColors.primary,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8),
         ),
-        child: Column(
-          children: [
-            _mountLocationPicture(context),
-            SizedBox(
-              height: location.imagePath?.isNotEmpty == true ? 0.0 : 16.0,
-            ),
-            _mountBody(context),
-          ],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Column(
+              children: [
+                _LocationPicture(location: location, size: size),
+                SizedBox(
+                  height: location.imagePath?.isNotEmpty == true ? 0 : 16,
+                ),
+                _LocationBody(location: location, size: size),
+              ],
+            );
+          },
         ),
       ),
     );
   }
+}
 
-  Widget _mountLocationPicture(BuildContext context) {
+class _LocationPicture extends StatelessWidget {
+  final LocationEntity location;
+  final Size size;
+  const _LocationPicture({Key? key, required this.location, required this.size})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     if (location.imagePath?.isNotEmpty == true) {
       return Container(
-        margin: const EdgeInsets.all(16.0),
-        height: 140,
+        margin: const EdgeInsets.all(16),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Image.network(
           location.imagePath!,
+          height: size.height * .15,
           fit: BoxFit.fitWidth,
           errorBuilder: (context, object, stackTrace) {
             return Image.asset(
@@ -65,14 +79,23 @@ class HomeLocationCard extends StatelessWidget {
       return const SizedBox.shrink();
     }
   }
+}
 
-  Widget _mountBody(BuildContext context) {
+class _LocationBody extends StatelessWidget {
+  final LocationEntity location;
+  final Size size;
+  const _LocationBody({Key? key, required this.location, required this.size})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _mountGrade(),
-        const SizedBox(width: 16),
+        SizedBox(width: size.width * .03),
+        _LocationGrade(location: location),
+        const Spacer(),
         Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -86,30 +109,14 @@ class HomeLocationCard extends StatelessWidget {
             const SizedBox(height: 8),
           ],
         ),
-      ],
-    );
-  }
-
-  Widget _mountGrade() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SvgPicture.asset(
-          AssetConstants.icons.star,
-          height: 35,
-          width: 35,
-        ),
-        Text(
-          location.averageGrade.toString(),
-          style: TextStyles.headline3(),
-        ),
+        SizedBox(width: size.width * .08),
       ],
     );
   }
 
   Widget _mountName(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.60,
+      width: MediaQuery.of(context).size.width * .6,
       child: Text(
         location.name,
         textAlign: TextAlign.start,
@@ -123,7 +130,7 @@ class HomeLocationCard extends StatelessWidget {
 
   Widget _moundAddress(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.65,
+      width: MediaQuery.of(context).size.width * .65,
       child: Text(
         location.address,
         maxLines: 2,
@@ -143,6 +150,42 @@ class HomeLocationCard extends StatelessWidget {
               StringConstants.space +
               S.current.textReviews,
           style: TextStyles.helper(color: SafeColors.textColors.dark),
+        ),
+      ],
+    );
+  }
+}
+
+class _LocationGrade extends StatelessWidget {
+  final LocationEntity location;
+
+  const _LocationGrade({
+    Key? key,
+    required this.location,
+  }) : super(key: key);
+
+  String get grade {
+    if (location.averageGrade == null) {
+      return StringConstants.empty;
+    } else {
+      return location.averageGrade!.toStringAsFixed(1);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SvgPicture.asset(
+          AssetConstants.icons.star,
+          height: 35,
+          width: 35,
+        ),
+        Text(
+          grade,
+          style: TextStyles.headline3(),
         ),
       ],
     );

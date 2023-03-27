@@ -35,7 +35,7 @@ class _SafeEmotionSliderState extends State<SafeEmotionSlider> {
             inactiveTrackColor: SafeColors.componentsColors.iconColors.navBar,
             thumbColor: SafeColors.componentsColors.iconColors.navBar,
             overlayColor:
-                SafeColors.componentsColors.iconColors.navBar.withOpacity(0.2),
+            SafeColors.componentsColors.iconColors.navBar.withOpacity(0.2),
             trackHeight: 2.0,
             trackShape: const RectangularSliderTrackShape(),
             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
@@ -75,16 +75,15 @@ class TextRowBuilder extends StatelessWidget {
         ),
         TextItem(
           isVisible: value > 2 && value <= 3,
-          text: S.current.textNeutral,
+          text: S.current.textRegular,
         ),
         TextItem(
           isVisible: value > 3 && value <= 4,
-          text: S.current.textHappy,
+          text: S.current.textSatisfied,
         ),
-        TextItem(
-          isVisible: value > 4,
-          text: S.current.textExcited,
-        ),
+        TextItem(isVisible: value > 4, 
+        text: S.current.textIncredible),
+
       ],
     );
   }

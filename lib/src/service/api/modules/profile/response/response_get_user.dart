@@ -49,6 +49,8 @@ class ResponseGetUserReview {
   int? locationId;
   String? locationName;
   String? locationAddress;
+  String? author;
+  String? createdAt;
 
   ResponseGetUserReview({
     this.id,
@@ -59,6 +61,8 @@ class ResponseGetUserReview {
     this.locationName,
     this.locationAddress,
     this.message,
+    this.author,
+    this.createdAt,
   });
 
   factory ResponseGetUserReview.fromJson(dynamic json) {
@@ -71,6 +75,8 @@ class ResponseGetUserReview {
       locationName: json['locationName'],
       locationAddress: json['locationAddress'],
       message: json['message'],
+      author: json['author'],
+      createdAt: json['createdAt'],
     );
   }
 }

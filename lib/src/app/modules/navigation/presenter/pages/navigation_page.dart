@@ -26,7 +26,10 @@ class _NavigationPageState
   final itens = [
     BottomNavigationBarItem(
       icon: SvgPicture.asset(AssetConstants.icons.home),
-      activeIcon: SvgPicture.asset(AssetConstants.icons.homeOutlined),
+      activeIcon: SvgPicture.asset(
+        AssetConstants.icons.homeOutlined,
+        color: SafeColors.buttonColors.primary,
+      ),
       label: S.current.textBottomNavBarHome,
     ),
     BottomNavigationBarItem(
@@ -47,23 +50,16 @@ class _NavigationPageState
     SafeLogUtil.instance.route(Modular.to.path);
   }
 
-  @override
-  void dispose() {
-    _selectedPage = 0;
-    super.dispose();
-  }
-
   void navigateToPage(int index) {
-    //TODO Encontrar maneira de dar dispose ao sair da tela
     if (index != _selectedPage) {
       if (index == 0) {
-        Modular.to.pushNamed(NavigationPage.route + HomePage.route);
+        Modular.to.navigate(NavigationPage.route + HomePage.route);
       }
       if (index == 1) {
-        Modular.to.pushNamed(NavigationPage.route + SearchPage.route);
+        Modular.to.navigate(NavigationPage.route + SearchPage.route);
       }
       if (index == 2) {
-        Modular.to.pushNamed(NavigationPage.route + ProfilePage.route);
+        Modular.to.navigate(NavigationPage.route + ProfilePage.route);
       }
       _selectedPage = index;
       setState(() {});

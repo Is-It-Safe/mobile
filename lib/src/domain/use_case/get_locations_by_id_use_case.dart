@@ -1,19 +1,21 @@
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/location/error/safe_location_error.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/location_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service_interface.dart';
+import 'package:result_dart/result_dart.dart';
 
 class GetLocationsByIdUseCase extends SafeUseCase {
-  late final ILocationService _service;
+  late final ILocationService service;
 
-  GetLocationsByIdUseCase() {
-    _service = Modular.get<LocationService>();
-  }
+  GetLocationsByIdUseCase(this.service);
 
-  Future<List<LocationEntity>> call(int id) async {
-    final response = await _service.getLocationById(id);
+  Future<Result<LocationEntity, SafeLocationError>> call(int id) async {
+    try {
+      final response = await service.getLocationById(id);
 
-    return response.map((e) => LocationEntity.toEntity(e)).toList();
+      return Success(LocationEntity.toEntity(response));
+    } on SafeLocationError catch (e) {
+      return Failure(e);
+    }
   }
 }

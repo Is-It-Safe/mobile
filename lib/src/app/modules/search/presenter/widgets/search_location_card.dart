@@ -17,11 +17,14 @@ class SearchLocationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Row(
-      children: [
-        _mountImage(size),
-        _mountLocationDetails(size),
-      ],
+    return GestureDetector(
+      onTap: onTap as void Function(),
+      child: Row(
+        children: [
+          _mountImage(size),
+          _mountLocationDetails(size),
+        ],
+      ),
     );
   }
 
@@ -32,15 +35,18 @@ class SearchLocationCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: Image.network(
-        location.imagePath ?? PlaceHolderAssets.searchLocation,
-        fit: BoxFit.fitHeight,
-        errorBuilder: (context, object, stackTrace) {
-          return Image.asset(
-            PlaceHolderAssets.searchLocation,
-            fit: BoxFit.fill,
-          );
-        },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Image.network(
+          location.imagePath ?? PlaceHolderAssets.searchLocation,
+          fit: BoxFit.fitHeight,
+          errorBuilder: (context, object, stackTrace) {
+            return Image.asset(
+              PlaceHolderAssets.searchLocation,
+              fit: BoxFit.fill,
+            );
+          },
+        ),
       ),
     );
   }

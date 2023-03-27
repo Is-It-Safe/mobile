@@ -1,0 +1,6 @@
+{
+    "name":"Testes de Dominio",
+    "cep": "41000000",
+    "locationTypeId": 1,
+    "imgUrl": "path/new_path/image.jpg"
+}

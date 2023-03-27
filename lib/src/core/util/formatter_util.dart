@@ -11,4 +11,9 @@ class FormatterUtil {
         StringConstants.slash +
         split[0];
   }
+
+  static String dateFormatter(String date) {
+    var split = date.split(StringConstants.comma);
+    return split[0];
+  }
 }

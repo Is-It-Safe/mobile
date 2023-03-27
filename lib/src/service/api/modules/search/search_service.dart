@@ -9,29 +9,35 @@ import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/search/response/response_get_locations_by_name.dart';
 import 'package:is_it_safe_app/src/service/api/modules/search/search_service_interface.dart';
 
-class SearchService implements ISearchService {
-  final ApiService _service = ApiService();
-  final AuthService _authService;
+import '../../../../app/modules/search/error/safe_search_error.dart';
 
-  SearchService(this._authService);
+class SearchService implements ISearchService {
+  final ApiService service = ApiService();
+  final AuthService authService;
+
+  SearchService(this.authService);
+
   @override
   Future<List<ResponseGetLocationsByNameLocation>?> searchLocationByName(
     String locationName,
   ) async {
-    final token = await _authService.getAccessToken();
-    final path = ApiConstants.getLocationsByName + locationName.trim();
-    final requestConfig = RequestConfig(
-      path: path,
-      method: HttpMethod.get,
-      options: Options(
-        headers: {
-          ApiConstants.kAuthorization: token,
-        },
-      ),
-    );
-
-    final response = await _service.doRequest(requestConfig);
-    return ResponseGetLocationsByName.fromJson(json.decode(response.data))
-        .locations;
+    try {
+      final token = await authService.getAccessToken();
+      final path = ApiConstants.getLocationsByName + locationName.trim();
+      final requestConfig = RequestConfig(
+        path: path,
+        method: HttpMethod.get,
+        options: Options(
+          headers: {
+            ApiConstants.kAuthorization: token,
+          },
+        ),
+      );
+      final response = await service.doRequest(requestConfig);
+      return ResponseGetLocationsByName.fromJson(json.decode(response.data))
+          .locations;
+    } on DioError catch (e) {
+      throw SafeDioResponseSearchError(e.message);
+    }
   }
 }
