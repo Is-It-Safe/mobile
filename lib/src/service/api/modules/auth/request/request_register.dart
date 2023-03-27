@@ -24,9 +24,9 @@ class RequestRegister {
 
   Map<String, dynamic> toMap() {
     return {
-      'photo_url': photoUrl,
+      'photoUrl': photoUrl,
       'name': name,
-      'birth_date': birthDate,
+      'birthDate': birthDate,
       'nickname': nickname,
       'email': email,
       'password': password,
@@ -38,9 +38,9 @@ class RequestRegister {
 
   factory RequestRegister.fromMap(Map<String, dynamic> map) {
     return RequestRegister(
-      photoUrl: map['photo_url'],
+      photoUrl: map['photoUrl'],
       name: map['name'],
-      birthDate: map['birth_date'],
+      birthDate: map['birthDate'],
       nickname: map['nickname'],
       email: map['email'],
       password: map['password'],

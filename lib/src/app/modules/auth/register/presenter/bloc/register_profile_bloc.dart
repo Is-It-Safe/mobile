@@ -69,50 +69,70 @@ class RegisterProfileBloc extends SafeBloC {
     }
   }
 
+  int getInt({
+    required String value,
+    required int defaultValue,
+    required bool isAdvanceButton,
+  }) {
+    if (isAdvanceButton || value.isEmpty) return defaultValue;
+    return int.parse(value);
+  }
+
   Future<void> doRegister({
     bool isAdvanceButton = false,
   }) async {
     store.registerEntity.loading();
+    try {
+      final birthDate = isAdvanceButton
+          ? StringConstants.empty
+          : store.birthdateTextController.text;
+      final profilePhoto = isAdvanceButton
+          ? StringConstants.empty
+          : store.selectedProfilePhoto.data;
+      final gender = getInt(
+        defaultValue: 7,
+        value: store.genderTextController.text,
+        isAdvanceButton: isAdvanceButton,
+      );
+      final sexualOrientation = getInt(
+        value: store.sexualOrientationTextController.text,
+        defaultValue: 8,
+        isAdvanceButton: isAdvanceButton,
+      );
 
-    final birthDate = isAdvanceButton
-        ? StringConstants.empty
-        : store.birthdateTextController.text;
-    final profilePhoto = isAdvanceButton
-        ? StringConstants.empty
-        : store.selectedProfilePhoto.data;
-    final gender =
-        isAdvanceButton ? 7 : int.parse(store.genderTextController.text);
-    final sexualOrientation = isAdvanceButton
-        ? 2
-        : int.parse(store.sexualOrientationTextController.text);
+      final response = await doRegisterUseCase.call(
+        name: store.nameTextController.text,
+        username: store.usernameTextController.text,
+        birthDate: birthDate,
+        pronoun: store.pronounTextController.text,
+        email: store.emailTextController.text,
+        password: store.passwordTextController.text,
+        profilePhoto: profilePhoto,
+        gender: gender,
+        sexualOrientation: sexualOrientation,
+      );
 
-    final response = await doRegisterUseCase.call(
-      name: store.nameTextController.text,
-      username: store.usernameTextController.text,
-      birthDate: birthDate,
-      pronoun: store.pronounTextController.text,
-      email: store.emailTextController.text,
-      password: store.passwordTextController.text,
-      profilePhoto: profilePhoto,
-      gender: gender,
-      sexualOrientation: sexualOrientation,
-    );
-
-    response.fold(
-      (success) {
-        store.registerEntity.data = success;
-        store.registerEntity.show();
-        navigateToLogin();
-      },
-      (failure) {
-        SafeLogUtil.instance.logError(failure);
-        safeSnackBar.error(failure.message);
-      },
-    );
+      response.fold(
+        (success) {
+          store.registerEntity.data = success;
+          store.registerEntity.show();
+          navigateToLogin();
+          safeSnackBar.success(success.message);
+        },
+        (failure) {
+          store.registerEntity.show();
+          SafeLogUtil.instance.logError(failure);
+          safeSnackBar.error(failure.message);
+        },
+      );
+    } catch (e) {
+      store.registerEntity.show();
+      SafeLogUtil.instance.logError(e);
+      safeSnackBar.error(e.toString());
+    }
   }
 
   void navigateToLogin() {
-    safeSnackBar.success(S.current.textRegisterSuccess);
     Modular.to.pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
   }
 
