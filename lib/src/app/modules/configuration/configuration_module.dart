@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/register/register_module.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/terms_and_conditions_module.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/presenter/page/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/account_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/edit_account_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
@@ -19,6 +19,7 @@ class ConfigurationModule extends Module {
     ModuleRoute(AccountPage.route, module: AccountModule()),
     ModuleRoute(ContactPage.route, module: ContactModule()),
     ModuleRoute(EditAccountPage.route, module: EditAccountModule()),
-    ModuleRoute(TermsAndConditionsPage.route, module: RegisterModule()),
+    ModuleRoute(TermsAndConditionsPage.route,
+        module: TermsAndConditionsModule()),
   ];
 }
