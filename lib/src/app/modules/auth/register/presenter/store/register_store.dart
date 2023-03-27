@@ -40,15 +40,15 @@ class RegisterStore {
   final sexualOrientationTextController = TextEditingController();
 
   void dispose() {
-    nameTextController.dispose();
-    usernameTextController.dispose();
-    pronounTextController.dispose();
-    emailTextController.dispose();
-    passwordTextController.dispose();
-    confirmPasswordTextController.dispose();
-    birthdateTextController.dispose();
-    genderTextController.dispose();
-    sexualOrientationTextController.dispose();
+    nameTextController.clear();
+    usernameTextController.clear();
+    pronounTextController.clear();
+    emailTextController.clear();
+    passwordTextController.clear();
+    confirmPasswordTextController.clear();
+    birthdateTextController.clear();
+    genderTextController.clear();
+    sexualOrientationTextController.clear();
 
     registerEntity.data = null;
     isRegisterButtonEnabled.data = false;
