@@ -26,7 +26,10 @@ class _NavigationPageState
   final itens = [
     BottomNavigationBarItem(
       icon: SvgPicture.asset(AssetConstants.icons.home),
-      activeIcon: SvgPicture.asset(AssetConstants.icons.homeOutlined),
+      activeIcon: SvgPicture.asset(
+        AssetConstants.icons.homeOutlined,
+        color: SafeColors.buttonColors.primary,
+      ),
       label: S.current.textBottomNavBarHome,
     ),
     BottomNavigationBarItem(

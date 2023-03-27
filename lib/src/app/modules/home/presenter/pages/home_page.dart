@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
-import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permission_card.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
@@ -28,10 +25,11 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
 
   @override
   void initState() {
-    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await controller.requestAccessLocationPermission();
-    });
-    tabController = TabController(length: 2, vsync: this);
+    // WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
+    //   await controller.requestAccessLocationPermission();
+    // });
+    controller.getBestRatedPlaces();
+    tabController = TabController(length: 1, vsync: this);
     tabController.addListener(() {
       setState(() {
         controller.onTabIndexChange(tabController.index);
@@ -44,10 +42,10 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: tabController.length,
       child: Scaffold(
         key: _scaffoldKey,
-        endDrawer: StreamBuilder<SafeEvent<HomeDrawerVO>>(
+        endDrawer: StreamBuilder<SafeStream<HomeDrawerVO>>(
           initialData: controller.lastDrawerEvent,
           stream: controller.userDrawerDataController.stream,
           builder: (context, snapshot) {
@@ -68,39 +66,30 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
             _scaffoldKey.currentState!.openEndDrawer();
             controller.getHomeDrawerInfo();
           },
-          onBottomTap: (tab) async {
-            switch (tab) {
-              case 0:
-                await controller.requestAccessLocationPermission();
-                break;
-              case 1:
-                await controller.getBestRatedPlaces();
-                break;
-            }
-          },
+          onBottomTap: (tab) => controller.onTabIndexChange(tab),
         ),
         body: TabBarView(
           controller: tabController,
           children: [
-            MountGettedPlaces(
-              stream: controller.locationsNearUserController.stream,
-              list: controller.listLocationsNeartUser,
-              showErrorDialog: false,
-              onEmpty: SafeEmptyCard.home(),
-              onError: NeedPermissionCard(
-                text: S.current.textErrorLocationPermission,
-                buttonText: S.current.textOpenPermissions,
-                onTapButton: () async {
-                  await controller
-                      .forcedRequestLocationPermission()
-                      .then((granted) async {
-                    if (granted) {
-                      await controller.getLocationsNearUser();
-                    }
-                  });
-                },
-              ),
-            ),
+            // MountGettedPlaces(
+            //   stream: controller.locationsNearUserController.stream,
+            //   list: controller.listLocationsNeartUser,
+            //   showErrorDialog: false,
+            //   onEmpty: SafeEmptyCard.home(),
+            //   onError: NeedPermissionCard(
+            //     text: S.current.textErrorLocationPermission,
+            //     buttonText: S.current.textOpenPermissions,
+            //     onTapButton: () async {
+            //       await controller
+            //           .forcedRequestLocationPermission()
+            //           .then((granted) async {
+            //         if (granted) {
+            //           await controller.getLocationsNearUser();
+            //         }
+            //       });
+            //     },
+            //   ),
+            // ),
             MountGettedPlaces(
               stream: controller.bestRatedPlacesController.stream,
               list: controller.listBestRatedPlaces,

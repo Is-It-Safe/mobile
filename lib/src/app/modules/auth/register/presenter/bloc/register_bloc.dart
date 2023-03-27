@@ -1,200 +1,82 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/store/register_store.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/pages/terms_and_conditions_page.dart';
+import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
-import 'package:is_it_safe_app/src/core/util/validation_util.dart';
-import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
-import 'package:is_it_safe_app/src/domain/entity/register_entity.dart';
-import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
-import 'package:is_it_safe_app/src/domain/use_case/do_register_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:result_dart/result_dart.dart';
-
-import '../../../../../../components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 
 class RegisterBloc extends SafeBloC {
-  final DoRegisterUseCase doRegisterUseCase;
-  final GetSexualOrientationsUseCase getSexualOrientationsUseCase;
-  final GetGendersUseCase getGendersUseCase;
-  final SafeProfilePictureBloC profilePictureController;
-
-  late final MaskTextInputFormatter birthdayInputMask;
-  late final MaskTextInputFormatter phoneInputMask;
-
-  late StreamController<bool> registerButtonController;
-  late StreamController<SafeEvent<List<GenderEntity>>> gendersController;
-  late StreamController<SafeEvent<List<SexualOrientationEntity>>>
-      sexualOrientationsController;
-  late StreamController<SafeEvent<RegisterEntity>> doRegisterController;
-
-  late TextEditingController nameController;
-  late TextEditingController usernameController;
-  late TextEditingController pronounController;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
-  late TextEditingController confirmPasswordController;
-  late TextEditingController birthdateController;
-  late TextEditingController genderController;
-  late TextEditingController sexualOrientationController;
-
-  bool isTermsAndConditionsChecked = false;
-  List<GenderEntity> listGenders = [];
-  List<SexualOrientationEntity> listSexualOrientations = [];
+  final RegisterStore store;
 
   RegisterBloc({
-    required this.doRegisterUseCase,
-    required this.getGendersUseCase,
-    required this.getSexualOrientationsUseCase,
-    required this.profilePictureController,
-  }) {
-    init();
-  }
+    required this.store,
+  });
 
   @override
   Future<void> init() async {
-    birthdayInputMask = MaskTextInputFormatter(mask: StringConstants.dateMask);
-    phoneInputMask = MaskTextInputFormatter(mask: StringConstants.phoneMask);
+    SafeLogUtil.instance.route(Modular.to.path);
+  }
 
-    registerButtonController = StreamController.broadcast();
-    gendersController = StreamController.broadcast();
-    sexualOrientationsController = StreamController.broadcast();
-    doRegisterController = StreamController.broadcast();
-
-    nameController = TextEditingController();
-    usernameController = TextEditingController();
-    pronounController = TextEditingController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    confirmPasswordController = TextEditingController();
-    birthdateController = TextEditingController();
-    genderController = TextEditingController();
-    sexualOrientationController = TextEditingController();
+  void tooglePasswordVisibility() {
+    store.isPassowordVisible.data = !store.isPassowordVisible.data;
   }
 
   void toogleRegisterButton() {
-    bool isRegisterButtonEnabled = (nameController.text.isNotEmpty &&
-        usernameController.text.isNotEmpty &&
-        emailController.text.isNotEmpty &&
-        passwordController.text.isNotEmpty &&
-        confirmPasswordController.text.isNotEmpty &&
-        isTermsAndConditionsChecked);
-    registerButtonController.sink.add(isRegisterButtonEnabled);
+    bool isEnabled = (store.nameTextController.text.isNotEmpty &&
+        store.usernameTextController.text.isNotEmpty &&
+        store.emailTextController.text.isNotEmpty &&
+        store.passwordTextController.text.isNotEmpty &&
+        store.confirmPasswordTextController.text.isNotEmpty &&
+        store.isTermsAndConditionsChecked.data);
+    store.isRegisterButtonEnabled.data = isEnabled;
   }
 
-  Future<void> getGenders() async {
-    try {
-      if (listGenders.isEmpty) {
-        gendersController.sink.add(SafeEvent.load());
-        await getGendersUseCase.call().fold(
-          (success) {
-            listGenders = success;
-          },
-          (error) {},
-        );
-        gendersController.sink.add(SafeEvent.done(listGenders));
-      }
-    } catch (e) {
-      SafeLogUtil.instance.logError(e);
-      gendersController.addError(e.toString());
-    }
-  }
-
-  Future<void> getSexualOrientations() async {
-    try {
-      if (listSexualOrientations.isEmpty) {
-        sexualOrientationsController.sink.add(SafeEvent.load());
-        await getSexualOrientationsUseCase.call().fold(
-          (success) {
-            listSexualOrientations = success;
-          },
-          (error) {},
-        );
-        sexualOrientationsController.sink.add(
-          SafeEvent.done(listSexualOrientations),
-        );
-      }
-    } catch (e) {
-      SafeLogUtil.instance.logError(e);
-      sexualOrientationsController.addError(e.toString());
-    }
-  }
-
-  Future<void> doRegister({
-    bool? isAdvanceButton,
-  }) async {
-    try {
-      doRegisterController.sink.add(SafeEvent.load());
-      await doRegisterUseCase
-          .call(
-        name: nameController.text,
-        username: usernameController.text,
-        birthDate: isAdvanceButton == true
-            ? StringConstants.empty
-            : birthdateController.text,
-        pronoun: pronounController.text,
-        email: emailController.text,
-        password: passwordController.text,
-        profilePhoto: isAdvanceButton == true
-            ? StringConstants.empty
-            : profilePictureController.selectedProfilePhoto,
-        gender: isAdvanceButton == true ? 7 : int.parse(genderController.text),
-        sexualOrientation: isAdvanceButton == true
-            ? 2
-            : int.parse(sexualOrientationController.text),
-      )
-          .fold(
-        (success) {
-          doRegisterController.sink.add(SafeEvent.done(success));
-        },
-        (error) {},
-      );
-    } catch (e) {
-      SafeLogUtil.instance.logError(e);
-      doRegisterController.addError(e.toString());
-    }
-  }
-
-  String validateTextField(String? value) {
-    if (!ValidationUtil.name(value ?? StringConstants.empty) || value == null) {
+  String? validateName(String? value) {
+    if (!(value ?? StringConstants.empty).isName) {
+      return S.current.textErrorEmptyField;
+    } else if (value?.isEmpty ?? false) {
       return S.current.textErrorEmptyField;
     }
-    return StringConstants.empty;
+    return null;
   }
 
-  String validateEmail(String? value) {
-    if (!ValidationUtil.email(value ?? StringConstants.empty) ||
-        value == null) {
+  String? validateEmail(String? value) {
+    if (!(value ?? StringConstants.empty).isEmail) {
       return S.current.textErrorEmail;
+    } else if (value?.isEmpty ?? false) {
+      return S.current.textErrorEmptyField;
     }
-    return StringConstants.empty;
+    return null;
   }
 
-  String validatePassword(
+  String? validatePassword(
     String? value, {
     String? errorText,
   }) {
-    if (!ValidationUtil.passoword(value ?? StringConstants.empty) ||
-        value == null) {
+    if (!(value ?? StringConstants.empty).isPassword) {
       return errorText ?? S.current.textErrorLoginPassword;
+    } else if (value?.isEmpty ?? false) {
+      return S.current.textErrorEmptyField;
     }
-    return StringConstants.empty;
-  }
-
-  String validateBirthdate(String? value) {
-    if (!ValidationUtil.date(value ?? StringConstants.empty) || value == null) {
-      return S.current.textErrorInvalidDate;
-    }
-    return StringConstants.empty;
+    return null;
   }
 
   void toogleTermsAndConditions() {
-    isTermsAndConditionsChecked = !isTermsAndConditionsChecked;
+    store.isTermsAndConditionsChecked.data =
+        !store.isTermsAndConditionsChecked.data;
+  }
+
+  void navigateToTermsAndConditions() {
+    Modular.to.push(
+      MaterialPageRoute(
+        builder: (_) => const TermsAndConditionsPage(),
+      ),
+    );
   }
 
   @override

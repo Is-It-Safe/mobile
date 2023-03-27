@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:catcher/catcher.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
@@ -34,15 +35,15 @@ class HomeBloc extends SafeBloC {
   final GetUserNameUseCase getUserNameUseCase;
   final GetUserImageUseCase getUserImageUseCase;
 
-  late StreamController<SafeEvent<List<LocationEntity>>>
+  late StreamController<SafeStream<List<LocationEntity>>>
       bestRatedPlacesController;
-  late StreamController<SafeEvent<List<LocationEntity>>>
+  late StreamController<SafeStream<List<LocationEntity>>>
       locationsNearUserController;
-  late StreamController<SafeEvent<Placemark>> userLocationController;
-  late StreamController<SafeEvent<HomeDrawerVO>> userDrawerDataController;
+  late StreamController<SafeStream<Placemark>> userLocationController;
+  late StreamController<SafeStream<HomeDrawerVO>> userDrawerDataController;
   List<LocationEntity> listBestRatedPlaces = [];
   List<LocationEntity> listLocationsNeartUser = [];
-  SafeEvent<HomeDrawerVO> lastDrawerEvent = SafeEvent.load();
+  SafeStream<HomeDrawerVO> lastDrawerEvent = SafeStream.load();
 
   HomeBloc({
     required this.getBestRatedLocationsUseCase,
@@ -68,7 +69,7 @@ class HomeBloc extends SafeBloC {
   }
 
   Future<void> getHomeDrawerInfo() async {
-    userDrawerDataController.add(SafeEvent.load());
+    userDrawerDataController.add(SafeStream.load());
     try {
       final userName = await getUserNameUseCase.call();
       final userImage = await getUserImageUseCase.call();
@@ -76,13 +77,14 @@ class HomeBloc extends SafeBloC {
         userName: userName,
         userImage: userImage,
       );
-      lastDrawerEvent = SafeEvent.done(homeDrawerVO);
+      lastDrawerEvent = SafeStream.done(homeDrawerVO);
       return userDrawerDataController.add(lastDrawerEvent);
-    } catch (e) {
+    } catch (e, stacktrace) {
+      Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
     }
     return userDrawerDataController.add(
-      SafeEvent.done(
+      SafeStream.done(
         HomeDrawerVO(
           userName: StringConstants.empty,
           userImage: StringConstants.empty,
@@ -95,7 +97,8 @@ class HomeBloc extends SafeBloC {
     try {
       final userLocation = await getUserLocationTokenUseCase.call();
       return userLocation;
-    } catch (e) {
+    } catch (e, stacktrace) {
+      Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
     }
     return null;
@@ -104,7 +107,8 @@ class HomeBloc extends SafeBloC {
   Future<void> saveUserLocation({required Placemark userLocation}) async {
     try {
       await saveUserLocationTokenUseCase.call(userLocation);
-    } catch (e) {
+    } catch (e, stacktrace) {
+      Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
     }
   }
@@ -115,7 +119,8 @@ class HomeBloc extends SafeBloC {
       if (userLocation != null) {
         return userLocation.locality ?? StringConstants.empty;
       }
-    } catch (e) {
+    } catch (e, stacktrace) {
+      Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
     }
     return StringConstants.empty;
@@ -123,15 +128,16 @@ class HomeBloc extends SafeBloC {
 
   Future<void> getBestRatedPlaces() async {
     try {
-      bestRatedPlacesController.add(SafeEvent.load());
+      bestRatedPlacesController.add(SafeStream.load());
       await getBestRatedLocationsUseCase
           .call(place: await userCity)
           .then((locations) {
         listBestRatedPlaces.clear();
         listBestRatedPlaces.addAll(locations);
       });
-      bestRatedPlacesController.add(SafeEvent.done(listBestRatedPlaces));
-    } on Exception catch (e) {
+      bestRatedPlacesController.add(SafeStream.done(listBestRatedPlaces));
+    } on Exception catch (e, stacktrace) {
+      Catcher.reportCheckedError(e, stacktrace);
       if (e is UnauthorizedException) await ApiInterceptors.doLogout();
       bestRatedPlacesController.addError(e.toString());
     }
@@ -139,7 +145,7 @@ class HomeBloc extends SafeBloC {
 
   Future<void> getLocationsNearUser() async {
     try {
-      locationsNearUserController.add(SafeEvent.load());
+      locationsNearUserController.add(SafeStream.load());
       final location = await Geolocator.getCurrentPosition();
       await getLocationsNearUserUsecase
           .call(location.latitude, location.longitude)
@@ -147,8 +153,9 @@ class HomeBloc extends SafeBloC {
         listLocationsNeartUser.clear();
         listLocationsNeartUser.addAll(locations);
       });
-      locationsNearUserController.add(SafeEvent.done(listLocationsNeartUser));
-    } on Exception catch (e) {
+      locationsNearUserController.add(SafeStream.done(listLocationsNeartUser));
+    } on Exception catch (e, stacktrace) {
+      Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
       locationsNearUserController.addError(e.toString());
     }
@@ -173,7 +180,7 @@ class HomeBloc extends SafeBloC {
     });
     if (userLocation != null) {
       await saveUserLocation(userLocation: userLocation);
-      userLocationController.sink.add(SafeEvent.done(userLocation));
+      userLocationController.sink.add(SafeStream.done(userLocation));
     }
   }
 
@@ -182,7 +189,8 @@ class HomeBloc extends SafeBloC {
       final permission =
           await getUserLocationPermissionFirstSettingsUseCase.call();
       return permission;
-    } catch (e) {
+    } catch (e, stacktrace) {
+      Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
     }
     return false;
@@ -192,7 +200,8 @@ class HomeBloc extends SafeBloC {
       bool alreadySeeIt) async {
     try {
       await saveUserLocationPermissionFirstSettingsUseCase.call(alreadySeeIt);
-    } catch (e) {
+    } catch (e, stacktrace) {
+      Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
     }
   }
@@ -231,14 +240,15 @@ class HomeBloc extends SafeBloC {
   }
 
   onTabIndexChange(int index) async {
-    switch (index) {
-      case 0:
-        await requestAccessLocationPermission();
-        break;
-      case 1:
-        await getBestRatedPlaces();
-        break;
-    }
+    await getBestRatedPlaces();
+    // switch (index) {
+    //   case 0:
+    //     await requestAccessLocationPermission();
+    //     break;
+    //   case 1:
+    //     await getBestRatedPlaces();
+    //     break;
+    // }
   }
 
   @override

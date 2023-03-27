@@ -31,12 +31,16 @@
     "textErrorTryAgain": "Tente novamente em alguns instantes.",
     "textErrorSearch" : "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?",
     "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
+    "textErrorHomeBestRated":"Nenhum lugar encontrado, comece a avaliar!",
     "textErrorLocationPermission": "Nenhum lugar próximo encontrado, ative as permissões de localização!",
     "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
     "textErrorDeleteReview":"Não foi possível deletar a review!",
     "textErrorGetLocation": "Ocorreu um erro ao obter sua localização!",
+    "textErrorLoginUnauthorized": "Usuário ou senha inválido!",
+    "textErrorLoginFailed":"Não foi possível fazer login, tente novamente em alguns instantes.",
 
+    "textInitialSearch" : "Pesquise locais para avaliar",
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
 
     "textSuccessRegistration":"Usuário Registrado",
@@ -110,6 +114,8 @@
     "textUpdateInformation":"Atualizar informações",
     "textInformationChangedSuccessfully":"Informações atualizadas com sucesso!",
     "textUnableToChangeInformation":"Não foi possível atualizar as informações!",
+    "textAddLocation":"Adicionar Local",
+    "textOptions":"Opções",
     
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",
@@ -196,6 +202,16 @@
     "textContacActionError": "Não foi possível realizar a ação.",
 
     "textPasswordSuccessChanged": "Senha alterada com sucesso!",
-    "textPasswordFailureChanged": "Não foi possível alterar sua senha!"
+    "textPasswordFailureChanged": "Não foi possível alterar sua senha!",
+	
+	"textRegisterValidateUserName":"O nome não pode ter menos que 3 letras.",
 
+
+    "textYourCurrentEmailIs": "Seu e-mail atual é",
+    "textWhatWillBeYourEmailAddress": "Qual será o novo endereço de e-mail?",
+    "textCriticalErrorPageTitle": "Ocorreu um erro inesperado!",
+    "textCriticalErrorPageBody": "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!",
+    "textCriticalErrorPageGoToReport": "Reportar erro",
+    
+    "textChange": "Alterar"
 }

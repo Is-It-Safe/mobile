@@ -35,7 +35,7 @@ class LocationModule extends Module {
     ),
     ModuleRoute(ReviewPage.route, module: ReviewModule()),
     ChildRoute(
-      '/save-location',
+      SaveLocationPage.route,
       child: (context, args) => const SaveLocationPage(),
     ),
   ];

@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Nenhum lugar encontrado, comece a avaliar!`
+  String get textErrorHomeBestRated {
+    return Intl.message(
+      'Nenhum lugar encontrado, comece a avaliar!',
+      name: 'textErrorHomeBestRated',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nenhum lugar próximo encontrado, ative as permissões de localização!`
   String get textErrorLocationPermission {
     return Intl.message(
@@ -365,6 +375,36 @@ class S {
     return Intl.message(
       'Ocorreu um erro ao obter sua localização!',
       name: 'textErrorGetLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Usuário ou senha inválido!`
+  String get textErrorLoginUnauthorized {
+    return Intl.message(
+      'Usuário ou senha inválido!',
+      name: 'textErrorLoginUnauthorized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível fazer login, tente novamente em alguns instantes.`
+  String get textErrorLoginFailed {
+    return Intl.message(
+      'Não foi possível fazer login, tente novamente em alguns instantes.',
+      name: 'textErrorLoginFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pesquise locais para avaliar`
+  String get textInitialSearch {
+    return Intl.message(
+      'Pesquise locais para avaliar',
+      name: 'textInitialSearch',
       desc: '',
       args: [],
     );
@@ -1065,6 +1105,26 @@ class S {
     return Intl.message(
       'Não foi possível atualizar as informações!',
       name: 'textUnableToChangeInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adicionar Local`
+  String get textAddLocation {
+    return Intl.message(
+      'Adicionar Local',
+      name: 'textAddLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Opções`
+  String get textOptions {
+    return Intl.message(
+      'Opções',
+      name: 'textOptions',
       desc: '',
       args: [],
     );
@@ -1815,6 +1875,76 @@ class S {
     return Intl.message(
       'Não foi possível alterar sua senha!',
       name: 'textPasswordFailureChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O nome não pode ter menos que 3 letras.`
+  String get textRegisterValidateUserName {
+    return Intl.message(
+      'O nome não pode ter menos que 3 letras.',
+      name: 'textRegisterValidateUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seu e-mail atual é`
+  String get textYourCurrentEmailIs {
+    return Intl.message(
+      'Seu e-mail atual é',
+      name: 'textYourCurrentEmailIs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qual será o novo endereço de e-mail?`
+  String get textWhatWillBeYourEmailAddress {
+    return Intl.message(
+      'Qual será o novo endereço de e-mail?',
+      name: 'textWhatWillBeYourEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ocorreu um erro inesperado!`
+  String get textCriticalErrorPageTitle {
+    return Intl.message(
+      'Ocorreu um erro inesperado!',
+      name: 'textCriticalErrorPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!`
+  String get textCriticalErrorPageBody {
+    return Intl.message(
+      'Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!',
+      name: 'textCriticalErrorPageBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reportar erro`
+  String get textCriticalErrorPageGoToReport {
+    return Intl.message(
+      'Reportar erro',
+      name: 'textCriticalErrorPageGoToReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alterar`
+  String get textChange {
+    return Intl.message(
+      'Alterar',
+      name: 'textChange',
       desc: '',
       args: [],
     );

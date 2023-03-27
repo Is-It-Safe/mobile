@@ -7,6 +7,7 @@ import 'package:is_it_safe_app/src/app/modules/location/review/review_module.dar
 import 'package:is_it_safe_app/src/app/modules/navigation/navigation_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/do_login_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
@@ -15,7 +16,6 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
-import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class AppModule extends Module {
   @override
@@ -23,17 +23,13 @@ class AppModule extends Module {
     Bind.lazySingleton((i) => ApiService()),
     Bind.lazySingleton((i) => AuthService(i.get<ApiService>())),
     Bind.lazySingleton((i) => SharedPreferencesService()),
-    Bind.lazySingleton(
-        (i) => SaveUserRefreshTokenUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton((i) => DoLoginUseCase(i.get<AuthService>())),
-    Bind.lazySingleton(
-        (i) => SaveUserTokenUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton(
-        (i) => SaveUserLoginUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton(
-        (i) => SaveUserImageUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton(
-        (i) => SaveUserNameUseCase(i.get<ISharedPreferencesService>())),
+    Bind.lazySingleton((i) => SaveUserRefreshTokenUseCase(i())),
+    Bind.lazySingleton((i) => DoLoginUseCase(i())),
+    Bind.lazySingleton((i) => SaveUserTokenUseCase(i())),
+    Bind.lazySingleton((i) => SaveUserLoginUseCase(i())),
+    Bind.lazySingleton((i) => SaveUserImageUseCase(i())),
+    Bind.lazySingleton((i) => SaveUserNameUseCase(i())),
+    Bind.lazySingleton((i) => SaveUserEmailUsecase(i())),
   ];
 
   @override

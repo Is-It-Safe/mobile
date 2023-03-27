@@ -47,9 +47,9 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
       appBar: SafeAppBar(
         title: widget.location.name,
       ),
-      body: StreamBuilder<SafeEvent<ReviewEntity>>(
+      body: StreamBuilder<SafeStream<ReviewEntity>>(
           stream: controller.reviewController.stream,
-          initialData: SafeEvent.initial(),
+          initialData: SafeStream.initial(),
           builder: (context, snapshot) {
             // if (snapshot.data?.status == Status.done) {
             //   showDialog(
@@ -100,10 +100,11 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ReviewImageWidget(
-                        image: widget.location.imagePath ??
-                            AssetConstants.mock.locationImage,
-                      ),
+                      if (widget.location.imagePath != null &&
+                          widget.location.imagePath!.isNotEmpty)
+                        ReviewImageWidget(
+                          image: widget.location.imagePath!,
+                        ),
                       const SizedBox(height: 20),
                       ReviewEmotionsWidget(
                         grade: controller.gradeController.stream,
@@ -143,7 +144,7 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
                                   if (_formKey.currentState?.validate() ??
                                       false) {
                                     await controller.sendReview(
-                                        id: widget.location.id);
+                                        id: widget.location.id ?? 0);
                                   }
                                 }
                               : () => _formKey.currentState?.validate(),
@@ -307,7 +308,9 @@ class _ReviewEmotionsWidgetState extends State<ReviewEmotionsWidget> {
           stream: widget.grade,
           builder: (context, snapshot) => SafeEmotionSlider(
             value: snapshot.data ?? 0,
-            onChanged: (value) => widget.onGradeChanged(value),
+            onChanged: (value) {
+              widget.onGradeChanged(value.roundToDouble());
+            },
           ),
         )
       ],

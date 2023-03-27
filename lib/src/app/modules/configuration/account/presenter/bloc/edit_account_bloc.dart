@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:catcher/catcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -31,11 +32,11 @@ class EditAccountBloc extends SafeBloC {
 
   late final MaskTextInputFormatter birthdayInputMask;
 
-  late StreamController<SafeEvent<UserEntity>> userController;
-  late StreamController<SafeEvent<List<GenderEntity>>> gendersController;
-  late StreamController<SafeEvent<List<SexualOrientationEntity>>>
+  late StreamController<SafeStream<UserEntity>> userController;
+  late StreamController<SafeStream<List<GenderEntity>>> gendersController;
+  late StreamController<SafeStream<List<SexualOrientationEntity>>>
       sexualOrientationsController;
-  late StreamController<SafeEvent<UserEntity>> upDateUserController;
+  late StreamController<SafeStream<UserEntity>> upDateUserController;
   late StreamController<bool> upDateButtonController;
   late TextEditingController nameController;
   late TextEditingController usernameController;
@@ -75,11 +76,16 @@ class EditAccountBloc extends SafeBloC {
     genderController = TextEditingController();
     userIdController = TextEditingController();
     pronounController = TextEditingController();
+
+    await getUser().whenComplete(() {
+      getGenders();
+      getSexualOrientations();
+    });
   }
 
   Future<bool> updateUser({required int userId}) async {
     try {
-      upDateUserController.sink.add(SafeEvent.load());
+      upDateUserController.sink.add(SafeStream.load());
       RequestUpdateUser request = RequestUpdateUser(
         id: int.parse(userIdController.text),
         name: nameController.text.trim(),
@@ -88,12 +94,15 @@ class EditAccountBloc extends SafeBloC {
         sexualOrientationId: int.parse(sexualOrientationController.text),
         pronoun: pronounController.text,
       );
-      UserEntity userEntity = await updateUserUseCase.call(request);
-      upDateUserController.sink.add(SafeEvent.done(userEntity));
+      await updateUserUseCase.call(request).fold(
+          (userEntity) =>
+              upDateUserController.sink.add(SafeStream.done(userEntity)),
+          (error) => null);
       return true;
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      upDateUserController.sink.add(SafeEvent.error(e.toString()));
+      Catcher.reportCheckedError(e, stacktrace);
+      upDateUserController.sink.add(SafeStream.error(e.toString()));
       return false;
     }
   }
@@ -108,19 +117,34 @@ class EditAccountBloc extends SafeBloC {
 
   Future<void> getUser() async {
     try {
-      userController.sink.add(SafeEvent.load());
-      responseGetUSer = await getUserUseCase.call();
-      userIdController.text = responseGetUSer.id.toString();
-      nameController.text = responseGetUSer.name!;
-      usernameController.text = responseGetUSer.nickname!;
-      birthdateController.text = responseGetUSer.birthDate!;
-      pronounController.text = responseGetUSer.pronoun!;
-      genderController.text = responseGetUSer.genreId.toString();
-      sexualOrientationController.text =
-          responseGetUSer.sexualOrientationId.toString();
-      userController.sink.add(SafeEvent.done(responseGetUSer));
-    } on Exception catch (e) {
+      userController.sink.add(SafeStream.load());
+      await getUserUseCase.call().fold((responseGetUSer) async {
+        userIdController.text = responseGetUSer.id.toString();
+        nameController.text = responseGetUSer.name!;
+        usernameController.text = responseGetUSer.nickname!;
+        birthdateController.text = responseGetUSer.birthDate!;
+        pronounController.text = responseGetUSer.pronoun!;
+        genderController.text = responseGetUSer.genreId.toString();
+        sexualOrientationController.text =
+            responseGetUSer.sexualOrientationId.toString();
+        if (responseGetUSer.genreId == null ||
+            responseGetUSer.sexualOrientationId == null) {
+          await Future.microtask(
+            () {
+              loadGenderFromList(
+                currentGender: responseGetUSer.gender ?? '',
+              );
+              loadSexualOrientationFromList(
+                currentSexualOrientation: responseGetUSer.orientation ?? '',
+              );
+            },
+          );
+        }
+        userController.sink.add(SafeStream.done(responseGetUSer));
+      }, (error) => null);
+    } on Exception catch (e, stacktrace) {
       userController.addError(e.toString());
+      Catcher.reportCheckedError(e, stacktrace);
       if (e is UnauthorizedException) await doLogout();
     }
   }
@@ -137,25 +161,26 @@ class EditAccountBloc extends SafeBloC {
   Future<void> getGenders() async {
     try {
       if (listGenders.isEmpty) {
-        gendersController.sink.add(SafeEvent.load());
+        gendersController.sink.add(SafeStream.load());
         await getGendersUseCase.call().fold(
           (success) {
             listGenders = success;
           },
           (error) {},
         );
-        gendersController.sink.add(SafeEvent.done(listGenders));
+        gendersController.sink.add(SafeStream.done(listGenders));
       }
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      gendersController.sink.add(SafeEvent.error(e.toString()));
+      Catcher.reportCheckedError(e, stacktrace);
+      gendersController.sink.add(SafeStream.error(e.toString()));
     }
   }
 
   Future<void> getSexualOrientations() async {
     try {
       if (listSexualOrientations.isEmpty) {
-        sexualOrientationsController.sink.add(SafeEvent.load());
+        sexualOrientationsController.sink.add(SafeStream.load());
         await getSexualOrientationsUseCase.call().fold(
           (success) {
             listSexualOrientations = success;
@@ -163,12 +188,13 @@ class EditAccountBloc extends SafeBloC {
           (error) {},
         );
         sexualOrientationsController.sink.add(
-          SafeEvent.done(listSexualOrientations),
+          SafeStream.done(listSexualOrientations),
         );
       }
-    } catch (e) {
+    } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      sexualOrientationsController.sink.add(SafeEvent.error(e.toString()));
+      Catcher.reportCheckedError(e, stacktrace);
+      sexualOrientationsController.sink.add(SafeStream.error(e.toString()));
     }
   }
 
@@ -188,4 +214,33 @@ class EditAccountBloc extends SafeBloC {
 
   @override
   Future<void> dispose() async {}
+
+  Future<void> loadGenderFromList({
+    required String currentGender,
+  }) async {
+    getGendersUseCase.call().fold(
+      (success) {
+        GenderEntity selectedGender = success.firstWhere(
+          (element) => element.title == currentGender,
+        );
+        genderController.text = selectedGender.id.toString();
+      },
+      (error) {},
+    );
+  }
+
+  Future<void> loadSexualOrientationFromList({
+    required String currentSexualOrientation,
+  }) async {
+    getSexualOrientationsUseCase.call().fold(
+      (success) {
+        SexualOrientationEntity selectedSexualOrientation = success.firstWhere(
+          (element) => element.title == currentSexualOrientation,
+        );
+        sexualOrientationController.text =
+            selectedSexualOrientation.id.toString();
+      },
+      (error) {},
+    );
+  }
 }

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAbout": MessageLookupByLibrary.simpleMessage("Sobre"),
         "textAccountInformation":
             MessageLookupByLibrary.simpleMessage("Informações da Conta"),
+        "textAddLocation":
+            MessageLookupByLibrary.simpleMessage("Adicionar Local"),
         "textAddLocationAddress":
             MessageLookupByLibrary.simpleMessage("Ex: Rua Clodomiro"),
         "textAddLocationAddressFieldTitle":
@@ -82,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textCanYouGiveMoreDetails": MessageLookupByLibrary.simpleMessage(
             "Você pode nos dar mais detalhes?"),
         "textCancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "textChange": MessageLookupByLibrary.simpleMessage("Alterar"),
         "textChangeEmail":
             MessageLookupByLibrary.simpleMessage("Alterar E-mail"),
         "textChangePassword":
@@ -108,6 +111,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
         "textCreateHere":
             MessageLookupByLibrary.simpleMessage("Crie ele aqui."),
+        "textCriticalErrorPageBody": MessageLookupByLibrary.simpleMessage(
+            "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!"),
+        "textCriticalErrorPageGoToReport":
+            MessageLookupByLibrary.simpleMessage("Reportar erro"),
+        "textCriticalErrorPageTitle":
+            MessageLookupByLibrary.simpleMessage("Ocorreu um erro inesperado!"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
         "textDefaultDeleteReviewMessage": MessageLookupByLibrary.simpleMessage(
@@ -154,12 +163,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ocorreu um erro ao obter sua localização!"),
         "textErrorHome": MessageLookupByLibrary.simpleMessage(
             "Nenhum lugar próximo encontrado, comece a avaliar seu bairro!"),
+        "textErrorHomeBestRated": MessageLookupByLibrary.simpleMessage(
+            "Nenhum lugar encontrado, comece a avaliar!"),
         "textErrorInvalidDate": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite uma data válida"),
         "textErrorLocationPermission": MessageLookupByLibrary.simpleMessage(
             "Nenhum lugar próximo encontrado, ative as permissões de localização!"),
+        "textErrorLoginFailed": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível fazer login, tente novamente em alguns instantes."),
         "textErrorLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite uma senha válida"),
+        "textErrorLoginUnauthorized":
+            MessageLookupByLibrary.simpleMessage("Usuário ou senha inválido!"),
         "textErrorLoginUsername": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite um nome de usuário válido"),
         "textErrorProfile": MessageLookupByLibrary.simpleMessage(
@@ -199,6 +214,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textInformationChangedSuccessfully":
             MessageLookupByLibrary.simpleMessage(
                 "Informações atualizadas com sucesso!"),
+        "textInitialSearch": MessageLookupByLibrary.simpleMessage(
+            "Pesquise locais para avaliar"),
         "textIsItSafe": MessageLookupByLibrary.simpleMessage("Is It Safe?"),
         "textLGBTFobia": MessageLookupByLibrary.simpleMessage("LGBTfobia"),
         "textLettersAndNumbers":
@@ -232,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("e avalie locais"),
         "textOpenPermissions":
             MessageLookupByLibrary.simpleMessage("Abrir Permissões"),
+        "textOptions": MessageLookupByLibrary.simpleMessage("Opções"),
         "textPageSubtitleLogin":
             MessageLookupByLibrary.simpleMessage("Sentimos sua falta!"),
         "textPageSubtitleProfileRegisterPage":
@@ -265,6 +283,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cadastro realizado com sucesso!"),
         "textRegisterSuccessMessage": MessageLookupByLibrary.simpleMessage(
             "Você será redirecionado para a página de login."),
+        "textRegisterValidateUserName": MessageLookupByLibrary.simpleMessage(
+            "O nome não pode ter menos que 3 letras."),
         "textRegular": MessageLookupByLibrary.simpleMessage("Regular"),
         "textReviewCompleted":
             MessageLookupByLibrary.simpleMessage("Review Completa!"),
@@ -320,8 +340,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "textWhatPeopleAreTalkingAboutThisPlace":
             MessageLookupByLibrary.simpleMessage(
                 "O que estão falando sobre esse local:"),
+        "textWhatWillBeYourEmailAddress": MessageLookupByLibrary.simpleMessage(
+            "Qual será o novo endereço de e-mail?"),
         "textWriteHere":
             MessageLookupByLibrary.simpleMessage("Escreva aqui..."),
+        "textYourCurrentEmailIs":
+            MessageLookupByLibrary.simpleMessage("Seu e-mail atual é"),
         "textYourRepresentationHereInside":
             MessageLookupByLibrary.simpleMessage(
                 "Uma representação sua aqui dentro!"),

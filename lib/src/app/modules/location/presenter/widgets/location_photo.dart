@@ -6,18 +6,18 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
-class LocalePhotoComponent extends StatefulWidget {
+class LocationPhotoComponent extends StatefulWidget {
   final Function onTap;
   final String? path;
 
-  const LocalePhotoComponent({Key? key, required this.onTap, this.path})
+  const LocationPhotoComponent({Key? key, required this.onTap, this.path})
       : super(key: key);
 
   @override
-  State<LocalePhotoComponent> createState() => _LocalePhotoComponentState();
+  State<LocationPhotoComponent> createState() => _LocationPhotoComponentState();
 }
 
-class _LocalePhotoComponentState extends State<LocalePhotoComponent> {
+class _LocationPhotoComponentState extends State<LocationPhotoComponent> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,7 +46,8 @@ class _LocalePhotoComponentState extends State<LocalePhotoComponent> {
                 onTap: () => widget.onTap(),
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: widget.path == null
+                  child: (widget.path == null ||
+                          (widget.path != null && widget.path!.isEmpty))
                       ? const Icon(
                           Icons.add_photo_alternate,
                           color: Colors.grey,

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
-class AccountSextionBanner extends StatelessWidget {
+class AccountSectionBanner extends StatelessWidget {
   final String text;
-  const AccountSextionBanner({
+  const AccountSectionBanner({
     Key? key,
     required this.text,
   }) : super(key: key);

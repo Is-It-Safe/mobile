@@ -2,9 +2,9 @@ name: Flutter CI/CD
 
 on:
   push:
-    # branches:
+    branches:
      # - main
-     # - release
+      - release
      # - dev
     tags:
       # Only build for tags that follow semantic versioning
@@ -44,9 +44,9 @@ jobs:
 
       # Send message to Discord webhook
 
-      - name: Send message to Discord
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: "New version available"
+#       - name: Send message to Discord
+#         env:
+#           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+#         uses: Ilshidur/action-discord@master
+#         with:
+#           args: "New version available"

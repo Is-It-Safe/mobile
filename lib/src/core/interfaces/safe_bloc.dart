@@ -1,8 +1,29 @@
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 
-abstract class SafeBloC implements Disposable {
-  @override
+abstract class SafeBloC {
+  final ISafeSnackBar safeSnackBar = SafeSnackBar();
+
+  ///Abertura da pagina
+  Future<void> init();
+
+  ///Fechamento da pagina
   Future<void> dispose();
 
-  Future<void> init();
+  ///Equivalente a onResume() no Android ou viewDidAppear() no iOS.
+  void onFocusGained() {}
+
+  ///Equivalente a onPause() no Android ou viewDidDisappear() em ' 'iOS.',
+  void onFocusLost() {}
+
+  ///Isso significa que o widget agora está visível em seu aplicativo
+  void onVisibilityGained() {}
+
+  ///Isso significa que o widget não está mais visível em seu aplicativo
+  void onVisibilityLost() {}
+
+  ///Significa, que o usuário voltou para seu aplicativo ou religou a tela do dispositivo enquanto seu widget estava
+  void onForegroundGained() {}
+
+  ///Segundo Plano ao abrir outro aplicativo ou desligar o dispositivo
+  void onForegroundLost() {}
 }

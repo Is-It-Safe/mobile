@@ -1,16 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
 
 class AccountBloc extends SafeBloC {
@@ -20,7 +22,7 @@ class AccountBloc extends SafeBloC {
   final SafeProfilePictureBloC safeProfilePictureBloc;
   final SaveUserImageUseCase saveUserImageUseCase;
 
-  late StreamController<SafeEvent<UserEntity>> userController;
+  final user = SafeStream<UserEntity>(data: UserEntity.empty());
 
   AccountBloc({
     required this.getUserUseCase,
@@ -28,38 +30,56 @@ class AccountBloc extends SafeBloC {
     required this.saveUserLoginUseCase,
     required this.safeProfilePictureBloc,
     required this.saveUserImageUseCase,
-  }) {
-    init();
-  }
-
+  });
   @override
   Future<void> init() async {
-    userController = StreamController.broadcast();
     getUser();
   }
 
   Future<void> getUser() async {
     try {
-      userController.sink.add(SafeEvent.load());
-      final response = await getUserUseCase.call();
-      userController.sink.add(SafeEvent.done(response));
+      final result = await getUserUseCase.call();
+
+      result.fold(
+        (userEntity) => user.data = userEntity,
+        (error) => null,
+      );
     } on Exception catch (e) {
-      //TODO colocar tratamento de erro de autenticação em todas as requisições
-      userController.addError(e.toString());
-      if (e is UnauthorizedException) await doLogout();
+      user.error(e.toString());
     }
   }
 
   Future<void> updateUser(RequestUpdateUser request) async {
     try {
-      userController.sink.add(SafeEvent.load());
-      final response = await updateUserUseCase.call(request);
-      userController.sink.add(SafeEvent.done(response));
+      user.loading();
+      final result = await updateUserUseCase.call(request);
+
+      result.fold(
+        (userEntity) {
+          user.data = userEntity;
+          safeSnackBar.success(S.current.textAvatarSuccessUpated);
+        },
+        (error) => null,
+      );
     } on Exception catch (e) {
-      //TODO colocar tratamento de erro de autenticação em todas as requisições
-      userController.addError(e.toString());
-      if (e is UnauthorizedException) await doLogout();
+      user.error(e.toString());
     }
+  }
+
+  void navigateToChangeProfilePicture() {
+    Modular.to
+        .pushNamed(StringConstants.dot + SafeProfilePicturePage.route)
+        .then((value) async {
+      safeProfilePictureBloc.setProfilePicture(value.toString());
+      user.data = user.data.copyWith(profilePhoto: value.toString());
+      await updateUser(RequestUpdateUser(
+        id: user.data.id,
+        profilePhoto: value.toString(),
+      )).then((_) async {
+        await updateUserImage(value.toString());
+        await getUser();
+      });
+    });
   }
 
   Future<void> updateUserImage(String imagePath) async {

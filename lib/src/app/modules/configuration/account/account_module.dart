@@ -3,12 +3,15 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/change_password_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/change_email_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/change_password_page.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/change_password_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/confirm_password_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/get_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
@@ -18,6 +21,7 @@ import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 import '../../../../domain/use_case/update_user_use_case.dart';
+import 'presenter/bloc/change_email_bloc.dart';
 
 class AccountModule extends Module {
   @override
@@ -28,8 +32,8 @@ class AccountModule extends Module {
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton(
         (i) => SaveUserLoginUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton((i) => GetUserUseCase()),
-    Bind.lazySingleton((i) => UpdateUserUseCase()),
+    Bind.lazySingleton((i) => GetUserUseCase(i.get<ProfileService>())),
+    Bind.lazySingleton((i) => UpdateUserUseCase(i.get<ProfileService>())),
     Bind.lazySingleton((i) => SafeProfilePictureBloC()),
     Bind.lazySingleton((i) => ConfirmPasswordUseCase(i.get<AuthService>())),
     Bind.lazySingleton((i) => ChangePasswordUsecase(i.get<AuthService>())),
@@ -48,6 +52,14 @@ class AccountModule extends Module {
         saveUserImageUseCase: i.get<SaveUserImageUseCase>(),
       ),
     ),
+    Bind((i) => GetUserEmailUsecase(i.get<ISharedPreferencesService>())),
+    Bind((i) => SaveUserEmailUsecase(i.get<ISharedPreferencesService>())),
+    Bind(
+      (i) => ChangeEmailBloc(
+        i.get<GetUserEmailUsecase>(),
+        i.get<SaveUserEmailUsecase>(),
+      ),
+    ),
   ];
 
   @override
@@ -63,6 +75,10 @@ class AccountModule extends Module {
     ChildRoute(
       ChangePasswordPage.route,
       child: (context, args) => const ChangePasswordPage(),
+    ),
+    ChildRoute(
+      ChangeEmailPage.route,
+      child: (context, args) => const ChangeEmailPage(),
     ),
   ];
 }

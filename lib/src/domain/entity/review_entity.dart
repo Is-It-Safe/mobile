@@ -9,6 +9,7 @@ class ReviewEntity {
   final LocationEntity? location;
   final String? author;
   final String? createdAt;
+  final String? impressionStatus;
 
   ReviewEntity({
     required this.id,
@@ -17,6 +18,7 @@ class ReviewEntity {
     this.location,
     this.author,
     this.createdAt,
+    this.impressionStatus,
   });
 
   factory ReviewEntity.toEntity(dynamic review) {
@@ -26,6 +28,22 @@ class ReviewEntity {
       myGrade: review.myGrade ?? DoubleConstants.empty,
       author: review.author ?? StringConstants.empty,
       createdAt: review.createdAt ?? StringConstants.empty,
+    );
+  }
+
+  factory ReviewEntity.fromProfileReview(dynamic review) {
+    return ReviewEntity(
+      id: review.id ?? 0,
+      review: review.review ?? StringConstants.empty,
+      myGrade: review.myGrade ?? DoubleConstants.empty,
+      author: review.author ?? StringConstants.empty,
+      createdAt: review.createdAt ?? StringConstants.empty,
+      location: LocationEntity(
+        id: review.locationId ?? 0,
+        name: review.locationName ?? StringConstants.hyphen,
+        address: review.locationAddress ?? StringConstants.hyphen,
+      ),
+      impressionStatus: review.impressionStatus ?? StringConstants.empty,
     );
   }
 }

@@ -35,15 +35,18 @@ class SearchLocationCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: Image.network(
-        location.imagePath ?? PlaceHolderAssets.searchLocation,
-        fit: BoxFit.fitHeight,
-        errorBuilder: (context, object, stackTrace) {
-          return Image.asset(
-            PlaceHolderAssets.searchLocation,
-            fit: BoxFit.fill,
-          );
-        },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Image.network(
+          location.imagePath ?? PlaceHolderAssets.searchLocation,
+          fit: BoxFit.fitHeight,
+          errorBuilder: (context, object, stackTrace) {
+            return Image.asset(
+              PlaceHolderAssets.searchLocation,
+              fit: BoxFit.fill,
+            );
+          },
+        ),
       ),
     );
   }

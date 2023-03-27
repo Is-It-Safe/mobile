@@ -1,24 +1,24 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
+import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
-import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_login.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_refresh_token.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_register.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_gender.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_login.dart';
+import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_login.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_refresh_token.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_register.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_sexual_orientation.dart';
+
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
@@ -33,17 +33,14 @@ class AuthService implements IAuthService {
       request = RequestLogin(
         email: request.email,
         password: request.password,
-        grantType: request.grantType,
       );
       final requestConfig = RequestConfig(
         path: ApiConstants.doAuth,
         method: HttpMethod.post,
         body: request.toMap(),
         options: Options(
-          contentType: Headers.formUrlEncodedContentType,
           headers: {
             ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-            ApiConstants.kContentType: 'application/x-www-form-urlencoded',
           },
         ),
       );
@@ -58,25 +55,20 @@ class AuthService implements IAuthService {
 
   @override
   Future<String> getAccessToken() async {
-    String token = await SharedPreferencesService().readToken();
-    DateTime expirationDate = Jwt.getExpiryDate(token) ?? DateTime.now();
-    int expirationDifference =
-        DateTime.now().difference(expirationDate).inMinutes;
-    if (expirationDifference < 5) {
-      String refreshToken = await SharedPreferencesService().readRefreshToken();
-      final request = RequestRefreshToken(refreshToken: refreshToken);
+    DateTime now = DateTime.now();
+    String accessToken = await SharedPreferencesService().readToken();
+    DateTime accessTokenExpiration = Jwt.getExpiryDate(accessToken) ?? now;
+    String refreshToken = await SharedPreferencesService().readRefreshToken();
+    DateTime refreshTokenExpiration = Jwt.getExpiryDate(refreshToken) ?? now;
 
-      await doRefreshToken(request).then((response) {
-        token = response.accessToken ?? StringConstants.empty;
-        refreshToken = response.refreshToken ?? StringConstants.empty;
-        SharedPreferencesService().saveToken(token);
-        SharedPreferencesService().saveRefreshToken(refreshToken);
-      }).catchError((e, s) {
-        SafeLogUtil.instance.logError(e);
-        throw GetTokenException();
-      }).whenComplete(() => 'Bearer $token');
+    if (accessTokenExpiration.isAfter(now)) {
+      return 'Bearer $accessToken';
+    } else if (refreshTokenExpiration.isAfter(now)) {
+      return 'Bearer $refreshToken';
+    } else {
+      await ApiInterceptors.doLogout();
     }
-    return 'Bearer $token';
+    return 'Bearer $refreshToken';
   }
 
   @override
@@ -84,13 +76,11 @@ class AuthService implements IAuthService {
     RequestRefreshToken request,
   ) async {
     final requestConfig = RequestConfig(
-      path: ApiConstants.doAuth,
+      path: ApiConstants.doRefresh,
       method: HttpMethod.post,
-      body: request.toJson(request),
       options: Options(
         headers: {
-          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
-          ApiConstants.kContentType: 'application/x-www-form-urlencoded',
+          ApiConstants.kAuthorization: 'Bearer ${request.refreshToken}',
         },
       ),
     );
@@ -104,16 +94,13 @@ class AuthService implements IAuthService {
   Future<bool> confirmPassword(
     RequestConfirmPassword request,
   ) async {
-    final token = await getAccessToken();
-
     final requestConfig = RequestConfig(
       path: ApiConstants.confirmPassword,
       method: HttpMethod.post,
-      body: request.toMap(),
+      body: request.toJson(),
       options: Options(
         headers: {
-          ApiConstants.kAuthorization: token,
-          ApiConstants.kContentType: 'application/json',
+          ApiConstants.kAuthorization: ApiConstants.kBasicAuth,
         },
       ),
     );
@@ -136,6 +123,12 @@ class AuthService implements IAuthService {
 
       return ResponseRegister.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
+      // TODO Refatorar código
+      if (e.message == StringConstants.empty) {
+        throw SafeDioResponseError(
+          'E-mail ou usuário já cadastrado, tente recuperar sua senha.',
+        );
+      }
       throw SafeDioResponseError(e.message);
     }
   }

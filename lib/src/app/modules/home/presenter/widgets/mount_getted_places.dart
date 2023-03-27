@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/location_page.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 
 import '../../../../../components/config/safe_event.dart';
 import '../../../../../components/config/safe_layout.dart';
@@ -9,7 +10,7 @@ import '../../../location/location_module.dart';
 import 'home_location_card.dart';
 
 class MountGettedPlaces extends StatelessWidget {
-  final Stream<SafeEvent<List<LocationEntity>>> stream;
+  final Stream<SafeStream<List<LocationEntity>>> stream;
   final List<LocationEntity> list;
   final Widget? onEmpty;
   final Widget? onError;
@@ -25,13 +26,13 @@ class MountGettedPlaces extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SafeEvent<List<LocationEntity>>>(
+    return StreamBuilder<SafeStream<List<LocationEntity>>>(
       stream: stream,
       builder: (context, snapshot) {
         return SafeLayout(
           snapshot: snapshot,
           showErrorDialog: showErrorDialog,
-          onEmpty: onEmpty ?? const SizedBox.shrink(),
+          onEmpty: onEmpty ?? SafeEmptyCard.homeBestRated(),
           onError: onError ?? const SizedBox.shrink(),
           onCompleted: _SepararedList(list: list),
         );
