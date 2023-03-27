@@ -77,7 +77,7 @@ class _EditAccountPageState
   }
 
   Widget _mountUpdateUserButton() {
-    return StreamBuilder<SafeEvent<UserEntity>>(
+    return StreamBuilder<SafeStream<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           final userId = snapshot.data?.data!.id;
@@ -136,7 +136,7 @@ class _EditAccountPageState
   }
 
   Widget _mountEditNameField() {
-    return StreamBuilder<SafeEvent<UserEntity>>(
+    return StreamBuilder<SafeStream<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           switch (snapshot.data?.status) {
@@ -200,7 +200,7 @@ class _EditAccountPageState
   }
 
   Widget _mountEditNickNameField() {
-    return StreamBuilder<SafeEvent<UserEntity>>(
+    return StreamBuilder<SafeStream<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           switch (snapshot.data?.status) {
@@ -261,7 +261,7 @@ class _EditAccountPageState
   }
 
   Widget _mountEditPronoun() {
-    return StreamBuilder<SafeEvent<UserEntity>>(
+    return StreamBuilder<SafeStream<UserEntity>>(
         stream: controller.userController.stream,
         builder: (context, snapshot) {
           switch (snapshot.data?.status) {

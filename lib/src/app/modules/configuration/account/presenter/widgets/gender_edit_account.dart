@@ -10,7 +10,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart'
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 
 class GenderEditAcount extends StatelessWidget {
-  final StreamController<SafeEvent<List<GenderEntity>>> controller;
+  final StreamController<SafeStream<List<GenderEntity>>> controller;
   final TextEditingController genderController;
   final bool isGenderDropdownExpanded;
   const GenderEditAcount(
@@ -22,7 +22,7 @@ class GenderEditAcount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SafeEvent<List<GenderEntity>>>(
+    return StreamBuilder<SafeStream<List<GenderEntity>>>(
         stream: controller.stream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {

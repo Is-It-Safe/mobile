@@ -47,9 +47,9 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
       appBar: SafeAppBar(
         title: widget.location.name,
       ),
-      body: StreamBuilder<SafeEvent<ReviewEntity>>(
+      body: StreamBuilder<SafeStream<ReviewEntity>>(
           stream: controller.reviewController.stream,
-          initialData: SafeEvent.initial(),
+          initialData: SafeStream.initial(),
           builder: (context, snapshot) {
             // if (snapshot.data?.status == Status.done) {
             //   showDialog(
@@ -308,7 +308,9 @@ class _ReviewEmotionsWidgetState extends State<ReviewEmotionsWidget> {
           stream: widget.grade,
           builder: (context, snapshot) => SafeEmotionSlider(
             value: snapshot.data ?? 0,
-            onChanged: (value) => widget.onGradeChanged(value),
+            onChanged: (value) {
+              widget.onGradeChanged(value.roundToDouble());
+            },
           ),
         )
       ],

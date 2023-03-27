@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
+import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
@@ -13,7 +16,6 @@ import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_id_use_case.
 import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
 import 'package:result_dart/result_dart.dart';
 
-import '../../../../../components/config/safe_event.dart';
 import '../../../../../service/api/configuration/api_interceptors.dart';
 import '../../../../../service/api/error/error_exceptions.dart';
 
@@ -21,10 +23,9 @@ class LocationBloC extends SafeBloC {
   final GetLocationsByIdUseCase getLocationsByIdUseCase;
   final SaveLocationUseCase saveLocationUseCase;
 
-  late StreamController<SafeEvent<LocationEntity>> locationByIDController;
-  late LocationEntity locationById;
+  final locationByIDStream = SafeStream<LocationEntity?>(data: null);
 
-  late StreamController<SafeEvent<LocationEntity>> isSavingLocation;
+  final isSavingLocation = SafeStream<LocationEntity?>(data: null);
   late ValueNotifier<String?> imageNotifier = ValueNotifier(null);
 
   late ValueNotifier<String> locationTypeNotifier = ValueNotifier(
@@ -44,8 +45,6 @@ class LocationBloC extends SafeBloC {
 
   @override
   Future<void> init() async {
-    locationByIDController = StreamController.broadcast();
-    isSavingLocation = StreamController.broadcast();
     locationNameController = TextEditingController();
     locationCepController = TextEditingController();
     locationAddressFieldController = TextEditingController();
@@ -53,18 +52,18 @@ class LocationBloC extends SafeBloC {
 
   Future<void> getLocationById(int id) async {
     try {
-      locationByIDController.add(SafeEvent.load());
+      locationByIDStream.loading();
       await getLocationsByIdUseCase.call(id).fold(
-        (success) {
-          locationById = success;
+        (location) {
+          locationByIDStream.data = location;
         },
-        (error) {},
+        (error) {
+          locationByIDStream.error(error.message);
+        },
       );
-
-      locationByIDController.add(SafeEvent.done(locationById));
     } on Exception catch (e) {
       if (e is UnauthorizedException) await ApiInterceptors.doLogout();
-      locationByIDController.addError(e.toString());
+      locationByIDStream.error(e.toString());
     }
   }
 
@@ -81,7 +80,7 @@ class LocationBloC extends SafeBloC {
 
   Future<bool> sendNewLocation() async {
     try {
-      isSavingLocation.add(SafeEvent.load());
+      isSavingLocation.loading();
       int locationId = LocationTypeEnum.values.indexWhere(
         (element) =>
             ParseEnum.parseLocationTypeEnum(element) ==
@@ -96,13 +95,15 @@ class LocationBloC extends SafeBloC {
       )
           .fold(
         (success) {
-          isSavingLocation.add(SafeEvent.done(success));
+          isSavingLocation.data = success;
         },
-        (error) {},
+        (error) {
+          isSavingLocation.error(error.message);
+        },
       );
       return true;
     } catch (e) {
-      isSavingLocation.addError(e.toString());
+      isSavingLocation.error(e.toString());
       return false;
     }
   }
@@ -116,8 +117,8 @@ class LocationBloC extends SafeBloC {
 
   @override
   Future<void> dispose() async {
-    locationByIDController.close();
-    isSavingLocation.close();
+    locationByIDStream.hide();
+    isSavingLocation.hide();
     locationNameController = TextEditingController();
     locationCepController = TextEditingController();
     locationAddressFieldController = TextEditingController();

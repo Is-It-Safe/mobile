@@ -7,7 +7,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 
 @Deprecated('Use SafeBuilder instead.')
 class SafeLayout extends StatelessWidget {
-  final AsyncSnapshot<SafeEvent<dynamic>> snapshot;
+  final AsyncSnapshot<SafeStream<dynamic>> snapshot;
   final bool showErrorDialog;
   final Future<dynamic> Function()? doOnCompleted;
   final Widget onLoading;
@@ -67,7 +67,7 @@ class SafeLayout extends StatelessWidget {
 }
 
 class _OnWaiting extends StatelessWidget {
-  final AsyncSnapshot<SafeEvent<dynamic>> snapshot;
+  final AsyncSnapshot<SafeStream<dynamic>> snapshot;
   final Widget onInitial;
   final Widget onLoading;
   const _OnWaiting(
@@ -88,7 +88,7 @@ class _OnWaiting extends StatelessWidget {
 }
 
 class _OnDone extends StatelessWidget {
-  final AsyncSnapshot<SafeEvent<dynamic>> snapshot;
+  final AsyncSnapshot<SafeStream<dynamic>> snapshot;
   final Widget onInitial;
   final Widget onLoading;
   final Future<dynamic> Function()? doOnCompleted;

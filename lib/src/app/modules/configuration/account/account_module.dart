@@ -54,7 +54,12 @@ class AccountModule extends Module {
     ),
     Bind((i) => GetUserEmailUsecase(i.get<ISharedPreferencesService>())),
     Bind((i) => SaveUserEmailUsecase(i.get<ISharedPreferencesService>())),
-    Bind((i) => ChangeEmailBloc(i.get<GetUserEmailUsecase>())),
+    Bind(
+      (i) => ChangeEmailBloc(
+        i.get<GetUserEmailUsecase>(),
+        i.get<SaveUserEmailUsecase>(),
+      ),
+    ),
   ];
 
   @override
