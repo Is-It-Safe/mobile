@@ -54,7 +54,7 @@ class SearchLocationCard extends StatelessWidget {
   Widget _mountLocationDetails(Size size) {
     return Container(
       height: size.width * 0.22,
-      width: size.width * 0.50,
+      width: size.width * 0.64,
       padding: const EdgeInsets.only(left: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +74,7 @@ class SearchLocationCard extends StatelessWidget {
       softWrap: true,
       style: TextStyles.label(),
       overflow: TextOverflow.ellipsis,
-      maxLines: 1,
+      maxLines: 2,
     );
   }
 

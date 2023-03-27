@@ -81,4 +81,18 @@ class LocationEntity {
       address: review.locationAddress ?? StringConstants.empty,
     );
   }
+
+  factory LocationEntity.fromResponseSearchLocationByName(dynamic location) {
+    return LocationEntity(
+      id: location.id ?? IntConstants.empty,
+      name: location.name ?? StringConstants.empty,
+      address: location.endereco ?? StringConstants.empty,
+      averageGrade: location.averageGrade ?? DoubleConstants.empty,
+      reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
+      imagePath: location.imgUrl ?? StringConstants.empty,
+      averageImpressionStatus:
+          location.averageImpressionStatus ?? StringConstants.empty,
+      reviews: location.reviews ?? [],
+    );
+  }
 }
