@@ -126,7 +126,7 @@ class AuthService implements IAuthService {
       // TODO Refatorar código
       if (e.message == StringConstants.empty) {
         throw SafeDioResponseError(
-          'E-mail ou usuário já cadastrado, tente recuperar sua senha.',
+          'Erro ao realizar o cadastro. Tente novamente mais tarde.',
         );
       }
       throw SafeDioResponseError(e.message);
