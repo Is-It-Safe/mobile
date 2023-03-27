@@ -49,7 +49,7 @@ class RegisterModule extends Module {
       child: (context, args) => const RegisterProfilePicturePage(),
     ),
     ChildRoute(
-      Modular.initialRoute,
+      TermsAndConditionsPage.route,
       child: (context, args) => const TermsAndConditionsPage(),
     ),
   ];

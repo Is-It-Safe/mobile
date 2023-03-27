@@ -13,7 +13,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart'
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class RegisterPage extends StatefulWidget {
-  static const route = '/register';
+  static const route = '/register/';
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
