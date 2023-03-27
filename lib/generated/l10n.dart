@@ -1120,6 +1120,16 @@ class S {
     );
   }
 
+  /// `Opções`
+  String get textOptions {
+    return Intl.message(
+      'Opções',
+      name: 'textOptions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Funcionalidade disponível em breve`
   String get textFeatureAvailableSoon {
     return Intl.message(

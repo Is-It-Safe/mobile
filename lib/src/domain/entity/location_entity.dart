@@ -8,7 +8,7 @@ import 'package:is_it_safe_app/src/service/api/modules/profile/response/response
 import '../../service/api/modules/location/response/response_location_review.dart';
 
 class LocationEntity {
-  final int id;
+  final int? id;
   final String name;
   final String address;
   final String? imagePath;
@@ -19,7 +19,7 @@ class LocationEntity {
   final List<ReviewChart>? reviewChart;
 
   LocationEntity({
-    required this.id,
+    this.id,
     required this.name,
     required this.address,
     this.imagePath,

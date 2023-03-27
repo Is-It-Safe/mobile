@@ -41,8 +41,10 @@ class UserEntity {
       gender: user.gender ?? StringConstants.hyphen,
       orientation: user.orientation ?? StringConstants.hyphen,
       birthDate: user.birthDate ?? StringConstants.hyphen,
-      reviews:
-          user.reviews?.map((e) => ReviewEntity.toEntity(e)).toList() ?? [],
+      reviews: user.reviews
+              ?.map((e) => ReviewEntity.fromProfileReview(e))
+              .toList() ??
+          [],
     );
   }
 
@@ -80,6 +82,7 @@ class UserEntity {
     String? birthDate,
     int? genreId,
     int? sexualOrientationId,
+    List<ReviewEntity>? reviews,
   }) {
     return UserEntity(
       id: id,
@@ -92,6 +95,7 @@ class UserEntity {
       orientation: this.orientation ?? orientation,
       genreId: this.genreId ?? genreId,
       sexualOrientationId: this.sexualOrientationId ?? sexualOrientationId,
+      reviews: this.reviews ?? reviews,
     );
   }
 }

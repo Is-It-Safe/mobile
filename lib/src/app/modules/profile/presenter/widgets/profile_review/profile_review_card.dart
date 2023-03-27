@@ -10,13 +10,13 @@ class ProfileReviewCard extends StatelessWidget {
   final Function onSeeMoreTap;
   final bool isTextExpanded;
   final String textSeeMore;
-  const ProfileReviewCard(
-      {Key? key,
-      required this.review,
-      required this.onSeeMoreTap,
-      required this.isTextExpanded,
-      required this.textSeeMore})
-      : super(key: key);
+  const ProfileReviewCard({
+    Key? key,
+    required this.review,
+    required this.onSeeMoreTap,
+    required this.isTextExpanded,
+    required this.textSeeMore,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ProfileReviewCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _ReviewTitle(
-          locationName: review.location!.name,
+          locationName: review.location?.name ?? StringConstants.hyphen,
         ),
         _ReviewBody(
           review: review.review ?? StringConstants.empty,
@@ -70,7 +70,6 @@ class _ReviewBody extends StatelessWidget {
         Visibility(
           visible: (review.length) > 80,
           child: GestureDetector(
-            // onTap: doSeeMore,
             onTap: onTap as void Function(),
             child: Text(
               textSeeMore,

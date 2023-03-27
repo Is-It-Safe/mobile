@@ -30,7 +30,7 @@ class LocationPage extends StatefulWidget {
 class _LocationPageState extends ModularState<LocationPage, LocationBloC> {
   @override
   void initState() {
-    controller.getLocationById(widget.location.id);
+    controller.getLocationById(widget.location.id ?? 0);
     super.initState();
   }
 

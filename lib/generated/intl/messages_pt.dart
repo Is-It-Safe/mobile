@@ -249,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("e avalie locais"),
         "textOpenPermissions":
             MessageLookupByLibrary.simpleMessage("Abrir Permissões"),
+        "textOptions": MessageLookupByLibrary.simpleMessage("Opções"),
         "textPageSubtitleLogin":
             MessageLookupByLibrary.simpleMessage("Sentimos sua falta!"),
         "textPageSubtitleProfileRegisterPage":
