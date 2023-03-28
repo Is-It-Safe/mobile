@@ -116,6 +116,7 @@
     "textUnableToChangeInformation":"Não foi possível atualizar as informações!",
     "textAddLocation":"Adicionar Local",
     "textOptions":"Opções",
+    "textSuccessSaveLocation":"Local enviado para revisão com sucesso!",
     
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",
@@ -161,6 +162,7 @@
 
     "textAvatarSuccessUpated": "Avatar alterado com sucesso!",
     "textFailedToUpdateAvatar": "Não foi possível alterar o avatar!",
+    "textFailedToSaveLocation": "Não foi possível salvar o local! Tente novamente mais tarde.",
 
     "textSafeDialogTypeSucces":"Sucesso!",
     "textSafeDialogTypeAlert":"Atenção!",

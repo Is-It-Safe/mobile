@@ -1130,6 +1130,16 @@ class S {
     );
   }
 
+  /// `Local enviado para revisão com sucesso!`
+  String get textSuccessSaveLocation {
+    return Intl.message(
+      'Local enviado para revisão com sucesso!',
+      name: 'textSuccessSaveLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Funcionalidade disponível em breve`
   String get textFeatureAvailableSoon {
     return Intl.message(
@@ -1545,6 +1555,16 @@ class S {
     return Intl.message(
       'Não foi possível alterar o avatar!',
       name: 'textFailedToUpdateAvatar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível salvar o local! Tente novamente mais tarde.`
+  String get textFailedToSaveLocation {
+    return Intl.message(
+      'Não foi possível salvar o local! Tente novamente mais tarde.',
+      name: 'textFailedToSaveLocation',
       desc: '',
       args: [],
     );
