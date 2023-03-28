@@ -27,8 +27,6 @@ class RequestSaveLocation {
     data['locationTypeId'] = locationTypeId;
     if (imgUrl != null) {
       data['file'] = MultipartFile.fromFileSync(imgUrl!);
-    } else {
-      data['file'] = null;
     }
     return FormData.fromMap(data);
   }
