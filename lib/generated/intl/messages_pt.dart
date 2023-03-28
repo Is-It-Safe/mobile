@@ -192,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
         "textExcited": MessageLookupByLibrary.simpleMessage("Alegre"),
+        "textFailedToSaveLocation": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível salvar o local! Tente novamente mais tarde."),
         "textFailedToUpdateAvatar": MessageLookupByLibrary.simpleMessage(
             "Não foi possível alterar o avatar!"),
         "textFeatureAvailableSoon": MessageLookupByLibrary.simpleMessage(
@@ -320,6 +322,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textStructure": MessageLookupByLibrary.simpleMessage("Estrutura"),
         "textSuccessRegistration":
             MessageLookupByLibrary.simpleMessage("Usuário Registrado"),
+        "textSuccessSaveLocation": MessageLookupByLibrary.simpleMessage(
+            "Local enviado para revisão com sucesso!"),
         "textTellUsTheEmailAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Nos diga seu e-mail, ele será associado a sua conta"),
