@@ -39,6 +39,8 @@ class MountTextField extends StatelessWidget {
             textInputAction: TextInputAction.next,
             textCapitalization: TextCapitalization.words,
             validator: (value) => controller.validateTextField(value),
+            onChanged: (value) =>
+                controller.locationNameController.text = value,
           ),
           const SizedBox(height: alturaTextFormField),
           Text(
@@ -53,6 +55,7 @@ class MountTextField extends StatelessWidget {
             maxLength: 8,
             textInputAction: TextInputAction.next,
             validator: (value) => controller.validateTextField(value),
+            onChanged: (value) => controller.locationCepController.text = value,
           ),
           const SizedBox(height: alturaTextFormField),
           Text(
