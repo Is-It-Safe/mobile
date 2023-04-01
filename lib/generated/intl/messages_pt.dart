@@ -124,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Desativar conta"),
         "textDeactivateAccountWarnning": MessageLookupByLibrary.simpleMessage(
             "Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente."),
+        "textDeactivatedAccountSuccess": MessageLookupByLibrary.simpleMessage(
+            "Conta desativada com sucesso!"),
         "textDefaultDeleteReviewMessage": MessageLookupByLibrary.simpleMessage(
             "Review deletada com sucesso!"),
         "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
@@ -238,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+"),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
         "textNeutral": MessageLookupByLibrary.simpleMessage("Neutro"),
+        "textNotPossibleDeativateAccount": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível desativar sua conta, tente novamente mais tarde."),
         "textOk": MessageLookupByLibrary.simpleMessage("Ok"),
         "textOnBoarding1_0": MessageLookupByLibrary.simpleMessage("Foco em"),
         "textOnBoarding1_1": MessageLookupByLibrary.simpleMessage("segurança"),

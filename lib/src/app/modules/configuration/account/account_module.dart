@@ -22,6 +22,7 @@ import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences
 
 import '../../../../domain/use_case/update_user_use_case.dart';
 import 'presenter/bloc/change_email_bloc.dart';
+import 'presenter/bloc/deactivate_account_bloc.dart';
 import 'presenter/pages/deactivate_account_page.dart';
 
 class AccountModule extends Module {
@@ -61,6 +62,7 @@ class AccountModule extends Module {
         i.get<SaveUserEmailUsecase>(),
       ),
     ),
+    Bind((i) => DeactivateAccountBloc()),
   ];
 
   @override

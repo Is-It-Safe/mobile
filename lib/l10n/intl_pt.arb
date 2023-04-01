@@ -220,5 +220,8 @@
     
     "textDeactivateAccount": "Desativar conta",
 
+    "textDeactivatedAccountSuccess": "Conta desativada com sucesso!",
+    "textNotPossibleDeativateAccount": "Não foi possível desativar sua conta, tente novamente mais tarde.",
+
     "textChange": "Alterar"
 }

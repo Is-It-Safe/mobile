@@ -1980,6 +1980,26 @@ class S {
     );
   }
 
+  /// `Conta desativada com sucesso!`
+  String get textDeactivatedAccountSuccess {
+    return Intl.message(
+      'Conta desativada com sucesso!',
+      name: 'textDeactivatedAccountSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível desativar sua conta, tente novamente mais tarde.`
+  String get textNotPossibleDeativateAccount {
+    return Intl.message(
+      'Não foi possível desativar sua conta, tente novamente mais tarde.',
+      name: 'textNotPossibleDeativateAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Alterar`
   String get textChange {
     return Intl.message(
