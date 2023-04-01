@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -119,6 +120,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ocorreu um erro inesperado!"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
+        "textDeactivateAccount":
+            MessageLookupByLibrary.simpleMessage("Desativar conta"),
+        "textDeactivateAccountWarnning": MessageLookupByLibrary.simpleMessage(
+            "Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente."),
         "textDefaultDeleteReviewMessage": MessageLookupByLibrary.simpleMessage(
             "Review deletada com sucesso!"),
         "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
@@ -332,8 +337,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Não foi possível atualizar as informações!"),
         "textUpdateInformation":
             MessageLookupByLibrary.simpleMessage("Atualizar informações"),
+        "textUpdatePassword":
+            MessageLookupByLibrary.simpleMessage("Atualizar senha"),
         "textUpset": MessageLookupByLibrary.simpleMessage("Chateado"),
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
+        "textWantDeactivateAccount":
+            MessageLookupByLibrary.simpleMessage("Deseja desativar sua conta?"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós."),
         "textWelcome": MessageLookupByLibrary.simpleMessage("Olá!,"),

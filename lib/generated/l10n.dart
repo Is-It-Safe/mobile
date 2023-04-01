@@ -1890,6 +1890,16 @@ class S {
     );
   }
 
+  /// `Atualizar senha`
+  String get textUpdatePassword {
+    return Intl.message(
+      'Atualizar senha',
+      name: 'textUpdatePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Seu e-mail atual é`
   String get textYourCurrentEmailIs {
     return Intl.message(
@@ -1935,6 +1945,36 @@ class S {
     return Intl.message(
       'Reportar erro',
       name: 'textCriticalErrorPageGoToReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deseja desativar sua conta?`
+  String get textWantDeactivateAccount {
+    return Intl.message(
+      'Deseja desativar sua conta?',
+      name: 'textWantDeactivateAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.`
+  String get textDeactivateAccountWarnning {
+    return Intl.message(
+      'Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.',
+      name: 'textDeactivateAccountWarnning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Desativar conta`
+  String get textDeactivateAccount {
+    return Intl.message(
+      'Desativar conta',
+      name: 'textDeactivateAccount',
       desc: '',
       args: [],
     );

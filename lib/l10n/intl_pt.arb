@@ -207,11 +207,18 @@
 	"textRegisterValidateUserName":"O nome não pode ter menos que 3 letras.",
 
 
+    "textUpdatePassword": "Atualizar senha",
+
     "textYourCurrentEmailIs": "Seu e-mail atual é",
     "textWhatWillBeYourEmailAddress": "Qual será o novo endereço de e-mail?",
     "textCriticalErrorPageTitle": "Ocorreu um erro inesperado!",
     "textCriticalErrorPageBody": "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!",
     "textCriticalErrorPageGoToReport": "Reportar erro",
+
+    "textWantDeactivateAccount": "Deseja desativar sua conta?",
+    "textDeactivateAccountWarnning": "Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.",
     
+    "textDeactivateAccount": "Desativar conta",
+
     "textChange": "Alterar"
 }

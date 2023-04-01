@@ -95,7 +95,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               ),
               const SizedBox(height: 60),
               SafeButton(
-                  title: "Atualizar senha",
+                  title: S.current.textUpdatePassword,
                   size: ButtonSize.large,
                   state: !controller.validateNewPassword
                       ? ButtonState.disabled
