@@ -19,4 +19,6 @@ abstract class IProfileService {
 
   Future<ResponseDeleteReview> deleteReview(int idReview);
   Future<ResponseGetUserReview> saveReview(RequestSaveReview request);
+
+  Future<String> deactivateAccount();
 }

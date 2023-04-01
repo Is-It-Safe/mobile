@@ -9,6 +9,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/change_password_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/confirm_password_use_case.dart';
+import 'package:is_it_safe_app/src/domain/use_case/deactivate_account_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';
@@ -17,6 +18,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
+import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service_interface.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
@@ -34,8 +36,8 @@ class AccountModule extends Module {
     Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton(
         (i) => SaveUserLoginUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton((i) => GetUserUseCase(i.get<ProfileService>())),
-    Bind.lazySingleton((i) => UpdateUserUseCase(i.get<ProfileService>())),
+    Bind.lazySingleton((i) => GetUserUseCase(i.get<IProfileService>())),
+    Bind.lazySingleton((i) => UpdateUserUseCase(i.get<IProfileService>())),
     Bind.lazySingleton((i) => SafeProfilePictureBloC()),
     Bind.lazySingleton((i) => ConfirmPasswordUseCase(i.get<AuthService>())),
     Bind.lazySingleton((i) => ChangePasswordUsecase(i.get<AuthService>())),
@@ -62,7 +64,8 @@ class AccountModule extends Module {
         i.get<SaveUserEmailUsecase>(),
       ),
     ),
-    Bind((i) => DeactivateAccountBloc()),
+    Bind((i) => DeactivateAccountUseCase(i.get<IProfileService>())),
+    Bind((i) => DeactivateAccountBloc(i.get<DeactivateAccountUseCase>())),
   ];
 
   @override

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
@@ -48,19 +49,23 @@ class ProfileService implements IProfileService {
   Future<ResponseDeleteUser> deleteUser({
     required int idUser,
   }) async {
-    final token = await _authService.getAccessToken();
+    try {
+      final token = await _authService.getAccessToken();
 
-    final requestConfig = RequestConfig(
-      path: ApiConstants.deleteUser + idUser.toString(),
-      method: HttpMethod.delete,
-      options: Options(
-        headers: {ApiConstants.kAuthorization: token},
-      ),
-    );
+      final requestConfig = RequestConfig(
+        path: ApiConstants.deleteUser + idUser.toString(),
+        method: HttpMethod.delete,
+        options: Options(
+          headers: {ApiConstants.kAuthorization: token},
+        ),
+      );
 
-    final response = await _service.doRequest(requestConfig);
+      final response = await _service.doRequest(requestConfig);
 
-    return ResponseDeleteUser.fromJson(json.decode(response.data));
+      return ResponseDeleteUser.fromJson(json.decode(response.data));
+    } on DioError catch (e) {
+      throw SafeDioResponseProfileError(e.message);
+    }
   }
 
   @override
@@ -122,5 +127,25 @@ class ProfileService implements IProfileService {
 
     final response = await _service.doRequest(requestConfig);
     return ResponseGetUserReview.fromJson(json.decode(response.data));
+  }
+
+  @override
+  Future<String> deactivateAccount() async {
+    try {
+      final token = await _authService.getAccessToken();
+
+      final requestConfig = RequestConfig(
+        path: ApiConstants.deactivateUser,
+        method: HttpMethod.delete,
+        options: Options(
+          headers: {ApiConstants.kAuthorization: token},
+        ),
+      );
+
+      final response = await _service.doRequest(requestConfig);
+      return response.data;
+    } on DioError catch (e) {
+      throw SafeDioResponseProfileError(e.message);
+    }
   }
 }
