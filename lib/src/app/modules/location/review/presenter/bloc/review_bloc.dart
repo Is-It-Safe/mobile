@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
@@ -20,7 +21,6 @@ class ReviewBloc extends SafeBloC {
 
   late TextEditingController textReviewController;
 
-  final double defaultEmotionGrade = 3;
   List<String> impressionStatusImages = [
     AssetConstants.impression.safe,
     AssetConstants.impression.warning,
@@ -50,7 +50,7 @@ class ReviewBloc extends SafeBloC {
     isButtonEnabledController = StreamController.broadcast();
 
     isButtonEnabledController.add(false);
-    gradeController.add(defaultEmotionGrade);
+    gradeController.add(DoubleConstants.defaultEmotionGrade);
     impressionStatusController.add(0);
   }
 

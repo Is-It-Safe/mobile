@@ -13,6 +13,7 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
@@ -51,15 +52,6 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
           stream: controller.reviewController.stream,
           initialData: SafeStream.initial(),
           builder: (context, snapshot) {
-            // if (snapshot.data?.status == Status.done) {
-            //   showDialog(
-            //     context: context,
-            //     builder: (context) => SafeDialog(
-            //       title: S.current.textPublishedReview,
-            //       message: snapshot.data?.data?.message,
-            //       onTap: () => Modular.to.pop(),
-            //     ).show(),
-            //   );
             return SafeLayout(
               snapshot: snapshot,
               onCompleted: Padding(
@@ -113,7 +105,7 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
                       ),
                       const SizedBox(height: 30),
                       ReviewImpressionStatusWidget(
-                        carrousselStream:
+                        carouselStream:
                             controller.impressionStatusController.stream,
                         pageController: _pageController,
                         images: controller.impressionStatusImages,
@@ -212,7 +204,7 @@ class ReviewTextFieldWidget extends StatelessWidget {
 }
 
 class ReviewImpressionStatusWidget extends StatefulWidget {
-  final Stream<int> carrousselStream;
+  final Stream<int> carouselStream;
   final PageController pageController;
   final List<String> images;
   final List<String> texts;
@@ -221,7 +213,7 @@ class ReviewImpressionStatusWidget extends StatefulWidget {
   final List<String> Function(int index) getImpressions;
   const ReviewImpressionStatusWidget({
     Key? key,
-    required this.carrousselStream,
+    required this.carouselStream,
     required this.onImpressionChanged,
     required this.images,
     required this.pageController,
@@ -249,7 +241,7 @@ class _ReviewImpressionStatusWidgetState
         ),
         const SizedBox(height: 20),
         StreamBuilder<int>(
-          stream: widget.carrousselStream,
+          stream: widget.carouselStream,
           builder: (context, snapshot) => SafeImpressionCarroussel(
             pageController: widget.pageController,
             currentPage: snapshot.data ?? 0,
@@ -306,8 +298,10 @@ class _ReviewEmotionsWidgetState extends State<ReviewEmotionsWidget> {
         const SizedBox(height: 20),
         StreamBuilder<double>(
           stream: widget.grade,
+          initialData: DoubleConstants.defaultEmotionGrade,
           builder: (context, snapshot) => SafeEmotionSlider(
-            value: snapshot.data ?? 0,
+            value: snapshot.data ?? DoubleConstants.defaultEmotionGrade,
+            min: 1,
             onChanged: (value) {
               widget.onGradeChanged(value.roundToDouble());
             },
