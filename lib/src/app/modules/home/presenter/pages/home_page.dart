@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permission_card.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
@@ -25,11 +28,11 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
 
   @override
   void initState() {
-    // WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-    //   await controller.requestAccessLocationPermission();
-    // });
+    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
+      await controller.requestAccessLocationPermission();
+    });
     controller.getBestRatedPlaces();
-    tabController = TabController(length: 1, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
     tabController.addListener(() {
       setState(() {
         controller.onTabIndexChange(tabController.index);
@@ -71,25 +74,25 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
         body: TabBarView(
           controller: tabController,
           children: [
-            // MountGettedPlaces(
-            //   stream: controller.locationsNearUserController.stream,
-            //   list: controller.listLocationsNeartUser,
-            //   showErrorDialog: false,
-            //   onEmpty: SafeEmptyCard.home(),
-            //   onError: NeedPermissionCard(
-            //     text: S.current.textErrorLocationPermission,
-            //     buttonText: S.current.textOpenPermissions,
-            //     onTapButton: () async {
-            //       await controller
-            //           .forcedRequestLocationPermission()
-            //           .then((granted) async {
-            //         if (granted) {
-            //           await controller.getLocationsNearUser();
-            //         }
-            //       });
-            //     },
-            //   ),
-            // ),
+            MountGettedPlaces(
+              stream: controller.locationsNearUserController.stream,
+              list: controller.listLocationsNeartUser,
+              showErrorDialog: true,
+              onEmpty: SafeEmptyCard.homeNearLocations(),
+              onError: NeedPermissionCard(
+                text: S.current.textErrorLocationPermission,
+                buttonText: S.current.textOpenPermissions,
+                onTapButton: () async {
+                  await controller
+                      .forcedRequestLocationPermission()
+                      .then((granted) async {
+                    if (granted) {
+                      await controller.getLocationsNearUser();
+                    }
+                  });
+                },
+              ),
+            ),
             MountGettedPlaces(
               stream: controller.bestRatedPlacesController.stream,
               list: controller.listBestRatedPlaces,

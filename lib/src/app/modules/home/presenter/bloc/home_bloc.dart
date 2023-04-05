@@ -157,7 +157,16 @@ class HomeBloc extends SafeBloC {
     } on Exception catch (e, stacktrace) {
       Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
-      locationsNearUserController.addError(e.toString());
+      // locationsNearUserController.addError(e.toString());
+      if (e.toString() ==
+          '''User denied permissions to access the device's location.''') {
+        locationsNearUserController.addError(
+            'Para exibir os lugares próximos, por favor libere o acesso a localização.');
+      }
+      if (e.toString() == 'The location service on the device is disabled.') {
+        locationsNearUserController.addError(
+            'O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.');
+      }
     }
   }
 
@@ -240,15 +249,14 @@ class HomeBloc extends SafeBloC {
   }
 
   onTabIndexChange(int index) async {
-    await getBestRatedPlaces();
-    // switch (index) {
-    //   case 0:
-    //     await requestAccessLocationPermission();
-    //     break;
-    //   case 1:
-    //     await getBestRatedPlaces();
-    //     break;
-    // }
+    switch (index) {
+      case 0:
+        await requestAccessLocationPermission();
+        break;
+      case 1:
+        await getBestRatedPlaces();
+        break;
+    }
   }
 
   @override

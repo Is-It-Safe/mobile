@@ -46,15 +46,15 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
 
   List<Widget> _mountHomeBottomTabs() {
     return [
-      // Padding(
-      //   padding: const EdgeInsets.only(bottom: 10),
-      //   child: Text(
-      //     S.current.textClosePlaces,
-      //     style: TextStyles.bodyText2(
-      //       color: SafeColors.textColors.dark,
-      //     ),
-      //   ),
-      // ),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Text(
+          S.current.textClosePlaces,
+          style: TextStyles.bodyText2(
+            color: SafeColors.textColors.dark,
+          ),
+        ),
+      ),
       Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Text(
