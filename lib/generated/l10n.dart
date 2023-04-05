@@ -340,10 +340,10 @@ class S {
     );
   }
 
-  /// `Você não fez nenhum review ainda, começe assim que puder!`
+  /// `Você não fez nenhuma review ainda, começe assim que puder!`
   String get textErrorProfile {
     return Intl.message(
-      'Você não fez nenhum review ainda, começe assim que puder!',
+      'Você não fez nenhuma review ainda, começe assim que puder!',
       name: 'textErrorProfile',
       desc: '',
       args: [],
