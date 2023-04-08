@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:catcher/catcher.dart';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
@@ -144,7 +145,8 @@ class ProfileService implements IProfileService {
 
       final response = await _service.doRequest(requestConfig);
       return response.data;
-    } on DioError catch (e) {
+    } on DioError catch (e, stackTrace) {
+      Catcher.reportCheckedError(e, stackTrace);
       throw SafeDioResponseProfileError(e.message);
     }
   }
