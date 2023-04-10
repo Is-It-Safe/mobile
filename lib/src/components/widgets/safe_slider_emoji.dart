@@ -35,7 +35,7 @@ class _SafeEmotionSliderState extends State<SafeEmotionSlider> {
             inactiveTrackColor: SafeColors.componentsColors.iconColors.navBar,
             thumbColor: SafeColors.componentsColors.iconColors.navBar,
             overlayColor:
-            SafeColors.componentsColors.iconColors.navBar.withOpacity(0.2),
+                SafeColors.componentsColors.iconColors.navBar.withOpacity(0.2),
             trackHeight: 2.0,
             trackShape: const RectangularSliderTrackShape(),
             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
@@ -81,9 +81,10 @@ class TextRowBuilder extends StatelessWidget {
           isVisible: value > 3 && value <= 4,
           text: S.current.textSatisfied,
         ),
-        TextItem(isVisible: value > 4, 
-        text: S.current.textIncredible),
-
+        TextItem(
+          isVisible: value > 4,
+          text: S.current.textIncredible,
+        ),
       ],
     );
   }
@@ -106,14 +107,23 @@ class IconRowBuilder extends StatelessWidget {
           isVisible: value <= 1,
         ),
         IconItem(
+          optionalPadding: const EdgeInsets.only(
+            left: 4.0,
+          ),
           icon: AssetConstants.emoticon.sad,
           isVisible: value > 1 && value <= 2,
         ),
         IconItem(
+          optionalPadding: const EdgeInsets.only(
+            right: 4.0,
+          ),
           icon: AssetConstants.emoticon.neutral,
           isVisible: value > 2 && value <= 3,
         ),
         IconItem(
+          optionalPadding: const EdgeInsets.only(
+            right: 4.0,
+          ),
           icon: AssetConstants.emoticon.happy,
           isVisible: value > 3 && value <= 4,
         ),
@@ -141,7 +151,10 @@ class TextItem extends StatelessWidget {
       visible: isVisible,
       child: Text(
         text,
-        style: TextStyles.bodyText2(color: SafeColors.generalColors.secondary),
+        textAlign: TextAlign.center,
+        style: TextStyles.bodyText2(
+          color: SafeColors.generalColors.secondary,
+        ),
       ),
     );
   }
@@ -151,21 +164,27 @@ class IconItem extends StatelessWidget {
   final String icon;
   final double size;
   final bool isVisible;
+  final EdgeInsets optionalPadding;
+
   const IconItem({
     Key? key,
     required this.icon,
     required this.isVisible,
     this.size = 50,
+    this.optionalPadding = EdgeInsets.zero,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: isVisible,
-      child: SvgPicture.asset(
-        icon,
-        height: size,
-        width: size,
+    return Padding(
+      padding: optionalPadding,
+      child: Visibility(
+        visible: isVisible,
+        child: SvgPicture.asset(
+          icon,
+          height: size,
+          width: size,
+        ),
       ),
     );
   }

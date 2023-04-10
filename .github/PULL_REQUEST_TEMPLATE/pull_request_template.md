@@ -1,22 +1,41 @@
-## Description
+### O que foi feito? 
 
-[Describe the changes made in this pull request.]
+<!-- Descreva a futura versão após o merge -->
 
-## Related Issue(s)
+### Tipo de Mudança:
 
-[If this pull request is related to any open issue(s), provide links to them here.]
+- [ ] bug
 
-## Checklist
+- [ ] feature
 
- - [ ] The code follows the project's coding style and conventions.
- - [ ]  The code compiles without errors or warnings.
- - [ ] The code has been tested thoroughly and all tests pass.
- - [ ] All documentation has been updated to reflect any changes made.
+- [ ] test
 
-## Screenshots or GIFs
+- [ ] docs
 
-[If applicable, include screenshots or GIFs of the changes made in this pull request.]
+- [ ] refactor
 
-## Additional Information
+### Como testar:
 
-[Add any other relevant information about this pull request here.]
+<!-- Exemplificar um passo a passo simples de como testar sua solução. -->
+
+### Validações:
+
+<!-- Ao menos um dos campos devem possuir marcações. -->
+
+#### Testes Unitários:
+
+- [ ] Cobertura global de ao menos 80%
+- [ ] Meu código possui os devidos testes unitários
+
+#### Layout:
+
+- [ ] Não houveram mudanças nas telas
+- [ ] Necessita de validação de Design
+
+#### Documentação
+
+- [ ] Houve alteração na documentação/wiki
+
+### Screenshots
+
+<!-- Caso seja necessário, linke aqui prints/GIFs ou vídeos da solução -->

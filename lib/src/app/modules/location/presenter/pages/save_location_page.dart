@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_mout_textfield.dart';
-import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_photo.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
@@ -40,11 +35,8 @@ class _SaveLocationPageState extends SafeState<SaveLocationPage, LocationBloC> {
         title: S.current.textAddLocationSubTitle,
       ),
       body: SafeBuilder<LocationEntity?>(
-        stream: bloc.isSavingLocation,
-        onLoading: () {
-          return const SafeLoading();
-        },
-        onInitial: () {
+        stream: bloc.saveLocation,
+        builder: (saveLocation) {
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -58,21 +50,23 @@ class _SaveLocationPageState extends SafeState<SaveLocationPage, LocationBloC> {
                     formKey: _formKey,
                     controller: bloc,
                   ),
-                  ValueListenableBuilder<String?>(
-                    valueListenable: bloc.imageNotifier,
-                    builder: (context, value, _) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 48.0),
-                        child: LocationPhotoComponent(
-                          path: value,
-                          onTap: () async {
-                            bloc.imageNotifier.value =
-                                await bloc.handleCameraTap();
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                  //TODO app crasha quando abre o image picker
+                  // ValueListenableBuilder<String?>(
+                  //   valueListenable: bloc.imageNotifier,
+                  //   builder: (context, value, _) {
+                  //     return Padding(
+                  //       padding: const EdgeInsets.only(bottom: 48.0),
+                  //       child: LocationPhotoComponent(
+                  //         path: value,
+                  //         onTap: () async {
+                  //           bloc.imageNotifier.value =
+                  //               await bloc.handleCameraTap();
+                  //         },
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
+                  const SizedBox(height: 48),
                   Center(
                     child: SafeButton(
                       title: S.current.textAddLocationConfirm,
@@ -90,9 +84,6 @@ class _SaveLocationPageState extends SafeState<SaveLocationPage, LocationBloC> {
               ),
             ),
           );
-        },
-        builder: (_) {
-          return const SizedBox.shrink();
         },
       ),
     );

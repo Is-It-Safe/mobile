@@ -15,6 +15,7 @@ import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_id_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
 import 'package:result_dart/result_dart.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../service/api/configuration/api_interceptors.dart';
 import '../../../../../service/api/error/error_exceptions.dart';
@@ -25,7 +26,7 @@ class LocationBloC extends SafeBloC {
 
   final locationByIDStream = SafeStream<LocationEntity?>(data: null);
 
-  final isSavingLocation = SafeStream<LocationEntity?>(data: null);
+  final saveLocation = SafeStream<LocationEntity?>(data: null);
   late ValueNotifier<String?> imageNotifier = ValueNotifier(null);
 
   late ValueNotifier<String> locationTypeNotifier = ValueNotifier(
@@ -78,33 +79,38 @@ class LocationBloC extends SafeBloC {
     return null;
   }
 
-  Future<bool> sendNewLocation() async {
+  Future<void> sendNewLocation() async {
     try {
-      isSavingLocation.loading();
+      saveLocation.loading();
       int locationId = LocationTypeEnum.values.indexWhere(
         (element) =>
             ParseEnum.parseLocationTypeEnum(element) ==
             locationTypeNotifier.value,
       );
-      await saveLocationUseCase
-          .call(
+      final result = await saveLocationUseCase.call(
         name: locationNameController.text,
         cep: locationCepController.text,
         locationTypeId: locationId + 1,
         imgUrl: imageNotifier.value,
-      )
-          .fold(
+      );
+      result.fold(
         (success) {
-          isSavingLocation.data = success;
+          saveLocation.data = success;
+          Modular.to.pop();
+          safeSnackBar.success(S.current.textSuccessSaveLocation);
         },
         (error) {
-          isSavingLocation.error(error.message);
+          Modular.to.pop();
+          saveLocation.show();
+          saveLocation.error(error.message);
+          safeSnackBar.error(S.current.textFailedToSaveLocation);
         },
       );
-      return true;
     } catch (e) {
-      isSavingLocation.error(e.toString());
-      return false;
+      Modular.to.pop();
+      saveLocation.show();
+      saveLocation.error(e.toString());
+      safeSnackBar.error(S.current.textFailedToSaveLocation);
     }
   }
 
@@ -118,7 +124,7 @@ class LocationBloC extends SafeBloC {
   @override
   Future<void> dispose() async {
     locationByIDStream.hide();
-    isSavingLocation.hide();
+    saveLocation.hide();
     locationNameController = TextEditingController();
     locationCepController = TextEditingController();
     locationAddressFieldController = TextEditingController();

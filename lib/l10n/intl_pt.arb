@@ -33,7 +33,7 @@
     "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
     "textErrorHomeBestRated":"Nenhum lugar encontrado, comece a avaliar!",
     "textErrorLocationPermission": "Nenhum lugar próximo encontrado, ative as permissões de localização!",
-    "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
+    "textErrorProfile":"Você não fez nenhuma review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
     "textErrorDeleteReview":"Não foi possível deletar a review!",
     "textErrorGetLocation": "Ocorreu um erro ao obter sua localização!",
@@ -116,6 +116,7 @@
     "textUnableToChangeInformation":"Não foi possível atualizar as informações!",
     "textAddLocation":"Adicionar Local",
     "textOptions":"Opções",
+    "textSuccessSaveLocation":"Local enviado para revisão com sucesso!",
     
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",
@@ -161,6 +162,7 @@
 
     "textAvatarSuccessUpated": "Avatar alterado com sucesso!",
     "textFailedToUpdateAvatar": "Não foi possível alterar o avatar!",
+    "textFailedToSaveLocation": "Não foi possível salvar o local! Tente novamente mais tarde.",
 
     "textSafeDialogTypeSucces":"Sucesso!",
     "textSafeDialogTypeAlert":"Atenção!",

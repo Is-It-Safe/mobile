@@ -3,6 +3,7 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/register/presenter/store/register_store.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/enum/user_sign_in_enum.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
@@ -29,12 +30,18 @@ class RegisterProfileBloc extends SafeBloC {
   @override
   Future<void> init() async {
     SafeLogUtil.instance.route(Modular.to.path);
-    await getGenders();
-    await getSexualOrientations();
+    if (store.listGender.data.isEmpty ||
+        store.listSexualOrientation.data.isEmpty) {
+      store.listGender.loading();
+      store.listSexualOrientation.loading();
+    }
+    await Future(() {
+      getGenders();
+      getSexualOrientations();
+    });
   }
 
   Future<void> getGenders() async {
-    store.listGender.loading();
     if (store.listGender.data.isEmpty) {
       final result = await getGendersUseCase.call();
       result.fold(
@@ -52,7 +59,6 @@ class RegisterProfileBloc extends SafeBloC {
   }
 
   Future<void> getSexualOrientations() async {
-    store.listSexualOrientation.loading();
     if (store.listSexualOrientation.data.isEmpty) {
       final result = await getSexualOrientationsUseCase.call();
       result.fold(
@@ -101,12 +107,12 @@ class RegisterProfileBloc extends SafeBloC {
       );
 
       final response = await doRegisterUseCase.call(
-        name: store.nameTextController.text,
-        username: store.usernameTextController.text,
+        name: _getUserData(userSignInEnum: UserSignInEnum.user),
+        username: _getUserData(userSignInEnum: UserSignInEnum.nickName),
         birthDate: birthDate,
-        pronoun: store.pronounTextController.text,
-        email: store.emailTextController.text,
-        password: store.passwordTextController.text,
+        pronoun: _getUserData(userSignInEnum: UserSignInEnum.pronouns),
+        email: _getUserData(userSignInEnum: UserSignInEnum.email),
+        password: _getUserData(userSignInEnum: UserSignInEnum.password),
         profilePhoto: profilePhoto,
         gender: gender,
         sexualOrientation: sexualOrientation,
@@ -132,6 +138,15 @@ class RegisterProfileBloc extends SafeBloC {
     }
   }
 
+  String _getUserData({
+    required UserSignInEnum userSignInEnum,
+  }) {
+    return store.registerUserVoList
+        .firstWhere((element) => element.userSignInEnum == userSignInEnum)
+        .controller
+        .text;
+  }
+
   void navigateToLogin() {
     Modular.to.pushNamedAndRemoveUntil(LoginPage.route, (r) => false);
   }
@@ -151,6 +166,8 @@ class RegisterProfileBloc extends SafeBloC {
 
   @override
   Future<void> dispose() async {
-    store.dispose();
+    if (store.registerEntity.data != null) {
+      store.dispose();
+    }
   }
 }
