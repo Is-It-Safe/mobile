@@ -10,10 +10,13 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 class DoRegisterButtonWidget extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final SafeStream<bool> isEnabledToRegister;
+  final SafeStream<bool> isAcceptedTerms;
+
   const DoRegisterButtonWidget({
     Key? key,
     required this.formKey,
     required this.isEnabledToRegister,
+    required this.isAcceptedTerms,
   }) : super(key: key);
 
   @override
@@ -23,17 +26,18 @@ class DoRegisterButtonWidget extends StatefulWidget {
 class _DoRegisterButtonWidgetState extends State<DoRegisterButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    return SafeBuilder(
-      stream: widget.isEnabledToRegister,
-      builder: (isEnabledToRegister) {
+    return SafeBuilder2<bool, bool>(
+      stream1: widget.isEnabledToRegister,
+      stream2: widget.isAcceptedTerms,
+      builder: (isEnabledToRegister, isAcceptedTerms) {
         return SafeButton(
           title: S.current.textRegister,
-          state: isEnabledToRegister == true
+          state: isEnabledToRegister && isAcceptedTerms
               ? ButtonState.rest
               : ButtonState.disabled,
           onTap: () async {
-            widget.formKey.currentState?.validate();
-            if (isEnabledToRegister == true) {
+            if (widget.formKey.currentState?.validate() == true &&
+                isEnabledToRegister == true) {
               Modular.to.pushNamed(
                 StringConstants.dot + RegisterProfilePage.route,
               );
