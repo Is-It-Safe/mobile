@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/change_password_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/deactivate_account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/edit_account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_button.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_section_banner.dart';
@@ -72,9 +73,10 @@ class _AccountPageState extends SafeState<AccountPage, AccountBloc> {
             const SizedBox(height: 20),
             AccountInfoButton(
               text: S.current.textDisableAccount,
-              onTap: () => bloc.safeSnackBar.info(
-                S.current.textFeatureAvailableSoon,
-              ),
+              onTap: () async {
+                await Modular.to.pushNamed(
+                    StringConstants.dot + DeactivateAccountPage.route);
+              },
             ),
             const SizedBox(height: 20),
             AccountInfoButton(
