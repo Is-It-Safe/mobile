@@ -21,7 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeBloc>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   late TabController tabController;
@@ -31,15 +31,23 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
       await controller.requestAccessLocationPermission();
     });
-    controller.getBestRatedPlaces();
-    tabController = TabController(length: 2, vsync: this);
+    super.initState();
+    tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
     tabController.addListener(() {
       setState(() {
         controller.onTabIndexChange(tabController.index);
       });
     });
-    super.initState();
-    SafeLogUtil.instance.route(Modular.to.path);
+    // SafeLogUtil.instance.route(Modular.to.path);
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -69,7 +77,9 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
             _scaffoldKey.currentState!.openEndDrawer();
             controller.getHomeDrawerInfo();
           },
-          onBottomTap: (tab) => controller.onTabIndexChange(tab),
+          // onBottomTap: (tab) async {
+          //   await controller.onTabIndexChange(tab);
+          // },
         ),
         body: TabBarView(
           controller: tabController,
@@ -83,13 +93,13 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
                 text: S.current.textErrorLocationPermission,
                 buttonText: S.current.textOpenPermissions,
                 onTapButton: () async {
-                  await controller
-                      .forcedRequestLocationPermission()
-                      .then((granted) async {
-                    if (granted) {
-                      await controller.getLocationsNearUser();
-                    }
-                  });
+                  await controller.forcedRequestLocationPermission().then(
+                    (granted) async {
+                      if (granted) {
+                        await controller.getLocationsNearUser();
+                      }
+                    },
+                  );
                 },
               ),
             ),

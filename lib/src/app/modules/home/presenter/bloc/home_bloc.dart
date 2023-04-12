@@ -147,6 +147,9 @@ class HomeBloc extends SafeBloC {
     try {
       locationsNearUserController.add(SafeStream.load());
       final location = await Geolocator.getCurrentPosition();
+
+      // final location = await getGeolocator();
+
       await getLocationsNearUserUsecase
           .call(location.latitude, location.longitude)
           .then((locations) {
@@ -162,13 +165,41 @@ class HomeBloc extends SafeBloC {
           '''User denied permissions to access the device's location.''') {
         locationsNearUserController.addError(
             'Para exibir os lugares próximos, por favor libere o acesso a localização.');
-      }
-      if (e.toString() == 'The location service on the device is disabled.') {
+      } else if (e.toString() ==
+          'The location service on the device is disabled.') {
         locationsNearUserController.addError(
             'O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.');
+      } else {
+        locationsNearUserController.addError(e.toString());
       }
     }
   }
+
+  // Future<Position> getGeolocator() async {
+  //   LocationPermission permission;
+
+  //   bool activate = await Geolocator.isLocationServiceEnabled();
+  //   if (!activate) {
+  //     locationsNearUserController.addError('error serviceDisabled');
+  //     // return Future.error('error serviceDisabled');
+  //   }
+
+  //   permission = await Geolocator.checkPermission();
+  //   if (permission == LocationPermission.denied) {
+  //     permission = await Geolocator.requestPermission();
+  //     if (permission == LocationPermission.denied) {
+  //       locationsNearUserController
+  //           .addError('Você precisa autorizar o acesso à localização');
+  //       // return Future.error('error denied');
+  //     }
+  //   }
+  //   if (permission == LocationPermission.deniedForever) {
+  //     locationsNearUserController
+  //         .addError('Você precisa liberar o acesso à localização');
+  //     // return Future.error('error deniedForever');
+  //   }
+  //   return await Geolocator.getCurrentPosition();
+  // }
 
   Future<bool> verifyLocationPermission() async {
     return await locator.verifyPermission();
@@ -244,7 +275,7 @@ class HomeBloc extends SafeBloC {
         await getLocationsNearUser();
       }
     }).timeout(const Duration(milliseconds: 400), onTimeout: () async {
-      await getLocationsNearUser();
+      // await getLocationsNearUser();
     });
   }
 
@@ -262,5 +293,6 @@ class HomeBloc extends SafeBloC {
   @override
   Future<void> dispose() async {
     bestRatedPlacesController.close();
+    locationsNearUserController.close();
   }
 }
