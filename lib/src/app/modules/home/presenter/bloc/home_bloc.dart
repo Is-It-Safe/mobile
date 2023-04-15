@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:catcher/catcher.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_locator.dart';
@@ -126,7 +127,8 @@ class HomeBloc extends SafeBloC {
     return StringConstants.empty;
   }
 
-  Future<void> getBestRatedPlaces() async {
+  Future<void> getBestRatedPlaces({bool isForceReload = false}) async {
+    if (listBestRatedPlaces.isNotEmpty && !isForceReload) return;
     try {
       bestRatedPlacesController.add(SafeStream.load());
       await getBestRatedLocationsUseCase
@@ -147,9 +149,6 @@ class HomeBloc extends SafeBloC {
     try {
       locationsNearUserController.add(SafeStream.load());
       final location = await Geolocator.getCurrentPosition();
-
-      // final location = await getGeolocator();
-
       await getLocationsNearUserUsecase
           .call(location.latitude, location.longitude)
           .then((locations) {
@@ -160,46 +159,19 @@ class HomeBloc extends SafeBloC {
     } on Exception catch (e, stacktrace) {
       Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
-      // locationsNearUserController.addError(e.toString());
       if (e.toString() ==
           '''User denied permissions to access the device's location.''') {
-        locationsNearUserController.addError(
-            'Para exibir os lugares próximos, por favor libere o acesso a localização.');
+        locationsNearUserController
+            .addError(S.current.textDeniedPermissionLocation);
       } else if (e.toString() ==
           'The location service on the device is disabled.') {
-        locationsNearUserController.addError(
-            'O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.');
+        locationsNearUserController
+            .addError(S.current.textDeniedServiceLocation);
       } else {
         locationsNearUserController.addError(e.toString());
       }
     }
   }
-
-  // Future<Position> getGeolocator() async {
-  //   LocationPermission permission;
-
-  //   bool activate = await Geolocator.isLocationServiceEnabled();
-  //   if (!activate) {
-  //     locationsNearUserController.addError('error serviceDisabled');
-  //     // return Future.error('error serviceDisabled');
-  //   }
-
-  //   permission = await Geolocator.checkPermission();
-  //   if (permission == LocationPermission.denied) {
-  //     permission = await Geolocator.requestPermission();
-  //     if (permission == LocationPermission.denied) {
-  //       locationsNearUserController
-  //           .addError('Você precisa autorizar o acesso à localização');
-  //       // return Future.error('error denied');
-  //     }
-  //   }
-  //   if (permission == LocationPermission.deniedForever) {
-  //     locationsNearUserController
-  //         .addError('Você precisa liberar o acesso à localização');
-  //     // return Future.error('error deniedForever');
-  //   }
-  //   return await Geolocator.getCurrentPosition();
-  // }
 
   Future<bool> verifyLocationPermission() async {
     return await locator.verifyPermission();
@@ -274,18 +246,18 @@ class HomeBloc extends SafeBloC {
       if (granted) {
         await getLocationsNearUser();
       }
-    }).timeout(const Duration(milliseconds: 400), onTimeout: () async {
-      // await getLocationsNearUser();
+    }).timeout(const Duration(seconds: 3000), onTimeout: () async {
+      await getLocationsNearUser();
     });
   }
 
-  onTabIndexChange(int index) async {
+  onTabIndexChange(int index, {bool isForceReload = false}) async {
     switch (index) {
       case 0:
         await requestAccessLocationPermission();
         break;
       case 1:
-        await getBestRatedPlaces();
+        await getBestRatedPlaces(isForceReload: isForceReload);
         break;
     }
   }

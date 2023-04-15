@@ -1969,6 +1969,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Para exibir os lugares próximos, por favor libere o acesso a localização.`
+  String get textDeniedPermissionLocation {
+    return Intl.message(
+      'Para exibir os lugares próximos, por favor libere o acesso a localização.',
+      name: 'textDeniedPermissionLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.`
+  String get textDeniedServiceLocation {
+    return Intl.message(
+      'O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.',
+      name: 'textDeniedServiceLocation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -126,6 +126,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
         "textDeleteUser": MessageLookupByLibrary.simpleMessage(
             "Usuário deletado com sucesso"),
+        "textDeniedPermissionLocation": MessageLookupByLibrary.simpleMessage(
+            "Para exibir os lugares próximos, por favor libere o acesso a localização."),
+        "textDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
+            "O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função."),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(

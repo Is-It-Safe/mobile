@@ -215,5 +215,8 @@
     "textCriticalErrorPageBody": "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!",
     "textCriticalErrorPageGoToReport": "Reportar erro",
     
-    "textChange": "Alterar"
+    "textChange": "Alterar",
+
+    "textDeniedPermissionLocation":"Para exibir os lugares próximos, por favor libere o acesso a localização.",
+    "textDeniedServiceLocation":"O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função."
 }

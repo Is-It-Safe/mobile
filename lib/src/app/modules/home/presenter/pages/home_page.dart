@@ -41,7 +41,7 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
         controller.onTabIndexChange(tabController.index);
       });
     });
-    // SafeLogUtil.instance.route(Modular.to.path);
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
   @override
@@ -77,9 +77,12 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
             _scaffoldKey.currentState!.openEndDrawer();
             controller.getHomeDrawerInfo();
           },
-          // onBottomTap: (tab) async {
-          //   await controller.onTabIndexChange(tab);
-          // },
+          onBottomTap: (tab) async {
+            await controller.onTabIndexChange(
+              tab,
+              isForceReload: true,
+            );
+          },
         ),
         body: TabBarView(
           controller: tabController,
