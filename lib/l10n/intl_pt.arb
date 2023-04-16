@@ -33,7 +33,7 @@
     "textErrorHome":"Nenhum lugar próximo encontrado, comece a avaliar seu bairro!",
     "textErrorHomeBestRated":"Nenhum lugar encontrado, comece a avaliar!",
     "textErrorLocationPermission": "Nenhum lugar próximo encontrado, ative as permissões de localização!",
-    "textErrorProfile":"Você não fez nenhum review ainda, começe assim que puder!",
+    "textErrorProfile":"Você não fez nenhuma review ainda, começe assim que puder!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
     "textErrorDeleteReview":"Não foi possível deletar a review!",
     "textErrorGetLocation": "Ocorreu um erro ao obter sua localização!",
@@ -209,11 +209,21 @@
 	"textRegisterValidateUserName":"O nome não pode ter menos que 3 letras.",
 
 
+    "textUpdatePassword": "Atualizar senha",
+
     "textYourCurrentEmailIs": "Seu e-mail atual é",
     "textWhatWillBeYourEmailAddress": "Qual será o novo endereço de e-mail?",
     "textCriticalErrorPageTitle": "Ocorreu um erro inesperado!",
     "textCriticalErrorPageBody": "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!",
     "textCriticalErrorPageGoToReport": "Reportar erro",
+
+    "textWantDeactivateAccount": "Deseja desativar sua conta?",
+    "textDeactivateAccountWarnning": "Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.",
+    
+    "textDeactivateAccount": "Desativar conta",
+
+    "textDeactivatedAccountSuccess": "Conta desativada com sucesso!",
+    "textNotPossibleDeativateAccount": "Não foi possível desativar sua conta, tente novamente mais tarde.",
     
     "textChange": "Alterar",
 

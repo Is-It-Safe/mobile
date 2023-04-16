@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/app/modules/profile/presenter/widgets/profile
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
+import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,28 +32,6 @@ class _ProfileReviewState extends State<ProfileReview> {
   bool _isTextExpanded = false;
   String _textSeeMore = S.current.textSeeMore;
 
-  String _getEmotionImage(double? grade) {
-    if (grade == null) return AssetConstants.emoticon.neutral;
-    if (grade == 0.0 && grade < 1.0) return AssetConstants.emoticon.angry;
-    if (grade >= 1.0 && grade < 2.0) return AssetConstants.emoticon.sad;
-    if (grade >= 2.0 && grade < 3.5) return AssetConstants.emoticon.neutral;
-    if (grade >= 3.5 && grade < 4.0) return AssetConstants.emoticon.happy;
-    if (grade >= 4.0) return AssetConstants.emoticon.excited;
-
-    return AssetConstants.emoticon.neutral;
-  }
-
-  String _getEmotionText(double? grade) {
-    if (grade == null) return S.current.textRegular;
-    if (grade == 0.0 && grade < 1.0) return S.current.textAngry;
-    if (grade >= 1.0 && grade < 2.0) return S.current.textUpset;
-    if (grade >= 2.0 && grade < 3.5) return S.current.textRegular;
-    if (grade >= 3.5 && grade < 4.0) return S.current.textSatisfied;
-    if (grade >= 4.0) return S.current.textIncredible;
-
-    return S.current.textRegular;
-  }
-
   void doSeeMore() {
     setState(() {
       _isTextExpanded = !_isTextExpanded;
@@ -77,7 +56,10 @@ class _ProfileReviewState extends State<ProfileReview> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _mountEmotion(),
+          MountEmoticon(
+            isTextExpanded: _isTextExpanded,
+            myGrade: widget.review.myGrade ?? DoubleConstants.empty,
+          ),
           const SizedBox(width: 4.0),
           ProfileReviewCard(
             review: widget.review,
@@ -94,19 +76,53 @@ class _ProfileReviewState extends State<ProfileReview> {
       ),
     );
   }
+}
 
-  Widget _mountEmotion() {
+class MountEmoticon extends StatelessWidget {
+  final double myGrade;
+  final bool isTextExpanded;
+
+  const MountEmoticon({
+    Key? key,
+    required this.myGrade,
+    required this.isTextExpanded,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment:
-          _isTextExpanded ? MainAxisAlignment.start : MainAxisAlignment.center,
+      isTextExpanded ? MainAxisAlignment.start : MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(_getEmotionImage(widget.review.myGrade)),
+        SvgPicture.asset(_getEmotionImage(myGrade)),
         const SizedBox(height: 4.0),
         Text(
-          _getEmotionText(widget.review.myGrade),
+          _getEmotionText(myGrade),
           style: TextStyles.bodyText2(),
         ),
       ],
     );
+  }
+
+  String _getEmotionImage(double? grade) {
+    if (grade == null) return AssetConstants.emoticon.neutral;
+    if (grade == 1.0) return AssetConstants.emoticon.angry;
+    if (grade == 2.0) return AssetConstants.emoticon.sad;
+    if (grade == 3.0) return AssetConstants.emoticon.neutral;
+    if (grade == 4) return AssetConstants.emoticon.happy;
+    if (grade >= 4.0) return AssetConstants.emoticon.excited;
+
+    return AssetConstants.emoticon.neutral;
+  }
+
+  String _getEmotionText(double? grade) {
+    if (grade == null) return S.current.textRegular;
+    if (grade == 1.0) return S.current.textAngry;
+    if (grade == 2.0) return S.current.textUpset;
+    if (grade == 3.0) return S.current.textRegular;
+    if (grade == 4) return S.current.textSatisfied;
+    if (grade >= 4.0) return S.current.textIncredible;
+
+    return S.current.textRegular;
   }
 }

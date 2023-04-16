@@ -58,6 +58,8 @@ class ApiConstants {
 
   static const String updateUser = '${kUrl}user/update';
 
+  static const String deactivateUser = '${kUrl}user/deactivate';
+
   //Review
   static const String doReview = '${kUrl}review/save';
   static const String deleteReview = '${kUrl}review/delete/';
