@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:is_it_safe_app/src/domain/use_case/do_register_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_register.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/entities/request/request_register.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/do_register_use_case.dart';
 import 'package:modular_test/modular_test.dart';
 
 import '../mocks/mock_auth_service.dart';

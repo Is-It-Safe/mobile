@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/request/request_confirm_password.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/confirm_password_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
-import 'package:is_it_safe_app/src/domain/use_case/confirm_password_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mocks/auth_mocks.dart';

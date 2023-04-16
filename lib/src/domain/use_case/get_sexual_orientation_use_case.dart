@@ -1,7 +1,7 @@
 import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service_interface.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
 import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service_interface.dart';
 import 'package:result_dart/result_dart.dart';
 
 class GetSexualOrientationsUseCase extends SafeUseCase {
