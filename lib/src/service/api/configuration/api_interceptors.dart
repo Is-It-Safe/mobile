@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';

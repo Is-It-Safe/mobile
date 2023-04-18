@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/response/response_sexual_orientation.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_sexual_orientation.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mocks/auth_mocks.dart';

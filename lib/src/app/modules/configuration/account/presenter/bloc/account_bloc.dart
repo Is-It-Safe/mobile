@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/login/presenter/pages/login_page.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
