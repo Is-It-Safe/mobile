@@ -184,7 +184,9 @@ class _LocationGrade extends StatelessWidget {
           width: 35,
         ),
         Text(
-          grade == '0.0' ? StringConstants.empty : grade,
+          grade == StringConstants.zeroAvaliation
+              ? StringConstants.empty
+              : grade,
           style: TextStyles.headline3(),
         ),
       ],

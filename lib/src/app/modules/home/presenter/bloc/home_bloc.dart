@@ -159,12 +159,10 @@ class HomeBloc extends SafeBloC {
     } on Exception catch (e, stacktrace) {
       Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
-      if (e.toString() ==
-          '''User denied permissions to access the device's location.''') {
+      if (e.toString() == S.current.textErrorDeniedPermissionLocation) {
         locationsNearUserController
             .addError(S.current.textDeniedPermissionLocation);
-      } else if (e.toString() ==
-          'The location service on the device is disabled.') {
+      } else if (e.toString() == S.current.textErrorDeniedServiceLocation) {
         locationsNearUserController
             .addError(S.current.textDeniedServiceLocation);
       } else {
@@ -246,7 +244,7 @@ class HomeBloc extends SafeBloC {
       if (granted) {
         await getLocationsNearUser();
       }
-    }).timeout(const Duration(seconds: 3000), onTimeout: () async {
+    }).timeout(const Duration(milliseconds: 3000), onTimeout: () async {
       await getLocationsNearUser();
     });
   }

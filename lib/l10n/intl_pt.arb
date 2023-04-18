@@ -72,7 +72,7 @@
     "textFinish":"Finalizar",
     "textClosePlaces":"Lugares Próximos",
     "textBestRates":"Melhores Avaliados",
-    "textSearch":"Search",
+    "textSearch":"Buscar",
     "textConfiguration":"Configurações",
     "textPrivacy":"Privacidade",
     "textTermsOfUse":"Termos de Uso",
@@ -228,5 +228,7 @@
     "textChange": "Alterar",
 
     "textDeniedPermissionLocation":"Para exibir os lugares próximos, por favor libere o acesso a localização.",
-    "textDeniedServiceLocation":"O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função."
+    "textDeniedServiceLocation":"O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.",
+    "textErrorDeniedPermissionLocation":"User denied permissions to access the device's location.",
+    "textErrorDeniedServiceLocation":"The location service on the device is disabled."
 }

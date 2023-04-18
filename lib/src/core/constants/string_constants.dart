@@ -28,6 +28,9 @@ class StringConstants {
   static const String danger = 'DANGER';
   static const String safe = 'SAFE';
 
+  //Review Zero Avaliation
+  static const String zeroAvaliation = '0.0';
+
   //Place
   static const String place = 'Salvador';
 

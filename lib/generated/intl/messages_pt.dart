@@ -159,6 +159,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Não foi possível confirmar sua senha!"),
         "textErrorDeleteReview": MessageLookupByLibrary.simpleMessage(
             "Não foi possível deletar a review!"),
+        "textErrorDeniedPermissionLocation":
+            MessageLookupByLibrary.simpleMessage(
+                "User denied permissions to access the device\'s location."),
+        "textErrorDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
+            "The location service on the device is disabled."),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
             "Os campos de senha devem ser iguais"),
         "textErrorDropdown":
@@ -314,7 +319,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSatisfied": MessageLookupByLibrary.simpleMessage("Satisfeito"),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
-        "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
+        "textSearch": MessageLookupByLibrary.simpleMessage("Buscar"),
         "textSecurity": MessageLookupByLibrary.simpleMessage("Segurança"),
         "textSeeLess": MessageLookupByLibrary.simpleMessage("Ver menos"),
         "textSeeMore": MessageLookupByLibrary.simpleMessage("Ver mais"),
