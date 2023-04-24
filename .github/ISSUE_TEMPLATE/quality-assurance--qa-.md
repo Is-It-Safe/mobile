@@ -7,32 +7,32 @@ assignees: ''
 
 ---
 
-## Description
+## Descrição
 
-[Describe the issue or feature request here]
+--
 
-## Steps to Reproduce (if applicable)
+## Passos para reproduzir
 
-[If the issue is a bug or error, provide steps to reproduce the issue. If it's a feature request, skip this section.]
+--
 
-## Expected behavior
+## Comportamento esperado
 
-[Describe what you expected to happen.]
+--
 
-## Actual behavior
+## Comportamento atual
 
-[Describe what actually happened.]
+--
 
-## Screenshots or Logs
+## Screenshots ou Logs
 
-[If applicable, include screenshots or relevant logs to help explain the issue.]
+--
 
-## Environment
+## Ambiente
 
 Operating System:
 Browser (if applicable):
 Version:
 
-## Additional Information
+## Informações Adicionais
 
-[Add any other relevant information about the issue or feature request here.]
+--

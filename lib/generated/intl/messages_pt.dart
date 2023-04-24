@@ -119,6 +119,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ocorreu um erro inesperado!"),
         "textDateOfBirth":
             MessageLookupByLibrary.simpleMessage("Data de nascimento"),
+        "textDeactivateAccount":
+            MessageLookupByLibrary.simpleMessage("Desativar conta"),
+        "textDeactivateAccountWarnning": MessageLookupByLibrary.simpleMessage(
+            "Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente."),
+        "textDeactivatedAccountSuccess": MessageLookupByLibrary.simpleMessage(
+            "Conta desativada com sucesso!"),
         "textDefaultDeleteReviewMessage": MessageLookupByLibrary.simpleMessage(
             "Review deletada com sucesso!"),
         "textDelete": MessageLookupByLibrary.simpleMessage("Remover"),
@@ -126,6 +132,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
         "textDeleteUser": MessageLookupByLibrary.simpleMessage(
             "Usuário deletado com sucesso"),
+        "textDeniedPermissionLocation": MessageLookupByLibrary.simpleMessage(
+            "Para exibir os lugares próximos, por favor libere o acesso a localização."),
+        "textDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
+            "O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função."),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
@@ -149,6 +159,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Não foi possível confirmar sua senha!"),
         "textErrorDeleteReview": MessageLookupByLibrary.simpleMessage(
             "Não foi possível deletar a review!"),
+        "textErrorDeniedPermissionLocation":
+            MessageLookupByLibrary.simpleMessage(
+                "User denied permissions to access the device\'s location."),
+        "textErrorDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
+            "The location service on the device is disabled."),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
             "Os campos de senha devem ser iguais"),
         "textErrorDropdown":
@@ -235,6 +250,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "A maioria das pessoas\n considera esse local seguro\n para comunidade LGBTQIA+"),
         "textName": MessageLookupByLibrary.simpleMessage("Nome"),
         "textNeutral": MessageLookupByLibrary.simpleMessage("Neutro"),
+        "textNotPossibleDeativateAccount": MessageLookupByLibrary.simpleMessage(
+            "Não foi possível desativar sua conta, tente novamente mais tarde."),
         "textOk": MessageLookupByLibrary.simpleMessage("Ok"),
         "textOnBoarding1_0": MessageLookupByLibrary.simpleMessage("Foco em"),
         "textOnBoarding1_1": MessageLookupByLibrary.simpleMessage("segurança"),
@@ -302,7 +319,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSatisfied": MessageLookupByLibrary.simpleMessage("Satisfeito"),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
-        "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
+        "textSearch": MessageLookupByLibrary.simpleMessage("Buscar"),
         "textSecurity": MessageLookupByLibrary.simpleMessage("Segurança"),
         "textSeeLess": MessageLookupByLibrary.simpleMessage("Ver menos"),
         "textSeeMore": MessageLookupByLibrary.simpleMessage("Ver mais"),
@@ -336,8 +353,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Não foi possível atualizar as informações!"),
         "textUpdateInformation":
             MessageLookupByLibrary.simpleMessage("Atualizar informações"),
+        "textUpdatePassword":
+            MessageLookupByLibrary.simpleMessage("Atualizar senha"),
         "textUpset": MessageLookupByLibrary.simpleMessage("Chateado"),
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
+        "textWantDeactivateAccount":
+            MessageLookupByLibrary.simpleMessage("Deseja desativar sua conta?"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
             "Sua segurança é muito importante para nós."),
         "textWelcome": MessageLookupByLibrary.simpleMessage("Olá!,"),

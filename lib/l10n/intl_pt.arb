@@ -72,7 +72,7 @@
     "textFinish":"Finalizar",
     "textClosePlaces":"Lugares Próximos",
     "textBestRates":"Melhores Avaliados",
-    "textSearch":"Search",
+    "textSearch":"Buscar",
     "textConfiguration":"Configurações",
     "textPrivacy":"Privacidade",
     "textTermsOfUse":"Termos de Uso",
@@ -209,11 +209,26 @@
 	"textRegisterValidateUserName":"O nome não pode ter menos que 3 letras.",
 
 
+    "textUpdatePassword": "Atualizar senha",
+
     "textYourCurrentEmailIs": "Seu e-mail atual é",
     "textWhatWillBeYourEmailAddress": "Qual será o novo endereço de e-mail?",
     "textCriticalErrorPageTitle": "Ocorreu um erro inesperado!",
     "textCriticalErrorPageBody": "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!",
     "textCriticalErrorPageGoToReport": "Reportar erro",
+
+    "textWantDeactivateAccount": "Deseja desativar sua conta?",
+    "textDeactivateAccountWarnning": "Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.",
     
-    "textChange": "Alterar"
+    "textDeactivateAccount": "Desativar conta",
+
+    "textDeactivatedAccountSuccess": "Conta desativada com sucesso!",
+    "textNotPossibleDeativateAccount": "Não foi possível desativar sua conta, tente novamente mais tarde.",
+    
+    "textChange": "Alterar",
+
+    "textDeniedPermissionLocation":"Para exibir os lugares próximos, por favor libere o acesso a localização.",
+    "textDeniedServiceLocation":"O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.",
+    "textErrorDeniedPermissionLocation":"User denied permissions to access the device's location.",
+    "textErrorDeniedServiceLocation":"The location service on the device is disabled."
 }

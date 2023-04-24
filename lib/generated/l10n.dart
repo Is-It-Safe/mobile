@@ -690,10 +690,10 @@ class S {
     );
   }
 
-  /// `Search`
+  /// `Buscar`
   String get textSearch {
     return Intl.message(
-      'Search',
+      'Buscar',
       name: 'textSearch',
       desc: '',
       args: [],
@@ -1910,6 +1910,16 @@ class S {
     );
   }
 
+  /// `Atualizar senha`
+  String get textUpdatePassword {
+    return Intl.message(
+      'Atualizar senha',
+      name: 'textUpdatePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Seu e-mail atual é`
   String get textYourCurrentEmailIs {
     return Intl.message(
@@ -1960,11 +1970,101 @@ class S {
     );
   }
 
+  /// `Deseja desativar sua conta?`
+  String get textWantDeactivateAccount {
+    return Intl.message(
+      'Deseja desativar sua conta?',
+      name: 'textWantDeactivateAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.`
+  String get textDeactivateAccountWarnning {
+    return Intl.message(
+      'Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.',
+      name: 'textDeactivateAccountWarnning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Desativar conta`
+  String get textDeactivateAccount {
+    return Intl.message(
+      'Desativar conta',
+      name: 'textDeactivateAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Conta desativada com sucesso!`
+  String get textDeactivatedAccountSuccess {
+    return Intl.message(
+      'Conta desativada com sucesso!',
+      name: 'textDeactivatedAccountSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Não foi possível desativar sua conta, tente novamente mais tarde.`
+  String get textNotPossibleDeativateAccount {
+    return Intl.message(
+      'Não foi possível desativar sua conta, tente novamente mais tarde.',
+      name: 'textNotPossibleDeativateAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Alterar`
   String get textChange {
     return Intl.message(
       'Alterar',
       name: 'textChange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Para exibir os lugares próximos, por favor libere o acesso a localização.`
+  String get textDeniedPermissionLocation {
+    return Intl.message(
+      'Para exibir os lugares próximos, por favor libere o acesso a localização.',
+      name: 'textDeniedPermissionLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.`
+  String get textDeniedServiceLocation {
+    return Intl.message(
+      'O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.',
+      name: 'textDeniedServiceLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User denied permissions to access the device's location.`
+  String get textErrorDeniedPermissionLocation {
+    return Intl.message(
+      'User denied permissions to access the device\'s location.',
+      name: 'textErrorDeniedPermissionLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The location service on the device is disabled.`
+  String get textErrorDeniedServiceLocation {
+    return Intl.message(
+      'The location service on the device is disabled.',
+      name: 'textErrorDeniedServiceLocation',
       desc: '',
       args: [],
     );

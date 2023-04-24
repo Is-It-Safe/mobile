@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/request/request_confirm_password.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/change_password_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/confirm_password_use_case.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
-import 'package:is_it_safe_app/src/domain/use_case/change_password_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/confirm_password_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
 import 'package:result_dart/result_dart.dart';
 
 class ChangePasswordBloC extends SafeBloC {

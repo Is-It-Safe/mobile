@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
 import 'package:is_it_safe_app/src/app/modules/location/review/presenter/bloc/review_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/review_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_review_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/location/location_service.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 

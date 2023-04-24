@@ -12,7 +12,6 @@ import 'package:is_it_safe_app/src/service/api/modules/profile/request/request_s
 class MockReviewService implements IProfileService {
   @override
   Future<ResponseDeleteReview> deleteReview(int idReview) {
-    // TODO: implement deleteReview
     throw UnimplementedError();
   }
 
@@ -27,19 +26,21 @@ class MockReviewService implements IProfileService {
 
   @override
   Future<ResponseDeleteUser> deleteUser({required int idUser}) {
-    // TODO: implement deleteUser
     throw UnimplementedError();
   }
 
   @override
   Future<ResponseGetUser> getUser() {
-    // TODO: implement getUser
     throw UnimplementedError();
   }
 
   @override
   Future<ResponseUpdateUser> updateUser(RequestUpdateUser request) {
-    // TODO: implement updateUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> deactivateAccount() {
     throw UnimplementedError();
   }
 }
