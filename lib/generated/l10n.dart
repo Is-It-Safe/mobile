@@ -690,10 +690,10 @@ class S {
     );
   }
 
-  /// `Search`
+  /// `Buscar`
   String get textSearch {
     return Intl.message(
-      'Search',
+      'Buscar',
       name: 'textSearch',
       desc: '',
       args: [],
@@ -2025,6 +2025,46 @@ class S {
     return Intl.message(
       'Alterar',
       name: 'textChange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Para exibir os lugares próximos, por favor libere o acesso a localização.`
+  String get textDeniedPermissionLocation {
+    return Intl.message(
+      'Para exibir os lugares próximos, por favor libere o acesso a localização.',
+      name: 'textDeniedPermissionLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.`
+  String get textDeniedServiceLocation {
+    return Intl.message(
+      'O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.',
+      name: 'textDeniedServiceLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User denied permissions to access the device's location.`
+  String get textErrorDeniedPermissionLocation {
+    return Intl.message(
+      'User denied permissions to access the device\'s location.',
+      name: 'textErrorDeniedPermissionLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The location service on the device is disabled.`
+  String get textErrorDeniedServiceLocation {
+    return Intl.message(
+      'The location service on the device is disabled.',
+      name: 'textErrorDeniedServiceLocation',
       desc: '',
       args: [],
     );

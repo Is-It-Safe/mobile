@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -133,6 +132,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Excluir Conta"),
         "textDeleteUser": MessageLookupByLibrary.simpleMessage(
             "Usuário deletado com sucesso"),
+        "textDeniedPermissionLocation": MessageLookupByLibrary.simpleMessage(
+            "Para exibir os lugares próximos, por favor libere o acesso a localização."),
+        "textDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
+            "O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função."),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
@@ -156,6 +159,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Não foi possível confirmar sua senha!"),
         "textErrorDeleteReview": MessageLookupByLibrary.simpleMessage(
             "Não foi possível deletar a review!"),
+        "textErrorDeniedPermissionLocation":
+            MessageLookupByLibrary.simpleMessage(
+                "User denied permissions to access the device\'s location."),
+        "textErrorDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
+            "The location service on the device is disabled."),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
             "Os campos de senha devem ser iguais"),
         "textErrorDropdown":
@@ -311,7 +319,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSatisfied": MessageLookupByLibrary.simpleMessage("Satisfeito"),
         "textSayYourNameThisInfoIsPrivate": MessageLookupByLibrary.simpleMessage(
             "Nos diga seu nome!\nEssa informação aparecerá apenas para você."),
-        "textSearch": MessageLookupByLibrary.simpleMessage("Search"),
+        "textSearch": MessageLookupByLibrary.simpleMessage("Buscar"),
         "textSecurity": MessageLookupByLibrary.simpleMessage("Segurança"),
         "textSeeLess": MessageLookupByLibrary.simpleMessage("Ver menos"),
         "textSeeMore": MessageLookupByLibrary.simpleMessage("Ver mais"),

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:catcher/catcher.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_near_user_use_case.dart';
@@ -126,7 +127,8 @@ class HomeBloc extends SafeBloC {
     return StringConstants.empty;
   }
 
-  Future<void> getBestRatedPlaces() async {
+  Future<void> getBestRatedPlaces({bool isForceReload = false}) async {
+    if (listBestRatedPlaces.isNotEmpty && !isForceReload) return;
     try {
       bestRatedPlacesController.add(SafeStream.load());
       await getBestRatedLocationsUseCase
@@ -157,7 +159,15 @@ class HomeBloc extends SafeBloC {
     } on Exception catch (e, stacktrace) {
       Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
-      locationsNearUserController.addError(e.toString());
+      if (e.toString() == S.current.textErrorDeniedPermissionLocation) {
+        locationsNearUserController
+            .addError(S.current.textDeniedPermissionLocation);
+      } else if (e.toString() == S.current.textErrorDeniedServiceLocation) {
+        locationsNearUserController
+            .addError(S.current.textDeniedServiceLocation);
+      } else {
+        locationsNearUserController.addError(e.toString());
+      }
     }
   }
 
@@ -234,25 +244,25 @@ class HomeBloc extends SafeBloC {
       if (granted) {
         await getLocationsNearUser();
       }
-    }).timeout(const Duration(milliseconds: 400), onTimeout: () async {
+    }).timeout(const Duration(milliseconds: 3000), onTimeout: () async {
       await getLocationsNearUser();
     });
   }
 
-  onTabIndexChange(int index) async {
-    await getBestRatedPlaces();
-    // switch (index) {
-    //   case 0:
-    //     await requestAccessLocationPermission();
-    //     break;
-    //   case 1:
-    //     await getBestRatedPlaces();
-    //     break;
-    // }
+  onTabIndexChange(int index, {bool isForceReload = false}) async {
+    switch (index) {
+      case 0:
+        await requestAccessLocationPermission();
+        break;
+      case 1:
+        await getBestRatedPlaces(isForceReload: isForceReload);
+        break;
+    }
   }
 
   @override
   Future<void> dispose() async {
     bestRatedPlacesController.close();
+    locationsNearUserController.close();
   }
 }

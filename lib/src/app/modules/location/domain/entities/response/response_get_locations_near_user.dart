@@ -1,3 +1,5 @@
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
+
 import 'response_location_review.dart';
 
 class ResponseGetLocationsNearUser {
@@ -10,6 +12,8 @@ class ResponseGetLocationsNearUser {
   String? averageImpressionStatus;
   int? reviewsQnt;
   List<ResponseLocationReview>? reviews;
+  final List<ReviewChart>? reviewChart;
+
   ResponseGetLocationsNearUser({
     this.id,
     this.name,
@@ -20,6 +24,7 @@ class ResponseGetLocationsNearUser {
     this.averageImpressionStatus,
     this.reviewsQnt,
     this.reviews,
+    this.reviewChart,
   });
 
   factory ResponseGetLocationsNearUser.fromJson(Map<String, dynamic> json) {
@@ -35,6 +40,12 @@ class ResponseGetLocationsNearUser {
       reviews: json['reviews'] != null
           ? (json['reviews'] as List)
               .map((i) => ResponseLocationReview.fromJson(i))
+              .toList()
+          : null,
+      reviewChart: json['chart'] != null
+          ? (json['chart'] as Map)
+              .entries
+              .map((e) => ReviewChart(key: e.key, value: e.value))
               .toList()
           : null,
     );
