@@ -1,11 +1,10 @@
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_review.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_save_location.dart';
 import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_location_by_id.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/response/response_save_location.dart';
 import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
-
-import '../../service/api/modules/location/response/response_location_review.dart';
 
 class LocationEntity {
   final int? id;

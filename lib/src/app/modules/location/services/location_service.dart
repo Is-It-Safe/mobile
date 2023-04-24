@@ -1,19 +1,20 @@
 import 'dart:convert';
 import 'dart:core';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/request/request_save_location.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_best_rated_places.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_locations_near_user.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_by_cep.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_save_location.dart';
+import 'package:is_it_safe_app/src/app/modules/location/services/location_service_interface.dart';
 
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/request/request_save_location.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/location_service_interface.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/response/response_save_location.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_best_rated_places.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_locations_near_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/response/response_location_by_cep.dart';
-import 'response/response_get_location_by_id.dart';
 
 class LocationService implements ILocationService {
   final ApiService _service = ApiService();
@@ -34,7 +35,9 @@ class LocationService implements ILocationService {
     );
 
     final response = await _service.doRequest(requestConfig);
-    print((json.decode(response.data)));
+    if (kDebugMode) {
+      print((json.decode(response.data)));
+    }
     final data = (json.decode(response.data) as Map<String, dynamic>);
     return ResponseGetLocationsById.fromJson(data);
   }

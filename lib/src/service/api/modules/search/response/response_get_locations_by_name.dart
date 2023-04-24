@@ -1,6 +1,4 @@
-import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
-
-import '../../location/response/response_location_review.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_review.dart';
 
 class ResponseGetLocationsByName {
   List<ResponseGetLocationsByNameLocation>? locations;

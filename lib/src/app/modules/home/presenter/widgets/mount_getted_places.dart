@@ -5,7 +5,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 
 import '../../../../../components/config/safe_event.dart';
 import '../../../../../components/config/safe_layout.dart';
-import '../../../../../domain/entity/location_entity.dart';
+import '../../../location/domain/entities/location_entity.dart';
 import '../../../location/location_module.dart';
 import 'home_location_card.dart';
 

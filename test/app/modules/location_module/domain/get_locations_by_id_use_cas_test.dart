@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_by_id_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/error/safe_location_error.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_id_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/location/response/response_get_location_by_id.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mocks/location_mocks.dart';

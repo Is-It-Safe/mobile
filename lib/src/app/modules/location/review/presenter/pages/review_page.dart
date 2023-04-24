@@ -15,7 +15,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
 
 class ReviewPage extends StatefulWidget {
