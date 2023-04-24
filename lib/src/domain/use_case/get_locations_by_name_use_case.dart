@@ -1,5 +1,5 @@
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
-import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/service/api/modules/search/search_service_interface.dart';
 import 'package:result_dart/result_dart.dart';
 

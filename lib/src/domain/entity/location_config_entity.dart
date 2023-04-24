@@ -1,4 +1,4 @@
-import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_pageable_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/location_sort_entity.dart';
 
