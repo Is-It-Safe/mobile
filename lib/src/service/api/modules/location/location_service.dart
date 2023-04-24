@@ -34,7 +34,6 @@ class LocationService implements ILocationService {
     );
 
     final response = await _service.doRequest(requestConfig);
-    print((json.decode(response.data)));
     final data = (json.decode(response.data) as Map<String, dynamic>);
     return ResponseGetLocationsById.fromJson(data);
   }
