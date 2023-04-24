@@ -11,7 +11,11 @@ class RegisterUserVo {
 
   RegisterUserVo({
     required this.userSignInEnum,
-  });
+  }) {
+    if (this.userSignInEnum == UserSignInEnum.pronouns) {
+      isValid = true;
+    }
+  }
 
   String? validateUserData({
     String? currentPassword,
