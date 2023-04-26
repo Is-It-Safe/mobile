@@ -58,7 +58,9 @@ class HomeModule extends Module {
       Modular.initialRoute,
       child: (context, args) => const HomePage(),
     ),
-    ModuleRoute(TermsAndConditionsPage.route,
-        module: TermsAndConditionsModule()),
+    ModuleRoute(
+      TermsAndConditionsPage.route,
+      module: TermsAndConditionsModule(),
+    ),
   ];
 }
