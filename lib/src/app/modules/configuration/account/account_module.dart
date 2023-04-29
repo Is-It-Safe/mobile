@@ -8,19 +8,19 @@ import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/b
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/change_email_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/change_password_page.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/update_user_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_email_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
-import '../../../../domain/use_case/update_user_use_case.dart';
 import 'presenter/bloc/change_email_bloc.dart';
 
 class AccountModule extends Module {

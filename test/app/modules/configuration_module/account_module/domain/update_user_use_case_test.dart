@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/error/safe_account_error.dart';
-import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
-import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_update_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_update_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/user_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/update_user_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 import '../mocks/profile_service_mock.dart';
 
