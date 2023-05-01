@@ -43,8 +43,9 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
     );
 
     tabController.addListener(() {
-      controller.onTabIndexChange(tabController.index);
-      setState(() {});
+      setState(() {
+        controller.onTabIndexChange(tabController.index);
+      });
     });
 
     SafeLogUtil.instance.route(Modular.to.path);
@@ -82,9 +83,6 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
           onOpenDrawer: () {
             _scaffoldKey.currentState!.openEndDrawer();
             controller.getHomeDrawerInfo();
-          },
-          onBottomTap: (tab) async {
-            // await controller.onTabIndexChange(tab);
           },
         ),
         body: TabBarView(

@@ -128,7 +128,6 @@ class HomeBloc extends SafeBloC {
   }
 
   Future<void> getBestRatedPlaces() async {
-    // if (listBestRatedPlaces.isNotEmpty && !isForceReload) return;
     try {
       bestRatedPlacesController.add(SafeStream.load());
       await getBestRatedLocationsUseCase
