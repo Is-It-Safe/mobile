@@ -13,7 +13,7 @@ import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
 import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_location_use_case.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:result_dart/result_dart.dart';
 

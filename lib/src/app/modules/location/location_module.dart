@@ -10,7 +10,7 @@ import 'package:is_it_safe_app/src/app/modules/location/review/review_module.dar
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/location/services/location_service.dart';
 
-import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_location_use_case.dart';
 
 class LocationModule extends Module {
   static String get route => "/location";

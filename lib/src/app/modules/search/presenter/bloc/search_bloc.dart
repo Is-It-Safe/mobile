@@ -7,7 +7,7 @@ import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_name_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_by_name_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 

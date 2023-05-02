@@ -161,13 +161,3 @@ class DrawerItem extends StatelessWidget {
     );
   }
 }
-
-class HomeDrawerVO {
-  String userName;
-  String userImage;
-
-  HomeDrawerVO({
-    required this.userName,
-    required this.userImage,
-  });
-}

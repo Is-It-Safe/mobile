@@ -4,23 +4,25 @@ import 'package:catcher/catcher.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
+
+import 'package:is_it_safe_app/src/app/modules/home/presenter/VOs/home_drawer_vo.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_near_user_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user_location_permission_usecase.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_user_location_permission_use_case.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_locator.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_image_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user_location_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_user_name_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_user_image_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
-import '../../../../../domain/use_case/get_user_location_permission_usecase.dart';
-import '../../../../../domain/use_case/save_user_location_permission_use_case.dart';
+
 
 class HomeBloc extends SafeBloC {
   final GetBestRatedLocationsUseCase getBestRatedLocationsUseCase;
