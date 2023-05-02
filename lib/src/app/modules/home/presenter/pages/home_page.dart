@@ -10,6 +10,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
+import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
@@ -23,6 +24,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends ModularState<HomePage, HomeBloc>
     with SingleTickerProviderStateMixin {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  late final List<LocationEntity> list;
 
   late TabController tabController;
 
@@ -32,15 +34,20 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
       await controller.requestAccessLocationPermission();
     });
     super.initState();
+
     tabController = TabController(
+      initialIndex: 0,
       length: 2,
       vsync: this,
+      animationDuration: Duration.zero,
     );
+
     tabController.addListener(() {
       setState(() {
         controller.onTabIndexChange(tabController.index);
       });
     });
+
     SafeLogUtil.instance.route(Modular.to.path);
   }
 
@@ -76,12 +83,6 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
           onOpenDrawer: () {
             _scaffoldKey.currentState!.openEndDrawer();
             controller.getHomeDrawerInfo();
-          },
-          onBottomTap: (tab) async {
-            await controller.onTabIndexChange(
-              tab,
-              isForceReload: true,
-            );
           },
         ),
         body: TabBarView(

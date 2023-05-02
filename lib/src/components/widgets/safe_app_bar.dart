@@ -40,21 +40,25 @@ class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
         indicatorSize: TabBarIndicatorSize.tab,
         onTap: onBottomTap,
         tabs: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Text(
-              S.current.textClosePlaces,
-              style: TextStyles.bodyText2(
-                color: SafeColors.textColors.dark,
+          Tab(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                S.current.textClosePlaces,
+                style: TextStyles.bodyText2(
+                  color: SafeColors.textColors.dark,
+                ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Text(
-              S.current.textBestRates,
-              style: TextStyles.bodyText2(
-                color: SafeColors.textColors.dark,
+          Tab(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                S.current.textBestRates,
+                style: TextStyles.bodyText2(
+                  color: SafeColors.textColors.dark,
+                ),
               ),
             ),
           ),
