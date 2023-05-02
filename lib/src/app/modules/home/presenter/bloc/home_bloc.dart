@@ -6,8 +6,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'package:is_it_safe_app/src/app/modules/home/presenter/VOs/home_drawer_vo.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_best_rated_locations_use_case.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_near_user_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_best_rated_locations_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_locations_near_user_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user_location_permission_usecase.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_user_location_permission_use_case.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
@@ -22,6 +22,7 @@ import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_user_ima
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_user_location_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/models/request/get_location_near_user_request.dart';
 
 
 class HomeBloc extends SafeBloC {
@@ -34,10 +35,8 @@ class HomeBloc extends SafeBloC {
   final GetUserLocationPermissionUseCase
       getUserLocationPermissionFirstSettingsUseCase;
   final ISafeLocator locator;
-
   final GetUserNameUseCase getUserNameUseCase;
   final GetUserImageUseCase getUserImageUseCase;
-
   late StreamController<SafeStream<List<LocationEntity>>>
       bestRatedPlacesController;
   late StreamController<SafeStream<List<LocationEntity>>>
@@ -152,7 +151,12 @@ class HomeBloc extends SafeBloC {
       locationsNearUserController.add(SafeStream.load());
       final location = await Geolocator.getCurrentPosition();
       await getLocationsNearUserUsecase
-          .call(location.latitude, location.longitude)
+          .call(
+        request: GetLocationNearUserRequest(
+          latitude: location.latitude,
+          longitude: location.longitude,
+        )
+      )
           .then((locations) {
         listLocationsNeartUser.clear();
         listLocationsNeartUser.addAll(locations);

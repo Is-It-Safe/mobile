@@ -2,8 +2,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/presenter/page/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/terms_and_conditions_module.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_best_rated_locations_use_case.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_near_user_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_best_rated_locations_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_locations_near_user_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/home/services/home_services.dart';
+import 'package:is_it_safe_app/src/app/modules/home/services/home_services_interface.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user_location_permission_usecase.dart';
 import 'package:is_it_safe_app/src/app/modules/location/services/location_service.dart';
 import 'package:is_it_safe_app/src/components/location/safe_locator.dart';
@@ -25,6 +27,11 @@ class HomeModule extends Module {
         i.get<AuthService>(),
       ),
     ),
+    Bind.lazySingleton<HomeServicesInterface>(
+      (i) => HomeServices(
+        i.get<AuthService>(),
+      ),
+    ),
     Bind.lazySingleton(
       (i) => ProfileService(
         i.get<AuthService>(),
@@ -32,12 +39,12 @@ class HomeModule extends Module {
     ),
     Bind.lazySingleton(
       (i) => GetBestRatedLocationsUseCase(
-        i.get<LocationService>(),
+        i.get<HomeServicesInterface>(),
       ),
     ),
     Bind.lazySingleton(
       (i) => GetLocationsNearUser(
-        i.get<LocationService>(),
+        i.get<HomeServicesInterface>(),
       ),
     ),
     Bind.lazySingleton(
