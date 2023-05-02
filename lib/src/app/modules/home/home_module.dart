@@ -17,7 +17,6 @@ import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user
 import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_user_location_permission_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_user_location_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class HomeModule extends Module {
