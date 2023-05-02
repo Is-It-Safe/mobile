@@ -128,8 +128,7 @@ class HomeBloc extends SafeBloC {
     return StringConstants.empty;
   }
 
-  Future<void> getBestRatedPlaces({bool isForceReload = false}) async {
-    if (listBestRatedPlaces.isNotEmpty && !isForceReload) return;
+  Future<void> getBestRatedPlaces() async {
     try {
       bestRatedPlacesController.add(SafeStream.load());
       await getBestRatedLocationsUseCase
@@ -250,18 +249,16 @@ class HomeBloc extends SafeBloC {
       if (granted) {
         await getLocationsNearUser();
       }
-    }).timeout(const Duration(milliseconds: 3000), onTimeout: () async {
-      await getLocationsNearUser();
     });
   }
 
-  onTabIndexChange(int index, {bool isForceReload = false}) async {
+  onTabIndexChange(int index) async {
     switch (index) {
       case 0:
         await requestAccessLocationPermission();
         break;
       case 1:
-        await getBestRatedPlaces(isForceReload: isForceReload);
+        await getBestRatedPlaces();
         break;
     }
   }

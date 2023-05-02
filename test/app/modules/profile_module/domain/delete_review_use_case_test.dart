@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_delete_review.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/delete_review_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/error/safe_profile_error.dart';
-import 'package:is_it_safe_app/src/domain/use_case/delete_review_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_delete_review.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mocks/profile_service_mock.dart';

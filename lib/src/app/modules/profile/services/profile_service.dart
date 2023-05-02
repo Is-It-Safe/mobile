@@ -3,21 +3,20 @@ import 'dart:convert';
 import 'package:catcher/catcher.dart';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/request_save_review.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_delete_review.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_delete_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_get_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_update_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/request/request_save_review.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_delete_review.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service_interface.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_update_user.dart';
 
 import '../../../../app/modules/configuration/account/error/safe_account_error.dart';
 import '../../../../app/modules/profile/error/safe_profile_error.dart';
-import 'response/response_delete_user.dart';
 
 class ProfileService implements IProfileService {
   final ApiService _service = ApiService();

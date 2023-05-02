@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service_interface.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_update_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_delete_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_delete_review.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/request/request_save_review.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/request_save_review.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_delete_review.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_delete_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_get_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_update_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service_interface.dart';
 
 class MockReviewService implements IProfileService {
   @override

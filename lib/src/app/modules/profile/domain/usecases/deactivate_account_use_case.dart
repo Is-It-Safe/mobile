@@ -1,6 +1,6 @@
 import 'package:is_it_safe_app/src/app/modules/profile/error/safe_profile_error.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service_interface.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service_interface.dart';
 import 'package:result_dart/result_dart.dart';
 
 class DeactivateAccountUseCase extends SafeUseCase {

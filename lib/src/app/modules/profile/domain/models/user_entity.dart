@@ -1,8 +1,8 @@
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_get_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_update_user.dart';
 import 'package:is_it_safe_app/src/core/constants/int_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_get_user.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/response/response_update_user.dart';
 
 class UserEntity {
   int id;

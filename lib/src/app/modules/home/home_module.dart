@@ -8,6 +8,7 @@ import 'package:is_it_safe_app/src/app/modules/home/services/home_services.dart'
 import 'package:is_it_safe_app/src/app/modules/home/services/home_services_interface.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user_location_permission_usecase.dart';
 import 'package:is_it_safe_app/src/app/modules/location/services/location_service.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service.dart';
 import 'package:is_it_safe_app/src/components/location/safe_locator.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
