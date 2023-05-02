@@ -5,6 +5,7 @@ import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_condition
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_best_rated_locations_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_near_user_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/services/location_service.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service.dart';
 import 'package:is_it_safe_app/src/components/location/safe_locator.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
@@ -14,7 +15,6 @@ import 'package:is_it_safe_app/src/domain/use_case/get_user_location_use_case.da
 import 'package:is_it_safe_app/src/domain/use_case/get_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_permission_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_location_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/profile_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 class HomeModule extends Module {
