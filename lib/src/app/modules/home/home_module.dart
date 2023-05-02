@@ -20,22 +20,55 @@ import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
-    Bind.lazySingleton((i) => ProfileService(i.get<AuthService>())),
     Bind.lazySingleton(
-        (i) => GetBestRatedLocationsUseCase(i.get<LocationService>())),
-    Bind.lazySingleton((i) => GetLocationsNearUser(i.get<LocationService>())),
-    Bind.lazySingleton((i) => SaveUserLocationTokenUseCase()),
+      (i) => LocationService(
+        i.get<AuthService>(),
+      ),
+    ),
     Bind.lazySingleton(
-        (i) => GetUserLocationTokenUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton((i) => SaveUserLocationPermissionFirstSettingsUseCase()),
-    Bind.lazySingleton((i) =>
-        GetUserLocationPermissionUseCase(i.get<ISharedPreferencesService>())),
-    Bind.lazySingleton((i) => SafeLocator()),
+      (i) => ProfileService(
+        i.get<AuthService>(),
+      ),
+    ),
     Bind.lazySingleton(
-        (i) => GetUserNameUseCase(i.get<ISharedPreferencesService>())),
+      (i) => GetBestRatedLocationsUseCase(
+        i.get<LocationService>(),
+      ),
+    ),
     Bind.lazySingleton(
-        (i) => GetUserImageUseCase(i.get<ISharedPreferencesService>())),
+      (i) => GetLocationsNearUser(
+        i.get<LocationService>(),
+      ),
+    ),
+    Bind.lazySingleton(
+      (i) => SaveUserLocationTokenUseCase(),
+    ),
+    Bind.lazySingleton(
+      (i) => GetUserLocationTokenUseCase(
+        i.get<ISharedPreferencesService>(),
+      ),
+    ),
+    Bind.lazySingleton(
+      (i) => SaveUserLocationPermissionFirstSettingsUseCase(),
+    ),
+    Bind.lazySingleton(
+      (i) => GetUserLocationPermissionUseCase(
+        i.get<ISharedPreferencesService>(),
+      ),
+    ),
+    Bind.lazySingleton(
+      (i) => SafeLocator(),
+    ),
+    Bind.lazySingleton(
+      (i) => GetUserNameUseCase(
+        i.get<ISharedPreferencesService>(),
+      ),
+    ),
+    Bind.lazySingleton(
+      (i) => GetUserImageUseCase(
+        i.get<ISharedPreferencesService>(),
+      ),
+    ),
     Bind.lazySingleton(
       (i) => HomeBloc(
         getLocationsNearUserUsecase: i.get<GetLocationsNearUser>(),
@@ -59,7 +92,9 @@ class HomeModule extends Module {
       Modular.initialRoute,
       child: (context, args) => const HomePage(),
     ),
-    ModuleRoute(TermsAndConditionsPage.route,
-        module: TermsAndConditionsModule()),
+    ModuleRoute(
+      TermsAndConditionsPage.route,
+      module: TermsAndConditionsModule(),
+    ),
   ];
 }
