@@ -33,7 +33,7 @@ class LocationEntity {
     return LocationEntity(
       id: location.id ?? IntConstants.empty,
       name: location.name ?? StringConstants.empty,
-      address: location.endereco ?? StringConstants.empty,
+      address: location.address ?? StringConstants.empty,
       averageGrade: location.averageGrade ?? DoubleConstants.empty,
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,
@@ -48,7 +48,7 @@ class LocationEntity {
     return LocationEntity(
       id: location.id ?? IntConstants.empty,
       name: location.name ?? StringConstants.empty,
-      address: location.endereco ?? StringConstants.empty,
+      address: location.address ?? StringConstants.empty,
       averageGrade: location.averageGrade ?? DoubleConstants.empty,
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,
@@ -85,7 +85,7 @@ class LocationEntity {
     return LocationEntity(
       id: location.id ?? IntConstants.empty,
       name: location.name ?? StringConstants.empty,
-      address: location.endereco ?? StringConstants.empty,
+      address: location.address ?? StringConstants.empty,
       averageGrade: location.averageGrade ?? DoubleConstants.empty,
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,

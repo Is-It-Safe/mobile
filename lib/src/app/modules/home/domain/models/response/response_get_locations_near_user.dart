@@ -1,6 +1,6 @@
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
 
-import 'response_location_review.dart';
+import '../../../../location/domain/entities/response/response_location_review.dart';
 
 class ResponseGetLocationsNearUser {
   int? id;

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:is_it_safe_app/src/app/modules/search/error/safe_search_error.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_locations_by_name_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_by_name_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mocks/search_service_mock.dart';

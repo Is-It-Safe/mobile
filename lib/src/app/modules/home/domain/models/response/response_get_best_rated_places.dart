@@ -3,7 +3,7 @@ import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response
 class ResponseGetRatedPlaces {
   int? id;
   String? name;
-  String? endereco;
+  String? address;
   String? imgUrl;
   double? averageGrade;
   String? averageImpressionStatus;
@@ -13,7 +13,7 @@ class ResponseGetRatedPlaces {
   ResponseGetRatedPlaces({
     this.id,
     this.name,
-    this.endereco,
+    this.address,
     this.imgUrl,
     this.averageGrade,
     this.averageImpressionStatus,
@@ -25,7 +25,7 @@ class ResponseGetRatedPlaces {
     return ResponseGetRatedPlaces(
       id: json['id'],
       name: json['name'],
-      endereco: json['endereco'],
+      address: json['endereco'],
       imgUrl: json['imgUrl'],
       averageGrade: json['averageGrade'],
       averageImpressionStatus: json['averageImpressionStatus'],

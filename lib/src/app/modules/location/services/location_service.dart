@@ -4,9 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/request/request_save_location.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_best_rated_places.dart';
+import 'package:is_it_safe_app/src/app/modules/home/domain/models/response/response_get_best_rated_places.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_locations_near_user.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_by_cep.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_save_location.dart';
 import 'package:is_it_safe_app/src/app/modules/location/services/location_service_interface.dart';
@@ -43,28 +42,6 @@ class LocationService implements ILocationService {
   }
 
   @override
-  Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String? place) async {
-    final token = await _authService.getAccessToken();
-
-    final path = place == null
-        ? ApiConstants.getBestRatedLocations
-        : '${ApiConstants.getBestRatedLocationsByCity}$place';
-
-    final requestConfig = RequestConfig(
-      path: path,
-      method: HttpMethod.get,
-      options: Options(
-        headers: {ApiConstants.kAuthorization: token},
-      ),
-    );
-
-    final response = await _service.doRequest(requestConfig);
-    return (json.decode(response.data) as List)
-        .map((e) => ResponseGetRatedPlaces.fromJson(e))
-        .toList();
-  }
-
-  @override
   Future<ResponseLocationByCep> getLocationByCep(int cep) async {
     final token = await _authService.getAccessToken();
 
@@ -78,27 +55,6 @@ class LocationService implements ILocationService {
 
     final response = await _service.doRequest(requestConfig);
     return ResponseLocationByCep.fromJson(json.decode(response.data));
-  }
-
-  @override
-  Future<List<ResponseGetLocationsNearUser>> getLocationsNearUser(
-      double userLatitude, double userLongitude) async {
-    final token = await _authService.getAccessToken();
-
-    final requestConfig = RequestConfig(
-      path:
-          '${ApiConstants.getLocationsNearUser}latitude=$userLatitude&longitude=$userLongitude',
-      method: HttpMethod.get,
-      options: Options(
-        headers: {ApiConstants.kAuthorization: token},
-      ),
-    );
-
-    final response = await _service.doRequest(requestConfig);
-    final map = (json.decode(response.data) as Map<String, dynamic>);
-    return (map['content'] as List)
-        .map((e) => ResponseGetLocationsNearUser.fromJson(e))
-        .toList();
   }
 
   @override
