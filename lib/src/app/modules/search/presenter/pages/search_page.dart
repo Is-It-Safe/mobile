@@ -20,6 +20,15 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
+  late FocusNode searchTextFocus;
+
+  @override
+  void initState() {
+    searchTextFocus = FocusNode();
+    searchTextFocus.addListener(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -35,9 +44,13 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
             children: [
               SafeTextFormField(
                 controller: bloc.searchTextController,
+                focusNode: searchTextFocus,
                 labelText: S.current.textSearch,
                 prefixIcon: const Icon(Icons.search),
-                onEditingComplete: () => bloc.searchLocation(),
+                onEditingComplete: () {
+                  searchTextFocus.unfocus();
+                  return bloc.searchLocation();
+                },
               ),
               SafeBuilder<List<LocationEntity>>(
                 stream: bloc.locations,
@@ -56,15 +69,18 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
                       ],
                     );
                   }
-                  return ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    itemCount: locations.length,
-                    separatorBuilder: (_, i) => const SizedBox(height: 15),
-                    itemBuilder: (context, index) => SearchLocationCard(
-                      location: locations[index],
-                      onTap: () => bloc.navigateToLocationPage(
-                        locations[index],
+                  return SizedBox(
+                    height: 800,
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      itemCount: locations.length,
+                      separatorBuilder: (_, i) => const SizedBox(height: 15),
+                      itemBuilder: (context, index) => SearchLocationCard(
+                        location: locations[index],
+                        onTap: () => bloc.navigateToLocationPage(
+                          locations[index],
+                        ),
                       ),
                     ),
                   );
