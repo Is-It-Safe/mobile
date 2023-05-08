@@ -17,7 +17,7 @@ class AppWidget extends StatelessWidget {
       child: MaterialApp.router(
         routerDelegate: Modular.routerDelegate,
         routeInformationParser: Modular.routeInformationParser,
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: FlavorUtil.isDevelopment,
         title: FlavorUtil.instance.appName,
         theme: lightTheme,
         supportedLocales: S.delegate.supportedLocales,
