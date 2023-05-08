@@ -48,6 +48,20 @@ android {
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+    }
+
+    flavorDimensions "environment"
+
+    productFlavors {
+        dev {
+            dimension "environment"
+            resValue "string", "flavor", "dev"
+        }
+        prod {
+            dimension "environment"
+            resValue "string", "flavor", "prod"
+        }
     }
 
     buildTypes {

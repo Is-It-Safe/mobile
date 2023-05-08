@@ -5,6 +5,7 @@
         "name": "PROD",
         "request": "launch",
         "type": "dart",
+        "flutterMode": "release",
         "args": [
           "--dart-define=flavor=prod"
       ]
@@ -13,6 +14,7 @@
         "name": "DEV",
         "request": "launch",
         "type": "dart",
+        "flutterMode": "debug",
         "args": [
           "--dart-define=flavor=dev"
       ]
