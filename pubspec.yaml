@@ -8,11 +8,18 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.17.0 <3.0.0"
 
+flavors:
+  dev:
+    flavor_type: "dev"
+  prod:
+    flavor_type: "prod"
+
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  
 
   #Funcionalidades do Sistema
   flutter_modular: ^5.0.3
@@ -26,6 +33,7 @@ dependencies:
   image_picker: ^0.8.6
   visibility_detector: ^0.3.3
   overlay_support: ^2.1.0
+  flutter_flavor: ^3.1.1
 
   #Requisições HTTP
   dio: ^4.0.6
