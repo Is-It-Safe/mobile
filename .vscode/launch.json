@@ -5,18 +5,18 @@
         "name": "PROD",
         "request": "launch",
         "type": "dart",
-        "flutterMode": "release",
         "args": [
-          "--dart-define=flavor=prod"
+          "--dart-define=flavor=prod",
+         "--flavor=prod"
       ]
       },
       {
         "name": "DEV",
         "request": "launch",
         "type": "dart",
-        "flutterMode": "debug",
         "args": [
-          "--dart-define=flavor=dev"
+          "--dart-define=flavor=dev",
+          "--flavor=dev"
       ]
       }
     ]
