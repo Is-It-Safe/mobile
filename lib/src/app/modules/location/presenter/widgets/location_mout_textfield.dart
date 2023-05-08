@@ -5,7 +5,7 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_location_use_case.dart';
 
 class MountTextField extends StatelessWidget {
   final GlobalKey<FormState> formKey;

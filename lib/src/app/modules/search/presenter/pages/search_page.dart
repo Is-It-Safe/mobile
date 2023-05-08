@@ -20,6 +20,15 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
+  late FocusNode searchTextFocus;
+
+  @override
+  void initState() {
+    searchTextFocus = FocusNode();
+    searchTextFocus.addListener(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -35,41 +44,56 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
             children: [
               SafeTextFormField(
                 controller: bloc.searchTextController,
+                focusNode: searchTextFocus,
                 labelText: S.current.textSearch,
                 prefixIcon: const Icon(Icons.search),
-                onEditingComplete: () => bloc.searchLocation(),
-              ),
-              SafeBuilder<List<LocationEntity>>(
-                stream: bloc.locations,
-                builder: (locations) {
-                  if (locations.isEmpty && bloc.isSearchEmpty) {
-                    return SafeEmptyCard.searchInitial();
+                onEditingComplete: () async {
+                  searchTextFocus.unfocus();
+                  if (!bloc.isSearchEmpty) {
+                    await bloc.searchLocation();
                   }
-                  if (locations.isEmpty && !bloc.isSearchEmpty) {
-                    return Column(
-                      children: [
-                        SafeEmptyCard.search(),
-                        SafeTextButton(
-                          text: S.current.textAddLocation,
-                          onTap: bloc.navigateToAddLocationPage,
-                        ),
-                      ],
-                    );
-                  }
-                  return ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    itemCount: locations.length,
-                    separatorBuilder: (_, i) => const SizedBox(height: 15),
-                    itemBuilder: (context, index) => SearchLocationCard(
-                      location: locations[index],
-                      onTap: () => bloc.navigateToLocationPage(
-                        locations[index],
-                      ),
-                    ),
-                  );
                 },
               ),
+              ValueListenableBuilder(
+                  valueListenable: bloc.searchTextController,
+                  builder: (context, state, child) {
+                    if (bloc.isSearchEmpty || searchTextFocus.hasFocus) {
+                      return SafeEmptyCard.searchInitial();
+                    }
+
+                    return SafeBuilder<List<LocationEntity>>(
+                      stream: bloc.locations,
+                      builder: (locations) {
+                        if (locations.isEmpty && bloc.isSearchEmpty) {
+                          return SafeEmptyCard.searchInitial();
+                        }
+                        if (locations.isEmpty && !bloc.isSearchEmpty) {
+                          return Column(
+                            children: [
+                              SafeEmptyCard.search(),
+                              SafeTextButton(
+                                text: S.current.textAddLocation,
+                                onTap: bloc.navigateToAddLocationPage,
+                              ),
+                            ],
+                          );
+                        }
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          itemCount: locations.length,
+                          separatorBuilder: (_, i) =>
+                              const SizedBox(height: 15),
+                          itemBuilder: (context, index) => SearchLocationCard(
+                            location: locations[index],
+                            onTap: () => bloc.navigateToLocationPage(
+                              locations[index],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }),
             ],
           ),
         ),

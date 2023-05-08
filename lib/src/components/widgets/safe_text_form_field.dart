@@ -23,6 +23,7 @@ class SafeTextFormField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final DropdownType dropdownType;
   final int? maxLength;
+  final FocusNode? focusNode;
   final TextInputAction? textInputAction;
   final TextCapitalization textCapitalization;
   final String? obscuringCharacter;
@@ -45,6 +46,7 @@ class SafeTextFormField extends StatefulWidget {
     this.readOnly = false,
     this.dropdownType = DropdownType.none,
     this.maxLength,
+    this.focusNode,
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
     this.obscuringCharacter,
@@ -81,6 +83,7 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
       children: [
         TextFormField(
           controller: widget.controller,
+          focusNode: widget.focusNode,
           cursorColor: SafeColors.statusColors.active,
           readOnly: isReadOnly,
           keyboardType: widget.keyboardType ?? TextInputType.text,
