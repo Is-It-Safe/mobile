@@ -11,7 +11,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
-import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/user_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 
 import '../../../../../../core/util/safe_log_util.dart';

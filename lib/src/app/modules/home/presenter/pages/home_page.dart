@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/home/presenter/VOs/home_drawer_vo.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permission_card.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
@@ -23,6 +25,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends ModularState<HomePage, HomeBloc>
     with SingleTickerProviderStateMixin {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  late final List<LocationEntity> list;
 
   late TabController tabController;
 
@@ -32,15 +35,20 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
       await controller.requestAccessLocationPermission();
     });
     super.initState();
+
     tabController = TabController(
+      initialIndex: 0,
       length: 2,
       vsync: this,
+      animationDuration: Duration.zero,
     );
+
     tabController.addListener(() {
       setState(() {
         controller.onTabIndexChange(tabController.index);
       });
     });
+
     SafeLogUtil.instance.route(Modular.to.path);
   }
 
@@ -76,12 +84,6 @@ class _HomePageState extends ModularState<HomePage, HomeBloc>
           onOpenDrawer: () {
             _scaffoldKey.currentState!.openEndDrawer();
             controller.getHomeDrawerInfo();
-          },
-          onBottomTap: (tab) async {
-            await controller.onTabIndexChange(
-              tab,
-              isForceReload: true,
-            );
           },
         ),
         body: TabBarView(

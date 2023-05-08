@@ -3,17 +3,17 @@ import 'dart:async';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/pages/login_page.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/update_user_use_case.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
-import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/user_entity.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/update_user_use_case.dart';
-import 'package:is_it_safe_app/src/service/api/modules/profile/request/resquest_update_user.dart';
 
 class AccountBloc extends SafeBloC {
   final GetUserUseCase getUserUseCase;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
-import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 
 class SearchLocationCard extends StatelessWidget {
   final LocationEntity location;

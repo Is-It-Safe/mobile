@@ -170,7 +170,10 @@ class LoginBloc extends SafeBloC {
   }
 
   Future<void> forgotPassword() async {
-    final Uri url = Uri(path: ApiConstants.kForgotPassword);
+    final Uri url = Uri(
+      scheme: 'https',
+      path: ApiConstants.kForgotPassword,
+    );
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     }
