@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:is_it_safe_app/src/core/util/flavor_util.dart';
 
 /// [ApiConstants] é uma classe que contém todas as constantes usadas nas requisições da API
 class ApiConstants {
@@ -20,47 +21,44 @@ class ApiConstants {
   static String kBasicAuth = 'Basic $kEncodedClientCredentials';
 
   ///URL para requisições de autenticação
-  static const String kAuthUrl = 'https://is-it-safe-api-v2.herokuapp.com/';
+  static const String kDevelopUrl = 'https://is-it-safe-api-v2.herokuapp.com';
+  static const String kProductionUrl = 'https://api.isitsafe.com.br';
 
   ///Url default para requisições da API
-  static const String kUrl =
-      'https://is-it-safe-api-v2.herokuapp.com/is-it-safe/';
+  static String kUrl = '${FlavorUtil.instance.url}/is-it-safe/';
 
   ///URL para requisições voltadas a localização via CEP
   static const String kUrlCep = 'viacep.com.br/ws/cep/json/';
 
   ///URL para direcionar usuario a pagina web de esqueceu a senha
-  static const String kForgotPassword =
-      'https://is-it-safe-api-v2.herokuapp.com/is-it-safe/forgot';
+  static String kForgotPassword =
+      '${FlavorUtil.instance.url}/is-it-safe/forgot';
   /*--------------------------------------------------------------------*/
 
   //Auth
-  static const String doAuth = '${kUrl}auth/login';
-  static const String doRefresh = '${kUrl}auth/refreshtoken';
-  static const String doRegister = '${kUrl}user/save';
-  static const String getGenders = '${kUrl}gender/find-all';
-  static const String getSexualOrientations = '${kUrl}orientation/find-all';
-  static const String confirmPassword = '${kUrl}user/is-password-correct';
+  static String doAuth = '${kUrl}auth/login';
+  static String doRefresh = '${kUrl}auth/refreshtoken';
+  static String doRegister = '${kUrl}user/save';
+  static String getGenders = '${kUrl}gender/find-all';
+  static String getSexualOrientations = '${kUrl}orientation/find-all';
+  static String confirmPassword = '${kUrl}user/is-password-correct';
 
   //Location
-  static const String getBestRatedLocations = '${kUrl}location/find-all';
-  static const String getLocationsByName = '${kUrl}location/find-all?name=';
-  static const String getLocationById = '${kUrl}location';
-  static const String addLocation = '${kUrl}location/save';
-  static const String getBestRatedLocationsByCity =
+  static String getBestRatedLocations = '${kUrl}location/find-all';
+  static String getLocationsByName = '${kUrl}location/find-all?name=';
+  static String getLocationById = '${kUrl}location';
+  static String addLocation = '${kUrl}location/save';
+  static String getBestRatedLocationsByCity =
       '${kUrl}location/trending?cityName=';
-  static const String getLocationsNearUser = '${kUrl}location/near?';
+  static String getLocationsNearUser = '${kUrl}location/near?';
 
   //User
-  static const String getUser = '${kUrl}user/profile';
-
-  static const String deleteUser = '${kUrl}user/delete/';
-
-  static const String updateUser = '${kUrl}user/update';
-
-  static const String deactivateUser = '${kUrl}user/deactivate';
+  static String getUser = '${kUrl}user/profile';
+  static String deleteUser = '${kUrl}user/delete/';
+  static String updateUser = '${kUrl}user/update';
+  static String deactivateUser = '${kUrl}user/deactivate';
 
   //Review
-  static const String doReview = '${kUrl}review/save';
-  static const String deleteReview = '${kUrl}review/delete/';
+  static String doReview = '${kUrl}review/save';
+  static String deleteReview = '${kUrl}review/delete/';
 }

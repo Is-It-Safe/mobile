@@ -5,12 +5,12 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dar
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/need_permission_card.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
-import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
