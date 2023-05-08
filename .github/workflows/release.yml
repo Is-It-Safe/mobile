@@ -29,16 +29,27 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      # Build APK
-      - name: Build APK
-        run: flutter build apk
-
-      # Upload APK as artifact
-      - name: Upload APK
+      # Build DEV APK
+      - name: Build DEV APK
+        run: flutter build apk -t lib/main.dart --release --flavor dev
+        
+      # Upload DEV APK as artifact
+      - name: Upload DEV APK
         uses: actions/upload-artifact@v2
         with:
-          name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: app-dev
+          path: build/app/outputs/flutter-apk/app-dev.apk
+        
+      # Build PROD APK
+      - name: Build PROD APK
+        run: flutter build apk -t lib/main.dart --release --flavor prod
+      
+      # Upload PROD APK as artifact
+      - name: Upload PROD APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-prod
+          path: build/app/outputs/flutter-apk/app-prod.apk
 
       # Send message to Discord webhook
 
