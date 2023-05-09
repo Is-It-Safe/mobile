@@ -12,7 +12,7 @@ class RegisterUserVo {
   RegisterUserVo({
     required this.userSignInEnum,
   }) {
-    if (this.userSignInEnum == UserSignInEnum.pronouns) {
+    if (userSignInEnum == UserSignInEnum.pronouns) {
       isValid = true;
     }
   }

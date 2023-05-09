@@ -23,7 +23,7 @@ class SafeErrorDetails extends StatelessWidget {
       child: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 24.0),
+            padding: const EdgeInsets.only(top: 24.0, left: 24.0, right: 24.0),
             child: Column(
               children: [
                 Padding(

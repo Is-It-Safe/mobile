@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/enum/safe_snackbar_type_enum.dart';
-import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:overlay_support/overlay_support.dart';
 
@@ -118,9 +117,7 @@ class SafeSnackBarImpl extends StatelessWidget {
               Expanded(
                 child: Text(
                   message,
-                  style: TextStyles.bodyText2(
-                    color: SafeColors.generalColors.white,
-                  ),
+                  style: TextStyles.bodyText2(color: type.text),
                 ),
               ),
             ],

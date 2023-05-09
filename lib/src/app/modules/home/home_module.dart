@@ -80,13 +80,7 @@ class HomeModule extends Module {
       (i) => HomeBloc(
         getLocationsNearUserUsecase: i.get<GetLocationsNearUser>(),
         getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
-        getUserLocationTokenUseCase: i.get<GetUserLocationTokenUseCase>(),
-        saveUserLocationTokenUseCase: i.get<SaveUserLocationTokenUseCase>(),
-        saveUserLocationPermissionFirstSettingsUseCase:
-            i.get<SaveUserLocationPermissionFirstSettingsUseCase>(),
-        getUserLocationPermissionFirstSettingsUseCase:
-            i.get<GetUserLocationPermissionUseCase>(),
-        locator: i.get<SafeLocator>(),
+        safeLocator: i.get<SafeLocator>(),
         getUserNameUseCase: i.get<GetUserNameUseCase>(),
         getUserImageUseCase: i.get<GetUserImageUseCase>(),
       ),
