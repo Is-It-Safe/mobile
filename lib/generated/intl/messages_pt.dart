@@ -198,6 +198,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
         "textErrorSearch": MessageLookupByLibrary.simpleMessage(
             "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?"),
+        "textErrorToLoadTheUsersInformation":
+            MessageLookupByLibrary.simpleMessage(
+                "Erro ao carregar as informações do usuário."),
         "textErrorTryAgain": MessageLookupByLibrary.simpleMessage(
             "Tente novamente em alguns instantes."),
         "textErrorUnknown": MessageLookupByLibrary.simpleMessage(

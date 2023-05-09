@@ -10,6 +10,21 @@ enum SafeSnackBarTypeEnum {
 }
 
 extension SnackBarBackgroundColor on SafeSnackBarTypeEnum {
+  Color get text {
+    switch (this) {
+      case SafeSnackBarTypeEnum.alert:
+        return SafeColors.generalColors.primary;
+      case SafeSnackBarTypeEnum.error:
+        return SafeColors.generalColors.white;
+      case SafeSnackBarTypeEnum.success:
+        return SafeColors.generalColors.white;
+      case SafeSnackBarTypeEnum.active:
+        return SafeColors.generalColors.white;
+      case SafeSnackBarTypeEnum.info:
+        return SafeColors.generalColors.white;
+    }
+  }
+
   Color get background {
     switch (this) {
       case SafeSnackBarTypeEnum.alert:

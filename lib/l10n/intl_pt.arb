@@ -39,6 +39,7 @@
     "textErrorGetLocation": "Ocorreu um erro ao obter sua localização!",
     "textErrorLoginUnauthorized": "Usuário ou senha inválido!",
     "textErrorLoginFailed":"Não foi possível fazer login, tente novamente em alguns instantes.",
+    "textErrorToLoadTheUsersInformation":"Erro ao carregar as informações do usuário.",
 
     "textInitialSearch" : "Pesquise locais para avaliar",
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",

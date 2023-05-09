@@ -400,6 +400,16 @@ class S {
     );
   }
 
+  /// `Erro ao carregar as informações do usuário.`
+  String get textErrorToLoadTheUsersInformation {
+    return Intl.message(
+      'Erro ao carregar as informações do usuário.',
+      name: 'textErrorToLoadTheUsersInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Pesquise locais para avaliar`
   String get textInitialSearch {
     return Intl.message(

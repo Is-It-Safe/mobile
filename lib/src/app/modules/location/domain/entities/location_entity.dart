@@ -1,3 +1,4 @@
+import 'package:is_it_safe_app/src/app/modules/home/domain/models/response/response_get_best_rated_places.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_review.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_save_location.dart';
@@ -44,11 +45,12 @@ class LocationEntity {
     );
   }
 
-  factory LocationEntity.fromGetBestRatedPlaces(dynamic location) {
+  factory LocationEntity.fromGetBestRatedPlaces(
+      ResponseGetRatedPlaces location) {
     return LocationEntity(
       id: location.id ?? IntConstants.empty,
       name: location.name ?? StringConstants.empty,
-      address: location.endereco ?? StringConstants.empty,
+      address: location.address ?? StringConstants.empty,
       averageGrade: location.averageGrade ?? DoubleConstants.empty,
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,

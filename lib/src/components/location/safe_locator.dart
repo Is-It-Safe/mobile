@@ -1,81 +1,66 @@
+import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_snack_bar.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_locator.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
 class SafeLocator implements ISafeLocator {
+  final ISafeSnackBar safeSnackBar = SafeSnackBar();
+
   @override
-  Future<Placemark?> getLocation({Function? onLocationDenied}) async {
-    final Position? userPosition = await getLastKnownPosition(
-      onLocationDenied: onLocationDenied,
-    );
-    if (userPosition != null) {
-      List<Placemark> resultList =
-          await GeocodingPlatform.instance.placemarkFromCoordinates(
+  Future<Placemark?> getLocation() async {
+    List<Placemark> placemarks = [];
+    final bool isPermission = await verifyPermission();
+    if (isPermission) {
+      final Position userPosition = await kUserPosition;
+
+      placemarks = await GeocodingPlatform.instance.placemarkFromCoordinates(
         userPosition.latitude,
         userPosition.longitude,
       );
-      return resultList.first;
+
+      return placemarks.first;
     }
     return null;
   }
 
   @override
-  Future<List<Placemark>> getLocationList({Function? onLocationDenied}) async {
-    final Position? userPosition = await getLastKnownPosition(
-      onLocationDenied: onLocationDenied,
+  Future<Position> get kUserPosition async {
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
     );
-    if (userPosition != null) {
-      List<Placemark> resultList =
-          await GeocodingPlatform.instance.placemarkFromCoordinates(
-        userPosition.latitude,
-        userPosition.longitude,
-      );
-      return resultList;
-    }
-    return List.empty();
   }
 
   @override
-  Future<Position?> getLastKnownPosition({Function? onLocationDenied}) async {
-    final locationPermission = await Geolocator.checkPermission();
-    if (locationPermission == LocationPermission.denied ||
-        locationPermission == LocationPermission.deniedForever) {
-      if (onLocationDenied != null) {
-        onLocationDenied();
-      }
-      return null;
+  Future<bool> verifyPermission() async {
+    LocationPermission permission;
+
+    await _isLocationServiceEnabled();
+
+    permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
     }
-    return Geolocator.getLastKnownPosition();
-  }
-
-  @override
-  Future<Stream<Position>> getLocationStream({Duration? timeLimit}) async {
-    final bool isLocationEnabled = await verifyPermission();
-    if (isLocationEnabled) {
-      return Geolocator.getPositionStream(
-        locationSettings: LocationSettings(
-          accuracy: LocationAccuracy.best,
-          distanceFilter: 10,
-          timeLimit: timeLimit ?? const Duration(days: 5),
-        ),
-      );
-    }
-    return const Stream.empty();
-  }
-
-  @override
-  Future<bool> requestPermission() => Geolocator.openLocationSettings();
-
-  @override
-  Future<bool> verifyPermission({Function? onLocationDenied}) async {
-    final locationPermission = await Geolocator.checkPermission();
-    if (locationPermission == LocationPermission.denied ||
-        locationPermission == LocationPermission.deniedForever) {
-      if (onLocationDenied != null) {
-        onLocationDenied();
-      }
-      return false;
+    if (permission == LocationPermission.deniedForever ||
+        permission == LocationPermission.denied) {
+      return _onPermissionDenied();
     }
     return true;
+  }
+
+  Future<bool> _isLocationServiceEnabled() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (serviceEnabled == false) {
+      safeSnackBar.alert(S.current.textDeniedServiceLocation);
+    }
+
+    return serviceEnabled;
+  }
+
+  bool _onPermissionDenied() {
+    safeSnackBar.alert(S.current.textDeniedPermissionLocation);
+    return false;
   }
 }
