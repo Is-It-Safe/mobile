@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:catcher/catcher.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'package:is_it_safe_app/src/app/modules/home/presenter/VOs/home_drawer_vo.dart';
 import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_best_rated_locations_use_case.dart';
@@ -60,7 +61,7 @@ class HomeBloc extends SafeBloC {
     } catch (e, stacktrace) {
       Catcher.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
-      userDrawerData.error('Erro ao carregar as informações do usuário.');
+      userDrawerData.error(S.current.textErrorToLoadTheUsersInformation);
     }
   }
 
