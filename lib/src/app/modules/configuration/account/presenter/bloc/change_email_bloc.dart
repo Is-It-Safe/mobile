@@ -67,7 +67,6 @@ class ChangeEmailBloc extends SafeBloC {
   }
 
   Future<void> changeUserEmail(String email) async {
-    // TODO: Implementar endpoint quando estiver pronto
     await _saveUserEmail(email);
   }
 

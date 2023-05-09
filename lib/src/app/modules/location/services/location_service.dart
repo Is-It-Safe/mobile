@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/request/request_save_location.dart';
-import 'package:is_it_safe_app/src/app/modules/home/domain/models/response/response_get_best_rated_places.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_by_cep.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_save_location.dart';
