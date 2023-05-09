@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
-import 'package:is_it_safe_app/src/app/modules/location/review/presenter/bloc/review_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/review/presenter/bloc/review_bloc.dart';
 import 'package:is_it_safe_app/src/components/config/safe_event.dart';
 import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';

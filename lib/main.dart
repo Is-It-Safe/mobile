@@ -21,7 +21,7 @@ void main() {
     ConsoleHandler(
       enableApplicationParameters: true,
       enableDeviceParameters: false,
-      enableStackTrace: false,
+      enableStackTrace: true,
     ),
   ]);
 

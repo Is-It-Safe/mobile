@@ -24,7 +24,7 @@ class HomeServices implements HomeServicesInterface {
 
     final path = place == null
         ? ApiConstants.getBestRatedLocations
-        : '${ApiConstants.getBestRatedLocationsByCity}$place';
+        : '${ApiConstants.getBestRatedLocationsByCity}Salvador';
 
     final requestConfig = RequestConfig(
       path: path,
