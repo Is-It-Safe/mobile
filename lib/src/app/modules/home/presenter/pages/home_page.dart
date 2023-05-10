@@ -77,7 +77,7 @@ class _HomePageState extends SafeState<HomePage, HomeBloc>
         ),
         appBar: const SafeAppBar().home(
           tabController: tabController,
-          onOpenDrawer: () => openEndDrawer,
+          onOpenDrawer: () => openEndDrawer(),
         ),
         body: SafeBuilder2<List<LocationEntity>, List<LocationEntity>>(
             stream1: bloc.locationsNearUser,
