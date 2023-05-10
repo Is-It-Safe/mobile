@@ -1,66 +1,36 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/review/domain/usecases/save_review_use_case.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/enum/impression_status_enum.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
+import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
-import 'package:result_dart/result_dart.dart';
 
 class ReviewBloc extends SafeBloC {
   final SaveReviewUseCase saveReviewUseCase;
 
-  late StreamController<SafeStream<ReviewEntity>> reviewController;
-  late StreamController<double> gradeController;
-  late StreamController<int> impressionStatusController;
-  late StreamController<bool> isButtonEnabledController;
+  final review = SafeStream<ReviewEntity?>(data: null);
+  final grade = SafeStream<double>(data: DoubleConstants.defaultEmotionGrade);
+  final impressionStatus = SafeStream<ImpressionStatusEnum>(
+    data: ImpressionStatusEnum.safe,
+  );
+  final isButtonEnabled = SafeStream<bool>(data: false);
 
-  late TextEditingController textReviewController;
-
-  List<String> impressionStatusImages = [
-    AssetConstants.impression.safe,
-    AssetConstants.impression.warning,
-    AssetConstants.impression.danger,
-  ];
-  List<String> impressionStatusTexts = [
-    S.current.textSafeForLGBT,
-    S.current.textSomeProblemsHappend,
-    S.current.textDontRecomendThisPlace
-  ];
-
-  String impressionStatus = StringConstants.safe;
-  double grade = 3;
+  final textReviewController = TextEditingController();
 
   ReviewBloc({
     required this.saveReviewUseCase,
-  }) {
-    init();
-  }
+  });
 
   @override
-  Future<void> init() async {
-    reviewController = StreamController.broadcast();
-    gradeController = StreamController.broadcast();
-    impressionStatusController = StreamController.broadcast();
-    textReviewController = TextEditingController();
-    isButtonEnabledController = StreamController.broadcast();
-
-    isButtonEnabledController.add(false);
-    gradeController.add(DoubleConstants.defaultEmotionGrade);
-    impressionStatusController.add(0);
-  }
+  Future<void> init() async {}
 
   void onImpressionChanged(int index) {
-    String status = StringConstants.safe;
-    if (index == 0) status = StringConstants.safe;
-    if (index == 1) status = StringConstants.warning;
-    if (index == 2) status = StringConstants.danger;
-    impressionStatus = status;
-    impressionStatusController.add(index);
+    impressionStatus.data = ImpressionStatusEnum.values[index];
   }
 
   List<String> getImpressions(int index) {
@@ -76,35 +46,41 @@ class ReviewBloc extends SafeBloC {
   }
 
   void onReviewChanged(String value) {
-    isButtonEnabledController.add(value.trim().isNotEmpty);
+    isButtonEnabled.data = value.trim().isNotEmpty;
   }
 
   Future sendReview({required int id}) async {
+    review.loading();
     try {
-      reviewController.add(SafeStream.load());
-      await saveReviewUseCase
-          .call(
+      final result = await saveReviewUseCase.call(
         review: textReviewController.text,
-        grade: grade.toInt(),
-        impressionStatus: impressionStatus,
+        grade: grade.data.toInt(),
+        impressionStatus: impressionStatus.data.name,
         locationId: id,
-      )
-          .fold(
+      );
+
+      result.fold(
         (success) {
-          reviewController.add(SafeStream.done(success));
+          review.data = success;
+          Modular.to.pop(true);
+          safeSnackBar.success('Review enviada com sucesso!');
         },
-        (error) {},
+        (error) => throw Exception(error),
       );
     } catch (e) {
-      reviewController.addError(e.toString());
+      review.error(e.toString());
+      safeSnackBar.error(e.toString());
     }
   }
 
-  void onGradeChanged(double value) {
-    grade = value;
-    gradeController.add(value);
-  }
+  void onGradeChanged(double value) => grade.data = value;
 
   @override
-  Future<void> dispose() async {}
+  Future<void> dispose() async {
+    review.data = null;
+    grade.data = DoubleConstants.defaultEmotionGrade;
+    impressionStatus.data = ImpressionStatusEnum.safe;
+    isButtonEnabled.data = false;
+    textReviewController.dispose();
+  }
 }

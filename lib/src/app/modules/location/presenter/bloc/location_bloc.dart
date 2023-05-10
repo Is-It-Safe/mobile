@@ -46,10 +46,16 @@ class LocationBloC extends SafeBloC {
   }
 
   void navigateToReviewPage() {
-    Modular.to.pushNamed(
+    Modular.to
+        .pushNamed(
       LocationModule.route + ReviewPage.route,
       arguments: location.data,
-    );
+    )
+        .then((value) {
+      if (value == true) {
+        getLocationById(location.data?.id);
+      }
+    });
   }
 
   @override

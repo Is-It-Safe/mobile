@@ -10,6 +10,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_impression_card.dart'
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_review_card.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/enum/impression_status_enum.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
@@ -109,7 +110,7 @@ class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
                 ),
                 SizedBox(height: size.height * .023),
                 const SafeImpressionCard(
-                  type: SafeImpressionEnum.success,
+                  type: ImpressionStatusEnum.safe,
                 ),
                 SizedBox(height: size.height * .035),
                 Divider(

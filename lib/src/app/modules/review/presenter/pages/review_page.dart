@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'package:is_it_safe_app/src/app/modules/review/presenter/bloc/review_bloc.dart';
-import 'package:is_it_safe_app/src/components/config/safe_event.dart';
-import 'package:is_it_safe_app/src/components/config/safe_layout.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_impression_carroussel.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_slider_emoji.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
-import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
-import 'package:is_it_safe_app/src/core/constants/double_constants.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
+import 'package:is_it_safe_app/src/core/enum/impression_status_enum.dart';
+import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
+import 'package:is_it_safe_app/src/core/state/safe_state.dart';
+import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';
 
 class ReviewPage extends StatefulWidget {
@@ -30,7 +27,7 @@ class ReviewPage extends StatefulWidget {
   ReviewPageState createState() => ReviewPageState();
 }
 
-class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
+class ReviewPageState extends SafeState<ReviewPage, ReviewBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   late PageController _pageController;
@@ -43,107 +40,71 @@ class ReviewPageState extends ModularState<ReviewPage, ReviewBloc> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       key: _scaffoldKey,
       appBar: SafeAppBar(
         title: widget.location.name,
       ),
-      body: StreamBuilder<SafeStream<ReviewEntity>>(
-          stream: controller.reviewController.stream,
-          initialData: SafeStream.initial(),
-          builder: (context, snapshot) {
-            return SafeLayout(
-              snapshot: snapshot,
-              onCompleted: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 40,
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        S.current.textReviewCompleted.toUpperCase(),
-                        style: TextStyles.headline1(
-                          color: SafeColors.statusColors.success,
-                        ),
+      body: SafeBuilder<ReviewEntity?>(
+          stream: bloc.review,
+          builder: (review) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if (widget.location.imagePath != null &&
+                        widget.location.imagePath!.isNotEmpty)
+                      ReviewImageWidget(
+                        image: widget.location.imagePath!,
                       ),
-                      const SizedBox(height: 30),
-                      SvgPicture.asset(AssetConstants.general.reviewCompleted),
-                      const SizedBox(height: 30),
-                      Text(
-                        snapshot.data?.data?.review ?? StringConstants.empty,
-                        style: TextStyles.bodyText1(),
-                      ),
-                      const SizedBox(height: 120),
-                      SafeButton(
-                        title: S.current.textContinue,
-                        onTap: () => Modular.to.pop(),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              onInitial: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (widget.location.imagePath != null &&
-                          widget.location.imagePath!.isNotEmpty)
-                        ReviewImageWidget(
-                          image: widget.location.imagePath!,
-                        ),
-                      const SizedBox(height: 20),
-                      ReviewEmotionsWidget(
-                        grade: controller.gradeController.stream,
-                        onGradeChanged: (value) =>
-                            controller.onGradeChanged(value),
-                      ),
-                      const SizedBox(height: 30),
-                      ReviewImpressionStatusWidget(
-                        carouselStream:
-                            controller.impressionStatusController.stream,
-                        pageController: _pageController,
-                        images: controller.impressionStatusImages,
-                        texts: controller.impressionStatusTexts,
-                        getImpressions: (index) =>
-                            controller.getImpressions(index),
-                        onImpressionChanged: (cardId) =>
-                            controller.onImpressionChanged(
-                          cardId,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      ReviewTextFieldWidget(
-                        textController: controller.textReviewController,
-                        formKey: _formKey,
-                        onChanged: (value) => controller.onReviewChanged(value),
-                      ),
-                      const SizedBox(height: 30),
-                      StreamBuilder<bool>(
-                        stream: controller.isButtonEnabledController.stream,
-                        builder: (context, snapshot) => SafeButton(
-                          title: S.current.textSend,
-                          state: (snapshot.data ?? false)
-                              ? ButtonState.rest
-                              : ButtonState.disabled,
-                          onTap: snapshot.data == true
-                              ? () async {
-                                  if (_formKey.currentState?.validate() ??
-                                      false) {
-                                    await controller.sendReview(
-                                        id: widget.location.id ?? 0);
-                                  }
+                    const SizedBox(height: 20),
+                    ReviewEmotionsWidget(
+                      grade: bloc.grade,
+                      onGradeChanged: (value) => bloc.onGradeChanged(value),
+                    ),
+                    const SizedBox(height: 30),
+                    ReviewImpressionStatusWidget(
+                      carouselStream: bloc.impressionStatus,
+                      pageController: _pageController,
+                      images: ImpressionStatusEnum.values
+                          .map((e) => e.image)
+                          .toList(),
+                      texts: ImpressionStatusEnum.values
+                          .map((e) => e.text)
+                          .toList(),
+                      getImpressions: (index) => bloc.getImpressions(index),
+                      onImpressionChanged: (cardId) =>
+                          bloc.onImpressionChanged(cardId),
+                    ),
+                    const SizedBox(height: 30),
+                    ReviewTextFieldWidget(
+                      textController: bloc.textReviewController,
+                      formKey: _formKey,
+                      onChanged: (value) => bloc.onReviewChanged(value),
+                    ),
+                    const SizedBox(height: 30),
+                    SafeBuilder<bool>(
+                      stream: bloc.isButtonEnabled,
+                      builder: (isButtonEnabled) => SafeButton(
+                        title: S.current.textSend,
+                        state: isButtonEnabled
+                            ? ButtonState.rest
+                            : ButtonState.disabled,
+                        onTap: isButtonEnabled
+                            ? () async {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  await bloc.sendReview(
+                                      id: widget.location.id ?? 0);
                                 }
-                              : () => _formKey.currentState?.validate(),
-                        ),
+                              }
+                            : () => _formKey.currentState?.validate(),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             );
@@ -204,7 +165,7 @@ class ReviewTextFieldWidget extends StatelessWidget {
 }
 
 class ReviewImpressionStatusWidget extends StatefulWidget {
-  final Stream<int> carouselStream;
+  final SafeStream<ImpressionStatusEnum> carouselStream;
   final PageController pageController;
   final List<String> images;
   final List<String> texts;
@@ -240,11 +201,11 @@ class _ReviewImpressionStatusWidgetState
           ),
         ),
         const SizedBox(height: 20),
-        StreamBuilder<int>(
+        SafeBuilder<ImpressionStatusEnum>(
           stream: widget.carouselStream,
-          builder: (context, snapshot) => SafeImpressionCarroussel(
+          builder: (carouselStream) => SafeImpressionCarroussel(
             pageController: widget.pageController,
-            currentPage: snapshot.data ?? 0,
+            currentPage: carouselStream.index,
             onImpressionChanged: (value) => widget.onImpressionChanged(value),
             data: List.generate(
               widget.images.length,
@@ -252,7 +213,7 @@ class _ReviewImpressionStatusWidgetState
                 id: index,
                 title: widget.texts[index],
                 image: widget.images[index],
-                impressions: widget.getImpressions(snapshot.data ?? 0),
+                impressions: widget.getImpressions(carouselStream.index),
               ),
             ),
           ),
@@ -272,7 +233,7 @@ class _ReviewImpressionStatusWidgetState
 }
 
 class ReviewEmotionsWidget extends StatefulWidget {
-  final Stream<double> grade;
+  final SafeStream<double> grade;
   final void Function(double value) onGradeChanged;
   const ReviewEmotionsWidget({
     Key? key,
@@ -296,11 +257,10 @@ class _ReviewEmotionsWidgetState extends State<ReviewEmotionsWidget> {
           ),
         ),
         const SizedBox(height: 20),
-        StreamBuilder<double>(
+        SafeBuilder<double>(
           stream: widget.grade,
-          initialData: DoubleConstants.defaultEmotionGrade,
-          builder: (context, snapshot) => SafeEmotionSlider(
-            value: snapshot.data ?? DoubleConstants.defaultEmotionGrade,
+          builder: (grade) => SafeEmotionSlider(
+            value: grade,
             min: 1,
             onChanged: (value) {
               widget.onGradeChanged(value.roundToDouble());
