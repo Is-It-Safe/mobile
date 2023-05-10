@@ -30,9 +30,7 @@ class ChangeEmailBloc extends SafeBloC {
   final emailAddressText = TextEditingController();
 
   @override
-  Future<void> init() async {
-    //
-  }
+  Future<void> init() async {}
 
   bool get emailValidated => ValidationUtil.email(emailAddressText.text);
 
