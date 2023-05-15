@@ -9,7 +9,7 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 enum AppBarType { regular, home }
 
-class SafeAppBar extends StatelessWidget with PreferredSizeWidget {
+class SafeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBarType appBarType;
   final String title;
   final bool hasLeading;
