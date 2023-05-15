@@ -5,19 +5,19 @@
         "name": "PROD",
         "request": "launch",
         "type": "dart",
+        "program": "lib/main.dart",
         "args": [
           "--dart-define=flavor=prod",
-         "--flavor=prod"
       ]
       },
       {
         "name": "DEV",
         "request": "launch",
         "type": "dart",
-        "args": [
+        "program": "lib/main_dev.dart",
+         "args": [
           "--dart-define=flavor=dev",
-          "--flavor=dev"
-      ]
+        ]
       }
     ]
   }

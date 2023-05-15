@@ -4,9 +4,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
+import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
-import 'package:is_it_safe_app/src/core/util/validation_util.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_location_use_case.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -78,7 +78,7 @@ class SaveLocationBloC extends SafeBloC {
   }
 
   validateTextField(String? value) {
-    if (!ValidationUtil.name(value ?? StringConstants.empty) || value == null) {
+    if (!(value ?? StringConstants.empty).isName || value == null) {
       return S.current.textErrorEmptyField;
     }
     return null;

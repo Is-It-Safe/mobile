@@ -30,9 +30,9 @@ class _HomePageState extends SafeState<HomePage, HomeBloc>
     initTabController();
   }
 
-  void verifyLocationPermission() async {
+  Future<void> verifyLocationPermission() async {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await bloc.verifyLocationPermission();
+      await bloc.safeLocator.verifyPermission();
     });
   }
 
