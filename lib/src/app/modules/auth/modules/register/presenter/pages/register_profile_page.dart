@@ -77,9 +77,12 @@ class _RegisterProfilePageState
                     ),
                     const SizedBox(height: 30),
                     RegisterProfileButtonWidget(
-                      onRegister: ({isAdvanceButton}) => bloc.doRegister(
-                        isAdvanceButton: isAdvanceButton ?? false,
-                      ),
+                      onRegister: ({isAdvanceButton}) {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        bloc.doRegister(
+                          isAdvanceButton: isAdvanceButton ?? false,
+                        );
+                      },
                     ),
                   ],
                 ),

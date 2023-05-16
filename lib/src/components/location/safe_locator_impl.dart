@@ -4,7 +4,7 @@ import 'package:is_it_safe_app/src/core/interfaces/safe_locator.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
-class SafeLocator implements ISafeLocator {
+class SafeLocatorImpl implements SafeLocator {
   final ISafeSnackBar safeSnackBar = SafeSnackBar();
 
   @override

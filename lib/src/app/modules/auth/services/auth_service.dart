@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/request/request_confirm_password.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/domain/entities/request/request_login.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/request/request_refresh_token.dart';
@@ -123,11 +124,8 @@ class AuthService implements IAuthService {
 
       return ResponseRegister.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
-      // TODO Refatorar código
       if (e.message == StringConstants.empty) {
-        throw SafeDioResponseError(
-          'Erro ao realizar o cadastro. Tente novamente mais tarde.',
-        );
+        throw SafeDioResponseError(S.current.textErrorToRegisterUser);
       }
       throw SafeDioResponseError(e.message);
     }

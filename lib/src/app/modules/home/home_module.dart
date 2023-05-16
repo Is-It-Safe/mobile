@@ -9,7 +9,7 @@ import 'package:is_it_safe_app/src/app/modules/home/services/home_services_inter
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user_location_permission_usecase.dart';
 import 'package:is_it_safe_app/src/app/modules/location/services/location_service.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service.dart';
-import 'package:is_it_safe_app/src/components/location/safe_locator.dart';
+import 'package:is_it_safe_app/src/components/location/safe_locator_impl.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
 import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_user_image_use_case.dart';
@@ -64,7 +64,7 @@ class HomeModule extends Module {
       ),
     ),
     Bind.lazySingleton(
-      (i) => SafeLocator(),
+      (i) => SafeLocatorImpl(),
     ),
     Bind.lazySingleton(
       (i) => GetUserNameUseCase(
@@ -80,7 +80,7 @@ class HomeModule extends Module {
       (i) => HomeBloc(
         getLocationsNearUserUsecase: i.get<GetLocationsNearUser>(),
         getBestRatedLocationsUseCase: i.get<GetBestRatedLocationsUseCase>(),
-        safeLocator: i.get<SafeLocator>(),
+        safeLocator: i.get<SafeLocatorImpl>(),
         getUserNameUseCase: i.get<GetUserNameUseCase>(),
         getUserImageUseCase: i.get<GetUserImageUseCase>(),
       ),

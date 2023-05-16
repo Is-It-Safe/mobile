@@ -30,9 +30,9 @@ class _HomePageState extends SafeState<HomePage, HomeBloc>
     initTabController();
   }
 
-  void verifyLocationPermission() async {
+  Future<void> verifyLocationPermission() async {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await bloc.verifyLocationPermission();
+      await bloc.safeLocator.verifyPermission();
     });
   }
 
@@ -77,7 +77,7 @@ class _HomePageState extends SafeState<HomePage, HomeBloc>
         ),
         appBar: const SafeAppBar().home(
           tabController: tabController,
-          onOpenDrawer: () => openEndDrawer,
+          onOpenDrawer: () => openEndDrawer(),
         ),
         body: SafeBuilder2<List<LocationEntity>, List<LocationEntity>>(
             stream1: bloc.locationsNearUser,

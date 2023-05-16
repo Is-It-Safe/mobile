@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
 import 'package:is_it_safe_app/src/app/modules/location/services/location_service.dart';
-import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/delete_review_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/review/domain/usecases/delete_review_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/presenter/bloc/profile_bloc.dart';

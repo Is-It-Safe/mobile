@@ -23,7 +23,7 @@ import 'package:is_it_safe_app/src/app/modules/home/domain/models/request/get_lo
 class HomeBloc extends SafeBloC {
   final GetBestRatedLocationsUseCase getBestRatedLocationsUseCase;
   final GetLocationsNearUser getLocationsNearUserUsecase;
-  final ISafeLocator safeLocator;
+  final SafeLocator safeLocator;
   final GetUserNameUseCase getUserNameUseCase;
   final GetUserImageUseCase getUserImageUseCase;
 
@@ -109,11 +109,6 @@ class HomeBloc extends SafeBloC {
   Future<void> getLocationsNearUser() async {
     locationsNearUser.loading();
     try {
-      final permitionGranted = await verifyLocationPermission();
-      if (!permitionGranted) {
-        locationsNearUser.show();
-        return;
-      }
       final location = await safeLocator.kUserPosition;
       final result = await getLocationsNearUserUsecase.call(
         request: GetLocationNearUserRequest(
@@ -130,10 +125,6 @@ class HomeBloc extends SafeBloC {
       SafeLogUtil.instance.logError(e);
       locationsNearUser.error(e.toString());
     }
-  }
-
-  Future<bool> verifyLocationPermission() async {
-    return await safeLocator.verifyPermission();
   }
 
   onTabIndexChange(int index) async {

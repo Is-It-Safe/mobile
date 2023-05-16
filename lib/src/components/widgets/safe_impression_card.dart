@@ -1,47 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
-import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
-
-enum SafeImpressionEnum {
-  success,
-  alert,
-  danger,
-}
-
-extension SafeImpressionEnumString on SafeImpressionEnum {
-  String get message {
-    switch (this) {
-      case SafeImpressionEnum.success:
-        return S.current.textMostPeopleSafePlace;
-
-      case SafeImpressionEnum.alert:
-        return S.current.textMostPeopleAlertPlace;
-
-      case SafeImpressionEnum.danger:
-        return S.current.textMostPeopleDangerPlace;
-    }
-  }
-
-  String get icon {
-    switch (this) {
-      case SafeImpressionEnum.success:
-        return AssetConstants.impression.safe;
-
-      case SafeImpressionEnum.alert:
-        return AssetConstants.impression.warning;
-
-      case SafeImpressionEnum.danger:
-        return AssetConstants.impression.danger;
-    }
-  }
-}
+import 'package:is_it_safe_app/src/core/enum/impression_status_enum.dart';
 
 class SafeImpressionCard extends StatelessWidget {
   const SafeImpressionCard({Key? key, required this.type}) : super(key: key);
-  final SafeImpressionEnum type;
+  final ImpressionStatusEnum type;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +29,7 @@ class SafeImpressionCard extends StatelessWidget {
           Positioned(
             left: 250,
             top: 30,
-            child: SvgPicture.asset(type.icon),
+            child: SvgPicture.asset(type.image),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 16, top: 33, bottom: 32),
