@@ -31,7 +31,7 @@ jobs:
       
       # Build App Bundle
       - name: Build Prod App Bundle
-        run: flutter build appbundle -t lib/main.dart --release --flavor prod
+        run: flutter build appbundle -t lib/main.dart --release
       
       # Upload App Bundle
       - name: Upload Prod App Bundle
