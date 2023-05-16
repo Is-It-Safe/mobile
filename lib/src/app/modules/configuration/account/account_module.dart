@@ -22,6 +22,7 @@ import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
 
 import 'presenter/bloc/change_email_bloc.dart';
+import 'presenter/pages/deactivate_account_page.dart';
 
 class AccountModule extends Module {
   @override
@@ -79,6 +80,10 @@ class AccountModule extends Module {
     ChildRoute(
       ChangeEmailPage.route,
       child: (context, args) => const ChangeEmailPage(),
+    ),
+    ChildRoute(
+      DeactivateAccountPage.route,
+      child: (context, args) => const DeactivateAccountPage(),
     ),
   ];
 }

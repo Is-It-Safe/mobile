@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SafeColors {
-  static _GeneralColors generalColors = _GeneralColors();
-  static _ComponentsColors componentsColors = _ComponentsColors();
-  static _StatusColors statusColors = _StatusColors();
-  static _TextColors textColors = _TextColors();
-  static _ButtonColors buttonColors = _ButtonColors();
-  static _MaterialButtonColors materialButtonColors = _MaterialButtonColors();
-  static _CardColors materialcardColors = _CardColors();
+  static final generalColors = _GeneralColors();
+  static final componentsColors = _ComponentsColors();
+  static final statusColors = _StatusColors();
+  static final textColors = _TextColors();
+  static final buttonColors = _ButtonColors();
+  static final materialButtonColors = _MaterialButtonColors();
+  static final materialcardColors = _CardColors();
 }
 
 class _GeneralColors {
@@ -66,7 +66,6 @@ class _CardColors {
   Color secondary = const Color(0xFF241B5E);
   Color text = const Color(0xFFEFECFD);
   Color alert = const Color(0xFFF1C40F);
-
 }
 
 const Map<int, Color> _materialColorButtonPrimaryMap = {

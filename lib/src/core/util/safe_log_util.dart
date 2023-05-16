@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:logger/logger.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
 enum SafeLogType { info, request, response, error, warning }

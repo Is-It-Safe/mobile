@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_mout_textfield.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
-
-import '../../../../../../generated/l10n.dart';
 
 class SaveLocationPage extends StatefulWidget {
   static const route = '/save_location';
@@ -18,14 +17,9 @@ class SaveLocationPage extends StatefulWidget {
   State<SaveLocationPage> createState() => _SaveLocationPageState();
 }
 
-class _SaveLocationPageState extends SafeState<SaveLocationPage, LocationBloC> {
+class _SaveLocationPageState
+    extends SafeState<SaveLocationPage, SaveLocationBloC> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    bloc.init();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +29,7 @@ class _SaveLocationPageState extends SafeState<SaveLocationPage, LocationBloC> {
         title: S.current.textAddLocationSubTitle,
       ),
       body: SafeBuilder<LocationEntity?>(
-        stream: bloc.saveLocation,
+        stream: bloc.location,
         builder: (saveLocation) {
           return SingleChildScrollView(
             child: Padding(

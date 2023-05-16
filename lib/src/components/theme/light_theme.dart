@@ -4,7 +4,6 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
 ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: SafeColors.generalColors.background,
-  errorColor: SafeColors.statusColors.error,
   primarySwatch: SafeColors.materialButtonColors.primary,
   primaryColor: SafeColors.statusColors.active,
   inputDecorationTheme: _inputDecoration,

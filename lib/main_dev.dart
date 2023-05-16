@@ -5,7 +5,6 @@ import 'package:is_it_safe_app/src/app/app_module.dart';
 import 'package:is_it_safe_app/src/app/app_widget.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_error_details.dart';
 import 'package:is_it_safe_app/src/core/util/flavor_util.dart';
-import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'package:provider/provider.dart';
@@ -15,14 +14,13 @@ import 'src/components/theme/theme_state.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  FlavorUtil.setup(FlavorUtil.prod);
+  FlavorUtil.setup(FlavorUtil.dev);
 
-  CatcherOptions releaseOptions = CatcherOptions(SilentReportMode(), [
-    DiscordHandler(
-      ApiConstants.kDiscordMonitoringWebhook,
-      enableStackTrace: false,
+  CatcherOptions debugOptions = CatcherOptions(SilentReportMode(), [
+    ConsoleHandler(
       enableApplicationParameters: true,
-      enableDeviceParameters: true,
+      enableDeviceParameters: false,
+      enableStackTrace: true,
     ),
   ]);
 
@@ -41,6 +39,6 @@ void main() {
         ),
       ),
     ),
-    releaseConfig: releaseOptions,
+    debugConfig: debugOptions,
   );
 }

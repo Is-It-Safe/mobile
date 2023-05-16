@@ -13,8 +13,8 @@ class UpdatePhotoUseCase extends SafeUseCase {
   }
 
   Future<UserEntity> call(RequestUpdateUser request) async {
-    final _response = await _service.updateUser(request);
+    final response = await _service.updateUser(request);
 
-    return UserEntity.toEntityUpdate(_response);
+    return UserEntity.toEntityUpdate(response);
   }
 }

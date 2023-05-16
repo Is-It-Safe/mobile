@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 
+// ignore: must_be_immutable
 class SafeDropDown extends StatefulWidget {
   final List<dynamic> values;
   TextEditingController controller;

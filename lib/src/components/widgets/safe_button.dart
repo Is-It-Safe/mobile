@@ -36,14 +36,14 @@ class SafeButton extends StatelessWidget {
   }
 
   Widget _mountButton(BuildContext context) {
-    final _largeWidth = MediaQuery.of(context).size.width;
-    final _smallWidth = hasBackground == true
+    final largeWidth = MediaQuery.of(context).size.width;
+    final smallWidth = hasBackground == true
         ? MediaQuery.of(context).size.width * 0.45
         : MediaQuery.of(context).size.width * 0.35;
 
     return Container(
       height: _height,
-      width: size == ButtonSize.large ? _largeWidth : _smallWidth,
+      width: size == ButtonSize.large ? largeWidth : smallWidth,
       decoration: BoxDecoration(
         color: hasBackground == true ? _getColor() : Colors.transparent,
         borderRadius: BorderRadius.circular(6),

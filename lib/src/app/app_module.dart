@@ -4,8 +4,8 @@ import 'package:is_it_safe_app/src/app/modules/auth/modules/login/domain/usecase
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
 import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
-import 'package:is_it_safe_app/src/app/modules/location/review/presenter/pages/review_page.dart';
-import 'package:is_it_safe_app/src/app/modules/location/review/review_module.dart';
+import 'package:is_it_safe_app/src/app/modules/review/presenter/pages/review_page.dart';
+import 'package:is_it_safe_app/src/app/modules/review/review_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/navigation_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';

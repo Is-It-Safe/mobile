@@ -7,10 +7,11 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
-
-import '../../../../../../components/widgets/safe_show_field_button.dart';
-import 'change_password_page.dart';
+import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
+import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 
 class ConfirmPassword extends StatefulWidget {
   const ConfirmPassword({Key? key}) : super(key: key);
@@ -19,22 +20,27 @@ class ConfirmPassword extends StatefulWidget {
   State<ConfirmPassword> createState() => _ConfirmPasswordState();
 }
 
-class _ConfirmPasswordState extends State<ConfirmPassword> {
-  final controller = Modular.get<ChangePasswordBloC>();
-
+class _ConfirmPasswordState
+    extends SafeState<ConfirmPassword, ChangePasswordBloC> {
+  final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = Modular.get<GlobalKey<ScaffoldState>>();
+  bool _showPassword = true;
   Timer? debounce;
 
   @override
   void initState() {
     super.initState();
-    controller.confirmPasswordText.addListener(() async {
+    _confirmPasswordListener();
+  }
+
+  Future<void> _confirmPasswordListener() async {
+    bloc.confirmPasswordText.addListener(() async {
       if (debounce?.isActive ?? false) debounce?.cancel();
       debounce = Timer(const Duration(milliseconds: 700), () async {
-        if (controller.confirmPasswordText.text.isNotEmpty ||
-            controller.confirmPasswordText.value.text.isNotEmpty) {
-          await controller.confirmPassword(
-              password: controller.confirmPasswordText.text);
-          if (controller.validated) {
+        if (bloc.confirmPasswordText.text.isNotEmpty ||
+            bloc.confirmPasswordText.value.text.isNotEmpty) {
+          await bloc.confirmPassword(password: bloc.confirmPasswordText.text);
+          if (bloc.isPasswordValid.data) {
             setState(() {});
           }
         }
@@ -42,13 +48,9 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
     });
   }
 
-  final _formKey = GlobalKey<FormState>();
-
-  final _scaffoldKey = Modular.get<GlobalKey<ScaffoldState>>();
-
-  bool _showPassword = true;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       key: _scaffoldKey,
       appBar: SafeAppBar(
@@ -71,7 +73,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
                 child: Text.rich(
                   TextSpan(
                     text: "${S.current.textReenterPassword1_0}\n",
-                    style: TextStyles.subtitle1(), // default text style
+                    style: TextStyles.subtitle1(),
                     children: <TextSpan>[
                       TextSpan(
                         text: S.current.textReenterPassword1_1,
@@ -90,10 +92,10 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
               Form(
                 key: _formKey,
                 child: SafeTextFormField(
-                  controller: controller.confirmPasswordText,
+                  controller: bloc.confirmPasswordText,
                   labelText: S.current.textPassword,
                   obscureText: _showPassword,
-                  obscuringCharacter: '*',
+                  obscuringCharacter: StringConstants.asterisk,
                   suffixIcon: SafeShowFieldButton(
                     value: _showPassword,
                     onTap: () => setState(() {
@@ -114,19 +116,24 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
                       onTap: () => Modular.to.pop(),
                     ),
                   ),
-                  SizedBox(
-                    child: SafeButton(
-                      title: S.current.textAdvance,
-                      state:
-                          !controller.validated ? ButtonState.disabled : null,
-                      onTap: () async {
-                        await Modular.to
-                            .pushNamed('././.${ChangePasswordPage.route}');
-                      },
-                      hasBorder: true,
-                      hasBackground: false,
-                      size: ButtonSize.small,
-                    ),
+                  SafeBuilder<bool>(
+                    stream: bloc.isPasswordValid,
+                    builder: (isPasswordValid) {
+                      return SizedBox(
+                        child: SafeButton(
+                          title: S.current.textAdvance,
+                          state: isPasswordValid
+                              ? ButtonState.rest
+                              : ButtonState.disabled,
+                          onTap: isPasswordValid
+                              ? () => bloc.navigateToChangePassword()
+                              : () {},
+                          hasBorder: true,
+                          hasBackground: false,
+                          size: ButtonSize.small,
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

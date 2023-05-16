@@ -37,4 +37,11 @@ class StringConstants {
 
   //Config
   static const String assetsManifestPath = 'AssetManifest.json';
+
+  //Contact
+  static const String contactEmail = 'contato@isitsafe.com.br';
+  static const String contactEmailSubject = '[Feedback-App] - @';
+  static const String schemeMailTo = 'mailto';
+  static const String subject = 'subject';
+  static const String body = 'body';
 }

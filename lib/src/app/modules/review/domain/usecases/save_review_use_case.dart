@@ -1,5 +1,5 @@
-import 'package:is_it_safe_app/src/app/modules/location/error/safe_review_error.dart';
-import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/request_save_review.dart';
+import 'package:is_it_safe_app/src/app/modules/review/error/safe_review_error.dart';
+import 'package:is_it_safe_app/src/app/modules/review/domain/models/request/request_save_review.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service_interface.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
 import 'package:is_it_safe_app/src/domain/entity/review_entity.dart';

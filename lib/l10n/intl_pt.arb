@@ -40,6 +40,7 @@
     "textErrorLoginUnauthorized": "Usuário ou senha inválido!",
     "textErrorLoginFailed":"Não foi possível fazer login, tente novamente em alguns instantes.",
     "textErrorToLoadTheUsersInformation":"Erro ao carregar as informações do usuário.",
+    "textErrorToRegisterUser":"'Erro ao realizar o cadastro. Tente novamente mais tarde.'",
 
     "textInitialSearch" : "Pesquise locais para avaliar",
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
@@ -189,6 +190,7 @@
     "textAddLocationPhotoFieldTitle": "Adicionar Foto (opcional)",
     "textAddLocationConfirm": "ADICIONAR LOCAL",
     "textAddLocationSuccess": "Local adicionado com sucesso!",
+    "textContactMessageSentSuccess": "Mensagem enviada com sucesso!",
     
 
     "textAddLocationTypePub": "Bar",

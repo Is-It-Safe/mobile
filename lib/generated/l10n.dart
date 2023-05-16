@@ -410,6 +410,16 @@ class S {
     );
   }
 
+  /// `'Erro ao realizar o cadastro. Tente novamente mais tarde.'`
+  String get textErrorToRegisterUser {
+    return Intl.message(
+      '\'Erro ao realizar o cadastro. Tente novamente mais tarde.\'',
+      name: 'textErrorToRegisterUser',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Pesquise locais para avaliar`
   String get textInitialSearch {
     return Intl.message(
@@ -1785,6 +1795,16 @@ class S {
     return Intl.message(
       'Local adicionado com sucesso!',
       name: 'textAddLocationSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mensagem enviada com sucesso!`
+  String get textContactMessageSentSuccess {
+    return Intl.message(
+      'Mensagem enviada com sucesso!',
+      name: 'textContactMessageSentSuccess',
       desc: '',
       args: [],
     );
