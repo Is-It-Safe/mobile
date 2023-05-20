@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/do_register_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/usecases/is_email_available_use_case%20copy.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/usecases/is_username_available_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_profile_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_profile_picture_bloc.dart';
@@ -15,10 +17,16 @@ class RegisterModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => RegisterStore()),
+    Bind.lazySingleton((i) => IsUsernameAvailableUseCase(i())),
+    Bind.lazySingleton((i) => IsEmailAvailableUseCase(i())),
     Bind.lazySingleton((i) => GetSexualOrientationsUseCase(i())),
     Bind.lazySingleton((i) => GetGendersUseCase(i())),
     Bind.lazySingleton((i) => DoRegisterUseCase(i())),
-    Bind.lazySingleton((i) => RegisterBloc(store: i())),
+    Bind.lazySingleton((i) => RegisterBloc(
+          store: i(),
+          isUsernameAvailableUseCase: i(),
+          isEmailAvailableUseCase: i(),
+        )),
     Bind.lazySingleton((i) => RegisterProfileBloc(
           store: i(),
           doRegisterUseCase: i(),

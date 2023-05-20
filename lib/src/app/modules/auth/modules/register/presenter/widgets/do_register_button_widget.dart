@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/pages/register_profile_page.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -11,12 +8,14 @@ class DoRegisterButtonWidget extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final SafeStream<bool> isEnabledToRegister;
   final SafeStream<bool> isAcceptedTerms;
+  final Future<void> Function() onTap;
 
   const DoRegisterButtonWidget({
     Key? key,
     required this.formKey,
     required this.isEnabledToRegister,
     required this.isAcceptedTerms,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -38,9 +37,7 @@ class _DoRegisterButtonWidgetState extends State<DoRegisterButtonWidget> {
           onTap: () async {
             if (widget.formKey.currentState?.validate() == true &&
                 isEnabledToRegister == true) {
-              Modular.to.pushNamed(
-                StringConstants.dot + RegisterProfilePage.route,
-              );
+              await widget.onTap();
             }
           },
         );

@@ -42,6 +42,8 @@ class ApiConstants {
   static String getGenders = '${kUrl}gender/find-all';
   static String getSexualOrientations = '${kUrl}orientation/find-all';
   static String confirmPassword = '${kUrl}user/is-password-correct';
+  static String isUsernameAvailable = '${kUrl}user/is-nickname-available/';
+  static String isEmailAvailable = '${kUrl}user/is-email-already-used/';
 
   //Location
   static String getBestRatedLocations = '${kUrl}location/find-all';

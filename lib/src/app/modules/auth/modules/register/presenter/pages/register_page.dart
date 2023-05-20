@@ -125,10 +125,21 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                         },
                       ),
                       const SizedBox(height: 20),
-                      DoRegisterButtonWidget(
-                        formKey: _formKey,
-                        isEnabledToRegister: bloc.store.isRegisterButtonEnabled,
-                        isAcceptedTerms: bloc.store.isTermsAndConditionsChecked,
+                      SafeBuilder2<bool, bool>(
+                        stream1: bloc.store.isUsernameAvailable,
+                        stream2: bloc.store.isEmailAvailable,
+                        builder: (isUsernameAvailable, isEmailAvailable) {
+                          return DoRegisterButtonWidget(
+                            formKey: _formKey,
+                            isEnabledToRegister:
+                                bloc.store.isRegisterButtonEnabled,
+                            isAcceptedTerms:
+                                bloc.store.isTermsAndConditionsChecked,
+                            onTap: () async {
+                              await bloc.navigateToRegisterProfile();
+                            },
+                          );
+                        },
                       ),
                       const SizedBox(height: 20),
                     ],

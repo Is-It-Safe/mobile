@@ -170,4 +170,34 @@ class AuthService implements IAuthService {
     // TODO: Implementar endpoint quando estiver pronto
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> isUsernameAvailable(String username) async {
+    try {
+      final requestConfig = RequestConfig(
+        path: ApiConstants.isUsernameAvailable + username,
+        method: HttpMethod.get,
+      );
+
+      final response = await service.doRequest(requestConfig);
+      return response.data == 'true';
+    } on DioError catch (e) {
+      throw SafeDioResponseError(e.message);
+    }
+  }
+
+  @override
+  Future<bool> isEmailAvailable(String email) async {
+    try {
+      final requestConfig = RequestConfig(
+        path: ApiConstants.isEmailAvailable + email,
+        method: HttpMethod.get,
+      );
+
+      final response = await service.doRequest(requestConfig);
+      return response.data == 'true';
+    } on DioError catch (e) {
+      throw SafeDioResponseError(e.message);
+    }
+  }
 }
