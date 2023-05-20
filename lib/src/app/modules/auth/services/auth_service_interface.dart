@@ -17,4 +17,6 @@ abstract class IAuthService {
   Future<String> getAccessToken();
   Future<bool> confirmPassword(RequestConfirmPassword request);
   Future<bool> changePassword(String password);
+  Future<bool> isUsernameAvailable(String username);
+  Future<bool> isEmailAvailable(String email);
 }

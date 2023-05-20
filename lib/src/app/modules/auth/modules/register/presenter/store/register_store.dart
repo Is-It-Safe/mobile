@@ -23,6 +23,8 @@ class RegisterStore {
   final listSexualOrientation = SafeStream<List<SexualOrientationEntity>>(
     data: [],
   );
+  final isUsernameAvailable = SafeStream<bool>(data: false);
+  final isEmailAvailable = SafeStream<bool>(data: false);
 
   final birthdayInputMask = MaskTextInputFormatter(
     mask: StringConstants.dateMask,
