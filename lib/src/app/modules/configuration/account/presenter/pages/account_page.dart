@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/edit_account_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/modules/edit_account_module/presenter/pages/edit_account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_info_button.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/account_section_banner.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/personal_information.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
-import '../../../configuration_module.dart';
 import 'account_header.dart';
 
 class AccountPage extends StatefulWidget {
@@ -43,9 +42,11 @@ class _AccountPageState extends SafeState<AccountPage, AccountBloc> {
             PersonalInformation(user: bloc.user),
             const SizedBox(height: 20),
             AccountInfoButton(
-                text: S.current.textEditProfile,
-                onTap: () => Modular.to.pushNamed(
-                    ConfigurationModule.route + EditAccountPage.route)),
+              text: S.current.textEditProfile,
+              onTap: () => Modular.to.pushNamed(
+                '.${EditAccountPage.route}',
+              ),
+            ),
             const SizedBox(height: 20),
             AccountSectionBanner(text: S.current.textAccountInformation),
             //TODO Validar se a funcionalidade foi implementada corretamente

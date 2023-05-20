@@ -3,14 +3,14 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/do_register_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/store/register_store.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_genders_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/user_sign_in_enum.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
 
 class RegisterProfileBloc extends SafeBloC {
   final RegisterStore store;

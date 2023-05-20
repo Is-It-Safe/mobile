@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/stream_safe_dropdown.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/edit_account_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/widgets/edit_account_banner.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/modules/edit_account_module/presenter/bloc/edit_account_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/modules/edit_account_module/presenter/widgets/edit_account_banner.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
