@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/review/domain/usecases/delete_review_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
@@ -9,7 +10,6 @@ import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/models/user_entity.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 
 class ProfileBloc extends SafeBloC {
   final GetUserUseCase getUserUseCase;

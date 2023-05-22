@@ -3,6 +3,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/change_password_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/confirm_password_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_user_email_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_email_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_image_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_login_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/modules/edit_account_module/edit_account_module.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/modules/edit_account_module/presenter/pages/edit_account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/bloc/change_password_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
@@ -13,10 +19,6 @@ import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/update_us
 import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/bloc/safe_profile_picture_bloc.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_picture/safe_profile_picture_page.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_email_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_user_email_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_user_image_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service_interface.dart';
@@ -84,6 +86,10 @@ class AccountModule extends Module {
     ChildRoute(
       DeactivateAccountPage.route,
       child: (context, args) => const DeactivateAccountPage(),
+    ),
+    ModuleRoute(
+      EditAccountPage.route,
+      module: EditAccountModule(),
     ),
   ];
 }

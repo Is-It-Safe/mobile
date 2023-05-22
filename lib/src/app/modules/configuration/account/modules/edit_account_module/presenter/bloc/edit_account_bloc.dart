@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/pages/login_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_genders_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_sexual_orientation_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/update_user_use_case.dart';
@@ -13,14 +16,10 @@ import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/gender_entity.dart';
 import 'package:is_it_safe_app/src/domain/entity/sexual_orientation_entity.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/models/user_entity.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:result_dart/result_dart.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 
 class EditAccountBloc extends SafeBloC {
@@ -214,7 +213,7 @@ class EditAccountBloc extends SafeBloC {
   Future<void> loadGenderFromList({
     String? currentGender = StringConstants.empty,
   }) async {
-    final result = getGendersUseCase.call();
+    final result = await getGendersUseCase.call();
     result.fold(
       (success) {
         GenderEntity selectedGender = success.firstWhere(
@@ -229,7 +228,7 @@ class EditAccountBloc extends SafeBloC {
   Future<void> loadSexualOrientationFromList({
     String? currentSexualOrientation = StringConstants.empty,
   }) async {
-    final result = getSexualOrientationsUseCase.call();
+    final result = await getSexualOrientationsUseCase.call();
 
     result.fold(
       (success) {
