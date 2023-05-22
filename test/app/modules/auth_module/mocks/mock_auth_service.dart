@@ -55,4 +55,14 @@ class MockAuthService implements IAuthService {
   Future<bool> changePassword(String password) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> isEmailAvailable(String email) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> isUsernameAvailable(String username) {
+    throw UnimplementedError();
+  }
 }
