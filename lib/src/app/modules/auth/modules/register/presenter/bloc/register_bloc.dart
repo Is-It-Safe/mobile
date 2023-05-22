@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/usecases/is_email_available_use_case%20copy.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/usecases/is_email_available_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/usecases/is_username_available_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/pages/register_profile_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/store/register_store.dart';
