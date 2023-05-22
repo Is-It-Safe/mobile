@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/do_register_use_case.dart';
-import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/usecases/is_email_available_use_case%20copy.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/usecases/is_email_available_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/usecases/is_username_available_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_profile_bloc.dart';
