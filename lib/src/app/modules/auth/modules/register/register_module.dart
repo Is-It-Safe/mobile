@@ -9,9 +9,9 @@ import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/p
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/pages/register_profile_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/pages/register_profile_picture_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/store/register_store.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_genders_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/presenter/page/terms_and_conditions_page.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_genders_use_case.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_sexual_orientation_use_case.dart';
 
 class RegisterModule extends Module {
   @override

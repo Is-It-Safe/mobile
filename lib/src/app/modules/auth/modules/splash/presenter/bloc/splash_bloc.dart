@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/on_boarding/presenter/pages/on_boarding_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
-import 'package:is_it_safe_app/src/domain/use_case/get_user_login_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/get_user_on_boarding_use_case.dart';
 
 class SplashBloc extends SafeBloC {
