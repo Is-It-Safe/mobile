@@ -29,7 +29,7 @@ class _AccountHeaderState extends State<AccountHeader> {
           pronoun: user.pronoun,
           gender: user.gender,
           sexualOrientation: user.orientation,
-          isEditabled: true,
+          isEditable: true,
           onPhotoTap: () => widget.navigateToChangeProfilePicture(),
         );
       },
