@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_gett
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
+import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 
@@ -72,7 +73,9 @@ class _HomePageState extends SafeState<HomePage, HomeBloc>
           stream: bloc.userDrawerData,
           builder: (userDrawerData) => HomeDrawer(
             name: userDrawerData.userName,
-            image: userDrawerData.userImage,
+            image: (userDrawerData.userImage.isEmpty)
+                ? PlaceHolderAssets.profileAvatar
+                : userDrawerData.userImage,
           ),
         ),
         appBar: const SafeAppBar().home(

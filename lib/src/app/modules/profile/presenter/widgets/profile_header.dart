@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 
@@ -16,7 +17,9 @@ class ProfileHeader extends StatelessWidget {
       builder: (user) {
         return SafeProfileHeader(
           showProfilePicture: user.profilePhoto != null,
-          photo: user.profilePhoto,
+          photo: (user.profilePhoto!.isEmpty)
+              ? PlaceHolderAssets.profileAvatar
+              : user.profilePhoto,
           nickname: user.nickname,
           pronoun: user.pronoun,
           gender: user.gender,
