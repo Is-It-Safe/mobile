@@ -11,7 +11,7 @@ class SafeProfileHeader extends StatelessWidget {
   final String? pronoun;
   final String? gender;
   final String? sexualOrientation;
-  final bool? isEditabled;
+  final bool? isEditable;
   final bool showProfilePicture;
   final Function()? onPhotoTap;
   const SafeProfileHeader({
@@ -21,7 +21,7 @@ class SafeProfileHeader extends StatelessWidget {
     this.pronoun = StringConstants.empty,
     this.gender = StringConstants.empty,
     this.sexualOrientation = StringConstants.empty,
-    this.isEditabled = false,
+    this.isEditable = false,
     this.showProfilePicture = true,
     this.onPhotoTap,
   }) : super(key: key);
@@ -34,9 +34,11 @@ class SafeProfileHeader extends StatelessWidget {
           if (showProfilePicture)
             SafeProfileAvatar(
               size: 88,
-              image: photo ?? PlaceHolderAssets.profileAvatar,
+              image: (photo == "" || photo == null)
+                  ? PlaceHolderAssets.profileAvatar
+                  : photo!,
               isSelected: true,
-              isEditable: isEditabled ?? false,
+              isEditable: isEditable ?? false,
               onTap: onPhotoTap,
             ),
           const SizedBox(height: 10),
