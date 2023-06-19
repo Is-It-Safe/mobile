@@ -91,7 +91,7 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
           keyboardType: widget.keyboardType ?? TextInputType.text,
           inputFormatters: widget.inputFormatters,
           decoration: InputDecoration(
-            counterText: '',
+            counterText: StringConstants.empty,
             labelText: labelText,
             labelStyle: TextStyles.label(
               color: _focusNode.hasFocus

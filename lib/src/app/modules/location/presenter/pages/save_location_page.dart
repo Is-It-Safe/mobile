@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
-import 'package:is_it_safe_app/src/app/modules/location/presenter/widgets/location_mout_textfield.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
+import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
@@ -20,6 +22,8 @@ class SaveLocationPage extends StatefulWidget {
 class _SaveLocationPageState
     extends SafeState<SaveLocationPage, SaveLocationBloC> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  static const double alturaTextFormField = 32;
+  static const double alturaTitleText = 12;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +44,76 @@ class _SaveLocationPageState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MountTextField(
-                    formKey: _formKey,
-                    controller: bloc,
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.current.textAddLocationNameTextFieldTitle,
+                          style: TextStyles.subtitle1(),
+                        ),
+                        const SizedBox(height: alturaTitleText),
+                        SafeTextFormField(
+                          controller: bloc.locationNameController,
+                          labelText: S.current.textAddLocationExample,
+                          textInputAction: TextInputAction.next,
+                          validator: (value) => bloc.validateTextField(value),
+                        ),
+                        const SizedBox(height: alturaTextFormField),
+                        Text(
+                          S.current.textAddLocationCepFieldTitle,
+                          style: TextStyles.subtitle1(),
+                        ),
+                        const SizedBox(height: alturaTitleText),
+                        SafeTextFormField(
+                          controller: bloc.locationCepController,
+                          labelText: S.current.textAddLocationCepExample,
+                          keyboardType: TextInputType.number,
+                          maxLength: 8,
+                          textInputAction: TextInputAction.next,
+                          validator: (value) => bloc.validateTextField(value),
+                        ),
+                        const SizedBox(height: alturaTextFormField),
+                        Text(
+                          S.current.textAddLocationAddressFieldTitle,
+                          style: TextStyles.subtitle1(),
+                        ),
+                        const SizedBox(height: alturaTitleText),
+                        SafeTextFormField(
+                          controller: bloc.locationAddressFieldController,
+                          labelText: S.current.textAddLocationAddress,
+                          textInputAction: TextInputAction.next,
+                          validator: (value) => bloc.validateTextField(value),
+                        ),
+                        const SizedBox(height: alturaTextFormField),
+                        Text(
+                          S.current.textAddTypeLocationFieldTitle,
+                          style: TextStyles.subtitle1(),
+                        ),
+                        const SizedBox(height: alturaTitleText),
+                        SafeBuilder<LocationTypeEnum>(
+                          stream: bloc.locationType,
+                          builder: (locationType) {
+                            return DropdownButtonFormField<String>(
+                              value: locationType.name,
+                              items: LocationTypeEnum.values
+                                  .map((e) => DropdownMenuItem<String>(
+                                        value: e.name,
+                                        child: Text(e.name),
+                                      ))
+                                  .toList(),
+                              onChanged: (value) {
+                                bloc.locationType.data = LocationTypeEnum.values
+                                    .firstWhere(
+                                        (element) => element.name == value);
+                              },
+                            );
+                          },
+                        ),
+                        const SizedBox(height: alturaTextFormField),
+                      ],
+                    ),
                   ),
                   //TODO app crasha quando abre o image picker
                   // ValueListenableBuilder<String?>(
