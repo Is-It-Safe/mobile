@@ -4,19 +4,7 @@
 
 ### Tipo de Mudança:
 
-- [ ] bug
-
-- [ ] feature
-
-- [ ] test
-
-- [ ] docs
-
-- [ ] refactor
-
-### Como testar:
-
-<!-- Exemplificar um passo a passo simples de como testar sua solução. -->
+<!-- Sinalize uma das alternativas: Bug, Feature, Test, Docs, Refactor -->
 
 ### Validações:
 
@@ -24,17 +12,12 @@
 
 #### Testes Unitários:
 
-- [ ] Cobertura global de ao menos 80%
 - [ ] Meu código possui os devidos testes unitários
 
 #### Layout:
 
 - [ ] Não houveram mudanças nas telas
 - [ ] Necessita de validação de Design
-
-#### Documentação
-
-- [ ] Houve alteração na documentação/wiki
 
 ### Screenshots
 
