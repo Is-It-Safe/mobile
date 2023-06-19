@@ -196,7 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textErrorLoginUsername": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite um nome de usuário válido"),
         "textErrorProfile": MessageLookupByLibrary.simpleMessage(
-            "Você não fez nenhuma review ainda, começe assim que puder!"),
+            "Você não fez nenhuma review ainda, comece assim que puder!"),
         "textErrorPronouns": MessageLookupByLibrary.simpleMessage(
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
         "textErrorSearch": MessageLookupByLibrary.simpleMessage(
