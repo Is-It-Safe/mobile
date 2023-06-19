@@ -23,6 +23,8 @@ class StringConstants {
   static const String cnpjMask = '##.###.###/####-##';
   static const String cepMask = '#####-###';
   static const String more = '...';
+  static const String https = 'https';
+  static const String httpsComplete = 'https://';
 
   //Review
   static const String warning = 'WARNING';

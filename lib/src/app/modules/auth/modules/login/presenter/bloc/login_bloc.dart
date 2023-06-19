@@ -13,6 +13,7 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/pages/home_page.da
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
+import 'package:is_it_safe_app/src/core/util/flavor_util.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
@@ -171,7 +172,11 @@ class LoginBloc extends SafeBloC {
 
   Future<void> forgotPassword() async {
     final Uri url = Uri(
-      scheme: 'https',
+      scheme: StringConstants.https,
+      host: FlavorUtil.instance.url.replaceAll(
+        StringConstants.httpsComplete,
+        StringConstants.empty,
+      ),
       path: ApiConstants.kForgotPassword,
     );
     if (await canLaunchUrl(url)) {
