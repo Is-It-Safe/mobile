@@ -10,6 +10,7 @@ import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_location_use_case.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class SaveLocationBloC extends SafeBloC {
   final SaveLocationUseCase saveLocationUseCase;
@@ -18,9 +19,10 @@ class SaveLocationBloC extends SafeBloC {
   final locationType = SafeStream<LocationTypeEnum>(data: LocationTypeEnum.pub);
   late ValueNotifier<String?> imageNotifier = ValueNotifier(null);
 
-  late TextEditingController locationNameController;
-  late TextEditingController locationCepController;
-  late TextEditingController locationAddressFieldController;
+  TextEditingController locationNameController = TextEditingController();
+  TextEditingController locationCepController = TextEditingController();
+  TextEditingController locationAddressFieldController =
+      TextEditingController();
 
   SaveLocationBloC({
     required this.saveLocationUseCase,
@@ -28,9 +30,7 @@ class SaveLocationBloC extends SafeBloC {
 
   @override
   Future<void> init() async {
-    locationNameController = TextEditingController();
-    locationCepController = TextEditingController();
-    locationAddressFieldController = TextEditingController();
+    SafeLogUtil.instance.route(Modular.to.path);
   }
 
   Future<String?> handleCameraTap() async {
