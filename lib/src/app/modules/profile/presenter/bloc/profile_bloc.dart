@@ -27,13 +27,13 @@ class ProfileBloc extends SafeBloC {
 
   @override
   Future<void> init() async {
+    user.loading();
     SafeLogUtil.instance.route(Modular.to.path);
     getUser();
   }
 
   Future<void> getUser() async {
     try {
-      user.loading();
       final result = await getUserUseCase.call();
 
       result.fold(

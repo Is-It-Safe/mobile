@@ -17,7 +17,7 @@ class ProfileHeader extends StatelessWidget {
       builder: (user) {
         return SafeProfileHeader(
           showProfilePicture: user.profilePhoto != null,
-          photo: (user.profilePhoto!.isEmpty)
+          photo: (user.profilePhoto == null)
               ? PlaceHolderAssets.profileAvatar
               : user.profilePhoto,
           nickname: user.nickname,
