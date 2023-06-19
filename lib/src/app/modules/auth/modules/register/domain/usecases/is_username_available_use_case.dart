@@ -18,6 +18,21 @@ class IsUsernameAvailableUseCase extends SafeUseCase {
         ),
       );
     }
+    if (username.length < 3) {
+      return Failure(
+        SafeInvalidCredentialsError(
+          "Username deve ter no mínimo 3 caracteres!",
+        ),
+      );
+    }
+
+    if (username.length > 25) {
+      return Failure(
+        SafeInvalidCredentialsError(
+          "Username deve ter no máximo 25 caracteres!",
+        ),
+      );
+    }
 
     try {
       final response = await service.isUsernameAvailable(username);
