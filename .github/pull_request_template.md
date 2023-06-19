@@ -4,7 +4,15 @@
 
 ### Tipo de Mudança:
 
-<!-- Sinalize uma das alternativas: Bug, Feature, Test, Docs, Refactor -->
+<!-- Descomente a alternativa que contemple sua alteração-->
+
+<!-- - [x] bug -->
+<!-- - [x] feature -->
+<!-- - [x] test -->
+<!-- - [x] docs -->
+<!-- - [x] refactor-->
+
+
 
 ### Validações:
 
