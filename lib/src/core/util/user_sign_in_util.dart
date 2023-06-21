@@ -40,4 +40,13 @@ class UserSignInUtil {
         return StringConstants.empty;
     }
   }
+
+  static bool isObscureFormField({required UserSignInEnum userSignInEnum}) {
+    return userSignInEnum == UserSignInEnum.password ||
+        userSignInEnum == UserSignInEnum.passwordConfirm;
+  }
+
+  static bool isPasswordConfirm({required UserSignInEnum userSignInEnum}) {
+    return userSignInEnum == UserSignInEnum.passwordConfirm;
+  }
 }
