@@ -53,15 +53,16 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        final registerUserVo =
-                            bloc.store.registerUserVoList[index];
+                        final registerTextFieldVO =
+                            bloc.store.listRegisterTextFieldVO[index];
 
-                        return RegisterUserField(
-                          registerUserVo: registerUserVo,
+                        return RegisterTextFormField(
+                          registerTextFieldVO: registerTextFieldVO,
                           onChanged: () {
-                            registerUserVo.validateUserData(
+                            registerTextFieldVO.validateUserData(
                               currentPassword: UserSignInUtil.isPasswordConfirm(
-                                userSignInEnum: registerUserVo.userSignInEnum,
+                                userSignInEnum:
+                                    registerTextFieldVO.userSignInEnum,
                               )
                                   ? bloc.getCurrentPassword()
                                   : StringConstants.empty,
@@ -69,9 +70,10 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                             bloc.toggleRegisterButton();
                           },
                           onValidate: () {
-                            registerUserVo.validateUserData(
+                            registerTextFieldVO.validateUserData(
                               currentPassword: UserSignInUtil.isPasswordConfirm(
-                                userSignInEnum: registerUserVo.userSignInEnum,
+                                userSignInEnum:
+                                    registerTextFieldVO.userSignInEnum,
                               )
                                   ? bloc.getCurrentPassword()
                                   : StringConstants.empty,
@@ -79,7 +81,8 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                           },
                           suffixIcon: Visibility(
                             visible: !UserSignInUtil.isObscureFormField(
-                              userSignInEnum: registerUserVo.userSignInEnum,
+                              userSignInEnum:
+                                  registerTextFieldVO.userSignInEnum,
                             ),
                             child: SafeShowFieldButton(
                               value: isPasswordVisible,
@@ -90,7 +93,7 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                         );
                       },
                       separatorBuilder: (_, __) => const SizedBox(height: 20),
-                      itemCount: bloc.store.registerUserVoList.length,
+                      itemCount: bloc.store.listRegisterTextFieldVO.length,
                     ),
                     RegisterTermsAndConditionsWidget(
                       isTermsAndConditionsChecked:
@@ -113,9 +116,8 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                               bloc.store.isRegisterButtonEnabled,
                           isAcceptedTerms:
                               bloc.store.isTermsAndConditionsChecked,
-                          onTap: () async {
-                            await bloc.navigateToRegisterProfile();
-                          },
+                          onTap: () async =>
+                              await bloc.navigateToRegisterProfile(),
                         );
                       },
                     ),
