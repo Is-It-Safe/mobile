@@ -174,7 +174,9 @@ class LoginBloc extends SafeBloC {
     final Uri url = Uri(
       scheme: StringConstants.https,
       host: FlavorUtil.instance.url.replaceAll(
-        StringConstants.httpsComplete,
+        ApiConstants.shouldIgnoreSSLCertificate
+            ? StringConstants.httpComplete
+            : StringConstants.httpsComplete,
         StringConstants.empty,
       ),
       path: ApiConstants.kForgotPassword,
