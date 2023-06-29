@@ -62,4 +62,7 @@ class ApiConstants {
   //Review
   static String doReview = '${kUrl}review/save';
   static String deleteReview = '${kUrl}review/delete/';
+
+  //Devemos ignorar certificado SSL? Obs: Essa flag precisa estar desativada em produção
+  static bool shouldIgnoreSSLCertificate = false;
 }
