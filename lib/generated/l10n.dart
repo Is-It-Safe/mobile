@@ -350,6 +350,16 @@ class S {
     );
   }
 
+  /// `Este local não possui nenhuma review ainda, escreva uma!`
+  String get textErrorEmptyReviews {
+    return Intl.message(
+      'Este local não possui nenhuma review ainda, escreva uma!',
+      name: 'textErrorEmptyReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Algo de errado aconteceu, tente novamente em alguns instantes.`
   String get textErrorUnknown {
     return Intl.message(

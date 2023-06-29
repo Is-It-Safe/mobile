@@ -177,6 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, selecione seu avatar!"),
         "textErrorEmptyField": MessageLookupByLibrary.simpleMessage(
             "Esse campo não pode ficar vazio"),
+        "textErrorEmptyReviews": MessageLookupByLibrary.simpleMessage(
+            "Este local não possui nenhuma review ainda, escreva uma!"),
         "textErrorGetLocation": MessageLookupByLibrary.simpleMessage(
             "Ocorreu um erro ao obter sua localização!"),
         "textErrorHome": MessageLookupByLibrary.simpleMessage(
