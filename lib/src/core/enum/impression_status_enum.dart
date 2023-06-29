@@ -57,3 +57,18 @@ extension ImpressionStatusEnumExtension on ImpressionStatusEnum {
     }
   }
 }
+
+class ImpressionStatusEnumUtil {
+  static ImpressionStatusEnum fromString(String value) {
+    switch (value) {
+      case StringConstants.safe:
+        return ImpressionStatusEnum.safe;
+      case StringConstants.warning:
+        return ImpressionStatusEnum.warning;
+      case StringConstants.danger:
+        return ImpressionStatusEnum.danger;
+      default:
+        return ImpressionStatusEnum.warning;
+    }
+  }
+}
