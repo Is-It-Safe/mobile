@@ -34,6 +34,7 @@
     "textErrorHomeBestRated":"Nenhum lugar encontrado, comece a avaliar!",
     "textErrorLocationPermission": "Nenhum lugar próximo encontrado, ative as permissões de localização!",
     "textErrorProfile":"Você não fez nenhuma review ainda, comece assim que puder!",
+    "textErrorEmptyReviews": "Este local não possui nenhuma review ainda, escreva uma!",
     "textErrorUnknown":"Algo de errado aconteceu, tente novamente em alguns instantes.",
     "textErrorDeleteReview":"Não foi possível deletar a review!",
     "textErrorGetLocation": "Ocorreu um erro ao obter sua localização!",

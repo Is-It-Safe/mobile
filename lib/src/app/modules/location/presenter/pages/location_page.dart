@@ -6,6 +6,7 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_emotion_graphic/safe_emotion_graphic.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_impression_card.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_loading.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_review_card.dart';
@@ -59,10 +60,9 @@ class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Visibility(
-                  visible: (location.imagePath != null &&
-                      (location.imagePath!.isNotEmpty)),
-                  child: Column(
+                if (location.imagePath != null &&
+                    (location.imagePath!.isNotEmpty))
+                  Column(
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
@@ -78,7 +78,6 @@ class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
                       SizedBox(height: size.height * .032),
                     ],
                   ),
-                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -109,9 +108,12 @@ class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
                   reviewChart: location.reviewChart,
                 ),
                 SizedBox(height: size.height * .023),
-                const SafeImpressionCard(
-                  type: ImpressionStatusEnum.safe,
-                ),
+                if (location.averageImpressionStatus?.isNotEmpty ?? true)
+                  SafeImpressionCard(
+                    type: ImpressionStatusEnumUtil.fromString(
+                      location.averageImpressionStatus ?? StringConstants.empty,
+                    ),
+                  ),
                 SizedBox(height: size.height * .035),
                 Divider(
                   color: SafeColors.generalColors.secondary,
@@ -125,18 +127,20 @@ class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
                   ),
                 ),
                 SizedBox(height: size.height * .023),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: location.reviews!.length,
-                  itemBuilder: (_, index) {
-                    return SafeReviewCard(
-                      review: ReviewEntity.toEntity(
-                        location.reviews![index],
-                      ),
-                    );
-                  },
-                ),
+                if (location.reviews?.isEmpty ?? true) SafeEmptyCard.location(),
+                if (location.reviews?.isNotEmpty ?? false)
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: location.reviews?.length ?? 0,
+                    itemBuilder: (_, index) {
+                      return SafeReviewCard(
+                        review: ReviewEntity.toEntity(
+                          location.reviews![index],
+                        ),
+                      );
+                    },
+                  ),
               ],
             ),
           );

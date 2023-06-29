@@ -49,51 +49,40 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
                 prefixIcon: const Icon(Icons.search),
                 onEditingComplete: () async {
                   searchTextFocus.unfocus();
-                  if (!bloc.isSearchEmpty) {
-                    await bloc.searchLocation();
-                  }
+                  await bloc.searchLocation();
                 },
               ),
-              ValueListenableBuilder(
-                  valueListenable: bloc.searchTextController,
-                  builder: (context, state, child) {
-                    if (bloc.isSearchEmpty || searchTextFocus.hasFocus) {
-                      return SafeEmptyCard.searchInitial();
-                    }
-
-                    return SafeBuilder<List<LocationEntity>>(
-                      stream: bloc.locations,
-                      builder: (locations) {
-                        if (locations.isEmpty && bloc.isSearchEmpty) {
-                          return SafeEmptyCard.searchInitial();
-                        }
-                        if (locations.isEmpty && !bloc.isSearchEmpty) {
-                          return Column(
-                            children: [
-                              SafeEmptyCard.search(),
-                              SafeTextButton(
-                                text: S.current.textAddLocation,
-                                onTap: bloc.navigateToAddLocationPage,
-                              ),
-                            ],
-                          );
-                        }
-                        return ListView.separated(
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          itemCount: locations.length,
-                          separatorBuilder: (_, i) =>
-                              const SizedBox(height: 15),
-                          itemBuilder: (context, index) => SearchLocationCard(
-                            location: locations[index],
-                            onTap: () => bloc.navigateToLocationPage(
-                              locations[index],
-                            ),
-                          ),
-                        );
-                      },
+              SafeBuilder<List<LocationEntity>>(
+                stream: bloc.locations,
+                builder: (locations) {
+                  if (locations.isEmpty && bloc.isSearchEmpty) {
+                    return SafeEmptyCard.searchInitial();
+                  }
+                  if (locations.isEmpty && !bloc.isSearchEmpty) {
+                    return Column(
+                      children: [
+                        SafeEmptyCard.search(),
+                        SafeTextButton(
+                          text: S.current.textAddLocation,
+                          onTap: bloc.navigateToAddLocationPage,
+                        ),
+                      ],
                     );
-                  }),
+                  }
+                  return ListView.separated(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    itemCount: locations.length,
+                    separatorBuilder: (_, i) => const SizedBox(height: 15),
+                    itemBuilder: (context, index) => SearchLocationCard(
+                      location: locations[index],
+                      onTap: () => bloc.navigateToLocationPage(
+                        locations[index],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
