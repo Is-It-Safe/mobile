@@ -30,9 +30,11 @@ class ApiService implements IApiService {
     );
     dio.interceptors.addAll({ApiInterceptors()});
 
-    if (ApiConstants.shouldIgnoreSSLCertificate) {
-      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
-        client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    if (ApiConstants.ignoreSSLCertificate) {
+      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+          (HttpClient client) {
+        client.badCertificateCallback =
+            (X509Certificate cert, String host, int port) => true;
         return client;
       };
     }

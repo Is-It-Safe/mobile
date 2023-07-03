@@ -25,6 +25,8 @@ class StringConstants {
   static const String more = '...';
   static const String https = 'https';
   static const String httpsComplete = 'https://';
+  static const String http = 'http';
+  static const String httpComplete = 'http://';
 
   //Review
   static const String warning = 'WARNING';
