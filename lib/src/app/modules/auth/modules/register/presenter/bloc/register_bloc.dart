@@ -33,7 +33,7 @@ class RegisterBloc extends SafeBloC {
   }
 
   void toggleRegisterButton() {
-    bool isEnabled = !store.registerUserVoList.any(
+    bool isEnabled = !store.listRegisterTextFieldVO.any(
       (element) => element.isValid == false,
     );
     store.isRegisterButtonEnabled.data = isEnabled;
@@ -45,7 +45,7 @@ class RegisterBloc extends SafeBloC {
   }
 
   String getCurrentPassword() {
-    return store.registerUserVoList
+    return store.listRegisterTextFieldVO
         .firstWhere(
             (element) => element.userSignInEnum == UserSignInEnum.password)
         .controller
@@ -63,7 +63,7 @@ class RegisterBloc extends SafeBloC {
   Future<bool> isUsernameAvailable() async {
     store.isUsernameAvailable.loading();
 
-    final username = store.registerUserVoList
+    final username = store.listRegisterTextFieldVO
         .firstWhere((e) => e.userSignInEnum == UserSignInEnum.nickName)
         .controller
         .text;
@@ -89,7 +89,7 @@ class RegisterBloc extends SafeBloC {
   Future<bool> isEmailAvailable() async {
     store.isEmailAvailable.loading();
 
-    final email = store.registerUserVoList
+    final email = store.listRegisterTextFieldVO
         .firstWhere((e) => e.userSignInEnum == UserSignInEnum.email)
         .controller
         .text;
