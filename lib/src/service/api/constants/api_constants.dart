@@ -22,7 +22,13 @@ class ApiConstants {
 
   ///URL para requisições de autenticação
   static const String kDevelopUrl = 'https://is-it-safe-api-v2.herokuapp.com';
-  static const String kProductionUrl = 'https://api.isitsafe.com.br';
+  static const String kProductionHost = 'api.isitsafe.com.br';
+  static String get kProductionUrl {
+    if (ignoreSSLCertificate) {
+      return 'http://$kProductionHost';
+    }
+    return 'https://$kProductionHost';
+  }
 
   ///Url default para requisições da API
   static String kUrl = '${FlavorUtil.instance.url}/is-it-safe/';
@@ -32,6 +38,9 @@ class ApiConstants {
 
   ///URL para direcionar usuario a pagina web de esqueceu a senha
   static String kForgotPassword = '/is-it-safe/forgot';
+
+  ///Variavel para definir se será ignorado, ou não, o certificado ssl
+  static bool ignoreSSLCertificate = true;
   /*--------------------------------------------------------------------*/
 
   //Auth
@@ -62,7 +71,4 @@ class ApiConstants {
   //Review
   static String doReview = '${kUrl}review/save';
   static String deleteReview = '${kUrl}review/delete/';
-
-  //Devemos ignorar certificado SSL? Obs: Essa flag precisa estar desativada em produção
-  static bool shouldIgnoreSSLCertificate = false;
 }
