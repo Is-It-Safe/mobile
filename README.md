@@ -17,7 +17,7 @@ The application facilitates the exposure of situations that are very common to t
 In a reality where Brazil is one of the most harmful countries to the LGBTQIAP+ community, it is necessary to create digital solutions, or not, that promote its protection, security and rights.
 
 ### Our Goals
-
+ 
 Our main objective is to create technological solutions that focus on the safety of the LGBTQIAP+ community.
 
 ### Our Values
