@@ -20,7 +20,7 @@ In a reality where Brazil is one of the most harmful countries to the LGBTQIAP+ 
  
 Our main objective is to create technological solutions that focus on the safety of the LGBTQIAP+ community.
 
-### Our Values
+### Our Values 
 
 Our values consist of: evolution, joint growth, commitment, transparency, security and respect.
 
