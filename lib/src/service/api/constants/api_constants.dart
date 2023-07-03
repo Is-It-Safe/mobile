@@ -24,9 +24,6 @@ class ApiConstants {
   static const String kDevelopUrl = 'https://is-it-safe-api-v2.herokuapp.com';
   static const String kProductionHost = 'api.isitsafe.com.br';
   static String get kProductionUrl {
-    if (ignoreSSLCertificate) {
-      return 'http://$kProductionHost';
-    }
     return 'https://$kProductionHost';
   }
 
