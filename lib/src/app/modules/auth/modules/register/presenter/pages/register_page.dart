@@ -80,7 +80,7 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                             );
                           },
                           suffixIcon: Visibility(
-                            visible: !UserSignInUtil.isObscureFormField(
+                            visible: UserSignInUtil.isObscureFormField(
                               userSignInEnum:
                                   registerTextFieldVO.userSignInEnum,
                             ),
