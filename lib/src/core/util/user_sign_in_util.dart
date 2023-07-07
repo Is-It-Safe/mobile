@@ -18,7 +18,7 @@ class UserSignInUtil {
       case UserSignInEnum.password:
         return S.current.textPassword + StringConstants.asterisk;
       case UserSignInEnum.passwordConfirm:
-        return S.current.textPassword + StringConstants.asterisk;
+        return S.current.textConfirmPassword + StringConstants.asterisk;
     }
   }
 
