@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:is_it_safe_app/src/service/api/modules/auth/auth_service_interface.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_sexual_orientation.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_register.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_refresh_token.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_login.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_gender.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_register.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_refresh_token.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_login.dart';
-import 'package:is_it_safe_app/src/service/api/modules/auth/request/request_confirm_password.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/request/request_confirm_password.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/login/domain/entities/request/request_login.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/request/request_refresh_token.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/entities/request/request_register.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/response/response_gender.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/login/domain/entities/response/response_login.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/response/response_refresh_token.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/entities/response/response_register.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/domain/entities/response/response_sexual_orientation.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service_interface.dart';
 
 class MockAuthService implements IAuthService {
   @override
@@ -53,6 +53,16 @@ class MockAuthService implements IAuthService {
 
   @override
   Future<bool> changePassword(String password) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> isEmailAvailable(String email) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> isUsernameAvailable(String username) {
     throw UnimplementedError();
   }
 }

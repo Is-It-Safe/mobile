@@ -6,7 +6,7 @@ import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
-import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 
 class HomeLocationCard extends StatelessWidget {
   final LocationEntity location;
@@ -184,7 +184,9 @@ class _LocationGrade extends StatelessWidget {
           width: 35,
         ),
         Text(
-          grade,
+          grade == StringConstants.zeroAvaliation
+              ? StringConstants.empty
+              : grade,
           style: TextStyles.headline3(),
         ),
       ],

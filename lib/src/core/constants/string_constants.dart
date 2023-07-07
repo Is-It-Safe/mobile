@@ -1,5 +1,6 @@
 /// A classe [StingConstants] é responsável por gerenciar as constantes de String.
 class StringConstants {
+  static const String appName = 'Is It Safe?';
   static const String empty = '';
   static const String hyphen = '-';
   static const String slash = '/';
@@ -22,15 +23,29 @@ class StringConstants {
   static const String cnpjMask = '##.###.###/####-##';
   static const String cepMask = '#####-###';
   static const String more = '...';
+  static const String https = 'https';
+  static const String httpsComplete = 'https://';
+  static const String http = 'http';
+  static const String httpComplete = 'http://';
 
   //Review
   static const String warning = 'WARNING';
   static const String danger = 'DANGER';
   static const String safe = 'SAFE';
 
+  //Review Zero Avaliation
+  static const String zeroAvaliation = '0.0';
+
   //Place
   static const String place = 'Salvador';
 
   //Config
   static const String assetsManifestPath = 'AssetManifest.json';
+
+  //Contact
+  static const String contactEmail = 'contato@isitsafe.com.br';
+  static const String contactEmailSubject = '[Feedback-App] - @';
+  static const String schemeMailTo = 'mailto';
+  static const String subject = 'subject';
+  static const String body = 'body';
 }

@@ -1,4 +1,4 @@
-package com.example.is_it_safe_app
+package com.isitsafe.app
 
 import io.flutter.embedding.android.FlutterActivity
 

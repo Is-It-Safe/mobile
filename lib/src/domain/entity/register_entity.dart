@@ -1,4 +1,4 @@
-import 'package:is_it_safe_app/src/service/api/modules/auth/response/response_register.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/domain/entities/response/response_register.dart';
 
 import '../../core/constants/string_constants.dart';
 

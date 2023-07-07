@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/location_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
-import 'package:is_it_safe_app/src/core/util/parse_enum.dart';
-import 'package:is_it_safe_app/src/domain/use_case/save_location_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_location_use_case.dart';
+import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 
 class MountTextField extends StatelessWidget {
   final GlobalKey<FormState> formKey;
-  final LocationBloC controller;
+  final SaveLocationBloC controller;
   final SaveLocationUseCase? locationUseCase;
 
   const MountTextField({
@@ -76,23 +76,21 @@ class MountTextField extends StatelessWidget {
             style: TextStyles.subtitle1(),
           ),
           const SizedBox(height: alturaTitleText),
-          ValueListenableBuilder<String>(
-            valueListenable: controller.locationTypeNotifier,
-            builder: (context, value, _) {
+          SafeBuilder<LocationTypeEnum>(
+            stream: controller.locationType,
+            builder: (locationType) {
               return DropdownButtonFormField<String>(
-                value: value,
+                value: locationType.name,
                 items: LocationTypeEnum.values
-                    .map(
-                      (e) => DropdownMenuItem<String>(
-                        value: ParseEnum.parseLocationTypeEnum(e),
-                        child: Text(
-                          ParseEnum.parseLocationTypeEnum(e),
-                        ),
-                      ),
-                    )
+                    .map((e) => DropdownMenuItem<String>(
+                          value: e.name,
+                          child: Text(e.name),
+                        ))
                     .toList(),
-                onChanged: (value) =>
-                    controller.locationTypeNotifier.value = value!,
+                onChanged: (value) {
+                  controller.locationType.data = LocationTypeEnum.values
+                      .firstWhere((element) => element.name == value);
+                },
               );
             },
           ),

@@ -9,6 +9,7 @@ import 'package:is_it_safe_app/src/app/modules/search/presenter/pages/search_pag
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
+import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -19,8 +20,7 @@ class NavigationPage extends StatefulWidget {
   State<NavigationPage> createState() => _NavigationPageState();
 }
 
-class _NavigationPageState
-    extends ModularState<NavigationPage, NavigationBloc> {
+class _NavigationPageState extends SafeState<NavigationPage, NavigationBloc> {
   int _selectedPage = 0;
 
   final itens = [
@@ -68,6 +68,7 @@ class _NavigationPageState
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: const RouterOutlet(),
       bottomNavigationBar: BottomNavigationBar(

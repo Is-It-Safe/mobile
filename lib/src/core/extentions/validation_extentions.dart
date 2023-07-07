@@ -9,7 +9,9 @@ extension SafeValidation on String {
         RegExp(RegexConstants.passwordRegex as String),
       );
 
-  bool get isName => !isEmpty;
+  bool get isName {
+    return length > 3 && isNotEmpty;
+  }
 
   bool get isDate {
     final value = this;

@@ -3,7 +3,7 @@ import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
 
 import '../../../../../components/widgets/safe_empty_card.dart';
-import '../../../../../domain/entity/user_entity.dart';
+import '../../domain/models/user_entity.dart';
 import 'profile_review/profile_review.dart';
 
 class ProfileReviewsList extends StatelessWidget {

@@ -111,7 +111,7 @@ class SafeDialog extends StatelessWidget {
           ),
           Expanded(
             child: SafeButton(
-              title: primaryBtn.title ?? S.current.textOk,
+              title: primaryBtn.title,
               onTap: primaryBtn.onTap ?? Modular.to.pop,
             ),
           ),
@@ -125,7 +125,7 @@ class SafeDialog extends StatelessWidget {
         ),
         Expanded(
           child: SafeButton(
-            title: primaryBtn.title ?? S.current.textOk,
+            title: primaryBtn.title,
             onTap: primaryBtn.onTap ?? Modular.to.pop,
             hasBackground: false,
             style: TextStyle(

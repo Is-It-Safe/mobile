@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
-import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/user_entity.dart';
 
 import 'account_info_tile.dart';
 

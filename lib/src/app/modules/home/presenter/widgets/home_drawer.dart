@@ -13,7 +13,7 @@ import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 
 class HomeDrawer extends StatelessWidget {
-  final String image;
+  final String? image;
   final String? name;
   final String? icon;
   final String? text;
@@ -21,7 +21,7 @@ class HomeDrawer extends StatelessWidget {
 
   const HomeDrawer({
     Key? key,
-    this.image = PlaceHolderAssets.profileAvatar,
+    this.image,
     this.name,
     this.icon,
     this.text,
@@ -40,7 +40,7 @@ class HomeDrawer extends StatelessWidget {
           child: Column(
             children: [
               DrawerHeader(
-                image: image,
+                image: image ?? PlaceHolderAssets.profileAvatar,
                 name: name,
               ),
               const SizedBox(height: 90),
@@ -160,14 +160,4 @@ class DrawerItem extends StatelessWidget {
       ),
     );
   }
-}
-
-class HomeDrawerVO {
-  String userName;
-  String userImage;
-
-  HomeDrawerVO({
-    required this.userName,
-    required this.userImage,
-  });
 }

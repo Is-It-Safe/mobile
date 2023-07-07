@@ -7,7 +7,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_text_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
-import 'package:is_it_safe_app/src/domain/entity/location_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 
 class SearchPage extends StatefulWidget {
   static const route = '/search/';
@@ -20,6 +20,15 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
+  late FocusNode searchTextFocus;
+
+  @override
+  void initState() {
+    searchTextFocus = FocusNode();
+    searchTextFocus.addListener(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -35,9 +44,13 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
             children: [
               SafeTextFormField(
                 controller: bloc.searchTextController,
+                focusNode: searchTextFocus,
                 labelText: S.current.textSearch,
                 prefixIcon: const Icon(Icons.search),
-                onEditingComplete: () => bloc.searchLocation(),
+                onEditingComplete: () async {
+                  searchTextFocus.unfocus();
+                  await bloc.searchLocation();
+                },
               ),
               SafeBuilder<List<LocationEntity>>(
                 stream: bloc.locations,

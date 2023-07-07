@@ -18,46 +18,44 @@ class SafeErrorDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Material(
-        color: SafeColors.generalColors.background,
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 12.0),
-                    child: Text(
-                      S.current.textCriticalErrorPageTitle,
-                      style: TextStyles.headline3(),
-                    ),
+    return Material(
+      color: SafeColors.generalColors.background,
+      child: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 24.0, left: 24.0, right: 24.0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: Text(
+                    S.current.textCriticalErrorPageTitle,
+                    style: TextStyles.headline3(),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 24.0),
-                    child: Text(
-                      S.current.textCriticalErrorPageBody,
-                      style: TextStyles.bodyText1(),
-                      textAlign: TextAlign.center,
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 24.0),
+                  child: Text(
+                    S.current.textCriticalErrorPageBody,
+                    style: TextStyles.bodyText1(),
+                    textAlign: TextAlign.center,
                   ),
-                  Offstage(
-                    offstage: kDebugMode,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 48.0),
-                      child: SafeButton(
-                        title: S.current.textCriticalErrorPageGoToReport,
-                        size: ButtonSize.small,
-                        onTap: () => Modular.to.pushNamed(
-                          ConfigurationModule.route + ContactPage.route,
-                        ),
+                ),
+                Offstage(
+                  offstage: kDebugMode,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 48.0),
+                    child: SafeButton(
+                      title: S.current.textCriticalErrorPageGoToReport,
+                      size: ButtonSize.small,
+                      onTap: () => Modular.to.pushNamed(
+                        ConfigurationModule.route + ContactPage.route,
                       ),
                     ),
                   ),
-                  Text(errorDetails.summary.value.toString())
-                ],
-              ),
+                ),
+                Text(errorDetails.summary.value.toString())
+              ],
             ),
           ),
         ),

@@ -1,11 +1,11 @@
 class AssetConstants {
   static PlaceHolderAssets placeholder = PlaceHolderAssets();
-  static _MockAssets mock = _MockAssets();
-  static _IconsAssets icons = _IconsAssets();
-  static _EmptyAssets empty = _EmptyAssets();
-  static _GeneralAssets general = _GeneralAssets();
-  static _EmoticonAssets emoticon = _EmoticonAssets();
-  static _ImpressionAssets impression = _ImpressionAssets();
+  static final mock = _MockAssets();
+  static final icons = _IconsAssets();
+  static final empty = _EmptyAssets();
+  static final general = _GeneralAssets();
+  static final emoticon = _EmoticonAssets();
+  static final impression = _ImpressionAssets();
 }
 
 class _EmptyAssets {
@@ -59,7 +59,6 @@ class _GeneralAssets {
   String reviewCompleted = 'images/modules/review/review_completed.svg';
 }
 
-//TODO tentar deixar classe privada
 class PlaceHolderAssets {
   static const String profileAvatar =
       'images/modules/auth/profile_pictures/placeholder/placeholder_avatar.png';

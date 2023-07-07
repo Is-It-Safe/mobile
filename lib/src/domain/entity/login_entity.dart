@@ -1,6 +1,7 @@
+import 'package:is_it_safe_app/src/app/modules/auth/modules/login/domain/entities/response/response_login.dart';
+
 import '../../core/constants/int_constants.dart';
 import '../../core/constants/string_constants.dart';
-import '../../service/api/modules/auth/response/response_login.dart';
 
 class LoginEntity {
   String accessToken;

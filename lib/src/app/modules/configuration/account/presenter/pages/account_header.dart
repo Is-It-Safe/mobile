@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_header.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
-import 'package:is_it_safe_app/src/domain/entity/user_entity.dart';
+import 'package:is_it_safe_app/src/app/modules/profile/domain/models/user_entity.dart';
 
 class AccountHeader extends StatefulWidget {
   final SafeStream<UserEntity> user;
@@ -29,7 +29,7 @@ class _AccountHeaderState extends State<AccountHeader> {
           pronoun: user.pronoun,
           gender: user.gender,
           sexualOrientation: user.orientation,
-          isEditabled: true,
+          isEditable: true,
           onPhotoTap: () => widget.navigateToChangeProfilePicture(),
         );
       },
