@@ -141,7 +141,7 @@ class RegisterProfileBloc extends SafeBloC {
   String _getUserData({
     required UserSignInEnum userSignInEnum,
   }) {
-    return store.registerUserVoList
+    return store.listRegisterTextFieldVO
         .firstWhere((element) => element.userSignInEnum == userSignInEnum)
         .controller
         .text;

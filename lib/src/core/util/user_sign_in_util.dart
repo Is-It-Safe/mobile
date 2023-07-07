@@ -18,7 +18,7 @@ class UserSignInUtil {
       case UserSignInEnum.password:
         return S.current.textPassword + StringConstants.asterisk;
       case UserSignInEnum.passwordConfirm:
-        return S.current.textPassword + StringConstants.asterisk;
+        return S.current.textConfirmPassword + StringConstants.asterisk;
     }
   }
 
@@ -39,5 +39,14 @@ class UserSignInUtil {
       default:
         return StringConstants.empty;
     }
+  }
+
+  static bool isObscureFormField({required UserSignInEnum userSignInEnum}) {
+    return userSignInEnum == UserSignInEnum.password ||
+        userSignInEnum == UserSignInEnum.passwordConfirm;
+  }
+
+  static bool isPasswordConfirm({required UserSignInEnum userSignInEnum}) {
+    return userSignInEnum == UserSignInEnum.passwordConfirm;
   }
 }

@@ -33,7 +33,7 @@ class RegisterStore {
     mask: StringConstants.phoneMask,
   );
 
-  final List<RegisterUserVo> registerUserVoList = List.generate(
+  final List<RegisterUserVo> listRegisterTextFieldVO = List.generate(
     UserSignInEnum.values.length,
     (index) {
       return RegisterUserVo(
@@ -51,7 +51,7 @@ class RegisterStore {
     genderTextController.clear();
     sexualOrientationTextController.clear();
 
-    registerUserVoList.clear();
+    listRegisterTextFieldVO.clear();
     registerEntity.data = null;
     isRegisterButtonEnabled.data = false;
     profilePicture.data = StringConstants.empty;
