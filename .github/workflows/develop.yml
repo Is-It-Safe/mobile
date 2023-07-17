@@ -99,6 +99,11 @@ jobs:
          file: coverage/lcov.info
 
       - name: Build Android Release App
+        env:
+           STORE_FILE: ${{ secrets.STORE_FILE }}
+           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
         run: flutter build apk -t lib/main_dev.dart --release
 
       - name: Rename Artifact
