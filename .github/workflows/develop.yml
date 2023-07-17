@@ -6,18 +6,74 @@ on:
       - dev
 
 jobs:
+  version:
+    name: Create version number
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
+        with:
+          versionSpec: "5.x"
+          
+      - name: Use GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.7
+        
+      - name: Create version.txt with nuGetVersion
+        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
+
+      - name: Upload version.txt
+        uses: actions/upload-artifact@v2
+        with:
+          name: gitversion
+          path: version.txt
+      
   build:
+    name: Create Android Build
+    needs: version
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        
+      - name: Get version.txt
+        uses: actions/download-artifact@v2
+        with:
+          name: gitversion
+          
+      - name: Create new file without newline char from version.txt
+        run: tr -d '\n' < version.txt > version1.txt
+      
+      - name: Read version
+        id: version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: version1.txt
+      
+      - name: Update version in YAML
+        run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' pubspec.yaml
+        
+      - name: Create key.properties
+        run: |
+          echo "storeFile=${{ secrets.STORE_FILE }}" > android/key.properties
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+      
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: "12.x"
+          cache: gradle
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
           flutter-version: '3.10.5'
+          cache: true
 
       - name: Get dependencies
         run: flutter pub get
@@ -31,7 +87,7 @@ jobs:
          token: ${{secrets.CODECOV_TOKEN}}
          file: coverage/lcov.info
 
-      - name: Build App
+      - name: Build Android Release App
         run: flutter build apk -t lib/main_dev.dart --release
 
       - name: Rename Artifact
@@ -40,6 +96,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: app-release
+          name: app-$GITHUB_ISSUE_NUMBER-debug
           path: build/app/outputs/flutter-apk/app-$GITHUB_ISSUE_NUMBER-debug.apk
-
