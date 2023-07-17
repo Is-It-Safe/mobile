@@ -60,7 +60,7 @@ jobs:
       - name: Decode Keystore
         env:
            ENCODED_STRING: ${{ secrets.ANDROID_KEYSOTRE_BASE64 }}
-           SIGNING_KEY_STORE_PATH: ${{ secrets.STORE_FILE }}
+           STORE_FILE: ${{ secrets.STORE_FILE }}
  
         run: |
            echo $ENCODED_STRING > keystore-b64.txt
