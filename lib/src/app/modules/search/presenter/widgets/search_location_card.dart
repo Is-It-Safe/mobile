@@ -69,7 +69,7 @@ class SearchLocationCard extends StatelessWidget {
 
   Widget _mountLocationAddress(Size size) {
     return Text(
-      location.address,
+      location.address.split(',').join(', '),
       textAlign: TextAlign.left,
       softWrap: true,
       style: TextStyles.label(),

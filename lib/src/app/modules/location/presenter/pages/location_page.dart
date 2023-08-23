@@ -92,7 +92,7 @@ class _LocationPageState extends SafeState<LocationPage, LocationBloC> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      location.address,
+                      location.address.split(',').join(', '),
                       overflow: TextOverflow.clip,
                       style: TextStyles.caption().copyWith(
                         fontWeight: FontWeight.w500,
