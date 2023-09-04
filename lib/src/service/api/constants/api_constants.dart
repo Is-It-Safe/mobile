@@ -34,7 +34,7 @@ class ApiConstants {
   static const String kUrlCep = 'viacep.com.br/ws/cep/json/';
 
   ///URL para direcionar usuario a pagina web de esqueceu a senha
-  static String kForgotPassword = '/is-it-safe/forgot';
+  static String kForgotPassword = '/forgot';
 
   ///Variavel para definir se será ignorado, ou não, o certificado ssl
   static bool ignoreSSLCertificate = true;
