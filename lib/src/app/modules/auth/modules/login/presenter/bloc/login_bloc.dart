@@ -172,19 +172,18 @@ class LoginBloc extends SafeBloC {
 
   Future<void> forgotPassword() async {
     final Uri url = Uri(
-      scheme: ApiConstants.ignoreSSLCertificate
-          ? StringConstants.http
-          : StringConstants.https,
+      scheme: StringConstants.https,
       host: FlavorUtil.instance.url.replaceAll(
-        ApiConstants.ignoreSSLCertificate
-            ? StringConstants.httpComplete
-            : StringConstants.httpsComplete,
+        StringConstants.httpsComplete,
         StringConstants.empty,
       ),
       path: ApiConstants.kForgotPassword,
     );
     if (await canLaunchUrl(url)) {
-      await launchUrl(url);
+      await launchUrl(
+        url,
+        mode: LaunchMode.externalApplication,
+      );
     }
   }
 
