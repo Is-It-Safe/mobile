@@ -31,7 +31,7 @@ class _DoRegisterButtonWidgetState extends State<DoRegisterButtonWidget> {
       builder: (isEnabledToRegister, isAcceptedTerms) {
         return SafeButton(
           title: S.current.textRegister,
-          state: isAcceptedTerms
+          state: isEnabledToRegister && isAcceptedTerms
               ? ButtonState.rest
               : ButtonState.disabled,
           onTap: () async {

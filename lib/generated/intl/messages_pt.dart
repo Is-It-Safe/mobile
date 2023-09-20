@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Perfil"),
         "textAppBarSignUp": MessageLookupByLibrary.simpleMessage("Cadastro"),
         "textAtLeast8Characteres": MessageLookupByLibrary.simpleMessage(
-            "- Sua senha deve ter mais de 8 caracteres"),
+            "Sua senha deve conter 8 caracteres ou mais,"),
         "textAvatarSuccessUpated": MessageLookupByLibrary.simpleMessage(
             "Avatar alterado com sucesso!"),
         "textBackToLocation":
@@ -245,8 +245,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pesquise locais para avaliar"),
         "textIsItSafe": MessageLookupByLibrary.simpleMessage("Is It Safe?"),
         "textLGBTFobia": MessageLookupByLibrary.simpleMessage("LGBTfobia"),
-        "textLettersAndNumbers":
-            MessageLookupByLibrary.simpleMessage("- letras e números"),
+        "textLettersNumbersAndCaracteres":
+            MessageLookupByLibrary.simpleMessage(" letras, números e símbolos"),
         "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
@@ -293,7 +293,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPasswordFailureChanged": MessageLookupByLibrary.simpleMessage(
             "Não foi possível alterar sua senha!"),
         "textPasswordSpecifications": MessageLookupByLibrary.simpleMessage(
-            "Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números"),
+            "Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.ß"),
         "textPasswordSuccessChanged":
             MessageLookupByLibrary.simpleMessage("Senha alterada com sucesso!"),
         "textPersonalInformation":
