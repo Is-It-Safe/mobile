@@ -32,7 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAddLocationAddressFieldTitle":
             MessageLookupByLibrary.simpleMessage("Endereço"),
         "textAddLocationCepExample":
-            MessageLookupByLibrary.simpleMessage("Ex: 04553434"),
+            MessageLookupByLibrary.simpleMessage("Ex: 04.553-434"),
         "textAddLocationCepFieldTitle":
             MessageLookupByLibrary.simpleMessage("CEP"),
         "textAddLocationConfirm":
@@ -214,6 +214,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Algo de errado aconteceu, tente novamente em alguns instantes."),
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(
             "Campos errados! Tente novamente."),
+        "textErrorZipCode":
+            MessageLookupByLibrary.simpleMessage("CEP inválido"),
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
         "textExcited": MessageLookupByLibrary.simpleMessage("Alegre"),
