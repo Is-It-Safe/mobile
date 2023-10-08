@@ -1870,10 +1870,10 @@ class S {
     );
   }
 
-  /// `Ex: 04553434`
+  /// `Ex: 04.553-434`
   String get textAddLocationCepExample {
     return Intl.message(
-      'Ex: 04553434',
+      'Ex: 04.553-434',
       name: 'textAddLocationCepExample',
       desc: '',
       args: [],
@@ -2005,6 +2005,16 @@ class S {
     return Intl.message(
       'Reportar erro',
       name: 'textCriticalErrorPageGoToReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CEP inválido`
+  String get textErrorZipCode {
+    return Intl.message(
+      'CEP inválido',
+      name: 'textErrorZipCode',
       desc: '',
       args: [],
     );

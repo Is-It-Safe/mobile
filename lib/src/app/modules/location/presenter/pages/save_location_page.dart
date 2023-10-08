@@ -1,4 +1,6 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
@@ -13,7 +15,8 @@ import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location
 class SaveLocationPage extends StatefulWidget {
   static const route = '/save_location';
 
-  const SaveLocationPage({Key? key}) : super(key: key);
+  final LocationEntity? location;
+  const SaveLocationPage({Key? key, this.location}) : super(key: key);
 
   @override
   State<SaveLocationPage> createState() => _SaveLocationPageState();
@@ -70,9 +73,15 @@ class _SaveLocationPageState
                           controller: bloc.locationCepController,
                           labelText: S.current.textAddLocationCepExample,
                           keyboardType: TextInputType.number,
-                          maxLength: 8,
+                          maxLength: 11,
                           textInputAction: TextInputAction.next,
-                          validator: (value) => bloc.validateTextField(value),
+                          validator: (value) {
+                            bloc.getLocationByCep(value);
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CepInputFormatter(),
+                          ],
                         ),
                         const SizedBox(height: alturaTextFormField),
                         Text(
