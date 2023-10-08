@@ -4,6 +4,7 @@ import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/bloc
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/widgets/login_button_widget.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/widgets/login_page_title_widget.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/widgets/register_button_widget.dart';
+import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
@@ -61,19 +62,18 @@ class _LoginPageState extends SafeState<LoginPage, LoginBloc> {
                           onTap: () => bloc.tooglePasswordVisibility(),
                         ),
                       ),
-                      //TODO: Feature comentada por problema de acesso devido à o SSL
-                      // Align(
-                      //   alignment: Alignment.centerRight,
-                      //   child: TextButton(
-                      //     onPressed: () => bloc.forgotPassword(),
-                      //     child: Text(
-                      //       S.current.textButtonForgotPassword,
-                      //       style: TextStyles.button(
-                      //         textDecoration: TextDecoration.underline,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () => bloc.forgotPassword(),
+                          child: Text(
+                            S.current.textButtonForgotPassword,
+                            style: TextStyles.button(
+                              textDecoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ),
                       const SizedBox(height: 30),
                       LoginButtonWidget(
                         loginButtonStream: bloc.isLoginEnabled,

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:js_interop';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -55,12 +54,12 @@ class SaveLocationBloC extends SafeBloC {
           cep: UtilBrasilFields.removeCaracteres(locationCepController.text));
 
       result.fold(
-            (success) {
+        (success) {
           location.data = success;
           Modular.to.pop();
           safeSnackBar.success(S.current.textSuccessSaveLocation);
         },
-            (error) {
+        (error) {
           Modular.to.pop();
           location.show();
           location.error(error.message);
@@ -113,14 +112,13 @@ class SaveLocationBloC extends SafeBloC {
     return null;
   }
 
-
   validateZipcode(String? value) {
     if (value == null || value.isEmpty) {
       return S.current.textErrorEmptyField;
-    } else if (value. length < 10 || value == '') {
+    } else if (value.length < 10 || value == '') {
       return S.current.textErrorZipCode;
     }
-      return '';
+    return '';
   }
 
   @override
