@@ -19,7 +19,7 @@ jobs:
         with:
           channel: 'stable'
           # Use the latest Flutter version available
-          flutter-version: 3.7.8
+          flutter-version: 3.13.7
 
       # Install dependencies
       - name: Get dependencies
