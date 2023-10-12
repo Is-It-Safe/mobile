@@ -32,7 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAddLocationAddressFieldTitle":
             MessageLookupByLibrary.simpleMessage("Endereço"),
         "textAddLocationCepExample":
-            MessageLookupByLibrary.simpleMessage("Ex: 04.553-434"),
+            MessageLookupByLibrary.simpleMessage("Ex: 04553434"),
         "textAddLocationCepFieldTitle":
             MessageLookupByLibrary.simpleMessage("CEP"),
         "textAddLocationConfirm":
@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Perfil"),
         "textAppBarSignUp": MessageLookupByLibrary.simpleMessage("Cadastro"),
         "textAtLeast8Characteres": MessageLookupByLibrary.simpleMessage(
-            "Sua senha deve conter 8 caracteres ou mais,"),
+            "- Sua senha deve ter mais de 8 caracteres"),
         "textAvatarSuccessUpated": MessageLookupByLibrary.simpleMessage(
             "Avatar alterado com sucesso!"),
         "textBackToLocation":
@@ -214,8 +214,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Algo de errado aconteceu, tente novamente em alguns instantes."),
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(
             "Campos errados! Tente novamente."),
-        "textErrorZipCode":
-            MessageLookupByLibrary.simpleMessage("CEP inválido"),
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
         "textExcited": MessageLookupByLibrary.simpleMessage("Alegre"),
@@ -247,10 +245,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pesquise locais para avaliar"),
         "textIsItSafe": MessageLookupByLibrary.simpleMessage("Is It Safe?"),
         "textLGBTFobia": MessageLookupByLibrary.simpleMessage("LGBTfobia"),
-
         "textLettersNumbersAndCaracteres":
             MessageLookupByLibrary.simpleMessage(" letras, números e símbolos"),
-
         "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
@@ -297,7 +293,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPasswordFailureChanged": MessageLookupByLibrary.simpleMessage(
             "Não foi possível alterar sua senha!"),
         "textPasswordSpecifications": MessageLookupByLibrary.simpleMessage(
-            "Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.ß"),
+            "Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números"),
         "textPasswordSuccessChanged":
             MessageLookupByLibrary.simpleMessage("Senha alterada com sucesso!"),
         "textPersonalInformation":
