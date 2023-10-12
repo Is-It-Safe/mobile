@@ -1210,21 +1210,21 @@ class S {
     );
   }
 
-  /// `- Sua senha deve ter mais de 8 caracteres`
+  /// `Sua senha deve conter 8 caracteres ou mais,`
   String get textAtLeast8Characteres {
     return Intl.message(
-      '- Sua senha deve ter mais de 8 caracteres',
+      'Sua senha deve conter 8 caracteres ou mais,',
       name: 'textAtLeast8Characteres',
       desc: '',
       args: [],
     );
   }
 
-  /// `- letras e números`
-  String get textLettersAndNumbers {
+  /// ` letras, números e símbolos`
+  String get textLettersNumbersAndCaracteres {
     return Intl.message(
-      '- letras e números',
-      name: 'textLettersAndNumbers',
+      ' letras, números e símbolos',
+      name: 'textLettersNumbersAndCaracteres',
       desc: '',
       args: [],
     );
@@ -1310,10 +1310,10 @@ class S {
     );
   }
 
-  /// `Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números`
+  /// `Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.ß`
   String get textPasswordSpecifications {
     return Intl.message(
-      'Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números',
+      'Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.ß',
       name: 'textPasswordSpecifications',
       desc: '',
       args: [],
@@ -1870,10 +1870,10 @@ class S {
     );
   }
 
-  /// `Ex: 04553434`
+  /// `Ex: 04.553-434`
   String get textAddLocationCepExample {
     return Intl.message(
-      'Ex: 04553434',
+      'Ex: 04.553-434',
       name: 'textAddLocationCepExample',
       desc: '',
       args: [],
@@ -2005,6 +2005,16 @@ class S {
     return Intl.message(
       'Reportar erro',
       name: 'textCriticalErrorPageGoToReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CEP inválido`
+  String get textErrorZipCode {
+    return Intl.message(
+      'CEP inválido',
+      name: 'textErrorZipCode',
       desc: '',
       args: [],
     );

@@ -245,8 +245,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pesquise locais para avaliar"),
         "textIsItSafe": MessageLookupByLibrary.simpleMessage("Is It Safe?"),
         "textLGBTFobia": MessageLookupByLibrary.simpleMessage("LGBTfobia"),
-        "textLettersAndNumbers":
-            MessageLookupByLibrary.simpleMessage("- letras e números"),
         "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
