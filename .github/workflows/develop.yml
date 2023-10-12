@@ -3,7 +3,7 @@ name: Develop CI/CD
 on:
   push:
     branches:
-      - dev
+      - develop
 
 jobs:
   version:
@@ -83,7 +83,7 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-          flutter-version: '3.10.5'
+          flutter-version: '3.13.7'
           cache: true
 
       - name: Get dependencies
