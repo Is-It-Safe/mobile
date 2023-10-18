@@ -179,12 +179,10 @@ class LoginBloc extends SafeBloC {
       ),
       path: ApiConstants.kForgotPassword,
     );
-    if (await canLaunchUrl(url)) {
-      await launchUrl(
-        url,
-        mode: LaunchMode.externalApplication,
-      );
-    }
+    await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   void tooglePasswordVisibility() {
