@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Perfil"),
         "textAppBarSignUp": MessageLookupByLibrary.simpleMessage("Cadastro"),
         "textAtLeast8Characteres": MessageLookupByLibrary.simpleMessage(
-            "Sua senha deve conter 8 caracteres ou mais,"),
+            "- Sua senha deve ter mais de 8 caracteres"),
         "textAvatarSuccessUpated": MessageLookupByLibrary.simpleMessage(
             "Avatar alterado com sucesso!"),
         "textBackToLocation":
