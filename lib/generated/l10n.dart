@@ -2020,6 +2020,16 @@ class S {
     );
   }
 
+  /// `Digite apenas números`
+  String get textInfoZipCode {
+    return Intl.message(
+      'Digite apenas números',
+      name: 'textInfoZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Deseja desativar sua conta?`
   String get textWantDeactivateAccount {
     return Intl.message(

@@ -240,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textIReadAndAcceptThe":
             MessageLookupByLibrary.simpleMessage("Eu li e aceito os "),
         "textIncredible": MessageLookupByLibrary.simpleMessage("Incrível"),
+        "textInfoZipCode":
+            MessageLookupByLibrary.simpleMessage("Digite apenas números"),
         "textInformationChangedSuccessfully":
             MessageLookupByLibrary.simpleMessage(
                 "Informações atualizadas com sucesso!"),

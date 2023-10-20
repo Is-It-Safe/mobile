@@ -30,6 +30,8 @@ class SafeTextFormField extends StatefulWidget {
   final TextCapitalization textCapitalization;
   final String? obscuringCharacter;
   final AutovalidateMode? autovalidateMode;
+  final String? errorMessage;
+  final String? helperText;
 
   const SafeTextFormField({
     Key? key,
@@ -53,6 +55,8 @@ class SafeTextFormField extends StatefulWidget {
     this.textCapitalization = TextCapitalization.none,
     this.obscuringCharacter,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.errorMessage,
+    this.helperText,
   }) : super(key: key);
 
   @override
@@ -91,8 +95,11 @@ class _SafeTextFormFieldState extends State<SafeTextFormField> {
           keyboardType: widget.keyboardType ?? TextInputType.text,
           inputFormatters: widget.inputFormatters,
           decoration: InputDecoration(
+            helperText: widget.helperText,
             counterText: StringConstants.empty,
+            errorText: widget.errorMessage,
             labelText: labelText,
+            errorStyle: TextStyle(color: SafeColors.statusColors.error),
             labelStyle: TextStyles.label(
               color: _focusNode.hasFocus
                   ? SafeColors.statusColors.active

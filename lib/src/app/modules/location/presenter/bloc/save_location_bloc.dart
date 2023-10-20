@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:js_interop';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -49,28 +48,29 @@ class SaveLocationBloC extends SafeBloC {
     return null;
   }
 
-  Future<String> getLocationByCep(String? cep) async {
+  Future<String> getLocationByCep(String? zipCode) async {
+    String? errorMessage;
+
     try {
       final result = await getLocationsByCepUseCase.call(
-          cep: UtilBrasilFields.removeCaracteres(locationCepController.text));
+        zipCode: UtilBrasilFields.removeCaracteres(locationCepController.text),
+      );
+
 
       result.fold(
             (success) {
           location.data = success;
-          Modular.to.pop();
-          safeSnackBar.success(S.current.textSuccessSaveLocation);
         },
             (error) {
-          Modular.to.pop();
           location.show();
           location.error(error.message);
-          safeSnackBar.error(S.current.textErrorZipCode);
+          errorMessage = S.current.textErrorZipCode;
         },
       );
     } catch (e) {
-      S.current.textErrorZipCode;
+     errorMessage = S.current.textErrorZipCode;
     }
-    return '';
+    return errorMessage ?? '';
   }
 
   Future<void> sendNewLocation() async {
@@ -113,14 +113,13 @@ class SaveLocationBloC extends SafeBloC {
     return null;
   }
 
-
   validateZipcode(String? value) {
-    if (value == null || value.isEmpty) {
+    if (!(value ?? StringConstants.empty).isName || value == null) {
       return S.current.textErrorEmptyField;
-    } else if (value. length < 10 || value == '') {
+    } else if (value. length < 10) {
       return S.current.textErrorZipCode;
     }
-      return '';
+    return '';
   }
 
   @override

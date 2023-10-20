@@ -221,7 +221,7 @@
     "textCriticalErrorPageBody": "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!",
     "textCriticalErrorPageGoToReport": "Reportar erro",
     "textErrorZipCode": "CEP inválido",
-
+    "textInfoZipCode": "Digite apenas números",
     "textWantDeactivateAccount": "Deseja desativar sua conta?",
     "textDeactivateAccountWarnning": "Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.",
     
