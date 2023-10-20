@@ -693,7 +693,7 @@ class S {
   /// `Finalizar`
   String get textFinish {
     return Intl.message(
-      'Finalizar',
+      'Finalizar Cadastro',
       name: 'textFinish',
       desc: '',
       args: [],
