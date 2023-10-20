@@ -1,4 +1,4 @@
-name: Develop CI/CD
+name: Release CI/CD
 
 on:
   push:
