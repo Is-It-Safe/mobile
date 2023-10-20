@@ -45,8 +45,6 @@ jobs:
       - name: Build Android APK
         run: flutter build apk -t lib/main_dev.dart --release
         
-      # - name: Rename Artifact
-      #   run: mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app-${{github.event.number}}-debug
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.1.3
