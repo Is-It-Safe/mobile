@@ -1310,10 +1310,10 @@ class S {
     );
   }
 
-  /// `Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.ß`
+  /// `Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.`
   String get textPasswordSpecifications {
     return Intl.message(
-      'Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.ß',
+      'Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.',
       name: 'textPasswordSpecifications',
       desc: '',
       args: [],

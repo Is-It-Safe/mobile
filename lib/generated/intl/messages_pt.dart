@@ -293,7 +293,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textPasswordFailureChanged": MessageLookupByLibrary.simpleMessage(
             "Não foi possível alterar sua senha!"),
         "textPasswordSpecifications": MessageLookupByLibrary.simpleMessage(
-            "Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números"),
+            "Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos."),
         "textPasswordSuccessChanged":
             MessageLookupByLibrary.simpleMessage("Senha alterada com sucesso!"),
         "textPersonalInformation":
