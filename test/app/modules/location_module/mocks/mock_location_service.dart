@@ -32,7 +32,10 @@ class MockLocationService implements ILocationService {
 
   @override
   Future<ResponseLocationByCep> getLocationByCep(RequestGetLocationByCep cep) {
-    // TODO: implement getLocationByCep
-    throw UnimplementedError();
+    var jsonContent = File("test/app/modules/location_module/savelocation_response.json")
+        .readAsStringSync();
+
+    var response = ResponseLocationByCep.fromJson(jsonDecode(jsonContent));
+    return Future.value(response);
   }
 }

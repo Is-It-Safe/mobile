@@ -11,8 +11,8 @@ class RequestLogin {
 
   Map<String, dynamic> toMap() {
     return {
-      'username': 'admin@gmail.com',
-      'password': '123456',
+      'username': email,
+      'password': password,
     };
   }
 

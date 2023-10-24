@@ -28,8 +28,7 @@ class _SaveLocationPageState
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static const double alturaTextFormField = 32;
   static const double alturaTitleText = 12;
-  ValueNotifier<String?> errorMessageNotifier = ValueNotifier(null);
-  String _showError = '';
+  String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -38,143 +37,141 @@ class _SaveLocationPageState
       appBar: SafeAppBar(
         title: S.current.textAddLocationSubTitle,
       ),
-      body: ValueListenableBuilder<String?>(
-        valueListenable: errorMessageNotifier,
-        builder: (context, errorMessage, Widget? child) => SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24.0,
-              vertical: 8.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        S.current.textAddLocationNameTextFieldTitle,
-                        style: TextStyles.subtitle1(),
-                      ),
-                      const SizedBox(height: alturaTitleText),
-                      SafeTextFormField(
-                        controller: bloc.locationNameController,
-                        labelText: S.current.textAddLocationExample,
-                        textInputAction: TextInputAction.next,
-                        validator: (value) => bloc.validateTextField(value),
-                      ),
-                      const SizedBox(height: alturaTextFormField),
-                      Text(
-                        S.current.textAddLocationCepFieldTitle,
-                        style: TextStyles.subtitle1(),
-                      ),
-                      const SizedBox(height: alturaTitleText),
-                      FutureBuilder<String>(
-                          future: bloc.getLocationByCep(bloc.locationCepController.text),
-                          builder: (context, snapshot) {
-                            String errorMessage = snapshot.data ?? '';
-                            if (bloc.locationCepController.text.isEmpty || snapshot.connectionState == ConnectionState.waiting) {
-                              errorMessage = '';
-                            } else if (snapshot.hasError || snapshot.data == null) {
-                              errorMessage;
+      body: SafeBuilder(
+        stream: bloc.location,
+        builder: (saveLocation) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 8.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.current.textAddLocationNameTextFieldTitle,
+                          style: TextStyles.subtitle1(),
+                        ),
+                        const SizedBox(height: alturaTitleText),
+                        SafeTextFormField(
+                          controller: bloc.locationNameController,
+                          labelText: S.current.textAddLocationExample,
+                          textInputAction: TextInputAction.next,
+                          validator: (value) => bloc.validateTextField(value),
+                        ),
+                        const SizedBox(height: alturaTextFormField),
+                        Text(
+                          S.current.textAddLocationCepFieldTitle,
+                          style: TextStyles.subtitle1(),
+                        ),
+                        const SizedBox(height: alturaTitleText),
+                        SafeTextFormField(
+                          controller: bloc.locationCepController,
+                          labelText: S.current.textAddLocationCepExample,
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.next,
+                          onChanged: (value) async {
+                            if (value.length == 10) {
+                              setState(() {
+                              });
+                              final result = await bloc.getLocationByCep(value);
+                              setState(() {
+                                errorMessage = result;
+                              });
+                            } else {
+                              setState(() {
+                                errorMessage = null;
+                              });
                             }
-                            return SafeTextFormField(
-                              controller: bloc.locationCepController,
-                              labelText: S.current.textAddLocationCepExample,
-                              keyboardType: TextInputType.number,
-                              textInputAction: TextInputAction.next,
-                              helperText: S.current.textInfoZipCode,
-                              onChanged: (value) async {
-                                final result = await bloc.getLocationByCep(value);
-                                setState(() {
-                                  errorMessage = result;
-                                });
+                          },
+                          validator: (value) => bloc.validateZipcode(value),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CepInputFormatter(),
+                          ],
+                        ),
+                        const SizedBox(height: alturaTextFormField),
+                        Text(
+                          S.current.textAddLocationAddressFieldTitle,
+                          style: TextStyles.subtitle1(),
+                        ),
+                        const SizedBox(height: alturaTitleText),
+                        SafeTextFormField(
+                          controller: bloc.locationAddressFieldController,
+                          labelText: S.current.textAddLocationAddress,
+                          textInputAction: TextInputAction.next,
+                          validator: (value) => bloc.validateTextField(value),
+                        ),
+                        const SizedBox(height: alturaTextFormField),
+                        Text(
+                          S.current.textAddTypeLocationFieldTitle,
+                          style: TextStyles.subtitle1(),
+                        ),
+                        const SizedBox(height: alturaTitleText),
+                        SafeBuilder<LocationTypeEnum>(
+                          stream: bloc.locationType,
+                          builder: (locationType) {
+                            return DropdownButtonFormField<String>(
+                              value: locationType.name,
+                              items: LocationTypeEnum.values
+                                  .map((e) => DropdownMenuItem<String>(
+                                        value: e.name,
+                                        child: Text(e.name),
+                                      ))
+                                  .toList(),
+                              onChanged: (value) {
+                                bloc.locationType.data = LocationTypeEnum.values
+                                    .firstWhere(
+                                        (element) => element.name == value);
                               },
-                              errorMessage: errorMessage,
-                              validator: (value) => bloc.validateZipcode(value),
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                                CepInputFormatter(),
-                              ],
                             );
-                          }),
-                      const SizedBox(height: alturaTextFormField),
-                      Text(
-                        S.current.textAddLocationAddressFieldTitle,
-                        style: TextStyles.subtitle1(),
-                      ),
-                      const SizedBox(height: alturaTitleText),
-                      SafeTextFormField(
-                        controller: bloc.locationAddressFieldController,
-                        labelText: S.current.textAddLocationAddress,
-                        textInputAction: TextInputAction.next,
-                        validator: (value) => bloc.validateTextField(value),
-                      ),
-                      const SizedBox(height: alturaTextFormField),
-                      Text(
-                        S.current.textAddTypeLocationFieldTitle,
-                        style: TextStyles.subtitle1(),
-                      ),
-                      const SizedBox(height: alturaTitleText),
-                      SafeBuilder<LocationTypeEnum>(
-                        stream: bloc.locationType,
-                        builder: (locationType) {
-                          return DropdownButtonFormField<String>(
-                            value: locationType.name,
-                            items: LocationTypeEnum.values
-                                .map((e) => DropdownMenuItem<String>(
-                                      value: e.name,
-                                      child: Text(e.name),
-                                    ))
-                                .toList(),
-                            onChanged: (value) {
-                              bloc.locationType.data = LocationTypeEnum.values
-                                  .firstWhere(
-                                      (element) => element.name == value);
-                            },
-                          );
-                        },
-                      ),
-                      const SizedBox(height: alturaTextFormField),
-                    ],
+                          },
+                        ),
+                        const SizedBox(height: alturaTextFormField),
+                      ],
+                    ),
                   ),
-                ),
-                //TODO app crasha quando abre o image picker
-                // ValueListenableBuilder<String?>(
-                //   valueListenable: bloc.imageNotifier,
-                //   builder: (context, value, _) {
-                //     return Padding(
-                //       padding: const EdgeInsets.only(bottom: 48.0),
-                //       child: LocationPhotoComponent(
-                //         path: value,
-                //         onTap: () async {
-                //           bloc.imageNotifier.value =
-                //               await bloc.handleCameraTap();
-                //         },
-                //       ),
-                //     );
-                //   },
-                // ),
-                const SizedBox(height: 48),
-                Center(
-                  child: SafeButton(
-                    title: S.current.textAddLocationConfirm,
-                    hasBackground: true,
-                    size: ButtonSize.large,
-                    onTap: () async {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        await bloc.sendNewLocation();
-                      }
-                    },
+                  //TODO app crasha quando abre o image picker
+                  // ValueListenableBuilder<String?>(
+                  //   valueListenable: bloc.imageNotifier,
+                  //   builder: (context, value, _) {
+                  //     return Padding(
+                  //       padding: const EdgeInsets.only(bottom: 48.0),
+                  //       child: LocationPhotoComponent(
+                  //         path: value,
+                  //         onTap: () async {
+                  //           bloc.imageNotifier.value =
+                  //               await bloc.handleCameraTap();
+                  //         },
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
+                  const SizedBox(height: 48),
+                  Center(
+                    child: SafeButton(
+                      title: S.current.textAddLocationConfirm,
+                      hasBackground: true,
+                      size: ButtonSize.large,
+                      onTap: () async {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          await bloc.sendNewLocation();
+                        }
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 26),
-              ],
+                  const SizedBox(height: 26),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

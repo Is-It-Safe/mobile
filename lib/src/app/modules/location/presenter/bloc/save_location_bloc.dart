@@ -56,20 +56,22 @@ class SaveLocationBloC extends SafeBloC {
         zipCode: UtilBrasilFields.removeCaracteres(locationCepController.text),
       );
 
-
       result.fold(
-            (success) {
+        (success) {
           location.data = success;
         },
-            (error) {
+        (error) {
+          location.data = null;
           location.show();
           location.error(error.message);
-          errorMessage = S.current.textErrorZipCode;
+          errorMessage;
         },
       );
     } catch (e) {
-     errorMessage = S.current.textErrorZipCode;
+      location.data = null;
+      errorMessage = S.current.textErrorZipCode;
     }
+
     return errorMessage ?? '';
   }
 
@@ -116,10 +118,12 @@ class SaveLocationBloC extends SafeBloC {
   validateZipcode(String? value) {
     if (!(value ?? StringConstants.empty).isName || value == null) {
       return S.current.textErrorEmptyField;
-    } else if (value. length < 10) {
+    } else if (value.length < 10) {
+      return S.current.textErrorZipCode;
+    } else if (location.data == null) {
       return S.current.textErrorZipCode;
     }
-    return '';
+    return null;
   }
 
   @override
@@ -128,5 +132,26 @@ class SaveLocationBloC extends SafeBloC {
     locationNameController = TextEditingController();
     locationCepController = TextEditingController();
     locationAddressFieldController = TextEditingController();
+  }
+}
+
+class Debouncer {
+  Debouncer._();
+
+  static Timer? _timer;
+
+  static void run(
+    void Function() action, {
+    Duration duration = const Duration(milliseconds: 400),
+  }) {
+    if (duration == Duration.zero) {
+      _timer?.cancel();
+    } else {
+      _timer?.cancel();
+      _timer = Timer(duration, () {
+        _timer?.cancel();
+        action();
+      });
+    }
   }
 }
