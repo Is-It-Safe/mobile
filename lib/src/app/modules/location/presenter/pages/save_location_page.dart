@@ -28,7 +28,6 @@ class _SaveLocationPageState
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static const double alturaTextFormField = 32;
   static const double alturaTitleText = 12;
-  String? errorMessage;
 
   @override
   Widget build(BuildContext context) {

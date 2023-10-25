@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use_from_same_package
+
 import 'dart:async';
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_locations_by_id_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
@@ -12,7 +14,6 @@ import 'package:is_it_safe_app/src/service/api/error/error_exceptions.dart';
 
 class LocationBloC extends SafeBloC {
   final GetLocationsByIdUseCase getLocationsByIdUseCase;
-
 
   final location = SafeStream<LocationEntity?>(data: null);
 

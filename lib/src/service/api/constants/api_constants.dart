@@ -31,7 +31,7 @@ class ApiConstants {
   static String kUrl = '${FlavorUtil.instance.url}/is-it-safe/';
 
   ///URL para requisições voltadas a localização via CEP
-  static const String kUrlCep = 'https://viacep.com.br/ws/placeholder/json/';
+  static const String kUrlCep = 'viacep.com.br/ws/cep/json/';
 
   ///URL para direcionar usuario a pagina web de esqueceu a senha
   static String kForgotPassword = '/forgot';
