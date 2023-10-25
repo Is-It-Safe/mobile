@@ -1,44 +1,53 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/request/request_get_location_by_cep.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/entities/request/request_save_location.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_by_cep.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_location_by_cep_use_case.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_location_use_case.dart';
-import 'package:modular_test/modular_test.dart';
+import 'package:is_it_safe_app/src/app/modules/location/error/safe_location_error.dart';
+import 'package:mocktail/mocktail.dart';
 
-import '../../mocks/mock_location_service.dart';
-
-
-class GetLocationByCepSuccessTestModule extends Module {
-  @override
-  List<Bind<Object>> get binds => [
-    Bind((i) => MockLocationService()),
-    Bind((i) => GetLocationByCepUseCase(i.get<MockLocationService>())),
-  ];
-}
+import '../../mocks/location_mocks.dart';
 
 main() {
+  late LocationServiceMock serviceMock;
+  late GetLocationByCepUseCase useCaseLocationCep;
+  registerFallbackValue(RequestGetLocationByCep(cep: 'fallback_value'));
+  const String cep = '49035690';
+
   setUpAll(() {
-    initModule(GetLocationByCepSuccessTestModule());
+    serviceMock = LocationServiceMock();
+    useCaseLocationCep = GetLocationByCepUseCase(serviceMock);
   });
 
-  group('GetLocationByCep <Succes>', () {
-    final request = RequestGetLocationByCep(
-      cep: '41000000',
-    );
+  group('GetLocationByCep <Success>', () {
     test('Should return a cep valid', () async {
-      final useCase = Modular.get<GetLocationByCepUseCase>();
-
-      final getLocationByCepUseCase = await useCase(
-        zipCode: request.cep!,
+      when(() => serviceMock.getLocationByCep(any())).thenAnswer(
+            (_) async => ResponseLocationByCep(
+          cep: '49035690',
+        ),
       );
 
-      getLocationByCepUseCase.fold(
-            (success) {
-          expect(success.name, equals("41000000"));
-        },
-            (failure) {},
-      );
+      final response = await useCaseLocationCep(zipCode: cep);
+
+      response.fold((success) {
+        expect(success.name, equals(cep));
+      }, (failure) {
+        expect(failure, null);
+      });
     });
   });
+
+  group('GetLocationByCep <Failure>', () {
+    test('Should return an invalid cep', () async {
+      when(() => serviceMock.getLocationByCep(any())).thenThrow(SafeCepError('Cep inválido'));
+
+      final response = await useCaseLocationCep(zipCode: cep);
+
+      response.fold((success) {
+        expect(success, null);
+      }, (failure) {
+        expect(failure.message, 'Cep inválido');
+      });
+    });
+  });
+  
 }

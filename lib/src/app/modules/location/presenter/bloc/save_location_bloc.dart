@@ -72,7 +72,7 @@ class SaveLocationBloC extends SafeBloC {
       errorMessage = S.current.textErrorZipCode;
     }
 
-    return errorMessage ?? '';
+    return errorMessage ?? StringConstants.empty;
   }
 
   Future<void> sendNewLocation() async {
