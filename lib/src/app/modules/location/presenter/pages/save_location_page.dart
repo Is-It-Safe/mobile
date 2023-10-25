@@ -28,6 +28,7 @@ class _SaveLocationPageState
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static const double alturaTextFormField = 32;
   static const double alturaTitleText = 12;
+  String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +121,9 @@ class _SaveLocationPageState
                               value: locationType.name,
                               items: LocationTypeEnum.values
                                   .map((e) => DropdownMenuItem<String>(
-                                        value: e.name,
-                                        child: Text(e.name),
-                                      ))
+                                value: e.name,
+                                child: Text(e.name),
+                              ))
                                   .toList(),
                               onChanged: (value) {
                                 bloc.locationType.data = LocationTypeEnum.values

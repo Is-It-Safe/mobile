@@ -25,7 +25,7 @@ class SaveLocationBloC extends SafeBloC {
   TextEditingController locationNameController = TextEditingController();
   TextEditingController locationCepController = TextEditingController();
   TextEditingController locationAddressFieldController =
-      TextEditingController();
+  TextEditingController();
 
   SaveLocationBloC({
     required this.saveLocationUseCase,
@@ -57,10 +57,10 @@ class SaveLocationBloC extends SafeBloC {
       );
 
       result.fold(
-        (success) {
+            (success) {
           location.data = success;
         },
-        (error) {
+            (error) {
           location.data = null;
           location.show();
           location.error(error.message);
@@ -79,7 +79,7 @@ class SaveLocationBloC extends SafeBloC {
     try {
       location.loading();
       int locationId = LocationTypeEnum.values.indexWhere(
-        (element) => locationType.data.name == element.name,
+            (element) => locationType.data.name == element.name,
       );
       final result = await saveLocationUseCase.call(
         name: locationNameController.text,
@@ -88,12 +88,12 @@ class SaveLocationBloC extends SafeBloC {
         imgUrl: imageNotifier.value,
       );
       result.fold(
-        (success) {
+            (success) {
           location.data = success;
           Modular.to.pop();
           safeSnackBar.success(S.current.textSuccessSaveLocation);
         },
-        (error) {
+            (error) {
           Modular.to.pop();
           location.show();
           location.error(error.message);

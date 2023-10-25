@@ -12,7 +12,7 @@ class GetLocationByCepUseCase extends SafeUseCase {
 
   Future<Result<LocationEntity, SafeLocationError>> call({
     required String zipCode,
-}) async {
+  }) async {
     try {
 
       final request = RequestGetLocationByCep(
@@ -20,9 +20,9 @@ class GetLocationByCepUseCase extends SafeUseCase {
       );
 
       final response = await service.getLocationByCep(request);
-      return Success(LocationEntity.fromResponseGetLocationByCep(response!));
+      return Success(LocationEntity.fromResponseGetLocationByCep(response));
     } on SafeLocationError catch (e) {
       return Failure(e);
-  }
+    }
   }
 }
