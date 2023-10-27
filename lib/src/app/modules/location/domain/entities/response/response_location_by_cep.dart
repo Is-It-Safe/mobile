@@ -9,6 +9,7 @@ class ResponseLocationByCep {
   String? gia;
   String? ddd;
   String? siafi;
+  bool? isErro;
 
   ResponseLocationByCep({
     this.cep,
@@ -21,6 +22,7 @@ class ResponseLocationByCep {
     this.gia,
     this.ddd,
     this.siafi,
+    this.isErro,
   });
 
   ResponseLocationByCep.fromJson(Map<String, dynamic> json) {
@@ -34,5 +36,6 @@ class ResponseLocationByCep {
     gia = json['gia'];
     ddd = json['ddd'];
     siafi = json['siafi'];
+    isErro = json['erro'];
   }
 }

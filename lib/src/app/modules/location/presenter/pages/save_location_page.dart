@@ -71,31 +71,31 @@ class _SaveLocationPageState
                           style: TextStyles.subtitle1(),
                         ),
                         const SizedBox(height: alturaTitleText),
-                        SafeTextFormField(
-                          controller: bloc.locationCepController,
-                          labelText: S.current.textAddLocationCepExample,
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.next,
-                          onChanged: (value) async {
-                            if (value.length == 10) {
-                              setState(() {
-                              });
-                              final result = await bloc.getLocationByCep(value);
-                              setState(() {
-                                errorMessage = result;
-                              });
-                            } else {
-                              setState(() {
-                                errorMessage = null;
-                              });
-                            }
-                          },
-                          validator: (value) => bloc.validateZipcode(value),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            CepInputFormatter(),
-                          ],
-                        ),
+                        ValueListenableBuilder<String?>(
+                            valueListenable: bloc.errorMessageNotifier,
+                            builder: (context, errorMessage, _) {
+                              return SafeTextFormField(
+                                controller: bloc.locationCepController,
+                                labelText: S.current.textAddLocationCepExample,
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.next,
+                                onChanged: (value) async {
+                                  if (value.length == 10) {
+                                    final result =
+                                        await bloc.getLocationByCep(value);
+                                    bloc.errorMessageNotifier.value = result;
+                                  } else {
+                                    bloc.errorMessageNotifier.value = null;
+                                  }
+                                },
+                                validator: (value) =>
+                                    bloc.validateZipcode(value),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  CepInputFormatter(),
+                                ],
+                              );
+                            }),
                         const SizedBox(height: alturaTextFormField),
                         Text(
                           S.current.textAddLocationAddressFieldTitle,
@@ -121,9 +121,9 @@ class _SaveLocationPageState
                               value: locationType.name,
                               items: LocationTypeEnum.values
                                   .map((e) => DropdownMenuItem<String>(
-                                value: e.name,
-                                child: Text(e.name),
-                              ))
+                                        value: e.name,
+                                        child: Text(e.name),
+                                      ))
                                   .toList(),
                               onChanged: (value) {
                                 bloc.locationType.data = LocationTypeEnum.values
@@ -159,6 +159,8 @@ class _SaveLocationPageState
                       title: S.current.textAddLocationConfirm,
                       hasBackground: true,
                       size: ButtonSize.large,
+
+                      //TODO: mesmo com CEP inválido o botão está sendo habilitado
                       onTap: () async {
                         if (_formKey.currentState?.validate() ?? false) {
                           await bloc.sendNewLocation();

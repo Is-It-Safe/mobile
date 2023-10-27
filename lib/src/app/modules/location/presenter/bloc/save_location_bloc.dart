@@ -25,7 +25,9 @@ class SaveLocationBloC extends SafeBloC {
   TextEditingController locationNameController = TextEditingController();
   TextEditingController locationCepController = TextEditingController();
   TextEditingController locationAddressFieldController =
-  TextEditingController();
+      TextEditingController();
+
+  ValueNotifier<String?> errorMessageNotifier = ValueNotifier<String?>(null);
 
   SaveLocationBloC({
     required this.saveLocationUseCase,
@@ -48,7 +50,7 @@ class SaveLocationBloC extends SafeBloC {
     return null;
   }
 
-  Future<String> getLocationByCep(String? zipCode) async {
+  Future<String?> getLocationByCep(String? zipCode) async {
     String? errorMessage;
 
     try {
@@ -57,10 +59,13 @@ class SaveLocationBloC extends SafeBloC {
       );
 
       result.fold(
-            (success) {
+        (success) {
+          if (success.isErro ?? false) {
+            errorMessage = S.current.textErrorZipCode;
+          }
           location.data = success;
         },
-            (error) {
+        (error) {
           location.data = null;
           location.show();
           location.error(error.message);
@@ -72,14 +77,14 @@ class SaveLocationBloC extends SafeBloC {
       errorMessage = S.current.textErrorZipCode;
     }
 
-    return errorMessage ?? StringConstants.empty;
+    return errorMessage;
   }
 
   Future<void> sendNewLocation() async {
     try {
       location.loading();
       int locationId = LocationTypeEnum.values.indexWhere(
-            (element) => locationType.data.name == element.name,
+        (element) => locationType.data.name == element.name,
       );
       final result = await saveLocationUseCase.call(
         name: locationNameController.text,
@@ -88,12 +93,12 @@ class SaveLocationBloC extends SafeBloC {
         imgUrl: imageNotifier.value,
       );
       result.fold(
-            (success) {
+        (success) {
           location.data = success;
           Modular.to.pop();
           safeSnackBar.success(S.current.textSuccessSaveLocation);
         },
-            (error) {
+        (error) {
           Modular.to.pop();
           location.show();
           location.error(error.message);
@@ -116,12 +121,13 @@ class SaveLocationBloC extends SafeBloC {
   }
 
   validateZipcode(String? value) {
+    print('Erro é: ${location.data?.isErro}');
     if (!(value ?? StringConstants.empty).isName || value == null) {
       return S.current.textErrorEmptyField;
     } else if (value.length < 10) {
       return S.current.textErrorZipCode;
-    } else if (location.data == null) {
-      return S.current.textErrorZipCode;
+    } else if (location.data?.isErro == true || location.data?.isErro == null) {
+      return errorMessageNotifier.value;
     }
     return null;
   }

@@ -42,16 +42,19 @@ class LocationService implements ILocationService {
   }
 
   @override
-  Future<ResponseLocationByCep> getLocationByCep(RequestGetLocationByCep cep) async {
-
-
+  Future<ResponseLocationByCep> getLocationByCep(
+      RequestGetLocationByCep cep) async {
     final requestConfig = RequestConfig(
       path: ApiConstants.kUrlCep.replaceAll('placeholder', cep.cep!),
       method: HttpMethod.get,
     );
 
-    final response = await _service.doRequest(requestConfig);
-    return ResponseLocationByCep.fromJson(json.decode(response.data));
+    try {
+      final response = await _service.doRequest(requestConfig);
+      return ResponseLocationByCep.fromJson(json.decode(response.data));
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

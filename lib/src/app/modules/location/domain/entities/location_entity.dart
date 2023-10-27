@@ -20,6 +20,7 @@ class LocationEntity {
   final List<ResponseLocationReview>? reviews;
   final List<ReviewChart>? reviewChart;
   final String? cep;
+  final bool? isErro;
 
   LocationEntity({
     this.id,
@@ -32,6 +33,7 @@ class LocationEntity {
     this.reviews,
     this.reviewChart,
     this.cep,
+    this.isErro,
   });
 
   factory LocationEntity.toEntity(dynamic location) {
@@ -43,7 +45,7 @@ class LocationEntity {
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,
       averageImpressionStatus:
-      location.averageImpressionStatus ?? StringConstants.empty,
+          location.averageImpressionStatus ?? StringConstants.empty,
       reviews: location.reviews ?? [],
       reviewChart: location.reviewChart ?? [],
     );
@@ -59,7 +61,7 @@ class LocationEntity {
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,
       averageImpressionStatus:
-      location.averageImpressionStatus ?? StringConstants.empty,
+          location.averageImpressionStatus ?? StringConstants.empty,
     );
   }
 
@@ -73,7 +75,7 @@ class LocationEntity {
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,
       averageImpressionStatus:
-      location.averageImpressionStatus ?? StringConstants.empty,
+          location.averageImpressionStatus ?? StringConstants.empty,
       reviews: location.reviews ?? [],
     );
   }
@@ -81,8 +83,10 @@ class LocationEntity {
   factory LocationEntity.fromResponseGetLocationByCep(
       ResponseLocationByCep zipCode) {
     return LocationEntity(
-      name: UtilBrasilFields.removeCaracteres(zipCode.cep ?? StringConstants.empty),
+      name: UtilBrasilFields.removeCaracteres(
+          zipCode.cep ?? StringConstants.empty),
       address: zipCode.bairro ?? StringConstants.empty,
+      isErro: zipCode.isErro ?? false,
     );
   }
 
@@ -104,7 +108,7 @@ class LocationEntity {
       reviewsQnt: location.reviewsQnt ?? IntConstants.empty,
       imagePath: location.imgUrl ?? StringConstants.empty,
       averageImpressionStatus:
-      location.averageImpressionStatus ?? StringConstants.empty,
+          location.averageImpressionStatus ?? StringConstants.empty,
       reviews: location.reviews ?? [],
     );
   }
