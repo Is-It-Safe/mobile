@@ -121,7 +121,6 @@ class SaveLocationBloC extends SafeBloC {
   }
 
   validateZipcode(String? value) {
-    print('Erro é: ${location.data?.isErro}');
     if (!(value ?? StringConstants.empty).isName || value == null) {
       return S.current.textErrorEmptyField;
     } else if (value.length < 10) {

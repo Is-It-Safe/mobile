@@ -17,7 +17,6 @@
         "name": "DEV",
         "request": "launch",
         "type": "dart",
-        "flutterMode": "release",
         "program": "lib/main_dev.dart",
         "args": [
           "--dart-define=flavor=dev",
