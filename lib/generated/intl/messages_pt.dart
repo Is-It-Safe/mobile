@@ -223,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Não foi possível alterar o avatar!"),
         "textFeatureAvailableSoon": MessageLookupByLibrary.simpleMessage(
             "Funcionalidade disponível em breve"),
-        "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar"),
+        "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar Cadastro"),
         "textForgotGender":
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
