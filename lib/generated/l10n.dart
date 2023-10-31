@@ -693,7 +693,7 @@ class S {
   /// `Finalizar`
   String get textFinish {
     return Intl.message(
-      'Finalizar Cadastro',
+      'Finalizar',
       name: 'textFinish',
       desc: '',
       args: [],
@@ -1210,21 +1210,21 @@ class S {
     );
   }
 
-  /// `Sua senha deve conter 8 caracteres ou mais,`
+  /// `- Sua senha deve ter mais de 8 caracteres`
   String get textAtLeast8Characteres {
     return Intl.message(
-      'Sua senha deve conter 8 caracteres ou mais,',
+      '- Sua senha deve ter mais de 8 caracteres',
       name: 'textAtLeast8Characteres',
       desc: '',
       args: [],
     );
   }
 
-  /// ` letras, números e símbolos`
-  String get textLettersNumbersAndCaracteres {
+  /// `- letras e números`
+  String get textLettersAndNumbers {
     return Intl.message(
-      ' letras, números e símbolos',
-      name: 'textLettersNumbersAndCaracteres',
+      '- letras e números',
+      name: 'textLettersAndNumbers',
       desc: '',
       args: [],
     );
@@ -2015,6 +2015,16 @@ class S {
     return Intl.message(
       'CEP inválido',
       name: 'textErrorZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digite apenas números`
+  String get textInfoZipCode {
+    return Intl.message(
+      'Digite apenas números',
+      name: 'textInfoZipCode',
       desc: '',
       args: [],
     );

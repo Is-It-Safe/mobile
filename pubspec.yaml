@@ -48,6 +48,7 @@ dependencies:
   flutter_svg: ^1.1.4
   simple_animations: ^4.0.1
   dotted_border: ^2.0.0
+  brasil_fields: ^1.14.0
 
   #Armazenamento
   shared_preferences: ^2.0.15

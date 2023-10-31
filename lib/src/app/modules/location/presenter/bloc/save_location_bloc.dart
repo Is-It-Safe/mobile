@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_location_by_cep_use_case.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
@@ -14,6 +16,7 @@ import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 
 class SaveLocationBloC extends SafeBloC {
   final SaveLocationUseCase saveLocationUseCase;
+  final GetLocationByCepUseCase getLocationsByCepUseCase;
 
   final location = SafeStream<LocationEntity?>(data: null);
   final locationType = SafeStream<LocationTypeEnum>(data: LocationTypeEnum.pub);
@@ -24,8 +27,11 @@ class SaveLocationBloC extends SafeBloC {
   TextEditingController locationAddressFieldController =
       TextEditingController();
 
+  ValueNotifier<String?> errorMessageNotifier = ValueNotifier<String?>(null);
+
   SaveLocationBloC({
     required this.saveLocationUseCase,
+    required this.getLocationsByCepUseCase,
   });
 
   @override
@@ -44,6 +50,36 @@ class SaveLocationBloC extends SafeBloC {
     return null;
   }
 
+  Future<String?> getLocationByCep(String? zipCode) async {
+    String? errorMessage;
+
+    try {
+      final result = await getLocationsByCepUseCase.call(
+        zipCode: UtilBrasilFields.removeCaracteres(locationCepController.text),
+      );
+
+      result.fold(
+        (success) {
+          if (success.isErro ?? false) {
+            errorMessage = S.current.textErrorZipCode;
+          }
+          location.data = success;
+        },
+        (error) {
+          location.data = null;
+          location.show();
+          location.error(error.message);
+          errorMessage;
+        },
+      );
+    } catch (e) {
+      location.data = null;
+      errorMessage = S.current.textErrorZipCode;
+    }
+
+    return errorMessage;
+  }
+
   Future<void> sendNewLocation() async {
     try {
       location.loading();
@@ -52,7 +88,7 @@ class SaveLocationBloC extends SafeBloC {
       );
       final result = await saveLocationUseCase.call(
         name: locationNameController.text,
-        cep: locationCepController.text,
+        cep: UtilBrasilFields.removeCaracteres(locationCepController.text),
         locationTypeId: locationId + 1,
         imgUrl: imageNotifier.value,
       );
@@ -73,13 +109,24 @@ class SaveLocationBloC extends SafeBloC {
       Modular.to.pop();
       location.show();
       location.error(e.toString());
-      safeSnackBar.error(S.current.textFailedToSaveLocation);
+      safeSnackBar.error(S.current.textErrorZipCode);
     }
   }
 
   validateTextField(String? value) {
     if (!(value ?? StringConstants.empty).isName || value == null) {
       return S.current.textErrorEmptyField;
+    }
+    return null;
+  }
+
+  validateZipcode(String? value) {
+    if (!(value ?? StringConstants.empty).isName || value == null) {
+      return S.current.textErrorEmptyField;
+    } else if (value.length < 10) {
+      return S.current.textErrorZipCode;
+    } else if (location.data?.isErro == true || location.data?.isErro == null) {
+      return errorMessageNotifier.value;
     }
     return null;
   }

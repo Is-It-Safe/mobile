@@ -3,6 +3,7 @@ import 'dart:core';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/request/request_get_location_by_cep.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/request/request_save_location.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_by_cep.dart';
@@ -41,19 +42,19 @@ class LocationService implements ILocationService {
   }
 
   @override
-  Future<ResponseLocationByCep> getLocationByCep(int cep) async {
-    final token = await _authService.getAccessToken();
-
+  Future<ResponseLocationByCep> getLocationByCep(
+      RequestGetLocationByCep cep) async {
     final requestConfig = RequestConfig(
-      path: ApiConstants.kUrlCep.replaceAll('cep', cep.toString()),
+      path: ApiConstants.kUrlCep.replaceAll('placeholder', cep.cep!),
       method: HttpMethod.get,
-      options: Options(
-        headers: {ApiConstants.kAuthorization: token},
-      ),
     );
 
-    final response = await _service.doRequest(requestConfig);
-    return ResponseLocationByCep.fromJson(json.decode(response.data));
+    try {
+      final response = await _service.doRequest(requestConfig);
+      return ResponseLocationByCep.fromJson(json.decode(response.data));
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

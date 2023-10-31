@@ -11,3 +11,10 @@ class SafeDioResponseLocationError extends SafeLocationError {
 
   SafeDioResponseLocationError(this.message) : super(message);
 }
+
+class SafeCepError extends SafeLocationError {
+  @override
+  final String message;
+
+  SafeCepError(this.message) : super(message);
+}
