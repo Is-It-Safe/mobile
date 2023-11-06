@@ -154,7 +154,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "textEditPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Editar informações pessoais"),
         "textEditProfile":
-            MessageLookupByLibrary.simpleMessage("Editar Perfil"),
+            MessageLookupByLibrary.simpleMessage("Editar informações pessoais"),
+        "textEditAccount":
+            MessageLookupByLibrary.simpleMessage("Editar Conta"),
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textError": MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
