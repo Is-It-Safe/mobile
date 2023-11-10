@@ -25,7 +25,7 @@ main() {
       name: 'Fulano',
       nickname: 'fulano_dev',
       email: 'fulanodev@safe.com',
-      password: 'password123',
+      password: '@password123',
       pronoun: 'ele/ela',
       genderId: 3,
       sexualOrientationId: 5,
