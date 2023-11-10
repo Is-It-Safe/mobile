@@ -34,7 +34,7 @@ class _EditAccountPageState
     super.build(context);
     return Scaffold(
       key: _scaffoldKey,
-      appBar: SafeAppBar(title: S.current.textConfiguration),
+      appBar: SafeAppBar(title: S.current.textEditAccount),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(

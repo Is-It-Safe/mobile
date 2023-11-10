@@ -950,6 +950,16 @@ class S {
     );
   }
 
+    /// `Editar Perfil`
+  String get textEditAccount {
+    return Intl.message(
+      'Editar Conta',
+      name: 'textEditAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sair`
   String get textLogout {
     return Intl.message(
