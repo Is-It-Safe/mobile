@@ -950,7 +950,7 @@ class S {
     );
   }
 
-    /// `Editar Perfil`
+  /// `Editar Conta`
   String get textEditAccount {
     return Intl.message(
       'Editar Conta',

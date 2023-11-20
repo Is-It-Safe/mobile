@@ -56,6 +56,7 @@ class EditAccountBloc extends SafeBloC {
     text: StringConstants.hyphen,
   );
 
+
   EditAccountBloc({
     required this.updateUserUseCase,
     required this.getUserUseCase,
@@ -105,10 +106,10 @@ class EditAccountBloc extends SafeBloC {
 
   void toogleUpdateButton() {
     isButtonEnabled.data = (nameController.text.isNotEmpty &&
+        pronounController.text.isNotEmpty &&
         usernameController.text.isNotEmpty &&
         genderController.text.isNotEmpty &&
-        sexualOrientationController.text.isNotEmpty &&
-        user.data != null);
+        sexualOrientationController.text.isNotEmpty);
   }
 
   Future<void> getUser() async {
@@ -203,11 +204,11 @@ class EditAccountBloc extends SafeBloC {
     return StringConstants.empty;
   }
 
-  String validateTextField(String? value) {
+  String? validateTextField(String? value) {
     if (!(value ?? StringConstants.empty).isName || value == null) {
       return S.current.textErrorEmptyField;
     }
-    return StringConstants.empty;
+    return null;
   }
 
   Future<void> loadGenderFromList({
