@@ -39,14 +39,11 @@ class SafeLocatorImpl implements SafeLocator {
 
     permission = await Geolocator.checkPermission();
 
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      return true;
     }
-    if (permission == LocationPermission.deniedForever ||
-        permission == LocationPermission.denied) {
-      return _onPermissionDenied();
-    }
-    return true;
+    return false;
   }
 
   Future<bool> _isLocationServiceEnabled() async {
@@ -62,5 +59,21 @@ class SafeLocatorImpl implements SafeLocator {
   bool _onPermissionDenied() {
     safeSnackBar.alert(S.current.textDeniedPermissionLocation);
     return false;
+  }
+
+  @override
+  Future<bool> requestPermission() async {
+    final permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      final result = await Geolocator.requestPermission();
+      if (result == LocationPermission.deniedForever ||
+          result == LocationPermission.denied) {
+        return _onPermissionDenied();
+      }
+    } else if (permission == LocationPermission.deniedForever ||
+        permission == LocationPermission.denied) {
+      return _onPermissionDenied();
+    }
+    return true;
   }
 }
