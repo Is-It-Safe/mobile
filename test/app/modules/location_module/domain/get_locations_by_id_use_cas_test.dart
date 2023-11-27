@@ -19,17 +19,17 @@ main() {
   group('GetLocationsByIdUseCase <Success>', () {
     test('Retorna local pelo [LocationEntity]', () async {
       when(() => serviceMock.getLocationById(locationId)).thenAnswer(
-        (_) async => ResponseGetLocationsById(
+            (_) async => ResponseGetLocationsById(
             id: 1, name: 'Restaurante Paraíso da Carne de Sol'),
       );
 
       final responseUseCase = await getLocationsByIdUseCase(locationId);
       responseUseCase.fold(
-        (success) {
+            (success) {
           expect(success.id, equals(locationId));
           expect(success.name, equals("Restaurante Paraíso da Carne de Sol"));
         },
-        (failure) {
+            (failure) {
           expect(failure, null);
         },
       );
@@ -43,10 +43,10 @@ main() {
       final responseUseCase = await getLocationsByIdUseCase(locationId);
 
       responseUseCase.fold(
-        (success) {
+            (success) {
           expect(success, null);
         },
-        (failure) {
+            (failure) {
           expect(failure.message, "safe.dio_response.error");
         },
       );

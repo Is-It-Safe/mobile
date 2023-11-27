@@ -950,6 +950,16 @@ class S {
     );
   }
 
+    /// `Editar Perfil`
+  String get textEditAccount {
+    return Intl.message(
+      'Editar Conta',
+      name: 'textEditAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sair`
   String get textLogout {
     return Intl.message(
@@ -1310,10 +1320,11 @@ class S {
     );
   }
 
-  /// `Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números`
+
+  /// `Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.`
   String get textPasswordSpecifications {
     return Intl.message(
-      'Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números',
+      'Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.',
       name: 'textPasswordSpecifications',
       desc: '',
       args: [],
@@ -2005,6 +2016,27 @@ class S {
     return Intl.message(
       'Reportar erro',
       name: 'textCriticalErrorPageGoToReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+
+  /// `CEP inválido`
+  String get textErrorZipCode {
+    return Intl.message(
+      'CEP inválido',
+      name: 'textErrorZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digite apenas números`
+  String get textInfoZipCode {
+    return Intl.message(
+      'Digite apenas números',
+      name: 'textInfoZipCode',
       desc: '',
       args: [],
     );

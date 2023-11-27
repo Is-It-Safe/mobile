@@ -98,6 +98,7 @@
     "textShare":"Compartilhar",
     "textPersonalInformation":"Informações Pessoais",
     "textEditProfile":"Editar Perfil",
+    "textEditAccount":"Editar Conta",
     "textLogout":"Sair",
     "textDisableAccount":"Desativar Conta",
     "textDeleteAccount":"Excluir Conta",
@@ -136,7 +137,7 @@
     "textTellUsTheEmailAssociatedWithYourAccount":"Nos diga seu e-mail, ele será associado a sua conta",
     "textYourRepresentationHereInside":"Uma representação sua aqui dentro!",
     "textTypeTheNameOfAPlaceToSearch":"Digite o nome de um local para buscar.",
-    "textPasswordSpecifications":"Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números",
+    "textPasswordSpecifications":"Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.",
     "textSelectAPicture":"Selecione uma foto antes de salvar.",
     "textRegisterSuccess":"Cadastro realizado com sucesso!",
     "textRegisterSuccessMessage":"Você será redirecionado para a página de login.",
@@ -199,7 +200,7 @@
     "textAddLocationTypePublicLocation": "Local público",
     "textAddLocationTypeNightClub": "Casa noturna",
     "textAddLocationExample": "Ex: Bar santa maria",
-    "textAddLocationCepExample": "Ex: 04553434",
+    "textAddLocationCepExample": "Ex: 04.553-434",
     "textAddLocationAddress": "Ex: Rua Clodomiro",
 
     "textOpenPermissions": "Abrir Permissões",
@@ -220,7 +221,8 @@
     "textCriticalErrorPageTitle": "Ocorreu um erro inesperado!",
     "textCriticalErrorPageBody": "Encontramos uma situação inesperada na aplicação. Estamos trabalhando o mais rápido possivel para corrigi-la!",
     "textCriticalErrorPageGoToReport": "Reportar erro",
-
+    "textErrorZipCode": "CEP inválido",
+    "textInfoZipCode": "Digite apenas números",
     "textWantDeactivateAccount": "Deseja desativar sua conta?",
     "textDeactivateAccountWarnning": "Você pode restaurar sua conta em até 30 dias após a desativação se ela foi desativada por engano ou incorretamente.",
     
