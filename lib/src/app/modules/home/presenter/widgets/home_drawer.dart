@@ -137,14 +137,12 @@ class DrawerItem extends StatelessWidget {
     required this.text,
     this.route,
     this.onTap,
-    this.onCloseDrawer,
     this.onNavigationCompleted,
   }) : super(key: key);
 
   final String? route;
   final String icon;
   final String text;
-  final VoidCallback? onCloseDrawer;
   final Function? onNavigationCompleted;
   final Function()? onTap;
 

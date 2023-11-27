@@ -950,7 +950,7 @@ class S {
     );
   }
 
-    /// `Editar Perfil`
+  /// `Editar Conta`
   String get textEditAccount {
     return Intl.message(
       'Editar Conta',
@@ -1319,7 +1319,6 @@ class S {
       args: [],
     );
   }
-
 
   /// `Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.`
   String get textPasswordSpecifications {
@@ -1881,10 +1880,10 @@ class S {
     );
   }
 
-  /// `Ex: 04553434`
+  /// `Ex: 04.553-434`
   String get textAddLocationCepExample {
     return Intl.message(
-      'Ex: 04553434',
+      'Ex: 04.553-434',
       name: 'textAddLocationCepExample',
       desc: '',
       args: [],
@@ -2020,7 +2019,6 @@ class S {
       args: [],
     );
   }
-
 
   /// `CEP inválido`
   String get textErrorZipCode {
