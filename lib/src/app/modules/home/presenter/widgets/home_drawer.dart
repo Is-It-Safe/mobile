@@ -137,24 +137,28 @@ class DrawerItem extends StatelessWidget {
     required this.text,
     this.route,
     this.onTap,
+    this.onCloseDrawer,
     this.onNavigationCompleted,
   }) : super(key: key);
 
   final String? route;
   final String icon;
   final String text;
+  final VoidCallback? onCloseDrawer;
   final Function? onNavigationCompleted;
   final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ??
+      onTap:
+      onTap ??
           () => Modular.to.pushNamed(route ?? StringConstants.empty).then(
                 (value) {
                   if (onNavigationCompleted != null) {
                     onNavigationCompleted!();
                   }
+                  Navigator.pop(context);
                 },
               ),
       child: Row(
