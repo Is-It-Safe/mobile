@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAddTypeLocationFieldTitle":
             MessageLookupByLibrary.simpleMessage("Tipo de local"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
+        "textAllow": MessageLookupByLibrary.simpleMessage("Permitir"),
         "textAngry": MessageLookupByLibrary.simpleMessage("Irritado"),
         "textAppBarChooseProfilePhotoPage":
             MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
@@ -139,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Para exibir os lugares próximos, por favor libere o acesso a localização."),
         "textDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
             "O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função."),
+        "textDeny": MessageLookupByLibrary.simpleMessage("Negar"),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
@@ -151,12 +153,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Adicionar Local"),
         "textDrawerMyAccount":
             MessageLookupByLibrary.simpleMessage("Minha Conta"),
+        "textEditAccount": MessageLookupByLibrary.simpleMessage("Editar Conta"),
         "textEditPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Editar informações pessoais"),
         "textEditProfile":
-            MessageLookupByLibrary.simpleMessage("Editar informações pessoais"),
-        "textEditAccount":
-            MessageLookupByLibrary.simpleMessage("Editar Conta"),
+            MessageLookupByLibrary.simpleMessage("Editar Perfil"),
         "textEmailAddress":
             MessageLookupByLibrary.simpleMessage("Endereço de E-mail"),
         "textError": MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
@@ -227,7 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Não foi possível alterar o avatar!"),
         "textFeatureAvailableSoon": MessageLookupByLibrary.simpleMessage(
             "Funcionalidade disponível em breve"),
-        "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar Cadastro"),
+        "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar"),
         "textForgotGender":
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
@@ -254,6 +255,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "textLettersAndNumbers":
             MessageLookupByLibrary.simpleMessage("- letras e números"),
         "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
+        "textLocationDialogTitle": MessageLookupByLibrary.simpleMessage(
+            "Permitir o app ‘IS IT SAFE?’ acesse a sua localização?"),
+        "textLocationDialogcontent": MessageLookupByLibrary.simpleMessage(
+            "Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você."),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textMeetingYouWillBeAPleasure":

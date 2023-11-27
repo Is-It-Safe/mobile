@@ -650,11 +650,31 @@ class S {
     );
   }
 
+  /// `Permitir`
+  String get textAllow {
+    return Intl.message(
+      'Permitir',
+      name: 'textAllow',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancelar`
   String get textCancel {
     return Intl.message(
       'Cancelar',
       name: 'textCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Negar`
+  String get textDeny {
+    return Intl.message(
+      'Negar',
+      name: 'textDeny',
       desc: '',
       args: [],
     );
@@ -950,7 +970,7 @@ class S {
     );
   }
 
-    /// `Editar Perfil`
+  /// `Editar Conta`
   String get textEditAccount {
     return Intl.message(
       'Editar Conta',
@@ -2135,6 +2155,26 @@ class S {
     return Intl.message(
       'The location service on the device is disabled.',
       name: 'textErrorDeniedServiceLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permitir o app ‘IS IT SAFE?’ acesse a sua localização?`
+  String get textLocationDialogTitle {
+    return Intl.message(
+      'Permitir o app ‘IS IT SAFE?’ acesse a sua localização?',
+      name: 'textLocationDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você.`
+  String get textLocationDialogcontent {
+    return Intl.message(
+      'Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você.',
+      name: 'textLocationDialogcontent',
       desc: '',
       args: [],
     );

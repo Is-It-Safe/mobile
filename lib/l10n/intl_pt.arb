@@ -1,4 +1,6 @@
 {
+    "@@locale": "pt",
+
     "textIsItSafe":"Is It Safe?",
     
     "textAppBarProfileRegisterPage":"Perfil",
@@ -68,7 +70,9 @@
     "textName":"Nome",
     "textEmailAddress":"Endereço de E-mail",
     "textReady": "Pronto",
+    "textAllow": "Permitir",
     "textCancel": "Cancelar",
+    "textDeny": "Negar",
     "textConfirm": "Confirmar",
     "textAdvance": "Avançar",
     "textLoading":"Carregando...",
@@ -236,5 +240,7 @@
     "textDeniedPermissionLocation":"Para exibir os lugares próximos, por favor libere o acesso a localização.",
     "textDeniedServiceLocation":"O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função.",
     "textErrorDeniedPermissionLocation":"User denied permissions to access the device's location.",
-    "textErrorDeniedServiceLocation":"The location service on the device is disabled."
+    "textErrorDeniedServiceLocation":"The location service on the device is disabled.", 
+    "textLocationDialogTitle": "Permitir o app ‘IS IT SAFE?’ acesse a sua localização?",
+    "textLocationDialogcontent": "Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você."
 }

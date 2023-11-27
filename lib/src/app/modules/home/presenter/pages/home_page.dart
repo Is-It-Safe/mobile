@@ -4,11 +4,16 @@ import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dar
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
+
+import '../../../../../../generated/l10n.dart';
 
 class HomePage extends StatefulWidget {
   static const route = '/home/';
@@ -33,7 +38,38 @@ class _HomePageState extends SafeState<HomePage, HomeBloc>
 
   Future<void> verifyLocationPermission() async {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await bloc.safeLocator.verifyPermission();
+      final enabled = await bloc.safeLocator.verifyPermission();
+      if (!enabled && mounted) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return SafeDialog(
+              title: S.current.textLocationDialogTitle,
+              message: S.current.textLocationDialogcontent,
+              primaryBtn: SafeButton(
+                  title: S.current.textAllow,
+                  hasBackground: false,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: SafeColors.buttonColors.primary,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    bloc.safeLocator.requestPermission();
+                  }),
+              secondaryBtn: SafeButton(
+                hasBackground: false,
+                title: S.current.textDeny,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: SafeColors.buttonColors.primary,
+                ),
+              ),
+              type: SafeDialogType.neutral,
+            );
+          },
+        );
+      }
     });
   }
 
