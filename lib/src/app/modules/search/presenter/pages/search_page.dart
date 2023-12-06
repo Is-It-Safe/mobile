@@ -67,6 +67,7 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
                             onTap: () {
                               bloc.navigateToAddLocationPage();
                               bloc.searchTextController.clear();
+                              bloc.dispose();
                             }),
                       ],
                     );
