@@ -1,6 +1,7 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
@@ -11,6 +12,9 @@ import 'package:is_it_safe_app/src/core/enum/location_type_enum.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
+
+import '../../../../../core/state/safe_stream.dart';
+import '../widgets/success_snack_bar.dart';
 
 class SaveLocationPage extends StatefulWidget {
   static const route = '/save_location';
@@ -29,6 +33,8 @@ class _SaveLocationPageState
   static const double alturaTextFormField = 32;
   static const double alturaTitleText = 12;
   String? errorMessage;
+
+  var locationModular = Modular.get<SafeStream<LocationEntity?>>();
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +169,20 @@ class _SaveLocationPageState
                       //TODO: mesmo com CEP inválido o botão está sendo habilitado
                       onTap: () async {
                         if (_formKey.currentState?.validate() ?? false) {
-                          await bloc.sendNewLocation();
+                          await bloc.sendNewLocation().whenComplete(() {
+                            if (locationModular.data != null) {
+                              showDialog<void>(
+                                context: context,
+                                barrierDismissible:
+                                    false, // user must tap button!
+                                builder: (BuildContext context) {
+                                  return SuccessSnackBar(
+                                    message: S.current.textSuccessSaveLocation,
+                                  );
+                                },
+                              );
+                            }
+                          });
                         }
                       },
                     ),
