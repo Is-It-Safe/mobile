@@ -1600,6 +1600,18 @@ class S {
     );
   }
 
+
+    /// `Explorar outros locais`
+  String get textButtonSafeDialogTypeSucces {
+    return Intl.message(
+      'Explorar outros locais',
+      name: 'textButtonSafeDialogTypeSucces',
+      desc: '',
+      args: [],
+    );
+  }
+
+
   /// `Sucesso!`
   String get textSafeDialogTypeSucces {
     return Intl.message(
