@@ -328,6 +328,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Erro!"),
         "textSafeDialogTypeSucces":
             MessageLookupByLibrary.simpleMessage("Sucesso!"),
+        "textButtonSafeDialogTypeSucces":
+            MessageLookupByLibrary.simpleMessage("Explorar outros locais"),
         "textSafeForLGBT": MessageLookupByLibrary.simpleMessage(
             "Seguro para pessoas LGBTQIA+"),
         "textSatisfied": MessageLookupByLibrary.simpleMessage("Satisfeito"),
