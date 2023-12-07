@@ -36,7 +36,7 @@ class SuccessSnackBar extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                    'Sucesso!',
+                         S.current.textSafeDialogTypeSucces,//'Sucesso!',
                     style: TextStyles.headline3(
                       color: SafeColors.statusColors.success,
                     ),
