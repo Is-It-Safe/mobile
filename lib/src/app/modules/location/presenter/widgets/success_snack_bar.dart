@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../../../../../generated/l10n.dart';
 import '../../../../../components/style/colors/safe_colors.dart';
 import '../../../../../components/style/text/text_styles.dart';
 import '../../../../../components/widgets/safe_button.dart';
@@ -49,7 +50,7 @@ class SuccessSnackBar extends StatelessWidget {
               style: TextStyles.bodyText2(color: SafeColors.textColors.label),
             ),
             SafeButton(
-              title: 'Explorar outros locais',
+              title: S.current.textButtonSafeDialogTypeSucces,
               state: ButtonState.rest,
               onTap: () => Modular.to.pop(),
             ),
