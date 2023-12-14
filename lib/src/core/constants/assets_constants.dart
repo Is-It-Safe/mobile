@@ -44,6 +44,7 @@ class _IconsAssets {
   String account = 'images/modules/core/icons/account_icon.svg';
   String contact = 'images/modules/core/icons/contact_icon.svg';
   String termsOfUse = 'images/modules/core/icons/terms_of_use_icon.svg';
+  String addLocation = 'images/modules/core/icons/add_location_icon.svg';
 }
 
 class _MockAssets {
@@ -60,8 +61,6 @@ class _GeneralAssets {
 }
 
 class PlaceHolderAssets {
-  static const String profileAvatar =
-      'images/modules/auth/profile_pictures/placeholder/placeholder_avatar.png';
-  static const String searchLocation =
-      'images/modules/core/placeholder/search_placeholder.png';
+  static const String profileAvatar = 'images/modules/auth/profile_pictures/placeholder/placeholder_avatar.png';
+  static const String searchLocation = 'images/modules/core/placeholder/search_placeholder.png';
 }
