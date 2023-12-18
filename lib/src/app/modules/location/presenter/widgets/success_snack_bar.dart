@@ -31,7 +31,7 @@ class SuccessSnackBar extends StatelessWidget {
             Row(
               children: [
                 Icon(
-                  Icons.check_circle_outline,
+                  Icons.check_circle_rounded,
                   color: SafeColors.statusColors.success,
                 ),
                 Padding(
