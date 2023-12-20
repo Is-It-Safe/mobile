@@ -52,6 +52,14 @@ class RegisterBloc extends SafeBloC {
         .text;
   }
 
+  String getConfirmPassword() {
+    return store.listRegisterTextFieldVO
+        .firstWhere(
+            (element) => element.userSignInEnum == UserSignInEnum.passwordConfirm)
+        .controller
+        .text;
+  }
+
   void navigateToTermsAndConditions() {
     Modular.to.push(
       MaterialPageRoute(

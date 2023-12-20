@@ -10,6 +10,7 @@ class RegisterTextFormField extends StatelessWidget {
   final Function onChanged;
   final Function onValidate;
   final Widget suffixIcon;
+  final RegisterUserVo? registerUserVo;
 
   const RegisterTextFormField({
     super.key,
@@ -18,6 +19,7 @@ class RegisterTextFormField extends StatelessWidget {
     required this.onValidate,
     required this.suffixIcon,
     this.isPasswordVisible = false,
+    this.registerUserVo,
   });
 
   @override

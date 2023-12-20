@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/vo/register_user_vo.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/do_register_button_widget.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/register_terms_and_conditions_widget.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/register_user_field.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/register_welcome_text_widget.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/core/enum/user_sign_in_enum.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/core/util/user_sign_in_util.dart';
@@ -25,6 +27,13 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
+  late final RegisterUserVo registerUserVo;
+
+  @override
+  void initState() {
+    super.initState();
+    registerUserVo = RegisterUserVo(userSignInEnum: UserSignInEnum.passwordConfirm);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +67,12 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
 
                         return RegisterTextFormField(
                           registerTextFieldVO: registerTextFieldVO,
+                          registerUserVo: registerUserVo,
                           onChanged: () {
                             registerTextFieldVO.validateUserData(
                               currentPassword: UserSignInUtil.isPasswordConfirm(
-                                userSignInEnum:
-                                    registerTextFieldVO.userSignInEnum,
-                              )
+                                      userSignInEnum:
+                                          registerTextFieldVO.userSignInEnum)
                                   ? bloc.getCurrentPassword()
                                   : StringConstants.empty,
                             );
@@ -78,6 +87,11 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                                   ? bloc.getCurrentPassword()
                                   : StringConstants.empty,
                             );
+
+                            if (bloc.getConfirmPassword() == bloc.getCurrentPassword()) {
+                              return null;
+                            }
+                            return S.current.textErrorDifferentPasswords;
                           },
                           suffixIcon: Visibility(
                             visible: UserSignInUtil.isObscureFormField(

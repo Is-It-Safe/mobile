@@ -169,7 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textErrorDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
             "The location service on the device is disabled."),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
-            "Os campos de senha devem ser iguais"),
+            "A confirmação de senha não confere"),
         "textErrorDropdown":
             MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
         "textErrorEmail": MessageLookupByLibrary.simpleMessage(

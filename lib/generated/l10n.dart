@@ -250,10 +250,10 @@ class S {
     );
   }
 
-  /// `Os campos de senha devem ser iguais`
+  /// `A confirmação de senha não confere`
   String get textErrorDifferentPasswords {
     return Intl.message(
-      'Os campos de senha devem ser iguais',
+      'A confirmação de senha não confere',
       name: 'textErrorDifferentPasswords',
       desc: '',
       args: [],
