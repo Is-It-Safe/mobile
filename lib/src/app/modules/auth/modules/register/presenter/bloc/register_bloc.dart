@@ -43,10 +43,11 @@ class RegisterBloc extends SafeBloC {
 
   void toggleRegisterButton(RegisterBloc? bloc) {
     bool isPasswordNotEmpty = bloc!.passwordController.text.isNotEmpty;
+    bool isMatchPasswords = bloc.confirmPasswordController.text == bloc.passwordController.text;
     bool isEnabled = !store.listRegisterTextFieldVO.any(
       (element) => element.isValid == false,
     );
-    store.isRegisterButtonEnabled.data = isEnabled && isPasswordNotEmpty;
+    store.isRegisterButtonEnabled.data = isEnabled && isPasswordNotEmpty && isMatchPasswords;
   }
 
   void toggleTermsAndConditions() {
