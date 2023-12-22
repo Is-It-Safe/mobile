@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/vo/register_user_vo.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/state/safe_stream.dart';
@@ -14,6 +15,7 @@ class RegisterStore {
   final profilePicture = SafeStream<String>(data: StringConstants.empty);
   final isTermsAndConditionsChecked = SafeStream<bool>(data: false);
   final isPasswordVisible = SafeStream<bool>(data: false);
+  final isConfirmPasswordVisible = SafeStream<bool>(data: false);
   final selectedProfilePhoto = SafeStream<String>(data: StringConstants.empty);
   final temporarySelectedProfilePhoto = SafeStream<String>(
     data: StringConstants.empty,
@@ -25,6 +27,7 @@ class RegisterStore {
   );
   final isUsernameAvailable = SafeStream<bool>(data: false);
   final isEmailAvailable = SafeStream<bool>(data: false);
+  final isPasswordValid = SafeStream<bool>(data: false);
 
   final birthdayInputMask = MaskTextInputFormatter(
     mask: StringConstants.dateMask,
