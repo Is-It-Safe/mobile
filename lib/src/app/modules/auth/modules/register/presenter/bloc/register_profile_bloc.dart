@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/domain/usecases/do_register_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/pages/login_page.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/store/register_store.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_sexual_orientation_use_case.dart';
@@ -106,13 +107,15 @@ class RegisterProfileBloc extends SafeBloC {
         isAdvanceButton: isAdvanceButton,
       );
 
+      final bloc = Modular.get<RegisterBloc>();
+
       final response = await doRegisterUseCase.call(
         name: _getUserData(userSignInEnum: UserSignInEnum.user),
         username: _getUserData(userSignInEnum: UserSignInEnum.nickName),
         birthDate: birthDate,
         pronoun: _getUserData(userSignInEnum: UserSignInEnum.pronouns),
         email: _getUserData(userSignInEnum: UserSignInEnum.email),
-        password: _getUserData(userSignInEnum: UserSignInEnum.password),
+        password: bloc.passwordController.text,
         profilePhoto: profilePhoto,
         gender: gender,
         sexualOrientation: sexualOrientation,

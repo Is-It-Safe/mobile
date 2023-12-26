@@ -26,7 +26,7 @@
     "textErrorEmptyField":"Esse campo não pode ficar vazio",
     "textErrorEmail":"Por favor, digite um e-mail válido",
     "textErrorPronouns":"ex: Ela/Dela, Ele/Dele, Ela/Elu",
-    "textErrorDifferentPasswords":"Os campos de senha devem ser iguais",
+    "textErrorDifferentPasswords":"A confirmação de senha não confere",
     "textErrorEmptyAvatar": "Por favor, selecione seu avatar!",
     "textErrorDropdown": "Algo deu errado!",
     "textError": "Algo deu errado!",

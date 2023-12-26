@@ -9,13 +9,18 @@ import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/s
 import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/presenter/page/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/user_sign_in_enum.dart';
+import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_bloc.dart';
 import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
+
+import '../../../../../../../../generated/l10n.dart';
 
 class RegisterBloc extends SafeBloC {
   final RegisterStore store;
   final IsUsernameAvailableUseCase isUsernameAvailableUseCase;
   final IsEmailAvailableUseCase isEmailAvailableUseCase;
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   RegisterBloc({
     required this.store,
@@ -32,11 +37,17 @@ class RegisterBloc extends SafeBloC {
     store.isPasswordVisible.data = !store.isPasswordVisible.data;
   }
 
-  void toggleRegisterButton() {
+  void toggleConfirmPasswordVisibility() {
+    store.isConfirmPasswordVisible.data = !store.isConfirmPasswordVisible.data;
+  }
+
+  void toggleRegisterButton(RegisterBloc? bloc) {
+    bool isPasswordNotEmpty = bloc!.passwordController.text.isNotEmpty;
+    bool isMatchPasswords = bloc.confirmPasswordController.text == bloc.passwordController.text;
     bool isEnabled = !store.listRegisterTextFieldVO.any(
       (element) => element.isValid == false,
     );
-    store.isRegisterButtonEnabled.data = isEnabled;
+    store.isRegisterButtonEnabled.data = isEnabled && isPasswordNotEmpty && isMatchPasswords;
   }
 
   void toggleTermsAndConditions() {
@@ -44,12 +55,22 @@ class RegisterBloc extends SafeBloC {
         !store.isTermsAndConditionsChecked.data;
   }
 
-  String getCurrentPassword() {
-    return store.listRegisterTextFieldVO
-        .firstWhere(
-            (element) => element.userSignInEnum == UserSignInEnum.password)
-        .controller
-        .text;
+  String? validatePassword(String? value) {
+    if (!(value ?? StringConstants.empty).isPassword) {
+      return S.current.textErrorLoginPassword;
+    } else if (value?.isEmpty ?? false) {
+      return S.current.textErrorEmptyField;
+    }
+    return null;
+  }
+
+  String? validateConfirmPassword(String? value) {
+    if (value != passwordController.text) {
+      return S.current.textErrorDifferentPasswords;
+    } else if (value?.isEmpty ?? false) {
+      return S.current.textErrorEmptyField;
+    }
+    return null;
   }
 
   void navigateToTermsAndConditions() {
@@ -116,6 +137,7 @@ class RegisterBloc extends SafeBloC {
     FocusManager.instance.primaryFocus?.unfocus();
     if (await isUsernameAvailable() == false) return;
     if (await isEmailAvailable() == false) return;
+
 
     Modular.to.pushNamed(
       StringConstants.dot + RegisterProfilePage.route,

@@ -17,9 +17,7 @@ class RegisterUserVo {
     }
   }
 
-  String? validateUserData({
-    String? currentPassword,
-  }) {
+  String? validateUserData() {
     switch (userSignInEnum) {
       case UserSignInEnum.user:
         return validateName();
@@ -27,15 +25,9 @@ class RegisterUserVo {
         return validateName();
       case UserSignInEnum.email:
         return validateEmail();
-      case UserSignInEnum.password:
-        return validatePassword();
       case UserSignInEnum.pronouns:
         isValid = true;
         break;
-      case UserSignInEnum.passwordConfirm:
-        return validateConfirmPassword(
-          currentPassword: currentPassword ?? StringConstants.empty,
-        );
       default:
         break;
     }

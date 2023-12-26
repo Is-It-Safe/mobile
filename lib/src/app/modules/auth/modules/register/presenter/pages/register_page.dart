@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/bloc/register_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/vo/register_user_vo.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/do_register_button_widget.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/register_terms_and_conditions_widget.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/register_user_field.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/register/presenter/widgets/register_welcome_text_widget.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
-import 'package:is_it_safe_app/src/core/util/user_sign_in_util.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
 
@@ -25,6 +25,9 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
+  late final RegisterUserVo registerUserVo;
+  bool visible = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +38,14 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: SafeBuilder2<bool, bool>(
+          child: SafeBuilder3<bool, bool, bool>(
             stream1: bloc.store.isRegisterButtonEnabled,
             stream2: bloc.store.isPasswordVisible,
+            stream3: bloc.store.isConfirmPasswordVisible,
             builder: (
               isRegisterButtonEnabled,
               isPasswordVisible,
+              isConfirmPasswordVisible,
             ) {
               return Form(
                 key: _formKey,
@@ -59,41 +64,45 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                         return RegisterTextFormField(
                           registerTextFieldVO: registerTextFieldVO,
                           onChanged: () {
-                            registerTextFieldVO.validateUserData(
-                              currentPassword: UserSignInUtil.isPasswordConfirm(
-                                userSignInEnum:
-                                    registerTextFieldVO.userSignInEnum,
-                              )
-                                  ? bloc.getCurrentPassword()
-                                  : StringConstants.empty,
-                            );
-                            bloc.toggleRegisterButton();
+                            registerTextFieldVO.validateUserData();
+                            bloc.toggleRegisterButton(bloc);
                           },
                           onValidate: () {
-                            registerTextFieldVO.validateUserData(
-                              currentPassword: UserSignInUtil.isPasswordConfirm(
-                                userSignInEnum:
-                                    registerTextFieldVO.userSignInEnum,
-                              )
-                                  ? bloc.getCurrentPassword()
-                                  : StringConstants.empty,
-                            );
+                            registerTextFieldVO.validateUserData();
+
                           },
-                          suffixIcon: Visibility(
-                            visible: UserSignInUtil.isObscureFormField(
-                              userSignInEnum:
-                                  registerTextFieldVO.userSignInEnum,
-                            ),
-                            child: SafeShowFieldButton(
-                              value: isPasswordVisible,
-                              onTap: () => bloc.togglePasswordVisibility(),
-                            ),
-                          ),
                           isPasswordVisible: isPasswordVisible,
                         );
                       },
                       separatorBuilder: (_, __) => const SizedBox(height: 20),
                       itemCount: bloc.store.listRegisterTextFieldVO.length,
+                    ),
+                    const SizedBox(height: 20),
+                    SafeTextFormField(
+                      controller: bloc.passwordController,
+                      labelText: S.current.textPassword,
+                      suffixIcon: SafeShowFieldButton(
+                        value: isPasswordVisible,
+                        onTap: () => bloc.togglePasswordVisibility(),
+                      ),
+                      obscureText: !isPasswordVisible,
+                      onChanged: (value) => bloc.toggleRegisterButton(bloc),
+                      validator: (value) => bloc.validatePassword(value),
+                      bottomText: S.current.textPasswordSpecifications,
+                    ),
+                    const SizedBox(height: 20),
+                    SafeTextFormField(
+                      controller: bloc.confirmPasswordController,
+                      labelText: S.current.textConfirmPassword,
+                      suffixIcon: SafeShowFieldButton(
+                        value: isConfirmPasswordVisible,
+                        onTap: () => bloc.toggleConfirmPasswordVisibility(),
+                      ),
+                      obscureText: !isConfirmPasswordVisible,
+                      onChanged: (value) {
+                        bloc.toggleRegisterButton(bloc);
+                      },
+                      validator: (value) => bloc.validateConfirmPassword(value),
                     ),
                     RegisterTermsAndConditionsWidget(
                       isTermsAndConditionsChecked:
@@ -102,7 +111,7 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                           bloc.navigateToTermsAndConditions(),
                       onChanged: (_) {
                         bloc.toggleTermsAndConditions();
-                        bloc.toggleRegisterButton();
+                        bloc.toggleRegisterButton(bloc);
                       },
                     ),
                     const SizedBox(height: 20),
