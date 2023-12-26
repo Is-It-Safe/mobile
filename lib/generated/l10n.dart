@@ -1193,7 +1193,7 @@ class S {
   /// `Local enviado para revisão com sucesso!`
   String get textSuccessSaveLocation {
     return Intl.message(
-      'Local enviado para revisão com sucesso!',
+      'Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!',
       name: 'textSuccessSaveLocation',
       desc: '',
       args: [],
@@ -1629,6 +1629,18 @@ class S {
       args: [],
     );
   }
+
+
+    /// `Explorar outros locais`
+  String get textButtonSafeDialogTypeSucces {
+    return Intl.message(
+      'Explorar outros locais',
+      name: 'textButtonSafeDialogTypeSucces',
+      desc: '',
+      args: [],
+    );
+  }
+
 
   /// `Sucesso!`
   String get textSafeDialogTypeSucces {

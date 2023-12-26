@@ -63,9 +63,12 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
                       children: [
                         SafeEmptyCard.search(),
                         SafeTextButton(
-                          text: S.current.textAddLocation,
-                          onTap: bloc.navigateToAddLocationPage,
-                        ),
+                            text: S.current.textAddLocation,
+                            onTap: () {
+                              bloc.navigateToAddLocationPage();
+                              bloc.searchTextController.clear();
+                              bloc.dispose();
+                            }),
                       ],
                     );
                   }
