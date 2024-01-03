@@ -174,7 +174,7 @@ class _SaveLocationPageState
                               showDialog<void>(
                                 context: context,
                                 barrierDismissible:
-                                    false, // user must tap button!
+                                    false,
                                 builder: (BuildContext context) {
                                   return SuccessSnackBar(
                                     message: S.current.textSuccessSaveLocation,
