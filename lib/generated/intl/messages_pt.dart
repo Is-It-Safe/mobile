@@ -222,6 +222,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
         "textExcited": MessageLookupByLibrary.simpleMessage("Alegre"),
+        "textExploreOtherLocations":
+            MessageLookupByLibrary.simpleMessage("Explorar outros locais"),
         "textFailedToSaveLocation": MessageLookupByLibrary.simpleMessage(
             "Não foi possível salvar o local! Tente novamente mais tarde."),
         "textFailedToUpdateAvatar": MessageLookupByLibrary.simpleMessage(
@@ -335,8 +337,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Erro!"),
         "textSafeDialogTypeSucces":
             MessageLookupByLibrary.simpleMessage("Sucesso!"),
-        "textButtonSafeDialogTypeSucces":
-            MessageLookupByLibrary.simpleMessage("Explorar outros locais"),
         "textSafeForLGBT": MessageLookupByLibrary.simpleMessage(
             "Seguro para pessoas LGBTQIA+"),
         "textSatisfied": MessageLookupByLibrary.simpleMessage("Satisfeito"),
@@ -363,7 +363,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSuccessRegistration":
             MessageLookupByLibrary.simpleMessage("Usuário Registrado"),
         "textSuccessSaveLocation": MessageLookupByLibrary.simpleMessage(
-              "Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!",),
+            "Local enviado para revisão com sucesso!"),
         "textTellUsTheEmailAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Nos diga seu e-mail, ele será associado a sua conta"),
