@@ -206,11 +206,30 @@ class MessageLookup extends MessageLookupByLibrary {
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
         "textErrorSearch": MessageLookupByLibrary.simpleMessage(
             "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?"),
+        "textErrorToCheckEmailAvailability": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao verificar a disponibilidade do e-mail. Tente novamente mais tarde.\'"),
+        "textErrorToCheckUsernameAvailability":
+            MessageLookupByLibrary.simpleMessage(
+                "\'Erro ao verificar a disponibilidade do nome de usuário. Tente novamente mais tarde.\'"),
+        "textErrorToDeactivateUser": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao desativar o usuário. Tente novamente mais tarde.\'"),
+        "textErrorToDeleteReview": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao deletar a review. Tente novamente mais tarde.\'"),
+        "textErrorToGetGender": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao carregar os gêneros. Tente novamente mais tarde.\'"),
+        "textErrorToGetSexualOrientation": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao carregar as orientações sexuais. Tente novamente mais tarde.\'"),
+        "textErrorToGetUserInformation": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao carregar as informações do usuário. Tente novamente mais tarde.\'"),
         "textErrorToLoadTheUsersInformation":
             MessageLookupByLibrary.simpleMessage(
                 "Erro ao carregar as informações do usuário."),
         "textErrorToRegisterUser": MessageLookupByLibrary.simpleMessage(
             "\'Erro ao realizar o cadastro. Tente novamente mais tarde.\'"),
+        "textErrorToSearchPlaceByName": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao buscar o local pelo nome. Tente novamente mais tarde.\'"),
+        "textErrorToUpdateUserInformation": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao atualizar as informações do usuário. Tente novamente mais tarde.\'"),
         "textErrorTryAgain": MessageLookupByLibrary.simpleMessage(
             "Tente novamente em alguns instantes."),
         "textErrorUnknown": MessageLookupByLibrary.simpleMessage(

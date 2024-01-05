@@ -6,7 +6,7 @@ import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_best_rat
 import 'package:is_it_safe_app/src/app/modules/home/domain/usecases/get_locations_near_user_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/home/services/home_services.dart';
 import 'package:is_it_safe_app/src/app/modules/home/services/home_services_interface.dart';
-import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user_location_permission_usecase.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/get_user_location_permission_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/location/services/location_service.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/services/profile_service.dart';
 import 'package:is_it_safe_app/src/components/location/safe_locator_impl.dart';
@@ -56,7 +56,9 @@ class HomeModule extends Module {
       ),
     ),
     Bind.lazySingleton(
-      (i) => SaveUserLocationPermissionFirstSettingsUseCase(),
+      (i) => SaveUserLocationPermissionUseCase(
+        i.get<ISharedPreferencesService>(),
+      ),
     ),
     Bind.lazySingleton(
       (i) => GetUserLocationPermissionUseCase(
@@ -83,6 +85,9 @@ class HomeModule extends Module {
         safeLocator: i.get<SafeLocatorImpl>(),
         getUserNameUseCase: i.get<GetUserNameUseCase>(),
         getUserImageUseCase: i.get<GetUserImageUseCase>(),
+        getLocationPermissionUseCase: i.get<GetUserLocationPermissionUseCase>(),
+        saveLocationPermissionUseCase:
+            i.get<SaveUserLocationPermissionUseCase>(),
       ),
     ),
   ];

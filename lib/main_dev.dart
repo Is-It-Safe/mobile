@@ -1,4 +1,4 @@
-import 'package:catcher/catcher.dart';
+import 'package:catcher_2/catcher_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/src/app/app_module.dart';
@@ -16,7 +16,7 @@ void main() {
 
   FlavorUtil.setup(FlavorUtil.dev);
 
-  CatcherOptions debugOptions = CatcherOptions(SilentReportMode(), [
+  Catcher2Options debugOptions = Catcher2Options(SilentReportMode(), [
     ConsoleHandler(
       enableApplicationParameters: true,
       enableDeviceParameters: false,
@@ -27,7 +27,7 @@ void main() {
   /// Substituindo tela vermelha/cinza por widget customizado.
   ErrorWidget.builder = (details) => SafeErrorDetails(errorDetails: details);
 
-  Catcher(
+  Catcher2(
     runAppFunction: () => runApp(
       ChangeNotifierProvider<ThemeState>(
         create: (context) => ThemeState(),

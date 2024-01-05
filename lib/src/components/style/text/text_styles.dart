@@ -163,7 +163,7 @@ class TextStyles {
   }) {
     return GoogleFonts.poppins(
       color: color ?? SafeColors.textColors.dark,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       fontSize: FontSize.small,
       decoration: textDecoration,
     );

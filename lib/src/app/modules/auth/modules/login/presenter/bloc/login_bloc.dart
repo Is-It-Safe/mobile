@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:catcher/core/catcher.dart';
+import 'package:catcher_2/catcher_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -103,7 +103,7 @@ class LoginBloc extends SafeBloC {
       await saveUserLoginUseCase.call(value);
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
     }
   }
 
@@ -112,7 +112,7 @@ class LoginBloc extends SafeBloC {
       await saveUserNameUseCase.call(value);
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
     }
   }
 
@@ -121,7 +121,7 @@ class LoginBloc extends SafeBloC {
       await saveUserEmailUseCase.call(userEmail: value);
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
     }
   }
 
@@ -130,7 +130,7 @@ class LoginBloc extends SafeBloC {
       await saveUserImageUseCase.call(value);
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
     }
   }
 
@@ -139,7 +139,7 @@ class LoginBloc extends SafeBloC {
       await saveUserTokenUseCase.call(value);
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
     }
   }
 
@@ -148,7 +148,7 @@ class LoginBloc extends SafeBloC {
       await saveUserRefreshTokenUseCase.call(value);
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
     }
   }
 
