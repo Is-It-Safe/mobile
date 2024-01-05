@@ -49,8 +49,8 @@ class AuthService implements IAuthService {
       final response = await service.doRequest(requestConfig);
 
       return ResponseLogin.fromJson(jsonDecode(response.data));
-    } on DioError catch (e) {
-      throw SafeDioResponseError(e.message);
+    } on DioException catch (e) {
+      throw SafeDioResponseError(e.message ?? S.current.textErrorLoginFailed);
     }
   }
 
@@ -123,11 +123,12 @@ class AuthService implements IAuthService {
       final response = await service.doRequest(requestConfig);
 
       return ResponseRegister.fromJson(jsonDecode(response.data));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.message == StringConstants.empty) {
         throw SafeDioResponseError(S.current.textErrorToRegisterUser);
       }
-      throw SafeDioResponseError(e.message);
+      throw SafeDioResponseError(
+          e.message ?? S.current.textErrorToRegisterUser);
     }
   }
 
@@ -143,8 +144,9 @@ class AuthService implements IAuthService {
       return (json.decode(response.data) as List)
           .map((e) => ResponseGender.fromJson(e))
           .toList();
-    } on DioError catch (error) {
-      throw SafeDioResponseError(error.message);
+    } on DioException catch (error) {
+      throw SafeDioResponseError(
+          error.message ?? S.current.textErrorToGetGender);
     }
   }
 
@@ -160,8 +162,9 @@ class AuthService implements IAuthService {
       return (json.decode(response.data) as List)
           .map((e) => ResponseSexualOrientation.fromJson(e))
           .toList();
-    } on DioError catch (e) {
-      throw SafeDioResponseError(e.message);
+    } on DioException catch (e) {
+      throw SafeDioResponseError(
+          e.message ?? S.current.textErrorToGetSexualOrientation);
     }
   }
 
@@ -181,8 +184,9 @@ class AuthService implements IAuthService {
 
       final response = await service.doRequest(requestConfig);
       return response.data == 'true';
-    } on DioError catch (e) {
-      throw SafeDioResponseError(e.message);
+    } on DioException catch (e) {
+      throw SafeDioResponseError(
+          e.message ?? S.current.textErrorToCheckUsernameAvailability);
     }
   }
 
@@ -196,8 +200,9 @@ class AuthService implements IAuthService {
 
       final response = await service.doRequest(requestConfig);
       return response.data == 'true';
-    } on DioError catch (e) {
-      throw SafeDioResponseError(e.message);
+    } on DioException catch (e) {
+      throw SafeDioResponseError(
+          e.message ?? S.current.textErrorToCheckEmailAvailability);
     }
   }
 }

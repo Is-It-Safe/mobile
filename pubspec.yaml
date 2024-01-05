@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 1.0.7+15
+version: 1.0.7+19
 
 environment:
   sdk: ">= 3.0.0"
@@ -30,7 +30,7 @@ dependencies:
   overlay_support: ^2.1.0
 
   #Requisições HTTP
-  dio: ^4.0.6
+  dio: ^5.3.3
   jwt_decode: ^0.3.1
 
   #Internacionalização
@@ -46,7 +46,6 @@ dependencies:
   #Componentes
   smooth_page_indicator: ^1.0.0+2
   flutter_svg: ^1.1.4
-  simple_animations: ^4.0.1
   dotted_border: ^2.0.0
   brasil_fields: ^1.14.0
 
@@ -59,7 +58,7 @@ dependencies:
   result_dart: ^1.0.5
 
   #Monitoramento
-  catcher: ^0.7.0
+  catcher_2: ^1.0.7
 
 dependency_overrides:
   intl: ^0.17.0

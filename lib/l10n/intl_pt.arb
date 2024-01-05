@@ -44,6 +44,15 @@
     "textErrorLoginFailed":"Não foi possível fazer login, tente novamente em alguns instantes.",
     "textErrorToLoadTheUsersInformation":"Erro ao carregar as informações do usuário.",
     "textErrorToRegisterUser":"'Erro ao realizar o cadastro. Tente novamente mais tarde.'",
+    "textErrorToGetGender":"'Erro ao carregar os gêneros. Tente novamente mais tarde.'",
+    "textErrorToGetSexualOrientation":"'Erro ao carregar as orientações sexuais. Tente novamente mais tarde.'",
+    "textErrorToCheckUsernameAvailability":"'Erro ao verificar a disponibilidade do nome de usuário. Tente novamente mais tarde.'",
+    "textErrorToCheckEmailAvailability":"'Erro ao verificar a disponibilidade do e-mail. Tente novamente mais tarde.'",
+    "textErrorToGetUserInformation":"'Erro ao carregar as informações do usuário. Tente novamente mais tarde.'",
+    "textErrorToDeactivateUser":"'Erro ao desativar o usuário. Tente novamente mais tarde.'",
+    "textErrorToUpdateUserInformation":"'Erro ao atualizar as informações do usuário. Tente novamente mais tarde.'",
+    "textErrorToDeleteReview":"'Erro ao deletar a review. Tente novamente mais tarde.'",
+    "textErrorToSearchPlaceByName":"'Erro ao buscar o local pelo nome. Tente novamente mais tarde.'",
 
     "textInitialSearch" : "Pesquise locais para avaliar",
     "textDefaultDeleteReviewMessage":"Review deletada com sucesso!",
@@ -125,6 +134,7 @@
     "textAddLocation":"Adicionar Local",
     "textOptions":"Opções",
     "textSuccessSaveLocation":"Local enviado para revisão com sucesso!",
+    "textExploreOtherLocations":"Explorar outros locais",
     
 
     "textFeatureAvailableSoon":"Funcionalidade disponível em breve",

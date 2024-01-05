@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-import 'package:catcher/catcher.dart';
+import 'package:catcher_2/catcher_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -60,7 +60,7 @@ class ChangeEmailBloc extends SafeBloC {
       await saveUserEmailUsecase.call(userEmail: value);
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
     }
   }
 

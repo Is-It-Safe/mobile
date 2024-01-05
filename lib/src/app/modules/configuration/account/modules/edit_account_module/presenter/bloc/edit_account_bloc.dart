@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:catcher/catcher.dart';
+import 'package:catcher_2/catcher_2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -56,7 +56,6 @@ class EditAccountBloc extends SafeBloC {
     text: StringConstants.hyphen,
   );
 
-
   EditAccountBloc({
     required this.updateUserUseCase,
     required this.getUserUseCase,
@@ -98,7 +97,7 @@ class EditAccountBloc extends SafeBloC {
       );
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
       updatedUser.error(e.toString());
       safeSnackBar.error(S.current.textUnableToChangeInformation);
     }
@@ -126,7 +125,7 @@ class EditAccountBloc extends SafeBloC {
       }, (error) => null);
     } on Exception catch (e, stacktrace) {
       user.error(e.toString());
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
       safeSnackBar.error(e.toString());
       if (e is UnauthorizedException) await doLogout();
     }
@@ -173,7 +172,7 @@ class EditAccountBloc extends SafeBloC {
       }
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
       listGenders.error(e.toString());
       safeSnackBar.error(e.toString());
     }
@@ -191,7 +190,7 @@ class EditAccountBloc extends SafeBloC {
       }
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
       listSexualOrientations.error(e.toString());
       safeSnackBar.error(e.toString());
     }

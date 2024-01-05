@@ -1,12 +1,8 @@
-import 'dart:io';
-
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_interceptors.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service_interface.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/http_method.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/request_config.dart';
-import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:is_it_safe_app/src/service/api/error/safe_exceptions.dart';
 
 ///A classe [APIService] é responsável por administrar as requisições realizadas na API
@@ -22,22 +18,13 @@ class ApiService implements IApiService {
   static Dio createDio() {
     var dio = Dio(
       BaseOptions(
-        receiveTimeout: _timeout.inMilliseconds,
-        connectTimeout: _timeout.inMilliseconds,
-        sendTimeout: _timeout.inMilliseconds,
+        receiveTimeout: _timeout,
+        connectTimeout: _timeout,
+        sendTimeout: _timeout,
         responseType: ResponseType.plain,
       ),
     );
     dio.interceptors.addAll({ApiInterceptors()});
-
-    if (ApiConstants.ignoreSSLCertificate) {
-      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-          (HttpClient client) {
-        client.badCertificateCallback =
-            (X509Certificate cert, String host, int port) => true;
-        return client;
-      };
-    }
 
     return dio;
   }

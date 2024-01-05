@@ -37,7 +37,7 @@ class SuccessSnackBar extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                         S.current.textSafeDialogTypeSucces,//'Sucesso!',
+                    S.current.textSafeDialogTypeSucces,
                     style: TextStyles.headline3(
                       color: SafeColors.statusColors.success,
                     ),
@@ -50,7 +50,7 @@ class SuccessSnackBar extends StatelessWidget {
               style: TextStyles.bodyText2(color: SafeColors.textColors.label),
             ),
             SafeButton(
-              title: S.current.textButtonSafeDialogTypeSucces,
+              title: S.current.textExploreOtherLocations,
               state: ButtonState.rest,
               onTap: () => Modular.to.pop(),
             ),

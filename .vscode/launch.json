@@ -1,9 +1,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-
-
-      
       {
         "name": "PROD",
         "request": "launch",
@@ -14,23 +11,34 @@
       ]
       },
       {
-        "name": "DEV",
+        "name": "DEV Debug",
         "request": "launch",
+        "type": "dart",
+        "flutterMode": "debug",
+        "program": "lib/main_dev.dart",
+        "args": [
+          "--dart-define=flavor=dev",
+        ]
+      },
+      {
+        "name": "DEV Profile",
+        "request": "launch",
+        "flutterMode": "profile",
         "type": "dart",
         "program": "lib/main_dev.dart",
         "args": [
           "--dart-define=flavor=dev",
         ]
       },
-
-      // {
-      //   "name": "DEV",
-      //   "request": "launch",
-      //   "type": "dart",
-      //   "program": "lib/main_dev.dart",
-      //    "args": [
-      //     "--dart-define=flavor=dev",
-      //   ]
-      // }
+      {
+        "name": "DEV Release",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "release",
+        "program": "lib/main_dev.dart",
+        "args": [
+          "--dart-define=flavor=dev",
+        ]
+      },
     ]
   }
