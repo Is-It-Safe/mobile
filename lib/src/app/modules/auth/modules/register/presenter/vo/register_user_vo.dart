@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/user_sign_in_enum.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 

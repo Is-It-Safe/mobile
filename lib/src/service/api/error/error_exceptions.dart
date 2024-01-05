@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class BadRequestException extends DioError {
+class BadRequestException extends DioException {
   BadRequestException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -9,7 +9,7 @@ class BadRequestException extends DioError {
   }
 }
 
-class InternalServerErrorException extends DioError {
+class InternalServerErrorException extends DioException {
   InternalServerErrorException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -18,7 +18,7 @@ class InternalServerErrorException extends DioError {
   }
 }
 
-class ConflictException extends DioError {
+class ConflictException extends DioException {
   ConflictException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -27,7 +27,7 @@ class ConflictException extends DioError {
   }
 }
 
-class UnauthorizedException extends DioError {
+class UnauthorizedException extends DioException {
   UnauthorizedException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -36,7 +36,7 @@ class UnauthorizedException extends DioError {
   }
 }
 
-class NotFoundException extends DioError {
+class NotFoundException extends DioException {
   NotFoundException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -45,7 +45,7 @@ class NotFoundException extends DioError {
   }
 }
 
-class NoInternetConnectionException extends DioError {
+class NoInternetConnectionException extends DioException {
   NoInternetConnectionException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -54,7 +54,7 @@ class NoInternetConnectionException extends DioError {
   }
 }
 
-class DeadlineExceededException extends DioError {
+class DeadlineExceededException extends DioException {
   DeadlineExceededException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -63,7 +63,7 @@ class DeadlineExceededException extends DioError {
   }
 }
 
-class RequestCanceledException extends DioError {
+class RequestCanceledException extends DioException {
   RequestCanceledException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -72,7 +72,7 @@ class RequestCanceledException extends DioError {
   }
 }
 
-class ConnectTimeoutException extends DioError {
+class ConnectTimeoutException extends DioException {
   ConnectTimeoutException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -81,7 +81,7 @@ class ConnectTimeoutException extends DioError {
   }
 }
 
-class RecieveTimeoutException extends DioError {
+class RecieveTimeoutException extends DioException {
   RecieveTimeoutException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -90,7 +90,7 @@ class RecieveTimeoutException extends DioError {
   }
 }
 
-class RequestTimeoutException extends DioError {
+class RequestTimeoutException extends DioException {
   RequestTimeoutException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -99,7 +99,7 @@ class RequestTimeoutException extends DioError {
   }
 }
 
-class ServiceUnavailableException extends DioError {
+class ServiceUnavailableException extends DioException {
   ServiceUnavailableException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -108,7 +108,7 @@ class ServiceUnavailableException extends DioError {
   }
 }
 
-class DefaultNetworkException extends DioError {
+class DefaultNetworkException extends DioException {
   final int statusCode;
   DefaultNetworkException({
     required RequestOptions r,
@@ -121,7 +121,7 @@ class DefaultNetworkException extends DioError {
   }
 }
 
-class SendTimeoutException extends DioError {
+class SendTimeoutException extends DioException {
   SendTimeoutException(RequestOptions r) : super(requestOptions: r);
 
   @override

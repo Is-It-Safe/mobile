@@ -6,7 +6,7 @@ class SafeExeptions {
     Exception exception = DefaultException(error.toString());
     if (error is Exception) {
       try {
-        if (error is DioException) exception = _handleDioError(error);
+        if (error is DioException) exception = _handleDioException(error);
       } on FormatException {
         exception = SafeFormatException();
       } catch (_) {
@@ -20,7 +20,7 @@ class SafeExeptions {
     throw exception;
   }
 
-  static Exception _handleDioError(DioException error) {
+  static Exception _handleDioException(DioException error) {
     switch (error.type) {
       case DioExceptionType.cancel:
         return RequestCanceledException(error.requestOptions);
