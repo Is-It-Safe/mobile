@@ -24,16 +24,15 @@ class MockLocationService implements ILocationService {
     );
   }
 
-  @override
   Future<List<ResponseGetRatedPlaces>> getBestRatedPlaces(String? place) {
-    // TODO: implement getBestRatedPlaces
     throw UnimplementedError();
   }
 
   @override
   Future<ResponseLocationByCep> getLocationByCep(RequestGetLocationByCep cep) {
-    var jsonContent = File("test/app/modules/location_module/savelocation_response.json")
-        .readAsStringSync();
+    var jsonContent =
+        File("test/app/modules/location_module/savelocation_response.json")
+            .readAsStringSync();
 
     var response = ResponseLocationByCep.fromJson(jsonDecode(jsonContent));
     return Future.value(response);
