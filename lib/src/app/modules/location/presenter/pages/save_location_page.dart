@@ -34,8 +34,6 @@ class _SaveLocationPageState
   static const double alturaTitleText = 12;
   String? errorMessage;
 
-  var locationModular = Modular.get<SafeStream<LocationEntity?>>();
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -165,16 +163,13 @@ class _SaveLocationPageState
                       title: S.current.textAddLocationConfirm,
                       hasBackground: true,
                       size: ButtonSize.large,
-
-                      //TODO: mesmo com CEP inválido o botão está sendo habilitado
                       onTap: () async {
                         if (_formKey.currentState?.validate() ?? false) {
                           await bloc.sendNewLocation().whenComplete(() {
-                            if (locationModular.data != null) {
+                            if (bloc.location.data != null) {
                               showDialog<void>(
                                 context: context,
-                                barrierDismissible:
-                                    false, // user must tap button!
+                                barrierDismissible: false,
                                 builder: (BuildContext context) {
                                   return SuccessSnackBar(
                                     message: S.current.textSuccessSaveLocation,
