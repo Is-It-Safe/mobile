@@ -103,16 +103,16 @@ class HomeBloc extends SafeBloC {
     return null;
   }
 
-  Future<String> get userCity async {
+  Future<String?> get userCity async {
     try {
       if (userLocation.data != null) {
-        return userLocation.data?.locality ?? StringConstants.empty;
+        return userLocation.data?.locality;
       }
     } catch (e, stacktrace) {
       Catcher2.reportCheckedError(e, stacktrace);
       SafeLogUtil.instance.logError(e);
     }
-    return StringConstants.empty;
+    return null;
   }
 
   Future<void> getBestRatedPlaces() async {

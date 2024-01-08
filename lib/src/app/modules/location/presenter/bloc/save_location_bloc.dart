@@ -28,10 +28,10 @@ class SaveLocationBloC extends SafeBloC {
   TextEditingController locationAddressFieldController =
       TextEditingController();
 
-
   void closeDrawer() {
     _scaffoldKey.currentState!.closeDrawer();
   }
+
   ValueNotifier<String?> errorMessageNotifier = ValueNotifier<String?>(null);
 
   SaveLocationBloC({
@@ -101,10 +101,8 @@ class SaveLocationBloC extends SafeBloC {
       result.fold(
         (success) {
           location.data = success;
-          var locationModular = Modular.get<SafeStream<LocationEntity?>>();
-          locationModular.data = success;
           Modular.to.pop();
-       },
+        },
         (error) {
           Modular.to.pop();
           closeDrawer();

@@ -35,7 +35,12 @@ class HomeServices implements HomeServicesInterface {
     );
 
     final response = await _service.doRequest(requestConfig);
-    return (json.decode(response.data) as List)
+    final decode = json.decode(response.data);
+
+    if (decode.toString().startsWith('[')) {
+      return [];
+    }
+    return (decode['content'] as List)
         .map((e) => ResponseGetRatedPlaces.fromJson(e))
         .toList();
   }
