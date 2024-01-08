@@ -15,6 +15,7 @@ class SaveLocationUseCase extends SafeUseCase {
     required String cep,
     required int locationTypeId,
     String? imgUrl,
+    required String address, 
   }) async {
     try {
       final request = RequestSaveLocation(
@@ -22,6 +23,7 @@ class SaveLocationUseCase extends SafeUseCase {
         cep: cep,
         locationTypeId: locationTypeId,
         imgUrl: imgUrl,
+        address: address,
       );
       final response = await service.saveLocation(request);
       return Success(LocationEntity.fromResponseSaveLocation(response));

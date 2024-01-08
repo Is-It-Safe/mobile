@@ -169,7 +169,9 @@ class _SaveLocationPageState
                             if (bloc.location.data != null) {
                               showDialog<void>(
                                 context: context,
+
                                 barrierDismissible: false,
+
                                 builder: (BuildContext context) {
                                   return SuccessSnackBar(
                                     message: S.current.textSuccessSaveLocation,
