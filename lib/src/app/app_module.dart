@@ -10,13 +10,10 @@ import 'package:is_it_safe_app/src/app/modules/configuration/configuration_modul
 import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/navigation_module.dart';
 import 'package:is_it_safe_app/src/app/modules/navigation/presenter/pages/navigation_page.dart';
-import 'package:is_it_safe_app/src/app/modules/review/review_module.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_case.dart';
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/configuration/api_service.dart';
 import 'package:is_it_safe_app/src/service/shared_preferences/shared_preferences_service.dart';
-
-import 'modules/review/presenter/pages/review_page.dart';
 
 class AppModule extends Module {
   @override
