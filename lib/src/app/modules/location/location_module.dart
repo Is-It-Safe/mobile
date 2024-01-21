@@ -12,6 +12,9 @@ import 'package:is_it_safe_app/src/app/modules/location/services/location_servic
 
 import 'package:is_it_safe_app/src/app/modules/location/domain/usecases/save_location_use_case.dart';
 
+import '../profile/services/profile_service.dart';
+import '../review/domain/usecases/save_review_use_case.dart';
+import '../review/presenter/bloc/review_bloc.dart';
 import 'domain/usecases/get_location_by_cep_use_case.dart';
 import 'presenter/bloc/save_location_bloc.dart';
 
@@ -23,16 +26,16 @@ class LocationModule extends Module {
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveLocationUseCase(i.get<LocationService>())),
     Bind.lazySingleton(
-            (i) => GetLocationsByIdUseCase(i.get<LocationService>())),
+        (i) => GetLocationsByIdUseCase(i.get<LocationService>())),
     Bind.lazySingleton((i) => LocationBloC(
-      getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
-    )),
+          getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
+        )),
     Bind.lazySingleton(
-            (i) => GetLocationByCepUseCase(i.get<LocationService>())),
+        (i) => GetLocationByCepUseCase(i.get<LocationService>())),
     Bind.lazySingleton((i) => SaveLocationBloC(
-      saveLocationUseCase: i.get<SaveLocationUseCase>(),
-      getLocationsByCepUseCase: i.get<GetLocationByCepUseCase>(),
-    )),
+          saveLocationUseCase: i.get<SaveLocationUseCase>(),
+          getLocationsByCepUseCase: i.get<GetLocationByCepUseCase>(),
+        )),
   ];
 
   @override
