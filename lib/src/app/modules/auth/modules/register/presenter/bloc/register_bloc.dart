@@ -43,11 +43,13 @@ class RegisterBloc extends SafeBloC {
 
   void toggleRegisterButton(RegisterBloc? bloc) {
     bool isPasswordNotEmpty = bloc!.passwordController.text.isNotEmpty;
-    bool isMatchPasswords = bloc.confirmPasswordController.text == bloc.passwordController.text;
+    bool isMatchPasswords =
+        bloc.confirmPasswordController.text == bloc.passwordController.text;
     bool isEnabled = !store.listRegisterTextFieldVO.any(
       (element) => element.isValid == false,
     );
-    store.isRegisterButtonEnabled.data = isEnabled && isPasswordNotEmpty && isMatchPasswords;
+    store.isRegisterButtonEnabled.data =
+        isEnabled && isPasswordNotEmpty && isMatchPasswords;
   }
 
   void toggleTermsAndConditions() {
@@ -138,10 +140,18 @@ class RegisterBloc extends SafeBloC {
     if (await isUsernameAvailable() == false) return;
     if (await isEmailAvailable() == false) return;
 
-
     Modular.to.pushNamed(
       StringConstants.dot + RegisterProfilePage.route,
     );
+  }
+
+  bool enableButton() {
+    if (store.isRegisterButtonEnabled.data != false &&
+        store.isTermsAndConditionsChecked.data != false){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override

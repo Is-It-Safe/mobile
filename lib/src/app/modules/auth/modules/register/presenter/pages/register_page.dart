@@ -126,8 +126,11 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                           isAcceptedTerms:
                               bloc.store.isTermsAndConditionsChecked,
                           onTap: () async {
-                            if (bloc.store.isRegisterButtonEnabled.data == true && bloc.store.isTermsAndConditionsChecked.data == true) {
+                            bool isButtonEnabled = bloc.enableButton();
+                            if (isButtonEnabled) {
                               await bloc.navigateToRegisterProfile();
+                            } else {
+                             null;
                             }
                           },
                         );
