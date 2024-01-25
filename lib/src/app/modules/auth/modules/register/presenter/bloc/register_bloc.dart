@@ -148,7 +148,7 @@ class RegisterBloc extends SafeBloC {
   bool enableButton() {
     if (store.isRegisterButtonEnabled.data != false &&
         store.isTermsAndConditionsChecked.data != false){
-      return true;
+      return (store.isRegisterButtonEnabled.data && store.isTermsAndConditionsChecked.data);
     } else {
       return false;
     }
