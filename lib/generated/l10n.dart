@@ -1280,10 +1280,10 @@ class S {
     );
   }
 
-  /// `Local enviado para revisão com sucesso!`
+  /// `Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!`
   String get textSuccessSaveLocation {
     return Intl.message(
-      'Local enviado para revisão com sucesso!',
+     'Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!',
       name: 'textSuccessSaveLocation',
       desc: '',
       args: [],
