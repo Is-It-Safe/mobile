@@ -1,7 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
@@ -13,7 +12,6 @@ import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 
-import '../../../../../core/state/safe_stream.dart';
 import '../widgets/success_snack_bar.dart';
 
 class SaveLocationPage extends StatefulWidget {
