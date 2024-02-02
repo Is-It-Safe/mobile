@@ -68,9 +68,8 @@ class _RegisterPageState extends SafeState<RegisterPage, RegisterBloc> {
                             bloc.toggleRegisterButton(bloc);
                           },
                           onValidate: () {
-                            registerTextFieldVO.validateUserData();
-
-                          },
+                            return registerTextFieldVO.validateUserData();
+                            },
                           isPasswordVisible: isPasswordVisible,
                         );
                       },

@@ -234,6 +234,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tente novamente em alguns instantes."),
         "textErrorUnknown": MessageLookupByLibrary.simpleMessage(
             "Algo de errado aconteceu, tente novamente em alguns instantes."),
+        "textErrorUserName": MessageLookupByLibrary.simpleMessage(
+            "O nome do usuário precisa conter 4 caracteres ou mais"),
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(
             "Campos errados! Tente novamente."),
         "textErrorZipCode":
