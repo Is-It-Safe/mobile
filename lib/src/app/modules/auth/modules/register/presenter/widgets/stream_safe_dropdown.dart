@@ -39,7 +39,7 @@ class _StreamSafeDropdownState<T> extends State<StreamSafeDropdown<T>> {
             title: widget.title,
             controller: widget.textController,
             values: items,
-            isExapanded: isDropdownExpanded,
+            isExpanded: isDropdownExpanded,
           );
         }
         return const SafeTextFormField(

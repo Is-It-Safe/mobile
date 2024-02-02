@@ -6,13 +6,13 @@ import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 class SafeDropDown extends StatefulWidget {
   final List<dynamic> values;
   TextEditingController controller;
-  bool isExapanded;
+  bool isExpanded;
   String title;
 
   SafeDropDown({
     Key? key,
     required this.values,
-    required this.isExapanded,
+    required this.isExpanded,
     required this.title,
     required this.controller,
   }) : super(key: key);
@@ -38,7 +38,7 @@ class _SafeDropDownState extends State<SafeDropDown> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: widget.isExapanded
+          color: widget.isExpanded
               ? SafeColors.statusColors.active
               : SafeColors.textColors.dark,
         ),
@@ -49,19 +49,19 @@ class _SafeDropDownState extends State<SafeDropDown> {
         elevation: 0,
         expansionCallback: (int index, bool isExpanded) {
           setState(() {
-            widget.isExapanded = !isExpanded;
+            widget.isExpanded = isExpanded;
           });
         },
         children: [
           ExpansionPanel(
             canTapOnHeader: true,
-            isExpanded: widget.isExapanded,
+            isExpanded: widget.isExpanded,
             backgroundColor: SafeColors.generalColors.background,
             headerBuilder: (BuildContext context, bool isExpanded) {
               return ListTile(
                 title: Text(
                   widget.title,
-                  style: widget.isExapanded
+                  style: widget.isExpanded
                       ? TextStyles.label(
                           color: SafeColors.statusColors.active,
                         )
@@ -80,7 +80,7 @@ class _SafeDropDownState extends State<SafeDropDown> {
                       setState(() {
                         widget.title = object.title;
                         widget.controller.text = object.id.toString();
-                        widget.isExapanded = !widget.isExapanded;
+                        widget.isExpanded = !widget.isExpanded;
                       });
                     },
                     child: Text(
