@@ -16,12 +16,12 @@ class RegisterUserVo {
     }
   }
 
-  String? validateUserData() {
+  Object? validateUserData() {
     switch (userSignInEnum) {
       case UserSignInEnum.user:
         return validateName();
       case UserSignInEnum.nickName:
-        return validateName();
+        return validateNickName();
       case UserSignInEnum.email:
         return validateEmail();
       case UserSignInEnum.pronouns:
@@ -39,6 +39,15 @@ class RegisterUserVo {
     if (!(controller.text).isName) {
       isValid = false;
       return S.current.textErrorEmptyField;
+    }
+    isValid = true;
+    return null;
+  }
+
+  String? validateNickName() {
+    if (!(controller.text).isName) {
+      isValid = false;
+      return S.current.textErrorUserName;
     }
     isValid = true;
     return null;

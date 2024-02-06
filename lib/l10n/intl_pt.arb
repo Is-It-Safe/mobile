@@ -24,6 +24,7 @@
     "textErrorWrongFields":"Campos errados! Tente novamente.",
     "textErrorInvalidDate":"Por favor, digite uma data válida",
     "textErrorEmptyField":"Esse campo não pode ficar vazio",
+    "textErrorUserName":"O nome do usuário precisa conter 4 caracteres ou mais",
     "textErrorEmail":"Por favor, digite um e-mail válido",
     "textErrorPronouns":"ex: Ela/Dela, Ele/Dele, Ela/Elu",
     "textErrorDifferentPasswords":"A confirmação de senha não confere",

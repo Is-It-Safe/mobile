@@ -230,6 +230,16 @@ class S {
     );
   }
 
+  /// `O nome do usuário precisa conter 4 caracteres ou mais`
+  String get textErrorUserName {
+    return Intl.message(
+      'O nome do usuário precisa conter 4 caracteres ou mais',
+      name: 'textErrorUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Por favor, digite um e-mail válido`
   String get textErrorEmail {
     return Intl.message(
