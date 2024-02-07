@@ -5,6 +5,8 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/pages/login_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_image_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_login_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/modules/edit_account_module/presenter/pages/edit_account_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/update_user_use_case.dart';
@@ -99,6 +101,16 @@ class AccountBloc extends SafeBloC {
             (r) => false,
           ),
         );
+  }
+
+  void navigateToEditAccount() {
+    Modular.to
+        .pushNamed(StringConstants.dot + EditAccountPage.route)
+        .then((value) async {
+      EditAccountReturn result = value as EditAccountReturn;
+      if (result.isAccountChanged == false) return;
+      await getUser();
+    });
   }
 
   @override
