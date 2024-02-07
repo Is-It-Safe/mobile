@@ -3,6 +3,7 @@ import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_login_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_name_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/modules/edit_account_module/presenter/bloc/edit_account_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/modules/edit_account_module/presenter/pages/edit_account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
@@ -32,6 +33,7 @@ class EditAccountModule extends Module {
           getGendersUseCase: i.get<GetGendersUseCase>(),
           getSexualOrientationsUseCase: i.get<GetSexualOrientationsUseCase>(),
           updateUserUseCase: i.get<UpdateUserUseCase>(),
+          saveUserNameUseCase: i.get<SaveUserNameUseCase>(),
         )),
   ];
 

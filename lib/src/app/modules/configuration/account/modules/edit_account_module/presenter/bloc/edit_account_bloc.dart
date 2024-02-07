@@ -8,6 +8,8 @@ import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/page
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_login_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_name_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/update_user_use_case.dart';
@@ -28,6 +30,7 @@ class EditAccountBloc extends SafeBloC {
   final GetSexualOrientationsUseCase getSexualOrientationsUseCase;
   final GetGendersUseCase getGendersUseCase;
   final UpdateUserUseCase updateUserUseCase;
+  final SaveUserNameUseCase saveUserNameUseCase;
 
   final user = SafeStream<UserEntity?>(data: null);
   final updatedUser = SafeStream<UserEntity?>(data: null);
@@ -62,6 +65,7 @@ class EditAccountBloc extends SafeBloC {
     required this.saveUserLoginUseCase,
     required this.getGendersUseCase,
     required this.getSexualOrientationsUseCase,
+    required this.saveUserNameUseCase,
   });
 
   @override
@@ -88,9 +92,13 @@ class EditAccountBloc extends SafeBloC {
       final result = await updateUserUseCase.call(request);
 
       result.fold(
-        (userEntity) {
+        (userEntity) async {
           updatedUser.data = userEntity;
-          Modular.to.pop();
+          await saveUserName(userEntity.name!);
+          final returnValue = EditAccountReturn(
+            isAccountChanged: true
+          );
+          Modular.to.pop(returnValue);
           safeSnackBar.success(S.current.textInformationChangedSuccessfully);
         },
         (error) => throw Exception(error),
@@ -240,6 +248,15 @@ class EditAccountBloc extends SafeBloC {
       },
       (error) {},
     );
+  }
+
+  Future<void> saveUserName(String value) async {
+    try {
+      await saveUserNameUseCase.call(value);
+    } catch (e, stacktrace) {
+      SafeLogUtil.instance.logError(e);
+      Catcher2.reportCheckedError(e, stacktrace);
+    }
   }
 
   @override
