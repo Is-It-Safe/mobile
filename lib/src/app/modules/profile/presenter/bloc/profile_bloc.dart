@@ -54,7 +54,9 @@ class ProfileBloc extends SafeBloC {
         (review) => deleteReview.data = review,
         (error) => null,
       );
+
       getUser();
+      user.loading();
       safeSnackBar.success(S.current.textDefaultDeleteReviewMessage);
       return true;
     } catch (e) {
