@@ -230,6 +230,16 @@ class S {
     );
   }
 
+  /// `O nome do usuário precisa conter 4 caracteres ou mais`
+  String get textErrorUserName {
+    return Intl.message(
+      'O nome do usuário precisa conter 4 caracteres ou mais',
+      name: 'textErrorUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Por favor, digite um e-mail válido`
   String get textErrorEmail {
     return Intl.message(
@@ -250,10 +260,10 @@ class S {
     );
   }
 
-  /// `Os campos de senha devem ser iguais`
+  /// `A confirmação de senha não confere`
   String get textErrorDifferentPasswords {
     return Intl.message(
-      'Os campos de senha devem ser iguais',
+      'A confirmação de senha não confere',
       name: 'textErrorDifferentPasswords',
       desc: '',
       args: [],
@@ -425,6 +435,96 @@ class S {
     return Intl.message(
       '\'Erro ao realizar o cadastro. Tente novamente mais tarde.\'',
       name: 'textErrorToRegisterUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao carregar os gêneros. Tente novamente mais tarde.'`
+  String get textErrorToGetGender {
+    return Intl.message(
+      '\'Erro ao carregar os gêneros. Tente novamente mais tarde.\'',
+      name: 'textErrorToGetGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao carregar as orientações sexuais. Tente novamente mais tarde.'`
+  String get textErrorToGetSexualOrientation {
+    return Intl.message(
+      '\'Erro ao carregar as orientações sexuais. Tente novamente mais tarde.\'',
+      name: 'textErrorToGetSexualOrientation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao verificar a disponibilidade do nome de usuário. Tente novamente mais tarde.'`
+  String get textErrorToCheckUsernameAvailability {
+    return Intl.message(
+      '\'Erro ao verificar a disponibilidade do nome de usuário. Tente novamente mais tarde.\'',
+      name: 'textErrorToCheckUsernameAvailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao verificar a disponibilidade do e-mail. Tente novamente mais tarde.'`
+  String get textErrorToCheckEmailAvailability {
+    return Intl.message(
+      '\'Erro ao verificar a disponibilidade do e-mail. Tente novamente mais tarde.\'',
+      name: 'textErrorToCheckEmailAvailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao carregar as informações do usuário. Tente novamente mais tarde.'`
+  String get textErrorToGetUserInformation {
+    return Intl.message(
+      '\'Erro ao carregar as informações do usuário. Tente novamente mais tarde.\'',
+      name: 'textErrorToGetUserInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao desativar o usuário. Tente novamente mais tarde.'`
+  String get textErrorToDeactivateUser {
+    return Intl.message(
+      '\'Erro ao desativar o usuário. Tente novamente mais tarde.\'',
+      name: 'textErrorToDeactivateUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao atualizar as informações do usuário. Tente novamente mais tarde.'`
+  String get textErrorToUpdateUserInformation {
+    return Intl.message(
+      '\'Erro ao atualizar as informações do usuário. Tente novamente mais tarde.\'',
+      name: 'textErrorToUpdateUserInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao deletar a review. Tente novamente mais tarde.'`
+  String get textErrorToDeleteReview {
+    return Intl.message(
+      '\'Erro ao deletar a review. Tente novamente mais tarde.\'',
+      name: 'textErrorToDeleteReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao buscar o local pelo nome. Tente novamente mais tarde.'`
+  String get textErrorToSearchPlaceByName {
+    return Intl.message(
+      '\'Erro ao buscar o local pelo nome. Tente novamente mais tarde.\'',
+      name: 'textErrorToSearchPlaceByName',
       desc: '',
       args: [],
     );
@@ -650,11 +750,31 @@ class S {
     );
   }
 
+  /// `Permitir`
+  String get textAllow {
+    return Intl.message(
+      'Permitir',
+      name: 'textAllow',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancelar`
   String get textCancel {
     return Intl.message(
       'Cancelar',
       name: 'textCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Negar`
+  String get textDeny {
+    return Intl.message(
+      'Negar',
+      name: 'textDeny',
       desc: '',
       args: [],
     );
@@ -950,6 +1070,16 @@ class S {
     );
   }
 
+  /// `Editar Conta`
+  String get textEditAccount {
+    return Intl.message(
+      'Editar Conta',
+      name: 'textEditAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sair`
   String get textLogout {
     return Intl.message(
@@ -1170,6 +1300,16 @@ class S {
     );
   }
 
+  /// `Explorar outros locais`
+  String get textExploreOtherLocations {
+    return Intl.message(
+      'Explorar outros locais',
+      name: 'textExploreOtherLocations',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Funcionalidade disponível em breve`
   String get textFeatureAvailableSoon {
     return Intl.message(
@@ -1310,10 +1450,10 @@ class S {
     );
   }
 
-  /// `Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números`
+  /// `Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.`
   String get textPasswordSpecifications {
     return Intl.message(
-      'Sua segurança é muito importante para nós.\n - Sua senha deve ter mais de 8 caracteres\n - letras e números',
+      'Sua senha deve conter 8 caracteres ou mais,\n incluindo letras, números e símbolos.',
       name: 'textPasswordSpecifications',
       desc: '',
       args: [],
@@ -1870,10 +2010,10 @@ class S {
     );
   }
 
-  /// `Ex: 04553434`
+  /// `Ex: 04.553-434`
   String get textAddLocationCepExample {
     return Intl.message(
-      'Ex: 04553434',
+      'Ex: 04.553-434',
       name: 'textAddLocationCepExample',
       desc: '',
       args: [],
@@ -2010,6 +2150,26 @@ class S {
     );
   }
 
+  /// `CEP inválido`
+  String get textErrorZipCode {
+    return Intl.message(
+      'CEP inválido',
+      name: 'textErrorZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digite apenas números`
+  String get textInfoZipCode {
+    return Intl.message(
+      'Digite apenas números',
+      name: 'textInfoZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Deseja desativar sua conta?`
   String get textWantDeactivateAccount {
     return Intl.message(
@@ -2105,6 +2265,26 @@ class S {
     return Intl.message(
       'The location service on the device is disabled.',
       name: 'textErrorDeniedServiceLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permitir o app ‘IS IT SAFE?’ acesse a sua localização?`
+  String get textLocationDialogTitle {
+    return Intl.message(
+      'Permitir o app ‘IS IT SAFE?’ acesse a sua localização?',
+      name: 'textLocationDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você.`
+  String get textLocationDialogcontent {
+    return Intl.message(
+      'Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você.',
+      name: 'textLocationDialogcontent',
       desc: '',
       args: [],
     );

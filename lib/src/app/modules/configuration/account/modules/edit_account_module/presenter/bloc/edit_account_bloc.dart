@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:catcher/catcher.dart';
+import 'package:catcher_2/catcher_2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -8,6 +8,8 @@ import 'package:is_it_safe_app/src/app/modules/auth/modules/login/presenter/page
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_genders_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/get_sexual_orientation_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_login_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_name_use_case.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/get_user_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/usecases/update_user_use_case.dart';
@@ -28,6 +30,7 @@ class EditAccountBloc extends SafeBloC {
   final GetSexualOrientationsUseCase getSexualOrientationsUseCase;
   final GetGendersUseCase getGendersUseCase;
   final UpdateUserUseCase updateUserUseCase;
+  final SaveUserNameUseCase saveUserNameUseCase;
 
   final user = SafeStream<UserEntity?>(data: null);
   final updatedUser = SafeStream<UserEntity?>(data: null);
@@ -62,6 +65,7 @@ class EditAccountBloc extends SafeBloC {
     required this.saveUserLoginUseCase,
     required this.getGendersUseCase,
     required this.getSexualOrientationsUseCase,
+    required this.saveUserNameUseCase,
   });
 
   @override
@@ -88,16 +92,20 @@ class EditAccountBloc extends SafeBloC {
       final result = await updateUserUseCase.call(request);
 
       result.fold(
-        (userEntity) {
+        (userEntity) async {
           updatedUser.data = userEntity;
-          Modular.to.pop();
+          await saveUserName(userEntity.name!);
+          final returnValue = EditAccountReturn(
+            isAccountChanged: true
+          );
+          Modular.to.pop(returnValue);
           safeSnackBar.success(S.current.textInformationChangedSuccessfully);
         },
         (error) => throw Exception(error),
       );
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
       updatedUser.error(e.toString());
       safeSnackBar.error(S.current.textUnableToChangeInformation);
     }
@@ -105,10 +113,10 @@ class EditAccountBloc extends SafeBloC {
 
   void toogleUpdateButton() {
     isButtonEnabled.data = (nameController.text.isNotEmpty &&
+        pronounController.text.isNotEmpty &&
         usernameController.text.isNotEmpty &&
         genderController.text.isNotEmpty &&
-        sexualOrientationController.text.isNotEmpty &&
-        user.data != null);
+        sexualOrientationController.text.isNotEmpty);
   }
 
   Future<void> getUser() async {
@@ -125,7 +133,7 @@ class EditAccountBloc extends SafeBloC {
       }, (error) => null);
     } on Exception catch (e, stacktrace) {
       user.error(e.toString());
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
       safeSnackBar.error(e.toString());
       if (e is UnauthorizedException) await doLogout();
     }
@@ -172,7 +180,7 @@ class EditAccountBloc extends SafeBloC {
       }
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
       listGenders.error(e.toString());
       safeSnackBar.error(e.toString());
     }
@@ -190,7 +198,7 @@ class EditAccountBloc extends SafeBloC {
       }
     } catch (e, stacktrace) {
       SafeLogUtil.instance.logError(e);
-      Catcher.reportCheckedError(e, stacktrace);
+      Catcher2.reportCheckedError(e, stacktrace);
       listSexualOrientations.error(e.toString());
       safeSnackBar.error(e.toString());
     }
@@ -203,11 +211,11 @@ class EditAccountBloc extends SafeBloC {
     return StringConstants.empty;
   }
 
-  String validateTextField(String? value) {
+  String? validateTextField(String? value) {
     if (!(value ?? StringConstants.empty).isName || value == null) {
       return S.current.textErrorEmptyField;
     }
-    return StringConstants.empty;
+    return null;
   }
 
   Future<void> loadGenderFromList({
@@ -240,6 +248,15 @@ class EditAccountBloc extends SafeBloC {
       },
       (error) {},
     );
+  }
+
+  Future<void> saveUserName(String value) async {
+    try {
+      await saveUserNameUseCase.call(value);
+    } catch (e, stacktrace) {
+      SafeLogUtil.instance.logError(e);
+      Catcher2.reportCheckedError(e, stacktrace);
+    }
   }
 
   @override

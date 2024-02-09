@@ -6,6 +6,7 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: SafeColors.generalColors.background,
   primarySwatch: SafeColors.materialButtonColors.primary,
   primaryColor: SafeColors.statusColors.active,
+  dialogBackgroundColor: SafeColors.generalColors.background,
   inputDecorationTheme: _inputDecoration,
 );
 

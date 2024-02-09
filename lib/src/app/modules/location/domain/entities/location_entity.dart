@@ -1,5 +1,7 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:is_it_safe_app/src/app/modules/home/domain/models/response/response_get_best_rated_places.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_get_location_by_id.dart';
+import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_by_cep.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_location_review.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/response/response_save_location.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/models/response/response_get_user.dart';
@@ -17,6 +19,8 @@ class LocationEntity {
   final int? reviewsQnt;
   final List<ResponseLocationReview>? reviews;
   final List<ReviewChart>? reviewChart;
+  final String? cep;
+  final bool? isErro;
 
   LocationEntity({
     this.id,
@@ -28,6 +32,8 @@ class LocationEntity {
     this.reviewsQnt,
     this.reviews,
     this.reviewChart,
+    this.cep,
+    this.isErro,
   });
 
   factory LocationEntity.toEntity(dynamic location) {
@@ -71,6 +77,16 @@ class LocationEntity {
       averageImpressionStatus:
           location.averageImpressionStatus ?? StringConstants.empty,
       reviews: location.reviews ?? [],
+    );
+  }
+
+  factory LocationEntity.fromResponseGetLocationByCep(
+      ResponseLocationByCep zipCode) {
+    return LocationEntity(
+      name: UtilBrasilFields.removeCaracteres(
+          zipCode.cep ?? StringConstants.empty),
+      address: zipCode.bairro ?? StringConstants.empty,
+      isErro: zipCode.isErro ?? false,
     );
   }
 

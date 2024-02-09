@@ -43,9 +43,7 @@ class _AccountPageState extends SafeState<AccountPage, AccountBloc> {
             const SizedBox(height: 20),
             AccountInfoButton(
               text: S.current.textEditProfile,
-              onTap: () => Modular.to.pushNamed(
-                '.${EditAccountPage.route}',
-              ),
+              onTap: () => bloc.navigateToEditAccount(),
             ),
             const SizedBox(height: 20),
             AccountSectionBanner(text: S.current.textAccountInformation),
@@ -86,4 +84,12 @@ class _AccountPageState extends SafeState<AccountPage, AccountBloc> {
       ),
     );
   }
+}
+
+class EditAccountReturn {
+  final bool isAccountChanged;
+
+  EditAccountReturn({
+    required this.isAccountChanged,
+  });
 }

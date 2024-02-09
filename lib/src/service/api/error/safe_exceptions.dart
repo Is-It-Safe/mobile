@@ -6,7 +6,7 @@ class SafeExeptions {
     Exception exception = DefaultException(error.toString());
     if (error is Exception) {
       try {
-        if (error is DioError) exception = _handleDioError(error);
+        if (error is DioException) exception = _handleDioException(error);
       } on FormatException {
         exception = SafeFormatException();
       } catch (_) {
@@ -20,19 +20,17 @@ class SafeExeptions {
     throw exception;
   }
 
-  static Exception _handleDioError(DioError error) {
+  static Exception _handleDioException(DioException error) {
     switch (error.type) {
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         return RequestCanceledException(error.requestOptions);
-      case DioErrorType.connectTimeout:
+      case DioExceptionType.connectionTimeout:
         return ConnectTimeoutException(error.requestOptions);
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.receiveTimeout:
         return RecieveTimeoutException(error.requestOptions);
-      case DioErrorType.sendTimeout:
+      case DioExceptionType.sendTimeout:
         return SendTimeoutException(error.requestOptions);
-      case DioErrorType.other:
-        return InternalServerErrorException(error.requestOptions);
-      case DioErrorType.response:
+      case DioExceptionType.unknown:
         switch (error.response?.statusCode) {
           case 400:
             return UnauthorizedException(error.requestOptions);

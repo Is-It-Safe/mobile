@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
-import 'package:catcher/catcher.dart';
+import 'package:catcher_2/catcher_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
@@ -40,7 +40,7 @@ class DeactivateAccountBloc extends SafeBloC {
         },
       );
     } catch (e, stackTrace) {
-      Catcher.reportCheckedError(e, stackTrace);
+      Catcher2.reportCheckedError(e, stackTrace);
       deactivateAccountStream.error(e.toString());
     }
   }

@@ -38,6 +38,7 @@ class _StatusColors {
   Color info = const Color(0xFFB6B2C2);
   Color info2 = const Color(0xFF535353);
   Color alert = const Color(0xFFffcc00);
+  Color neutral = const Color(0xFF2A2A46);
 }
 
 class _TextColors {

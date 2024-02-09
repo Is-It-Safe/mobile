@@ -31,10 +31,10 @@ class ApiConstants {
   static String kUrl = '${FlavorUtil.instance.url}/is-it-safe/';
 
   ///URL para requisições voltadas a localização via CEP
-  static const String kUrlCep = 'viacep.com.br/ws/cep/json/';
+  static const String kUrlCep = 'https://viacep.com.br/ws/placeholder/json/';
 
   ///URL para direcionar usuario a pagina web de esqueceu a senha
-  static String kForgotPassword = '/is-it-safe/forgot';
+  static String kForgotPassword = '/forgot';
 
   ///Variavel para definir se será ignorado, ou não, o certificado ssl
   static bool ignoreSSLCertificate = true;

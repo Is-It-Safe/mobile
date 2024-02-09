@@ -1,4 +1,7 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/location/presenter/bloc/save_location_bloc.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
@@ -10,10 +13,15 @@ import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
 
+import '../../../../../core/state/safe_stream.dart';
+import '../widgets/success_snack_bar.dart';
+
 class SaveLocationPage extends StatefulWidget {
   static const route = '/save_location';
 
-  const SaveLocationPage({Key? key}) : super(key: key);
+  final LocationEntity? location;
+
+  const SaveLocationPage({Key? key, this.location}) : super(key: key);
 
   @override
   State<SaveLocationPage> createState() => _SaveLocationPageState();
@@ -24,6 +32,7 @@ class _SaveLocationPageState
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static const double alturaTextFormField = 32;
   static const double alturaTitleText = 12;
+  String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +41,7 @@ class _SaveLocationPageState
       appBar: SafeAppBar(
         title: S.current.textAddLocationSubTitle,
       ),
-      body: SafeBuilder<LocationEntity?>(
+      body: SafeBuilder(
         stream: bloc.location,
         builder: (saveLocation) {
           return SingleChildScrollView(
@@ -66,14 +75,31 @@ class _SaveLocationPageState
                           style: TextStyles.subtitle1(),
                         ),
                         const SizedBox(height: alturaTitleText),
-                        SafeTextFormField(
-                          controller: bloc.locationCepController,
-                          labelText: S.current.textAddLocationCepExample,
-                          keyboardType: TextInputType.number,
-                          maxLength: 8,
-                          textInputAction: TextInputAction.next,
-                          validator: (value) => bloc.validateTextField(value),
-                        ),
+                        ValueListenableBuilder<String?>(
+                            valueListenable: bloc.errorMessageNotifier,
+                            builder: (context, errorMessage, _) {
+                              return SafeTextFormField(
+                                controller: bloc.locationCepController,
+                                labelText: S.current.textAddLocationCepExample,
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.next,
+                                onChanged: (value) async {
+                                  if (value.length == 10) {
+                                    final result =
+                                        await bloc.getLocationByCep(value);
+                                    bloc.errorMessageNotifier.value = result;
+                                  } else {
+                                    bloc.errorMessageNotifier.value = null;
+                                  }
+                                },
+                                validator: (value) =>
+                                    bloc.validateZipcode(value),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  CepInputFormatter(),
+                                ],
+                              );
+                            }),
                         const SizedBox(height: alturaTextFormField),
                         Text(
                           S.current.textAddLocationAddressFieldTitle,
@@ -139,7 +165,21 @@ class _SaveLocationPageState
                       size: ButtonSize.large,
                       onTap: () async {
                         if (_formKey.currentState?.validate() ?? false) {
-                          await bloc.sendNewLocation();
+                          await bloc.sendNewLocation().whenComplete(() {
+                            if (bloc.location.data != null) {
+                              showDialog<void>(
+                                context: context,
+
+                                barrierDismissible: false,
+
+                                builder: (BuildContext context) {
+                                  return SuccessSnackBar(
+                                    message: S.current.textSuccessSaveLocation,
+                                  );
+                                },
+                              );
+                            }
+                          });
                         }
                       },
                     ),

@@ -63,13 +63,17 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
                       children: [
                         SafeEmptyCard.search(),
                         SafeTextButton(
-                          text: S.current.textAddLocation,
-                          onTap: bloc.navigateToAddLocationPage,
-                        ),
+                            text: S.current.textAddLocation,
+                            onTap: () {
+                              bloc.navigateToAddLocationPage();
+                              bloc.searchTextController.clear();
+                              bloc.dispose();
+                            }),
                       ],
                     );
                   }
                   return ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     itemCount: locations.length,

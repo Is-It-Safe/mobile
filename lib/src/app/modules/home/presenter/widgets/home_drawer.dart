@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/presenter/page/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/presenter/pages/account_page.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/configuration_module.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/contact/presenter/pages/contact_page.dart';
+import 'package:is_it_safe_app/src/app/modules/configuration/terms_and_conditions/presenter/page/terms_and_conditions_page.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
+import 'package:is_it_safe_app/src/app/modules/location/location_module.dart';
+import 'package:is_it_safe_app/src/app/modules/location/presenter/pages/save_location_page.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_profile_avatar.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
@@ -45,13 +47,21 @@ class HomeDrawer extends StatelessWidget {
               ),
               const SizedBox(height: 90),
 
+              // Adicionar Localização
+              DrawerItem(
+                icon: AssetConstants.icons.addLocation,
+                text: S.current.textDrawerAddLocation,
+                route: LocationModule.route + SaveLocationPage.route,
+              ),
+
+              const SizedBox(height: 30),
+
               // Minha Conta
               DrawerItem(
                 icon: AssetConstants.icons.account,
                 text: S.current.textDrawerMyAccount,
                 route: ConfigurationModule.route + AccountPage.route,
-                onNavigationCompleted: () =>
-                    Modular.get<HomeBloc>().getHomeDrawerInfo(),
+                onNavigationCompleted: () => Modular.get<HomeBloc>().getHomeDrawerInfo(),
               ),
 
               const SizedBox(height: 30),
@@ -139,12 +149,14 @@ class DrawerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ??
+      onTap:
+      onTap ??
           () => Modular.to.pushNamed(route ?? StringConstants.empty).then(
                 (value) {
                   if (onNavigationCompleted != null) {
                     onNavigationCompleted!();
                   }
+                  Navigator.pop(context);
                 },
               ),
       child: Row(

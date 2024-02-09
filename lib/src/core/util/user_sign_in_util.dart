@@ -15,10 +15,6 @@ class UserSignInUtil {
         return S.current.textPronouns;
       case UserSignInEnum.email:
         return S.current.textEmailAddress + StringConstants.asterisk;
-      case UserSignInEnum.password:
-        return S.current.textPassword + StringConstants.asterisk;
-      case UserSignInEnum.passwordConfirm:
-        return S.current.textConfirmPassword + StringConstants.asterisk;
     }
   }
 
@@ -34,19 +30,8 @@ class UserSignInUtil {
         return S.current.textHowDoYouPreferWeReferToYou;
       case UserSignInEnum.email:
         return S.current.textTellUsTheEmailAssociatedWithYourAccount;
-      case UserSignInEnum.password:
-        return S.current.textPasswordSpecifications;
       default:
         return StringConstants.empty;
     }
-  }
-
-  static bool isObscureFormField({required UserSignInEnum userSignInEnum}) {
-    return userSignInEnum == UserSignInEnum.password ||
-        userSignInEnum == UserSignInEnum.passwordConfirm;
-  }
-
-  static bool isPasswordConfirm({required UserSignInEnum userSignInEnum}) {
-    return userSignInEnum == UserSignInEnum.passwordConfirm;
   }
 }

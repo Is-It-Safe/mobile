@@ -38,7 +38,7 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
 
   @override
   onError(
-    DioError err,
+    DioException err,
     ErrorInterceptorHandler handler,
   ) async {
     SafeLogUtil.instance.onResponseLog(

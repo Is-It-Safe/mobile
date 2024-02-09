@@ -5,40 +5,63 @@ import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_button.dart';
+import 'package:is_it_safe_app/src/core/extentions/safe_dialog_type_extention.dart';
 
 ///O [SafeDialog] é um widget responsável por gerenciar e armazenar variádos
 ///tipos de dialogs.
 enum SafeDialogType { success, alert, error }
 
+class SafeButtonDialog {
+  final String title;
+  final Function()? onTap;
+  final bool hasBackground;
+
+  SafeButtonDialog({
+    required this.title,
+    this.onTap,
+    this.hasBackground = true,
+  });
+}
+
+typedef PrimarySafeButtonDialog = SafeButtonDialog;
+typedef SecondarySafeButtonDialog = SafeButtonDialog;
+
 class SafeDialog extends StatelessWidget {
   final String? title;
   final String message;
-  final SafeButton primaryBtn;
-  final SafeButton? secondaryBtn;
+  final PrimarySafeButtonDialog primaryButton;
+  final SecondarySafeButtonDialog? secondaryButton;
   final SafeDialogType type;
+  final bool buttonHasBackground;
+  final bool hasIcon;
+  final Color? titleColor;
   const SafeDialog({
     Key? key,
     this.title,
     required this.message,
-    required this.primaryBtn,
-    this.secondaryBtn,
+    required this.primaryButton,
+    this.secondaryButton,
     required this.type,
+    this.buttonHasBackground = true,
+    this.hasIcon = true,
+    this.titleColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return AlertDialog(
-      backgroundColor: SafeColors.generalColors.background,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
       title: Row(
         children: [
-          _getIconByType(),
+          if (hasIcon) type.icon,
           const SizedBox(width: 10),
           Flexible(
             child: Text(
-              title ?? _getTitleByType(),
+              title ?? type.title,
               style: TextStyles.headline3(
-                color: _getColorByType(),
+                color: titleColor ?? type.color,
               ).copyWith(
                 fontSize: size.width * .05,
                 overflow: TextOverflow.clip,
@@ -54,65 +77,28 @@ class SafeDialog extends StatelessWidget {
     );
   }
 
-  String _getTitleByType() {
-    switch (type) {
-      case SafeDialogType.success:
-        return S.current.textSafeDialogTypeSucces;
-      case SafeDialogType.alert:
-        return S.current.textSafeDialogTypeAlert;
-      case SafeDialogType.error:
-        return S.current.textSafeDialogTypeError;
-    }
-  }
-
-  Color _getColorByType() {
-    switch (type) {
-      case SafeDialogType.success:
-        return SafeColors.statusColors.success;
-      case SafeDialogType.alert:
-        return SafeColors.statusColors.alert;
-      case SafeDialogType.error:
-        return SafeColors.statusColors.error;
-    }
-  }
-
-  Icon _getIconByType() {
-    final iconColor = _getColorByType();
-    switch (type) {
-      case SafeDialogType.success:
-        return Icon(
-          Icons.check_circle,
-          color: iconColor,
-        );
-      case SafeDialogType.alert:
-        return Icon(
-          Icons.error,
-          color: iconColor,
-        );
-      case SafeDialogType.error:
-        return Icon(
-          Icons.highlight_remove,
-          color: iconColor,
-          size: 50,
-        );
-    }
-  }
-
   Widget _getOneOrTwoButtons() {
-    if (secondaryBtn != null) {
+    if (secondaryButton != null) {
       return Row(
         children: [
           Expanded(
             child: SafeButton(
-              title: secondaryBtn?.title ?? S.current.textCancel,
-              onTap: secondaryBtn?.onTap ?? Modular.to.pop,
-              hasBackground: false,
+              title: secondaryButton?.title ?? S.current.textCancel,
+              onTap: secondaryButton?.onTap ?? Modular.to.pop,
+              hasBackground: secondaryButton?.hasBackground ?? false,
+              style: TextStyles.button(
+                color: SafeColors.buttonColors.primary,
+              ),
             ),
           ),
           Expanded(
             child: SafeButton(
-              title: primaryBtn.title,
-              onTap: primaryBtn.onTap ?? Modular.to.pop,
+              title: primaryButton.title,
+              onTap: primaryButton.onTap ?? Modular.to.pop,
+              hasBackground: primaryButton.hasBackground,
+              style: TextStyles.button(
+                color: SafeColors.buttonColors.primary,
+              ),
             ),
           ),
         ],
@@ -120,17 +106,13 @@ class SafeDialog extends StatelessWidget {
     }
     return Row(
       children: [
-        const Expanded(
-          child: SizedBox(),
-        ),
+        const Expanded(child: SizedBox()),
         Expanded(
           child: SafeButton(
-            title: primaryBtn.title,
-            onTap: primaryBtn.onTap ?? Modular.to.pop,
-            hasBackground: false,
-            style: TextStyle(
-              color: SafeColors.buttonColors.primary,
-            ),
+            title: primaryButton.title,
+            onTap: primaryButton.onTap ?? Modular.to.pop,
+            hasBackground: primaryButton.hasBackground,
+            style: TextStyle(color: SafeColors.buttonColors.primary),
           ),
         ),
       ],

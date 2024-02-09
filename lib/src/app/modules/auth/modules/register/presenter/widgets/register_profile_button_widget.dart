@@ -11,21 +11,10 @@ class RegisterProfileButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SafeButton(
-          title: S.current.textAdvance,
-          hasBackground: false,
-          size: ButtonSize.small,
-          onTap: () => onRegister(isAdvanceButton: true),
-        ),
-        SafeButton(
-          title: S.current.textFinish,
-          size: ButtonSize.small,
-          onTap: () => onRegister(),
-        ),
-      ],
+    return SafeButton(
+      title: S.current.textFinish,
+      size: ButtonSize.large,
+      onTap: () => onRegister(),
     );
   }
 }
