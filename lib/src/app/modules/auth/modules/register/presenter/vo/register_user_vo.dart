@@ -45,7 +45,7 @@ class RegisterUserVo {
   }
 
   String? validateNickName() {
-    if (!(controller.text).isName) {
+    if (!(controller.text).isNickName) {
       isValid = false;
       return S.current.textErrorUserName;
     }

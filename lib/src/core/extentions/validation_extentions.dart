@@ -13,6 +13,10 @@ extension SafeValidation on String {
     return length > 3 && isNotEmpty;
   }
 
+  bool get isNickName {
+    return length > 3 && isNotEmpty && !contains(" ");
+  }
+
   bool get isDate {
     final value = this;
     if (value.length == 10) {
