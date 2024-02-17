@@ -97,12 +97,26 @@ class _EditAccountPageState
               style: TextStyles.subtitle1(),
             ),
             const SizedBox(height: 8),
-            StreamSafeDropdown<SexualOrientationEntity>(
-              items: bloc.listSexualOrientations,
-              textController: bloc.sexualOrientationController,
-              isDropdownExpanded: bloc.isSexualOrientationDropdownExpanded,
-              title: S.current.textSexualOrientation,
-            ),
+            SafeBuilder<List<SexualOrientationEntity>>(
+                stream: bloc.listSexualOrientations,
+                builder: (listSexualOrientations) {
+                  if (listSexualOrientations == []) {
+                    return const SafeLoading();
+                  }
+                  return StreamSafeDropdown(
+                    items: bloc.listSexualOrientations,
+                    textController: bloc.sexualOrientationController,
+                    isDropdownExpanded:
+                        bloc.isSexualOrientationDropdownExpanded,
+                    title: S.current.textSexualOrientation,
+                  );
+                }),
+            // StreamSafeDropdown<SexualOrientationEntity>(
+            //   items: bloc.listSexualOrientations,
+            //   textController: bloc.sexualOrientationController,
+            //   isDropdownExpanded: bloc.isSexualOrientationDropdownExpanded,
+            //   title: S.current.textSexualOrientation,
+            // ),
             const SizedBox(height: 16),
             Text(
               S.current.textGender,
