@@ -97,11 +97,19 @@ class _EditAccountPageState
               style: TextStyles.subtitle1(),
             ),
             const SizedBox(height: 8),
-            StreamSafeDropdown<SexualOrientationEntity>(
-              items: bloc.listSexualOrientations,
-              textController: bloc.sexualOrientationController,
-              isDropdownExpanded: bloc.isSexualOrientationDropdownExpanded,
-              title: S.current.textSexualOrientation,
+            SafeBuilder<List<SexualOrientationEntity>>(
+              stream: bloc.listSexualOrientations,
+              builder: (listSexualOrientations) {
+                if (listSexualOrientations == []) {
+                  return const SafeLoading();
+                }
+                return StreamSafeDropdown(
+                  items: bloc.listSexualOrientations,
+                  textController: bloc.sexualOrientationController,
+                  isDropdownExpanded: bloc.isSexualOrientationDropdownExpanded,
+                  title: S.current.textSexualOrientation,
+                );
+              },
             ),
             const SizedBox(height: 16),
             Text(
@@ -109,11 +117,19 @@ class _EditAccountPageState
               style: TextStyles.subtitle1(),
             ),
             const SizedBox(height: 8),
-            StreamSafeDropdown<GenderEntity>(
-              items: bloc.listGenders,
-              textController: bloc.genderController,
-              isDropdownExpanded: bloc.isGenderDropdownExpanded,
-              title: S.current.textGender,
+            SafeBuilder<List<GenderEntity>>(
+              stream: bloc.listGenders,
+              builder: (listGenders) {
+                if (listGenders == []) {
+                  return const SafeLoading();
+                }
+                return StreamSafeDropdown(
+                  items: bloc.listGenders,
+                  textController: bloc.genderController,
+                  isDropdownExpanded: bloc.isGenderDropdownExpanded,
+                  title: S.current.textGender,
+                );
+              },
             ),
             const SizedBox(height: 24),
             _UpdateUserButtonWidget(
