@@ -384,7 +384,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSuccessRegistration":
             MessageLookupByLibrary.simpleMessage("Usuário Registrado"),
         "textSuccessSaveLocation": MessageLookupByLibrary.simpleMessage(
-            "Local enviado para revisão com sucesso!"),
+            "Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!"),
         "textTellUsTheEmailAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Nos diga seu e-mail, ele será associado a sua conta"),

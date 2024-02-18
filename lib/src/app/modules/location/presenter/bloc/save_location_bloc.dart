@@ -101,6 +101,8 @@ class SaveLocationBloC extends SafeBloC {
       result.fold(
         (success) {
           location.data = success;
+          var locationModular = Modular.get<SafeStream<LocationEntity?>>();
+          locationModular.data = success;
           Modular.to.pop();
         },
         (error) {
