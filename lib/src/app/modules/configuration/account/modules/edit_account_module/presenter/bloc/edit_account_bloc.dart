@@ -125,9 +125,12 @@ class EditAccountBloc extends SafeBloC {
       final result = await getUserUseCase.call();
       result.fold((responseUser) async {
         _setValuesToTextControllers(responseUser);
-        if (responseUser.genreId == null ||
-            responseUser.sexualOrientationId == null) {
-          await _loadGenderAndSexualOrientation(responseUser);
+        if (responseUser.genreId == null) {
+          await loadGenderFromList(currentGender: responseUser.gender);
+        }
+        if (responseUser.sexualOrientationId == null) {
+          await loadSexualOrientationFromList(
+              currentSexualOrientation: responseUser.orientation);
         }
         user.data = responseUser;
       }, (error) => null);
@@ -137,15 +140,6 @@ class EditAccountBloc extends SafeBloC {
       safeSnackBar.error(e.toString());
       if (e is UnauthorizedException) await doLogout();
     }
-  }
-
-  Future<void> _loadGenderAndSexualOrientation(UserEntity user) async {
-    await Future.microtask(() {
-      loadGenderFromList(currentGender: user.gender);
-      loadSexualOrientationFromList(
-        currentSexualOrientation: user.orientation,
-      );
-    });
   }
 
   _setValuesToTextControllers(UserEntity user) {
@@ -227,6 +221,7 @@ class EditAccountBloc extends SafeBloC {
         GenderEntity selectedGender = success.firstWhere(
           (element) => element.title == currentGender,
         );
+        user.data?.genreId = selectedGender.id;
         genderController.text = selectedGender.id.toString();
       },
       (error) {},
@@ -243,6 +238,7 @@ class EditAccountBloc extends SafeBloC {
         SexualOrientationEntity selectedSexualOrientation = success.firstWhere(
           (element) => element.title == currentSexualOrientation,
         );
+        user.data?.sexualOrientationId = selectedSexualOrientation.id;
         sexualOrientationController.text =
             selectedSexualOrientation.id.toString();
       },

@@ -108,6 +108,7 @@ class _EditAccountPageState
                   textController: bloc.sexualOrientationController,
                   isDropdownExpanded: bloc.isSexualOrientationDropdownExpanded,
                   title: S.current.textSexualOrientation,
+                  onChangedTitle: () => bloc.toogleUpdateButton(),
                 );
               },
             ),
@@ -128,6 +129,7 @@ class _EditAccountPageState
                   textController: bloc.genderController,
                   isDropdownExpanded: bloc.isGenderDropdownExpanded,
                   title: S.current.textGender,
+                  onChangedTitle: () => bloc.toogleUpdateButton(),
                 );
               },
             ),
