@@ -8,6 +8,7 @@ class SafeDropDown extends StatefulWidget {
   TextEditingController controller;
   bool isExpanded;
   String title;
+  Function()? onChange;
 
   SafeDropDown({
     Key? key,
@@ -15,6 +16,7 @@ class SafeDropDown extends StatefulWidget {
     required this.isExpanded,
     required this.title,
     required this.controller,
+    this.onChange,
   }) : super(key: key);
 
   @override
@@ -77,6 +79,9 @@ class _SafeDropDownState extends State<SafeDropDown> {
                   padding: const EdgeInsets.only(bottom: 10.0, left: 24.0),
                   child: InkWell(
                     onTap: () {
+                      if(widget.title != object.title ) {
+                        widget.onChange?.call();
+                      }
                       setState(() {
                         widget.title = object.title;
                         widget.controller.text = object.id.toString();
