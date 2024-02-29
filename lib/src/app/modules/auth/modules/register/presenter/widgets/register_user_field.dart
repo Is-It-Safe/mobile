@@ -30,6 +30,9 @@ class RegisterTextFormField extends StatelessWidget {
       bottomText: UserSignInUtil.getCorrectBottomTextForSignIn(
         userSignInEnum: registerTextFieldVO.userSignInEnum,
       ),
+      maxLength: UserSignInUtil.getCorrectMaxLengthForSignIn(
+        userSignInEnum: registerTextFieldVO.userSignInEnum,
+      ),
       onChanged: (_) => onChanged(),
       validator: (_) => onValidate(),
     );
