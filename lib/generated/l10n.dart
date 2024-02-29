@@ -220,10 +220,10 @@ class S {
     );
   }
 
-  /// `Esse campo não pode ficar vazio`
+  /// `Espaços vazios não são válidos`
   String get textErrorEmptyField {
     return Intl.message(
-      'Esse campo não pode ficar vazio',
+      'Espaços vazios não são válidos',
       name: 'textErrorEmptyField',
       desc: '',
       args: [],
@@ -1293,7 +1293,7 @@ class S {
   /// `Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!`
   String get textSuccessSaveLocation {
     return Intl.message(
-     'Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!',
+      'Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!',
       name: 'textSuccessSaveLocation',
       desc: '',
       args: [],
