@@ -3,6 +3,21 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/user_sign_in_enum.dart';
 
 class UserSignInUtil {
+  static int? getCorrectMaxLengthForSignIn({
+    required UserSignInEnum userSignInEnum,
+  }) {
+    switch (userSignInEnum) {
+      case UserSignInEnum.user:
+        return 50;
+      case UserSignInEnum.nickName:
+        return 15;
+      case UserSignInEnum.pronouns:
+        return null;
+      case UserSignInEnum.email:
+        return null;
+    }
+  }
+
   static String getCorrectLabelForSignIn({
     required UserSignInEnum userSignInEnum,
   }) {
