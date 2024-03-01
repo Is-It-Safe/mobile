@@ -401,6 +401,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Atualizar senha"),
         "textUpset": MessageLookupByLibrary.simpleMessage("Chateado"),
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
+        "textVersionApp":
+            MessageLookupByLibrary.simpleMessage("Versão do app: "),
         "textWantDeactivateAccount":
             MessageLookupByLibrary.simpleMessage("Deseja desativar sua conta?"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(
