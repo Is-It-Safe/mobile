@@ -7,14 +7,14 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../../../../../../../generated/l10n.dart';
 import '../../../../../../../core/state/safe_state.dart';
 
-class ShowVersionApplication extends StatefulWidget {
-  const ShowVersionApplication({super.key});
+class SafeVersionAppWidget extends StatefulWidget {
+  const SafeVersionAppWidget({super.key});
 
   @override
-  State<ShowVersionApplication> createState() => _ShowVersionApplicationState();
+  State<SafeVersionAppWidget> createState() => _SafeVersionAppWidgetState();
 }
 
-class _ShowVersionApplicationState extends SafeState<ShowVersionApplication, LoginBloc> {
+class _SafeVersionAppWidgetState extends SafeState<SafeVersionAppWidget, LoginBloc> {
 
   @override
   void initState() {

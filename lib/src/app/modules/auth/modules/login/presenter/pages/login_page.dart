@@ -11,7 +11,7 @@ import 'package:is_it_safe_app/src/components/widgets/safe_show_field_button.dar
 import 'package:is_it_safe_app/src/components/widgets/safe_text_form_field.dart';
 
 import '../../../../../../../components/style/text/text_styles.dart';
-import '../widgets/show_version_application.dart';
+import '../widgets/safe_version_app_widget.dart';
 
 class LoginPage extends StatefulWidget {
   static const route = '/login/';
@@ -94,7 +94,7 @@ class _LoginPageState extends SafeState<LoginPage, LoginBloc> {
       ),
       bottomNavigationBar: const Padding(
         padding: EdgeInsets.all(8.0),
-        child: ShowVersionApplication(),
+        child: SafeVersionAppWidget(),
       ),
     );
   }
