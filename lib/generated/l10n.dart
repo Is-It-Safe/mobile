@@ -240,6 +240,16 @@ class S {
     );
   }
 
+  /// `Versão do app: `
+  String get textVersionApp {
+    return Intl.message(
+      'Versão do app: ',
+      name: 'textVersionApp',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Por favor, digite um e-mail válido`
   String get textErrorEmail {
     return Intl.message(

@@ -25,6 +25,7 @@
     "textErrorInvalidDate":"Por favor, digite uma data válida",
     "textErrorEmptyField":"Espaços vazios não são válidos",
     "textErrorUserName":"O nome do usuário precisa conter 4 caracteres ou mais",
+    "textVersionApp":"Versão do app: ",
     "textErrorEmail":"Por favor, digite um e-mail válido",
     "textErrorPronouns":"ex: Ela/Dela, Ele/Dele, Ela/Elu",
     "textErrorDifferentPasswords":"A confirmação de senha não confere",
