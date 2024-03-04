@@ -25,7 +25,6 @@ jobs:
         uses: subosito/flutter-action@v2.11.0
         with:
           channel: "stable" # 'dev', 'alpha', default to: 'stable'
-          flutter-version: "3.10.5" # you can also specify exact version of flutter
         
       - name: Download pub dependencies
         run: flutter pub get
