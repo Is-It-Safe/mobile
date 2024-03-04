@@ -11,9 +11,7 @@ extension SafeValidation on String {
 
   bool get isName => contains(RegExp(RegexConstants.nameRegex as String));
 
-  bool get isNickName {
-    return length > 3 && isNotEmpty && !contains(" ");
-  }
+  bool get isNickName => contains(RegExp(RegexConstants.nickNameRegex as String));
 
   bool get isDate {
     final value = this;
