@@ -7,7 +7,7 @@ class RegexConstants {
   static const Pattern linkFromTextRegex =
       r'((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?';
   static const Pattern nameRegex =
-      r'^[a-zA-Z]{4,}(?:\s[a-zA-Z]+)*$';
+      r'^[a-zA-ZÀ-ÖØ-öø-ÿÇç]{4,}(?:\s[a-zA-ZÀ-ÖØ-öø-ÿÇç]+)*$';
   static const Pattern nickNameRegex =
       r'^[a-zA-Z\d]{4,}$';
 }
