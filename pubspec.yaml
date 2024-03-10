@@ -60,6 +60,7 @@ dependencies:
 
   #Monitoramento
   catcher_2: ^1.0.7
+  firebase_core: ^2.27.0
 
 dependency_overrides:
   intl: ^0.17.0
