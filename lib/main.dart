@@ -7,13 +7,18 @@ import 'package:is_it_safe_app/src/components/widgets/safe_error_details.dart';
 import 'package:is_it_safe_app/src/core/util/flavor_util.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'package:provider/provider.dart';
 
 import 'src/components/theme/theme_state.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   FlavorUtil.setup(FlavorUtil.prod);
 
