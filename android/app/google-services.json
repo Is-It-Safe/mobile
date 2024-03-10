@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "985821235413",
+    "project_id": "is-it-safe-29b67",
+    "storage_bucket": "is-it-safe-29b67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985821235413:android:5d385f55399863c75bfa5c",
+        "android_client_info": {
+          "package_name": "com.isitsafe.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985821235413-n3l6t308ss11banq2oa1m4gfn4tlf42k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWZH7HNZBosSg6e5Y8EgEzHhrBewrIPUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985821235413-n3l6t308ss11banq2oa1m4gfn4tlf42k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
