@@ -9,5 +9,5 @@ class RegexConstants {
   static const Pattern nameRegex =
       r'^[a-zA-ZÀ-ÖØ-öø-ÿÇç]{4,}(?:\s[a-zA-ZÀ-ÖØ-öø-ÿÇç]+)*$';
   static const Pattern nickNameRegex =
-      r'^[a-zA-Z\d]{4,}$';
+      r'^[a-zA-ZÀ-ÖØ-öø-ÿÇç\d]{4,}$';
 }
