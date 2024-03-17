@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 1.0.7+15
+version: 1.0.8+22
 
 environment:
   sdk: ">= 3.0.0"
@@ -30,7 +30,7 @@ dependencies:
   overlay_support: ^2.1.0
 
   #Requisições HTTP
-  dio: ^4.0.6
+  dio: ^5.3.3
   jwt_decode: ^0.3.1
 
   #Internacionalização
@@ -46,9 +46,9 @@ dependencies:
   #Componentes
   smooth_page_indicator: ^1.0.0+2
   flutter_svg: ^1.1.4
-  simple_animations: ^4.0.1
   dotted_border: ^2.0.0
   brasil_fields: ^1.14.0
+  package_info_plus: ^5.0.1
 
   #Armazenamento
   shared_preferences: ^2.0.15
@@ -59,7 +59,8 @@ dependencies:
   result_dart: ^1.0.5
 
   #Monitoramento
-  catcher: ^0.7.0
+  catcher_2: ^1.0.7
+  firebase_core: ^2.27.0
 
 dependency_overrides:
   intl: ^0.17.0
@@ -75,6 +76,7 @@ flutter_icons:
   ios: true
   remove_alpha_ios: true
   image_path: "images/logo/logo.png"
+  adaptive_icon_background: "#554de4"
 
 flutter:
   uses-material-design: true

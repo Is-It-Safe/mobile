@@ -3,6 +3,21 @@ import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/user_sign_in_enum.dart';
 
 class UserSignInUtil {
+  static int? getCorrectMaxLengthForSignIn({
+    required UserSignInEnum userSignInEnum,
+  }) {
+    switch (userSignInEnum) {
+      case UserSignInEnum.user:
+        return 50;
+      case UserSignInEnum.nickName:
+        return 15;
+      case UserSignInEnum.pronouns:
+        return null;
+      case UserSignInEnum.email:
+        return null;
+    }
+  }
+
   static String getCorrectLabelForSignIn({
     required UserSignInEnum userSignInEnum,
   }) {
@@ -15,10 +30,6 @@ class UserSignInUtil {
         return S.current.textPronouns;
       case UserSignInEnum.email:
         return S.current.textEmailAddress + StringConstants.asterisk;
-      case UserSignInEnum.password:
-        return S.current.textPassword + StringConstants.asterisk;
-      case UserSignInEnum.passwordConfirm:
-        return S.current.textConfirmPassword + StringConstants.asterisk;
     }
   }
 
@@ -34,19 +45,8 @@ class UserSignInUtil {
         return S.current.textHowDoYouPreferWeReferToYou;
       case UserSignInEnum.email:
         return S.current.textTellUsTheEmailAssociatedWithYourAccount;
-      case UserSignInEnum.password:
-        return S.current.textPasswordSpecifications;
       default:
         return StringConstants.empty;
     }
-  }
-
-  static bool isObscureFormField({required UserSignInEnum userSignInEnum}) {
-    return userSignInEnum == UserSignInEnum.password ||
-        userSignInEnum == UserSignInEnum.passwordConfirm;
-  }
-
-  static bool isPasswordConfirm({required UserSignInEnum userSignInEnum}) {
-    return userSignInEnum == UserSignInEnum.passwordConfirm;
   }
 }

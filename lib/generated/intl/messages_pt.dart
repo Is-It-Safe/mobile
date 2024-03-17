@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textAddTypeLocationFieldTitle":
             MessageLookupByLibrary.simpleMessage("Tipo de local"),
         "textAdvance": MessageLookupByLibrary.simpleMessage("Avançar"),
+        "textAllow": MessageLookupByLibrary.simpleMessage("Permitir"),
         "textAngry": MessageLookupByLibrary.simpleMessage("Irritado"),
         "textAppBarChooseProfilePhotoPage":
             MessageLookupByLibrary.simpleMessage("Escolha seu avatar!"),
@@ -139,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Para exibir os lugares próximos, por favor libere o acesso a localização."),
         "textDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
             "O serviço de localização está desativado. Para exibir lugares próximos, habilite essa função."),
+        "textDeny": MessageLookupByLibrary.simpleMessage("Negar"),
         "textDisableAccount":
             MessageLookupByLibrary.simpleMessage("Desativar Conta"),
         "textDontBeAfraidToBeCreative": MessageLookupByLibrary.simpleMessage(
@@ -151,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Adicionar Local"),
         "textDrawerMyAccount":
             MessageLookupByLibrary.simpleMessage("Minha Conta"),
+        "textEditAccount": MessageLookupByLibrary.simpleMessage("Editar Conta"),
         "textEditPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Editar informações pessoais"),
         "textEditProfile":
@@ -168,7 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textErrorDeniedServiceLocation": MessageLookupByLibrary.simpleMessage(
             "The location service on the device is disabled."),
         "textErrorDifferentPasswords": MessageLookupByLibrary.simpleMessage(
-            "Os campos de senha devem ser iguais"),
+            "A confirmação de senha não confere"),
         "textErrorDropdown":
             MessageLookupByLibrary.simpleMessage("Algo deu errado!"),
         "textErrorEmail": MessageLookupByLibrary.simpleMessage(
@@ -176,7 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textErrorEmptyAvatar": MessageLookupByLibrary.simpleMessage(
             "Por favor, selecione seu avatar!"),
         "textErrorEmptyField": MessageLookupByLibrary.simpleMessage(
-            "Esse campo não pode ficar vazio"),
+            "Espaços vazios não são válidos"),
         "textErrorEmptyReviews": MessageLookupByLibrary.simpleMessage(
             "Este local não possui nenhuma review ainda, escreva uma!"),
         "textErrorGetLocation": MessageLookupByLibrary.simpleMessage(
@@ -203,15 +206,36 @@ class MessageLookup extends MessageLookupByLibrary {
             "ex: Ela/Dela, Ele/Dele, Ela/Elu"),
         "textErrorSearch": MessageLookupByLibrary.simpleMessage(
             "Não achamos nenhum local com esse nome.\nQue tal adicionar ele?"),
+        "textErrorToCheckEmailAvailability": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao verificar a disponibilidade do e-mail. Tente novamente mais tarde.\'"),
+        "textErrorToCheckUsernameAvailability":
+            MessageLookupByLibrary.simpleMessage(
+                "\'Erro ao verificar a disponibilidade do nome de usuário. Tente novamente mais tarde.\'"),
+        "textErrorToDeactivateUser": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao desativar o usuário. Tente novamente mais tarde.\'"),
+        "textErrorToDeleteReview": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao deletar a review. Tente novamente mais tarde.\'"),
+        "textErrorToGetGender": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao carregar os gêneros. Tente novamente mais tarde.\'"),
+        "textErrorToGetSexualOrientation": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao carregar as orientações sexuais. Tente novamente mais tarde.\'"),
+        "textErrorToGetUserInformation": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao carregar as informações do usuário. Tente novamente mais tarde.\'"),
         "textErrorToLoadTheUsersInformation":
             MessageLookupByLibrary.simpleMessage(
                 "Erro ao carregar as informações do usuário."),
         "textErrorToRegisterUser": MessageLookupByLibrary.simpleMessage(
             "\'Erro ao realizar o cadastro. Tente novamente mais tarde.\'"),
+        "textErrorToSearchPlaceByName": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao buscar o local pelo nome. Tente novamente mais tarde.\'"),
+        "textErrorToUpdateUserInformation": MessageLookupByLibrary.simpleMessage(
+            "\'Erro ao atualizar as informações do usuário. Tente novamente mais tarde.\'"),
         "textErrorTryAgain": MessageLookupByLibrary.simpleMessage(
             "Tente novamente em alguns instantes."),
         "textErrorUnknown": MessageLookupByLibrary.simpleMessage(
             "Algo de errado aconteceu, tente novamente em alguns instantes."),
+        "textErrorUserName": MessageLookupByLibrary.simpleMessage(
+            "O nome do usuário precisa conter 4 caracteres ou mais"),
         "textErrorWrongFields": MessageLookupByLibrary.simpleMessage(
             "Campos errados! Tente novamente."),
         "textErrorZipCode":
@@ -219,13 +243,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "textExamplePronouns": MessageLookupByLibrary.simpleMessage(
             "Exemplo: Ela/Dela, Elu/Delu, Ela/Elu"),
         "textExcited": MessageLookupByLibrary.simpleMessage("Alegre"),
+        "textExploreOtherLocations":
+            MessageLookupByLibrary.simpleMessage("Explorar outros locais"),
         "textFailedToSaveLocation": MessageLookupByLibrary.simpleMessage(
             "Não foi possível salvar o local! Tente novamente mais tarde."),
         "textFailedToUpdateAvatar": MessageLookupByLibrary.simpleMessage(
             "Não foi possível alterar o avatar!"),
         "textFeatureAvailableSoon": MessageLookupByLibrary.simpleMessage(
             "Funcionalidade disponível em breve"),
-        "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar Cadastro"),
+        "textFinish": MessageLookupByLibrary.simpleMessage("Finalizar"),
         "textForgotGender":
             MessageLookupByLibrary.simpleMessage("Esqueci algum? Por favor"),
         "textGender": MessageLookupByLibrary.simpleMessage("Gênero"),
@@ -252,6 +278,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "textLettersAndNumbers":
             MessageLookupByLibrary.simpleMessage("- letras e números"),
         "textLoading": MessageLookupByLibrary.simpleMessage("Carregando..."),
+        "textLocationDialogTitle": MessageLookupByLibrary.simpleMessage(
+            "Permitir o app ‘IS IT SAFE?’ acesse a sua localização?"),
+        "textLocationDialogcontent": MessageLookupByLibrary.simpleMessage(
+            "Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você."),
         "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textLogout": MessageLookupByLibrary.simpleMessage("Sair"),
         "textMeetingYouWillBeAPleasure":
@@ -328,8 +358,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Erro!"),
         "textSafeDialogTypeSucces":
             MessageLookupByLibrary.simpleMessage("Sucesso!"),
-        "textButtonSafeDialogTypeSucces":
-            MessageLookupByLibrary.simpleMessage("Explorar outros locais"),
         "textSafeForLGBT": MessageLookupByLibrary.simpleMessage(
             "Seguro para pessoas LGBTQIA+"),
         "textSatisfied": MessageLookupByLibrary.simpleMessage("Satisfeito"),
@@ -356,7 +384,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textSuccessRegistration":
             MessageLookupByLibrary.simpleMessage("Usuário Registrado"),
         "textSuccessSaveLocation": MessageLookupByLibrary.simpleMessage(
-              "Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!",),
+            "Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!"),
         "textTellUsTheEmailAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Nos diga seu e-mail, ele será associado a sua conta"),
@@ -373,6 +401,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Atualizar senha"),
         "textUpset": MessageLookupByLibrary.simpleMessage("Chateado"),
         "textUsername": MessageLookupByLibrary.simpleMessage("Usuário"),
+        "textVersionApp":
+            MessageLookupByLibrary.simpleMessage("Versão do app: "),
         "textWantDeactivateAccount":
             MessageLookupByLibrary.simpleMessage("Deseja desativar sua conta?"),
         "textWeCareAboutYourSafety": MessageLookupByLibrary.simpleMessage(

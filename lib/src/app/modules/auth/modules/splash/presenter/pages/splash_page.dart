@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/splash/presenter/bloc/splash_bloc.dart';
 import 'package:is_it_safe_app/src/core/state/safe_state.dart';
-import 'package:is_it_safe_app/src/components/animations/fade_animation.dart';
 import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/style/text/text_styles.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
@@ -26,8 +25,9 @@ class _SplashPageState extends SafeState<SplashPage, SplashBloc> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FadeAnimation(
-              delay: 1,
+            AnimatedOpacity(
+              opacity: 1,
+              duration: const Duration(seconds: 1),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Image.asset(
@@ -36,8 +36,9 @@ class _SplashPageState extends SafeState<SplashPage, SplashBloc> {
                 ),
               ),
             ),
-            FadeAnimation(
-              delay: 2,
+            AnimatedOpacity(
+              opacity: 1,
+              duration: const Duration(seconds: 2),
               child: Text(
                 S.current.textIsItSafe,
                 textAlign: TextAlign.center,

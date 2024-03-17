@@ -9,15 +9,15 @@ class RegisterTextFormField extends StatelessWidget {
   final bool isPasswordVisible;
   final Function onChanged;
   final Function onValidate;
-  final Widget suffixIcon;
+  final RegisterUserVo? registerUserVo;
 
   const RegisterTextFormField({
     super.key,
     required this.registerTextFieldVO,
     required this.onChanged,
     required this.onValidate,
-    required this.suffixIcon,
     this.isPasswordVisible = false,
+    this.registerUserVo,
   });
 
   @override
@@ -30,19 +30,11 @@ class RegisterTextFormField extends StatelessWidget {
       bottomText: UserSignInUtil.getCorrectBottomTextForSignIn(
         userSignInEnum: registerTextFieldVO.userSignInEnum,
       ),
-      obscureText: isPasswordField(),
+      maxLength: UserSignInUtil.getCorrectMaxLengthForSignIn(
+        userSignInEnum: registerTextFieldVO.userSignInEnum,
+      ),
       onChanged: (_) => onChanged(),
       validator: (_) => onValidate(),
-      suffixIcon: suffixIcon,
     );
-  }
-
-  bool isPasswordField() {
-    if (UserSignInUtil.isObscureFormField(
-      userSignInEnum: registerTextFieldVO.userSignInEnum,
-    )) {
-      return !isPasswordVisible;
-    }
-    return false;
   }
 }

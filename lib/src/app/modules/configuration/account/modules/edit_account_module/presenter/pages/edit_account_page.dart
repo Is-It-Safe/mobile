@@ -34,100 +34,115 @@ class _EditAccountPageState
     super.build(context);
     return Scaffold(
       key: _scaffoldKey,
-      appBar: SafeAppBar(title: S.current.textConfiguration),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              EditAccountBanner(text: S.current.textEditPersonalInformation),
-              SafeBuilder<UserEntity?>(
-                stream: bloc.user,
-                builder: (user) {
-                  if (user == null) return const SafeLoading();
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 16),
-                      Text(
-                        S.current.textName,
-                        style: TextStyles.subtitle1(),
-                      ),
-                      const SizedBox(height: 8),
-                      SafeTextFormField(
-                        controller: bloc.nameController,
-                        labelText: S.current.textName,
-                        keyboardType: TextInputType.name,
-                        validator: (value) => bloc.validateTextField(value),
-                        onChanged: (value) => bloc.toogleUpdateButton(),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        S.current.textUsername,
-                        style: TextStyles.subtitle1(),
-                      ),
-                      const SizedBox(height: 8),
-                      SafeTextFormField(
-                        controller: bloc.usernameController,
-                        labelText: S.current.textUsername,
-                        keyboardType: TextInputType.name,
-                        onChanged: (value) => bloc.toogleUpdateButton(),
-                        validator: (value) => bloc.validateTextField(value),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        S.current.textPronouns,
-                        style: TextStyles.subtitle1(),
-                      ),
-                      const SizedBox(height: 8),
-                      SafeTextFormField(
-                        controller: bloc.pronounController,
-                        labelText: S.current.textPronouns,
-                        keyboardType: TextInputType.name,
-                        validator: (value) => bloc.validateTextField(value),
-                        onChanged: (value) => bloc.toogleUpdateButton(),
-                      )
-                    ],
-                  );
-                },
-              ),
-              const SizedBox(height: 16),
-              Text(
-                S.current.textSexualOrientation,
-                style: TextStyles.subtitle1(),
-              ),
-              const SizedBox(height: 8),
-              StreamSafeDropdown<SexualOrientationEntity>(
-                items: bloc.listSexualOrientations,
-                textController: bloc.sexualOrientationController,
-                isDropdownExpanded: bloc.isSexualOrientationDropdownExpanded,
-                title: S.current.textSexualOrientation,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                S.current.textGender,
-                style: TextStyles.subtitle1(),
-              ),
-              const SizedBox(height: 8),
-              StreamSafeDropdown<GenderEntity>(
-                items: bloc.listGenders,
-                textController: bloc.genderController,
-                isDropdownExpanded: bloc.isGenderDropdownExpanded,
-                title: S.current.textGender,
-              ),
-              const SizedBox(height: 24),
-              _UpdateUserButtonWidget(
-                isButtonEnabled: bloc.isButtonEnabled,
-                onTap: () async {
-                  _formKey.currentState?.save();
-                  await bloc.updateUser();
-                },
-              ),
-              const SizedBox(height: 20),
-            ],
-          ),
+      appBar: SafeAppBar(title: S.current.textEditAccount),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            EditAccountBanner(text: S.current.textEditPersonalInformation),
+            SafeBuilder<UserEntity?>(
+              stream: bloc.user,
+              builder: (user) {
+                if (user == null) return const SafeLoading();
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 16),
+                    Text(
+                      S.current.textName,
+                      style: TextStyles.subtitle1(),
+                    ),
+                    const SizedBox(height: 8),
+                    SafeTextFormField(
+                      controller: bloc.nameController,
+                      labelText: S.current.textName,
+                      keyboardType: TextInputType.name,
+                      validator: (value) => bloc.validateTextField(value),
+                      onChanged: (value) => bloc.toogleUpdateButton(),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      S.current.textUsername,
+                      style: TextStyles.subtitle1(),
+                    ),
+                    const SizedBox(height: 8),
+                    SafeTextFormField(
+                      controller: bloc.usernameController,
+                      labelText: S.current.textUsername,
+                      keyboardType: TextInputType.name,
+                      onChanged: (value) => bloc.toogleUpdateButton(),
+                      validator: (value) => bloc.validateTextField(value),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      S.current.textPronouns,
+                      style: TextStyles.subtitle1(),
+                    ),
+                    const SizedBox(height: 8),
+                    SafeTextFormField(
+                      controller: bloc.pronounController,
+                      labelText: S.current.textPronouns,
+                      keyboardType: TextInputType.name,
+                      validator: (value) => bloc.validateTextField(value),
+                      onChanged: (value) => bloc.toogleUpdateButton(),
+                    )
+                  ],
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            Text(
+              S.current.textSexualOrientation,
+              style: TextStyles.subtitle1(),
+            ),
+            const SizedBox(height: 8),
+            SafeBuilder<List<SexualOrientationEntity>>(
+              stream: bloc.listSexualOrientations,
+              builder: (listSexualOrientations) {
+                if (listSexualOrientations == []) {
+                  return const SafeLoading();
+                }
+                return StreamSafeDropdown(
+                  items: bloc.listSexualOrientations,
+                  textController: bloc.sexualOrientationController,
+                  isDropdownExpanded: bloc.isSexualOrientationDropdownExpanded,
+                  title: S.current.textSexualOrientation,
+                  onChangedTitle: () => bloc.toogleUpdateButton(),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            Text(
+              S.current.textGender,
+              style: TextStyles.subtitle1(),
+            ),
+            const SizedBox(height: 8),
+            SafeBuilder<List<GenderEntity>>(
+              stream: bloc.listGenders,
+              builder: (listGenders) {
+                if (listGenders == []) {
+                  return const SafeLoading();
+                }
+                return StreamSafeDropdown(
+                  items: bloc.listGenders,
+                  textController: bloc.genderController,
+                  isDropdownExpanded: bloc.isGenderDropdownExpanded,
+                  title: S.current.textGender,
+                  onChangedTitle: () => bloc.toogleUpdateButton(),
+                );
+              },
+            ),
+            const SizedBox(height: 24),
+            _UpdateUserButtonWidget(
+              isButtonEnabled: bloc.isButtonEnabled,
+              onTap: () async {
+                _formKey.currentState?.save();
+                await bloc.updateUser();
+              },
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );

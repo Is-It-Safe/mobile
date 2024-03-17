@@ -21,11 +21,16 @@ class SaveLocationBloC extends SafeBloC {
   final location = SafeStream<LocationEntity?>(data: null);
   final locationType = SafeStream<LocationTypeEnum>(data: LocationTypeEnum.pub);
   late ValueNotifier<String?> imageNotifier = ValueNotifier(null);
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   TextEditingController locationNameController = TextEditingController();
   TextEditingController locationCepController = TextEditingController();
   TextEditingController locationAddressFieldController =
       TextEditingController();
+
+  void closeDrawer() {
+    _scaffoldKey.currentState!.closeDrawer();
+  }
 
   ValueNotifier<String?> errorMessageNotifier = ValueNotifier<String?>(null);
 
@@ -98,9 +103,10 @@ class SaveLocationBloC extends SafeBloC {
           var locationModular = Modular.get<SafeStream<LocationEntity?>>();
           locationModular.data = success;
           Modular.to.pop();
-       },
+        },
         (error) {
           Modular.to.pop();
+          closeDrawer();
           location.show();
           location.error(error.message);
           safeSnackBar.error(S.current.textFailedToSaveLocation);

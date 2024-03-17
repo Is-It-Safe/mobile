@@ -73,6 +73,7 @@ class _SearchPageState extends SafeState<SearchPage, SearchBloc> {
                     );
                   }
                   return ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     itemCount: locations.length,

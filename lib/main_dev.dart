@@ -1,6 +1,8 @@
-import 'package:catcher/catcher.dart';
+import 'package:catcher_2/catcher_2.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:is_it_safe_app/firebase_options.dart';
 import 'package:is_it_safe_app/src/app/app_module.dart';
 import 'package:is_it_safe_app/src/app/app_widget.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_error_details.dart';
@@ -11,12 +13,16 @@ import 'package:provider/provider.dart';
 
 import 'src/components/theme/theme_state.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   FlavorUtil.setup(FlavorUtil.dev);
 
-  CatcherOptions debugOptions = CatcherOptions(SilentReportMode(), [
+  Catcher2Options debugOptions = Catcher2Options(SilentReportMode(), [
     ConsoleHandler(
       enableApplicationParameters: true,
       enableDeviceParameters: false,
@@ -27,7 +33,7 @@ void main() {
   /// Substituindo tela vermelha/cinza por widget customizado.
   ErrorWidget.builder = (details) => SafeErrorDetails(errorDetails: details);
 
-  Catcher(
+  Catcher2(
     runAppFunction: () => runApp(
       ChangeNotifierProvider<ThemeState>(
         create: (context) => ThemeState(),

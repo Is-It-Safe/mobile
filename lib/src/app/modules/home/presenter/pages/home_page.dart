@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/VOs/home_drawer_vo.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/bloc/home_bloc.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/home_drawer.dart';
 import 'package:is_it_safe_app/src/app/modules/home/presenter/widgets/mount_getted_places.dart';
 import 'package:is_it_safe_app/src/app/modules/location/domain/entities/location_entity.dart';
+import 'package:is_it_safe_app/src/components/style/colors/safe_colors.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_app_bar.dart';
+import 'package:is_it_safe_app/src/components/widgets/safe_dialogs.dart';
 import 'package:is_it_safe_app/src/components/widgets/safe_empty_card.dart';
 import 'package:is_it_safe_app/src/core/constants/assets_constants.dart';
 import 'package:is_it_safe_app/src/core/state/safe_builder.dart';
@@ -26,14 +29,56 @@ class _HomePageState extends SafeState<HomePage, HomeBloc>
 
   @override
   void initState() {
-    verifyLocationPermission();
     super.initState();
     initTabController();
+    checkShowLocationPermissionDialog();
+  }
+
+  Future<void> checkShowLocationPermissionDialog() async {
+    bool isPermissionEnabled = await bloc.getLocationPermission();
+
+    if (!isPermissionEnabled) {
+      await showLocationPermissionDialog();
+    } else {
+      await verifyLocationPermission();
+    }
   }
 
   Future<void> verifyLocationPermission() async {
+    await bloc.safeLocator.verifyPermission().then((value) async {
+      await bloc.saveLocationPermission(value: value);
+      if (value) {
+        await bloc.getUserLocationAndNearPlaces();
+      }
+    });
+  }
+
+  Future<void> showLocationPermissionDialog() async {
     WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
-      await bloc.safeLocator.verifyPermission();
+      showDialog(
+        context: context,
+        builder: (context) {
+          return SafeDialog(
+            title: S.current.textLocationDialogTitle,
+            message: S.current.textLocationDialogcontent,
+            hasIcon: false,
+            titleColor: SafeColors.textColors.dark,
+            primaryButton: PrimarySafeButtonDialog(
+              title: S.current.textAllow,
+              hasBackground: false,
+              onTap: () async {
+                Navigator.pop(context);
+                await verifyLocationPermission();
+              },
+            ),
+            secondaryButton: SecondarySafeButtonDialog(
+              hasBackground: false,
+              title: S.current.textDeny,
+            ),
+            type: SafeDialogType.success,
+          );
+        },
+      );
     });
   }
 

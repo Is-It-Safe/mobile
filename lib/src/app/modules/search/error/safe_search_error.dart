@@ -5,8 +5,5 @@ abstract class SafeSearchError {
 }
 
 class SafeDioResponseSearchError extends SafeSearchError {
-  @override
-  final String message;
-
-  SafeDioResponseSearchError(this.message) : super(message);
+  SafeDioResponseSearchError(String message) : super(message);
 }

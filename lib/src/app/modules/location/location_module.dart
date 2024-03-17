@@ -23,16 +23,16 @@ class LocationModule extends Module {
     Bind.lazySingleton((i) => LocationService(i.get<AuthService>())),
     Bind.lazySingleton((i) => SaveLocationUseCase(i.get<LocationService>())),
     Bind.lazySingleton(
-            (i) => GetLocationsByIdUseCase(i.get<LocationService>())),
+        (i) => GetLocationsByIdUseCase(i.get<LocationService>())),
     Bind.lazySingleton((i) => LocationBloC(
-      getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
-    )),
+          getLocationsByIdUseCase: i.get<GetLocationsByIdUseCase>(),
+        )),
     Bind.lazySingleton(
-            (i) => GetLocationByCepUseCase(i.get<LocationService>())),
+        (i) => GetLocationByCepUseCase(i.get<LocationService>())),
     Bind.lazySingleton((i) => SaveLocationBloC(
-      saveLocationUseCase: i.get<SaveLocationUseCase>(),
-      getLocationsByCepUseCase: i.get<GetLocationByCepUseCase>(),
-    )),
+          saveLocationUseCase: i.get<SaveLocationUseCase>(),
+          getLocationsByCepUseCase: i.get<GetLocationByCepUseCase>(),
+        )),
   ];
 
   @override

@@ -20,7 +20,7 @@ abstract class ISharedPreferencesService {
   Future<String> readUserImage();
   void savePlace(Placemark value);
   Future<Placemark> readPlace();
-  void saveLocationPermission(bool alreadySeeIt);
+  void saveLocationPermission(bool value);
   Future<bool> readLocationPermission();
   Future<void> saveUserEmail({required String userEmail});
   Future<String> getUserEmail();

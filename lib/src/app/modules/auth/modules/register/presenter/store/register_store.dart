@@ -14,6 +14,7 @@ class RegisterStore {
   final profilePicture = SafeStream<String>(data: StringConstants.empty);
   final isTermsAndConditionsChecked = SafeStream<bool>(data: false);
   final isPasswordVisible = SafeStream<bool>(data: false);
+  final isConfirmPasswordVisible = SafeStream<bool>(data: false);
   final selectedProfilePhoto = SafeStream<String>(data: StringConstants.empty);
   final temporarySelectedProfilePhoto = SafeStream<String>(
     data: StringConstants.empty,
@@ -25,6 +26,7 @@ class RegisterStore {
   );
   final isUsernameAvailable = SafeStream<bool>(data: false);
   final isEmailAvailable = SafeStream<bool>(data: false);
+  final isPasswordValid = SafeStream<bool>(data: false);
 
   final birthdayInputMask = MaskTextInputFormatter(
     mask: StringConstants.dateMask,

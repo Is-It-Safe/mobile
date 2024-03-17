@@ -9,12 +9,14 @@ class StreamSafeDropdown<T> extends StatefulWidget {
   final SafeStream<bool> isDropdownExpanded;
   final String title;
   final TextEditingController textController;
+  final Function()? onChangedTitle;
   const StreamSafeDropdown({
     Key? key,
     required this.items,
     required this.textController,
     required this.isDropdownExpanded,
     required this.title,
+    this.onChangedTitle,
   }) : super(key: key);
 
   @override
@@ -39,7 +41,8 @@ class _StreamSafeDropdownState<T> extends State<StreamSafeDropdown<T>> {
             title: widget.title,
             controller: widget.textController,
             values: items,
-            isExapanded: isDropdownExpanded,
+            isExpanded: isDropdownExpanded,
+            onChange: widget.onChangedTitle,
           );
         }
         return const SafeTextFormField(

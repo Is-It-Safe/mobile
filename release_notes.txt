@@ -1,0 +1,5 @@
+Release Notes
+
+Enhancements:
+- Configurado Firebase Distribution App
+- Configurado registro de Release Notes para distribuição do app em loja

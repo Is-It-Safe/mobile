@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:catcher/catcher.dart';
+import 'package:catcher_2/catcher_2.dart';
 import 'package:dio/dio.dart';
+import 'package:is_it_safe_app/generated/l10n.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service.dart';
 import 'package:is_it_safe_app/src/app/modules/review/domain/models/request/request_save_review.dart';
 import 'package:is_it_safe_app/src/app/modules/profile/domain/models/request/resquest_update_user.dart';
@@ -40,8 +41,9 @@ class ProfileService implements IProfileService {
       );
       final response = await _service.doRequest(requestConfig);
       return ResponseGetUser.fromJson(json.decode(response.data));
-    } on DioError catch (e) {
-      throw SafeDioResponseProfileError(e.message);
+    } on DioException catch (e) {
+      throw SafeDioResponseProfileError(
+          e.message ?? S.current.textErrorToGetUserInformation);
     }
   }
 
@@ -63,8 +65,9 @@ class ProfileService implements IProfileService {
       final response = await _service.doRequest(requestConfig);
 
       return ResponseDeleteUser.fromJson(json.decode(response.data));
-    } on DioError catch (e) {
-      throw SafeDioResponseProfileError(e.message);
+    } on DioException catch (e) {
+      throw SafeDioResponseProfileError(
+          e.message ?? S.current.textErrorToDeactivateUser);
     }
   }
 
@@ -87,8 +90,9 @@ class ProfileService implements IProfileService {
       final response = await _service.doRequest(requestConfig);
 
       return ResponseUpdateUser.fromJson(json.decode(response.data));
-    } on DioError catch (e) {
-      throw SafeDioResponseAccountError(e.message);
+    } on DioException catch (e) {
+      throw SafeDioResponseAccountError(
+          e.message ?? S.current.textErrorToUpdateUserInformation);
     }
   }
 
@@ -107,8 +111,9 @@ class ProfileService implements IProfileService {
 
       final response = await _service.doRequest(requestConfig);
       return ResponseDeleteReview(message: response.data);
-    } on DioError catch (e) {
-      throw SafeDioResponseProfileError(e.message);
+    } on DioException catch (e) {
+      throw SafeDioResponseProfileError(
+          e.message ?? S.current.textErrorToDeleteReview);
     }
   }
 
@@ -144,9 +149,10 @@ class ProfileService implements IProfileService {
 
       final response = await _service.doRequest(requestConfig);
       return response.data;
-    } on DioError catch (e, stackTrace) {
-      Catcher.reportCheckedError(e, stackTrace);
-      throw SafeDioResponseProfileError(e.message);
+    } on DioException catch (e, stackTrace) {
+      Catcher2.reportCheckedError(e, stackTrace);
+      throw SafeDioResponseProfileError(
+          e.message ?? S.current.textErrorToDeactivateUser);
     }
   }
 }

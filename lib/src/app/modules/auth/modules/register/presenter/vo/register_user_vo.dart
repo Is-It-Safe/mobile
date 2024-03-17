@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
-import 'package:is_it_safe_app/src/core/constants/string_constants.dart';
 import 'package:is_it_safe_app/src/core/enum/user_sign_in_enum.dart';
 import 'package:is_it_safe_app/src/core/extentions/validation_extentions.dart';
 
@@ -17,25 +16,17 @@ class RegisterUserVo {
     }
   }
 
-  String? validateUserData({
-    String? currentPassword,
-  }) {
+  Object? validateUserData() {
     switch (userSignInEnum) {
       case UserSignInEnum.user:
         return validateName();
       case UserSignInEnum.nickName:
-        return validateName();
+        return validateNickName();
       case UserSignInEnum.email:
         return validateEmail();
-      case UserSignInEnum.password:
-        return validatePassword();
       case UserSignInEnum.pronouns:
         isValid = true;
         break;
-      case UserSignInEnum.passwordConfirm:
-        return validateConfirmPassword(
-          currentPassword: currentPassword ?? StringConstants.empty,
-        );
       default:
         break;
     }
@@ -48,6 +39,15 @@ class RegisterUserVo {
     if (!(controller.text).isName) {
       isValid = false;
       return S.current.textErrorEmptyField;
+    }
+    isValid = true;
+    return null;
+  }
+
+  String? validateNickName() {
+    if (!(controller.text).isNickName) {
+      isValid = false;
+      return S.current.textErrorUserName;
     }
     isValid = true;
     return null;

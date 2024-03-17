@@ -220,11 +220,31 @@ class S {
     );
   }
 
-  /// `Esse campo não pode ficar vazio`
+  /// `Espaços vazios não são válidos`
   String get textErrorEmptyField {
     return Intl.message(
-      'Esse campo não pode ficar vazio',
+      'Espaços vazios não são válidos',
       name: 'textErrorEmptyField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `O nome do usuário precisa conter 4 caracteres ou mais`
+  String get textErrorUserName {
+    return Intl.message(
+      'O nome do usuário precisa conter 4 caracteres ou mais',
+      name: 'textErrorUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Versão do app: `
+  String get textVersionApp {
+    return Intl.message(
+      'Versão do app: ',
+      name: 'textVersionApp',
       desc: '',
       args: [],
     );
@@ -250,10 +270,10 @@ class S {
     );
   }
 
-  /// `Os campos de senha devem ser iguais`
+  /// `A confirmação de senha não confere`
   String get textErrorDifferentPasswords {
     return Intl.message(
-      'Os campos de senha devem ser iguais',
+      'A confirmação de senha não confere',
       name: 'textErrorDifferentPasswords',
       desc: '',
       args: [],
@@ -425,6 +445,96 @@ class S {
     return Intl.message(
       '\'Erro ao realizar o cadastro. Tente novamente mais tarde.\'',
       name: 'textErrorToRegisterUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao carregar os gêneros. Tente novamente mais tarde.'`
+  String get textErrorToGetGender {
+    return Intl.message(
+      '\'Erro ao carregar os gêneros. Tente novamente mais tarde.\'',
+      name: 'textErrorToGetGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao carregar as orientações sexuais. Tente novamente mais tarde.'`
+  String get textErrorToGetSexualOrientation {
+    return Intl.message(
+      '\'Erro ao carregar as orientações sexuais. Tente novamente mais tarde.\'',
+      name: 'textErrorToGetSexualOrientation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao verificar a disponibilidade do nome de usuário. Tente novamente mais tarde.'`
+  String get textErrorToCheckUsernameAvailability {
+    return Intl.message(
+      '\'Erro ao verificar a disponibilidade do nome de usuário. Tente novamente mais tarde.\'',
+      name: 'textErrorToCheckUsernameAvailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao verificar a disponibilidade do e-mail. Tente novamente mais tarde.'`
+  String get textErrorToCheckEmailAvailability {
+    return Intl.message(
+      '\'Erro ao verificar a disponibilidade do e-mail. Tente novamente mais tarde.\'',
+      name: 'textErrorToCheckEmailAvailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao carregar as informações do usuário. Tente novamente mais tarde.'`
+  String get textErrorToGetUserInformation {
+    return Intl.message(
+      '\'Erro ao carregar as informações do usuário. Tente novamente mais tarde.\'',
+      name: 'textErrorToGetUserInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao desativar o usuário. Tente novamente mais tarde.'`
+  String get textErrorToDeactivateUser {
+    return Intl.message(
+      '\'Erro ao desativar o usuário. Tente novamente mais tarde.\'',
+      name: 'textErrorToDeactivateUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao atualizar as informações do usuário. Tente novamente mais tarde.'`
+  String get textErrorToUpdateUserInformation {
+    return Intl.message(
+      '\'Erro ao atualizar as informações do usuário. Tente novamente mais tarde.\'',
+      name: 'textErrorToUpdateUserInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao deletar a review. Tente novamente mais tarde.'`
+  String get textErrorToDeleteReview {
+    return Intl.message(
+      '\'Erro ao deletar a review. Tente novamente mais tarde.\'',
+      name: 'textErrorToDeleteReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Erro ao buscar o local pelo nome. Tente novamente mais tarde.'`
+  String get textErrorToSearchPlaceByName {
+    return Intl.message(
+      '\'Erro ao buscar o local pelo nome. Tente novamente mais tarde.\'',
+      name: 'textErrorToSearchPlaceByName',
       desc: '',
       args: [],
     );
@@ -650,11 +760,31 @@ class S {
     );
   }
 
+  /// `Permitir`
+  String get textAllow {
+    return Intl.message(
+      'Permitir',
+      name: 'textAllow',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancelar`
   String get textCancel {
     return Intl.message(
       'Cancelar',
       name: 'textCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Negar`
+  String get textDeny {
+    return Intl.message(
+      'Negar',
+      name: 'textDeny',
       desc: '',
       args: [],
     );
@@ -950,6 +1080,16 @@ class S {
     );
   }
 
+  /// `Editar Conta`
+  String get textEditAccount {
+    return Intl.message(
+      'Editar Conta',
+      name: 'textEditAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sair`
   String get textLogout {
     return Intl.message(
@@ -1160,11 +1300,21 @@ class S {
     );
   }
 
-  /// `Local enviado para revisão com sucesso!`
+  /// `Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!`
   String get textSuccessSaveLocation {
     return Intl.message(
       'Estamos processando os detalhes do estabelecimento para tornar sua experiência ainda mais incrível. Em breve, ele estará visível para todos!',
       name: 'textSuccessSaveLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Explorar outros locais`
+  String get textExploreOtherLocations {
+    return Intl.message(
+      'Explorar outros locais',
+      name: 'textExploreOtherLocations',
       desc: '',
       args: [],
     );
@@ -1599,18 +1749,6 @@ class S {
       args: [],
     );
   }
-
-
-    /// `Explorar outros locais`
-  String get textButtonSafeDialogTypeSucces {
-    return Intl.message(
-      'Explorar outros locais',
-      name: 'textButtonSafeDialogTypeSucces',
-      desc: '',
-      args: [],
-    );
-  }
-
 
   /// `Sucesso!`
   String get textSafeDialogTypeSucces {
@@ -2137,6 +2275,26 @@ class S {
     return Intl.message(
       'The location service on the device is disabled.',
       name: 'textErrorDeniedServiceLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permitir o app ‘IS IT SAFE?’ acesse a sua localização?`
+  String get textLocationDialogTitle {
+    return Intl.message(
+      'Permitir o app ‘IS IT SAFE?’ acesse a sua localização?',
+      name: 'textLocationDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você.`
+  String get textLocationDialogcontent {
+    return Intl.message(
+      'Sua localização é utilizada  para customizar sua experiência e oferecer opções relevantes perto de você.',
+      name: 'textLocationDialogcontent',
       desc: '',
       args: [],
     );
