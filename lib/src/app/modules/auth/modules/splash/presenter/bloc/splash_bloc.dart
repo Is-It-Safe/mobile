@@ -11,11 +11,11 @@ import 'package:is_it_safe_app/src/domain/use_case/get_user_on_boarding_use_case
 
 class SplashBloc extends SafeBloC {
   final GetUserLoginUseCase getUserLoginUseCase;
-  final GetUserOnBoaringUseCase getUserOnBoaringUseCase;
+  final GetUserOnBoardingUseCase getUserOnBoardingUseCase;
 
   SplashBloc({
     required this.getUserLoginUseCase,
-    required this.getUserOnBoaringUseCase,
+    required this.getUserOnBoardingUseCase,
   });
 
   @override
@@ -26,22 +26,32 @@ class SplashBloc extends SafeBloC {
 
   Future<bool> get isUserLogged async {
     final response = await getUserLoginUseCase();
-    SafeLogUtil.instance.log(
-      title: 'Is User Logged?',
-      message: '$response',
-      type: SafeLogType.warning,
+    return response.fold(
+      (success) {
+        SafeLogUtil.instance.log(
+          title: 'Is User Logged?',
+          message: '$success',
+          type: SafeLogType.warning,
+        );
+        return success;
+      },
+      (error) => throw Exception(error),
     );
-    return response;
   }
 
   Future<bool> get didUserSeeOnboarding async {
-    final response = await getUserOnBoaringUseCase();
-    SafeLogUtil.instance.log(
-      title: 'Did User See OnBoarding?',
-      message: '$response',
-      type: SafeLogType.warning,
+    final response = await getUserOnBoardingUseCase();
+    return response.fold(
+      (success) {
+        SafeLogUtil.instance.log(
+          title: 'Did User See OnBoarding?',
+          message: '$success',
+          type: SafeLogType.warning,
+        );
+        return success;
+      },
+      (error) => throw Exception(error),
     );
-    return response;
   }
 
   void defineRoute() async {

@@ -12,10 +12,10 @@ class SplashModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => SharedPreferencesService()),
     Bind.lazySingleton((i) => GetUserLoginUseCase(i())),
-    Bind.lazySingleton((i) => GetUserOnBoaringUseCase(i())),
+    Bind.lazySingleton((i) => GetUserOnBoardingUseCase(i())),
     Bind.lazySingleton((i) => SplashBloc(
           getUserLoginUseCase: i(),
-          getUserOnBoaringUseCase: i(),
+          getUserOnBoardingUseCase: i(),
         )),
   ];
 
