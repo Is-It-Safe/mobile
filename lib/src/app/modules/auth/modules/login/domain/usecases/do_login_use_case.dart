@@ -1,5 +1,6 @@
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/domain/entities/request/request_login.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/services/auth_service_interface.dart';
+import 'package:is_it_safe_app/src/core/util/safe_log_util.dart';
 import 'package:is_it_safe_app/src/domain/entity/login_entity.dart';
 import 'package:is_it_safe_app/src/core/interfaces/safe_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
@@ -28,7 +29,8 @@ class DoLoginUseCase extends SafeUseCase {
 
       return Success(LoginEntity.toEntity(response));
     } on SafeAuthError catch (e) {
-      throw Failure(e);
+      SafeLogUtil.instance.logError(e);
+      return Failure(e);
     }
   }
 }
