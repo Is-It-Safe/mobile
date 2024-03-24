@@ -4,6 +4,7 @@ import 'package:catcher_2/catcher_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:is_it_safe_app/generated/l10n.dart';
+import 'package:is_it_safe_app/src/app/modules/auth/error/safe_auth_error.dart';
 import 'package:is_it_safe_app/src/app/modules/auth/modules/login/domain/usecases/do_login_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_email_use_case.dart';
 import 'package:is_it_safe_app/src/app/modules/configuration/account/domain/usecases/save_user_image_use_case.dart';
@@ -22,6 +23,7 @@ import 'package:is_it_safe_app/src/domain/use_case/save_user_refresh_token_use_c
 import 'package:is_it_safe_app/src/domain/use_case/save_user_token_use_case.dart';
 import 'package:is_it_safe_app/src/service/api/constants/api_constants.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:result_dart/result_dart.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginBloc extends SafeBloC {
@@ -74,11 +76,11 @@ class LoginBloc extends SafeBloC {
 
   Future<void> doLogin() async {
     loginEntityStream.loading();
-    try {
-      final result = await doLoginUseCase.call(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+
+    final result = await doLoginUseCase.call(
+      email: emailController.text,
+      password: passwordController.text,
+    );
 
       result.fold(
         (loginEntity) async {
@@ -93,13 +95,12 @@ class LoginBloc extends SafeBloC {
             navigateToHome();
           }
         },
-        (failure) {},
+        (failure) {
+          SafeLogUtil.instance.logError(failure);
+          loginEntityStream.show();
+          safeSnackBar.error(S.current.textErrorLoginUnauthorized);
+        },
       );
-    } catch (e) {
-      SafeLogUtil.instance.logError(e);
-      loginEntityStream.show();
-      safeSnackBar.error(S.current.textErrorLoginUnauthorized);
-    }
   }
 
   void toogleLoginButton() {
