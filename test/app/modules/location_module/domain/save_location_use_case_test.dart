@@ -25,7 +25,6 @@ main() {
       cep: '41000000',
       locationTypeId: 1,
       imgUrl: 'path/new_path/image.jpg',
-      address: 'Endereço'
     );
     test('Retorna local salvo com sucesso', () async {
       final useCase = Modular.get<SaveLocationUseCase>();
@@ -35,7 +34,6 @@ main() {
         cep: request.cep!,
         locationTypeId: request.locationTypeId!,
         imgUrl: request.imgUrl!,
-        address: request.address!
       );
 
       saveLocationUseCase.fold(
