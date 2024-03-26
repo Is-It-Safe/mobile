@@ -96,7 +96,6 @@ class SaveLocationBloC extends SafeBloC {
         cep: UtilBrasilFields.removeCaracteres(locationCepController.text),
         locationTypeId: locationId + 1,
         imgUrl: imageNotifier.value,
-        address: locationAddressFieldController.text,
       );
       result.fold(
         (success) {
